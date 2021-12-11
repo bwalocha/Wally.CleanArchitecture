@@ -1,0 +1,141 @@
+# Wally.CleanArchitecture
+
+[[_TOC_]]
+
+## Components
+
+### Swagger
+
+UI: https://localhost:7197/swagger/index.html
+
+### Serilog
+
+`serilog.json`
+
+```json
+{
+  "Serilog": {
+    "Using": [
+      "Serilog.Sinks.Console",
+      "Serilog.Sinks.ApplicationInsights"
+    ],
+    "MinimumLevel": {
+      "Default": "Debug",
+      "Override": {
+        "Microsoft": "Information"
+      }
+    },
+    "WriteTo": [
+      {
+        "Name": "Debug"
+      },
+      {
+        "Name": "Console",
+        "Args": {
+          "theme": "Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme::Code, Serilog.Sinks.Console",
+          "outputTemplate": "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Properties:j}{NewLine}{Exception}{NewLine}"
+        }
+      },
+      {
+        "Name": "ApplicationInsights",
+        "Args": {
+          "instrumentationKey": "---",
+          "restrictedToMinimumLevel": "Information",
+          "telemetryConverter": "Serilog.Sinks.ApplicationInsights.Sinks.ApplicationInsights.TelemetryConverters.TraceTelemetryConverter, Serilog.Sinks.ApplicationInsights"
+        }
+      },
+      {
+        "Name": "MSSqlServer",
+        "Args": {
+          "connectionString": "---",
+          "tableName": "Log",
+          "columnOptionsSection": {
+            "addStandardColumns": [ "LogEvent" ],
+            "removeStandardColumns": [ "Properties" ]
+          }
+        }
+      }
+    ],
+    "Enrich": [
+      "FromLogContext",
+      "WithMachineName",
+      "WithThreadId"
+    ],
+    "Properties": {
+      "Application": "Wally.CleanArchitecture"
+    }
+  }
+}
+```
+
+### Health Checks
+
+AppVer: https://localhost:7197
+Health: https://localhost:7197/healthchecks
+
+UI: https://localhost:7197/healthchecks-ui
+UI cfg: https://localhost:7197/healthchecks-api/ui-settings
+
+API: https://localhost:7197/healthchecks-api
+
+Webhooks: https://localhost:7197/healthchecks-webhooks
+
+[website](https://github.com/xabaril/AspNetCore.Diagnostics.HealthChecks)
+
+`appsettings.json`
+
+```json
+...
+  "HealthChecks-UI": {
+    "DisableMigrations": true,
+    "HealthChecks": [
+      {
+        "Name": "Poll Manager",
+        "Uri": "/healthChecks"
+      }
+    ],
+    "Webhooks": [
+      {
+        "Name": "",
+        "Uri": "",
+        "Payload": "",
+        "RestoredPayload": ""
+      }
+    ],
+    "EvaluationTimeOnSeconds": 10,
+    "MinimumSecondsBetweenFailureNotifications": 60,
+    "MaximumExecutionHistoriesPerEndpoint": 15,
+    "HealthCheckDatabaseConnectionString": "Data Source=healthChecks"
+  }
+...
+```
+
+Known Issues:
+
+- [ ] https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks/issues/845
+ 
+### Mapster
+
+Known Issuees:
+
+- [ ] https://github.com/MapsterMapper/Mapster/issues/381
+
+```
+System.MissingMethodException: Constructor on type 'Mapster.EFCore.MapsterAsyncEnumerable`1[[Wally.CleanArchitecture.Contracts.Responses.Users.GetUserResponse, Wally.CleanArchitecture.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]' not found.
+   at System.RuntimeType.CreateInstanceImpl(BindingFlags bindingAttr, Binder binder, Object[] args, CultureInfo culture)
+   at System.Activator.CreateInstance(Type type, BindingFlags bindingAttr, Binder binder, Object[] args, CultureInfo culture, Object[] activationAttributes)
+   at System.Activator.CreateInstance(Type type, Object[] args)
+   at Mapster.EFCore.MapsterQueryableProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.SingleAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Wally.CleanArchitecture.Persistence.Repository`1.GetAsync[TResult](Guid id, CancellationToken cancellationToken) in C:\repo\wally\wally.CleanArchitecture\src\Wally.CleanArchitecture.Persistence\Repository.cs:line 0
+   at Wally.CleanArchitecture.Application.Users.Queries.GetUserQueryHandler.HandleAsync(GetUserQuery query, CancellationToken cancellationToken) in C:\repo\wally\wally.CleanArchitecture\src\Wally.CleanArchitecture.Application\Users\Queries\GetUserQueryHandler.cs:line 19
+   at Wally.CleanArchitecture.Application.Abstractions.QueryHandler`2.Handle(TQuery query, CancellationToken cancellationToken) in C:\repo\wally\wally.CleanArchitecture\src\Wally.CleanArchitecture.Application\Abstractions\QueryHandler.cs:line 16
+   at MediatR.Internal.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_0.<Handle>g__Handler|0()
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+```
+
+### AutoMapper
+
+[WebSite](https://automapper.org/)

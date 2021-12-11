@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Users" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Wally.CleanArchitecture.Contracts\Wally.CleanArchitecture.Contracts.csproj" />
+      <ProjectReference Include="..\Wally.CleanArchitecture.Domain\Wally.CleanArchitecture.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="9.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore.OData" Version="8.0.4" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,3 @@
+[submodule "Wally.Common.CodeStyleRules"]
+	path = src/Wally.Common.CodeStyleRules
+	url = ../../wally/Wally.Common.CodeStyleRules.git

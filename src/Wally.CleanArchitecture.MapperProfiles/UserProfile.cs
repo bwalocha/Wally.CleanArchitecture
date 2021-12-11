@@ -1,0 +1,20 @@
+﻿using AutoMapper;
+using Wally.CleanArchitecture.Contracts.Requests.User;
+using Wally.CleanArchitecture.Contracts.Responses.Users;
+using Wally.CleanArchitecture.Domain.Users;
+
+namespace Wally.CleanArchitecture.MapperProfiles
+{
+	public class UserProfile : Profile
+	{
+		public UserProfile()
+		{
+			CreateMap<User, GetUsersRequest>();
+			CreateMap<User, GetUsersResponse>();
+			
+			CreateMap<User, GetUserResponse>();
+
+			CreateMap<GetUsersRequest, GetUsersResponse>();
+		}
+	}
+}

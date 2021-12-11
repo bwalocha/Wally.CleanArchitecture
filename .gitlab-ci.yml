@@ -1,0 +1,44 @@
+variables:
+  API_PROJECT_NAME: "Wally.CleanArchitecture.WebApi"
+  #
+  VERSION: "0.1.${CI_PIPELINE_ID}"
+  #CI_DEBUG_TRACE: "true"
+
+stages:
+  - build
+  - test
+  - publish
+  - deploy
+
+build:sln:
+  extends:
+    - .build:dotnet
+
+test:sln:
+  extends:
+    - .test:dotnet
+  needs:
+    - build:sln
+
+pages:
+  stage: deploy
+  needs:
+    - test:sln
+  dependencies:
+    - test:sln
+  variables:
+    GIT_SUBMODULE_STRATEGY: none
+    GIT_STRATEGY: none
+    GIT_CHECKOUT: "false"
+  script:
+    - mv coverage/ public/
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+
+include:
+  - project: wally/wally.common.pipelines
+    ref: master
+    file:
+      - /src/gitlab-ci.yml

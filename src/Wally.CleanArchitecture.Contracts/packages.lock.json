@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "dependencies": {
+    ".NETCoreApp,Version=v6.0": {
+      "FluentValidation": {
+        "type": "Direct",
+        "requested": "[10.3.4, )",
+        "resolved": "10.3.4",
+        "contentHash": "hsGRtnhTlCrRbxIOkKp6rCBtkq3UV0i31ckcJtd5j1i99zqLgbQGcbxK0SMU63DIto94f++uIdRpoycu8ySnDQ=="
+      },
+      "StyleCop.Analyzers": {
+        "type": "Direct",
+        "requested": "[1.1.118, )",
+        "resolved": "1.1.118",
+        "contentHash": "Onx6ovGSqXSK07n/0eM3ZusiNdB6cIlJdabQhWGgJp3Vooy9AaLS/tigeybOJAobqbtggTamoWndz72JscZBvw=="
+      },
+      "Wally.Lib.DDD.Abstractions": {
+        "type": "Direct",
+        "requested": "[1.0.1321, )",
+        "resolved": "1.0.1321",
+        "contentHash": "0sKRgi9Q4yaWcWRXjinpxvXLWCUT9PbYxvyEnjR7kuoV/qnwYaUmoSYoxI5OtqshA2gv2HK4gCRWMsnH0F5Bow==",
+        "dependencies": {
+          "Microsoft.AspNetCore.OData": "8.0.4",
+          "Newtonsoft.Json": "12.0.3"
+        }
+      },
+      "Microsoft.AspNetCore.OData": {
+        "type": "Transitive",
+        "resolved": "8.0.4",
+        "contentHash": "/5oa5Zsi2u2fD2McDq2hTYs1yPDi98eW0WHXf49hWNT1J9ZYC0dgDOQz4usvznE8lPMbR8jXwtLzauEL+mUhQA==",
+        "dependencies": {
+          "Microsoft.OData.Core": "[7.9.4, 8.0.0)",
+          "Microsoft.OData.Edm": "[7.9.4, 8.0.0)",
+          "Microsoft.OData.ModelBuilder": "[1.0.7, 2.0.0)",
+          "Microsoft.Spatial": "[7.9.4, 8.0.0)"
+        }
+      },
+      "Microsoft.Bcl.AsyncInterfaces": {
+        "type": "Transitive",
+        "resolved": "5.0.0",
+        "contentHash": "W8DPQjkMScOMTtJbPwmPyj9c3zYSFGawDW3jwlBOOsnY+EzZFLgNQ/UMkK35JmkNOVPdCyPr2Tw7Vv9N+KA3ZQ=="
+      },
+      "Microsoft.OData.Core": {
+        "type": "Transitive",
+        "resolved": "7.9.4",
+        "contentHash": "+dW3LgUlGzwq/dyBJ7PhPqTH1h+iS7Om3S0+nwmPsWZH0DxVOuOuSEr+5dbYvWFL49FfjQrYCi+wedZ89JBh/g==",
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "5.0.0",
+          "Microsoft.OData.Edm": "[7.9.4]",
+          "Microsoft.Spatial": "[7.9.4]"
+        }
+      },
+      "Microsoft.OData.Edm": {
+        "type": "Transitive",
+        "resolved": "7.9.4",
+        "contentHash": "99KOeJKiIZHLLKOrDuOsbUs1G/AqIoGpXQnkxAqt/YSCWFVgBXw4wT0KpgKqw/j4aQRXQuFxJ3rPSFNCkwaTSA==",
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "4.6.0",
+          "System.Text.Encodings.Web": "4.7.2",
+          "System.Text.Json": "4.6.0"
+        }
+      },
+      "Microsoft.OData.ModelBuilder": {
+        "type": "Transitive",
+        "resolved": "1.0.7",
+        "contentHash": "W+JqqUkQS3su7YBDkiU3QfEhF/cHya6uvoFDZ2M5//6udG9QzAZm3EsEVI2BrZsEOJ8KtfaTZL5CeZnzPL2lcw==",
+        "dependencies": {
+          "Microsoft.OData.Edm": "[7.9.0, 8.0.0)",
+          "Microsoft.Spatial": "[7.9.0, 8.0.0)",
+          "System.ComponentModel.Annotations": "4.6.0"
+        }
+      },
+      "Microsoft.Spatial": {
+        "type": "Transitive",
+        "resolved": "7.9.4",
+        "contentHash": "eLTR0WylZ3CwstY6lEIjVpnjkhsxUq8Dj0dSrCTAwL76f0m6KnYea0Woy1roe6VH9Ed9HGUTeK+3qLbnqdnu2Q=="
+      },
+      "Newtonsoft.Json": {
+        "type": "Transitive",
+        "resolved": "12.0.3",
+        "contentHash": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg=="
+      },
+      "System.ComponentModel.Annotations": {
+        "type": "Transitive",
+        "resolved": "4.6.0",
+        "contentHash": "pOd+UhZ3X8xfwKDlgAzowUJNjp8VYVmOHZm++vCd0kq1HZ0zK3mNo2yRXjYgv7Ik/Xi43fmJfND2PLEsQSALCg=="
+      },
+      "System.Runtime.CompilerServices.Unsafe": {
+        "type": "Transitive",
+        "resolved": "4.6.0",
+        "contentHash": "HxozeSlipUK7dAroTYwIcGwKDeOVpQnJlpVaOkBz7CM4TsE5b/tKlQBZecTjh6FzcSbxndYaxxpsBMz+wMJeyw=="
+      },
+      "System.Text.Encodings.Web": {
+        "type": "Transitive",
+        "resolved": "4.7.2",
+        "contentHash": "iTUgB/WtrZ1sWZs84F2hwyQhiRH6QNjQv2DkwrH+WP6RoFga2Q1m3f9/Q7FG8cck8AdHitQkmkXSY8qylcDmuA=="
+      },
+      "System.Text.Json": {
+        "type": "Transitive",
+        "resolved": "4.6.0",
+        "contentHash": "4F8Xe+JIkVoDJ8hDAZ7HqLkjctN/6WItJIzQaifBwClC7wmoLSda/Sv2i6i1kycqDb3hWF4JCVbpAweyOKHEUA=="
+      }
+    }
+  }
+}
