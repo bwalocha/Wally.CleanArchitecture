@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using AutoMapper.Internal;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Types;
+using MediatR;
 using Wally.CleanArchitecture.Application.Abstractions;
 using Wally.CleanArchitecture.ConventionTests.Helpers;
 using Xunit;
@@ -30,9 +32,14 @@ namespace Wally.CleanArchitecture.ConventionTests
 						foreach (var method in type.Methods()
 							.Where(
 								x => x.ReturnType == typeof(Task) ||
-									x.ReturnType.GetTypeDefinitionIfGeneric() == typeof(Task<>) ||
+									x.ReturnType.ImplementsGenericInterface(typeof(Task<>)) ||
 									x.GetCustomAttribute(typeof(AsyncStateMachineAttribute)) != null))
 						{
+							if (type.ImplementsGenericInterface(typeof(IPipelineBehavior<,>)) && method.Name == nameof(IPipelineBehavior<object, object>.Handle))
+							{
+								continue;
+							}
+							
 							var parameters = method.GetParameters();
 
 							parameters.Last()
@@ -63,7 +70,7 @@ namespace Wally.CleanArchitecture.ConventionTests
 						foreach (var method in type.Methods()
 							.Where(
 								x => x.ReturnType == typeof(Task) ||
-									x.ReturnType.GetTypeDefinitionIfGeneric() == typeof(Task<>) ||
+									x.ReturnType.ImplementsGenericInterface(typeof(Task<>)) ||
 									x.GetCustomAttribute(typeof(AsyncStateMachineAttribute)) != null))
 						{
 							if (type == typeof(CommandHandler<>))
@@ -72,6 +79,11 @@ namespace Wally.CleanArchitecture.ConventionTests
 							}
 							
 							if (type == typeof(QueryHandler<,>))
+							{
+								continue;
+							}
+
+							if (type.ImplementsGenericInterface(typeof(IPipelineBehavior<,>)) && method.Name == nameof(IPipelineBehavior<object, object>.Handle))
 							{
 								continue;
 							}

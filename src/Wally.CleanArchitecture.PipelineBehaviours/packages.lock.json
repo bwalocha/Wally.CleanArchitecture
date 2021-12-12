@@ -2,6 +2,12 @@
   "version": 1,
   "dependencies": {
     "net6.0": {
+      "FluentValidation": {
+        "type": "Direct",
+        "requested": "[10.3.5, )",
+        "resolved": "10.3.5",
+        "contentHash": "Mt2CnRqNA5+vXVNFY05yLuOG3OLYR7Q/ZcP/rcJZPNPbg95foVUruyQEmKl1GeXVnT2+u6rjGU2ZCdgF//QU2A=="
+      },
       "MediatR": {
         "type": "Direct",
         "requested": "[9.0.0, )",

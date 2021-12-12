@@ -51,12 +51,12 @@
       },
       "FluentValidation.AspNetCore": {
         "type": "Direct",
-        "requested": "[10.3.4, )",
-        "resolved": "10.3.4",
-        "contentHash": "YxJ6YH8Oh/DIyHHbjLdQkITGpksihDbznqEbKJy+uPfphdWwtlzaVSx1XyLotSj/bkPXOdLL8w5FPh1TA0Acpw==",
+        "requested": "[10.3.5, )",
+        "resolved": "10.3.5",
+        "contentHash": "fHPayS6k2GbvblzFJjiHNlJT8iQhGkGbSX6Q6JsH6Od2uFDCRaZIj/qSUkCwlCE/cHldmiGbk30LrJyKav9HPg==",
         "dependencies": {
-          "FluentValidation": "10.3.4",
-          "FluentValidation.DependencyInjectionExtensions": "10.3.4"
+          "FluentValidation": "10.3.5",
+          "FluentValidation.DependencyInjectionExtensions": "10.3.5"
         }
       },
       "MediatR": {
@@ -204,15 +204,15 @@
       },
       "FluentValidation": {
         "type": "Transitive",
-        "resolved": "10.3.4",
-        "contentHash": "hsGRtnhTlCrRbxIOkKp6rCBtkq3UV0i31ckcJtd5j1i99zqLgbQGcbxK0SMU63DIto94f++uIdRpoycu8ySnDQ=="
+        "resolved": "10.3.5",
+        "contentHash": "Mt2CnRqNA5+vXVNFY05yLuOG3OLYR7Q/ZcP/rcJZPNPbg95foVUruyQEmKl1GeXVnT2+u6rjGU2ZCdgF//QU2A=="
       },
       "FluentValidation.DependencyInjectionExtensions": {
         "type": "Transitive",
-        "resolved": "10.3.4",
-        "contentHash": "LS0opGF4r/upI92Y+bToBzFqHYrfuHDWz9z9DN2hUn+/tmt9lN8n0bevyswabdKlTwL6s8vMhVQxHXM8wjOAbQ==",
+        "resolved": "10.3.5",
+        "contentHash": "zGaFLXmf4c+kKqQpT0Ec1T97kbJMx9o25+0l6p/TYFQ99bHSLPmgpd8EjU6s7cXv9X/215mIlrazMkzvbCZFWg==",
         "dependencies": {
-          "FluentValidation": "10.3.4",
+          "FluentValidation": "10.3.5",
           "Microsoft.Extensions.Dependencyinjection.Abstractions": "2.1.0"
         }
       },
@@ -1399,7 +1399,7 @@
       "wally.cleanarchitecture.contracts": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "10.3.4",
+          "FluentValidation": "10.3.5",
           "Wally.Lib.DDD.Abstractions": "1.0.1321"
         }
       },
@@ -1433,6 +1433,16 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0",
           "Wally.CleanArchitecture.Persistence": "1.0.0"
+        }
+      },
+      "wally.cleanarchitecture.pipelinebehaviours": {
+        "type": "Project",
+        "dependencies": {
+          "FluentValidation": "10.3.5",
+          "MediatR": "9.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
+          "Newtonsoft.Json": "13.0.1",
+          "Wally.Lib.DDD.Abstractions": "1.0.1321"
         }
       }
     }

@@ -18,6 +18,7 @@ using Wally.CleanArchitecture.Contracts.Requests.User;
 using Wally.CleanArchitecture.Domain.Abstractions;
 using Wally.CleanArchitecture.MapperProfiles;
 using Wally.CleanArchitecture.Persistence;
+using Wally.CleanArchitecture.PipelineBehaviours;
 using Wally.CleanArchitecture.WebApi.Filters;
 using Wally.CleanArchitecture.WebApi.Models;
 
@@ -107,6 +108,12 @@ namespace Wally.CleanArchitecture.WebApi
 			services.AddDbContext<ApplicationDbContext>(dbContextOptions);
 			
 			services.AddAutoMapper(typeof(UserProfile).Assembly);
+			
+			services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LogBehavior<,>));
+			// services.AddTransient(typeof(IPipelineBehavior<,>), typeof(TransactionBehavior<,>));
+			// services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DomainEventsDispatcherBehavior<,>));
+			// services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandHandlerValidatorBehavior<,>));
+			services.AddTransient(typeof(IPipelineBehavior<,>), typeof(QueryHandlerValidatorBehavior<,>));
 			
 			services.Scan(
 				a => a.FromApplicationDependencies(b => !b.FullName!.StartsWith("Microsoft."))

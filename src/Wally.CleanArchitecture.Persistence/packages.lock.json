@@ -65,8 +65,8 @@
       },
       "FluentValidation": {
         "type": "Transitive",
-        "resolved": "10.3.4",
-        "contentHash": "hsGRtnhTlCrRbxIOkKp6rCBtkq3UV0i31ckcJtd5j1i99zqLgbQGcbxK0SMU63DIto94f++uIdRpoycu8ySnDQ=="
+        "resolved": "10.3.5",
+        "contentHash": "Mt2CnRqNA5+vXVNFY05yLuOG3OLYR7Q/ZcP/rcJZPNPbg95foVUruyQEmKl1GeXVnT2+u6rjGU2ZCdgF//QU2A=="
       },
       "LogicBuilder.Expressions.Utils": {
         "type": "Transitive",
@@ -303,7 +303,7 @@
       "wally.cleanarchitecture.contracts": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "10.3.4",
+          "FluentValidation": "10.3.5",
           "Wally.Lib.DDD.Abstractions": "1.0.1321"
         }
       },
