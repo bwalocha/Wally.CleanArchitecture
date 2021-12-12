@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Wally.CleanArchitecture.Application.Abstractions;
+﻿using Wally.CleanArchitecture.Application.Abstractions;
 using Wally.CleanArchitecture.Contracts.Responses.Users;
 
 namespace Wally.CleanArchitecture.Application.Users.Queries

@@ -11,7 +11,6 @@ using Wally.CleanArchitecture.Contracts.Responses.Users;
 using Wally.CleanArchitecture.Persistence;
 using Wally.CleanArchitecture.WebApi;
 using Xunit;
-using Xunit.Priority;
 using JsonNet.ContractResolvers;
 using Wally.CleanArchitecture.Domain.Users;
 using Wally.Lib.DDD.Abstractions.Responses;

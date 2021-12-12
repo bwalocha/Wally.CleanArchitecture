@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using MediatR;
 using Wally.Lib.DDD.Abstractions.Commands;
 

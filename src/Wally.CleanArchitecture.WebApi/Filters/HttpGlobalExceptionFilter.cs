@@ -1,10 +1,6 @@
-using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Logging;
 using Wally.CleanArchitecture.Persistence.Exceptions;
 
 namespace Wally.CleanArchitecture.WebApi.Filters

@@ -65,6 +65,10 @@ public abstract class ValueObject
  
 [GitHub](https://github.com/jasontaylordev/CleanArchitecture/blob/main/src/Infrastructure/DependencyInjection.cs)
 
+4. Use Aspect Oriented Programming
+
+[YouTube](https://www.youtube.com/watch?v=dLPKwEeqwgU&ab_channel=NickChapsas)
+
 ## Components
 
 ### Swagger

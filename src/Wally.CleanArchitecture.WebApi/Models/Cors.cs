@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Wally.CleanArchitecture.WebApi.Models
+﻿namespace Wally.CleanArchitecture.WebApi.Models
 {
 	public class Cors
 	{

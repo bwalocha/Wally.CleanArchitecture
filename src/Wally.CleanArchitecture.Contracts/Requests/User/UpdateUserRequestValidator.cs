@@ -1,6 +1,4 @@
-﻿using System;
-using FluentValidation;
-using Wally.Lib.DDD.Abstractions.Requests;
+﻿using FluentValidation;
 
 namespace Wally.CleanArchitecture.Contracts.Requests.User
 {
