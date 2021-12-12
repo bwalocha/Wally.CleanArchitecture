@@ -14,6 +14,7 @@ namespace Wally.CleanArchitecture.MapperProfiles
 			
 			CreateMap<User, GetUserResponse>();
 
+			// OData
 			CreateMap<GetUsersRequest, GetUsersResponse>();
 		}
 	}
