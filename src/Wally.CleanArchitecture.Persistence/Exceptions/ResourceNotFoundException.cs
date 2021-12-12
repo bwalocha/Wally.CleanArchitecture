@@ -1,4 +1,5 @@
-﻿using Wally.CleanArchitecture.Persistence.Abstractions;
+﻿using System;
+using Wally.CleanArchitecture.Persistence.Abstractions;
 
 namespace Wally.CleanArchitecture.Persistence.Exceptions
 {

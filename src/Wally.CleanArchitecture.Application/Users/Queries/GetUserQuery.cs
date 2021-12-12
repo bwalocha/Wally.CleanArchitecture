@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using MediatR;
 using Wally.CleanArchitecture.Contracts.Responses.Users;
 using Wally.Lib.DDD.Abstractions.Queries;
