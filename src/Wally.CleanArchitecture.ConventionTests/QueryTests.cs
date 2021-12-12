@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using AutoMapper.Internal;
 using FluentAssertions;
 using FluentAssertions.Types;
 using Wally.CleanArchitecture.Application.Users.Queries;
@@ -27,7 +28,7 @@ namespace Wally.CleanArchitecture.ConventionTests
 		{
 			var applicationTypes = AllTypes.From(typeof(GetUserQuery).Assembly);
 
-			applicationTypes.Where(a => typeof(IQuery<>).IsAssignableFrom(a))
+			applicationTypes.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)))
 				.Types()
 				.Should()
 				.BeDecoratedWith<ExcludeFromCodeCoverageAttribute>();

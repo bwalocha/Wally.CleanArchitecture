@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Wally.Lib.DDD.Abstractions.Requests;
+﻿using Wally.Lib.DDD.Abstractions.Requests;
 
 namespace Wally.CleanArchitecture.Contracts.Requests.User
 {
