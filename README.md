@@ -98,14 +98,14 @@ xUnit Test Project                            xunit                [C#],F#,VB  T
 ## Install
 
 ```
-cd C:\repo\wally\wally.bootstrap
+cd C:\repo\wally\Wally.CleanArchitecture
 dotnet new --install .
 ```
 
 ## Uninstall
 
 ```
-cd C:\repo\wally\wally.bootstrap
+cd C:\repo\wally\Wally.CleanArchitecture
 dotnet new --uninstall .
 ```
 

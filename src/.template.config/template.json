@@ -16,7 +16,7 @@
     {
       "modifiers": [
         {
-          "exclude": [ "Wally.Common.CodeStyleRules/**", "Directory.Build.props" ]
+          "exclude": [ ".idea/**", "Wally.Common.CodeStyleRules/**", "Directory.Build.props" ]
         }
       ]
     }

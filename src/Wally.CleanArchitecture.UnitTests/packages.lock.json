@@ -26,18 +26,18 @@
       },
       "FluentAssertions": {
         "type": "Direct",
-        "requested": "[6.2.0, )",
-        "resolved": "6.2.0",
-        "contentHash": "5YOZLB0Tay1bw+wEYZTAZlPThQ/Yntk1HSPJYluMd5PW/Xg9E8I1mRC03AKRsnuANBR0kYaHq0NX1fg7RgrGNA==",
+        "requested": "[6.3.0, )",
+        "resolved": "6.3.0",
+        "contentHash": "f+ywjTSNhc1HDtzCqtYHB6/Xuf69pznR8eUPJs1CoaFq00sCIg6KjGcXHwdWslnmy4x5TAq3kRw1728CSaQ/zw==",
         "dependencies": {
           "System.Configuration.ConfigurationManager": "4.4.0"
         }
       },
       "JunitXml.TestLogger": {
         "type": "Direct",
-        "requested": "[3.0.98, )",
-        "resolved": "3.0.98",
-        "contentHash": "S+bz5mohyfiNc2ueDsyU4KZ9w3wQIcsauxf9/zc3BY0iEih7+nPO4/BrQ1x4819KUHCtgN2LzBy+ZjGDGodJeg=="
+        "requested": "[3.0.110, )",
+        "resolved": "3.0.110",
+        "contentHash": "D0Kl9mNnbSZgEa8ZgsEAJskPvyrC9k+5BsEWUqvNr++BZJbYIb08fwe0ohvb6WEzJlMPmeLJMmvQuw5yIq3gjA=="
       },
       "Microsoft.NET.Test.Sdk": {
         "type": "Direct",
@@ -68,8 +68,8 @@
       },
       "FluentValidation": {
         "type": "Transitive",
-        "resolved": "10.3.5",
-        "contentHash": "Mt2CnRqNA5+vXVNFY05yLuOG3OLYR7Q/ZcP/rcJZPNPbg95foVUruyQEmKl1GeXVnT2+u6rjGU2ZCdgF//QU2A=="
+        "resolved": "10.3.6",
+        "contentHash": "iMd370ZDx6ydm8t7bIFdRbSKX0e42lpvCtifUSbTSXOk5iKjmgl7HU0PXBhIWQAyIRi3gCwfMI9luj8H6K+byw=="
       },
       "Microsoft.AspNetCore.OData": {
         "type": "Transitive",
@@ -1146,7 +1146,7 @@
       "wally.cleanarchitecture.contracts": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "10.3.5",
+          "FluentValidation": "10.3.6",
           "Wally.Lib.DDD.Abstractions": "1.0.1321"
         }
       },

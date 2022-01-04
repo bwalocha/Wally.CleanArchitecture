@@ -9,8 +9,8 @@
 
     <ItemGroup>
         <PackageReference Include="JsonNet.ContractResolvers" Version="2.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.0" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.1" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
         <PackageReference Include="xunit" Version="2.4.1" />
         <PackageReference Include="Xunit.Priority" Version="1.1.6" />
@@ -22,6 +22,8 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
+        <PackageReference Update="JunitXml.TestLogger" Version="3.0.110" />
+        <PackageReference Update="FluentAssertions" Version="6.3.0" />
     </ItemGroup>
 
     <ItemGroup>
