@@ -61,18 +61,21 @@
       },
       "MediatR": {
         "type": "Direct",
-        "requested": "[9.0.0, )",
-        "resolved": "9.0.0",
-        "contentHash": "8b3UYNxegHVYcJMG2zH8wn+YqxLvXG+eMfj0cMCq/jTW72p6O3PCKMkrIv0mqyxdW7bA4gblsocw7n+/9Akg5g=="
+        "requested": "[10.0.0, )",
+        "resolved": "10.0.0",
+        "contentHash": "4/oUEQEtDbJ9OIwsHux0sNsU9+/GRWFTrsDNXnt18JyPnZQyIisN7CmrieXbzJeG7oDSoY2SOw8frOz/mB6rrA==",
+        "dependencies": {
+          "MediatR.Contracts": "1.0.0"
+        }
       },
       "MediatR.Extensions.Microsoft.DependencyInjection": {
         "type": "Direct",
-        "requested": "[9.0.0, )",
-        "resolved": "9.0.0",
-        "contentHash": "msreY4ogiPdIRWiCQVHQDytIQpsZCLWsixWPZ+Xs86KZrvtuiV8BDHbIT0kBmogynVYWNpspb3caw+86YU8L6w==",
+        "requested": "[10.0.0, )",
+        "resolved": "10.0.0",
+        "contentHash": "IZvcm6MeGSX1AyIYx4+KdYjcqQgtXRIt07dxyWqjGgP3aGazuACAuIrp/czQ7hbxOVSnXqTJCPCjsn98jM/zAw==",
         "dependencies": {
-          "MediatR": "9.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0"
+          "MediatR": "10.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0"
         }
       },
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
@@ -88,13 +91,13 @@
       },
       "Microsoft.AspNetCore.OData": {
         "type": "Direct",
-        "requested": "[8.0.4, )",
-        "resolved": "8.0.4",
-        "contentHash": "/5oa5Zsi2u2fD2McDq2hTYs1yPDi98eW0WHXf49hWNT1J9ZYC0dgDOQz4usvznE8lPMbR8jXwtLzauEL+mUhQA==",
+        "requested": "[8.0.5, )",
+        "resolved": "8.0.5",
+        "contentHash": "EhJGz4lzvFzoorS2gd12b8GoIHAsUIbpV0uEzY4yNMZc5jVlbtzinn0NGYp8SY4jS7/Jn9OULOUA4C7bCsh47g==",
         "dependencies": {
           "Microsoft.OData.Core": "[7.9.4, 8.0.0)",
           "Microsoft.OData.Edm": "[7.9.4, 8.0.0)",
-          "Microsoft.OData.ModelBuilder": "[1.0.7, 2.0.0)",
+          "Microsoft.OData.ModelBuilder": "[1.0.8, 2.0.0)",
           "Microsoft.Spatial": "[7.9.4, 8.0.0)"
         }
       },
@@ -280,6 +283,11 @@
         "type": "Transitive",
         "resolved": "4.1.2",
         "contentHash": "VJaEqLeo50DZUZ6710txWYQZSOmdYtYmHmah4b7pEaK5Px/kzqIa/SyuVm3iFd8Ov/EfVE3W5Z/+BcSGrO6jow=="
+      },
+      "MediatR.Contracts": {
+        "type": "Transitive",
+        "resolved": "1.0.0",
+        "contentHash": "9IyK5yfH/ASk97FNs1cigFdAbXPbBCyoophoO0XXvua18EqHfrNWmRfy+ry2n5O0rNAwIVgI4KpDwDXO2M8VYg=="
       },
       "Microsoft.ApplicationInsights": {
         "type": "Transitive",
@@ -670,8 +678,8 @@
       },
       "Microsoft.OData.ModelBuilder": {
         "type": "Transitive",
-        "resolved": "1.0.7",
-        "contentHash": "W+JqqUkQS3su7YBDkiU3QfEhF/cHya6uvoFDZ2M5//6udG9QzAZm3EsEVI2BrZsEOJ8KtfaTZL5CeZnzPL2lcw==",
+        "resolved": "1.0.8",
+        "contentHash": "svkoLjtvdRtyAuhcBugNAmKYE3zHFXE3C2HpaRXKeuB5mVxo5DK8ZSxoox0PqiwTSFqq0hlWNy5GC1fVgQlElQ==",
         "dependencies": {
           "Microsoft.OData.Edm": "[7.9.0, 8.0.0)",
           "Microsoft.Spatial": "[7.9.0, 8.0.0)",
@@ -1390,8 +1398,8 @@
       "wally.cleanarchitecture.application": {
         "type": "Project",
         "dependencies": {
-          "MediatR": "9.0.0",
-          "Microsoft.AspNetCore.OData": "8.0.4",
+          "MediatR": "10.0.0",
+          "Microsoft.AspNetCore.OData": "8.0.5",
           "Wally.CleanArchitecture.Contracts": "1.0.0",
           "Wally.CleanArchitecture.Domain": "1.0.0"
         }
@@ -1439,7 +1447,7 @@
         "type": "Project",
         "dependencies": {
           "FluentValidation": "10.3.6",
-          "MediatR": "9.0.0",
+          "MediatR": "10.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
           "Newtonsoft.Json": "13.0.1",
           "Wally.Lib.DDD.Abstractions": "1.0.1321"

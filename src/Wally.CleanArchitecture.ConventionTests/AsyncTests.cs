@@ -1,5 +1,4 @@
-﻿using AutoMapper.Internal;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -35,7 +34,7 @@ namespace Wally.CleanArchitecture.ConventionTests
 									x.ReturnType.ImplementsGenericInterface(typeof(Task<>)) ||
 									x.GetCustomAttribute(typeof(AsyncStateMachineAttribute)) != null))
 						{
-							if (type.ImplementsGenericInterface(typeof(IPipelineBehavior<,>)) && method.Name == nameof(IPipelineBehavior<object, object>.Handle))
+							if (type.ImplementsGenericInterface(typeof(IPipelineBehavior<,>)) && method.Name == nameof(IPipelineBehavior<IRequest<object>, object>.Handle))
 							{
 								continue;
 							}
@@ -83,7 +82,7 @@ namespace Wally.CleanArchitecture.ConventionTests
 								continue;
 							}
 
-							if (type.ImplementsGenericInterface(typeof(IPipelineBehavior<,>)) && method.Name == nameof(IPipelineBehavior<object, object>.Handle))
+							if (type.ImplementsGenericInterface(typeof(IPipelineBehavior<,>)) && method.Name == nameof(IPipelineBehavior<IRequest<object>, object>.Handle))
 							{
 								continue;
 							}

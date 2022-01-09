@@ -9,7 +9,7 @@ using Wally.Lib.DDD.Abstractions.Responses;
 namespace Wally.CleanArchitecture.PipelineBehaviours
 {
 	public class LogBehavior<TRequest, TResponse> : MediatR.IPipelineBehavior<TRequest, TResponse> 
-		where TRequest : notnull
+		where TRequest : MediatR.IRequest<TResponse>
 		where TResponse : IResponse
 	{
 		// TODO: move static field to base abstract class

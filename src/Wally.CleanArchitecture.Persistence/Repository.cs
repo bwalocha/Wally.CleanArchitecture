@@ -126,7 +126,7 @@ namespace Wally.CleanArchitecture.Persistence
 				.ToArrayAsync(cancellationToken);
 			var pageSize = queryOptions.Top?.Value ?? items.Length;
 
-			return new PagedResponse<TResponse>(items, new PageInfoResponse(queryOptions.Skip?.Value > 0 ? queryOptions.Skip.Value / pageSize : 0, pageSize, allItems.Count()));
+			return new PagedResponse<TResponse>(items, new PageInfoResponse(queryOptions.Skip?.Value > 0 && pageSize != 0 ? queryOptions.Skip.Value / pageSize : 0, pageSize, allItems.Count()));
 		}
 		
 		protected virtual IQueryable<TAggregateRoot> WithIncludes(DbSet<TAggregateRoot> set)

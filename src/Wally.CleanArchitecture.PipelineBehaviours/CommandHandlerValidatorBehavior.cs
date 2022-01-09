@@ -8,7 +8,7 @@ using Wally.Lib.DDD.Abstractions.Commands;
 namespace Wally.CleanArchitecture.PipelineBehaviours
 {
 	public class CommandHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-		where TRequest : ICommand
+		where TRequest : ICommand, MediatR.IRequest<TResponse>
 		// where TResponse : IResponse
 	{
 		private readonly IValidator<TRequest> _validator;
