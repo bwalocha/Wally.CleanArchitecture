@@ -8,20 +8,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="JsonNet.ContractResolvers" Version="2.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.1" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.1" />
+        <PackageReference Include="JsonNet.ContractResolvers" Version="2.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.1"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.1"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Wally.CleanArchitecture.Persistence\Wally.CleanArchitecture.Persistence.csproj" />
-      <ProjectReference Include="..\Wally.CleanArchitecture.WebApi\Wally.CleanArchitecture.WebApi.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.Persistence\Wally.CleanArchitecture.Persistence.csproj"/>
+        <ProjectReference Include="..\Wally.CleanArchitecture.WebApi\Wally.CleanArchitecture.WebApi.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="appsettings.IntegrationTests.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
+        <None Update="appsettings.IntegrationTests.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
 </Project>

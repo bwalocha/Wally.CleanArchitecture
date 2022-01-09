@@ -4,7 +4,8 @@
 
 ## ToDo
 
-1. Add `AggregateRoot` `Shadow Properties` or `AuditableEntity` abstract class for selected `AggregateRoot` and `Entity`:
+1. Add `AggregateRoot` `Shadow Properties` or `AuditableEntity` abstract class for selected `AggregateRoot`
+   and `Entity`:
 
 ```c#
 public DateTime Created { get; set; }
@@ -62,7 +63,7 @@ public abstract class ValueObject
 ```
 
 3. Create `DependencyInjection` class in `Infrastructure`
- 
+
 [GitHub](https://github.com/jasontaylordev/CleanArchitecture/blob/main/src/Infrastructure/DependencyInjection.cs)
 
 4. Use Aspect Oriented Programming
@@ -180,7 +181,7 @@ Webhooks: https://localhost:7197/healthchecks-webhooks
 Known Issues:
 
 - [ ] https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks/issues/845
- 
+
 ### Mapster
 
 Known Issuees:
