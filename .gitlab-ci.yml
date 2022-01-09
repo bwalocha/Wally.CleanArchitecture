@@ -31,7 +31,7 @@ pages:
     GIT_STRATEGY: none
     GIT_CHECKOUT: "false"
   script:
-    - mv coverage/ public/
+    - ls
   artifacts:
     paths:
       - public
