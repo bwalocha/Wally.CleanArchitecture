@@ -1,0 +1,4 @@
+[core]
+	filemode = false
+	symlinks = true
+	ignorecase = true
