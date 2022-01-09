@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Wally.CleanArchitecture.WebApi.Models
+namespace Wally.CleanArchitecture.WebApi.Models;
+
+public class Cors
 {
-	public class Cors
-	{
-		public List<string> Origins { get; } = new();
-	}
+	public List<string> Origins { get; } = new();
 }

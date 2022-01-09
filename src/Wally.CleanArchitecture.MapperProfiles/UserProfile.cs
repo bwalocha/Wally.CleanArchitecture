@@ -3,19 +3,18 @@ using Wally.CleanArchitecture.Contracts.Requests.User;
 using Wally.CleanArchitecture.Contracts.Responses.Users;
 using Wally.CleanArchitecture.Domain.Users;
 
-namespace Wally.CleanArchitecture.MapperProfiles
-{
-	public class UserProfile : Profile
-	{
-		public UserProfile()
-		{
-			CreateMap<User, GetUsersRequest>();
-			CreateMap<User, GetUsersResponse>();
-			
-			CreateMap<User, GetUserResponse>();
+namespace Wally.CleanArchitecture.MapperProfiles;
 
-			// OData
-			CreateMap<GetUsersRequest, GetUsersResponse>();
-		}
+public class UserProfile : Profile
+{
+	public UserProfile()
+	{
+		CreateMap<User, GetUsersRequest>();
+		CreateMap<User, GetUsersResponse>();
+
+		CreateMap<User, GetUserResponse>();
+
+		// OData
+		CreateMap<GetUsersRequest, GetUsersResponse>();
 	}
 }

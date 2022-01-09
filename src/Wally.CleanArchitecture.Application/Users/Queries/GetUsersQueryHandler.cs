@@ -5,20 +5,21 @@ using Wally.CleanArchitecture.Contracts.Requests.User;
 using Wally.CleanArchitecture.Contracts.Responses.Users;
 using Wally.Lib.DDD.Abstractions.Responses;
 
-namespace Wally.CleanArchitecture.Application.Users.Queries
+namespace Wally.CleanArchitecture.Application.Users.Queries;
+
+public class GetUsersQueryHandler : QueryHandler<GetUsersQuery, PagedResponse<GetUsersResponse>>
 {
-	public class GetUsersQueryHandler : QueryHandler<GetUsersQuery, PagedResponse<GetUsersResponse>>
+	private readonly IUserRepository _usersRepository;
+
+	public GetUsersQueryHandler(IUserRepository usersRepository)
 	{
-		private readonly IUserRepository _usersRepository;
+		_usersRepository = usersRepository;
+	}
 
-		public GetUsersQueryHandler(IUserRepository usersRepository)
-		{
-			_usersRepository = usersRepository;
-		}
-
-		public override Task<PagedResponse<GetUsersResponse>> HandleAsync(GetUsersQuery query, CancellationToken cancellationToken)
-		{
-			return _usersRepository.GetAsync<GetUsersRequest, GetUsersResponse>(query.QueryOptions, cancellationToken);
-		}
+	public override Task<PagedResponse<GetUsersResponse>> HandleAsync(
+		GetUsersQuery query,
+		CancellationToken cancellationToken)
+	{
+		return _usersRepository.GetAsync<GetUsersRequest, GetUsersResponse>(query.QueryOptions, cancellationToken);
 	}
 }

@@ -1,12 +1,13 @@
 ﻿using FluentValidation;
 
-namespace Wally.CleanArchitecture.Contracts.Requests.User
+namespace Wally.CleanArchitecture.Contracts.Requests.User;
+
+public class UpdateUserRequestValidator : AbstractValidator<UpdateUserRequest>
 {
-	public class UpdateUserRequestValidator : AbstractValidator<UpdateUserRequest>
+	public UpdateUserRequestValidator()
 	{
-		public UpdateUserRequestValidator()
-		{
-			RuleFor(x => x.Name).NotEmpty().MaximumLength(256);
-		}
+		RuleFor(x => x.Name)
+			.NotEmpty()
+			.MaximumLength(256);
 	}
 }

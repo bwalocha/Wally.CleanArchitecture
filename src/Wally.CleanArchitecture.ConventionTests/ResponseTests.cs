@@ -10,112 +10,111 @@ using Wally.CleanArchitecture.ConventionTests.Helpers;
 using Wally.Lib.DDD.Abstractions.Responses;
 using Xunit;
 
-namespace Wally.CleanArchitecture.ConventionTests
+namespace Wally.CleanArchitecture.ConventionTests;
+
+public class ResponseTests
 {
-	public class ResponseTests
+	[Fact]
+	public void Application_Response_ShouldNotExposeSetter()
 	{
-		[Fact]
-		public void Application_Response_ShouldNotExposeSetter()
+		using (new AssertionScope(new AssertionStrategy()))
 		{
-			using (new AssertionScope(new AssertionStrategy()))
+			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
 			{
-				foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
-				{
-					var types = AllTypes.From(assembly)
-						.ThatImplement<IResponse>()
-						.Where(a => a != typeof(PageInfoResponse))
-						.Where(a => a.GetTypeDefinitionIfGeneric() != typeof(PagedResponse<>));
+				var types = AllTypes.From(assembly)
+					.ThatImplement<IResponse>()
+					.Where(a => a != typeof(PageInfoResponse))
+					.Where(a => a.GetTypeDefinitionIfGeneric() != typeof(PagedResponse<>));
 
-					foreach (var type in types)
+				foreach (var type in types)
+				{
+					foreach (var property in type.Properties())
 					{
-						foreach (var property in type.Properties())
-						{
-							property.Should()
-								.BeWritable(
-									CSharpAccessModifier.Private,
-									"Response class '{0}' should not expose setter '{1}'",
-									type,
-									property);
-						}
+						property.Should()
+							.BeWritable(
+								CSharpAccessModifier.Private,
+								"Response class '{0}' should not expose setter '{1}'",
+								type,
+								property);
 					}
 				}
 			}
 		}
+	}
 
-		[Fact]
-		public void Application_ClassesWhichImplementsIResponse_ShouldBeInApplicationProject()
+	[Fact]
+	public void Application_ClassesWhichImplementsIResponse_ShouldBeInApplicationProject()
+	{
+		var applicationNamespace = Regex.Match(
+				typeof(GetUserResponse).Namespace!,
+				@"Wally.CleanArchitecture\.Contracts\.Responses(?=[\.$])")
+			.Value;
+
+		// 1 exceptions for 'PagedResponse<>'
+		using (new AssertionScope(new AssertionStrategy()))
 		{
-			var applicationNamespace = Regex.Match(
-					typeof(GetUserResponse).Namespace!,
-					@"Wally.CleanArchitecture\.Contracts\.Responses(?=[\.$])")
-				.Value;
-
-			// 1 exceptions for 'PagedResponse<>'
-			using (new AssertionScope(new AssertionStrategy()))
+			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
 			{
-				foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
-				{
-					var types = AllTypes.From(assembly);
+				var types = AllTypes.From(assembly);
 
-					types.ThatImplement<IResponse>()
-						.ThatDoNotImplement<PageInfoResponse>()
-						.Should()
-						.BeUnderNamespace(applicationNamespace);
+				types.ThatImplement<IResponse>()
+					.ThatDoNotImplement<PageInfoResponse>()
+					.Should()
+					.BeUnderNamespace(applicationNamespace);
+			}
+		}
+	}
+
+	[Fact]
+	public void Application_AllClassesEndsWithResponse_ShouldImplementIResponse()
+	{
+		using (new AssertionScope(new AssertionStrategy()))
+		{
+			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
+			{
+				var types = AllTypes.From(assembly)
+					.Where(a => a.Name.EndsWith("Response"));
+				foreach (var type in types)
+				{
+					type.Should()
+						.Implement<IResponse>();
 				}
 			}
 		}
+	}
 
-		[Fact]
-		public void Application_AllClassesEndsWithResponse_ShouldImplementIResponse()
+	[Fact]
+	public void Application_AllClassesImplementsIResponse_ShouldHasResponseSuffix()
+	{
+		using (new AssertionScope(new AssertionStrategy()))
 		{
-			using (new AssertionScope(new AssertionStrategy()))
+			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
 			{
-				foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
+				var types = AllTypes.From(assembly)
+					.ThatImplement<IResponse>();
+				foreach (var type in types)
 				{
-					var types = AllTypes.From(assembly)
-						.Where(a => a.Name.EndsWith("Response"));
-					foreach (var type in types)
-					{
-						type.Should()
-							.Implement<IResponse>();
-					}
+					type.Name.Should()
+						.EndWith("Response", "Type '{0}' should ends with 'Response'", type);
 				}
 			}
 		}
+	}
 
-		[Fact]
-		public void Application_AllClassesImplementsIResponse_ShouldHasResponseSuffix()
+	[Fact]
+	public void Application_AllResponseObjects_ShouldBeExcludedFromCodeCoverage()
+	{
+		using (new AssertionScope(new AssertionStrategy()))
 		{
-			using (new AssertionScope(new AssertionStrategy()))
+			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
 			{
-				foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
-				{
-					var types = AllTypes.From(assembly)
-						.ThatImplement<IResponse>();
-					foreach (var type in types)
-					{
-						type.Name.Should()
-							.EndWith("Response", "Type '{0}' should ends with 'Response'", type);
-					}
-				}
-			}
-		}
+				var types = AllTypes.From(assembly)
+					.ThatImplement<IResponse>();
 
-		[Fact]
-		public void Application_AllResponseObjects_ShouldBeExcludedFromCodeCoverage()
-		{
-			using (new AssertionScope(new AssertionStrategy()))
-			{
-				foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
+				foreach (var type in types)
 				{
-					var types = AllTypes.From(assembly)
-						.ThatImplement<IResponse>();
-
-					foreach (var type in types)
-					{
-						type.Should()
-							.BeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
-					}
+					type.Should()
+						.BeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
 				}
 			}
 		}
