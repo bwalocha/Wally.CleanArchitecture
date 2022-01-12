@@ -3,31 +3,35 @@ using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 using Wally.Lib.DDD.Abstractions.Commands;
+
 // using Wally.Lib.DDD.Abstractions.Responses;
 
-namespace Wally.CleanArchitecture.PipelineBehaviours
+namespace Wally.CleanArchitecture.PipelineBehaviours;
+
+public class CommandHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+	where TRequest : ICommand, IRequest<TResponse>
+
+// where TResponse : IResponse
 {
-	public class CommandHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-		where TRequest : ICommand, MediatR.IRequest<TResponse>
-		// where TResponse : IResponse
+	private readonly IValidator<TRequest> _validator;
+
+	public CommandHandlerValidatorBehavior(IValidator<TRequest> validator)
 	{
-		private readonly IValidator<TRequest> _validator;
+		_validator = validator;
+	}
 
-		public CommandHandlerValidatorBehavior(IValidator<TRequest> validator)
+	public async Task<TResponse> Handle(
+		TRequest request,
+		CancellationToken cancellationToken,
+		RequestHandlerDelegate<TResponse> next)
+	{
+		var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+
+		if (!validationResult.IsValid)
 		{
-			_validator = validator;
+			throw new ValidationException(validationResult.Errors);
 		}
 
-		public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
-		{
-			var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-			
-			if (!validationResult.IsValid)
-			{
-				throw new ValidationException(validationResult.Errors);
-			}
-
-			return await next();
-		}
+		return await next();
 	}
 }

@@ -1,12 +1,8 @@
 ﻿using System;
 using Wally.CleanArchitecture.Persistence.Abstractions;
 
-namespace Wally.CleanArchitecture.Persistence.Exceptions
+namespace Wally.CleanArchitecture.Persistence.Exceptions;
+
+public class ResourceNotFoundException : Exception, INotFound
 {
-	public class ResourceNotFoundException : Exception, INotFound
-	{
-		public ResourceNotFoundException()
-		{
-		}
-	}
 }

@@ -1,6 +1,5 @@
-﻿namespace Wally.CleanArchitecture.Persistence.Abstractions
+﻿namespace Wally.CleanArchitecture.Persistence.Abstractions;
+
+public interface INotFound
 {
-	public interface INotFound
-	{
-	}
 }

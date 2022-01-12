@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using HealthChecks.UI.Core.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
@@ -11,75 +12,75 @@ using Microsoft.Extensions.Hosting;
 using Wally.CleanArchitecture.Persistence;
 using Wally.Lib.DDD.Abstractions.DomainNotifications;
 
-namespace Wally.CleanArchitecture.IntegrationTests
+namespace Wally.CleanArchitecture.IntegrationTests;
+
+public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
 {
-	public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
+	protected override IHostBuilder CreateHostBuilder()
 	{
-		protected override IHostBuilder CreateHostBuilder()
-		{
-			return base.CreateHostBuilder().ConfigureAppConfiguration(
+		return base.CreateHostBuilder()
+			.ConfigureAppConfiguration(
 				configurationBuilder =>
 				{
-					configurationBuilder.SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile(
-						"appsettings.IntegrationTests.json",
-						false);
+					configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
+						.AddJsonFile("appsettings.IntegrationTests.json", false);
 				});
-		}
+	}
 
-		protected override void ConfigureWebHost(IWebHostBuilder builder)
-		{
-			builder.ConfigureServices(
-				services =>
+	protected override void ConfigureWebHost(IWebHostBuilder builder)
+	{
+		builder.ConfigureServices(
+			services =>
+			{
+				// Remove the app's ApplicationDbContext registration.
+				var descriptors = services.Where(
+						a => a.ServiceType.IsSubclassOf(typeof(DbContextOptions)) ||
+							a.ServiceType.IsSubclassOf(typeof(DbContext)))
+					.Where(
+						a => a.ServiceType != typeof(DbContextOptions<HealthChecksDb>) &&
+							a.ServiceType != typeof(HealthChecksDb));
+
+				foreach (var descriptor in descriptors.ToArray())
 				{
-					// Remove the app's ApplicationDbContext registration.
-					var descriptors = services
-						.Where(
-							a => a.ServiceType.IsSubclassOf(typeof(DbContextOptions)) ||
-								a.ServiceType.IsSubclassOf(typeof(DbContext))).Where(
-							a => a.ServiceType != typeof(DbContextOptions<HealthChecks.UI.Core.Data.HealthChecksDb>) &&
-								a.ServiceType != typeof(HealthChecks.UI.Core.Data.HealthChecksDb));
+					services.Remove(descriptor);
+				}
 
-					foreach (var descriptor in descriptors.ToArray())
-					{
-						services.Remove(descriptor);
-					}
+				var notifications = services.Where(
+					a => a.ServiceType.IsGenericType && a.ServiceType.GetGenericTypeDefinition() ==
+						typeof(IDomainNotificationHandler<>));
 
-					var notifications = services.Where(
-						a => a.ServiceType.IsGenericType && a.ServiceType.GetGenericTypeDefinition() ==
-							typeof(IDomainNotificationHandler<>));
+				foreach (var descriptor in notifications.ToArray())
+				{
+					services.Remove(descriptor);
+				}
 
-					foreach (var descriptor in notifications.ToArray())
-					{
-						services.Remove(descriptor);
-					}
+				// Add ApplicationDbContext using an in-memory database for testing.
+				Action<DbContextOptionsBuilder> options = optionsAction =>
+				{
+					optionsAction.UseInMemoryDatabase("InMemoryDbForTesting");
+					optionsAction.ConfigureWarnings(a => { a.Ignore(InMemoryEventId.TransactionIgnoredWarning); });
+				};
 
-					// Add ApplicationDbContext using an in-memory database for testing.
-					Action<DbContextOptionsBuilder> options = optionsAction =>
-					{
-						optionsAction.UseInMemoryDatabase("InMemoryDbForTesting");
-						optionsAction.ConfigureWarnings(a => { a.Ignore(InMemoryEventId.TransactionIgnoredWarning); });
-					};
+				services.AddDbContext<ApplicationDbContext>(options);
 
-					services.AddDbContext<ApplicationDbContext>(options);
+				// Build the service provider.
+				var sp = services.BuildServiceProvider();
 
-					// Build the service provider.
-					var sp = services.BuildServiceProvider();
+				// Create a scope to obtain a reference to the database
+				// context (ApplicationDbContext).
+				using var scope = sp.CreateScope();
+				var scopedServices = scope.ServiceProvider;
 
-					// Create a scope to obtain a reference to the database
-					// context (ApplicationDbContext).
-					using var scope = sp.CreateScope();
-					var scopedServices = scope.ServiceProvider;
+				// Ensure the database is created.
+				var database = scopedServices.GetRequiredService<ApplicationDbContext>();
+				database.Database.EnsureCreated();
+			});
+	}
 
-					// Ensure the database is created.
-					var database = scopedServices.GetRequiredService<ApplicationDbContext>();
-					database.Database.EnsureCreated();
-				});
-		}
-		
-		public TService GetRequiredService<TService>() where TService : notnull
-		{
-			var scopeFactory = Services.GetService<IServiceScopeFactory>();
-			return scopeFactory!.CreateScope().ServiceProvider.GetRequiredService<TService>();
-		}
+	public TService GetRequiredService<TService>() where TService : notnull
+	{
+		var scopeFactory = Services.GetService<IServiceScopeFactory>();
+		return scopeFactory!.CreateScope()
+			.ServiceProvider.GetRequiredService<TService>();
 	}
 }

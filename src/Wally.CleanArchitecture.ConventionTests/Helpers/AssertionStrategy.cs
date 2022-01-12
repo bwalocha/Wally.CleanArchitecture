@@ -5,74 +5,69 @@ using System.Text;
 using FluentAssertions.Common;
 using FluentAssertions.Execution;
 
-namespace Wally.CleanArchitecture.ConventionTests.Helpers
+namespace Wally.CleanArchitecture.ConventionTests.Helpers;
+
+public class AssertionStrategy : IAssertionStrategy
 {
-	public class AssertionStrategy : IAssertionStrategy
+	private readonly int _allowedExceptionNumber;
+	private readonly List<string> _failureMessages = new();
+
+	[Obsolete("Fix test issues and use parameterless constructor.")]
+	public AssertionStrategy(int allowedExceptionNumber)
 	{
-		private readonly int _allowedExceptionNumber;
-		private readonly List<string> _failureMessages = new();
+		_allowedExceptionNumber = allowedExceptionNumber;
+	}
 
-		[Obsolete("Fix test issues and use parameterless constructor.")]
-		public AssertionStrategy(int allowedExceptionNumber)
-		{
-			_allowedExceptionNumber = allowedExceptionNumber;
-		}
-		
 #pragma warning disable 618
-		public AssertionStrategy() : this(0)
+	public AssertionStrategy()
+		: this(0)
 #pragma warning restore 618
+	{
+	}
+
+	public IEnumerable<string> FailureMessages => _failureMessages.AsReadOnly();
+
+	public void HandleFailure(string message)
+	{
+		_failureMessages.Add(message);
+	}
+
+	public IEnumerable<string> DiscardFailures()
+	{
+		var discardedFailures = _failureMessages.ToArray();
+		_failureMessages.Clear();
+		return discardedFailures;
+	}
+
+	public void ThrowIfAny(IDictionary<string, object> context)
+	{
+		if (_failureMessages.Count == _allowedExceptionNumber)
 		{
+			return;
 		}
 
-		public IEnumerable<string> FailureMessages => _failureMessages.AsReadOnly();
-
-		public void HandleFailure(string message)
+		if (_failureMessages.Count < _allowedExceptionNumber)
 		{
-			_failureMessages.Add(message);
+			Services.ThrowException(
+				$"The '{_allowedExceptionNumber}' treshold can be decreased to '{_failureMessages.Count}'.");
+			return;
 		}
 
-		public IEnumerable<string> DiscardFailures()
+		var builder = new StringBuilder();
+		foreach (var pair in _failureMessages.Select((item, index) => new { item, index, }))
 		{
-			var discardedFailures = _failureMessages.ToArray();
-			_failureMessages.Clear();
-			return discardedFailures;
+			builder.AppendLine($"=== {_failureMessages.Count - pair.index} ===");
+			builder.AppendLine(pair.item);
 		}
 
-		public void ThrowIfAny(IDictionary<string, object> context)
+		if (context.Any())
 		{
-			if (_failureMessages.Count == _allowedExceptionNumber)
+			foreach (var pair in context)
 			{
-				return;
+				builder.AppendFormat("\nWith {0}:\n{1}", pair.Key, pair.Value);
 			}
-
-			if (_failureMessages.Count < _allowedExceptionNumber)
-			{
-				Services.ThrowException(
-					$"The '{_allowedExceptionNumber}' treshold can be decreased to '{_failureMessages.Count}'.");
-				return;
-			}
-
-			var builder = new StringBuilder();
-			foreach (var pair in _failureMessages.Select(
-				(item, index) => new
-				{
-					item,
-					index,
-				}))
-			{
-				builder.AppendLine($"=== {_failureMessages.Count - pair.index} ===");
-				builder.AppendLine(pair.item);
-			}
-
-			if (context.Any())
-			{
-				foreach (var pair in context)
-				{
-					builder.AppendFormat("\nWith {0}:\n{1}", pair.Key, pair.Value);
-				}
-			}
-
-			Services.ThrowException(builder.ToString());
 		}
+
+		Services.ThrowException(builder.ToString());
 	}
 }

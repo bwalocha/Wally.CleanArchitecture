@@ -8,26 +8,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" Version="10.1.1" />
-        <PackageReference Include="FluentValidation" Version="10.3.6" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
-        <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.0.1321" />
-        <PackageReference Include="xunit" Version="2.4.1" />
-        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-            <PrivateAssets>all</PrivateAssets>
-        </PackageReference>
-        <PackageReference Include="coverlet.collector" Version="3.1.0">
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-            <PrivateAssets>all</PrivateAssets>
-        </PackageReference>
-        <PackageReference Update="JunitXml.TestLogger" Version="3.0.110" />
-        <PackageReference Update="FluentAssertions" Version="6.3.0" />
+        <PackageReference Include="AutoMapper" Version="10.1.1"/>
+        <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.0.1321"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Wally.CleanArchitecture.Domain\Wally.CleanArchitecture.Domain.csproj" />
-      <ProjectReference Include="..\Wally.CleanArchitecture.WebApi\Wally.CleanArchitecture.WebApi.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.Domain\Wally.CleanArchitecture.Domain.csproj"/>
+        <ProjectReference Include="..\Wally.CleanArchitecture.WebApi\Wally.CleanArchitecture.WebApi.csproj"/>
     </ItemGroup>
 
 </Project>

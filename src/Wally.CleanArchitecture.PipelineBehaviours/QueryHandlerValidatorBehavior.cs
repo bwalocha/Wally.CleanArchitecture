@@ -4,32 +4,33 @@ using FluentValidation;
 using MediatR;
 using Wally.Lib.DDD.Abstractions.Responses;
 
-namespace Wally.CleanArchitecture.PipelineBehaviours
+namespace Wally.CleanArchitecture.PipelineBehaviours;
+
+public class QueryHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+	where TRequest : IRequest<TResponse> where TResponse : IResponse
 {
-	public class QueryHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-		where TRequest : IRequest<TResponse>
-		where TResponse : IResponse
+	private readonly IValidator<TRequest>? _validator;
+
+	public QueryHandlerValidatorBehavior(IValidator<TRequest>? validator = null)
 	{
-		private readonly IValidator<TRequest>? _validator;
+		_validator = validator;
+	}
 
-		public QueryHandlerValidatorBehavior(IValidator<TRequest>? validator = null)
+	public async Task<TResponse> Handle(
+		TRequest request,
+		CancellationToken cancellationToken,
+		RequestHandlerDelegate<TResponse> next)
+	{
+		if (_validator != null)
 		{
-			_validator = validator;
-		}
+			var validationResult = await _validator.ValidateAsync(request, cancellationToken);
 
-		public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
-		{
-			if (_validator != null)
+			if (!validationResult.IsValid)
 			{
-				var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-
-				if (!validationResult.IsValid)
-				{
-					throw new ValidationException(validationResult.Errors);
-				}
+				throw new ValidationException(validationResult.Errors);
 			}
-
-			return await next();
 		}
+
+		return await next();
 	}
 }

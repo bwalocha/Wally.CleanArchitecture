@@ -6,13 +6,13 @@ using Wally.CleanArchitecture.Contracts.Responses.Users;
 using Wally.Lib.DDD.Abstractions.Queries;
 using Wally.Lib.DDD.Abstractions.Responses;
 
-namespace Wally.CleanArchitecture.Application.Users.Queries
+namespace Wally.CleanArchitecture.Application.Users.Queries;
+
+[ExcludeFromCodeCoverage]
+public class GetUsersQuery : PagedQuery<GetUsersRequest, GetUsersResponse>, IRequest<PagedResponse<GetUsersResponse>>
 {
-	[ExcludeFromCodeCoverage]
-	public class GetUsersQuery : PagedQuery<GetUsersRequest, GetUsersResponse>, IRequest<PagedResponse<GetUsersResponse>>
+	public GetUsersQuery(ODataQueryOptions<GetUsersRequest> queryOptions)
+		: base(queryOptions)
 	{
-		public GetUsersQuery(ODataQueryOptions<GetUsersRequest> queryOptions) : base(queryOptions)
-		{
-		}
 	}
 }
