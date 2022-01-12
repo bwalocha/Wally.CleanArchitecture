@@ -20,23 +20,6 @@ test:sln:
   needs:
     - build:sln
 
-pages:
-  stage: deploy
-  needs:
-    - test:sln
-  dependencies:
-    - test:sln
-  variables:
-    GIT_SUBMODULE_STRATEGY: none
-    GIT_STRATEGY: none
-    GIT_CHECKOUT: "false"
-  script:
-    - ls
-  artifacts:
-    paths:
-      - public
-    expire_in: 30 days
-
 include:
   - project: wally/wally.common.pipelines
     ref: master
