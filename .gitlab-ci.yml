@@ -1,4 +1,5 @@
 variables:
+  STACK: "clean"
   API_PROJECT_NAME: "Wally.CleanArchitecture.WebApi"
   #
   VERSION: "0.1.${CI_PIPELINE_ID}"
