@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -7,6 +8,7 @@ using Serilog;
 
 namespace Wally.CleanArchitecture.WebApi;
 
+[ExcludeFromCodeCoverage]
 public static class Program
 {
 	private const bool _reloadOnChange = false;
