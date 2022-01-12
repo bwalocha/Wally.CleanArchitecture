@@ -112,7 +112,7 @@ namespace Wally.CleanArchitecture.WebApi
 			services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LogBehavior<,>));
 			// services.AddTransient(typeof(IPipelineBehavior<,>), typeof(TransactionBehavior<,>));
 			// services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DomainEventsDispatcherBehavior<,>));
-			// services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandHandlerValidatorBehavior<,>));
+			services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandHandlerValidatorBehavior<,>));
 			services.AddTransient(typeof(IPipelineBehavior<,>), typeof(QueryHandlerValidatorBehavior<,>));
 			
 			services.Scan(
