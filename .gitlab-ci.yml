@@ -1,6 +1,5 @@
 variables:
-  STACK: "clean"
-  API_PROJECT_NAME: "Wally.CleanArchitecture.WebApi"
+  TPL_PROJECT_NAME: "Wally.CleanArchitecture.Template"
   #
   VERSION: "0.1.${CI_PIPELINE_ID}"
   #CI_DEBUG_TRACE: "true"
@@ -20,6 +19,22 @@ test:sln:
     - .test:dotnet
   needs:
     - build:sln
+
+publish:tpl:
+  extends:
+    - .publish:nuget
+  needs:
+    - test:sln
+  variables:
+    PROJECT_NAME: ${TPL_PROJECT_NAME}
+
+deploy:tpl:
+  extends:
+    - .deploy:nuget
+  needs:
+    - publish:tpl
+  variables:
+    PROJECT_NAME: ${TPL_PROJECT_NAME}
 
 include:
   - project: wally/wally.common.pipelines
