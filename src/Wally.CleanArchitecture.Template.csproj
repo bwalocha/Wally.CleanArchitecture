@@ -18,7 +18,7 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<Content Include="./**/*" Exclude="./bin/**;./obj/**;./**/bin/**;./**/obj/**;./*.user;./.idea/**;./.template.config/**;./Wally.CleanArchitecture.Template.csproj;./Wally.Common.CodeStyleRules/**;./Directory.Build.props" />
+		<Content Include="./**/*" Exclude="./**/bin/**;./**/obj/**;./*.user;./.idea/**;./Wally.CleanArchitecture.Template.csproj;./Wally.Common.CodeStyleRules/**;./Directory.Build.props" />
 		<Compile Remove="**/*" />
 	</ItemGroup>
 
