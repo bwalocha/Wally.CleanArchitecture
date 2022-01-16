@@ -4,7 +4,7 @@
 		<PackageId>Wally.CleanArchitecture.Template</PackageId>
 		<PackageType>Template</PackageType>
 		<PackageVersion>1.0.0</PackageVersion>
-		<PackageTags>dotnet-new;templates;"Clean Architecture";CQRS;DDD;Microservices;MVC;Web;WebApi</PackageTags>
+		<PackageTags>dotnet-new;templates;CleanArchitecture;CQRS;DDD;MicroServices;MVC;Web;WebApi</PackageTags>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageProjectUrl>https://github.com/bwalocha/Wally.CleanArchitecture</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
