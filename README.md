@@ -4,6 +4,8 @@
 
 ## dotnet template
 
+https://docs.microsoft.com/en-us/nuget/reference/msbuild-targets#packagereadmefile
+
 - [x] .Net 6 WebApi
 	- [x] AppSettings
 	- [x] CORS

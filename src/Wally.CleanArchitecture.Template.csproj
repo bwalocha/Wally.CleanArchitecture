@@ -15,6 +15,15 @@
 		<ContentTargetFolder>content</ContentTargetFolder>
 		<NoDefaultExcludes>true</NoDefaultExcludes>
 		<NoWarn>$(NoWarn);NU5128</NoWarn>
+		
+		<!-- Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		
+		<!-- Embed source files that are not tracked by the source control manager in the PDB -->
+		<EmbedUntrackedSources>false</EmbedUntrackedSources>
+		
+		<!-- Recommended: Embed symbols containing Source Link in the main file (exe/dll) -->
+		<DebugType>embedded</DebugType>
 	</PropertyGroup>
 	
 	<ItemGroup>
