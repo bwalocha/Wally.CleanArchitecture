@@ -1,13 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<PackageId>Wally.CleanArchitecture.Template</PackageId>
 		<PackageType>Template</PackageType>
 		<PackageVersion>1.0.0</PackageVersion>
-		<PackageId>Wally.CleanArchitecture.Template</PackageId>
+		<PackageTags>dotnet-new;templates;Clean Architecture;Web;MVC;WebApi</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageProjectUrl>https://github.com/bwalocha/Wally.CleanArchitecture</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+
 		<Title>Wally's CleanArchitecture Template</Title>
 		<Authors>Wally</Authors>
 		<Description>CleanArchitecture Template</Description>
-		<PackageTags>dotnet-new;templates</PackageTags>
 		<TargetFramework>net6.0</TargetFramework>
 		
 		<IncludeContentInPack>true</IncludeContentInPack>
@@ -24,8 +28,16 @@
 		
 		<!-- Recommended: Embed symbols containing Source Link in the main file (exe/dll) -->
 		<DebugType>embedded</DebugType>
+		
+		<language>en-US</language>
+		<releaseNotes>Initial nuget pack</releaseNotes>
+		<icon>./.content/icon.png</icon>
 	</PropertyGroup>
 	
+	<ItemGroup>
+		<None Include="./README.md" Pack="true" PackagePath="\"/>
+	</ItemGroup>
+
 	<ItemGroup>
 		<Content Include="./**/*" Exclude="./**/bin/**;./**/obj/**;./*.user;./.idea/**;./Wally.CleanArchitecture.Template.csproj;./Wally.Common.CodeStyleRules/**;./Directory.Build.props" />
 		<Compile Remove="**/*" />
