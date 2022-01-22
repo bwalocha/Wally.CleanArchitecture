@@ -4,14 +4,10 @@ using FluentValidation;
 using MediatR;
 using Wally.Lib.DDD.Abstractions.Commands;
 
-// using Wally.Lib.DDD.Abstractions.Responses;
-
 namespace Wally.CleanArchitecture.PipelineBehaviours;
 
 public class CommandHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
 	where TRequest : ICommand, IRequest<TResponse>
-
-// where TResponse : IResponse
 {
 	private readonly IValidator<TRequest> _validator;
 
