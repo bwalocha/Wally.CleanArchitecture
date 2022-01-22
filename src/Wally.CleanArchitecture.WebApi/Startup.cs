@@ -121,7 +121,7 @@ public class Startup
 		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(QueryHandlerValidatorBehavior<,>));
 
 		services.Scan(
-			a => a.FromApplicationDependencies(b => !b.FullName!.StartsWith("Microsoft."))
+			a => a.FromApplicationDependencies(b => !b.FullName!.StartsWith("Microsoft.") && !b.FullName!.StartsWith("AutoMapper."))
 				.AddClasses(c => c.AssignableTo(typeof(IRepository<>)))
 				.AsImplementedInterfaces()
 				.WithScopedLifetime());

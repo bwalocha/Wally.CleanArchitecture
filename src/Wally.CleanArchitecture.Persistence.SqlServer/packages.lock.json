@@ -69,21 +69,21 @@
       },
       "MediatR": {
         "type": "Transitive",
-        "resolved": "10.0.0",
-        "contentHash": "4/oUEQEtDbJ9OIwsHux0sNsU9+/GRWFTrsDNXnt18JyPnZQyIisN7CmrieXbzJeG7oDSoY2SOw8frOz/mB6rrA==",
+        "resolved": "10.0.1",
+        "contentHash": "vnjbk4giDJzJelh34Ygt0eorApCKrRFB7j0pauFPY1oxfO3cEZ7FugBrIOjCM76SDGTOmPFfbfmVnz1t3iFrGA==",
         "dependencies": {
-          "MediatR.Contracts": "1.0.0"
+          "MediatR.Contracts": "1.0.1"
         }
       },
       "MediatR.Contracts": {
         "type": "Transitive",
-        "resolved": "1.0.0",
-        "contentHash": "9IyK5yfH/ASk97FNs1cigFdAbXPbBCyoophoO0XXvua18EqHfrNWmRfy+ry2n5O0rNAwIVgI4KpDwDXO2M8VYg=="
+        "resolved": "1.0.1",
+        "contentHash": "NsRvOxthhkYml4DcBMyJsmym8C4MchioH7wxKVPEg7plFj9Euh/i4IcmZ3Gvgx6+K8obeuhPeJdoBl56wnuo3A=="
       },
       "Microsoft.AspNetCore.OData": {
         "type": "Transitive",
-        "resolved": "8.0.5",
-        "contentHash": "EhJGz4lzvFzoorS2gd12b8GoIHAsUIbpV0uEzY4yNMZc5jVlbtzinn0NGYp8SY4jS7/Jn9OULOUA4C7bCsh47g==",
+        "resolved": "8.0.6",
+        "contentHash": "EjFA/hBC5tXpBRKUT+JU6g6GMs4Y3FOOvGhRifoJVcd9zYMsZGZ25HGTLKqF3YLO52tz0R/wREpV5KApSX+hqQ==",
         "dependencies": {
           "Microsoft.OData.Core": "[7.9.4, 8.0.0)",
           "Microsoft.OData.Edm": "[7.9.4, 8.0.0)",
@@ -482,8 +482,8 @@
       "wally.cleanarchitecture.application": {
         "type": "Project",
         "dependencies": {
-          "MediatR": "10.0.0",
-          "Microsoft.AspNetCore.OData": "8.0.5",
+          "MediatR": "10.0.1",
+          "Microsoft.AspNetCore.OData": "8.0.6",
           "Wally.CleanArchitecture.Contracts": "1.0.0",
           "Wally.CleanArchitecture.Domain": "1.0.0"
         }

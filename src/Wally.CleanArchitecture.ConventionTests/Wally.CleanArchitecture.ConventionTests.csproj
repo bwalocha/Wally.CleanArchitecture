@@ -8,13 +8,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" Version="10.1.1"/>
-        <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.0.1321"/>
+        <PackageReference Include="AutoMapper" Version="10.1.1" />
+        <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.0.1321" />
+        <PackageReference Update="FluentAssertions" Version="6.4.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Wally.CleanArchitecture.Domain\Wally.CleanArchitecture.Domain.csproj"/>
-        <ProjectReference Include="..\Wally.CleanArchitecture.WebApi\Wally.CleanArchitecture.WebApi.csproj"/>
+        <ProjectReference Include="..\Wally.CleanArchitecture.Domain\Wally.CleanArchitecture.Domain.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.WebApi\Wally.CleanArchitecture.WebApi.csproj" />
     </ItemGroup>
 
 </Project>
