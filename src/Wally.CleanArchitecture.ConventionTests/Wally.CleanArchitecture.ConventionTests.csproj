@@ -10,7 +10,6 @@
     <ItemGroup>
         <PackageReference Include="AutoMapper" Version="10.1.1"/>
         <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.0.1321"/>
-        <PackageReference Update="FluentAssertions" Version="6.4.0"/>
     </ItemGroup>
 
     <ItemGroup>

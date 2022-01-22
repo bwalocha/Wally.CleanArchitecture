@@ -9,7 +9,6 @@
 
     <ItemGroup>
         <PackageReference Include="AutoMapper" Version="10.1.1"/>
-        <PackageReference Update="FluentAssertions" Version="6.4.0"/>
     </ItemGroup>
 
     <ItemGroup>

@@ -11,7 +11,6 @@
         <PackageReference Include="JsonNet.ContractResolvers" Version="2.0.0"/>
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.1"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.1"/>
-        <PackageReference Update="FluentAssertions" Version="6.4.0"/>
     </ItemGroup>
 
     <ItemGroup>
