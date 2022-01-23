@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -23,6 +24,8 @@ using Wally.CleanArchitecture.Persistence.SqlServer.Migrations;
 using Wally.CleanArchitecture.PipelineBehaviours;
 using Wally.CleanArchitecture.WebApi.Filters;
 using Wally.CleanArchitecture.WebApi.Models;
+using Wally.Lib.ServiceBus.DI.Microsoft;
+using Wally.Lib.ServiceBus.RabbitMQ;
 
 namespace Wally.CleanArchitecture.WebApi;
 
@@ -84,7 +87,12 @@ public class Startup
 		services.AddEndpointsApiExplorer();
 		services.AddSwaggerGen();
 
-		services.AddHealthChecks();
+		services.AddHealthChecks()
+			.AddRabbitMQ(
+				new Uri(Configuration.GetConnectionString("ServiceBus")),
+				name: "MQ",
+				failureStatus: HealthStatus.Degraded,
+				tags: new[] { "MQ", "Messaging", "ServiceBus", });
 		services.AddHealthChecksUI()
 			.AddInMemoryStorage();
 
@@ -126,6 +134,9 @@ public class Startup
 				.AddClasses(c => c.AssignableTo(typeof(IRepository<>)))
 				.AsImplementedInterfaces()
 				.WithScopedLifetime());
+		
+		services.AddSingleton(_ => Factory.Create(new Settings(Configuration.GetConnectionString("ServiceBus"))));
+		services.AddServiceBus();
 	}
 
 	public void Configure(
@@ -193,5 +204,7 @@ public class Startup
 		{
 			dbContext.Database.Migrate();
 		}
+		
+		app.UseServiceBus();
 	}
 }
