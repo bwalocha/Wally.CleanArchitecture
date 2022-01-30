@@ -1,4 +1,5 @@
 using System;
+using AutoMapper.Extensions.ExpressionMapping;
 using FluentValidation.AspNetCore;
 using HealthChecks.UI.Client;
 using MediatR;
@@ -119,7 +120,12 @@ public class Startup
 		};
 		services.AddDbContext<ApplicationDbContext>(dbContextOptions);
 
-		services.AddAutoMapper(typeof(UserProfile).Assembly);
+		services.AddAutoMapper(
+			cfg =>
+			{
+				cfg.AddExpressionMapping();
+			},
+			typeof(UserProfile).Assembly);
 
 		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LogBehavior<,>));
 
@@ -129,8 +135,7 @@ public class Startup
 		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(QueryHandlerValidatorBehavior<,>));
 
 		services.Scan(
-			a => a.FromApplicationDependencies(
-					b => !b.FullName!.StartsWith("Microsoft.") && !b.FullName!.StartsWith("AutoMapper."))
+			a => a.FromApplicationDependencies(b => b.FullName!.StartsWith("Wally.CleanArchitecture."))
 				.AddClasses(c => c.AssignableTo(typeof(IRepository<>)))
 				.AsImplementedInterfaces()
 				.WithScopedLifetime());

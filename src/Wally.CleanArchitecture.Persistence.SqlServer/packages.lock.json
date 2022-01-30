@@ -20,52 +20,24 @@
       },
       "AutoMapper": {
         "type": "Transitive",
-        "resolved": "10.1.1",
-        "contentHash": "uMgbqOdu9ZG5cIOty0C85hzzayBH2i9BthnS5FlMqKtMSHDv4ts81a2jS1VFaDBVhlBeIqJ/kQKjQY95BZde9w==",
+        "resolved": "11.0.0",
+        "contentHash": "+596AnKykYCk9RxXCEF4GYuapSebQtFVvIA1oVG1rrRkCLAC7AkWehJ0brCfYUbdDW3v1H/p0W3hob7JoXGjMw==",
         "dependencies": {
-          "Microsoft.CSharp": "4.7.0",
-          "System.Reflection.Emit": "4.7.0"
-        }
-      },
-      "AutoMapper.AspNetCore.OData.EFCore": {
-        "type": "Transitive",
-        "resolved": "2.2.2",
-        "contentHash": "wxRdL/4iamn+FJNU7t3sDUCLG/uh6Tl4YF62kqvSOCr9kJdJobGbwMER5Cqs2TZptkGlLA8DCx2AecWtLE8MKg==",
-        "dependencies": {
-          "AutoMapper.Extensions.ExpressionMapping": "[4.1.2, 5.0.0)",
-          "LogicBuilder.Expressions.Utils": "[4.1.2, 5.0.0)",
-          "Microsoft.AspNetCore.OData": "8.0.3",
-          "Microsoft.EntityFrameworkCore": "3.1.0"
+          "Microsoft.CSharp": "4.7.0"
         }
       },
       "AutoMapper.Extensions.ExpressionMapping": {
         "type": "Transitive",
-        "resolved": "4.1.2",
-        "contentHash": "6BLP4cN7fqLNqo+BHHNZTJutit+GNJt7fss6E9vh6vqTNsqIqOfSuJ81f3GC2FoGLxuwFUFzbbmucZSZP/Ft3g==",
+        "resolved": "5.0.0",
+        "contentHash": "Nr2AsrG37smXvX4iRUtngrrYfaBC0uO4l5STDximUYsjKoeIJRubtFw4aDm8ucNdh6BPzLi89IEQ2PiSh55Rvw==",
         "dependencies": {
-          "AutoMapper": "[10.1.1, 11.0.0)"
+          "AutoMapper": "[11.0.0, 12.0.0)"
         }
       },
       "FluentValidation": {
         "type": "Transitive",
         "resolved": "10.3.6",
         "contentHash": "iMd370ZDx6ydm8t7bIFdRbSKX0e42lpvCtifUSbTSXOk5iKjmgl7HU0PXBhIWQAyIRi3gCwfMI9luj8H6K+byw=="
-      },
-      "LogicBuilder.Expressions.Utils": {
-        "type": "Transitive",
-        "resolved": "4.1.2",
-        "contentHash": "yKX74C74+yNTv4QrtVucb4q1dhdpVg6FY1Oss4Um8vHQcD9KMH3vwouwjN+fnNjZo/G3kclXdAoi0+mf7V8kpQ==",
-        "dependencies": {
-          "LogicBuilder.Structures": "4.1.2",
-          "Microsoft.CSharp": "4.5.0",
-          "Microsoft.OData.Edm": "7.6.1",
-          "System.Linq.Dynamic.Core": "1.0.18"
-        }
-      },
-      "LogicBuilder.Structures": {
-        "type": "Transitive",
-        "resolved": "4.1.2",
-        "contentHash": "VJaEqLeo50DZUZ6710txWYQZSOmdYtYmHmah4b7pEaK5Px/kzqIa/SyuVm3iFd8Ov/EfVE3W5Z/+BcSGrO6jow=="
       },
       "MediatR": {
         "type": "Transitive",
@@ -388,16 +360,6 @@
           "Microsoft.IdentityModel.Tokens": "6.8.0"
         }
       },
-      "System.Linq.Dynamic.Core": {
-        "type": "Transitive",
-        "resolved": "1.0.18",
-        "contentHash": "VonVK0xHQLzm+H6n5TE6wDwoCrVMuTBMdGQrXDfIAmf/klG/sJUai3bkMTlTgtqArB1NYEdWxUVqpPFnMZwVog=="
-      },
-      "System.Reflection.Emit": {
-        "type": "Transitive",
-        "resolved": "4.7.0",
-        "contentHash": "VR4kk8XLKebQ4MZuKuIni/7oh+QGFmZW3qORd1GvBq/8026OpW501SzT/oypwiQl4TvT8ErnReh/NzY9u+C6wQ=="
-      },
       "System.Runtime.Caching": {
         "type": "Transitive",
         "resolved": "4.7.0",
@@ -504,8 +466,8 @@
       "wally.cleanarchitecture.persistence": {
         "type": "Project",
         "dependencies": {
-          "AutoMapper": "10.1.1",
-          "AutoMapper.AspNetCore.OData.EFCore": "2.2.2",
+          "AutoMapper": "11.0.0",
+          "AutoMapper.Extensions.ExpressionMapping": "5.0.0",
           "Microsoft.EntityFrameworkCore": "6.0.1",
           "Microsoft.EntityFrameworkCore.Relational": "6.0.1",
           "Wally.CleanArchitecture.Application": "1.0.0",

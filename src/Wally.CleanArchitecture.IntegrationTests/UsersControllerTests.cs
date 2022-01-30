@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -320,5 +321,33 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 		data.Items[1]
 			.Name.Should()
 			.Be("testUser3");
+	}
+	
+	[Fact]
+	public async Task GetOData_OrderSkip1Top2Filter_ReturnsValidResponse()
+	{
+		// Arrange
+		_database.Add(User.Create("testUser1"));
+		_database.Add(User.Create("testUser3"));
+		_database.Add(User.Create("testUser2"));
+		await _database.SaveChangesAsync();
+
+		// Act
+		var response = await _httpClient.GetAsync("Users?$orderby=Name&$skip=1&$top=2&$filter=Name ne 'testUser3'"); // 1
+
+		// Assert
+		response.IsSuccessStatusCode.Should()
+			.BeTrue();
+		response.StatusCode.Should()
+			.Be(HttpStatusCode.OK);
+		var json = await response.Content.ReadAsStringAsync(); // TODO: get Stream instead of loading String
+		var data = JsonConvert.DeserializeObject<PagedResponse<GetUsersResponse>>(json, _jsonSettings);
+		data.Should()
+			.NotBeNull();
+		data!.Items.Length.Should()
+			.Be(1);
+		data.Items.Single()
+			.Name.Should()
+			.Be("testUser2");
 	}
 }

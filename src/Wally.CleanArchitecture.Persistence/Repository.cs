@@ -4,7 +4,6 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using AutoMapper.AspNet.OData;
 using AutoMapper.Extensions.ExpressionMapping;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.EntityFrameworkCore;
@@ -123,19 +122,33 @@ public abstract class Repository<TAggregateRoot> : IRepository<TAggregateRoot> w
 		return MapExceptionAsync(task);
 	}
 
+	static private Expression<Func<T, bool>> GetFilterExpression<T>(FilterQueryOption filter)
+	{
+		var enumerable = Enumerable.Empty<T>()
+			.AsQueryable();
+		enumerable = (IQueryable<T>)filter.ApplyTo(enumerable, new ODataQuerySettings());
+		var mce = (MethodCallExpression)enumerable.Expression;
+		var quote = (UnaryExpression)mce.Arguments[1];
+		return (Expression<Func<T, bool>>)quote.Operand;
+	}
+
 	protected async Task<PagedResponse<TResponse>> GetAsync<TRequest, TResponse>(
 		IQueryable<TAggregateRoot> query,
 		ODataQueryOptions<TRequest> queryOptions,
 		CancellationToken cancellationToken) where TRequest : class, IRequest where TResponse : class, IResponse
 	{
-		var queryOptionsFilter = queryOptions.Filter.ToFilterExpression<TResponse>(HandleNullPropagationOption.False);
+		if (queryOptions.Filter != null)
+		{
+			var mappedQueryFunc = GetFilterExpression<TRequest>(queryOptions.Filter);
+			
+			query = query.Where(_mapper.MapExpression<Expression<Func<TAggregateRoot, bool>>>(mappedQueryFunc));
+		}
 
-		var allItems = _mapper.ProjectTo<TResponse>(
-			queryOptionsFilter != null
-				? query.Where(_mapper.MapExpression<Expression<Func<TAggregateRoot, bool>>>(queryOptionsFilter))
-				: query);
-		var items = await _mapper.ProjectTo<TResponse>(query.GetQuery(_mapper, queryOptions))
+		var allItems = _mapper.ProjectTo<TResponse>(query);
+		var data = queryOptions.ApplyTo(_mapper.ProjectTo<TRequest>(query), AllowedQueryOptions.Filter);
+		var items = await _mapper.ProjectTo<TResponse>(data)
 			.ToArrayAsync(cancellationToken);
+		
 		var pageSize = queryOptions.Top?.Value ?? items.Length;
 
 		return new PagedResponse<TResponse>(
