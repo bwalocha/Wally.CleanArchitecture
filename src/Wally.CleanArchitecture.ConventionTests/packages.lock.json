@@ -821,6 +821,11 @@
         "resolved": "5.0.0",
         "contentHash": "c5JVjuVAm4f7E9Vj+v09Z9s2ZsqFDjBpcsyS3M9xRo0bEdm/LVZSzLxxNvfvAwRiiE8nwe1h2G4OwiwlzFKXlA=="
       },
+      "Polly": {
+        "type": "Transitive",
+        "resolved": "7.2.3",
+        "contentHash": "DeCY0OFbNdNxsjntr1gTXHJ5pKUwYzp04Er2LLeN3g6pWhffsGuKVfMBLe1lw7x76HrPkLxKEFxBlpRxS2nDEQ=="
+      },
       "Portable.BouncyCastle": {
         "type": "Transitive",
         "resolved": "1.8.1.3",
@@ -1519,28 +1524,33 @@
       },
       "Wally.Lib.ServiceBus.Abstractions": {
         "type": "Transitive",
-        "resolved": "0.2.1138",
-        "contentHash": "zUtsF1hQSxCSsQNcADlGgCo6MPrJUNiUzH+SXd5hl2on8RvFt/T6IdjM/4iraqIzn+4+DicigAEkDUwtJwNevw=="
+        "resolved": "0.3.1405",
+        "contentHash": "2OizW+4ltDKtwb/w4VxguvKL9rbMSb20CEE8XGwnoY1CBMUs2wUY+XKNPMd3lj0dmw7aHk+oHCbn5cNoT01jIw==",
+        "dependencies": {
+          "MediatR": "10.0.1",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
+          "Polly": "7.2.3"
+        }
       },
       "Wally.Lib.ServiceBus.DI.Microsoft": {
         "type": "Transitive",
-        "resolved": "0.2.1139",
-        "contentHash": "zBkHMygR/EpO0m4bEakfILqfyurhY1dtNvZiIqzjl+rhT77fol2RRyN0Dzr4UPvSkclzOWyDdEKDwqqu5aEZ6A==",
+        "resolved": "0.3.1409",
+        "contentHash": "UPosP5QLbScYrVsxF4fDA+fRcpEajxMbm54Iwe1Ci+OEzNr9Bvpz8EJWny0mh9qtv1YsmdRJ3K2Hr2VUWbw42Q==",
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.CSharp": "4.7.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",
-          "Microsoft.Extensions.Hosting.Abstractions": "5.0.0",
-          "Wally.Lib.ServiceBus.Abstractions": "0.2.1138"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Hosting.Abstractions": "6.0.0",
+          "Wally.Lib.ServiceBus.Abstractions": "0.3.1405"
         }
       },
       "Wally.Lib.ServiceBus.RabbitMQ": {
         "type": "Transitive",
-        "resolved": "0.2.1139",
-        "contentHash": "ZgFz6spZFVX+//ww9NfDkgQd3LmI/UwDl2ODOb5O9Adonk8qnuum95MoVQitdKFcr3OUeCPbQrwQTqyggddbUA==",
+        "resolved": "0.3.1409",
+        "contentHash": "p7nXcxja5BKxPUF+DsMHM90eAtDYtt2nkalsvX300BXYT2za+xaqw908jnRJux1YjsgXAkkp0urrWC+tLVsfTg==",
         "dependencies": {
           "EasyNetQ": "6.3.1",
-          "Wally.Lib.ServiceBus.Abstractions": "0.2.1138"
+          "Wally.Lib.ServiceBus.Abstractions": "0.3.1405"
         }
       },
       "xunit.abstractions": {
@@ -1675,8 +1685,8 @@
           "Wally.CleanArchitecture.Persistence": "1.0.0",
           "Wally.CleanArchitecture.Persistence.SqlServer": "1.0.0",
           "Wally.CleanArchitecture.PipelineBehaviours": "1.0.0",
-          "Wally.Lib.ServiceBus.DI.Microsoft": "0.2.1139",
-          "Wally.Lib.ServiceBus.RabbitMQ": "0.2.1139"
+          "Wally.Lib.ServiceBus.DI.Microsoft": "0.3.1409",
+          "Wally.Lib.ServiceBus.RabbitMQ": "0.3.1409"
         }
       }
     }

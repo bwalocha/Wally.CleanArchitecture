@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="10.0.1" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
+      <PackageReference Include="Wally.IdentityProvider.Contracts" Version="0.3.1412" />
+      <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.0.1408" />
+      <PackageReference Include="Wally.Lib.ServiceBus.Abstractions" Version="0.3.1409" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Wally.CleanArchitecture.Application\Wally.CleanArchitecture.Application.csproj" />
+    </ItemGroup>
+
+</Project>
