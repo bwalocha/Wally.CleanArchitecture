@@ -29,7 +29,7 @@ public abstract class Repository<TAggregateRoot> : IRepository<TAggregateRoot> w
 	public Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken)
 	{
 		return GetReadOnlyEntitySet()
-			.AnyAsync(a => a.Id == id, cancellationToken);
+			.AnyAsync(a => a.Id.Equals(id), cancellationToken);
 	}
 
 	public Task<TAggregateRoot> GetAsync(Guid id, CancellationToken cancellationToken)
@@ -47,7 +47,7 @@ public abstract class Repository<TAggregateRoot> : IRepository<TAggregateRoot> w
 		var task = _mapper.ProjectTo<TResult>(query)
 			.SingleAsync(cancellationToken);
 
-		return MapExceptionAsync(task, id);
+		return MapExceptionAsync(task, id, cancellationToken);
 	}
 
 	public TAggregateRoot Add(TAggregateRoot aggregateRoot)
@@ -110,7 +110,7 @@ public abstract class Repository<TAggregateRoot> : IRepository<TAggregateRoot> w
 		var task = _mapper.ProjectTo<TResponse>(query)
 			.SingleAsync(cancellationToken);
 
-		return MapExceptionAsync(task);
+		return MapExceptionAsync(task, cancellationToken: cancellationToken);
 	}
 
 	protected Task<TResponse?> GetOrDefaultAsync
@@ -119,7 +119,7 @@ public abstract class Repository<TAggregateRoot> : IRepository<TAggregateRoot> w
 		var task = _mapper.ProjectTo<TResponse>(query)
 			.SingleOrDefaultAsync(cancellationToken);
 
-		return MapExceptionAsync(task);
+		return MapExceptionAsync(task, cancellationToken: cancellationToken);
 	}
 
 	private static Expression<Func<T, bool>> GetFilterExpression<T>(FilterQueryOption filter)
