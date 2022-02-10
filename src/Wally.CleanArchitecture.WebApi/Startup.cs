@@ -16,15 +16,18 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Wally.CleanArchitecture.Application.Users.Commands;
 using Wally.CleanArchitecture.Application.Users.Queries;
 using Wally.CleanArchitecture.Contracts.Requests.User;
 using Wally.CleanArchitecture.Domain.Abstractions;
 using Wally.CleanArchitecture.MapperProfiles;
+using Wally.CleanArchitecture.Messaging.Consumers;
 using Wally.CleanArchitecture.Persistence;
 using Wally.CleanArchitecture.Persistence.SqlServer.Migrations;
 using Wally.CleanArchitecture.PipelineBehaviours;
 using Wally.CleanArchitecture.WebApi.Filters;
 using Wally.CleanArchitecture.WebApi.Models;
+using Wally.Lib.ServiceBus.Abstractions;
 using Wally.Lib.ServiceBus.DI.Microsoft;
 using Wally.Lib.ServiceBus.RabbitMQ;
 
@@ -72,7 +75,13 @@ public class Startup
 						inputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue(ODataMediaTypeHeader));
 					}*/
 				})
-			.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UpdateUserRequestValidator>())
+			.AddFluentValidation(
+				config =>
+				{
+					config.ImplicitlyValidateChildProperties = true;
+					config.RegisterValidatorsFromAssemblyContaining<UpdateUserRequestValidator>();
+					config.RegisterValidatorsFromAssemblyContaining<UpdateUserCommandValidator>();
+				})
 			.AddOData(
 				options =>
 				{
@@ -84,11 +93,24 @@ public class Startup
 			.AddNewtonsoftJson(
 				options => { options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; });
 
+		services.AddCors(
+			options => options.AddPolicy(
+				CorsPolicy,
+				builder => builder.WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+					.AllowAnyHeader()
+					.AllowCredentials()
+					.WithOrigins(AppSettings.Cors.Origins.ToArray())));
+
 		// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 		services.AddEndpointsApiExplorer();
 		services.AddSwaggerGen();
 
 		services.AddHealthChecks()
+			.AddSqlServer(
+				Configuration.GetConnectionString("Database"),
+				name: "DB",
+				failureStatus: HealthStatus.Degraded,
+				tags: new[] { "DB", "Database", "MSSQL", })
 			.AddRabbitMQ(
 				new Uri(Configuration.GetConnectionString("ServiceBus")),
 				name: "MQ",
@@ -132,6 +154,12 @@ public class Startup
 		services.Scan(
 			a => a.FromApplicationDependencies(b => b.FullName!.StartsWith("Wally.CleanArchitecture."))
 				.AddClasses(c => c.AssignableTo(typeof(IRepository<>)))
+				.AsImplementedInterfaces()
+				.WithScopedLifetime());
+
+		services.Scan(
+			a => a.FromAssemblyOf<UserCreatedConsumer>()
+				.AddClasses(c => c.AssignableTo(typeof(IConsumeAsync<>)))
 				.AsImplementedInterfaces()
 				.WithScopedLifetime());
 
