@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace Wally.CleanArchitecture.Application.Users.Commands;
 
-public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommand>
+public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
 {
-	public UpdateUserCommandValidator()
+	public CreateUserCommandValidator()
 	{
 		RuleFor(a => a.Id)
 			.NotEmpty()

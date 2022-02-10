@@ -122,7 +122,7 @@ public abstract class Repository<TAggregateRoot> : IRepository<TAggregateRoot> w
 		return MapExceptionAsync(task);
 	}
 
-	static private Expression<Func<T, bool>> GetFilterExpression<T>(FilterQueryOption filter)
+	private static Expression<Func<T, bool>> GetFilterExpression<T>(FilterQueryOption filter)
 	{
 		var enumerable = Enumerable.Empty<T>()
 			.AsQueryable();

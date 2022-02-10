@@ -63,8 +63,8 @@
       },
       "Microsoft.AspNetCore.OData": {
         "type": "Transitive",
-        "resolved": "8.0.6",
-        "contentHash": "EjFA/hBC5tXpBRKUT+JU6g6GMs4Y3FOOvGhRifoJVcd9zYMsZGZ25HGTLKqF3YLO52tz0R/wREpV5KApSX+hqQ==",
+        "resolved": "8.0.7",
+        "contentHash": "oz5SIT7TitSCiaVjsGi/HwVcvH0JBLNPbzx4MmFCQ44FbkwRu9eOakTIq57FUzzKjvHaiSV5jH5Fo0b+8fcI7Q==",
         "dependencies": {
           "Microsoft.OData.Core": "[7.9.4, 8.0.0)",
           "Microsoft.OData.Edm": "[7.9.4, 8.0.0)",
@@ -146,7 +146,7 @@
         "type": "Project",
         "dependencies": {
           "MediatR": "10.0.1",
-          "Microsoft.AspNetCore.OData": "8.0.6",
+          "Microsoft.AspNetCore.OData": "8.0.7",
           "Wally.CleanArchitecture.Contracts": "1.0.0",
           "Wally.CleanArchitecture.Domain": "1.0.0"
         }

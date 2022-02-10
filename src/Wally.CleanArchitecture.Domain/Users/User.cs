@@ -1,4 +1,5 @@
-﻿using Wally.Lib.DDD.Abstractions.DomainModels;
+﻿using System;
+using Wally.Lib.DDD.Abstractions.DomainModels;
 
 namespace Wally.CleanArchitecture.Domain.Users;
 
@@ -11,11 +12,27 @@ public class User : AggregateRoot
 	{
 	}
 
+	private User(Guid id, string name)
+		: base(id)
+	{
+		Name = name;
+	}
+	
+	private User(string name)
+	{
+		Name = name;
+	}
+
 	public string Name { get; private set; }
 
 	public static User Create(string name)
 	{
-		return new User { Name = name, };
+		return new User(name);
+	}
+
+	public static User Create(Guid id, string name)
+	{
+		return new User(id, name);
 	}
 
 	public void Update(string name)

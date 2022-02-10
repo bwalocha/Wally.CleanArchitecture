@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
+using Wally.CleanArchitecture.Application.Users.Commands;
 using Wally.IdentityProvider.Contracts.Messages;
 using Wally.Lib.DDD.Abstractions.Commands;
 using Wally.Lib.ServiceBus.Abstractions;
@@ -15,6 +16,6 @@ public class UserCreatedConsumer : Consumer<UserCreatedMessage>
 
 	protected override ICommand CreateCommand(UserCreatedMessage message)
 	{
-		throw new NotImplementedException();
+		return new CreateUserCommand(message.UserId, message.UserName);
 	}
 }
