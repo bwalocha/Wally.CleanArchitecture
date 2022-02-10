@@ -8,15 +8,22 @@
   "shortName": "wally.cleanarchitecture",
   "sourceName": "Wally.CleanArchitecture",
   "tags": {
-	  "language": "C#",
-	  "type": "solution"
+      "language": "C#",
+      "type": "solution"
   },
   "preferNameDirectory": true,
    "sources": [
     {
       "modifiers": [
         {
-          "exclude": [ ".idea/**", "Wally.Common.CodeStyleRules/**", "Directory.Build.props" ]
+          "exclude": [ 
+            ".idea/**",
+            "Wally.Common.CodeStyleRules/**",
+            "Wally.CleanArchitecture.ConventionTests/coverage.json",
+            "Wally.CleanArchitecture.IntegrationTests/coverage.json",
+            "Wally.CleanArchitecture.UnitTests/coverage.json",
+            "Directory.Build.props" 
+          ]
         }
       ]
     }
