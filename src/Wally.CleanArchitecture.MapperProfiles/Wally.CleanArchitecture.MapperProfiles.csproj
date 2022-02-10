@@ -7,12 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Wally.CleanArchitecture.Contracts\Wally.CleanArchitecture.Contracts.csproj" />
-        <ProjectReference Include="..\Wally.CleanArchitecture.Domain\Wally.CleanArchitecture.Domain.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.Contracts\Wally.CleanArchitecture.Contracts.csproj"/>
+        <ProjectReference Include="..\Wally.CleanArchitecture.Domain\Wally.CleanArchitecture.Domain.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" Version="11.0.1" />
+        <PackageReference Include="AutoMapper" Version="11.0.1"/>
     </ItemGroup>
 
 </Project>

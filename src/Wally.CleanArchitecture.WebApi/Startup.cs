@@ -120,12 +120,7 @@ public class Startup
 		};
 		services.AddDbContext<ApplicationDbContext>(dbContextOptions);
 
-		services.AddAutoMapper(
-			cfg =>
-			{
-				cfg.AddExpressionMapping();
-			},
-			typeof(UserProfile).Assembly);
+		services.AddAutoMapper(cfg => { cfg.AddExpressionMapping(); }, typeof(UserProfile).Assembly);
 
 		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LogBehavior<,>));
 
@@ -139,7 +134,7 @@ public class Startup
 				.AddClasses(c => c.AssignableTo(typeof(IRepository<>)))
 				.AsImplementedInterfaces()
 				.WithScopedLifetime());
-		
+
 		services.AddSingleton(_ => Factory.Create(new Settings(Configuration.GetConnectionString("ServiceBus"))));
 		services.AddServiceBus();
 	}
@@ -209,7 +204,7 @@ public class Startup
 		{
 			dbContext.Database.Migrate();
 		}
-		
+
 		app.UseServiceBus();
 	}
 }

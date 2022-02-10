@@ -8,14 +8,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="JsonNet.ContractResolvers" Version="2.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.2" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.2" />
+        <PackageReference Include="JsonNet.ContractResolvers" Version="2.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.2"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.2"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Wally.CleanArchitecture.Persistence\Wally.CleanArchitecture.Persistence.csproj" />
-        <ProjectReference Include="..\Wally.CleanArchitecture.WebApi\Wally.CleanArchitecture.WebApi.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.Persistence\Wally.CleanArchitecture.Persistence.csproj"/>
+        <ProjectReference Include="..\Wally.CleanArchitecture.WebApi\Wally.CleanArchitecture.WebApi.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

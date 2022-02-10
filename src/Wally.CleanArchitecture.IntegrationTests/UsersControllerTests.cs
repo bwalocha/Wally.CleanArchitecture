@@ -322,7 +322,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 			.Name.Should()
 			.Be("testUser3");
 	}
-	
+
 	[Fact]
 	public async Task GetOData_OrderSkip1Top2Filter_ReturnsValidResponse()
 	{
@@ -333,7 +333,8 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 		await _database.SaveChangesAsync();
 
 		// Act
-		var response = await _httpClient.GetAsync("Users?$orderby=Name&$skip=1&$top=2&$filter=Name ne 'testUser3'"); // 1
+		var response =
+			await _httpClient.GetAsync("Users?$orderby=Name&$skip=1&$top=2&$filter=Name ne 'testUser3'"); // 1
 
 		// Assert
 		response.IsSuccessStatusCode.Should()

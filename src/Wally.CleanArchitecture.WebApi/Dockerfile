@@ -2,7 +2,7 @@ ARG PROJECT_NAME \
     VERSION
 
 # https://hub.docker.com/_/microsoft-dotnet-aspnet
-FROM mcr.microsoft.com/dotnet/aspnet:5.0.11-alpine3.14-amd64
+FROM mcr.microsoft.com/dotnet/aspnet:6.0.2-alpine3.14-amd64
 ARG PROJECT_NAME \
     VERSION
 

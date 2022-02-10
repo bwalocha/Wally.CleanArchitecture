@@ -19,7 +19,7 @@ public class CreateUserCommandHandler : CommandHandler<UpdateUserCommand>
 		var user = User.Create(command.Id, command.Name);
 
 		_usersRepository.Add(user);
-		
+
 		return Task.CompletedTask;
 	}
 }

@@ -7,11 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.2" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.2"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Wally.CleanArchitecture.Persistence\Wally.CleanArchitecture.Persistence.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.Persistence\Wally.CleanArchitecture.Persistence.csproj"/>
     </ItemGroup>
 
 </Project>

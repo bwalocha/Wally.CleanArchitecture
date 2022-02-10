@@ -17,7 +17,7 @@ public class User : AggregateRoot
 	{
 		Name = name;
 	}
-	
+
 	private User(string name)
 	{
 		Name = name;

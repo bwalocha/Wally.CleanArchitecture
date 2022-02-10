@@ -140,7 +140,7 @@ public abstract class Repository<TAggregateRoot> : IRepository<TAggregateRoot> w
 		if (queryOptions.Filter != null)
 		{
 			var mappedQueryFunc = GetFilterExpression<TRequest>(queryOptions.Filter);
-			
+
 			query = query.Where(_mapper.MapExpression<Expression<Func<TAggregateRoot, bool>>>(mappedQueryFunc));
 		}
 
@@ -148,7 +148,7 @@ public abstract class Repository<TAggregateRoot> : IRepository<TAggregateRoot> w
 		var data = queryOptions.ApplyTo(_mapper.ProjectTo<TRequest>(query), AllowedQueryOptions.Filter);
 		var items = await _mapper.ProjectTo<TResponse>(data)
 			.ToArrayAsync(cancellationToken);
-		
+
 		var pageSize = queryOptions.Top?.Value ?? items.Length;
 
 		return new PagedResponse<TResponse>(

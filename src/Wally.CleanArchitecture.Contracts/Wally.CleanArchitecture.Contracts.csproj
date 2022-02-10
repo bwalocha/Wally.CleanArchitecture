@@ -7,8 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentValidation" Version="10.3.6" />
-        <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.0.1408" />
+        <PackageReference Include="FluentValidation" Version="10.3.6"/>
+        <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.0.1408"/>
     </ItemGroup>
 
 </Project>
