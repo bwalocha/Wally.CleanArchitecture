@@ -1,7 +1,11 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "wally",
-  "classifications": [ "Web", "MVC", "WebApi" ],
+  "classifications": [
+    "Web", 
+    "MVC", 
+    "WebApi"
+  ],
   "identity": "Wally.CleanArchitecture",
   "name": "Wally's DDD Application",
   "description": "CleanArchitecture, DDD, CQRS, EF, WebApi, Swagger, HealthCheck, Mapster, Reinforced.Typings, ...",
@@ -22,7 +26,7 @@
             "Wally.CleanArchitecture.ConventionTests/coverage.json",
             "Wally.CleanArchitecture.IntegrationTests/coverage.json",
             "Wally.CleanArchitecture.UnitTests/coverage.json",
-            "Directory.Build.props" 
+            "Directory.Build.props"
           ]
         }
       ]
