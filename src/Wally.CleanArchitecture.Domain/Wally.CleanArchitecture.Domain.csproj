@@ -7,11 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Abstractions"/>
+        <Folder Include="Abstractions" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.0.1321"/>
+        <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.0.1408" />
     </ItemGroup>
 
 </Project>

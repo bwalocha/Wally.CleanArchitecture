@@ -1423,11 +1423,11 @@
       },
       "Wally.Lib.DDD.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.0.1321",
-        "contentHash": "0sKRgi9Q4yaWcWRXjinpxvXLWCUT9PbYxvyEnjR7kuoV/qnwYaUmoSYoxI5OtqshA2gv2HK4gCRWMsnH0F5Bow==",
+        "resolved": "1.0.1408",
+        "contentHash": "ufentKp76Y5EUt8USyPPNr44uu3zG4UZhRtzfEM+JStQ2GGppkQ4vjAJ2qTy5M9uJ39Vs1nnFdxugZmPzidRlQ==",
         "dependencies": {
-          "Microsoft.AspNetCore.OData": "8.0.4",
-          "Newtonsoft.Json": "12.0.3"
+          "Microsoft.AspNetCore.OData": "8.0.6",
+          "Newtonsoft.Json": "13.0.1"
         }
       },
       "Wally.Lib.ServiceBus.Abstractions": {
@@ -1458,13 +1458,13 @@
         "type": "Project",
         "dependencies": {
           "FluentValidation": "10.3.6",
-          "Wally.Lib.DDD.Abstractions": "1.0.1321"
+          "Wally.Lib.DDD.Abstractions": "1.0.1408"
         }
       },
       "wally.cleanarchitecture.domain": {
         "type": "Project",
         "dependencies": {
-          "Wally.Lib.DDD.Abstractions": "1.0.1321"
+          "Wally.Lib.DDD.Abstractions": "1.0.1408"
         }
       },
       "wally.cleanarchitecture.mapperprofiles": {
@@ -1500,7 +1500,7 @@
           "MediatR": "10.0.1",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
           "Newtonsoft.Json": "13.0.1",
-          "Wally.Lib.DDD.Abstractions": "1.0.1321"
+          "Wally.Lib.DDD.Abstractions": "1.0.1408"
         }
       }
     }

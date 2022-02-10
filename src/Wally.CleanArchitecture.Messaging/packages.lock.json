@@ -155,13 +155,13 @@
         "type": "Project",
         "dependencies": {
           "FluentValidation": "10.3.6",
-          "Wally.Lib.DDD.Abstractions": "1.0.1321"
+          "Wally.Lib.DDD.Abstractions": "1.0.1408"
         }
       },
       "wally.cleanarchitecture.domain": {
         "type": "Project",
         "dependencies": {
-          "Wally.Lib.DDD.Abstractions": "1.0.1321"
+          "Wally.Lib.DDD.Abstractions": "1.0.1408"
         }
       }
     }

@@ -213,8 +213,8 @@
       },
       "Newtonsoft.Json": {
         "type": "Transitive",
-        "resolved": "12.0.3",
-        "contentHash": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg=="
+        "resolved": "13.0.1",
+        "contentHash": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A=="
       },
       "System.Collections.Immutable": {
         "type": "Transitive",
@@ -254,11 +254,11 @@
       },
       "Wally.Lib.DDD.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.0.1321",
-        "contentHash": "0sKRgi9Q4yaWcWRXjinpxvXLWCUT9PbYxvyEnjR7kuoV/qnwYaUmoSYoxI5OtqshA2gv2HK4gCRWMsnH0F5Bow==",
+        "resolved": "1.0.1408",
+        "contentHash": "ufentKp76Y5EUt8USyPPNr44uu3zG4UZhRtzfEM+JStQ2GGppkQ4vjAJ2qTy5M9uJ39Vs1nnFdxugZmPzidRlQ==",
         "dependencies": {
-          "Microsoft.AspNetCore.OData": "8.0.4",
-          "Newtonsoft.Json": "12.0.3"
+          "Microsoft.AspNetCore.OData": "8.0.6",
+          "Newtonsoft.Json": "13.0.1"
         }
       },
       "wally.cleanarchitecture.application": {
@@ -274,13 +274,13 @@
         "type": "Project",
         "dependencies": {
           "FluentValidation": "10.3.6",
-          "Wally.Lib.DDD.Abstractions": "1.0.1321"
+          "Wally.Lib.DDD.Abstractions": "1.0.1408"
         }
       },
       "wally.cleanarchitecture.domain": {
         "type": "Project",
         "dependencies": {
-          "Wally.Lib.DDD.Abstractions": "1.0.1321"
+          "Wally.Lib.DDD.Abstractions": "1.0.1408"
         }
       }
     }

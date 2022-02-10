@@ -37,12 +37,12 @@
       },
       "Wally.Lib.DDD.Abstractions": {
         "type": "Direct",
-        "requested": "[1.0.1321, )",
-        "resolved": "1.0.1321",
-        "contentHash": "0sKRgi9Q4yaWcWRXjinpxvXLWCUT9PbYxvyEnjR7kuoV/qnwYaUmoSYoxI5OtqshA2gv2HK4gCRWMsnH0F5Bow==",
+        "requested": "[1.0.1408, )",
+        "resolved": "1.0.1408",
+        "contentHash": "ufentKp76Y5EUt8USyPPNr44uu3zG4UZhRtzfEM+JStQ2GGppkQ4vjAJ2qTy5M9uJ39Vs1nnFdxugZmPzidRlQ==",
         "dependencies": {
-          "Microsoft.AspNetCore.OData": "8.0.4",
-          "Newtonsoft.Json": "12.0.3"
+          "Microsoft.AspNetCore.OData": "8.0.6",
+          "Newtonsoft.Json": "13.0.1"
         }
       },
       "MediatR.Contracts": {
@@ -52,12 +52,12 @@
       },
       "Microsoft.AspNetCore.OData": {
         "type": "Transitive",
-        "resolved": "8.0.4",
-        "contentHash": "/5oa5Zsi2u2fD2McDq2hTYs1yPDi98eW0WHXf49hWNT1J9ZYC0dgDOQz4usvznE8lPMbR8jXwtLzauEL+mUhQA==",
+        "resolved": "8.0.6",
+        "contentHash": "EjFA/hBC5tXpBRKUT+JU6g6GMs4Y3FOOvGhRifoJVcd9zYMsZGZ25HGTLKqF3YLO52tz0R/wREpV5KApSX+hqQ==",
         "dependencies": {
           "Microsoft.OData.Core": "[7.9.4, 8.0.0)",
           "Microsoft.OData.Edm": "[7.9.4, 8.0.0)",
-          "Microsoft.OData.ModelBuilder": "[1.0.7, 2.0.0)",
+          "Microsoft.OData.ModelBuilder": "[1.0.8, 2.0.0)",
           "Microsoft.Spatial": "[7.9.4, 8.0.0)"
         }
       },
@@ -88,8 +88,8 @@
       },
       "Microsoft.OData.ModelBuilder": {
         "type": "Transitive",
-        "resolved": "1.0.7",
-        "contentHash": "W+JqqUkQS3su7YBDkiU3QfEhF/cHya6uvoFDZ2M5//6udG9QzAZm3EsEVI2BrZsEOJ8KtfaTZL5CeZnzPL2lcw==",
+        "resolved": "1.0.8",
+        "contentHash": "svkoLjtvdRtyAuhcBugNAmKYE3zHFXE3C2HpaRXKeuB5mVxo5DK8ZSxoox0PqiwTSFqq0hlWNy5GC1fVgQlElQ==",
         "dependencies": {
           "Microsoft.OData.Edm": "[7.9.0, 8.0.0)",
           "Microsoft.Spatial": "[7.9.0, 8.0.0)",
