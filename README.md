@@ -66,28 +66,26 @@ xUnit Test Project                            xunit                    [C#],F#,V
 	- [x] CORS
 	- [ ] FluentValidation (IRequest)
 	- [ ] OAuth2
-	- [ ] RabbitMQ (Polly)
+	- [x] RabbitMQ (Polly)
 - [x] Swagger
 - [x] Serilog
 - [x] HealthChecks
 	- [x] Configuration
 - [x] MediatR
-	- [ ] LogBehavior
-	- [ ] TransactionBehavior
-	- [ ] ValidationBehavior (IComamnd, IQuery)
+	- [x] LogBehavior
+	- [x] TransactionBehavior
+	- [x] ValidationBehavior (IComamnd, IQuery)
 	- [ ] EventBehavior
 	- [ ] NotificationBehavior
 - [x] Scrutor [github](https://github.com/khellang/Scrutor)
-```
-Could not load type 'Microsoft.EntityFrameworkCore.Metadata.RelationalModelAnnotations' from assembly 'Microsoft.EntityFrameworkCore.Relational, Version=6.0.0.0
-```
-- [ ] OData
-- [ ] HttpGlobalExceptionFilter
+- [x] OData
+- [x] HttpGlobalExceptionFilter
 - [x] EntityFrameworkCore (Concurrency)
 - [ ] xUnit
 	- [ ] ApprovalTests
-	- [ ] IntegrationTests
-	- [ ] UnitTests
+	- [x] IntegrationTests
+	- [x] UnitTests
+	- [x] ConventionTests
 - [ ] AppInsights Metrics
 - [ ] Terraform Azure Infrastructure code (Service Principal, Group, AppInsights)
 - [ ] Mapster [github](https://github.com/MapsterMapper/Mapster)
@@ -95,13 +93,9 @@ Could not load type 'Microsoft.EntityFrameworkCore.Metadata.RelationalModelAnnot
 	- [ ] Validation
 	- [x] Profiles
 - [ ] SignalR
-
-## TODO
-
-- [x] rename `Wally.CleanArchitecture` to `Wally.CleanArchitecture.Template`
-- [ ] create ICommand and IQuery compatible with MediatR (new Wally.Lib.DDD)
-- [ ] fix MapsterMapper
-- [ ] template for ReverseProxy (template argument for Service/Proxy selector)
+- [ ] Create ICommand and IQuery compatible with MediatR (new Wally.Lib.DDD)
+- [ ] Support MapsterMapper
+- [ ] Template for ReverseProxy (template argument for Service/Proxy selector)
 
 ## Info
 
@@ -109,18 +103,36 @@ Could not load type 'Microsoft.EntityFrameworkCore.Metadata.RelationalModelAnnot
 
 ### Tests
 
-curl -X GET "https://localhost:7197/Users/3fa85f64-5717-4562-b3fc-2c963f66afa6" -H "accept: application/json;odata.metadata=minimal;odata.streaming=true"
-curl -X GET "https://localhost:7197/Users" -H "accept: application/json;odata.metadata=minimal;odata.streaming=true"
-curl -X GET "https://localhost:7197/Users?$orderby=Id&$top=1" -H "accept: application/json;odata.metadata=minimal;odata.streaming=true"
-
-curl -X GET "https://localhost:7197/Users?$count=true&$orderby=Id&$top=0" -H "accept: application/json;odata.metadata=minimal;odata.streaming=true"
-
-```
+curl -X GET "https://localhost:7197/Users/3fa85f64-5717-4562-b3fc-2c963f66afa6" -H "accept: application/json;odata.metadata=minimal;odata.streaming=true"  
+curl -X GET "https://localhost:7197/Users" -H "accept: application/json;odata.metadata=minimal;odata.streaming=true"  
+curl -X GET "https://localhost:7197/Users?$orderby=Id&$top=1" -H "accept: application/json;odata.metadata=minimal;odata.streaming=true"  
+curl -X GET "https://localhost:7197/Users?$count=true&$orderby=Id&$top=0" -H "accept: application/json;odata.metadata=minimal;odata.streaming=true"  
 curl -X GET "https://localhost:7197/Users?$count=true&$orderby=Id&$skip=2&$top=2" -H "accept: application/json;odata.metadata=minimal;odata.streaming=true"
-{"items":[{"id":"3fa85f64-5717-4562-b3fc-2c963f66afa8","name":"testDbData3"}],"pageInfo":{"index":1,"size":2,"totalItems":3}}
+```json
+{
+	"items":[
+		{"id":"3fa85f64-5717-4562-b3fc-2c963f66afa8","name":"testDbData3"}
+	],
+	"pageInfo":{
+		"index":1,
+		"size":2,
+		"totalItems":3
+	}
+}
 ```
 
-[order desc,top 3](https://localhost:7197/Users?$orderby=Name%20desc&$top=3)
+curl -X GET "https://localhost:7197/Users?$orderby=Name%20desc&$top=3" -H "accept: application/json;odata.metadata=minimal;odata.streaming=true"
 ```json
-{"items":[{"id":"3fa85f64-5717-4562-b3fc-2c963f66afa8","name":"testDbData3"},{"id":"3fa85f64-5717-4562-b3fc-2c963f66afa7","name":"testDbData2"},{"id":"3fa85f64-5717-4562-b3fc-2c963f66afa6","name":"testDbData1"}],"pageInfo":{"index":0,"size":3,"totalItems":3}}
+{
+	"items":[
+		{"id":"3fa85f64-5717-4562-b3fc-2c963f66afa8","name":"testDbData3"},
+		{"id":"3fa85f64-5717-4562-b3fc-2c963f66afa7","name":"testDbData2"},
+		{"id":"3fa85f64-5717-4562-b3fc-2c963f66afa6","name":"testDbData1"}
+	],
+	"pageInfo":{
+		"index":0,
+		"size":3,
+		"totalItems":3
+	}
+}
 ```
