@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Reflection;
 using AutoMapper.Extensions.ExpressionMapping;
 using FluentValidation.AspNetCore;
 using HealthChecks.UI.Client;
@@ -37,6 +39,8 @@ namespace Wally.CleanArchitecture.WebApi;
 public class Startup
 {
 	private const string CorsPolicy = nameof(CorsPolicy);
+	private const string Database = nameof(Database);
+	private const string ServiceBus = nameof(ServiceBus);
 
 	public Startup(IConfiguration configuration, IWebHostEnvironment env)
 	{
@@ -61,20 +65,6 @@ public class Startup
 				settings =>
 				{
 					settings.Filters.Add(typeof(HttpGlobalExceptionFilter));
-
-					// Workaround for Swagger
-					/*foreach (var outputFormatter in settings.OutputFormatters
-						.OfType<ODataOutputFormatter>()
-						.Where(_ => _.SupportedMediaTypes.Count == 0))
-					{
-						outputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue(ODataMediaTypeHeader));
-					}
-
-					foreach (var inputFormatter in settings.InputFormatters
-						.OfType<ODataInputFormatter>().Where(_ => _.SupportedMediaTypes.Count == 0))
-					{
-						inputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue(ODataMediaTypeHeader));
-					}*/
 				})
 			.AddFluentValidation(
 				config =>
@@ -104,39 +94,40 @@ public class Startup
 
 		// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 		services.AddEndpointsApiExplorer();
-		services.AddSwaggerGen(options =>
-		{
-			options.SwaggerDoc("v1", new OpenApiInfo
+		services.AddSwaggerGen(
+			options =>
 			{
-				Version = "v1",
-				Title = "Wally.CleanArchitecture API",
-				Description = "An ASP.NET Core Web API for managing 'Wally.CleanArchitecture' items",
-				// TermsOfService = new Uri("https://example.com/terms"),
-				Contact = new OpenApiContact
-				{
-					Name = "Wally",
-					Email = "b.walocha@gmail.com",
-					Url = new Uri("https://wally.best"),
-				},
-				License = new OpenApiLicense
-				{
-					Name = "MIT",
-					Url = new Uri("https://opensource.org/licenses/MIT"),
-				},
+				options.SwaggerDoc(
+					"v1",
+					new OpenApiInfo
+					{
+						Version = "v1",
+						Title = "Wally.CleanArchitecture API",
+						Description = "An ASP.NET Core Web API for managing 'Wally.CleanArchitecture' items",
+
+						// TermsOfService = new Uri("https://example.com/terms"),
+						Contact = new OpenApiContact
+						{
+							Name = "Wally", Email = "b.walocha@gmail.com", Url = new Uri("https://wally.best"),
+						},
+						License = new OpenApiLicense
+						{
+							Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT"),
+						},
+					});
+
+				var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+				options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 			});
-			
-			var xmlFilename = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
-			options.IncludeXmlComments(System.IO.Path.Combine(AppContext.BaseDirectory, xmlFilename));
-		});
 
 		services.AddHealthChecks()
 			.AddSqlServer(
-				Configuration.GetConnectionString("Database"),
+				Configuration.GetConnectionString(Database),
 				name: "DB",
 				failureStatus: HealthStatus.Degraded,
 				tags: new[] { "DB", "Database", "MSSQL", })
 			.AddRabbitMQ(
-				new Uri(Configuration.GetConnectionString("ServiceBus")),
+				new Uri(Configuration.GetConnectionString(ServiceBus)),
 				name: "MQ",
 				failureStatus: HealthStatus.Degraded,
 				tags: new[] { "MQ", "Messaging", "ServiceBus", });
@@ -147,7 +138,7 @@ public class Startup
 		dbContextOptions = options =>
 		{
 			options.UseSqlServer(
-				Configuration.GetConnectionString("Database"),
+				Configuration.GetConnectionString(Database),
 				builder =>
 				{
 					builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
@@ -187,7 +178,7 @@ public class Startup
 				.AsImplementedInterfaces()
 				.WithScopedLifetime());
 
-		services.AddSingleton(_ => Factory.Create(new Settings(Configuration.GetConnectionString("ServiceBus"))));
+		services.AddSingleton(_ => Factory.Create(new Settings(Configuration.GetConnectionString(ServiceBus))));
 		services.AddServiceBus();
 	}
 
