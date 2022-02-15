@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Wally.CleanArchitecture.Application.Users.Commands;
 using Wally.CleanArchitecture.Application.Users.Queries;
@@ -103,7 +104,30 @@ public class Startup
 
 		// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 		services.AddEndpointsApiExplorer();
-		services.AddSwaggerGen();
+		services.AddSwaggerGen(options =>
+		{
+			options.SwaggerDoc("v1", new OpenApiInfo
+			{
+				Version = "v1",
+				Title = "Wally.CleanArchitecture API",
+				Description = "An ASP.NET Core Web API for managing 'Wally.CleanArchitecture' items",
+				// TermsOfService = new Uri("https://example.com/terms"),
+				Contact = new OpenApiContact
+				{
+					Name = "Wally",
+					Email = "b.walocha@gmail.com",
+					Url = new Uri("https://wally.best"),
+				},
+				License = new OpenApiLicense
+				{
+					Name = "MIT",
+					Url = new Uri("https://opensource.org/licenses/MIT"),
+				},
+			});
+			
+			var xmlFilename = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+			options.IncludeXmlComments(System.IO.Path.Combine(AppContext.BaseDirectory, xmlFilename));
+		});
 
 		services.AddHealthChecks()
 			.AddSqlServer(

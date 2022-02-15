@@ -1694,6 +1694,7 @@
           "MediatR": "10.0.1",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
           "Newtonsoft.Json": "13.0.1",
+          "Wally.CleanArchitecture.Persistence": "1.0.0",
           "Wally.Lib.DDD.Abstractions": "1.0.1408"
         }
       },

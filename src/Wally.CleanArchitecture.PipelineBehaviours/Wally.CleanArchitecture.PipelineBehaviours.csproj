@@ -14,4 +14,8 @@
         <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.0.1408"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\Wally.CleanArchitecture.Persistence\Wally.CleanArchitecture.Persistence.csproj"/>
+    </ItemGroup>
+
 </Project>

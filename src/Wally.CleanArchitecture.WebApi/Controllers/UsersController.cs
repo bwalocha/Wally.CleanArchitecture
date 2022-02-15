@@ -14,6 +14,8 @@ namespace Wally.CleanArchitecture.WebApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
+[Produces("application/json")]
+[ProducesResponseType(typeof(int), 200, "application/json")]
 public class Users : ControllerBase
 {
 	private readonly IMediator _mediator;
@@ -29,6 +31,12 @@ public class Users : ControllerBase
 	/// <param name="queryOptions">OData query.</param>
 	/// <param name="cancellationToken">Cancellation token.</param>
 	/// <returns>Users.</returns>
+	/// <remarks>
+	/// Sample request:
+	///
+	///     GET /Users
+	///
+	/// </remarks>
 	[HttpGet]
 	public async Task<ActionResult<PagedResponse<GetUsersResponse>>> GetAsync(
 		ODataQueryOptions<GetUsersRequest> queryOptions,
@@ -45,6 +53,12 @@ public class Users : ControllerBase
 	/// <param name="id">Unique identifier of User.</param>
 	/// <param name="cancellationToken">Cancellation token.</param>
 	/// <returns>User details.</returns>
+	/// <remarks>
+	/// Sample request:
+	///
+	///     GET /Users/6ff34249-ef96-432a-9822-d3aca639a986
+	///
+	/// </remarks>
 	[HttpGet("{id:guid}")]
 	public async Task<ActionResult<GetUserResponse>> GetAsync(Guid id, CancellationToken cancellationToken)
 	{
@@ -60,6 +74,15 @@ public class Users : ControllerBase
 	/// <param name="request">The Request.</param>
 	/// <param name="cancellationToken">Cancellation token.</param>
 	/// <returns>User details.</returns>
+	/// <remarks>
+	/// Sample request:
+	///
+	///     PUT /Users/6ff34249-ef96-432a-9822-d3aca639a986
+	///     {
+	///         "name": "sampleName"
+	///     }
+	///
+	/// </remarks>
 	[HttpPut("{id:guid}")]
 	public async Task<ActionResult<object>> UpdateAsync(
 		Guid id,
