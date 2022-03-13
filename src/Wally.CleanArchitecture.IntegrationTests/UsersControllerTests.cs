@@ -3,17 +3,23 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+
 using FluentAssertions;
+
 using JsonNet.ContractResolvers;
+
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
+
 using Newtonsoft.Json;
+
 using Wally.CleanArchitecture.Contracts.Responses.Users;
 using Wally.CleanArchitecture.Domain.Users;
 using Wally.CleanArchitecture.Persistence;
 using Wally.CleanArchitecture.WebApi;
 using Wally.Lib.DDD.Abstractions.Responses;
+
 using Xunit;
 
 // [assembly: CollectionBehavior(DisableTestParallelization = true)]

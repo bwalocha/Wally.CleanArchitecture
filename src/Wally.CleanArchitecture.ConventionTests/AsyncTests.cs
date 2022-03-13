@@ -3,12 +3,16 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+
 using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Types;
+
 using MediatR;
+
 using Wally.CleanArchitecture.Application.Abstractions;
 using Wally.CleanArchitecture.ConventionTests.Helpers;
+
 using Xunit;
 
 namespace Wally.CleanArchitecture.ConventionTests;

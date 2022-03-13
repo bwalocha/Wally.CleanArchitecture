@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="300"
+   height="300"
+   viewBox="0 0 300 300"
+   version="1.1"
+   id="onion"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="onion.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="view"
+     pagecolor="#000000"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="0.25"
+     inkscape:cx="150"
+     inkscape:cy="150"
+     inkscape:window-width="800"
+     inkscape:window-height="600"
+     inkscape:window-x="800"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="onion" />
+  <defs
+     id="onion" />
+  <g
+     inkscape:label="Onion"
+     inkscape:groupmode="onion"
+     id="onion">
+    <circle
+       style="fill:#ff0000;stroke-width:1"
+       id="presentationAndInfrastructure"
+       cx="300"
+       cy="300"
+       r="150" />
+    <circle
+       style="fill:#00ff00;stroke-width:1"
+       id="application"
+       cx="300"
+       cy="300"
+       r="100" />
+    <circle
+       style="fill:#0000ff;stroke-width:1"
+       id="domain"
+       cx="300"
+       cy="300"
+       r="50" />
+  </g>
+</svg>

@@ -1,10 +1,15 @@
 using System;
 using System.IO;
 using System.Reflection;
+
 using AutoMapper.Extensions.ExpressionMapping;
+
 using FluentValidation.AspNetCore;
+
 using HealthChecks.UI.Client;
+
 using MediatR;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
@@ -18,7 +23,9 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+
 using Newtonsoft.Json;
+
 using Wally.CleanArchitecture.Application.Users.Commands;
 using Wally.CleanArchitecture.Application.Users.Queries;
 using Wally.CleanArchitecture.Contracts.Requests.User;
@@ -61,11 +68,7 @@ public class Startup
 
 		services.AddMediatR(typeof(GetUserQuery));
 
-		services.AddControllers(
-				settings =>
-				{
-					settings.Filters.Add(typeof(HttpGlobalExceptionFilter));
-				})
+		services.AddControllers(settings => { settings.Filters.Add(typeof(HttpGlobalExceptionFilter)); })
 			.AddFluentValidation(
 				config =>
 				{
@@ -161,6 +164,7 @@ public class Startup
 
 		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LogBehavior<,>));
 		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(TransactionBehavior<,>));
+
 		// services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DomainEventsDispatcherBehavior<,>));
 		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandHandlerValidatorBehavior<,>));
 		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(QueryHandlerValidatorBehavior<,>));

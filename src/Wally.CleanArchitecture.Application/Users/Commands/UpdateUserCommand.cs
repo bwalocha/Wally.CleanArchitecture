@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+
 using MediatR;
+
 using Wally.Lib.DDD.Abstractions.Commands;
 
 namespace Wally.CleanArchitecture.Application.Users.Commands;

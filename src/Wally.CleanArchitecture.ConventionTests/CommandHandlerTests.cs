@@ -1,10 +1,13 @@
 using System.Linq;
+
 using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Types;
+
 using Wally.CleanArchitecture.Application.Users.Commands;
 using Wally.CleanArchitecture.ConventionTests.Helpers;
 using Wally.Lib.DDD.Abstractions.Commands;
+
 using Xunit;
 
 namespace Wally.CleanArchitecture.ConventionTests;

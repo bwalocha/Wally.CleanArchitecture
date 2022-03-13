@@ -1,4 +1,5 @@
 ﻿using System;
+
 using FluentValidation;
 
 namespace Wally.CleanArchitecture.Application.Users.Commands;

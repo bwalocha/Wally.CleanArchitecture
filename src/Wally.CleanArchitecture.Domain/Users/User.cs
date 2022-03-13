@@ -1,4 +1,5 @@
 ﻿using System;
+
 using Wally.Lib.DDD.Abstractions.DomainModels;
 
 namespace Wally.CleanArchitecture.Domain.Users;

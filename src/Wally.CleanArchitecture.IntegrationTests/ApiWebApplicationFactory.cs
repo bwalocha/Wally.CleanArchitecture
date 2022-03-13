@@ -1,7 +1,9 @@
 using System;
 using System.IO;
 using System.Linq;
+
 using HealthChecks.UI.Core.Data;
+
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +11,7 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
 using Wally.CleanArchitecture.Persistence;
 using Wally.Lib.DDD.Abstractions.DomainNotifications;
 

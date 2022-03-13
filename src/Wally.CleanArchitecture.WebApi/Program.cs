@@ -1,9 +1,11 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+
 using Serilog;
 
 namespace Wally.CleanArchitecture.WebApi;

@@ -1,8 +1,10 @@
 using System;
 using System.Linq;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Logging;
+
 using Wally.Lib.DDD.Abstractions.DomainModels;
 
 namespace Wally.CleanArchitecture.Persistence;
@@ -57,8 +59,9 @@ public sealed class ApplicationDbContext : DbContext
 		foreach (var entity in allEntities.Where(a => a.ClrType.IsSubclassOf(typeof(AggregateRoot)))
 					.Where(a => string.IsNullOrEmpty(a.GetViewName())))
 		{
-			entity.AddProperty(RowVersion, typeof(DateTime))
-				.IsConcurrencyToken = true;
+			var property = entity.AddProperty(RowVersion, typeof(DateTime));
+			property.IsConcurrencyToken = true;
+			property.ValueGenerated = ValueGenerated.OnAddOrUpdate;
 		}
 	}
 }

@@ -1,5 +1,7 @@
 using MediatR;
+
 using Microsoft.Extensions.Logging;
+
 using Wally.CleanArchitecture.Application.Users.Commands;
 using Wally.IdentityProvider.Contracts.Messages;
 using Wally.Lib.DDD.Abstractions.Commands;

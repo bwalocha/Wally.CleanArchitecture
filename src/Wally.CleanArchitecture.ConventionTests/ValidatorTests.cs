@@ -1,8 +1,12 @@
 ﻿using System.Linq;
+
 using FluentAssertions;
 using FluentAssertions.Execution;
+
 using FluentValidation;
+
 using Wally.CleanArchitecture.ConventionTests.Helpers;
+
 using Xunit;
 
 namespace Wally.CleanArchitecture.ConventionTests;

@@ -2,11 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+
 using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Types;
+
 using Wally.CleanArchitecture.ConventionTests.Helpers;
 using Wally.CleanArchitecture.Domain.Abstractions;
+
 using Xunit;
 
 namespace Wally.CleanArchitecture.ConventionTests;

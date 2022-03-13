@@ -1,10 +1,13 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
 using FluentAssertions;
 using FluentAssertions.Types;
+
 using Wally.CleanArchitecture.Application.Users.Queries;
 using Wally.CleanArchitecture.ConventionTests.Helpers;
 using Wally.Lib.DDD.Abstractions.Queries;
+
 using Xunit;
 
 namespace Wally.CleanArchitecture.ConventionTests;

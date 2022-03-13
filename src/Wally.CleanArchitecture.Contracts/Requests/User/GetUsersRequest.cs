@@ -1,4 +1,5 @@
 ﻿using System;
+
 using Wally.Lib.DDD.Abstractions.Requests;
 
 namespace Wally.CleanArchitecture.Contracts.Requests.User;

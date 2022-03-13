@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+
 using FluentAssertions;
 using FluentAssertions.Common;
 using FluentAssertions.Types;
+
 using Wally.CleanArchitecture.WebApi;
 
 namespace Wally.CleanArchitecture.ConventionTests.Helpers;

@@ -1,12 +1,15 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
+
 using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Types;
+
 using Wally.CleanArchitecture.Application.Users.Commands;
 using Wally.CleanArchitecture.Contracts.Requests.User;
 using Wally.CleanArchitecture.ConventionTests.Helpers;
 using Wally.Lib.DDD.Abstractions.Requests;
+
 using Xunit;
 
 namespace Wally.CleanArchitecture.ConventionTests;

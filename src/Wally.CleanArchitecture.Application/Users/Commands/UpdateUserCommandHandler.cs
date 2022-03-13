@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+
 using Wally.CleanArchitecture.Application.Abstractions;
 
 namespace Wally.CleanArchitecture.Application.Users.Commands;

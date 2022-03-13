@@ -1,5 +1,7 @@
 using FluentAssertions;
+
 using Wally.CleanArchitecture.Domain.Users;
+
 using Xunit;
 
 namespace Wally.CleanArchitecture.UnitTests;

@@ -1,13 +1,17 @@
 ﻿using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+
 using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Types;
+
 using Microsoft.AspNetCore.Mvc;
+
 using Wally.CleanArchitecture.ConventionTests.Helpers;
 using Wally.Lib.DDD.Abstractions.Commands;
 using Wally.Lib.DDD.Abstractions.Queries;
+
 using Xunit;
 
 namespace Wally.CleanArchitecture.ConventionTests;

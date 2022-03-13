@@ -12,11 +12,11 @@
   "shortName": "wally.cleanarchitecture",
   "sourceName": "Wally.CleanArchitecture",
   "tags": {
-      "language": "C#",
-      "type": "solution"
+    "language": "C#",
+    "type": "solution"
   },
   "preferNameDirectory": true,
-   "sources": [
+  "sources": [
     {
       "modifiers": [
         {

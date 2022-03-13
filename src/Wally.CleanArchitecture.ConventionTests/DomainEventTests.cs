@@ -1,8 +1,11 @@
 ﻿using System.Linq;
+
 using FluentAssertions;
 using FluentAssertions.Execution;
+
 using Wally.CleanArchitecture.ConventionTests.Helpers;
 using Wally.Lib.DDD.Abstractions.DomainEvents;
+
 using Xunit;
 
 namespace Wally.CleanArchitecture.ConventionTests;

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
 using Wally.CleanArchitecture.Domain.Users;
 
 namespace Wally.CleanArchitecture.Persistence.Mappings;

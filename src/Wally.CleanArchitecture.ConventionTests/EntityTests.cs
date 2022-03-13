@@ -1,9 +1,11 @@
 ﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Types;
+
 using Wally.CleanArchitecture.ConventionTests.Helpers;
 using Wally.CleanArchitecture.Domain.Users;
 using Wally.Lib.DDD.Abstractions.DomainModels;
+
 using Xunit;
 
 namespace Wally.CleanArchitecture.ConventionTests;

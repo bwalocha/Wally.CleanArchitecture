@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Linq;
+
 using FluentAssertions;
 using FluentAssertions.Common;
 using FluentAssertions.Execution;
 using FluentAssertions.Types;
+
 using Wally.CleanArchitecture.Application.Users.Queries;
 using Wally.CleanArchitecture.Domain.Users;
 using Wally.CleanArchitecture.MapperProfiles;
 using Wally.CleanArchitecture.Persistence;
 using Wally.Lib.DDD.Abstractions.DomainModels;
+
 using Xunit;
 
 namespace Wally.CleanArchitecture.ConventionTests;
