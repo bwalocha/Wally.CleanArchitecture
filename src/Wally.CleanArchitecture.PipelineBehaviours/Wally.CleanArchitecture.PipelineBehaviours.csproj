@@ -7,9 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentValidation" Version="10.3.6"/>
+        <PackageReference Include="FluentValidation" Version="10.4.0"/>
         <PackageReference Include="MediatR" Version="10.0.1"/>
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1"/>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
         <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.0.1408"/>
     </ItemGroup>

@@ -4,9 +4,9 @@
     "net6.0": {
       "FluentValidation": {
         "type": "Direct",
-        "requested": "[10.3.6, )",
-        "resolved": "10.3.6",
-        "contentHash": "iMd370ZDx6ydm8t7bIFdRbSKX0e42lpvCtifUSbTSXOk5iKjmgl7HU0PXBhIWQAyIRi3gCwfMI9luj8H6K+byw=="
+        "requested": "[10.4.0, )",
+        "resolved": "10.4.0",
+        "contentHash": "rVI1b5L3pq3layrRKIo3N7AT3PWey8ocPZhf6zeHYf6LBBvnP1KzW3bm7KmeazOWW8m1KXMD+shfviIcKSgQ0g=="
       },
       "StyleCop.Analyzers": {
         "type": "Direct",

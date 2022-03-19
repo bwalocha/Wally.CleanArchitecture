@@ -17,7 +17,7 @@
 
     <ItemGroup>
         <PackageReference Include="MediatR" Version="10.0.1"/>
-        <PackageReference Include="Microsoft.AspNetCore.OData" Version="8.0.7"/>
+        <PackageReference Include="Microsoft.AspNetCore.OData" Version="8.0.8"/>
     </ItemGroup>
 
 </Project>
