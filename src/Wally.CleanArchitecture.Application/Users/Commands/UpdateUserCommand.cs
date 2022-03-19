@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-using MediatR;
-
 using Wally.Lib.DDD.Abstractions.Commands;
 
 namespace Wally.CleanArchitecture.Application.Users.Commands;
 
 [ExcludeFromCodeCoverage]
-public class UpdateUserCommand : ICommand, IRequest
+public class UpdateUserCommand : ICommand
 {
 	public UpdateUserCommand(Guid id, string name)
 	{

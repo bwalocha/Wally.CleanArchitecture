@@ -210,11 +210,16 @@ System.MissingMethodException: Constructor on type 'Mapster.EFCore.MapsterAsyncE
 
 ### Tests
 
-curl -X GET "https://localhost:7197/Users/3fa85f64-5717-4562-b3fc-2c963f66afa6" -H "accept: application/json;odata.metadata=minimal;odata.streaming=true"  
+curl -X GET "https://localhost:7197/Users/3fa85f64-5717-4562-b3fc-2c963f66afa6" -H "accept:
+application/json;odata.metadata=minimal;odata.streaming=true"  
 curl -X GET "https://localhost:7197/Users" -H "accept: application/json;odata.metadata=minimal;odata.streaming=true"  
-curl -X GET "https://localhost:7197/Users?$orderby=Id&$top=1" -H "accept: application/json;odata.metadata=minimal;odata.streaming=true"  
-curl -X GET "https://localhost:7197/Users?$count=true&$orderby=Id&$top=0" -H "accept: application/json;odata.metadata=minimal;odata.streaming=true"  
-curl -X GET "https://localhost:7197/Users?$count=true&$orderby=Id&$skip=2&$top=2" -H "accept: application/json;odata.metadata=minimal;odata.streaming=true"
+curl -X GET "https://localhost:7197/Users?$orderby=Id&$top=1" -H "accept:
+application/json;odata.metadata=minimal;odata.streaming=true"  
+curl -X GET "https://localhost:7197/Users?$count=true&$orderby=Id&$top=0" -H "accept:
+application/json;odata.metadata=minimal;odata.streaming=true"  
+curl -X GET "https://localhost:7197/Users?$count=true&$orderby=Id&$skip=2&$top=2" -H "accept:
+application/json;odata.metadata=minimal;odata.streaming=true"
+
 ```json
 {
 	"items":[
@@ -228,7 +233,9 @@ curl -X GET "https://localhost:7197/Users?$count=true&$orderby=Id&$skip=2&$top=2
 }
 ```
 
-curl -X GET "https://localhost:7197/Users?$orderby=Name%20desc&$top=3" -H "accept: application/json;odata.metadata=minimal;odata.streaming=true"
+curl -X GET "https://localhost:7197/Users?$orderby=Name%20desc&$top=3" -H "accept:
+application/json;odata.metadata=minimal;odata.streaming=true"
+
 ```json
 {
 	"items":[

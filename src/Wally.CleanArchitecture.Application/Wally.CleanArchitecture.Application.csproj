@@ -7,16 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Users"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.Contracts\Wally.CleanArchitecture.Contracts.csproj"/>
         <ProjectReference Include="..\Wally.CleanArchitecture.Domain\Wally.CleanArchitecture.Domain.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="MediatR" Version="10.0.1"/>
         <PackageReference Include="Microsoft.AspNetCore.OData" Version="8.0.8"/>
     </ItemGroup>
 
