@@ -1761,6 +1761,32 @@
           "Wally.Lib.DDD.Abstractions": "1.0.1408"
         }
       },
+      "wally.cleanarchitecture.infrastructure.di.microsoft": {
+        "type": "Project",
+        "dependencies": {
+          "AspNetCore.HealthChecks.Rabbitmq": "6.0.2",
+          "AspNetCore.HealthChecks.SqlServer": "6.0.2",
+          "AspNetCore.HealthChecks.UI": "6.0.4",
+          "AspNetCore.HealthChecks.UI.Client": "6.0.4",
+          "AspNetCore.HealthChecks.UI.InMemory.Storage": "6.0.4",
+          "AutoMapper.Extensions.ExpressionMapping": "5.0.1",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
+          "MediatR": "10.0.1",
+          "MediatR.Extensions.Microsoft.DependencyInjection": "10.0.1",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "Scrutor": "4.1.0",
+          "Swashbuckle.AspNetCore": "6.3.0",
+          "Wally.CleanArchitecture.Domain": "1.0.0",
+          "Wally.CleanArchitecture.MapperProfiles": "1.0.0",
+          "Wally.CleanArchitecture.Messaging": "1.0.0",
+          "Wally.CleanArchitecture.Persistence.SqlServer": "1.0.0",
+          "Wally.CleanArchitecture.PipelineBehaviours": "1.0.0",
+          "Wally.Lib.ServiceBus.DI.Microsoft": "0.3.1409",
+          "Wally.Lib.ServiceBus.RabbitMQ": "0.3.1409"
+        }
+      },
       "wally.cleanarchitecture.mapperprofiles": {
         "type": "Project",
         "dependencies": {
@@ -1812,32 +1838,16 @@
       "wally.cleanarchitecture.webapi": {
         "type": "Project",
         "dependencies": {
-          "AspNetCore.HealthChecks.Rabbitmq": "6.0.2",
-          "AspNetCore.HealthChecks.SqlServer": "6.0.2",
-          "AspNetCore.HealthChecks.UI": "6.0.4",
-          "AspNetCore.HealthChecks.UI.Client": "6.0.4",
-          "AspNetCore.HealthChecks.UI.InMemory.Storage": "6.0.4",
-          "AutoMapper.Extensions.ExpressionMapping": "5.0.1",
-          "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
           "FluentValidation.AspNetCore": "10.4.0",
           "MediatR": "10.0.1",
-          "MediatR.Extensions.Microsoft.DependencyInjection": "10.0.1",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "6.0.3",
           "Microsoft.AspNetCore.OData": "8.0.8",
-          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.3",
-          "Scrutor": "4.1.0",
           "Serilog.AspNetCore": "5.0.0",
           "Serilog.Sinks.ApplicationInsights": "3.1.0",
-          "Swashbuckle.AspNetCore": "6.3.0",
           "Wally.CleanArchitecture.Application": "1.0.0",
           "Wally.CleanArchitecture.Contracts": "1.0.0",
-          "Wally.CleanArchitecture.MapperProfiles": "1.0.0",
-          "Wally.CleanArchitecture.Messaging": "1.0.0",
-          "Wally.CleanArchitecture.Persistence": "1.0.0",
-          "Wally.CleanArchitecture.Persistence.SqlServer": "1.0.0",
-          "Wally.CleanArchitecture.PipelineBehaviours": "1.0.0",
-          "Wally.Lib.ServiceBus.DI.Microsoft": "0.3.1409",
-          "Wally.Lib.ServiceBus.RabbitMQ": "0.3.1409"
+          "Wally.CleanArchitecture.Infrastructure.DI.Microsoft": "1.0.0",
+          "Wally.CleanArchitecture.Persistence": "1.0.0"
         }
       }
     }

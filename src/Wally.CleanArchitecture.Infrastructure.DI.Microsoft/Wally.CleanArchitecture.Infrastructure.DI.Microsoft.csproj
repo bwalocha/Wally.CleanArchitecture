@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="5.0.1"/>
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0"/>
+        <PackageReference Include="Scrutor" Version="4.1.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0"/>
+        <PackageReference Include="Wally.Lib.ServiceBus.DI.Microsoft" Version="0.3.1409"/>
+        <PackageReference Include="Wally.Lib.ServiceBus.RabbitMQ" Version="0.3.1409"/>
+        <PackageReference Include="MediatR" Version="10.0.1"/>
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1"/>
+        <PackageReference Include="AspNetCore.HealthChecks.Rabbitmq" Version="6.0.2"/>
+        <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="6.0.2"/>
+        <PackageReference Include="AspNetCore.HealthChecks.UI" Version="6.0.4"/>
+        <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.4"/>
+        <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="6.0.4"/>
+
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Wally.CleanArchitecture.Domain\Wally.CleanArchitecture.Domain.csproj"/>
+        <ProjectReference Include="..\Wally.CleanArchitecture.MapperProfiles\Wally.CleanArchitecture.MapperProfiles.csproj"/>
+        <ProjectReference Include="..\Wally.CleanArchitecture.Messaging\Wally.CleanArchitecture.Messaging.csproj"/>
+        <ProjectReference Include="..\Wally.CleanArchitecture.Persistence.SqlServer\Wally.CleanArchitecture.Persistence.SqlServer.csproj"/>
+        <ProjectReference Include="..\Wally.CleanArchitecture.PipelineBehaviours\Wally.CleanArchitecture.PipelineBehaviours.csproj"/>
+    </ItemGroup>
+
+</Project>

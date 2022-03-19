@@ -1,6 +1,6 @@
-﻿namespace Wally.CleanArchitecture.WebApi.Models;
+﻿namespace Wally.CleanArchitecture.Infrastructure.DI.Microsoft.Models;
 
-public class Authentication
+public class AuthenticationSettings
 {
 	public string Authority { get; set; } = string.Empty;
 

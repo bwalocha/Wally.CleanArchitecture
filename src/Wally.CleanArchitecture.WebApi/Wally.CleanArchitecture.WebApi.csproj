@@ -8,35 +8,19 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AspNetCore.HealthChecks.Rabbitmq" Version="6.0.2"/>
-        <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="6.0.2"/>
-        <PackageReference Include="AspNetCore.HealthChecks.UI" Version="6.0.4"/>
-        <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.4"/>
-        <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="6.0.4"/>
-        <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="5.0.1"/>
-        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0"/>
         <PackageReference Include="FluentValidation.AspNetCore" Version="10.4.0"/>
         <PackageReference Include="MediatR" Version="10.0.1"/>
-        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1"/>
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.3"/>
         <PackageReference Include="Microsoft.AspNetCore.OData" Version="8.0.8"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.3"/>
-        <PackageReference Include="Scrutor" Version="4.1.0"/>
         <PackageReference Include="Serilog.AspNetCore" Version="5.0.0"/>
         <PackageReference Include="Serilog.Sinks.ApplicationInsights" Version="3.1.0"/>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0"/>
-        <PackageReference Include="Wally.Lib.ServiceBus.DI.Microsoft" Version="0.3.1409"/>
-        <PackageReference Include="Wally.Lib.ServiceBus.RabbitMQ" Version="0.3.1409"/>
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.Application\Wally.CleanArchitecture.Application.csproj"/>
         <ProjectReference Include="..\Wally.CleanArchitecture.Contracts\Wally.CleanArchitecture.Contracts.csproj"/>
-        <ProjectReference Include="..\Wally.CleanArchitecture.MapperProfiles\Wally.CleanArchitecture.MapperProfiles.csproj"/>
-        <ProjectReference Include="..\Wally.CleanArchitecture.Messaging\Wally.CleanArchitecture.Messaging.csproj"/>
-        <ProjectReference Include="..\Wally.CleanArchitecture.Persistence.SqlServer\Wally.CleanArchitecture.Persistence.SqlServer.csproj"/>
+        <ProjectReference Include="..\Wally.CleanArchitecture.Infrastructure.DI.Microsoft\Wally.CleanArchitecture.Infrastructure.DI.Microsoft.csproj"/>
         <ProjectReference Include="..\Wally.CleanArchitecture.Persistence\Wally.CleanArchitecture.Persistence.csproj"/>
-        <ProjectReference Include="..\Wally.CleanArchitecture.PipelineBehaviours\Wally.CleanArchitecture.PipelineBehaviours.csproj"/>
     </ItemGroup>
 
 </Project>

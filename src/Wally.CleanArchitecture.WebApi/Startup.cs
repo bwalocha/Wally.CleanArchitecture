@@ -1,10 +1,11 @@
+using System.Reflection;
+
 using FluentValidation.AspNetCore;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.OData;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -14,11 +15,10 @@ using Newtonsoft.Json;
 
 using Wally.CleanArchitecture.Application.Users.Commands;
 using Wally.CleanArchitecture.Contracts.Requests.User;
+using Wally.CleanArchitecture.Infrastructure.DI.Microsoft.Extensions;
+using Wally.CleanArchitecture.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.Persistence;
-using Wally.CleanArchitecture.WebApi.Extensions;
 using Wally.CleanArchitecture.WebApi.Filters;
-using Wally.CleanArchitecture.WebApi.Models;
-using Wally.Lib.ServiceBus.DI.Microsoft;
 
 namespace Wally.CleanArchitecture.WebApi;
 
@@ -41,8 +41,6 @@ public class Startup
 	{
 		Configuration.Bind(AppSettings);
 
-		services.AddCqrs();
-
 		services.AddControllers(settings => { settings.Filters.Add(typeof(HttpGlobalExceptionFilter)); })
 			.AddFluentValidation(
 				config =>
@@ -62,8 +60,9 @@ public class Startup
 			.AddNewtonsoftJson(
 				options => { options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; });
 
-		services.AddApiCors(AppSettings);
-		services.AddSwagger();
+		services.AddCqrs();
+		services.AddApiCors(AppSettings.Cors);
+		services.AddSwagger(Assembly.GetExecutingAssembly());
 		services.AddHealthChecks(Configuration);
 		services.AddDbContext(Configuration);
 		services.AddMapper();
@@ -88,7 +87,7 @@ public class Startup
 		if (env.IsDevelopment())
 		{
 			app.UseDeveloperExceptionPage();
-			app.UseSwagger(AppSettings);
+			app.UseSwagger(AppSettings.SwaggerAuthentication);
 		}
 
 		// App is hosted by Docker, HTTPS is not required inside container
@@ -116,11 +115,7 @@ public class Startup
 					});
 			});
 
-		if (AppSettings.IsMigrationEnabled)
-		{
-			dbContext.Database.Migrate();
-		}
-
-		app.UseServiceBus();
+		app.UseDbContext(dbContext, AppSettings.Database);
+		app.UseMessaging();
 	}
 }

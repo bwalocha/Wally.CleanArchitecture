@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 using Wally.CleanArchitecture.MapperProfiles;
 
-namespace Wally.CleanArchitecture.WebApi.Extensions;
+namespace Wally.CleanArchitecture.Infrastructure.DI.Microsoft.Extensions;
 
 public static class AutoMapperExtensions
 {

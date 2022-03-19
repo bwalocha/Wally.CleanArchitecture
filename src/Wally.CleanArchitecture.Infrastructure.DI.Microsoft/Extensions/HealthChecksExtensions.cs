@@ -1,6 +1,4 @@
-﻿using System;
-
-using HealthChecks.UI.Client;
+﻿using HealthChecks.UI.Client;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -8,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace Wally.CleanArchitecture.WebApi.Extensions;
+namespace Wally.CleanArchitecture.Infrastructure.DI.Microsoft.Extensions;
 
 public static class HealthChecksExtensions
 {

@@ -1,18 +1,16 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
+﻿using System.Reflection;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
-using Wally.CleanArchitecture.WebApi.Models;
+using Wally.CleanArchitecture.Infrastructure.DI.Microsoft.Models;
 
-namespace Wally.CleanArchitecture.WebApi.Extensions;
+namespace Wally.CleanArchitecture.Infrastructure.DI.Microsoft.Extensions;
 
 public static class SwaggerExtensions
 {
-	public static IServiceCollection AddSwagger(this IServiceCollection services)
+	public static IServiceCollection AddSwagger(this IServiceCollection services, Assembly assembly)
 	{
 		// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 		services.AddEndpointsApiExplorer();
@@ -38,22 +36,22 @@ public static class SwaggerExtensions
 						},
 					});
 
-				var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+				var xmlFilename = $"{assembly.GetName().Name}.xml";
 				options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 			});
 
 		return services;
 	}
 
-	public static IApplicationBuilder UseSwagger(this IApplicationBuilder app, AppSettings appSettings)
+	public static IApplicationBuilder UseSwagger(this IApplicationBuilder app, AuthenticationSettings settings)
 	{
 		app.UseSwagger();
 		app.UseSwaggerUI(
 			opt =>
 			{
 				// opt.SwaggerEndpoint("v1/swagger.json", "Wally.CleanArchitecture WebApi v1");
-				opt.OAuthClientId(appSettings.SwaggerAuthentication.ClientId);
-				opt.OAuthClientSecret(appSettings.SwaggerAuthentication.ClientSecret);
+				opt.OAuthClientId(settings.ClientId);
+				opt.OAuthClientSecret(settings.ClientSecret);
 				opt.OAuthUsePkce();
 			});
 

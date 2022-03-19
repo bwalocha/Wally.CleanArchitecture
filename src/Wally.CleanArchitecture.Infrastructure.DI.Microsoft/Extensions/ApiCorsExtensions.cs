@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-using Wally.CleanArchitecture.WebApi.Models;
+using Wally.CleanArchitecture.Infrastructure.DI.Microsoft.Models;
 
-namespace Wally.CleanArchitecture.WebApi.Extensions;
+namespace Wally.CleanArchitecture.Infrastructure.DI.Microsoft.Extensions;
 
 public static class ApiCorsExtensions
 {
 	private const string CorsPolicy = nameof(CorsPolicy);
 
-	public static IServiceCollection AddApiCors(this IServiceCollection services, AppSettings appSettings)
+	public static IServiceCollection AddApiCors(this IServiceCollection services, CorsSettings settings)
 	{
 		services.AddCors(
 			options => options.AddPolicy(
@@ -17,7 +17,7 @@ public static class ApiCorsExtensions
 				builder => builder.WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
 					.AllowAnyHeader()
 					.AllowCredentials()
-					.WithOrigins(appSettings.Cors.Origins.ToArray())));
+					.WithOrigins(settings.Origins.ToArray())));
 
 		return services;
 	}

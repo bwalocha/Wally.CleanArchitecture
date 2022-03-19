@@ -1,4 +1,4 @@
-﻿namespace Wally.CleanArchitecture.WebApi;
+﻿namespace Wally.CleanArchitecture.Infrastructure.DI.Microsoft;
 
 internal static class Constants
 {

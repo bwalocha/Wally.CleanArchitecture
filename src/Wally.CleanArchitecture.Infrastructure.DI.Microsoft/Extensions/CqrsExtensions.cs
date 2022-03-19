@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Wally.CleanArchitecture.Application.Users.Queries;
 using Wally.CleanArchitecture.PipelineBehaviours;
 
-namespace Wally.CleanArchitecture.WebApi.Extensions;
+namespace Wally.CleanArchitecture.Infrastructure.DI.Microsoft.Extensions;
 
 public static class CqrsExtensions
 {
