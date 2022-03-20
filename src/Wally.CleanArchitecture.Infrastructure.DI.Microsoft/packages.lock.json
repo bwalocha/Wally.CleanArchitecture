@@ -151,25 +151,25 @@
       },
       "Wally.Lib.ServiceBus.DI.Microsoft": {
         "type": "Direct",
-        "requested": "[0.3.1409, )",
-        "resolved": "0.3.1409",
-        "contentHash": "UPosP5QLbScYrVsxF4fDA+fRcpEajxMbm54Iwe1Ci+OEzNr9Bvpz8EJWny0mh9qtv1YsmdRJ3K2Hr2VUWbw42Q==",
+        "requested": "[0.3.1467, )",
+        "resolved": "0.3.1467",
+        "contentHash": "Us4TlxghpEbewMCQ1JqbddD/ysmbA3W9nojObc4CwQ6tqHhavzedqnoKHOYXAq9jHUB38Mb3wRIM86iP0VC2Sw==",
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.CSharp": "4.7.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
           "Microsoft.Extensions.Hosting.Abstractions": "6.0.0",
-          "Wally.Lib.ServiceBus.Abstractions": "0.3.1405"
+          "Wally.Lib.ServiceBus.Abstractions": "0.3.1465"
         }
       },
       "Wally.Lib.ServiceBus.RabbitMQ": {
         "type": "Direct",
-        "requested": "[0.3.1409, )",
-        "resolved": "0.3.1409",
-        "contentHash": "p7nXcxja5BKxPUF+DsMHM90eAtDYtt2nkalsvX300BXYT2za+xaqw908jnRJux1YjsgXAkkp0urrWC+tLVsfTg==",
+        "requested": "[0.3.1467, )",
+        "resolved": "0.3.1467",
+        "contentHash": "P8C3SzqNGc6mYk4dlp7dHoc6yKLuMatvHu9MGuLyCEPbeY16PM1gKThvsJY0WezMM/Qh2TS1Jt/AdMkTfaq99Q==",
         "dependencies": {
           "EasyNetQ": "6.3.1",
-          "Wally.Lib.ServiceBus.Abstractions": "0.3.1405"
+          "Wally.Lib.ServiceBus.Abstractions": "0.3.1465"
         }
       },
       "AspNetCore.HealthChecks.UI.Core": {
@@ -1225,8 +1225,8 @@
       },
       "Wally.Lib.DDD.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.0.1460",
-        "contentHash": "Pq7+wNuTAvYkh2h32E6iZSpTnf+DZRFoJ6uQiD79TkxNs9Pz4kGiQdRP30k1/OBLbkXYxrmj9r/O1XgUDoJ8ew==",
+        "resolved": "1.0.1468",
+        "contentHash": "pHb8OX4eR3UDheFaRscq0p8hVNVqr/9oVjqsF+/EOA68d/ZhO46QR/BLk5QVazi36NrxG0HNXDhk5qw3PCT9SA==",
         "dependencies": {
           "MediatR": "10.0.1",
           "Microsoft.AspNetCore.OData": "8.0.8",
@@ -1235,13 +1235,13 @@
       },
       "Wally.Lib.ServiceBus.Abstractions": {
         "type": "Transitive",
-        "resolved": "0.3.1409",
-        "contentHash": "54k5J3PrrFARZamy6bGsnMWhbzBCHc046Azlc9muGJvxi02I9PA0LZRl4v2moOagv3n9fqLnRWUOkVFX5hhKUg==",
+        "resolved": "0.3.1467",
+        "contentHash": "GGauGNi+iCQS46p6V6B4rSaX8XM0ocIyGb5z0k/bHKVvFRMlnNfRQey8jmOrOc1me57d7sikUmR+fjeNKfsQ4w==",
         "dependencies": {
           "MediatR": "10.0.1",
-          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.1",
           "Polly": "7.2.3",
-          "Wally.Lib.DDD.Abstractions": "1.0.1407"
+          "Wally.Lib.DDD.Abstractions": "1.0.1460"
         }
       },
       "YamlDotNet": {
@@ -1261,13 +1261,13 @@
         "type": "Project",
         "dependencies": {
           "FluentValidation": "10.4.0",
-          "Wally.Lib.DDD.Abstractions": "1.0.1460"
+          "Wally.Lib.DDD.Abstractions": "1.0.1468"
         }
       },
       "wally.cleanarchitecture.domain": {
         "type": "Project",
         "dependencies": {
-          "Wally.Lib.DDD.Abstractions": "1.0.1460"
+          "Wally.Lib.DDD.Abstractions": "1.0.1468"
         }
       },
       "wally.cleanarchitecture.mapperprofiles": {
@@ -1285,8 +1285,8 @@
           "Microsoft.Extensions.Logging.Abstractions": "6.0.1",
           "Wally.CleanArchitecture.Application": "1.0.0",
           "Wally.IdentityProvider.Contracts": "0.3.1412",
-          "Wally.Lib.DDD.Abstractions": "1.0.1460",
-          "Wally.Lib.ServiceBus.Abstractions": "0.3.1409"
+          "Wally.Lib.DDD.Abstractions": "1.0.1468",
+          "Wally.Lib.ServiceBus.Abstractions": "0.3.1467"
         }
       },
       "wally.cleanarchitecture.persistence": {
@@ -1315,7 +1315,7 @@
           "Microsoft.Extensions.Logging.Abstractions": "6.0.1",
           "Newtonsoft.Json": "13.0.1",
           "Wally.CleanArchitecture.Persistence": "1.0.0",
-          "Wally.Lib.DDD.Abstractions": "1.0.1460"
+          "Wally.Lib.DDD.Abstractions": "1.0.1468"
         }
       }
     }

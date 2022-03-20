@@ -8,6 +8,7 @@ using Xunit;
 
 namespace Wally.CleanArchitecture.UnitTests;
 
+// https://docs.fluentvalidation.net/en/latest/testing.html
 public class UpdateUserRequestValidatorTests
 {
 	private readonly AbstractValidator<UpdateUserRequest> _validator;
