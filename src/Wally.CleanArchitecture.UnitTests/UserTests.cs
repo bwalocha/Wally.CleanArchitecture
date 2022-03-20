@@ -8,7 +8,7 @@ using Xunit;
 
 namespace Wally.CleanArchitecture.UnitTests;
 
-public class UserTest
+public class UserTests
 {
 	[Fact]
 	public void Create_WithSpecifiedUserName_SetsIdAndName()
