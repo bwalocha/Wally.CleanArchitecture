@@ -6,7 +6,7 @@ using Wally.CleanArchitecture.Domain.Users;
 
 namespace Wally.CleanArchitecture.Application.Users.Commands;
 
-public class CreateUserCommandHandler : CommandHandler<UpdateUserCommand>
+public class CreateUserCommandHandler : CommandHandler<CreateUserCommand>
 {
 	private readonly IUserRepository _usersRepository;
 
@@ -15,7 +15,7 @@ public class CreateUserCommandHandler : CommandHandler<UpdateUserCommand>
 		_usersRepository = usersRepository;
 	}
 
-	public override Task HandleAsync(UpdateUserCommand command, CancellationToken cancellationToken)
+	public override Task HandleAsync(CreateUserCommand command, CancellationToken cancellationToken)
 	{
 		var user = User.Create(command.Id, command.Name);
 

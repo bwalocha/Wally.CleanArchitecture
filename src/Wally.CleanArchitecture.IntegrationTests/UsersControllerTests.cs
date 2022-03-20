@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 
 using FluentAssertions;
@@ -14,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 
 using Newtonsoft.Json;
 
+using Wally.CleanArchitecture.Contracts.Requests.User;
 using Wally.CleanArchitecture.Contracts.Responses.Users;
 using Wally.CleanArchitecture.Domain.Users;
 using Wally.CleanArchitecture.Persistence;
@@ -356,5 +358,29 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 		data.Items.Single()
 			.Name.Should()
 			.Be("testUser2");
+	}
+
+	[Fact]
+	public async Task Put_ForExistingUser_UpdatesUserData()
+	{
+		// Arrange
+		var user = User.Create("testUser3");
+		_database.Add(user);
+		await _database.SaveChangesAsync();
+		var request = new UpdateUserRequest("newTestUser3");
+
+		// Act
+		var response = await _httpClient.PutAsync($"Users/{user.Id}", request, CancellationToken.None);
+
+		// Assert
+		response.IsSuccessStatusCode.Should()
+			.BeTrue();
+		response.StatusCode.Should()
+			.Be(HttpStatusCode.OK);
+		_factory.GetRequiredService<ApplicationDbContext>()
+			.Set<User>()
+			.Single(a => a.Id == user.Id)
+			.Name.Should()
+			.Be("newTestUser3");
 	}
 }
