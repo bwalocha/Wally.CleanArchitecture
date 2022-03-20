@@ -15,7 +15,7 @@ public class UserTest
 	{
 		// Arrange
 		User user;
-		
+
 		// Act
 		user = User.Create("testUserName");
 
@@ -25,19 +25,21 @@ public class UserTest
 		user.Name.Should()
 			.NotBeNullOrWhiteSpace();
 	}
-	
+
 	[Fact]
 	public void Update_ForSpecifiedUser_UpdatesName()
 	{
 		// Arrange
 		var id = Guid.NewGuid();
 		var user = User.Create(id, "testUserName");
-		
+
 		// Act
 		user.Update("newTestName");
 
 		// Assert
-		user.Id.Should().Be(id);
-		user.Name.Should().Be("newTestName");
+		user.Id.Should()
+			.Be(id);
+		user.Name.Should()
+			.Be("newTestName");
 	}
 }

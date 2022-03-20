@@ -88,8 +88,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 			.BeTrue();
 		response.StatusCode.Should()
 			.Be(HttpStatusCode.OK);
-		var json = await response.Content.ReadAsStringAsync(); // TODO: get Stream instead of loading String
-		var data = JsonConvert.DeserializeObject<PagedResponse<GetUsersResponse>>(json, _jsonSettings);
+		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
 		data.Should()
 			.NotBeNull();
 		data!.Items.Length.Should()
@@ -109,8 +108,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 			.BeTrue();
 		response.StatusCode.Should()
 			.Be(HttpStatusCode.OK);
-		var json = await response.Content.ReadAsStringAsync(); // TODO: get Stream instead of loading String
-		var data = JsonConvert.DeserializeObject<PagedResponse<GetUsersResponse>>(json, _jsonSettings);
+		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
 		data.Should()
 			.NotBeNull();
 		data!.Items.Length.Should()
@@ -134,8 +132,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 			.BeTrue();
 		response.StatusCode.Should()
 			.Be(HttpStatusCode.OK);
-		var json = await response.Content.ReadAsStringAsync(); // TODO: get Stream instead of loading String
-		var data = JsonConvert.DeserializeObject<PagedResponse<GetUsersResponse>>(json, _jsonSettings);
+		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
 		data.Should()
 			.NotBeNull();
 		data!.Items.Length.Should()
@@ -159,8 +156,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 			.BeTrue();
 		response.StatusCode.Should()
 			.Be(HttpStatusCode.OK);
-		var json = await response.Content.ReadAsStringAsync(); // TODO: get Stream instead of loading String
-		var data = JsonConvert.DeserializeObject<PagedResponse<GetUsersResponse>>(json, _jsonSettings);
+		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
 		data.Should()
 			.NotBeNull();
 		data!.Items.Length.Should()
@@ -184,8 +180,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 			.BeTrue();
 		response.StatusCode.Should()
 			.Be(HttpStatusCode.OK);
-		var json = await response.Content.ReadAsStringAsync(); // TODO: get Stream instead of loading String
-		var data = JsonConvert.DeserializeObject<PagedResponse<GetUsersResponse>>(json, _jsonSettings);
+		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
 		data.Should()
 			.NotBeNull();
 		data!.Items.Length.Should()
@@ -218,8 +213,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 			.BeTrue();
 		response.StatusCode.Should()
 			.Be(HttpStatusCode.OK);
-		var json = await response.Content.ReadAsStringAsync(); // TODO: get Stream instead of loading String
-		var data = JsonConvert.DeserializeObject<PagedResponse<GetUsersResponse>>(json, _jsonSettings);
+		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
 		data.Should()
 			.NotBeNull();
 		data!.Items.Length.Should()
@@ -255,8 +249,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 			.BeTrue();
 		response.StatusCode.Should()
 			.Be(HttpStatusCode.OK);
-		var json = await response.Content.ReadAsStringAsync(); // TODO: get Stream instead of loading String
-		var data = JsonConvert.DeserializeObject<PagedResponse<GetUsersResponse>>(json, _jsonSettings);
+		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
 		data.Should()
 			.NotBeNull();
 		data!.Items.Length.Should()
@@ -286,8 +279,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 			.BeTrue();
 		response.StatusCode.Should()
 			.Be(HttpStatusCode.OK);
-		var json = await response.Content.ReadAsStringAsync(); // TODO: get Stream instead of loading String
-		var data = JsonConvert.DeserializeObject<PagedResponse<GetUsersResponse>>(json, _jsonSettings);
+		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
 		data.Should()
 			.NotBeNull();
 		data!.Items.Length.Should()
@@ -317,8 +309,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 			.BeTrue();
 		response.StatusCode.Should()
 			.Be(HttpStatusCode.OK);
-		var json = await response.Content.ReadAsStringAsync(); // TODO: get Stream instead of loading String
-		var data = JsonConvert.DeserializeObject<PagedResponse<GetUsersResponse>>(json, _jsonSettings);
+		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
 		data.Should()
 			.NotBeNull();
 		data!.Items.Length.Should()
@@ -349,8 +340,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 			.BeTrue();
 		response.StatusCode.Should()
 			.Be(HttpStatusCode.OK);
-		var json = await response.Content.ReadAsStringAsync(); // TODO: get Stream instead of loading String
-		var data = JsonConvert.DeserializeObject<PagedResponse<GetUsersResponse>>(json, _jsonSettings);
+		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
 		data.Should()
 			.NotBeNull();
 		data!.Items.Length.Should()
