@@ -9,9 +9,9 @@
     <ItemGroup>
         <PackageReference Include="MediatR" Version="10.0.1"/>
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1"/>
-        <PackageReference Include="Wally.IdentityProvider.Contracts" Version="0.3.1412"/>
-        <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.0.1468"/>
-        <PackageReference Include="Wally.Lib.ServiceBus.Abstractions" Version="0.3.1467"/>
+        <PackageReference Include="Wally.IdentityProvider.Contracts" Version="1.1.0"/>
+        <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.1.0"/>
+        <PackageReference Include="Wally.Lib.ServiceBus.Abstractions" Version="1.1.0"/>
     </ItemGroup>
 
     <ItemGroup>
