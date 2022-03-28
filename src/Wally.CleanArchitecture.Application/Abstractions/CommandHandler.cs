@@ -7,6 +7,7 @@ using Wally.Lib.DDD.Abstractions.Commands;
 
 namespace Wally.CleanArchitecture.Application.Abstractions;
 
+// TODO: move to NuGet
 public abstract class CommandHandler<TCommand> : ICommandHandler<TCommand> where TCommand : ICommand, IRequest
 {
 	public abstract Task HandleAsync(TCommand command, CancellationToken cancellationToken);

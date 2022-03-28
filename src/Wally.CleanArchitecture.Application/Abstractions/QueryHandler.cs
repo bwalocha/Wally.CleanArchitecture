@@ -8,6 +8,7 @@ using Wally.Lib.DDD.Abstractions.Responses;
 
 namespace Wally.CleanArchitecture.Application.Abstractions;
 
+// TODO: move to NuGet
 public abstract class QueryHandler<TQuery, TResponse> : IQueryHandler<TQuery, TResponse>
 	where TQuery : IQuery<TResponse>, IRequest<TResponse> where TResponse : IResponse
 {

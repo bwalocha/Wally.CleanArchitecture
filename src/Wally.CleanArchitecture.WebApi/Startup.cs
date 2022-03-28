@@ -19,6 +19,7 @@ using Wally.CleanArchitecture.Infrastructure.DI.Microsoft.Extensions;
 using Wally.CleanArchitecture.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.Persistence;
 using Wally.CleanArchitecture.WebApi.Filters;
+using Wally.CleanArchitecture.WebApi.Hubs;
 
 namespace Wally.CleanArchitecture.WebApi;
 
@@ -67,6 +68,7 @@ public class Startup
 		services.AddDbContext(Configuration);
 		services.AddMapper();
 		services.AddMessaging(Configuration);
+		services.AddEventHub();
 	}
 
 	public void Configure(
@@ -117,5 +119,6 @@ public class Startup
 
 		app.UseDbContext(dbContext, AppSettings.Database);
 		app.UseMessaging();
+		app.UseEventHub<EventHub>();
 	}
 }
