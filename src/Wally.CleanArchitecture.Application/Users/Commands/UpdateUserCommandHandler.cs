@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-using Wally.CleanArchitecture.Application.Abstractions;
+using Wally.Lib.DDD.Abstractions.Commands;
 
 namespace Wally.CleanArchitecture.Application.Users.Commands;
 

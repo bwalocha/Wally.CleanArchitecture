@@ -96,8 +96,11 @@ public class Startup
 		// app.UseHttpsRedirection();
 
 		app.UseRouting();
+		
+		// Consider to set CORS on ReverseProxy
 		app.UseApiCors();
 
+		// Consider to set Authentication on ReverseProxy
 		app.UseAuthentication();
 		app.UseAuthorization();
 

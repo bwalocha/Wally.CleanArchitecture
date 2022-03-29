@@ -50,7 +50,7 @@ public class AssertionStrategy : IAssertionStrategy
 		if (_failureMessages.Count < _allowedExceptionNumber)
 		{
 			Services.ThrowException(
-				$"The '{_allowedExceptionNumber}' treshold can be decreased to '{_failureMessages.Count}'.");
+				$"The '{_allowedExceptionNumber}' threshold can be decreased to '{_failureMessages.Count}'.");
 			return;
 		}
 

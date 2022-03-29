@@ -10,7 +10,6 @@ using FluentAssertions.Types;
 
 using MediatR;
 
-using Wally.CleanArchitecture.Application.Abstractions;
 using Wally.CleanArchitecture.ConventionTests.Helpers;
 
 using Xunit;
@@ -98,18 +97,6 @@ public class AsyncTests
 
 						if (method.GetBaseDefinition()
 								.DeclaringType != method.DeclaringType)
-						{
-							continue;
-						}
-
-						// TODO: move to NuGet
-						if (type == typeof(CommandHandler<>) && method.Name == "Handle")
-						{
-							continue;
-						}
-
-						// TODO: move to NuGet
-						if (type == typeof(QueryHandler<,>) && method.Name == "Handle")
 						{
 							continue;
 						}
