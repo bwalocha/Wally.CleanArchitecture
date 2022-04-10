@@ -2,11 +2,11 @@ using FluentAssertions;
 
 using FluentValidation;
 
-using Wally.CleanArchitecture.Contracts.Requests.User;
+using Wally.CleanArchitecture.Contracts.Requests.Users;
 
 using Xunit;
 
-namespace Wally.CleanArchitecture.UnitTests;
+namespace Wally.CleanArchitecture.UnitTests.Users;
 
 // https://docs.fluentvalidation.net/en/latest/testing.html
 public class GetUsersRequestValidatorTests

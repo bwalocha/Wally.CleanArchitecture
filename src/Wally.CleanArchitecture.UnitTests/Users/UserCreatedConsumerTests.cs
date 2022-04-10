@@ -14,7 +14,7 @@ using Wally.IdentityProvider.Contracts.Messages;
 
 using Xunit;
 
-namespace Wally.CleanArchitecture.UnitTests;
+namespace Wally.CleanArchitecture.UnitTests.Users;
 
 public class UserCreatedConsumerTests
 {

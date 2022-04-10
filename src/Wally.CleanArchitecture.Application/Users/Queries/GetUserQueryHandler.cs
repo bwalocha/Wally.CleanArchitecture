@@ -8,15 +8,15 @@ namespace Wally.CleanArchitecture.Application.Users.Queries;
 
 public class GetUserQueryHandler : QueryHandler<GetUserQuery, GetUserResponse>
 {
-	private readonly IUserRepository _usersRepository;
+	private readonly IUserReadOnlyRepository _userRepository;
 
-	public GetUserQueryHandler(IUserRepository usersRepository)
+	public GetUserQueryHandler(IUserReadOnlyRepository userRepository)
 	{
-		_usersRepository = usersRepository;
+		_userRepository = userRepository;
 	}
 
 	public override Task<GetUserResponse> HandleAsync(GetUserQuery query, CancellationToken cancellationToken)
 	{
-		return _usersRepository.GetAsync<GetUserResponse>(query.Id, cancellationToken);
+		return _userRepository.GetAsync<GetUserResponse>(query.Id, cancellationToken);
 	}
 }

@@ -1,6 +1,6 @@
 ﻿using Wally.Lib.DDD.Abstractions.Requests;
 
-namespace Wally.CleanArchitecture.Contracts.Requests.User;
+namespace Wally.CleanArchitecture.Contracts.Requests.Users;
 
 [ExcludeFromCodeCoverage]
 public class UpdateUserRequest : IRequest

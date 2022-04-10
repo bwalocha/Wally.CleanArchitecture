@@ -53,7 +53,6 @@ public class ResponseTests
 				@"Wally.CleanArchitecture\.Contracts\.Responses(?=[\.$])")
 			.Value;
 
-		// 1 exceptions for 'PagedResponse<>'
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())

@@ -15,7 +15,7 @@ using Microsoft.EntityFrameworkCore;
 
 using Newtonsoft.Json;
 
-using Wally.CleanArchitecture.Contracts.Requests.User;
+using Wally.CleanArchitecture.Contracts.Requests.Users;
 using Wally.CleanArchitecture.Contracts.Responses.Users;
 using Wally.CleanArchitecture.Domain.Users;
 using Wally.CleanArchitecture.Persistence;

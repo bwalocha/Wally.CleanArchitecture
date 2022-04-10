@@ -6,9 +6,9 @@ using Wally.CleanArchitecture.Persistence.Abstractions;
 
 namespace Wally.CleanArchitecture.Persistence;
 
-public class UserRepository : Repository<User>, IUserRepository
+public class UserReadOnlyRepository : ReadOnlyRepository<User>, IUserReadOnlyRepository
 {
-	public UserRepository(ApplicationDbContext context, IMapper mapper)
+	public UserReadOnlyRepository(ApplicationDbContext context, IMapper mapper)
 		: base(context, mapper)
 	{
 	}

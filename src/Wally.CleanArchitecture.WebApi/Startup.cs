@@ -14,7 +14,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 using Wally.CleanArchitecture.Application.Users.Commands;
-using Wally.CleanArchitecture.Contracts.Requests.User;
+using Wally.CleanArchitecture.Contracts.Requests.Users;
 using Wally.CleanArchitecture.Infrastructure.DI.Microsoft.Extensions;
 using Wally.CleanArchitecture.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.Persistence;
@@ -47,8 +47,10 @@ public class Startup
 				config =>
 				{
 					config.ImplicitlyValidateChildProperties = true;
-					config.RegisterValidatorsFromAssemblyContaining<UpdateUserRequestValidator>();
-					config.RegisterValidatorsFromAssemblyContaining<UpdateUserCommandValidator>();
+					config.RegisterValidatorsFromAssemblyContaining<UpdateUserRequestValidator>(
+						lifetime: ServiceLifetime.Singleton);
+					config.RegisterValidatorsFromAssemblyContaining<UpdateUserCommandValidator>(
+						lifetime: ServiceLifetime.Singleton);
 				})
 			.AddOData(
 				options =>
@@ -92,15 +94,15 @@ public class Startup
 			app.UseSwagger(AppSettings.SwaggerAuthentication);
 		}
 
-		// App is hosted by Docker, HTTPS is not required inside container
+		// If the App is hosted by Docker, HTTPS is not required inside container
 		// app.UseHttpsRedirection();
 
 		app.UseRouting();
-		
-		// Consider to set CORS on ReverseProxy
+
+		// TODO: Consider to set CORS on ReverseProxy
 		app.UseApiCors();
 
-		// Consider to set Authentication on ReverseProxy
+		// TODO: Consider to set Authentication on ReverseProxy
 		app.UseAuthentication();
 		app.UseAuthorization();
 

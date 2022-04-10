@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.OData.Query;
 
 using Wally.CleanArchitecture.Application.Users.Commands;
 using Wally.CleanArchitecture.Application.Users.Queries;
-using Wally.CleanArchitecture.Contracts.Requests.User;
+using Wally.CleanArchitecture.Contracts.Requests.Users;
 using Wally.CleanArchitecture.Contracts.Responses.Users;
 using Wally.Lib.DDD.Abstractions.Responses;
 
@@ -19,11 +19,11 @@ namespace Wally.CleanArchitecture.WebApi.Controllers;
 [Route("[controller]")]
 [Produces("application/json")]
 [ProducesResponseType(typeof(int), 200, "application/json")]
-public class Users : ControllerBase
+public class UsersController : ControllerBase
 {
 	private readonly IMediator _mediator;
 
-	public Users(IMediator mediator)
+	public UsersController(IMediator mediator)
 	{
 		_mediator = mediator;
 	}

@@ -40,7 +40,7 @@ public static class DbContextExtensions
 
 		services.Scan(
 			a => a.FromApplicationDependencies(b => b.FullName!.StartsWith("Wally.CleanArchitecture."))
-				.AddClasses(c => c.AssignableTo(typeof(IRepository<>)))
+				.AddClasses(c => c.AssignableTo(typeof(IReadOnlyRepository<>)))
 				.AsImplementedInterfaces()
 				.WithScopedLifetime());
 

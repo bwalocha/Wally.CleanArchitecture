@@ -16,14 +16,17 @@ using Wally.Lib.DDD.Abstractions.DomainModels;
 using Wally.Lib.DDD.Abstractions.Requests;
 using Wally.Lib.DDD.Abstractions.Responses;
 
-namespace Wally.CleanArchitecture.Persistence;
+namespace Wally.CleanArchitecture.Persistence.Abstractions;
 
-public abstract class Repository<TAggregateRoot> : IRepository<TAggregateRoot> where TAggregateRoot : AggregateRoot
+// Right now the ReadOnlyRepository uses EF for obtaining data form the Database.
+// We can consider to use Dapper or even ADO .Net if the performance in not efficient.
+public abstract class ReadOnlyRepository<TAggregateRoot> : IReadOnlyRepository<TAggregateRoot>
+	where TAggregateRoot : AggregateRoot
 {
 	private readonly DbContext _context;
 	private readonly IMapper _mapper;
 
-	protected Repository(DbContext context, IMapper mapper)
+	protected ReadOnlyRepository(DbContext context, IMapper mapper)
 	{
 		_context = context;
 		_mapper = mapper;
@@ -35,14 +38,6 @@ public abstract class Repository<TAggregateRoot> : IRepository<TAggregateRoot> w
 			.AnyAsync(a => a.Id.Equals(id), cancellationToken);
 	}
 
-	public Task<TAggregateRoot> GetAsync(Guid id, CancellationToken cancellationToken)
-	{
-		var task = GetReadWriteEntitySet()
-			.SingleAsync(a => a.Id.Equals(id), cancellationToken);
-
-		return MapExceptionAsync(task, id, cancellationToken);
-	}
-
 	public Task<TResult> GetAsync<TResult>(Guid id, CancellationToken cancellationToken) where TResult : IResponse
 	{
 		var query = GetReadOnlyEntitySet()
@@ -51,35 +46,6 @@ public abstract class Repository<TAggregateRoot> : IRepository<TAggregateRoot> w
 			.SingleAsync(cancellationToken);
 
 		return MapExceptionAsync(task, id, cancellationToken);
-	}
-
-	public TAggregateRoot Add(TAggregateRoot aggregateRoot)
-	{
-		return _context.Add(aggregateRoot)
-			.Entity;
-	}
-
-	public TAggregateRoot Remove(TAggregateRoot aggregateRoot)
-	{
-		return _context.Remove(aggregateRoot)
-			.Entity;
-	}
-
-	public TAggregateRoot Update(TAggregateRoot aggregateRoot)
-	{
-		_context.Attach(aggregateRoot)
-			.State = EntityState.Modified;
-
-		return aggregateRoot;
-	}
-
-	[Obsolete("Workaround")]
-	public TEntity Attach<TEntity>(TEntity entity) where TEntity : Entity
-	{
-		_context.Attach(entity)
-			.State = EntityState.Unchanged;
-
-		return entity;
 	}
 
 	public Task<PagedResponse<TResponse>> GetAsync
@@ -100,11 +66,6 @@ public abstract class Repository<TAggregateRoot> : IRepository<TAggregateRoot> w
 	{
 		return _context.Set<TEntity>()
 			.AsNoTracking();
-	}
-
-	protected IQueryable<TAggregateRoot> GetReadWriteEntitySet()
-	{
-		return WithIncludes(_context.Set<TAggregateRoot>());
 	}
 
 	protected Task<TResponse> GetAsync<TResponse>(IQueryable<Entity> query, CancellationToken cancellationToken)
@@ -162,12 +123,7 @@ public abstract class Repository<TAggregateRoot> : IRepository<TAggregateRoot> w
 				allItems.Count()));
 	}
 
-	protected virtual IQueryable<TAggregateRoot> WithIncludes(DbSet<TAggregateRoot> set)
-	{
-		return set;
-	}
-
-	private Task<TResult> MapExceptionAsync<TResult>(
+	protected Task<TResult> MapExceptionAsync<TResult>(
 		Task<TResult> task,
 		Guid id = default,
 		CancellationToken cancellationToken = default)

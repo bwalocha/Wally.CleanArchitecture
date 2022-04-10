@@ -2,7 +2,7 @@
 
 using Microsoft.AspNetCore.OData.Query;
 
-using Wally.CleanArchitecture.Contracts.Requests.User;
+using Wally.CleanArchitecture.Contracts.Requests.Users;
 using Wally.CleanArchitecture.Contracts.Responses.Users;
 using Wally.Lib.DDD.Abstractions.Queries;
 

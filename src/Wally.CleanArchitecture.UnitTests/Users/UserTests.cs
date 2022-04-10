@@ -6,7 +6,7 @@ using Wally.CleanArchitecture.Domain.Users;
 
 using Xunit;
 
-namespace Wally.CleanArchitecture.UnitTests;
+namespace Wally.CleanArchitecture.UnitTests.Users;
 
 public class UserTests
 {

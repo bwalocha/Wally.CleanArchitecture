@@ -6,7 +6,7 @@ using FluentAssertions.Execution;
 using FluentAssertions.Types;
 
 using Wally.CleanArchitecture.Application.Users.Commands;
-using Wally.CleanArchitecture.Contracts.Requests.User;
+using Wally.CleanArchitecture.Contracts.Requests.Users;
 using Wally.CleanArchitecture.ConventionTests.Helpers;
 using Wally.Lib.DDD.Abstractions.Requests;
 
