@@ -62,6 +62,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 				{
 					optionsAction.UseInMemoryDatabase("InMemoryDbForTesting");
 					optionsAction.ConfigureWarnings(a => { a.Ignore(InMemoryEventId.TransactionIgnoredWarning); });
+					optionsAction.EnableSensitiveDataLogging();
 				};
 
 				services.AddDbContext<ApplicationDbContext>(options);

@@ -1,5 +1,8 @@
 ﻿namespace Wally.CleanArchitecture.Infrastructure.DI.Microsoft.Models;
 
+// TODO: Remove Setters,
+// extract interfaces
+// and add ConventionTests
 public class AppSettings
 {
 	public AuthenticationSettings Authentication { get; } = new();
@@ -8,5 +11,5 @@ public class AppSettings
 
 	public CorsSettings Cors { get; } = new();
 
-	public DbContextSettings Database { get; set; } = new();
+	public DbContextSettings Database { get; } = new();
 }
