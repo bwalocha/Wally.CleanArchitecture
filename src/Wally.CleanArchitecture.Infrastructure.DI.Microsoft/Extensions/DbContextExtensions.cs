@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Wally.CleanArchitecture.Domain.Abstractions;
 using Wally.CleanArchitecture.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.Persistence;
-using Wally.CleanArchitecture.Persistence.SqlServer.Migrations;
+using Wally.CleanArchitecture.Persistence.SqlServer;
 
 namespace Wally.CleanArchitecture.Infrastructure.DI.Microsoft.Extensions;
 
@@ -24,7 +24,7 @@ public static class DbContextExtensions
 				{
 					builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
 					builder.MigrationsAssembly(
-						typeof(Initial).Assembly.GetName()
+						typeof(Helper).Assembly.GetName()
 							.Name);
 				});
 

@@ -13,9 +13,9 @@
       },
       "AutoMapper.Extensions.ExpressionMapping": {
         "type": "Direct",
-        "requested": "[5.0.1, )",
-        "resolved": "5.0.1",
-        "contentHash": "S72w5AoHI2H12Bnptl6c/5HOxJ/8lUeZBOsBWK7wsQ7lgo4W/21hs2gcaM/GEWLJKeG11ch6pGDZGdNw4Bh4ZA==",
+        "requested": "[5.0.2, )",
+        "resolved": "5.0.2",
+        "contentHash": "fB0paAMKpylVtG96BvGpFe7zwJ/Zi0XdlQOpvMBw+OViiM0hj5/zivNEO7PSgGtsv2GymJgygjc6aooEKXjfyw==",
         "dependencies": {
           "AutoMapper": "[11.0.0, 12.0.0)"
         }

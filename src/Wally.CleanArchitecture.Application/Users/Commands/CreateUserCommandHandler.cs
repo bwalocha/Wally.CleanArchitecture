@@ -8,18 +8,18 @@ namespace Wally.CleanArchitecture.Application.Users.Commands;
 
 public class CreateUserCommandHandler : CommandHandler<CreateUserCommand>
 {
-	private readonly IUserRepository _usersRepository;
+	private readonly IUserRepository _userRepository;
 
-	public CreateUserCommandHandler(IUserRepository usersRepository)
+	public CreateUserCommandHandler(IUserRepository userRepository)
 	{
-		_usersRepository = usersRepository;
+		_userRepository = userRepository;
 	}
 
 	public override Task HandleAsync(CreateUserCommand command, CancellationToken cancellationToken)
 	{
 		var user = User.Create(command.Id, command.Name);
 
-		_usersRepository.Add(user);
+		_userRepository.Add(user);
 
 		return Task.CompletedTask;
 	}

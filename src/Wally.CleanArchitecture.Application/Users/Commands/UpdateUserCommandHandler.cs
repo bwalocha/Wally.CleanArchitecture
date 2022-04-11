@@ -7,19 +7,19 @@ namespace Wally.CleanArchitecture.Application.Users.Commands;
 
 public class UpdateUserCommandHandler : CommandHandler<UpdateUserCommand>
 {
-	private readonly IUserRepository _usersRepository;
+	private readonly IUserRepository _userRepository;
 
-	public UpdateUserCommandHandler(IUserRepository usersRepository)
+	public UpdateUserCommandHandler(IUserRepository userRepository)
 	{
-		_usersRepository = usersRepository;
+		_userRepository = userRepository;
 	}
 
 	public override async Task HandleAsync(UpdateUserCommand command, CancellationToken cancellationToken)
 	{
-		var user = await _usersRepository.GetAsync(command.Id, cancellationToken);
+		var user = await _userRepository.GetAsync(command.Id, cancellationToken);
 
 		user.Update(command.Name);
 
-		_usersRepository.Update(user);
+		_userRepository.Update(user);
 	}
 }
