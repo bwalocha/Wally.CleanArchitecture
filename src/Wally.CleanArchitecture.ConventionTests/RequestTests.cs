@@ -55,7 +55,7 @@ public class RequestTests
 
 		using (new AssertionScope())
 		{
-			foreach (var type in applicationTypes.Where(x => x.Name.EndsWith("Request") && x.Name != nameof(IRequest)))
+			foreach (var type in applicationTypes.Where(a => a.Name.EndsWith("Request") && a.Name != nameof(IRequest)))
 			{
 				type.Should()
 					.Implement<IRequest>();

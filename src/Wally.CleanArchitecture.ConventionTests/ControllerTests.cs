@@ -39,8 +39,8 @@ public class ControllerTests
 						{
 							parameterInfo.Should()
 								.Match(
-									x => x.GetGenericTypeDefinition() != typeof(ICommandHandler<>) &&
-										x.GetGenericTypeDefinition() != typeof(ICommandHandler<,>),
+									a => a.GetGenericTypeDefinition() != typeof(ICommandHandler<>) &&
+										a.GetGenericTypeDefinition() != typeof(ICommandHandler<,>),
 									"Constructor of '{0}' should not take ICommandHandler as a parameter",
 									type);
 						}

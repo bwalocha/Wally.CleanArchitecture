@@ -39,7 +39,7 @@ public class UserCreatedConsumerTests
 		// Assert
 		_mediatorMock.Verify(
 			a => a.Send(
-				It.Is<CreateUserCommand>(x => x.Id == message.UserId && x.Name == message.UserName),
+				It.Is<CreateUserCommand>(a => a.Id == message.UserId && a.Name == message.UserName),
 				CancellationToken.None),
 			Times.Once());
 	}

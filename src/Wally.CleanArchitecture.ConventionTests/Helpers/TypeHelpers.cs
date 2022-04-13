@@ -18,7 +18,7 @@ public static class TypeHelpers
 	public static IEnumerable<Assembly> GetAllInternalAssemblies()
 	{
 		var assemblies = typeof(Startup).Assembly.GetReferencedAssemblies()
-			.Where(x => _prefixes.Any(y => x.FullName.StartsWith(y)));
+			.Where(a => _prefixes.Any(b => a.FullName.StartsWith(b)));
 
 		foreach (var assembly in assemblies)
 		{

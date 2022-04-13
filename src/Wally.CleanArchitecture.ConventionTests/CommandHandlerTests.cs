@@ -21,7 +21,7 @@ public class CommandHandlerTests
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{
-			foreach (var type in applicationTypes.Where(x => x.Name.EndsWith("CommandHandler")))
+			foreach (var type in applicationTypes.Where(a => a.Name.EndsWith("CommandHandler")))
 			{
 				type.Should()
 					.BeAssignableTo(

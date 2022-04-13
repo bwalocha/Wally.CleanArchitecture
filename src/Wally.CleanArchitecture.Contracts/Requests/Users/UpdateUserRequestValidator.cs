@@ -6,7 +6,7 @@ public class UpdateUserRequestValidator : AbstractValidator<UpdateUserRequest>
 {
 	public UpdateUserRequestValidator()
 	{
-		RuleFor(x => x.Name)
+		RuleFor(a => a.Name)
 			.NotEmpty()
 			.MaximumLength(256);
 	}
