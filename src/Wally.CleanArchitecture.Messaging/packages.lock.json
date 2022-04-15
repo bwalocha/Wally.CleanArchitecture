@@ -42,9 +42,9 @@
       },
       "Wally.Lib.ServiceBus.Abstractions": {
         "type": "Direct",
-        "requested": "[1.1.0, )",
-        "resolved": "1.1.0",
-        "contentHash": "01VdSsnkIJJnhSe7l/cUv7356HuEnDQAt/jQYrUddr6SqyBwzVY12IQI8nWJmkHPMfsHB5kGI9J+dhdick2JrQ==",
+        "requested": "[1.1.1, )",
+        "resolved": "1.1.1",
+        "contentHash": "tGc7cHahVemoejDDE5zpbFXK9LgvIHkH/h0exKhAUfwaZKGElJxygLHXkMax1oniFHwM36YkTTcaJBXSvaKWgA==",
         "dependencies": {
           "MediatR": "10.0.1",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.1",
@@ -64,8 +64,8 @@
       },
       "Microsoft.AspNetCore.OData": {
         "type": "Transitive",
-        "resolved": "8.0.8",
-        "contentHash": "1WfZy57Q7GRyg6lDHfr3rR1SXrx6RjoMNivK2QF1rrYldrOQ7zOuJpQzFzbm5lFkrSpj1vbzjZIXiiU+jQ0YBQ==",
+        "resolved": "8.0.9",
+        "contentHash": "MezmT1r0Is9KhT8RCjU3Ro42EsZzet8qCREGyUIbZIllAYhos1QysmuvcsG843ReVt8jsmUSdR+IC0+57rRTZA==",
         "dependencies": {
           "Microsoft.OData.Core": "[7.9.4, 8.0.0)",
           "Microsoft.OData.Edm": "[7.9.4, 8.0.0)",
@@ -146,7 +146,7 @@
       "wally.cleanarchitecture.application": {
         "type": "Project",
         "dependencies": {
-          "Microsoft.AspNetCore.OData": "8.0.8",
+          "Microsoft.AspNetCore.OData": "8.0.9",
           "Wally.CleanArchitecture.Contracts": "1.0.0",
           "Wally.CleanArchitecture.Domain": "1.0.0"
         }

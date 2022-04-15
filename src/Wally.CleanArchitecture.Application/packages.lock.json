@@ -4,9 +4,9 @@
     "net6.0": {
       "Microsoft.AspNetCore.OData": {
         "type": "Direct",
-        "requested": "[8.0.8, )",
-        "resolved": "8.0.8",
-        "contentHash": "1WfZy57Q7GRyg6lDHfr3rR1SXrx6RjoMNivK2QF1rrYldrOQ7zOuJpQzFzbm5lFkrSpj1vbzjZIXiiU+jQ0YBQ==",
+        "requested": "[8.0.9, )",
+        "resolved": "8.0.9",
+        "contentHash": "MezmT1r0Is9KhT8RCjU3Ro42EsZzet8qCREGyUIbZIllAYhos1QysmuvcsG843ReVt8jsmUSdR+IC0+57rRTZA==",
         "dependencies": {
           "Microsoft.OData.Core": "[7.9.4, 8.0.0)",
           "Microsoft.OData.Edm": "[7.9.4, 8.0.0)",

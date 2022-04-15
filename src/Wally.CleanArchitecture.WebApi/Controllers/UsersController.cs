@@ -35,10 +35,8 @@ public class UsersController : ControllerBase
 	/// <param name="cancellationToken">Cancellation token.</param>
 	/// <returns>Users.</returns>
 	/// <remarks>
-	/// Sample request:
-	///
+	///     Sample request:
 	///     GET /Users
-	///
 	/// </remarks>
 	[HttpGet]
 	public async Task<ActionResult<PagedResponse<GetUsersResponse>>> GetAsync(
@@ -57,10 +55,8 @@ public class UsersController : ControllerBase
 	/// <param name="cancellationToken">Cancellation token.</param>
 	/// <returns>User details.</returns>
 	/// <remarks>
-	/// Sample request:
-	///
+	///     Sample request:
 	///     GET /Users/6ff34249-ef96-432a-9822-d3aca639a986
-	///
 	/// </remarks>
 	[HttpGet("{id:guid}")]
 	public async Task<ActionResult<GetUserResponse>> GetAsync(Guid id, CancellationToken cancellationToken)
@@ -76,15 +72,13 @@ public class UsersController : ControllerBase
 	/// <param name="id">Unique identifier of User.</param>
 	/// <param name="request">The Request.</param>
 	/// <param name="cancellationToken">Cancellation token.</param>
-	/// <returns>User details.</returns>
+	/// <returns>.</returns>
 	/// <remarks>
-	/// Sample request:
-	///
+	///     Sample request:
 	///     PUT /Users/6ff34249-ef96-432a-9822-d3aca639a986
 	///     {
-	///         "name": "sampleName"
+	///     "name": "sampleName"
 	///     }
-	///
 	/// </remarks>
 	[HttpPut("{id:guid}")]
 	public async Task<ActionResult<object>> UpdateAsync(

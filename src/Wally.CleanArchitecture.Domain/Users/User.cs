@@ -28,12 +28,18 @@ public class User : AggregateRoot
 
 	public static User Create(string name)
 	{
-		return new User(name);
+		var model = new User(name);
+		model.AddDomainEvent(new UserCreatedDomainEvent(model.Id, model.Name));
+
+		return model;
 	}
 
 	public static User Create(Guid id, string name)
 	{
-		return new User(id, name);
+		var model = new User(id, name);
+		model.AddDomainEvent(new UserCreatedDomainEvent(model.Id, model.Name));
+
+		return model;
 	}
 
 	public void Update(string name)

@@ -31,10 +31,19 @@ public class Startup
 		Environment = env;
 	}
 
+	/// <summary>
+	///     Gets Configuration data
+	/// </summary>
 	public IConfiguration Configuration { get; }
 
+	/// <summary>
+	///     Gets Environment data
+	/// </summary>
 	public IWebHostEnvironment Environment { get; }
 
+	/// <summary>
+	///     Gets Application Settings data
+	/// </summary>
 	public AppSettings AppSettings { get; } = new();
 
 	// This method gets called by the runtime. Use this method to add services to the container.

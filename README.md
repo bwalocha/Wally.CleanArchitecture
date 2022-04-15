@@ -3,7 +3,7 @@
 ## Installation
 
 ```
-dotnet new --install Wally.CleanArchitecture.Template
+dotnet new --install wally.cleanarchitecture
 ```
 
 ## Verification
@@ -60,7 +60,7 @@ xUnit Test Project                            xunit                    [C#],F#,V
 ## Usage
 
 ```
-dotnet new Wally.CleanArchitecture --name MyCompanyName.MyAppName --author wally
+dotnet new wally.cleanarchitecture --author wally --output . --name MyCompanyName.MyAppName
 ```
 
 ## Details
@@ -106,3 +106,9 @@ dotnet new Wally.CleanArchitecture --name MyCompanyName.MyAppName --author wally
 ## Info
 
 [doc](https://docs.microsoft.com/en-us/dotnet/core/tools/custom-templates)
+
+## TODO
+
+- [ ] DomainEvent naming convention tests
+- [ ] DomainEvent with `[ExcludeFromCodeCoverage]` attribute convention tests
+- [ ] Fix `[CS1591] Missing XML comment` warnings

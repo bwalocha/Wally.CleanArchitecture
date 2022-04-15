@@ -14,8 +14,8 @@
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0"/>
         <PackageReference Include="Scrutor" Version="4.1.0"/>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0"/>
-        <PackageReference Include="Wally.Lib.ServiceBus.DI.Microsoft" Version="1.1.0"/>
-        <PackageReference Include="Wally.Lib.ServiceBus.RabbitMQ" Version="1.1.0"/>
+        <PackageReference Include="Wally.Lib.ServiceBus.DI.Microsoft" Version="1.1.1"/>
+        <PackageReference Include="Wally.Lib.ServiceBus.RabbitMQ" Version="1.1.1"/>
         <PackageReference Include="MediatR" Version="10.0.1"/>
         <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1"/>
         <PackageReference Include="AspNetCore.HealthChecks.Rabbitmq" Version="6.0.2"/>
