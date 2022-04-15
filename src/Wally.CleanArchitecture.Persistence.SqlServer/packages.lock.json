@@ -184,8 +184,8 @@
       },
       "Microsoft.Extensions.Logging.Abstractions": {
         "type": "Transitive",
-        "resolved": "6.0.0",
-        "contentHash": "/HggWBbTwy8TgebGSX5DBZ24ndhzi93sHUBDvP1IxbZD7FDokYzdAr6+vbWGjw2XAfR2EJ1sfKUotpjHnFWPxA=="
+        "resolved": "6.0.1",
+        "contentHash": "dzB2Cgg+JmrouhjkcQGzSFjjvpwlq353i8oBQO2GWNjCXSzhbtBRUf28HSauWe7eib3wYOdb3tItdjRwAdwCSg=="
       },
       "Microsoft.Extensions.Options": {
         "type": "Transitive",
@@ -311,6 +311,11 @@
         "type": "Transitive",
         "resolved": "13.0.1",
         "contentHash": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A=="
+      },
+      "Polly": {
+        "type": "Transitive",
+        "resolved": "7.2.3",
+        "contentHash": "DeCY0OFbNdNxsjntr1gTXHJ5pKUwYzp04Er2LLeN3g6pWhffsGuKVfMBLe1lw7x76HrPkLxKEFxBlpRxS2nDEQ=="
       },
       "System.Collections.Immutable": {
         "type": "Transitive",
@@ -442,12 +447,24 @@
           "Newtonsoft.Json": "13.0.1"
         }
       },
+      "Wally.Lib.ServiceBus.Abstractions": {
+        "type": "Transitive",
+        "resolved": "1.1.1",
+        "contentHash": "tGc7cHahVemoejDDE5zpbFXK9LgvIHkH/h0exKhAUfwaZKGElJxygLHXkMax1oniFHwM36YkTTcaJBXSvaKWgA==",
+        "dependencies": {
+          "MediatR": "10.0.1",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.1",
+          "Polly": "7.2.3",
+          "Wally.Lib.DDD.Abstractions": "1.1.0"
+        }
+      },
       "wally.cleanarchitecture.application": {
         "type": "Project",
         "dependencies": {
           "Microsoft.AspNetCore.OData": "8.0.9",
           "Wally.CleanArchitecture.Contracts": "1.0.0",
-          "Wally.CleanArchitecture.Domain": "1.0.0"
+          "Wally.CleanArchitecture.Domain": "1.0.0",
+          "Wally.Lib.ServiceBus.Abstractions": "1.1.1"
         }
       },
       "wally.cleanarchitecture.contracts": {

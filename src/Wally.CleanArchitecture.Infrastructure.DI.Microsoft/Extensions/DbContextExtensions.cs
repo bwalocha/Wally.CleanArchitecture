@@ -36,7 +36,7 @@ public static class DbContextExtensions
 					builder.Ignore(SqlServerEventId.SavepointsDisabledBecauseOfMARS);
 				});
 		};
-		services.AddDbContext<ApplicationDbContext>(dbContextOptions);
+		services.AddDbContext<DbContext, ApplicationDbContext>(dbContextOptions);
 
 		services.Scan(
 			a => a.FromApplicationDependencies(b => b.FullName!.StartsWith("Wally.CleanArchitecture."))

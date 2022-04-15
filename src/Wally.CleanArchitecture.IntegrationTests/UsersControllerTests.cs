@@ -18,7 +18,6 @@ using Newtonsoft.Json;
 using Wally.CleanArchitecture.Contracts.Requests.Users;
 using Wally.CleanArchitecture.Contracts.Responses.Users;
 using Wally.CleanArchitecture.Domain.Users;
-using Wally.CleanArchitecture.Persistence;
 using Wally.CleanArchitecture.WebApi;
 using Wally.Lib.DDD.Abstractions.Responses;
 
@@ -54,7 +53,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 			.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false, });
 		_jsonSettings = new JsonSerializerSettings { ContractResolver = new PrivateSetterContractResolver(), };
 
-		_database = factory.GetRequiredService<ApplicationDbContext>();
+		_database = factory.GetRequiredService<DbContext>();
 		_database.RemoveRange(_database.Set<User>());
 		_database.SaveChanges();
 	}
@@ -367,10 +366,31 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 			.BeTrue();
 		response.StatusCode.Should()
 			.Be(HttpStatusCode.OK);
-		_factory.GetRequiredService<ApplicationDbContext>()
+		_factory.GetRequiredService<DbContext>()
 			.Set<User>()
 			.Single(a => a.Id == user.Id)
 			.Name.Should()
 			.Be("newTestUser3");
+	}
+
+	[Fact]
+	public async Task Create_ForNewModel_CreatesNewEntry()
+	{
+		// Arrange
+		var request = new CreateUserRequest("newName3");
+
+		// Act
+		var response = await _httpClient.PostAsync("Users", request, CancellationToken.None);
+
+		// Assert
+		response.IsSuccessStatusCode.Should()
+			.BeTrue();
+		response.StatusCode.Should()
+			.Be(HttpStatusCode.OK);
+		_factory.GetRequiredService<DbContext>()
+			.Set<User>()
+			.Single()
+			.Name.Should()
+			.Be("newName3");
 	}
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 using FluentAssertions;
 
@@ -41,5 +42,23 @@ public class UserTests
 			.Be(id);
 		user.Name.Should()
 			.Be("newTestName");
+	}
+
+	[Fact]
+	public void Create_ForNewDomainModel_ProducesDomainEvent()
+	{
+		// Arrange
+		var id = Guid.NewGuid();
+
+		// Act
+		var model = User.Create(id, "testUserName");
+
+		// Assert
+		model.GetDomainEvents()
+			.Single()
+			.Should()
+			.BeOfType<UserCreatedDomainEvent>()
+			.Subject.Id.Should()
+			.Be(id);
 	}
 }

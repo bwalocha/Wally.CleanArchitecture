@@ -1417,7 +1417,8 @@
         "dependencies": {
           "Microsoft.AspNetCore.OData": "8.0.9",
           "Wally.CleanArchitecture.Contracts": "1.0.0",
-          "Wally.CleanArchitecture.Domain": "1.0.0"
+          "Wally.CleanArchitecture.Domain": "1.0.0",
+          "Wally.Lib.ServiceBus.Abstractions": "1.1.1"
         }
       },
       "wally.cleanarchitecture.contracts": {
@@ -1501,9 +1502,9 @@
         "dependencies": {
           "FluentValidation": "10.4.0",
           "MediatR": "10.0.1",
+          "Microsoft.EntityFrameworkCore": "6.0.4",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.1",
           "Newtonsoft.Json": "13.0.1",
-          "Wally.CleanArchitecture.Persistence": "1.0.0",
           "Wally.Lib.DDD.Abstractions": "1.1.1486"
         }
       }

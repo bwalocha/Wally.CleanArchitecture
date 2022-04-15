@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.OData;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -17,7 +18,6 @@ using Wally.CleanArchitecture.Application.Users.Commands;
 using Wally.CleanArchitecture.Contracts.Requests.Users;
 using Wally.CleanArchitecture.Infrastructure.DI.Microsoft.Extensions;
 using Wally.CleanArchitecture.Infrastructure.DI.Microsoft.Models;
-using Wally.CleanArchitecture.Persistence;
 using Wally.CleanArchitecture.WebApi.Filters;
 using Wally.CleanArchitecture.WebApi.Hubs;
 
@@ -87,7 +87,7 @@ public class Startup
 		IWebHostEnvironment env,
 		IHostApplicationLifetime appLifetime,
 		ILogger<Startup> logger,
-		ApplicationDbContext dbContext)
+		DbContext dbContext)
 	{
 		appLifetime.ApplicationStarted.Register(
 			() => logger.LogInformation("The 'Wally.CleanArchitecture' is started"));

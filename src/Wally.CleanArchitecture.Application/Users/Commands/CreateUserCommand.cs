@@ -14,6 +14,11 @@ public class CreateUserCommand : ICommand
 		Name = name;
 	}
 
+	public CreateUserCommand(string name)
+		: this(Guid.NewGuid(), name)
+	{
+	}
+
 	public Guid Id { get; }
 
 	public string Name { get; }

@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 
 using Wally.CleanArchitecture.Persistence;
 using Wally.Lib.DDD.Abstractions.DomainNotifications;
+using Wally.Lib.ServiceBus.Abstractions;
 
 namespace Wally.CleanArchitecture.IntegrationTests;
 
@@ -65,7 +66,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 					optionsAction.EnableSensitiveDataLogging();
 				};
 
-				services.AddDbContext<ApplicationDbContext>(options);
+				services.AddDbContext<DbContext, ApplicationDbContext>(options);
 
 				// Build the service provider.
 				var sp = services.BuildServiceProvider();
@@ -76,8 +77,10 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 				var scopedServices = scope.ServiceProvider;
 
 				// Ensure the database is created.
-				var database = scopedServices.GetRequiredService<ApplicationDbContext>();
+				var database = scopedServices.GetRequiredService<DbContext>();
 				database.Database.EnsureCreated();
+
+				services.AddTransient<IPublisher, PublisherStub>();
 			});
 	}
 

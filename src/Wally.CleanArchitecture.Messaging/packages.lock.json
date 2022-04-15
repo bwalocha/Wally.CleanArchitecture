@@ -148,7 +148,8 @@
         "dependencies": {
           "Microsoft.AspNetCore.OData": "8.0.9",
           "Wally.CleanArchitecture.Contracts": "1.0.0",
-          "Wally.CleanArchitecture.Domain": "1.0.0"
+          "Wally.CleanArchitecture.Domain": "1.0.0",
+          "Wally.Lib.ServiceBus.Abstractions": "1.1.1"
         }
       },
       "wally.cleanarchitecture.contracts": {

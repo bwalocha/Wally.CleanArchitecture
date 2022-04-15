@@ -20,6 +20,18 @@
         "resolved": "1.1.118",
         "contentHash": "Onx6ovGSqXSK07n/0eM3ZusiNdB6cIlJdabQhWGgJp3Vooy9AaLS/tigeybOJAobqbtggTamoWndz72JscZBvw=="
       },
+      "Wally.Lib.ServiceBus.Abstractions": {
+        "type": "Direct",
+        "requested": "[1.1.1, )",
+        "resolved": "1.1.1",
+        "contentHash": "tGc7cHahVemoejDDE5zpbFXK9LgvIHkH/h0exKhAUfwaZKGElJxygLHXkMax1oniFHwM36YkTTcaJBXSvaKWgA==",
+        "dependencies": {
+          "MediatR": "10.0.1",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.1",
+          "Polly": "7.2.3",
+          "Wally.Lib.DDD.Abstractions": "1.1.0"
+        }
+      },
       "FluentValidation": {
         "type": "Transitive",
         "resolved": "10.4.0",
@@ -42,6 +54,11 @@
         "type": "Transitive",
         "resolved": "5.0.0",
         "contentHash": "W8DPQjkMScOMTtJbPwmPyj9c3zYSFGawDW3jwlBOOsnY+EzZFLgNQ/UMkK35JmkNOVPdCyPr2Tw7Vv9N+KA3ZQ=="
+      },
+      "Microsoft.Extensions.Logging.Abstractions": {
+        "type": "Transitive",
+        "resolved": "6.0.1",
+        "contentHash": "dzB2Cgg+JmrouhjkcQGzSFjjvpwlq353i8oBQO2GWNjCXSzhbtBRUf28HSauWe7eib3wYOdb3tItdjRwAdwCSg=="
       },
       "Microsoft.OData.Core": {
         "type": "Transitive",
@@ -82,6 +99,11 @@
         "type": "Transitive",
         "resolved": "13.0.1",
         "contentHash": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A=="
+      },
+      "Polly": {
+        "type": "Transitive",
+        "resolved": "7.2.3",
+        "contentHash": "DeCY0OFbNdNxsjntr1gTXHJ5pKUwYzp04Er2LLeN3g6pWhffsGuKVfMBLe1lw7x76HrPkLxKEFxBlpRxS2nDEQ=="
       },
       "System.ComponentModel.Annotations": {
         "type": "Transitive",

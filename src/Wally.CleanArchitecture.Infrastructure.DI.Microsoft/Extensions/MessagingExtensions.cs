@@ -1,10 +1,9 @@
-﻿using EasyNetQ.AutoSubscribe;
-
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using Wally.CleanArchitecture.Messaging.Consumers;
+using Wally.Lib.ServiceBus.Abstractions;
 using Wally.Lib.ServiceBus.DI.Microsoft;
 using Wally.Lib.ServiceBus.RabbitMQ;
 
@@ -14,9 +13,11 @@ public static class MessagingExtensions
 {
 	public static IServiceCollection AddMessaging(this IServiceCollection services, IConfiguration configuration)
 	{
+		services.AddPublisher();
+
 		services.Scan(
 			a => a.FromAssemblyOf<UserCreatedConsumer>()
-				.AddClasses(c => c.AssignableTo(typeof(IConsumeAsync<>)))
+				.AddClasses(c => c.AssignableTo(typeof(Consumer<>)))
 				.AsImplementedInterfaces()
 				.WithScopedLifetime());
 

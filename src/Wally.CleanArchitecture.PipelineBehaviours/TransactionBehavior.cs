@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 
 using MediatR;
 
-using Wally.CleanArchitecture.Persistence;
+using Microsoft.EntityFrameworkCore;
+
 using Wally.Lib.DDD.Abstractions.Commands;
 
 namespace Wally.CleanArchitecture.PipelineBehaviours;
@@ -11,9 +12,9 @@ namespace Wally.CleanArchitecture.PipelineBehaviours;
 public class TransactionBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
 	where TRequest : ICommand, IRequest<TResponse>
 {
-	private readonly ApplicationDbContext _dbContext;
+	private readonly DbContext _dbContext;
 
-	public TransactionBehavior(ApplicationDbContext dbContext)
+	public TransactionBehavior(DbContext dbContext)
 	{
 		_dbContext = dbContext;
 	}

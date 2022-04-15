@@ -67,6 +67,26 @@ public class UsersController : ControllerBase
 	}
 
 	/// <summary>
+	///     Creates User.
+	/// </summary>
+	/// <param name="request">The Request.</param>
+	/// <param name="cancellationToken">Cancellation token.</param>
+	/// <returns>.</returns>
+	/// <remarks>
+	///     Sample request:
+	///     POST /Users
+	///     {
+	///     "name": "sampleName"
+	///     }
+	/// </remarks>
+	[HttpPost]
+	public async Task<ActionResult<object>> CreateAsync(CreateUserRequest request, CancellationToken cancellationToken)
+	{
+		var command = new CreateUserCommand(request.Name);
+		return Ok(await _mediator.Send(command, cancellationToken));
+	}
+
+	/// <summary>
 	///     Updates User by Id.
 	/// </summary>
 	/// <param name="id">Unique identifier of User.</param>

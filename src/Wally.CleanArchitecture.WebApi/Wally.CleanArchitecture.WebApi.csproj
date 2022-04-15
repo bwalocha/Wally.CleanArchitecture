@@ -19,7 +19,6 @@
         <ProjectReference Include="..\Wally.CleanArchitecture.Application\Wally.CleanArchitecture.Application.csproj"/>
         <ProjectReference Include="..\Wally.CleanArchitecture.Contracts\Wally.CleanArchitecture.Contracts.csproj"/>
         <ProjectReference Include="..\Wally.CleanArchitecture.Infrastructure.DI.Microsoft\Wally.CleanArchitecture.Infrastructure.DI.Microsoft.csproj"/>
-        <ProjectReference Include="..\Wally.CleanArchitecture.Persistence\Wally.CleanArchitecture.Persistence.csproj"/>
     </ItemGroup>
 
 </Project>

@@ -27,6 +27,17 @@ public static class HttpClientExtensions
 		return client.PutAsync(url, content, cancellationToken);
 	}
 
+	public static Task<HttpResponseMessage> PostAsync(
+		this HttpClient client,
+		string url,
+		object payload,
+		CancellationToken cancellationToken)
+	{
+		var content = CreateContent(payload);
+
+		return client.PostAsync(url, content, cancellationToken);
+	}
+
 	public static async Task<T> ReadAsync<T>(this HttpResponseMessage response, CancellationToken cancellationToken)
 	{
 		var json = await response.Content.ReadAsStringAsync(
