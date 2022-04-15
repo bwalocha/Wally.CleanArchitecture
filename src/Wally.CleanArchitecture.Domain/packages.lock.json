@@ -10,9 +10,9 @@
       },
       "Wally.Lib.DDD.Abstractions": {
         "type": "Direct",
-        "requested": "[1.1.1486, )",
-        "resolved": "1.1.1486",
-        "contentHash": "u51VKTFSyKaCrEEUZ3EQTvqA2f6kJUefbRrb631hhWJpAWXtAcoGj0HNc+PYh0ZxY7gUYHlKwRUQtIgkt031Qw==",
+        "requested": "[1.1.2, )",
+        "resolved": "1.1.2",
+        "contentHash": "aFCKX6oXb/iygLeDhVz4fiKnAR/fxk5HUva3UA0dSTWyEgH+mtnyDVAk6PHcKZguEje4N+ps5KIJxD4CO3ms5g==",
         "dependencies": {
           "MediatR": "10.0.1",
           "Microsoft.AspNetCore.OData": "8.0.8",

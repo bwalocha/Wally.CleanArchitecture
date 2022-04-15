@@ -118,8 +118,8 @@
       },
       "Wally.Lib.DDD.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.1.1486",
-        "contentHash": "u51VKTFSyKaCrEEUZ3EQTvqA2f6kJUefbRrb631hhWJpAWXtAcoGj0HNc+PYh0ZxY7gUYHlKwRUQtIgkt031Qw==",
+        "resolved": "1.1.2",
+        "contentHash": "aFCKX6oXb/iygLeDhVz4fiKnAR/fxk5HUva3UA0dSTWyEgH+mtnyDVAk6PHcKZguEje4N+ps5KIJxD4CO3ms5g==",
         "dependencies": {
           "MediatR": "10.0.1",
           "Microsoft.AspNetCore.OData": "8.0.8",
@@ -130,13 +130,13 @@
         "type": "Project",
         "dependencies": {
           "FluentValidation": "10.4.0",
-          "Wally.Lib.DDD.Abstractions": "1.1.1486"
+          "Wally.Lib.DDD.Abstractions": "1.1.2"
         }
       },
       "wally.cleanarchitecture.domain": {
         "type": "Project",
         "dependencies": {
-          "Wally.Lib.DDD.Abstractions": "1.1.1486"
+          "Wally.Lib.DDD.Abstractions": "1.1.2"
         }
       }
     }

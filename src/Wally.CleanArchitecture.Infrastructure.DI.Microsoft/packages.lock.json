@@ -151,25 +151,25 @@
       },
       "Wally.Lib.ServiceBus.DI.Microsoft": {
         "type": "Direct",
-        "requested": "[1.1.1, )",
-        "resolved": "1.1.1",
-        "contentHash": "ynsS4rBjdZpEA71nFrh5W2fsZXsUzjq6xw6lymIB6CAPAa2NT+c+u/qaRdKwKUpXUgXGUv/u06tFvnQZTTx9Cg==",
+        "requested": "[1.1.2, )",
+        "resolved": "1.1.2",
+        "contentHash": "ohdiK5FKC5scDrdHCQtvcru2esCZ0iIdLHfe87Rt61/x6vmpMyfbcSmjZSe5nM5hFpg/Os8U5rK9NiGGZ0oS6g==",
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.CSharp": "4.7.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
           "Microsoft.Extensions.Hosting.Abstractions": "6.0.0",
-          "Wally.Lib.ServiceBus.Abstractions": "1.1.1"
+          "Wally.Lib.ServiceBus.Abstractions": "1.1.2"
         }
       },
       "Wally.Lib.ServiceBus.RabbitMQ": {
         "type": "Direct",
-        "requested": "[1.1.1, )",
-        "resolved": "1.1.1",
-        "contentHash": "Tlt7ae8Ojkq3wuCC+QahHxTgw8gFB6Tm7jGxioNAz2HLGiG04A/Em48UDx8p5pNSXPGiaCcaGUS1z5EdqkF2lg==",
+        "requested": "[1.1.2, )",
+        "resolved": "1.1.2",
+        "contentHash": "MHVolUjADLxJyi6ZZruM5GPsuaVEJUln6w9ARFiw1NNZ3uqC5u4h+k4rMVV6G0w0e2dT33PXHxfqivySj3e3Mw==",
         "dependencies": {
           "EasyNetQ": "6.3.1",
-          "Wally.Lib.ServiceBus.Abstractions": "1.1.1"
+          "Wally.Lib.ServiceBus.Abstractions": "1.1.2"
         }
       },
       "AspNetCore.HealthChecks.UI.Core": {
@@ -1225,8 +1225,8 @@
       },
       "Wally.Lib.DDD.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.1.1486",
-        "contentHash": "u51VKTFSyKaCrEEUZ3EQTvqA2f6kJUefbRrb631hhWJpAWXtAcoGj0HNc+PYh0ZxY7gUYHlKwRUQtIgkt031Qw==",
+        "resolved": "1.1.2",
+        "contentHash": "aFCKX6oXb/iygLeDhVz4fiKnAR/fxk5HUva3UA0dSTWyEgH+mtnyDVAk6PHcKZguEje4N+ps5KIJxD4CO3ms5g==",
         "dependencies": {
           "MediatR": "10.0.1",
           "Microsoft.AspNetCore.OData": "8.0.8",
@@ -1235,13 +1235,13 @@
       },
       "Wally.Lib.ServiceBus.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.1.1",
-        "contentHash": "tGc7cHahVemoejDDE5zpbFXK9LgvIHkH/h0exKhAUfwaZKGElJxygLHXkMax1oniFHwM36YkTTcaJBXSvaKWgA==",
+        "resolved": "1.1.2",
+        "contentHash": "bTdFsZXJ4dHZRhcRJZPUcotmsO123vneKgsalXp0taqd5BqcuR8TBfc05ubhsJxhce5QU4WjyG/XGJO0bh1D0w==",
         "dependencies": {
           "MediatR": "10.0.1",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.1",
           "Polly": "7.2.3",
-          "Wally.Lib.DDD.Abstractions": "1.1.0"
+          "Wally.Lib.DDD.Abstractions": "1.1.2"
         }
       },
       "YamlDotNet": {
@@ -1255,20 +1255,20 @@
           "Microsoft.AspNetCore.OData": "8.0.9",
           "Wally.CleanArchitecture.Contracts": "1.0.0",
           "Wally.CleanArchitecture.Domain": "1.0.0",
-          "Wally.Lib.ServiceBus.Abstractions": "1.1.1"
+          "Wally.Lib.ServiceBus.Abstractions": "1.1.2"
         }
       },
       "wally.cleanarchitecture.contracts": {
         "type": "Project",
         "dependencies": {
           "FluentValidation": "10.4.0",
-          "Wally.Lib.DDD.Abstractions": "1.1.1486"
+          "Wally.Lib.DDD.Abstractions": "1.1.2"
         }
       },
       "wally.cleanarchitecture.domain": {
         "type": "Project",
         "dependencies": {
-          "Wally.Lib.DDD.Abstractions": "1.1.1486"
+          "Wally.Lib.DDD.Abstractions": "1.1.2"
         }
       },
       "wally.cleanarchitecture.mapperprofiles": {
@@ -1286,8 +1286,8 @@
           "Microsoft.Extensions.Logging.Abstractions": "6.0.1",
           "Wally.CleanArchitecture.Application": "1.0.0",
           "Wally.IdentityProvider.Contracts": "1.1.0",
-          "Wally.Lib.DDD.Abstractions": "1.1.1486",
-          "Wally.Lib.ServiceBus.Abstractions": "1.1.1"
+          "Wally.Lib.DDD.Abstractions": "1.1.2",
+          "Wally.Lib.ServiceBus.Abstractions": "1.1.2"
         }
       },
       "wally.cleanarchitecture.persistence": {
@@ -1316,7 +1316,7 @@
           "Microsoft.EntityFrameworkCore": "6.0.4",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.1",
           "Newtonsoft.Json": "13.0.1",
-          "Wally.Lib.DDD.Abstractions": "1.1.1486"
+          "Wally.Lib.DDD.Abstractions": "1.1.2"
         }
       }
     }
