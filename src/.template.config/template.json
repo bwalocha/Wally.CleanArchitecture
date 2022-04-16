@@ -8,7 +8,7 @@
     "ReverseProxy"
   ],
   "identity": "Wally.CleanArchitecture",
-  "groupIdentity":"Wally.CleanArchitecture.Sample",
+  "groupIdentity":"Wally.CleanArchitecture",
   "name": "Wally.CleanArchitecture",
   "description": "CleanArchitecture, DDD, CQRS, EF, WebApi, Swagger, HealthCheck, Mapster, Reinforced.Typings, ...",
   "shortName": "wally.cleanarchitecture",
@@ -42,6 +42,14 @@
     "0AC225DA-9D8C-47EB-A4E1-9FA629332ABB"
   ],
   "symbols": {
+    "createdate": {
+      "type": "generated",
+      "generator": "now",
+      "parameters": {
+        "format": "yyyy-MM-dd"
+      },
+      "replaces": "2022-01-01"
+    },
     "copyrightName": {
       "type": "parameter",
       "description": "Copyright name.",
@@ -54,6 +62,15 @@
       "defaultValue": "MicroService",
       "replaces":"MicroService"
     },
+    "frontendName": {
+      "type": "generated",
+      "generator": "casing",
+      "parameters": {
+        "source":"sourceName",
+        "toLower": true
+      },
+      "replaces":"wally.cleanarchitecture"
+    },
     "enableReverseProxy": {
       "type": "parameter",
       "dataType": "bool",
@@ -64,6 +81,12 @@
       "type": "parameter",
       "dataType": "bool",
       "description": "If specified, generates Micro Service solution.",
+      "defaultValue": "true"
+    },
+    "enableFrontend": {
+      "type": "parameter",
+      "dataType": "bool",
+      "description": "If specified, generates Frontend project.",
       "defaultValue": "true"
     },
     "skipRestore": {
@@ -111,8 +134,18 @@
             "Wally.CleanArchitecture.WebApi/**/*",
             "Wally.CleanArchitecture.sln"
           ]
+        },
+        {
+          "condition": "(!enableFrontend)",
+          "exclude": [
+            "wally.cleanarchitecture*/**/*",
         }
       ]
+    }
+  ],
+  "primaryOutputs": [
+    {
+      "path": "Wally.CleanArchitecture.WebApi/Wally.CleanArchitecture.WebApi.csproj"
     }
   ],
   "postActions": [
@@ -123,12 +156,7 @@
         { "text": "Run 'dotnet restore'" }
       ],
       "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
-      "continueOnError": true,
-      "args": {
-        "files": [
-          "Wally.CleanArchitecture.WebApi/Wally.CleanArchitecture.WebApi.csproj"
-        ]
-      }
+      "continueOnError": true
     }
   ]
 }

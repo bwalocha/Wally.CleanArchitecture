@@ -7,6 +7,10 @@
     "enableMicroService": {
       "longName": "enable-micro-service",
       "shortName": "service"
-    }
+    },
+    "enableFrontend": {
+      "longName": "enable-frontend",
+      "shortName": "frontend"
+    },
   }
 }

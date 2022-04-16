@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="11.0.1" />
+        <PackageReference Include="Moq" Version="4.17.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.MapperProfiles\Wally.CleanArchitecture.MicroService.MapperProfiles.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Messaging\Wally.CleanArchitecture.MicroService.Messaging.csproj" />
+    </ItemGroup>
+
+</Project>
