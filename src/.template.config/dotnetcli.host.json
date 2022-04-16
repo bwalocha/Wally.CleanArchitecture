@@ -1,0 +1,12 @@
+{
+  "symbolInfo": {
+    "enableReverseProxy": {
+      "longName": "enable-reverse-proxy",
+      "shortName": "proxy"
+    },
+    "enableMicroService": {
+      "longName": "enable-micro-service",
+      "shortName": "service"
+    }
+  }
+}

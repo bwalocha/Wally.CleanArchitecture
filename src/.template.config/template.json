@@ -2,12 +2,14 @@
   "$schema": "http://json.schemastore.org/template",
   "author": "wally",
   "classifications": [
-    "Web", 
-    "MVC", 
-    "WebApi"
+    "Web",
+    "MVC",
+    "WebApi",
+    "ReverseProxy"
   ],
   "identity": "Wally.CleanArchitecture",
-  "name": "Wally's DDD Application",
+  "groupIdentity":"Wally.CleanArchitecture.Sample",
+  "name": "Wally.CleanArchitecture",
   "description": "CleanArchitecture, DDD, CQRS, EF, WebApi, Swagger, HealthCheck, Mapster, Reinforced.Typings, ...",
   "shortName": "wally.cleanarchitecture",
   "sourceName": "Wally.CleanArchitecture",
@@ -18,30 +20,64 @@
   "preferNameDirectory": true,
   "guids": [
     "0CCA9773-E741-4161-8E53-6692CB97CD69",
-	"566755FA-0E86-4B73-A72C-CE7A7908DA72",
-	"AD247D0C-C02A-4F5F-B261-86E06C683E39",
-	"C0586FB0-EEFE-49C5-AB94-D8EC1B5623F9",
-	"74D89F4B-F894-4591-9BFF-8164BD3D37AD",
-	"F450E29C-53B7-4CD5-B19E-5A10901CA364",
-	"78E2EE48-D658-4129-8CF3-452FC003D618",
-	"8F56A431-191E-4881-A137-7C5236A7265C",
-	"6C1B6104-7628-4FC2-9CED-3BDA233E97CB",
-	"7CA1E01A-F818-48B9-A573-20A904B9F7C2",
-	"7DDF052D-3D5E-4C6B-9CDE-F4793B315C05",
-	"5C7411C2-8CAD-4F46-9741-14B5BEB222B1",
-	"A81A9220-878D-4D52-A278-BB93EF09EA4B",
-	"56971E79-C47B-463B-B8BC-E8F01D8B49C4",
-	"0B86D7F8-0293-4D65-BDE3-E4E921DFE8BF",
-	"505AA394-0CB4-4F90-B600-FA5D88437D10",
-	"B618D678-EAE4-448C-B126-6E61844DCA95",
-	"2B6BCDE8-AA6E-4CFE-A504-9D2E26F09163",
-	"C9B64D74-D4A6-4821-9016-990EFE6D3FA4"
+    "566755FA-0E86-4B73-A72C-CE7A7908DA72",
+    "AD247D0C-C02A-4F5F-B261-86E06C683E39",
+    "C0586FB0-EEFE-49C5-AB94-D8EC1B5623F9",
+    "74D89F4B-F894-4591-9BFF-8164BD3D37AD",
+    "F450E29C-53B7-4CD5-B19E-5A10901CA364",
+    "78E2EE48-D658-4129-8CF3-452FC003D618",
+    "8F56A431-191E-4881-A137-7C5236A7265C",
+    "6C1B6104-7628-4FC2-9CED-3BDA233E97CB",
+    "7CA1E01A-F818-48B9-A573-20A904B9F7C2",
+    "7DDF052D-3D5E-4C6B-9CDE-F4793B315C05",
+    "5C7411C2-8CAD-4F46-9741-14B5BEB222B1",
+    "A81A9220-878D-4D52-A278-BB93EF09EA4B",
+    "56971E79-C47B-463B-B8BC-E8F01D8B49C4",
+    "0B86D7F8-0293-4D65-BDE3-E4E921DFE8BF",
+    "505AA394-0CB4-4F90-B600-FA5D88437D10",
+    "B618D678-EAE4-448C-B126-6E61844DCA95",
+    "2B6BCDE8-AA6E-4CFE-A504-9D2E26F09163",
+    "C9B64D74-D4A6-4821-9016-990EFE6D3FA4",
+    "2063FDB3-ED03-4EF9-AF3A-2FC1C5E8B695",
+    "0AC225DA-9D8C-47EB-A4E1-9FA629332ABB"
   ],
+  "symbols": {
+    "copyrightName": {
+      "type": "parameter",
+      "description": "Copyright name.",
+      "defaultValue": "wally",
+      "replaces":"COPYRIGHT"
+    },
+    "serviceName": {
+      "type": "parameter",
+      "description": "MicroService name.",
+      "defaultValue": "MicroService",
+      "replaces":"MicroService"
+    },
+    "enableReverseProxy": {
+      "type": "parameter",
+      "dataType": "bool",
+      "description": "If specified, generates Reverse Proxy solution.",
+      "defaultValue": "true"
+    },
+    "enableMicroService": {
+      "type": "parameter",
+      "dataType": "bool",
+      "description": "If specified, generates Micro Service solution.",
+      "defaultValue": "true"
+    },
+    "skipRestore": {
+      "type": "parameter",
+      "datatype": "bool",
+      "description": "If specified, skips the automatic restore of the project on create.",
+      "defaultValue": "false"
+    }
+  },
   "sources": [
     {
       "modifiers": [
         {
-          "exclude": [ 
+          "exclude": [
             ".idea/**",
             "Wally.Common.CodeStyleRules/**",
             "Wally.CleanArchitecture.ConventionTests/coverage.json",
@@ -49,8 +85,50 @@
             "Wally.CleanArchitecture.UnitTests/coverage.json",
             "Directory.Build.props"
           ]
+        },
+        {
+          "condition": "(!enableReverseProxy)",
+          "exclude": [
+            "Wally.CleanArchitecture.ApiGateway.WebApi/**/*",
+            "Wally.CleanArchitecture.ApiGateway.sln"
+          ]
+        },
+        {
+          "condition": "(!enableMicroService)",
+          "exclude": [
+            "Wally.CleanArchitecture.Application/**/*",
+            "Wally.CleanArchitecture.Contracts/**/*",
+            "Wally.CleanArchitecture.ConventionTests/**/*",
+            "Wally.CleanArchitecture.Domain/**/*",
+            "Wally.CleanArchitecture.Infrastructure.DI.Microsoft/**/*",
+            "Wally.CleanArchitecture.IntegrationTests/**/*",
+            "Wally.CleanArchitecture.MapperProfiles/**/*",
+            "Wally.CleanArchitecture.Messaging/**/*",
+            "Wally.CleanArchitecture.Persistence/**/*",
+            "Wally.CleanArchitecture.Persistence.SqlServer/**/*",
+            "Wally.CleanArchitecture.PipelineBehaviours/**/*",
+            "Wally.CleanArchitecture.UnitTests/**/*",
+            "Wally.CleanArchitecture.WebApi/**/*",
+            "Wally.CleanArchitecture.sln"
+          ]
         }
       ]
     }
   ],
+  "postActions": [
+    {
+      "condition": "(!skipRestore)",
+      "description": "Restore NuGet packages required by this project.",
+      "manualInstructions": [
+        { "text": "Run 'dotnet restore'" }
+      ],
+      "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+      "continueOnError": true,
+      "args": {
+        "files": [
+          "Wally.CleanArchitecture.WebApi/Wally.CleanArchitecture.WebApi.csproj"
+        ]
+      }
+    }
+  ]
 }
