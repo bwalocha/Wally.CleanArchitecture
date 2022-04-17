@@ -9,10 +9,7 @@ dotnet new --install Wally.CleanArchitecture.Template::0.1.1513
 ## Usage
 
 ```
-dotnet new wally.cleanarchitecture --author wally --output . --name MyCompanyName.MyAppName -proxy=true -service=true -frontend=true
-
-copyrightName
-serviceName
+dotnet new wally.cleanarchitecture --output . --name MyCompanyName.MyAppName --copyrightName MyCompanyName --serviceName MyServiceName -proxy=true -service=true -frontend=true
 ```
 
 ## Details
