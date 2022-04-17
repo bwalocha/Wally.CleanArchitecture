@@ -66,7 +66,7 @@
       "type": "generated",
       "generator": "casing",
       "parameters": {
-        "source":"sourceName",
+        "source": "name",
         "toLower": true
       },
       "replaces":"wally.cleanarchitecture"
@@ -113,26 +113,27 @@
           "condition": "(!enableReverseProxy)",
           "exclude": [
             "Wally.CleanArchitecture.ApiGateway.WebApi/**/*",
+            "Wally.CleanArchitecture.ApiGateway.UnitTests/**/*",
             "Wally.CleanArchitecture.ApiGateway.sln"
           ]
         },
         {
           "condition": "(!enableMicroService)",
           "exclude": [
-            "Wally.CleanArchitecture.Application/**/*",
-            "Wally.CleanArchitecture.Contracts/**/*",
-            "Wally.CleanArchitecture.ConventionTests/**/*",
-            "Wally.CleanArchitecture.Domain/**/*",
-            "Wally.CleanArchitecture.Infrastructure.DI.Microsoft/**/*",
-            "Wally.CleanArchitecture.IntegrationTests/**/*",
-            "Wally.CleanArchitecture.MapperProfiles/**/*",
-            "Wally.CleanArchitecture.Messaging/**/*",
-            "Wally.CleanArchitecture.Persistence/**/*",
-            "Wally.CleanArchitecture.Persistence.SqlServer/**/*",
-            "Wally.CleanArchitecture.PipelineBehaviours/**/*",
-            "Wally.CleanArchitecture.UnitTests/**/*",
-            "Wally.CleanArchitecture.WebApi/**/*",
-            "Wally.CleanArchitecture.sln"
+            "Wally.CleanArchitecture.MicroService.Application/**/*",
+            "Wally.CleanArchitecture.MicroService.Contracts/**/*",
+            "Wally.CleanArchitecture.MicroService.ConventionTests/**/*",
+            "Wally.CleanArchitecture.MicroService.Domain/**/*",
+            "Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft/**/*",
+            "Wally.CleanArchitecture.MicroService.IntegrationTests/**/*",
+            "Wally.CleanArchitecture.MicroService.MapperProfiles/**/*",
+            "Wally.CleanArchitecture.MicroService.Messaging/**/*",
+            "Wally.CleanArchitecture.MicroService.Persistence/**/*",
+            "Wally.CleanArchitecture.MicroService.Persistence.SqlServer/**/*",
+            "Wally.CleanArchitecture.MicroService.PipelineBehaviours/**/*",
+            "Wally.CleanArchitecture.MicroService.UnitTests/**/*",
+            "Wally.CleanArchitecture.MicroService.WebApi/**/*",
+            "Wally.CleanArchitecture.MicroService.sln"
           ]
         },
         {
@@ -146,7 +147,10 @@
   ],
   "primaryOutputs": [
     {
-      "path": "Wally.CleanArchitecture.WebApi/Wally.CleanArchitecture.WebApi.csproj"
+      "path": "Wally.CleanArchitecture.ApiGateway.sln"
+    },
+    {
+      "path": "Wally.CleanArchitecture.MicroService.sln"
     }
   ],
   "postActions": [
