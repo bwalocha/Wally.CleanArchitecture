@@ -3,7 +3,7 @@
 ## Installation
 
 ```
-dotnet new --install wally.cleanarchitecture
+dotnet new --install Wally.CleanArchitecture.Template::0.1.1513
 ```
 
 ## Usage

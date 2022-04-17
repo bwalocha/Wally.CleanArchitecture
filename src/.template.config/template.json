@@ -138,7 +138,8 @@
         {
           "condition": "(!enableFrontend)",
           "exclude": [
-            "wally.cleanarchitecture*/**/*",
+            "wally.cleanarchitecture.*/**/*"
+          ]
         }
       ]
     }
