@@ -9,7 +9,5 @@ public class AppSettings
 
 	public AuthenticationSettings SwaggerAuthentication { get; } = new();
 
-	public CorsSettings Cors { get; } = new();
-
 	public DbContextSettings Database { get; } = new();
 }

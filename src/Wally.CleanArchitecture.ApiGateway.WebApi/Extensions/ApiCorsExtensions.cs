@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
+using Wally.CleanArchitecture.ApiGateway.WebApi.Models;
 
-namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
+namespace Wally.CleanArchitecture.ApiGateway.WebApi.Extensions;
 
 public static class ApiCorsExtensions
 {

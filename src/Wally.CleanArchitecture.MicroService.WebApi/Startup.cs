@@ -25,21 +25,15 @@ namespace Wally.CleanArchitecture.MicroService.WebApi;
 
 public class Startup
 {
-	public Startup(IConfiguration configuration, IWebHostEnvironment env)
+	public Startup(IConfiguration configuration)
 	{
 		Configuration = configuration;
-		Environment = env;
 	}
 
 	/// <summary>
 	///     Gets Configuration data
 	/// </summary>
 	public IConfiguration Configuration { get; }
-
-	/// <summary>
-	///     Gets Environment data
-	/// </summary>
-	public IWebHostEnvironment Environment { get; }
 
 	/// <summary>
 	///     Gets Application Settings data
@@ -73,7 +67,6 @@ public class Startup
 				options => { options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; });
 
 		services.AddCqrs();
-		services.AddApiCors(AppSettings.Cors);
 		services.AddSwagger(Assembly.GetExecutingAssembly());
 		services.AddHealthChecks(Configuration);
 		services.AddDbContext(Configuration);
@@ -107,16 +100,8 @@ public class Startup
 		// app.UseHttpsRedirection();
 
 		app.UseRouting();
-
-		// TODO: Consider to set CORS on ReverseProxy
-		app.UseApiCors();
-
-		// TODO: Consider to set Authentication on ReverseProxy
-		app.UseAuthentication();
 		app.UseAuthorization();
-
 		app.UseHealthChecks();
-
 		app.UseEndpoints(
 			endpoints =>
 			{

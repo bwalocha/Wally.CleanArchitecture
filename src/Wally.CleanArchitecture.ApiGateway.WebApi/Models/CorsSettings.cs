@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
+namespace Wally.CleanArchitecture.ApiGateway.WebApi.Models;
 
 public class CorsSettings
 {

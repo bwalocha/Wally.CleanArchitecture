@@ -9,6 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
+using Wally.CleanArchitecture.ApiGateway.WebApi.Extensions;
+using Wally.CleanArchitecture.ApiGateway.WebApi.Models;
+
 namespace Wally.CleanArchitecture.ApiGateway.WebApi;
 
 public class Startup
@@ -22,6 +25,11 @@ public class Startup
 
 	public IConfiguration Configuration { get; }
 
+	/// <summary>
+	///     Gets Application Settings data
+	/// </summary>
+	public AppSettings AppSettings { get; } = new();
+
 	// This method gets called by the runtime. Use this method to add services to the container.
 	public void ConfigureServices(IServiceCollection services)
 	{
@@ -32,6 +40,8 @@ public class Startup
 		services.AddHealthChecks();
 		services.AddHealthChecksUI()
 			.AddInMemoryStorage();
+
+		services.AddApiCors(AppSettings.Cors);
 	}
 
 	public void Configure(
@@ -57,7 +67,8 @@ public class Startup
 		// app.UseHttpsRedirection();
 
 		app.UseRouting();
-
+		app.UseApiCors();
+		app.UseAuthentication();
 		app.UseHealthChecks(
 				"/healthChecks",
 				new HealthCheckOptions
@@ -65,7 +76,6 @@ public class Startup
 					Predicate = _ => true, ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
 				})
 			.UseHealthChecksUI();
-
 		app.UseEndpoints(
 			endpoints =>
 			{

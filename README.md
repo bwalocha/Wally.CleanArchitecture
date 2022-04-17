@@ -3,7 +3,7 @@
 ## Installation
 
 ```
-dotnet new --install Wally.CleanArchitecture.Template::0.1.1513
+dotnet new --install Wally.CleanArchitecture.Template
 ```
 
 ## Usage
@@ -19,7 +19,7 @@ dotnet new wally.cleanarchitecture --output . --name MyCompanyName.MyAppName --c
 - [x] .Net 6 WebApi
 	- [x] AppSettings
 	- [x] CORS
-	- [ ] FluentValidation (IRequest)
+	- [x] FluentValidation (IRequest)
 	- [ ] OAuth2
 	- [x] RabbitMQ (Polly)
 - [x] Swagger
@@ -45,7 +45,7 @@ dotnet new wally.cleanarchitecture --output . --name MyCompanyName.MyAppName --c
 - [ ] Terraform Azure Infrastructure code (Service Principal, Group, AppInsights)
 - [ ] Mapster [github](https://github.com/MapsterMapper/Mapster)
 - [ ] AutoMapper
-	- [ ] Validation
+	- [x] Validation
 	- [x] Profiles
 - [ ] SignalR
 - [ ] Create ICommand and IQuery compatible with MediatR (new Wally.Lib.DDD)
@@ -61,3 +61,7 @@ dotnet new wally.cleanarchitecture --output . --name MyCompanyName.MyAppName --c
 - [ ] DomainEvent naming convention tests
 - [ ] DomainEvent with `[ExcludeFromCodeCoverage]` attribute convention tests
 - [ ] Fix `[CS1591] Missing XML comment` warnings
+- [ ] Move CORS settings to ApiGateway
+- [ ] Authentication in ApiGateway
+- [ ] Authorization in MicroService
+- [ ] SignalR Hub Service
