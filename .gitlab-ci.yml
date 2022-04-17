@@ -31,6 +31,7 @@ test:sln1:
     - build:sln1
   variables:
     SOLUTION_NAME: ${SLN1_SOLUTION_NAME}
+    TEST_NAME: sln1
 
 test:sln2:
   extends:
@@ -39,6 +40,7 @@ test:sln2:
     - build:sln2
   variables:
     SOLUTION_NAME: ${SLN2_SOLUTION_NAME}
+    TEST_NAME: sln2
 
 publish:tpl:
   extends:
