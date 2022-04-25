@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Wally.CleanArchitecture.Persistence.SqlServer.Migrations
+namespace Wally.CleanArchitecture.MicroService.Persistence.SqlServer.Migrations
 {
 	public partial class Initial : Migration
 	{

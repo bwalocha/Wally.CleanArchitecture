@@ -37,7 +37,8 @@ public class Startup
 			.LoadFromConfig(Configuration.GetSection(ReverseProxy));
 
 		// Add HealthChecks (configuration in AppSettings.json file)
-		services.AddHealthChecks();
+		services.AddHealthChecks()
+			.AddVersionHealthCheck();
 		services.AddHealthChecksUI()
 			.AddInMemoryStorage();
 
@@ -68,7 +69,8 @@ public class Startup
 
 		app.UseRouting();
 		app.UseApiCors();
-		app.UseAuthentication();
+
+		// app.UseAuthentication(); // TODO: configure Auth2
 		app.UseHealthChecks(
 				"/healthChecks",
 				new HealthCheckOptions

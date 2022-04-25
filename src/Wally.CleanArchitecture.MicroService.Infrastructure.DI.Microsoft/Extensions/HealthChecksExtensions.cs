@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 using HealthChecks.UI.Client;
 
@@ -24,9 +26,12 @@ public static class HealthChecksExtensions
 				new Uri(configuration.GetConnectionString(Constants.ServiceBus)),
 				name: "MQ",
 				failureStatus: HealthStatus.Degraded,
-				tags: new[] { "MQ", "Messaging", "ServiceBus", });
-		services.AddHealthChecksUI()
+				tags: new[] { "MQ", "Messaging", "ServiceBus", })
+			.AddVersionHealthCheck();
+		/*
+		services.AddHealthChecksUI() // TODO: Consider only for ApiGateway
 			.AddInMemoryStorage();
+		*/
 
 		return services;
 	}
@@ -39,8 +44,32 @@ public static class HealthChecksExtensions
 			{
 				Predicate = _ => true, ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
 			});
-		app.UseHealthChecksUI();
+		/*
+		app.UseHealthChecksUI(); // TODO: Consider only for ApiGateway
+		*/
 
 		return app;
+	}
+	
+	private static IHealthChecksBuilder AddVersionHealthCheck(this IHealthChecksBuilder builder)
+	{
+		builder.AddCheck<VersionHealthCheck>("VER", tags: new[] { "VER", "Version" });
+		
+		return builder;
+	}
+	
+	private class VersionHealthCheck : IHealthCheck
+	{
+		private readonly string? _version;
+
+		public VersionHealthCheck()
+		{
+			_version = GetType().Assembly.GetName().Version?.ToString();
+		}
+
+		public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken)
+		{
+			return Task.FromResult(HealthCheckResult.Healthy(_version));
+		}
 	}
 }

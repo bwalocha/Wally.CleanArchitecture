@@ -83,11 +83,11 @@ public class Startup
 		DbContext dbContext)
 	{
 		appLifetime.ApplicationStarted.Register(
-			() => logger.LogInformation("The 'Wally.CleanArchitecture' is started"));
+			() => logger.LogInformation("The 'Wally.CleanArchitecture.MicroService' is started"));
 		appLifetime.ApplicationStopping.Register(
-			() => logger.LogInformation("The 'Wally.CleanArchitecture' is stopping"));
+			() => logger.LogInformation("The 'Wally.CleanArchitecture.MicroService' is stopping"));
 		appLifetime.ApplicationStopped.Register(
-			() => logger.LogInformation("The 'Wally.CleanArchitecture' is stopped"));
+			() => logger.LogInformation("The 'Wally.CleanArchitecture.MicroService' is stopped"));
 
 		// Configure the HTTP request pipeline.
 		if (env.IsDevelopment())
@@ -100,6 +100,7 @@ public class Startup
 		// app.UseHttpsRedirection();
 
 		app.UseRouting();
+		// app.UseAuthentication(); // TODO: Consider only for ApiGateway
 		app.UseAuthorization();
 		app.UseHealthChecks();
 		app.UseEndpoints(

@@ -9,4 +9,8 @@ ELSE (
 )
 
 ECHO %MIGRATION_NAME%
-dotnet ef migrations add %MIGRATION_NAME% --context ApplicationDbContext --startup-project ./../Wally.CleanArchitecture.WebApi/Wally.CleanArchitecture.WebApi.csproj --project ./Wally.CleanArchitecture.Persistence.SqlServer.csproj --verbose
+
+SET "STARTUP_PROJECT=./../Wally.CleanArchitecture.MicroService.WebApi/Wally.CleanArchitecture.MicroService.WebApi.csproj"
+SET "PROJECT=./Wally.CleanArchitecture.MicroService.Persistence.SqlServer.csproj"
+
+dotnet ef migrations add %MIGRATION_NAME% --context ApplicationDbContext --startup-project %STARTUP_PROJECT% --project %PROJECT% --verbose
