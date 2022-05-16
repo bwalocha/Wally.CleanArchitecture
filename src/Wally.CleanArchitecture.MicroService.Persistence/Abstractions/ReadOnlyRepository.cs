@@ -20,8 +20,7 @@ namespace Wally.CleanArchitecture.MicroService.Persistence.Abstractions;
 
 // Right now the ReadOnlyRepository uses EF for obtaining data form the Database.
 // We can consider to use Dapper or even ADO .Net if the performance in not efficient.
-public abstract class ReadOnlyRepository<TAggregateRoot> : IReadOnlyRepository<TAggregateRoot>
-	where TAggregateRoot : AggregateRoot
+public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity> where TEntity : Entity
 {
 	private readonly DbContext _context;
 	private readonly IMapper _mapper;
@@ -56,13 +55,7 @@ public abstract class ReadOnlyRepository<TAggregateRoot> : IReadOnlyRepository<T
 		return GetAsync<TRequest, TResponse>(query, queryOptions, cancellationToken);
 	}
 
-	protected IQueryable<TAggregateRoot> GetReadOnlyEntitySet()
-	{
-		return _context.Set<TAggregateRoot>()
-			.AsNoTracking();
-	}
-
-	protected IQueryable<TEntity> GetReadOnlyEntitySet<TEntity>() where TEntity : Entity
+	protected IQueryable<TEntity> GetReadOnlyEntitySet()
 	{
 		return _context.Set<TEntity>()
 			.AsNoTracking();
@@ -97,7 +90,7 @@ public abstract class ReadOnlyRepository<TAggregateRoot> : IReadOnlyRepository<T
 	}
 
 	protected async Task<PagedResponse<TResponse>> GetAsync<TRequest, TResponse>(
-		IQueryable<TAggregateRoot> query,
+		IQueryable<TEntity> query,
 		ODataQueryOptions<TRequest> queryOptions,
 		CancellationToken cancellationToken) where TRequest : class, IRequest where TResponse : class, IResponse
 	{
@@ -105,7 +98,7 @@ public abstract class ReadOnlyRepository<TAggregateRoot> : IReadOnlyRepository<T
 		{
 			var mappedQueryFunc = GetFilterExpression<TRequest>(queryOptions.Filter);
 
-			query = query.Where(_mapper.MapExpression<Expression<Func<TAggregateRoot, bool>>>(mappedQueryFunc));
+			query = query.Where(_mapper.MapExpression<Expression<Func<TEntity, bool>>>(mappedQueryFunc));
 		}
 
 		var allItems = _mapper.ProjectTo<TResponse>(query);

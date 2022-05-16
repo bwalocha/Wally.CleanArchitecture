@@ -10,7 +10,7 @@ using Wally.Lib.DDD.Abstractions.Responses;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
-public interface IReadOnlyRepository<TAggregateRoot> where TAggregateRoot : AggregateRoot
+public interface IReadOnlyRepository<TEntity> where TEntity : Entity
 {
 	Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken);
 

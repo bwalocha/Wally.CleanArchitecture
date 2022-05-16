@@ -100,6 +100,7 @@ public class Startup
 		// app.UseHttpsRedirection();
 
 		app.UseRouting();
+
 		// app.UseAuthentication(); // TODO: Consider only for ApiGateway
 		app.UseAuthorization();
 		app.UseHealthChecks();

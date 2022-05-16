@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.1.2" />
+        <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.1.2"/>
     </ItemGroup>
 
 </Project>

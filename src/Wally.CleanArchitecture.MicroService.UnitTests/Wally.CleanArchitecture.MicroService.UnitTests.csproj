@@ -8,14 +8,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" Version="11.0.1" />
-        <PackageReference Include="Moq" Version="4.17.2" />
+        <PackageReference Include="AutoMapper" Version="11.0.1"/>
+        <PackageReference Include="Moq" Version="4.18.1"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj" />
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.MapperProfiles\Wally.CleanArchitecture.MicroService.MapperProfiles.csproj" />
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Messaging\Wally.CleanArchitecture.MicroService.Messaging.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj"/>
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.MapperProfiles\Wally.CleanArchitecture.MicroService.MapperProfiles.csproj"/>
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Messaging\Wally.CleanArchitecture.MicroService.Messaging.csproj"/>
     </ItemGroup>
 
 </Project>

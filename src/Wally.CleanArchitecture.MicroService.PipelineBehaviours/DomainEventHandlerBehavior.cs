@@ -33,7 +33,7 @@ public class DomainEventHandlerBehavior<TRequest, TResponse> : IPipelineBehavior
 	{
 		var response = await next();
 
-		var domainEntities = _dbContext.ChangeTracker.Entries<AggregateRoot>()
+		var domainEntities = _dbContext.ChangeTracker.Entries<Entity>()
 			.Where(
 				e => e.Entity.GetDomainEvents()
 					.Any())
@@ -41,6 +41,8 @@ public class DomainEventHandlerBehavior<TRequest, TResponse> : IPipelineBehavior
 
 		var domainEvents = domainEntities.SelectMany(x => x.Entity.GetDomainEvents())
 			.ToList();
+
+		await _dbContext.SaveChangesAsync(cancellationToken);
 
 		foreach (var domainEvent in domainEvents)
 		{

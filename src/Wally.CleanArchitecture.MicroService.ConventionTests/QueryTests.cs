@@ -2,6 +2,7 @@
 using System.Linq;
 
 using FluentAssertions;
+using FluentAssertions.Execution;
 using FluentAssertions.Types;
 
 using Wally.CleanArchitecture.MicroService.Application.Users.Queries;
@@ -46,5 +47,27 @@ public class QueryTests
 			.Types()
 			.Should()
 			.BeSealed();
+	}
+
+	[Fact]
+	public void Application_Query_ShouldHaveCorrespondingHandler()
+	{
+		var assemblies = TypeHelpers.GetAllInternalAssemblies();
+
+		using (new AssertionScope(new AssertionStrategy()))
+		{
+			foreach (var assembly in assemblies)
+			{
+				foreach (var type in assembly.GetTypes()
+							.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)))
+							.Types())
+				{
+					assemblies.SelectMany(a => a.GetTypes())
+						.SingleOrDefault(a => a.Name == $"{type.Name}Handler")
+						.Should()
+						.NotBeNull("Query '{0}' should have corresponding Handler", type);
+				}
+			}
+		}
 	}
 }

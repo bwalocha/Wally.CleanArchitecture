@@ -7,13 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Contracts\Wally.CleanArchitecture.MicroService.Contracts.csproj" />
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Contracts\Wally.CleanArchitecture.MicroService.Contracts.csproj"/>
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.OData" Version="8.0.9" />
-        <PackageReference Include="Wally.Lib.ServiceBus.Abstractions" Version="1.1.2" />
+        <PackageReference Include="Microsoft.AspNetCore.OData" Version="8.0.10"/>
+        <PackageReference Include="Wally.Lib.ServiceBus.Abstractions" Version="1.1.2"/>
     </ItemGroup>
 
 </Project>

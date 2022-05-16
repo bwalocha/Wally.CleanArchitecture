@@ -50,21 +50,23 @@ public static class HealthChecksExtensions
 
 		return app;
 	}
-	
+
 	private static IHealthChecksBuilder AddVersionHealthCheck(this IHealthChecksBuilder builder)
 	{
-		builder.AddCheck<VersionHealthCheck>("VER", tags: new[] { "VER", "Version" });
-		
+		builder.AddCheck<VersionHealthCheck>("VER", tags: new[] { "VER", "Version", });
+
 		return builder;
 	}
-	
+
 	private class VersionHealthCheck : IHealthCheck
 	{
 		private readonly string? _version;
 
 		public VersionHealthCheck()
 		{
-			_version = GetType().Assembly.GetName().Version?.ToString();
+			_version = GetType()
+				.Assembly.GetName()
+				.Version?.ToString();
 		}
 
 		public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken)

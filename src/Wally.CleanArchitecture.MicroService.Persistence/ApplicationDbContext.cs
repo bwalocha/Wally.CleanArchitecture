@@ -27,6 +27,7 @@ public sealed class ApplicationDbContext : DbContext
 		// modelBuilder.HasDefaultSchema("users");
 		ConfigureProperties(modelBuilder);
 		ConfigureIdentityProperties(modelBuilder);
+
 		// ConfigureConcurrencyTokens(modelBuilder); // TODO: Fix
 	}
 
