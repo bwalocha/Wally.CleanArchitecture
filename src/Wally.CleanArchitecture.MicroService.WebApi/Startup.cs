@@ -16,6 +16,7 @@ using Newtonsoft.Json;
 
 using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 using Wally.CleanArchitecture.MicroService.Contracts.Requests.Users;
+using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.WebApi.Filters;
@@ -66,13 +67,7 @@ public class Startup
 			.AddNewtonsoftJson(
 				options => { options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; });
 
-		services.AddCqrs();
-		services.AddSwagger(Assembly.GetExecutingAssembly());
-		services.AddHealthChecks(Configuration);
-		services.AddDbContext(Configuration);
-		services.AddMapper();
-		services.AddMessaging(Configuration);
-		services.AddEventHub();
+		services.AddInfrastructure(AppSettings);
 	}
 
 	public void Configure(

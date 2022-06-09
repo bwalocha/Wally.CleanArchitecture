@@ -96,6 +96,11 @@
         "resolved": "13.0.1",
         "contentHash": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A=="
       },
+      "Reinforced.Typings": {
+        "type": "Transitive",
+        "resolved": "1.6.1",
+        "contentHash": "w0eQOQ/xR+ap+W2ewYDLgE9zPuq6dKUWLGDoaP7x0nZza1/n7qW/venMj3ykjUEQMmMIZOP7egCRnny1/WBszw=="
+      },
       "System.ComponentModel.Annotations": {
         "type": "Transitive",
         "resolved": "4.6.0",
@@ -130,6 +135,7 @@
         "type": "Project",
         "dependencies": {
           "FluentValidation": "11.0.1",
+          "Reinforced.Typings": "1.6.1",
           "Wally.Lib.DDD.Abstractions": "1.1.2"
         }
       },

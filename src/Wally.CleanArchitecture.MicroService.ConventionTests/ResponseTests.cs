@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -18,7 +19,7 @@ namespace Wally.CleanArchitecture.MicroService.ConventionTests;
 public class ResponseTests
 {
 	[Fact]
-	public void Application_Response_ShouldNotExposeSetter()
+	public void Application_ResponseWithParameterlessConstructor_ShouldNotExposeSetter()
 	{
 		using (new AssertionScope(new AssertionStrategy()))
 		{
@@ -31,6 +32,11 @@ public class ResponseTests
 
 				foreach (var type in types)
 				{
+					if (type.GetConstructor(Type.EmptyTypes) == null)
+					{
+						continue;
+					}
+
 					foreach (var property in type.Properties())
 					{
 						property.Should()
@@ -39,6 +45,37 @@ public class ResponseTests
 								"Response class '{0}' should not expose setter '{1}'",
 								type,
 								property);
+					}
+				}
+			}
+		}
+	}
+
+	[Fact]
+	public void Application_ResponseWithParametrizedConstructor_ShouldNotHaveSetter()
+	{
+		using (new AssertionScope(new AssertionStrategy()))
+		{
+			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
+			{
+				var types = AllTypes.From(assembly)
+					.ThatImplement<IResponse>()
+					.Where(a => a != typeof(PageInfoResponse))
+					.Where(a => a.GetTypeDefinitionIfGeneric() != typeof(PagedResponse<>));
+
+				foreach (var type in types)
+				{
+					if (type.GetConstructor(Type.EmptyTypes) != null)
+					{
+						continue;
+					}
+
+					foreach (var property in type.Properties())
+					{
+						property.Should()
+							.NotBeWritable(
+								"Response class '{0}' should not have setter '{1}'",
+								new object[] { type, property, });
 					}
 				}
 			}

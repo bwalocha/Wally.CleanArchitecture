@@ -3,7 +3,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
@@ -15,13 +14,13 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Exten
 
 public static class DbContextExtensions
 {
-	public static IServiceCollection AddDbContext(this IServiceCollection services, IConfiguration configuration)
+	public static IServiceCollection AddDbContext(this IServiceCollection services, AppSettings settings)
 	{
 		Action<DbContextOptionsBuilder> dbContextOptions;
 		dbContextOptions = options =>
 		{
 			options.UseSqlServer(
-				configuration.GetConnectionString(Constants.Database),
+				settings.ConnectionStrings.Database,
 				builder =>
 				{
 					builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
@@ -36,12 +35,15 @@ public static class DbContextExtensions
 					builder.Default(WarningBehavior.Throw);
 					builder.Ignore(RelationalEventId.MultipleCollectionIncludeWarning);
 					builder.Ignore(SqlServerEventId.SavepointsDisabledBecauseOfMARS);
+					builder.Log(CoreEventId.SensitiveDataLoggingEnabledWarning);
 				});
+
+			options.EnableSensitiveDataLogging(); // TODO: get from configuration
 		};
 		services.AddDbContext<DbContext, ApplicationDbContext>(dbContextOptions);
 
 		services.Scan(
-			a => a.FromApplicationDependencies(b => b.FullName!.StartsWith("Wally.CleanArchitecture."))
+			a => a.FromApplicationDependencies(b => b.FullName!.StartsWith("Wally.CleanArchitecture.MicroService."))
 				.AddClasses(c => c.AssignableTo(typeof(IReadOnlyRepository<>)))
 				.AsImplementedInterfaces()
 				.WithScopedLifetime());

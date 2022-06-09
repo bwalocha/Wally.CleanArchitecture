@@ -6,28 +6,43 @@ using HealthChecks.UI.Client;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+
+using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 
 public static class HealthChecksExtensions
 {
-	public static IServiceCollection AddHealthChecks(this IServiceCollection services, IConfiguration configuration)
+	public static IServiceCollection AddHealthChecks(this IServiceCollection services, AppSettings settings)
 	{
-		services.AddHealthChecks()
+		var healthChecksBuilder = services.AddHealthChecks()
 			.AddSqlServer(
-				configuration.GetConnectionString(Constants.Database),
+				settings.ConnectionStrings.Database,
 				name: "DB",
 				failureStatus: HealthStatus.Degraded,
 				tags: new[] { "DB", "Database", "MSSQL", })
-			.AddRabbitMQ(
-				new Uri(configuration.GetConnectionString(Constants.ServiceBus)),
-				name: "MQ",
-				failureStatus: HealthStatus.Degraded,
-				tags: new[] { "MQ", "Messaging", "ServiceBus", })
 			.AddVersionHealthCheck();
+
+		switch (settings.MessageBroker)
+		{
+			case MessageBrokerType.AzureServiceBus:
+				// TODO: Add AzureServiceBus HealthCheck
+				// ...
+
+				break;
+			case MessageBrokerType.RabbitMQ:
+				healthChecksBuilder.AddRabbitMQ(
+					new Uri(settings.ConnectionStrings.ServiceBus),
+					name: "MQ",
+					failureStatus: HealthStatus.Degraded,
+					tags: new[] { "MQ", "Messaging", "ServiceBus", });
+				break;
+			default:
+				throw new ArgumentOutOfRangeException(nameof(settings.MessageBroker), "Unknown Message Broker");
+		}
+
 		/*
 		services.AddHealthChecksUI() // TODO: Consider only for ApiGateway
 			.AddInMemoryStorage();

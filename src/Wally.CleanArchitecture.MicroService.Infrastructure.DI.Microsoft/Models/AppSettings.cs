@@ -5,9 +5,13 @@
 // and add ConventionTests
 public class AppSettings
 {
-	public AuthenticationSettings Authentication { get; } = new();
+	public AuthenticationSettings Authentication { get; } = new(); // TODO: only with no Api Gateway
 
 	public AuthenticationSettings SwaggerAuthentication { get; } = new();
 
 	public DbContextSettings Database { get; } = new();
+
+	public MessageBrokerType MessageBroker { get; set; }
+
+	public ConnectionStrings ConnectionStrings { get; } = new();
 }
