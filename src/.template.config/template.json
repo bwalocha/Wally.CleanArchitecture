@@ -151,9 +151,11 @@
   ],
   "primaryOutputs": [
     {
+      "condition": "(enableReverseProxy)",
       "path": "Wally.CleanArchitecture.ApiGateway.sln"
     },
     {
+      "condition": "(enableMicroService)",
       "path": "Wally.CleanArchitecture.MicroService.sln"
     }
   ],
