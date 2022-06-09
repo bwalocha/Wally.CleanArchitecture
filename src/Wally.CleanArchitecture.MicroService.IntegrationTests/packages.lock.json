@@ -16,9 +16,9 @@
       },
       "FluentAssertions": {
         "type": "Direct",
-        "requested": "[6.6.0, )",
-        "resolved": "6.6.0",
-        "contentHash": "gBsgPrNRkzUQfnxZSKnU0oVILIc5dr+dmdKXscyYKD5URcwNVQ72a7uuCvTyBzRZW98MZQNolSYC0y/MQTJ03A==",
+        "requested": "[6.7.0, )",
+        "resolved": "6.7.0",
+        "contentHash": "PWbow/R3MnYDP8UW7zh/w80rGb+1NufGoNJeuzouTo2bqpvwNTFxbDwF6XWfFZ5IuquL2225Um+qSyZ8jVsT+w==",
         "dependencies": {
           "System.Configuration.ConfigurationManager": "4.4.0"
         }
@@ -35,9 +35,9 @@
       },
       "JunitXml.TestLogger": {
         "type": "Direct",
-        "requested": "[3.0.110, )",
-        "resolved": "3.0.110",
-        "contentHash": "D0Kl9mNnbSZgEa8ZgsEAJskPvyrC9k+5BsEWUqvNr++BZJbYIb08fwe0ohvb6WEzJlMPmeLJMmvQuw5yIq3gjA=="
+        "requested": "[3.0.114, )",
+        "resolved": "3.0.114",
+        "contentHash": "f3MYONfGKol63+Azfm4lRKTvKe7IrJMbNoPCMel+YFD68i+dsipMeCj94IN2XtCbJpKRpB2Dh9S1o0bUF0w6mQ=="
       },
       "Microsoft.AspNetCore.Mvc.Testing": {
         "type": "Direct",
@@ -241,24 +241,24 @@
       },
       "FluentValidation": {
         "type": "Transitive",
-        "resolved": "11.0.1",
-        "contentHash": "fcL5zF/glDwskUtpL0IfBupVWTChxOOvVs+dAA7Gme5NjIeJBiFKWq3eZV1O+AigucnBTr8SWG7wRRn+PgFnTw=="
+        "resolved": "11.0.2",
+        "contentHash": "ik/xogKqBmZWIURMXNEbugJlKka6iV9a4qckmKDp7sHSwIfgkZ/ewzCuAeUTkFdVZujfDW6mCLMjrrR6GG4xLQ=="
       },
       "FluentValidation.AspNetCore": {
         "type": "Transitive",
-        "resolved": "11.0.1",
-        "contentHash": "fF7GiMrRJB1ZDQeSTI3pfAXO8eJDKlWs4rhzx8DIuEQKodgvo5QiMtMEfIbLnkZX2+GmofwDm64LZ8Qw+9zubg==",
+        "resolved": "11.0.2",
+        "contentHash": "KTxapk15F+NT/nxzu72NonCgDtsiKQP9KALbjqxOvW+DtJGIF45XcIOSzpc4eEBA/I0BoDkmLODsO98DchBq5A==",
         "dependencies": {
-          "FluentValidation": "11.0.1",
-          "FluentValidation.DependencyInjectionExtensions": "11.0.1"
+          "FluentValidation": "11.0.2",
+          "FluentValidation.DependencyInjectionExtensions": "11.0.2"
         }
       },
       "FluentValidation.DependencyInjectionExtensions": {
         "type": "Transitive",
-        "resolved": "11.0.1",
-        "contentHash": "B+jlYk4L6Ucj1yvpo0R9uelKjtC48CJDDPHF4ct/zBMwkrZoDDvBAqRwuNDChnjsjCr3NgJHyuETh4t2VTGUzQ==",
+        "resolved": "11.0.2",
+        "contentHash": "ChfGHFGoLSN97MKZcippJ2qJskWuv6I3E0ngV5OTp3FhaPfFC+KcUMqaE72HtT13B8hkP/XmHlQfgSTzsmsdZw==",
         "dependencies": {
-          "FluentValidation": "11.0.1",
+          "FluentValidation": "11.0.2",
           "Microsoft.Extensions.Dependencyinjection.Abstractions": "2.1.0"
         }
       },
@@ -1077,8 +1077,8 @@
       },
       "Scrutor": {
         "type": "Transitive",
-        "resolved": "4.1.0",
-        "contentHash": "qZ8GKk9qpD7/ohBrxAz36W8D4smGvnkBhtAvD1c6y8jG3rH0hgt/W4vJEcAOVsZME6Rl1cemiuTZjC4cmEP02g==",
+        "resolved": "4.2.0",
+        "contentHash": "3A4HE/jetg7hySwrAPJY1G0mc6qo1StlF4y5JuIZOp17ULp0STnFWhIjBL+Qa/2z60y+SQ3xz3qMd9cSGS0qMg==",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
           "Microsoft.Extensions.DependencyModel": "6.0.0"
@@ -1801,7 +1801,7 @@
       "wally.cleanarchitecture.microservice.contracts": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "11.0.1",
+          "FluentValidation": "11.0.2",
           "Reinforced.Typings": "1.6.1",
           "Wally.Lib.DDD.Abstractions": "1.1.2"
         }
@@ -1827,7 +1827,7 @@
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
-          "Scrutor": "4.1.0",
+          "Scrutor": "4.2.0",
           "Swashbuckle.AspNetCore": "6.3.1",
           "Wally.CleanArchitecture.MicroService.Domain": "1.0.0",
           "Wally.CleanArchitecture.MicroService.MapperProfiles": "1.0.0",
@@ -1879,7 +1879,7 @@
       "wally.cleanarchitecture.microservice.pipelinebehaviours": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "11.0.1",
+          "FluentValidation": "11.0.2",
           "MediatR": "10.0.1",
           "Microsoft.EntityFrameworkCore": "6.0.5",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.1",
@@ -1890,7 +1890,7 @@
       "wally.cleanarchitecture.microservice.webapi": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation.AspNetCore": "11.0.1",
+          "FluentValidation.AspNetCore": "11.0.2",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "6.0.5",
           "Microsoft.AspNetCore.OData": "8.0.10",
           "Serilog.AspNetCore": "5.0.0",

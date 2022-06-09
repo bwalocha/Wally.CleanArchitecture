@@ -1,5 +1,3 @@
-using System.Reflection;
-
 using FluentValidation.AspNetCore;
 
 using Microsoft.AspNetCore.Builder;

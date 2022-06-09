@@ -123,9 +123,9 @@
       },
       "Scrutor": {
         "type": "Direct",
-        "requested": "[4.1.0, )",
-        "resolved": "4.1.0",
-        "contentHash": "qZ8GKk9qpD7/ohBrxAz36W8D4smGvnkBhtAvD1c6y8jG3rH0hgt/W4vJEcAOVsZME6Rl1cemiuTZjC4cmEP02g==",
+        "requested": "[4.2.0, )",
+        "resolved": "4.2.0",
+        "contentHash": "3A4HE/jetg7hySwrAPJY1G0mc6qo1StlF4y5JuIZOp17ULp0STnFWhIjBL+Qa/2z60y+SQ3xz3qMd9cSGS0qMg==",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
           "Microsoft.Extensions.DependencyModel": "6.0.0"
@@ -261,8 +261,8 @@
       },
       "FluentValidation": {
         "type": "Transitive",
-        "resolved": "11.0.1",
-        "contentHash": "fcL5zF/glDwskUtpL0IfBupVWTChxOOvVs+dAA7Gme5NjIeJBiFKWq3eZV1O+AigucnBTr8SWG7wRRn+PgFnTw=="
+        "resolved": "11.0.2",
+        "contentHash": "ik/xogKqBmZWIURMXNEbugJlKka6iV9a4qckmKDp7sHSwIfgkZ/ewzCuAeUTkFdVZujfDW6mCLMjrrR6GG4xLQ=="
       },
       "Fractions": {
         "type": "Transitive",
@@ -1311,7 +1311,7 @@
       "wally.cleanarchitecture.microservice.contracts": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "11.0.1",
+          "FluentValidation": "11.0.2",
           "Reinforced.Typings": "1.6.1",
           "Wally.Lib.DDD.Abstractions": "1.1.2"
         }
@@ -1362,7 +1362,7 @@
       "wally.cleanarchitecture.microservice.pipelinebehaviours": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "11.0.1",
+          "FluentValidation": "11.0.2",
           "MediatR": "10.0.1",
           "Microsoft.EntityFrameworkCore": "6.0.5",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.1",
