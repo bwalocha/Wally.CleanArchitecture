@@ -4,9 +4,9 @@
     "net6.0": {
       "FluentValidation": {
         "type": "Direct",
-        "requested": "[11.0.2, )",
-        "resolved": "11.0.2",
-        "contentHash": "ik/xogKqBmZWIURMXNEbugJlKka6iV9a4qckmKDp7sHSwIfgkZ/ewzCuAeUTkFdVZujfDW6mCLMjrrR6GG4xLQ=="
+        "requested": "[11.2.1, )",
+        "resolved": "11.2.1",
+        "contentHash": "ZrQD0TGd0mHqf/zErZOEaba8cBeInaJj02nqinO+0La3uE08sJ5ScTYqsCbdx9fLHsX8rh+5KH5RtL2eOUS+OA=="
       },
       "Reinforced.Typings": {
         "type": "Direct",
@@ -22,12 +22,12 @@
       },
       "Wally.Lib.DDD.Abstractions": {
         "type": "Direct",
-        "requested": "[1.1.2, )",
-        "resolved": "1.1.2",
-        "contentHash": "aFCKX6oXb/iygLeDhVz4fiKnAR/fxk5HUva3UA0dSTWyEgH+mtnyDVAk6PHcKZguEje4N+ps5KIJxD4CO3ms5g==",
+        "requested": "[1.2.0, )",
+        "resolved": "1.2.0",
+        "contentHash": "XSw/8vioNs7rPixD5gtkSnw1NumuWEbzaocBSEVOJgioMY2zZXbpAtJ6qwjR/qPUhYVeKPrCeUBQqHfm4d4Lww==",
         "dependencies": {
           "MediatR": "10.0.1",
-          "Microsoft.AspNetCore.OData": "8.0.8",
+          "Microsoft.AspNetCore.OData": "8.0.10",
           "Newtonsoft.Json": "13.0.1"
         }
       },
@@ -46,8 +46,8 @@
       },
       "Microsoft.AspNetCore.OData": {
         "type": "Transitive",
-        "resolved": "8.0.8",
-        "contentHash": "1WfZy57Q7GRyg6lDHfr3rR1SXrx6RjoMNivK2QF1rrYldrOQ7zOuJpQzFzbm5lFkrSpj1vbzjZIXiiU+jQ0YBQ==",
+        "resolved": "8.0.10",
+        "contentHash": "qnbUcsGECdGfR++ps7uCenIFbBhET8RXrw+jjUlaXu9kxRfPtxSn0k/H5LWMe/SioPA+KWQpk9pJr8k0c+8Ryg==",
         "dependencies": {
           "Microsoft.OData.Core": "[7.9.4, 8.0.0)",
           "Microsoft.OData.Edm": "[7.9.4, 8.0.0)",

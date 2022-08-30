@@ -147,7 +147,13 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 					{
 						case "ThrowNoElementsException":
 						case "MoveNext":
-							return tcs.TrySetException(new ResourceNotFoundException());
+							var message = $"The '{typeof(TResult).Name}' could not be found";
+							if (id != Guid.Empty)
+							{
+								message += $" for Id: '{id}'";
+							}
+
+							return tcs.TrySetException(new ResourceNotFoundException(message, exception));
 					}
 				}
 

@@ -4,12 +4,12 @@
     "net6.0": {
       "Microsoft.EntityFrameworkCore.SqlServer": {
         "type": "Direct",
-        "requested": "[6.0.5, )",
-        "resolved": "6.0.5",
-        "contentHash": "fBBG1AvrqPSvTEWyg9W18F/obiV7Soi/RItwBt48kjte1heRaogCsKj8KBnJQACM/8L+NAhyKp3BH12nN7+yDA==",
+        "requested": "[6.0.8, )",
+        "resolved": "6.0.8",
+        "contentHash": "e7fQvFCiXqQXve6PTWNx4qmvMgi16GEtrR9ON7LwaJU6PizrS55FpL7u5+iocdsyt6jhM2vuXy9TIeS4EHdb/Q==",
         "dependencies": {
           "Microsoft.Data.SqlClient": "2.1.4",
-          "Microsoft.EntityFrameworkCore.Relational": "6.0.5"
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.8"
         }
       },
       "StyleCop.Analyzers": {
@@ -28,16 +28,16 @@
       },
       "AutoMapper.Extensions.ExpressionMapping": {
         "type": "Transitive",
-        "resolved": "5.0.2",
-        "contentHash": "fB0paAMKpylVtG96BvGpFe7zwJ/Zi0XdlQOpvMBw+OViiM0hj5/zivNEO7PSgGtsv2GymJgygjc6aooEKXjfyw==",
+        "resolved": "5.1.0",
+        "contentHash": "o62czvnBm4qYkpMBaCT1VNzxcgTPYS+a3IInfE2HQgUFYtMJreYyEhpR6etiPZes0VBxewaU1rvWEwpvPeAygg==",
         "dependencies": {
           "AutoMapper": "[11.0.0, 12.0.0)"
         }
       },
       "FluentValidation": {
         "type": "Transitive",
-        "resolved": "11.0.2",
-        "contentHash": "ik/xogKqBmZWIURMXNEbugJlKka6iV9a4qckmKDp7sHSwIfgkZ/ewzCuAeUTkFdVZujfDW6mCLMjrrR6GG4xLQ=="
+        "resolved": "11.2.1",
+        "contentHash": "ZrQD0TGd0mHqf/zErZOEaba8cBeInaJj02nqinO+0La3uE08sJ5ScTYqsCbdx9fLHsX8rh+5KH5RtL2eOUS+OA=="
       },
       "MediatR": {
         "type": "Transitive",
@@ -54,13 +54,13 @@
       },
       "Microsoft.AspNetCore.OData": {
         "type": "Transitive",
-        "resolved": "8.0.10",
-        "contentHash": "qnbUcsGECdGfR++ps7uCenIFbBhET8RXrw+jjUlaXu9kxRfPtxSn0k/H5LWMe/SioPA+KWQpk9pJr8k0c+8Ryg==",
+        "resolved": "8.0.11",
+        "contentHash": "SsvM2w4AjiFWbls6rcbW2bdDx6cK3oAccZgBWTfhf1gjmNVNAYPizx2F9sIJJB0eBV9LRnFTxlv8P8HJz2mlJQ==",
         "dependencies": {
-          "Microsoft.OData.Core": "[7.9.4, 8.0.0)",
-          "Microsoft.OData.Edm": "[7.9.4, 8.0.0)",
+          "Microsoft.OData.Core": "[7.12.2, 8.0.0)",
+          "Microsoft.OData.Edm": "[7.12.2, 8.0.0)",
           "Microsoft.OData.ModelBuilder": "[1.0.8, 2.0.0)",
-          "Microsoft.Spatial": "[7.9.4, 8.0.0)"
+          "Microsoft.Spatial": "[7.12.2, 8.0.0)"
         }
       },
       "Microsoft.Bcl.AsyncInterfaces": {
@@ -97,11 +97,11 @@
       },
       "Microsoft.EntityFrameworkCore": {
         "type": "Transitive",
-        "resolved": "6.0.5",
-        "contentHash": "hP5J3EvpVdZmCn1D3ovedphvZrIn3OXZaBZfEnCkSCqqbqAu6xzwbNqwRkik0y4R6zOOf4eLh1riwjy4eAUlZA==",
+        "resolved": "6.0.8",
+        "contentHash": "BDtUZEMjptfhldCvmaDYobVThQvgtcXEmVSGQGmpXDRYaxXuNb6CALJDG0+kTqHaqR+DgbjCKQc7ryi5dB3FGA==",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Abstractions": "6.0.5",
-          "Microsoft.EntityFrameworkCore.Analyzers": "6.0.5",
+          "Microsoft.EntityFrameworkCore.Abstractions": "6.0.8",
+          "Microsoft.EntityFrameworkCore.Analyzers": "6.0.8",
           "Microsoft.Extensions.Caching.Memory": "6.0.1",
           "Microsoft.Extensions.DependencyInjection": "6.0.0",
           "Microsoft.Extensions.Logging": "6.0.0",
@@ -111,20 +111,20 @@
       },
       "Microsoft.EntityFrameworkCore.Abstractions": {
         "type": "Transitive",
-        "resolved": "6.0.5",
-        "contentHash": "Q3/fKW6XCTfnDk4fYP2BJZi84cD2SuCPkP3A3QqxvCQcXbX90bfSLzVIsoMXzigHGJgZUJ+Un7QodT5Nvk0+Eg=="
+        "resolved": "6.0.8",
+        "contentHash": "mZwjzgw9wGc8JPFUwKHe+8OW4gCi1v3jYhe9AhUU4+NW439rN3RnkFlZJ8WBq/yhRbXD3cYers4e+gprOBokew=="
       },
       "Microsoft.EntityFrameworkCore.Analyzers": {
         "type": "Transitive",
-        "resolved": "6.0.5",
-        "contentHash": "QUeDIhs+O+MoDEc3k60mNyVDbwyDURCqZQlZoKShuZUcSfXSrDMbHKuFSxBIDNQBt092qSjfnwf7w0Ua/IB3Zw=="
+        "resolved": "6.0.8",
+        "contentHash": "gUdJEXpS60IGOlGELDsToGQj4cDr1uqlmlet0drUHUoHGE6O+z9oJlOekZQH7gVnaFDmaoO5HIdCT2KgRdXwPw=="
       },
       "Microsoft.EntityFrameworkCore.Relational": {
         "type": "Transitive",
-        "resolved": "6.0.5",
-        "contentHash": "vhAQizlAgvPfurkh9XysNaFc/g3WPXtSka3Y1rXuQdnT//p16CDKt9lO9h+rYmooD+cA7TijSxwqck4GApDT/Q==",
+        "resolved": "6.0.8",
+        "contentHash": "laj1Kx0Ifny8E7dCCXV4+hYJkly8t9Gjc6/Trds1W4xg/vf/dzyuxTCUqQMHtGv29C8zV1+C2wnWVOcwWin5FQ==",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "6.0.5",
+          "Microsoft.EntityFrameworkCore": "6.0.8",
           "Microsoft.Extensions.Configuration.Abstractions": "6.0.0"
         }
       },
@@ -257,18 +257,18 @@
       },
       "Microsoft.OData.Core": {
         "type": "Transitive",
-        "resolved": "7.9.4",
-        "contentHash": "+dW3LgUlGzwq/dyBJ7PhPqTH1h+iS7Om3S0+nwmPsWZH0DxVOuOuSEr+5dbYvWFL49FfjQrYCi+wedZ89JBh/g==",
+        "resolved": "7.12.2",
+        "contentHash": "5eIw638pNESFX6ptTZO+BXnRsE3PDvB7r/bFMYbZCBHVpFukBw2aLXBgRG+hFU7nH8FaeCdOAyb2hShF2ml+cQ==",
         "dependencies": {
           "Microsoft.Bcl.AsyncInterfaces": "5.0.0",
-          "Microsoft.OData.Edm": "[7.9.4]",
-          "Microsoft.Spatial": "[7.9.4]"
+          "Microsoft.OData.Edm": "[7.12.2]",
+          "Microsoft.Spatial": "[7.12.2]"
         }
       },
       "Microsoft.OData.Edm": {
         "type": "Transitive",
-        "resolved": "7.9.4",
-        "contentHash": "99KOeJKiIZHLLKOrDuOsbUs1G/AqIoGpXQnkxAqt/YSCWFVgBXw4wT0KpgKqw/j4aQRXQuFxJ3rPSFNCkwaTSA==",
+        "resolved": "7.12.2",
+        "contentHash": "kloomMn+kiMtQeWvth02ODFDj2bmsI4MY2zagepIpq7SgwwNek1v8GxsLKyz6XTzQ71BunO7JVtPWADP1jBC7A==",
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "4.6.0",
           "System.Text.Encodings.Web": "4.7.2",
@@ -287,8 +287,8 @@
       },
       "Microsoft.Spatial": {
         "type": "Transitive",
-        "resolved": "7.9.4",
-        "contentHash": "eLTR0WylZ3CwstY6lEIjVpnjkhsxUq8Dj0dSrCTAwL76f0m6KnYea0Woy1roe6VH9Ed9HGUTeK+3qLbnqdnu2Q=="
+        "resolved": "7.12.2",
+        "contentHash": "jKqfHYUWyKRDH6xAiMN6IABn0kkGVsZR2BCVDG8WzOKBsKSayuBtNcWFmqjE0ibVdarIVROs48myVlAC6r1nMA=="
       },
       "Microsoft.Win32.Registry": {
         "type": "Transitive",
@@ -444,55 +444,55 @@
       },
       "Wally.Lib.DDD.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.1.2",
-        "contentHash": "aFCKX6oXb/iygLeDhVz4fiKnAR/fxk5HUva3UA0dSTWyEgH+mtnyDVAk6PHcKZguEje4N+ps5KIJxD4CO3ms5g==",
+        "resolved": "1.2.0",
+        "contentHash": "XSw/8vioNs7rPixD5gtkSnw1NumuWEbzaocBSEVOJgioMY2zZXbpAtJ6qwjR/qPUhYVeKPrCeUBQqHfm4d4Lww==",
         "dependencies": {
           "MediatR": "10.0.1",
-          "Microsoft.AspNetCore.OData": "8.0.8",
+          "Microsoft.AspNetCore.OData": "8.0.10",
           "Newtonsoft.Json": "13.0.1"
         }
       },
       "Wally.Lib.ServiceBus.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.1.2",
-        "contentHash": "bTdFsZXJ4dHZRhcRJZPUcotmsO123vneKgsalXp0taqd5BqcuR8TBfc05ubhsJxhce5QU4WjyG/XGJO0bh1D0w==",
+        "resolved": "1.2.7",
+        "contentHash": "vuej/O41ZyEKykXay77KF7FhZ8r4y8o9HcK610ZJgs0s7eW+VPVdw+7JgbJlYrhBW8tCoW8Zx+DC9M4RPj3HjA==",
         "dependencies": {
           "MediatR": "10.0.1",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.1",
           "Polly": "7.2.3",
-          "Wally.Lib.DDD.Abstractions": "1.1.2"
+          "Wally.Lib.DDD.Abstractions": "1.2.0"
         }
       },
       "wally.cleanarchitecture.microservice.application": {
         "type": "Project",
         "dependencies": {
-          "Microsoft.AspNetCore.OData": "8.0.10",
+          "Microsoft.AspNetCore.OData": "8.0.11",
           "Wally.CleanArchitecture.MicroService.Contracts": "1.0.0",
           "Wally.CleanArchitecture.MicroService.Domain": "1.0.0",
-          "Wally.Lib.ServiceBus.Abstractions": "1.1.2"
+          "Wally.Lib.ServiceBus.Abstractions": "1.2.7"
         }
       },
       "wally.cleanarchitecture.microservice.contracts": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "11.0.2",
+          "FluentValidation": "11.2.1",
           "Reinforced.Typings": "1.6.1",
-          "Wally.Lib.DDD.Abstractions": "1.1.2"
+          "Wally.Lib.DDD.Abstractions": "1.2.0"
         }
       },
       "wally.cleanarchitecture.microservice.domain": {
         "type": "Project",
         "dependencies": {
-          "Wally.Lib.DDD.Abstractions": "1.1.2"
+          "Wally.Lib.DDD.Abstractions": "1.2.0"
         }
       },
       "wally.cleanarchitecture.microservice.persistence": {
         "type": "Project",
         "dependencies": {
           "AutoMapper": "11.0.1",
-          "AutoMapper.Extensions.ExpressionMapping": "5.0.2",
-          "Microsoft.EntityFrameworkCore": "6.0.5",
-          "Microsoft.EntityFrameworkCore.Relational": "6.0.5",
+          "AutoMapper.Extensions.ExpressionMapping": "5.1.0",
+          "Microsoft.EntityFrameworkCore": "6.0.8",
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.8",
           "Wally.CleanArchitecture.MicroService.Application": "1.0.0",
           "Wally.CleanArchitecture.MicroService.Domain": "1.0.0"
         }

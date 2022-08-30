@@ -9,7 +9,7 @@
 
     <ItemGroup>
         <PackageReference Include="AutoMapper" Version="11.0.1"/>
-        <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.1.2"/>
+        <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.2.0"/>
     </ItemGroup>
 
     <ItemGroup>

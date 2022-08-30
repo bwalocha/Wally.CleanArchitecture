@@ -9,8 +9,8 @@
 
     <ItemGroup>
         <PackageReference Include="JsonNet.ContractResolvers" Version="2.0.0"/>
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.5"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.5"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.8"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.8"/>
     </ItemGroup>
 
     <ItemGroup>

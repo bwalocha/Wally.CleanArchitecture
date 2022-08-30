@@ -6,8 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Messaging.Consumers;
 using Wally.Lib.ServiceBus.Abstractions;
-using Wally.Lib.ServiceBus.Azure;
 using Wally.Lib.ServiceBus.DI.Microsoft;
+
+using MessageBroker_AzureServiceBus = Wally.Lib.ServiceBus.Azure;
+using MessageBroker_RabbitMQ = Wally.Lib.ServiceBus.RabbitMQ;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 
@@ -26,12 +28,14 @@ public static class MessagingExtensions
 		switch (settings.MessageBroker)
 		{
 			case MessageBrokerType.AzureServiceBus:
-				services.AddSingleton(_ => Factory.Create(new Settings(settings.ConnectionStrings.ServiceBus)));
+				services.AddSingleton(
+					_ => MessageBroker_AzureServiceBus.Factory.Create(
+						new MessageBroker_AzureServiceBus.Settings(settings.ConnectionStrings.ServiceBus)));
 				break;
 			case MessageBrokerType.RabbitMQ:
 				services.AddSingleton(
-					_ => Lib.ServiceBus.RabbitMQ.Factory.Create(
-						new Lib.ServiceBus.RabbitMQ.Settings(settings.ConnectionStrings.ServiceBus)));
+					_ => MessageBroker_RabbitMQ.Factory.Create(
+						new MessageBroker_RabbitMQ.Settings(settings.ConnectionStrings.ServiceBus)));
 				break;
 			default:
 				throw new ArgumentOutOfRangeException(nameof(settings.MessageBroker), "Unknown Message Broker");

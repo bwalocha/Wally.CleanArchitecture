@@ -2,10 +2,10 @@
 using System.Text.RegularExpressions;
 
 using FluentAssertions;
+using FluentAssertions.Common;
 using FluentAssertions.Execution;
 using FluentAssertions.Types;
 
-using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 using Wally.CleanArchitecture.MicroService.Contracts.Requests.Users;
 using Wally.CleanArchitecture.MicroService.ConventionTests.Helpers;
 using Wally.Lib.DDD.Abstractions.Requests;
@@ -19,12 +19,32 @@ public class RequestTests
 	[Fact]
 	public void Application_Request_ShouldNotExposeSetter()
 	{
-		var applicationTypes = AllTypes.From(typeof(UpdateUserCommandHandler).Assembly);
+		using (new AssertionScope(new AssertionStrategy()))
+		{
+			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
+			{
+				var types = AllTypes.From(assembly)
+					.ThatImplement<IRequest>();
 
-		applicationTypes.ThatImplement<IRequest>()
-			.Properties()
-			.Should()
-			.NotBeWritable("request should be immutable");
+				foreach (var type in types)
+				{
+					foreach (var property in type.Properties())
+					{
+						if (property.SetMethod?.IsPublic != true)
+						{
+							continue;
+						}
+
+						property.Should()
+							.BeWritable(
+								CSharpAccessModifier.Private,
+								"Response class '{0}' should not expose setter '{1}'",
+								type,
+								property);
+					}
+				}
+			}
+		}
 	}
 
 	[Fact]
@@ -51,7 +71,7 @@ public class RequestTests
 	[Fact]
 	public void Application_AllClassessEndsWithRequest_ShouldImplementIRequest()
 	{
-		var applicationTypes = AllTypes.From(typeof(UpdateUserCommandHandler).Assembly);
+		var applicationTypes = AllTypes.From(typeof(UpdateUserRequest).Assembly);
 
 		using (new AssertionScope())
 		{

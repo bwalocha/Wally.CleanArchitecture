@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "Wally.CleanArchitecture.WebApi": {
+    "Wally.CleanArchitecture.MicroService.WebApi": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
