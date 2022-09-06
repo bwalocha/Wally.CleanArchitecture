@@ -85,4 +85,10 @@ public static class TypeHelpers
 
 		return false;
 	}
+
+	public static TypeSelector GetAllTypes(this IEnumerable<Assembly> assemblies)
+	{
+		return assemblies.SelectMany(a => a.GetTypes())
+			.Types();
+	}
 }

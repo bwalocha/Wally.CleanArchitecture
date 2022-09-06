@@ -15,9 +15,11 @@ public class DomainEventTests
 	[Fact]
 	public void Domain_ClassesWhichInheritsDomainEvent_ShouldBeInDomainProject()
 	{
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+
 		using (new AssertionScope(new AssertionStrategy()))
 		{
-			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
+			foreach (var assembly in assemblies)
 			{
 				var types = assembly.Types()
 					.ThatImplement<DomainEvent>();
@@ -31,8 +33,8 @@ public class DomainEventTests
 	[Fact]
 	public void Domain_AllClassessEndsWithEvent_ShouldInheritDomainEvent()
 	{
-		var types = TypeHelpers.GetAllInternalAssemblies()
-			.SelectMany(a => a.Types());
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes();
 
 		using (new AssertionScope())
 		{
@@ -47,8 +49,8 @@ public class DomainEventTests
 	[Fact]
 	public void Domain_AllClassessWhichInheritsDomainEvent_ShouldHasEventSuffix()
 	{
-		var types = TypeHelpers.GetAllInternalAssemblies()
-			.SelectMany(a => a.Types());
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes();
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{
@@ -63,9 +65,11 @@ public class DomainEventTests
 	[Fact]
 	public void Domain_DomainEvent_ShouldNotExposeSetter()
 	{
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+
 		using (new AssertionScope(new AssertionStrategy()))
 		{
-			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
+			foreach (var assembly in assemblies)
 			{
 				var types = assembly.Types()
 					.ThatImplement<DomainEvent>();

@@ -3,9 +3,7 @@ using System.Linq;
 
 using FluentAssertions;
 using FluentAssertions.Execution;
-using FluentAssertions.Types;
 
-using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 using Wally.CleanArchitecture.MicroService.ConventionTests.Helpers;
 using Wally.Lib.DDD.Abstractions.Commands;
 
@@ -18,7 +16,7 @@ public class CommandTests
 	[Fact]
 	public void Application_Command_ShouldNotExposeSetter()
 	{
-		var applicationTypes = AllTypes.From(typeof(UpdateUserCommand).Assembly);
+		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
 
 		applicationTypes.ThatImplement<ICommand>()
 			.Properties()
@@ -29,7 +27,7 @@ public class CommandTests
 	[Fact]
 	public void Application_Command_ShouldBeExcludedFromCodeCoverage()
 	{
-		var applicationTypes = AllTypes.From(typeof(UpdateUserCommand).Assembly);
+		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
 
 		applicationTypes.ThatImplement<ICommand>()
 			.Should()
@@ -39,7 +37,7 @@ public class CommandTests
 	[Fact]
 	public void Application_Command_ShouldHaveCorrespondingHandler()
 	{
-		var assemblies = TypeHelpers.GetAllInternalAssemblies();
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{
@@ -60,7 +58,7 @@ public class CommandTests
 	[Fact]
 	public void Application_Command_ShouldHaveCorrespondingValidator()
 	{
-		var assemblies = TypeHelpers.GetAllInternalAssemblies();
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{

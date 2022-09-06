@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using FluentAssertions;
 using FluentAssertions.Common;
 using FluentAssertions.Execution;
-using FluentAssertions.Types;
 
 using Wally.CleanArchitecture.MicroService.ConventionTests.Helpers;
-using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.Lib.DDD.Abstractions.DomainModels;
 
 using Xunit;
@@ -19,11 +17,12 @@ public class EntityTests
 	[Fact]
 	public void Entity_Constructor_ShouldBePrivate()
 	{
-		var applicationTypes = AllTypes.From(typeof(User).Assembly);
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes();
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{
-			applicationTypes.ThatImplement<Entity>()
+			types.ThatImplement<Entity>()
 				.Should()
 				.HaveOnlyPrivateParameterlessConstructor();
 		}
@@ -32,11 +31,12 @@ public class EntityTests
 	[Fact]
 	public void Entity_AggregateRootAndEntity_ShouldNotExposeSetter()
 	{
-		var domainTypes = AllTypes.From(typeof(User).Assembly);
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes();
 
 		using (new AssertionScope())
 		{
-			foreach (var type in domainTypes.ThatImplement<Entity>())
+			foreach (var type in types.ThatImplement<Entity>())
 			{
 				foreach (var property in type.Properties())
 				{
@@ -63,11 +63,12 @@ public class EntityTests
 	[Fact]
 	public void Entity_AggregateRootAndEntity_ShouldNotExposeWritableCollection()
 	{
-		var domainTypes = AllTypes.From(typeof(User).Assembly);
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes();
 
 		using (new AssertionScope())
 		{
-			foreach (var type in domainTypes.ThatImplement<Entity>())
+			foreach (var type in types.ThatImplement<Entity>())
 			{
 				foreach (var property in type.Properties())
 				{
@@ -90,11 +91,12 @@ public class EntityTests
 	[Fact]
 	public void Entity_ValueObject_ShouldNotExposeSetter()
 	{
-		var domainTypes = AllTypes.From(typeof(User).Assembly);
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes();
 
 		using (new AssertionScope())
 		{
-			foreach (var type in domainTypes.ThatImplement<ValueObject>())
+			foreach (var type in types.ThatImplement<ValueObject>())
 			{
 				foreach (var property in type.Properties())
 				{

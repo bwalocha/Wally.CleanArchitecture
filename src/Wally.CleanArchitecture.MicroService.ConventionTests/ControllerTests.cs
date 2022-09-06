@@ -21,9 +21,11 @@ public class ControllerTests
 	[Fact]
 	public void Controller_Constructor_ShouldNotHaveICommandHandler()
 	{
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+
 		using (new AssertionScope())
 		{
-			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
+			foreach (var assembly in assemblies)
 			{
 				var types = AllTypes.From(assembly)
 					.Where(a => a.BaseType == typeof(ControllerBase))
@@ -53,9 +55,11 @@ public class ControllerTests
 	[Fact]
 	public void Controller_Constructor_ShouldntHaveIQueryHandler()
 	{
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+
 		using (new AssertionScope())
 		{
-			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
+			foreach (var assembly in assemblies)
 			{
 				var types = AllTypes.From(assembly)
 					.Where(a => a.BaseType == typeof(ControllerBase))
@@ -84,8 +88,8 @@ public class ControllerTests
 	[Fact]
 	public void Controller_ReturnType_ShouldBeOfTypeActionResult()
 	{
-		var types = TypeHelpers.GetAllInternalAssemblies()
-			.SelectMany(AllTypes.From)
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes()
 			.ThatDeriveFrom<ControllerBase>()
 			.ToList();
 

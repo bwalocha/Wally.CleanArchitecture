@@ -19,9 +19,11 @@ public class RepositoryTests
 	[Fact]
 	public void Repository_ReturnedCollection_ShouldBeMaterialized()
 	{
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+
 		using (new AssertionScope(new AssertionStrategy()))
 		{
-			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
+			foreach (var assembly in assemblies)
 			{
 				var types = AllTypes.From(assembly)
 					.ThatSatisfy(

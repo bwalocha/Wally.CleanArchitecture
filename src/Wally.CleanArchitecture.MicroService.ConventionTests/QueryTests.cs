@@ -3,9 +3,7 @@ using System.Linq;
 
 using FluentAssertions;
 using FluentAssertions.Execution;
-using FluentAssertions.Types;
 
-using Wally.CleanArchitecture.MicroService.Application.Users.Queries;
 using Wally.CleanArchitecture.MicroService.ConventionTests.Helpers;
 using Wally.Lib.DDD.Abstractions.Queries;
 
@@ -18,9 +16,10 @@ public class QueryTests
 	[Fact]
 	public void Application_Query_ShouldNotExposeSetter()
 	{
-		var applicationTypes = AllTypes.From(typeof(GetUserQuery).Assembly);
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes();
 
-		applicationTypes.Where(a => typeof(IQuery<>).IsAssignableFrom(a))
+		types.Where(a => typeof(IQuery<>).IsAssignableFrom(a))
 			.Types()
 			.Properties()
 			.Should()
@@ -30,9 +29,10 @@ public class QueryTests
 	[Fact]
 	public void Application_Query_ShouldBeExcludedFromCodeCoverage()
 	{
-		var applicationTypes = AllTypes.From(typeof(GetUserQuery).Assembly);
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes();
 
-		applicationTypes.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)))
+		types.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)))
 			.Types()
 			.Should()
 			.BeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
@@ -41,9 +41,10 @@ public class QueryTests
 	[Fact]
 	public void Application_Query_ShouldBeSealed()
 	{
-		var applicationTypes = AllTypes.From(typeof(GetUserQuery).Assembly);
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes();
 
-		applicationTypes.Where(a => typeof(IQuery<>).IsAssignableFrom(a))
+		types.Where(a => typeof(IQuery<>).IsAssignableFrom(a))
 			.Types()
 			.Should()
 			.BeSealed();
@@ -52,7 +53,7 @@ public class QueryTests
 	[Fact]
 	public void Application_Query_ShouldHaveCorrespondingHandler()
 	{
-		var assemblies = TypeHelpers.GetAllInternalAssemblies();
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{

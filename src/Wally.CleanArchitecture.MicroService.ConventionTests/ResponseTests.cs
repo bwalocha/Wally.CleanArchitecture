@@ -21,9 +21,11 @@ public class ResponseTests
 	[Fact]
 	public void Application_ResponseWithParameterlessConstructor_ShouldNotExposeSetter()
 	{
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+
 		using (new AssertionScope(new AssertionStrategy()))
 		{
-			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
+			foreach (var assembly in assemblies)
 			{
 				var types = AllTypes.From(assembly)
 					.ThatImplement<IResponse>()
@@ -54,9 +56,11 @@ public class ResponseTests
 	[Fact]
 	public void Application_ResponseWithParametrizedConstructor_ShouldNotHaveSetter()
 	{
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+
 		using (new AssertionScope(new AssertionStrategy()))
 		{
-			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
+			foreach (var assembly in assemblies)
 			{
 				var types = AllTypes.From(assembly)
 					.ThatImplement<IResponse>()
@@ -85,6 +89,7 @@ public class ResponseTests
 	[Fact]
 	public void Application_ClassesWhichImplementsIResponse_ShouldBeInApplicationProject()
 	{
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var applicationNamespace = Regex.Match(
 				typeof(GetUserResponse).Namespace!,
 				@"Wally.CleanArchitecture.MicroService\.Contracts\.Responses(?=[\.$])")
@@ -92,7 +97,7 @@ public class ResponseTests
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{
-			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
+			foreach (var assembly in assemblies)
 			{
 				var types = AllTypes.From(assembly);
 

@@ -19,9 +19,11 @@ public class RequestTests
 	[Fact]
 	public void Application_Request_ShouldNotExposeSetter()
 	{
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+
 		using (new AssertionScope(new AssertionStrategy()))
 		{
-			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
+			foreach (var assembly in assemblies)
 			{
 				var types = AllTypes.From(assembly)
 					.ThatImplement<IRequest>();
@@ -50,6 +52,7 @@ public class RequestTests
 	[Fact]
 	public void Application_ClassesWhichImplementsIRequest_ShouldBeInTheSameProject()
 	{
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var applicationNamespace = Regex.Match(
 				typeof(GetUsersRequest).Namespace!,
 				@"Wally.CleanArchitecture.MicroService\.Contracts\.Requests(?=[\.$])")
@@ -57,7 +60,7 @@ public class RequestTests
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{
-			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
+			foreach (var assembly in assemblies)
 			{
 				var types = AllTypes.From(assembly);
 
@@ -71,11 +74,12 @@ public class RequestTests
 	[Fact]
 	public void Application_AllClassessEndsWithRequest_ShouldImplementIRequest()
 	{
-		var applicationTypes = AllTypes.From(typeof(UpdateUserRequest).Assembly);
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes();
 
 		using (new AssertionScope())
 		{
-			foreach (var type in applicationTypes.Where(a => a.Name.EndsWith("Request") && a.Name != nameof(IRequest)))
+			foreach (var type in types.Where(a => a.Name.EndsWith("Request") && a.Name != nameof(IRequest)))
 			{
 				type.Should()
 					.Implement<IRequest>();
@@ -86,11 +90,12 @@ public class RequestTests
 	[Fact]
 	public void Application_AllClassessImplementsIRequest_ShouldHaveRequestSuffix()
 	{
-		var applicationTypes = AllTypes.From(typeof(IRequest).Assembly);
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes();
 
 		using (new AssertionScope())
 		{
-			foreach (var type in applicationTypes.ThatImplement<IRequest>())
+			foreach (var type in types.ThatImplement<IRequest>())
 			{
 				type.Name.Should()
 					.EndWith("Request");
@@ -101,7 +106,7 @@ public class RequestTests
 	[Fact]
 	public void Application_AllClassessImplementsIRequest_ShouldHaveCorrespondingValidator()
 	{
-		var assemblies = TypeHelpers.GetAllInternalAssemblies();
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{

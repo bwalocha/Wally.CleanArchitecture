@@ -16,7 +16,7 @@ public class ValidatorTests
 	[Fact]
 	public void Application_Validator_ShouldHaveNamingConvention()
 	{
-		var assemblies = TypeHelpers.GetAllInternalAssemblies();
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 
 		using (new AssertionScope())
 		{

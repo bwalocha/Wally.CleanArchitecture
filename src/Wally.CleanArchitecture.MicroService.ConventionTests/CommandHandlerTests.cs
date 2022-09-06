@@ -2,9 +2,7 @@ using System.Linq;
 
 using FluentAssertions;
 using FluentAssertions.Execution;
-using FluentAssertions.Types;
 
-using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 using Wally.CleanArchitecture.MicroService.ConventionTests.Helpers;
 using Wally.Lib.DDD.Abstractions.Commands;
 
@@ -17,7 +15,7 @@ public class CommandHandlerTests
 	[Fact]
 	public void Application_AllClassesEndsWithCommandHandler_ShouldImplementICommandHandler()
 	{
-		var applicationTypes = AllTypes.From(typeof(UpdateUserCommand).Assembly);
+		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{

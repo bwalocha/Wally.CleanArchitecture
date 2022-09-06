@@ -23,7 +23,7 @@ public class AsyncTests
 	{
 		using (new AssertionScope(new AssertionStrategy()))
 		{
-			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
+			foreach (var assembly in Configuration.Assemblies.GetAllAssemblies())
 			{
 				// TODO: Consider to exclude anonymous types in different way
 				var types = AllTypes.From(assembly)
@@ -75,7 +75,7 @@ public class AsyncTests
 	{
 		using (new AssertionScope(new AssertionStrategy()))
 		{
-			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
+			foreach (var assembly in Configuration.Assemblies.GetAllAssemblies())
 			{
 				// TODO: Consider to exclude anonymous types in different way
 				var types = AllTypes.From(assembly)
