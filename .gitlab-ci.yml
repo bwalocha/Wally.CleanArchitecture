@@ -24,6 +24,12 @@ build:sln2:
   variables:
     SOLUTION_NAME: ${SLN2_SOLUTION_NAME}
 
+build:tpl:
+  extends:
+    - .build:dotnet
+  variables:
+    SOLUTION_NAME: ${TPL_PROJECT_NAME}
+
 test:sln1:
   extends:
     - .test:dotnet
