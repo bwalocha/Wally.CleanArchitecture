@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 using Wally.Lib.ServiceBus.Abstractions;
 
-namespace Wally.CleanArchitecture.MicroService.IntegrationTests;
+namespace Wally.CleanArchitecture.MicroService.IntegrationTests.Helpers;
 
 public class PublisherStub : IPublisher
 {

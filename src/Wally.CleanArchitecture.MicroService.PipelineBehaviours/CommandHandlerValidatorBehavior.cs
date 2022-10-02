@@ -21,8 +21,8 @@ public class CommandHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBeh
 
 	public async Task<TResponse> Handle(
 		TRequest request,
-		CancellationToken cancellationToken,
-		RequestHandlerDelegate<TResponse> next)
+		RequestHandlerDelegate<TResponse> next,
+		CancellationToken cancellationToken)
 	{
 		var validationResult = await _validator.ValidateAsync(request, cancellationToken);
 

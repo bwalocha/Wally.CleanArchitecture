@@ -16,7 +16,7 @@ using Wally.CleanArchitecture.MicroService.Persistence;
 using Wally.Lib.DDD.Abstractions.DomainNotifications;
 using Wally.Lib.ServiceBus.Abstractions;
 
-namespace Wally.CleanArchitecture.MicroService.IntegrationTests;
+namespace Wally.CleanArchitecture.MicroService.IntegrationTests.Helpers;
 
 public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
 {

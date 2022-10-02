@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" Version="11.0.1"/>
+        <PackageReference Include="AutoMapper" Version="12.0.0"/>
         <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.2.0"/>
     </ItemGroup>
 

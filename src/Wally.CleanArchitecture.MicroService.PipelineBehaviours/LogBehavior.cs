@@ -33,8 +33,8 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 
 	public async Task<TResponse> Handle(
 		TRequest request,
-		CancellationToken cancellationToken,
-		RequestHandlerDelegate<TResponse> next)
+		RequestHandlerDelegate<TResponse> next,
+		CancellationToken cancellationToken)
 	{
 		var correlationId = Guid.NewGuid();
 

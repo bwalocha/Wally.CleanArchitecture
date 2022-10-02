@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.OData.Query;
 using Microsoft.EntityFrameworkCore;
 
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
-using Wally.Lib.DDD.Abstractions.DomainModels;
 
 namespace Wally.CleanArchitecture.MicroService.Persistence.Abstractions;
 
@@ -54,7 +53,7 @@ public abstract class Repository<TAggregateRoot> : ReadOnlyRepository<TAggregate
 	}
 
 	[Obsolete("Workaround")]
-	public TEntity Attach<TEntity>(TEntity entity) where TEntity : Entity
+	public TEntity Attach<TEntity>(TEntity entity) where TEntity : Wally.Lib.DDD.Abstractions.DomainModels.Entity
 	{
 		_context.Attach(entity)
 			.State = EntityState.Unchanged;

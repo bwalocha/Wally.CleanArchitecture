@@ -1,3 +1,4 @@
+using FluentValidation;
 using FluentValidation.AspNetCore;
 
 using Microsoft.AspNetCore.Builder;
@@ -45,15 +46,6 @@ public class Startup
 		Configuration.Bind(AppSettings);
 
 		services.AddControllers(settings => { settings.Filters.Add(typeof(HttpGlobalExceptionFilter)); })
-			.AddFluentValidation(
-				config =>
-				{
-					config.ImplicitlyValidateChildProperties = true;
-					config.RegisterValidatorsFromAssemblyContaining<UpdateUserRequestValidator>(
-						lifetime: ServiceLifetime.Singleton);
-					config.RegisterValidatorsFromAssemblyContaining<UpdateUserCommandValidator>(
-						lifetime: ServiceLifetime.Singleton);
-				})
 			.AddOData(
 				options =>
 				{
@@ -64,6 +56,12 @@ public class Startup
 				})
 			.AddNewtonsoftJson(
 				options => { options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; });
+
+		// TODO: move to Infrastructure
+		services.AddValidatorsFromAssemblyContaining<UpdateUserRequestValidator>();
+		services.AddValidatorsFromAssemblyContaining<UpdateUserCommandValidator>();
+		services.AddFluentValidationAutoValidation(config => config.DisableDataAnnotationsValidation = true);
+		services.AddFluentValidationClientsideAdapters(/*config => config.ClientValidatorFactories*/);
 
 		services.AddInfrastructure(AppSettings);
 	}

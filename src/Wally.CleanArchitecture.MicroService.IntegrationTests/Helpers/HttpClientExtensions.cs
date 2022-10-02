@@ -7,7 +7,7 @@ using JsonNet.ContractResolvers;
 
 using Newtonsoft.Json;
 
-namespace Wally.CleanArchitecture.MicroService.IntegrationTests;
+namespace Wally.CleanArchitecture.MicroService.IntegrationTests.Helpers;
 
 public static class HttpClientExtensions
 {

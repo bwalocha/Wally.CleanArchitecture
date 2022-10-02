@@ -28,8 +28,8 @@ public class DomainEventHandlerBehavior<TRequest, TResponse> : IPipelineBehavior
 
 	public async Task<TResponse> Handle(
 		TRequest request,
-		CancellationToken cancellationToken,
-		RequestHandlerDelegate<TResponse> next)
+		RequestHandlerDelegate<TResponse> next,
+		CancellationToken cancellationToken)
 	{
 		var response = await next();
 

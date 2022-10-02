@@ -18,6 +18,7 @@ using Newtonsoft.Json;
 using Wally.CleanArchitecture.MicroService.Contracts.Requests.Users;
 using Wally.CleanArchitecture.MicroService.Contracts.Responses.Users;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
+using Wally.CleanArchitecture.MicroService.IntegrationTests.Helpers;
 using Wally.CleanArchitecture.MicroService.WebApi;
 using Wally.Lib.DDD.Abstractions.Responses;
 

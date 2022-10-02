@@ -4,9 +4,9 @@
     "net6.0": {
       "MediatR": {
         "type": "Direct",
-        "requested": "[10.0.1, )",
-        "resolved": "10.0.1",
-        "contentHash": "vnjbk4giDJzJelh34Ygt0eorApCKrRFB7j0pauFPY1oxfO3cEZ7FugBrIOjCM76SDGTOmPFfbfmVnz1t3iFrGA==",
+        "requested": "[11.0.0, )",
+        "resolved": "11.0.0",
+        "contentHash": "8klzVGZQiA2oxZRzQFBZbdPD/IQUm9RYtfiyTDKhxDQ99Gi93+GXt1ZJjH2D7Lh7ZFHCv5XdkwbmfHEQBCatPg==",
         "dependencies": {
           "MediatR.Contracts": "1.0.1"
         }
@@ -54,8 +54,8 @@
       },
       "FluentValidation": {
         "type": "Transitive",
-        "resolved": "11.2.1",
-        "contentHash": "ZrQD0TGd0mHqf/zErZOEaba8cBeInaJj02nqinO+0La3uE08sJ5ScTYqsCbdx9fLHsX8rh+5KH5RtL2eOUS+OA=="
+        "resolved": "11.2.2",
+        "contentHash": "5QEte2BUZZF6Sezeekr7Zu1THfgpxU7pmuL2SjIrajuGMah+pxPGiRiLtw+x/tSUSSVmcv9LrUe41lKu4l0n4A=="
       },
       "MediatR.Contracts": {
         "type": "Transitive",
@@ -151,24 +151,24 @@
       "wally.cleanarchitecture.microservice.application": {
         "type": "Project",
         "dependencies": {
-          "Microsoft.AspNetCore.OData": "8.0.11",
-          "Wally.CleanArchitecture.MicroService.Contracts": "1.0.0",
-          "Wally.CleanArchitecture.MicroService.Domain": "1.0.0",
-          "Wally.Lib.ServiceBus.Abstractions": "1.2.7"
+          "Microsoft.AspNetCore.OData": "[8.0.11, )",
+          "Wally.CleanArchitecture.MicroService.Contracts": "[1.0.0, )",
+          "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )",
+          "Wally.Lib.ServiceBus.Abstractions": "[1.2.7, )"
         }
       },
       "wally.cleanarchitecture.microservice.contracts": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "11.2.1",
-          "Reinforced.Typings": "1.6.1",
-          "Wally.Lib.DDD.Abstractions": "1.2.0"
+          "FluentValidation": "[11.2.2, )",
+          "Reinforced.Typings": "[1.6.1, )",
+          "Wally.Lib.DDD.Abstractions": "[1.2.0, )"
         }
       },
       "wally.cleanarchitecture.microservice.domain": {
         "type": "Project",
         "dependencies": {
-          "Wally.Lib.DDD.Abstractions": "1.2.0"
+          "Wally.Lib.DDD.Abstractions": "[1.2.0, )"
         }
       }
     }

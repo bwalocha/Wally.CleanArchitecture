@@ -20,7 +20,7 @@ dotnet new wally.cleanarchitecture --output . --name MyCompanyName.MyAppName --c
 	- [x] AppSettings
 	- [x] CORS
 	- [x] FluentValidation (IRequest)
-	- [ ] OAuth2
+	- [x] OAuth2
 	- [x] RabbitMQ (Polly)
 - [x] Swagger
 - [x] Serilog
@@ -44,13 +44,13 @@ dotnet new wally.cleanarchitecture --output . --name MyCompanyName.MyAppName --c
 - [ ] AppInsights Metrics
 - [ ] Terraform Azure Infrastructure code (Service Principal, Group, AppInsights)
 - [ ] Mapster [github](https://github.com/MapsterMapper/Mapster)
-- [ ] AutoMapper
+- [x] AutoMapper
 	- [x] Validation
 	- [x] Profiles
-- [ ] SignalR
-- [ ] Create ICommand and IQuery compatible with MediatR (new Wally.Lib.DDD)
+- [z] SignalR
+- [z] Create ICommand and IQuery compatible with MediatR (new Wally.Lib.DDD)
 - [ ] Support MapsterMapper
-- [ ] Template for ReverseProxy (template argument for Service/Proxy selector)
+- [z] Template for ReverseProxy (template argument for Service/Proxy selector)
 
 ## Info
 
@@ -61,7 +61,7 @@ dotnet new wally.cleanarchitecture --output . --name MyCompanyName.MyAppName --c
 - [ ] DomainEvent naming convention tests
 - [ ] DomainEvent with `[ExcludeFromCodeCoverage]` attribute convention tests
 - [ ] Fix `[CS1591] Missing XML comment` warnings
-- [ ] Move CORS settings to ApiGateway
-- [ ] Authentication in ApiGateway
+- [z] Move CORS settings to ApiGateway
+- [z] Authentication in ApiGateway
 - [ ] Authorization in MicroService
-- [ ] SignalR Hub Service
+- [z] SignalR Hub Service

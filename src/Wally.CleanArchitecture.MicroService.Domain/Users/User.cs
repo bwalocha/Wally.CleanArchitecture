@@ -1,6 +1,6 @@
 ﻿using System;
 
-using Wally.Lib.DDD.Abstractions.DomainModels;
+using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Users;
 

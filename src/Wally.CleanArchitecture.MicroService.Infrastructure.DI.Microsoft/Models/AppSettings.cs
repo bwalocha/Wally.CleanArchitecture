@@ -11,7 +11,7 @@ public class AppSettings
 
 	public DbContextSettings Database { get; } = new();
 
-	public MessageBrokerType MessageBroker { get; set; }
+	public MessageBrokerType MessageBroker { get; init; }
 
 	public ConnectionStrings ConnectionStrings { get; } = new();
 }

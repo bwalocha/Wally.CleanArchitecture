@@ -3,11 +3,6 @@ using System.Linq;
 using FluentAssertions;
 using FluentAssertions.Execution;
 
-using Wally.CleanArchitecture.MicroService.Application.Users.Queries;
-using Wally.CleanArchitecture.MicroService.Domain.Users;
-using Wally.CleanArchitecture.MicroService.MapperProfiles;
-using Wally.CleanArchitecture.MicroService.Persistence;
-
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.ConventionTests;
@@ -17,13 +12,12 @@ public class OnionArchitectureTests
 	[Fact]
 	public void Domain_IsNotReferencedByApplication()
 	{
-		var domainTypes = new[] { typeof(User), };
-		var applicationTypes = new[] { typeof(GetUserQueryHandler), };
+		var domainAssemblies = Configuration.Assemblies.Domain;
+		var applicationTypes = Configuration.Assemblies.Application.SelectMany(a => a.GetTypes());
 
 		using (new AssertionScope())
 		{
-			domainTypes.Select(a => a.Assembly)
-				.Should()
+			domainAssemblies.Should()
 				.SatisfyRespectively(
 					a =>
 					{
@@ -39,13 +33,12 @@ public class OnionArchitectureTests
 	[Fact]
 	public void Domain_IsNotReferencedByInfrastructure()
 	{
-		var domainTypes = new[] { typeof(User), };
-		var infrastructureTypes = new[] { typeof(UserProfile), };
+		var domainAssemblies = Configuration.Assemblies.Domain;
+		var infrastructureTypes = Configuration.Assemblies.Infrastructure.SelectMany(a => a.GetTypes());
 
 		using (new AssertionScope())
 		{
-			domainTypes.Select(a => a.Assembly)
-				.Should()
+			domainAssemblies.Should()
 				.SatisfyRespectively(
 					a =>
 					{
@@ -61,13 +54,12 @@ public class OnionArchitectureTests
 	[Fact]
 	public void Domain_IsNotReferencedByPersistence()
 	{
-		var domainTypes = new[] { typeof(User), };
-		var persistenceTypes = new[] { typeof(ApplicationDbContext), };
+		var domainAssemblies = Configuration.Assemblies.Domain;
+		var persistenceTypes = Configuration.Assemblies.Infrastructure.SelectMany(a => a.GetTypes());
 
 		using (new AssertionScope())
 		{
-			domainTypes.Select(a => a.Assembly)
-				.Should()
+			domainAssemblies.Should()
 				.SatisfyRespectively(
 					a =>
 					{
