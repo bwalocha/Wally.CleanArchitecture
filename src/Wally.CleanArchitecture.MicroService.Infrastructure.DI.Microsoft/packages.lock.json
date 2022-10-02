@@ -585,8 +585,8 @@
       },
       "Microsoft.Extensions.Logging.Abstractions": {
         "type": "Transitive",
-        "resolved": "6.0.1",
-        "contentHash": "dzB2Cgg+JmrouhjkcQGzSFjjvpwlq353i8oBQO2GWNjCXSzhbtBRUf28HSauWe7eib3wYOdb3tItdjRwAdwCSg=="
+        "resolved": "6.0.2",
+        "contentHash": "pwXCZKaA7m5wgmCj49dW+H1RPSY7U62SKLTQYCcavf/k3Nyt/WnBgAjG4jMGnwy9rElfAZ2KvxvM5CJzJWG0hg=="
       },
       "Microsoft.Extensions.Options": {
         "type": "Transitive",
@@ -1333,7 +1333,7 @@
         "type": "Project",
         "dependencies": {
           "MediatR": "[11.0.0, )",
-          "Microsoft.Extensions.Logging.Abstractions": "[6.0.1, )",
+          "Microsoft.Extensions.Logging.Abstractions": "[6.0.2, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.IdentityProvider.Contracts": "[1.1.0, )",
           "Wally.Lib.DDD.Abstractions": "[1.2.0, )",
@@ -1346,7 +1346,7 @@
           "AutoMapper": "[12.0.0, )",
           "AutoMapper.Extensions.ExpressionMapping": "[6.0.0, )",
           "Microsoft.EntityFrameworkCore": "[6.0.9, )",
-          "Microsoft.EntityFrameworkCore.Relational": "[6.0.8, )",
+          "Microsoft.EntityFrameworkCore.Relational": "[6.0.9, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
@@ -1364,8 +1364,9 @@
           "FluentValidation": "[11.2.2, )",
           "MediatR": "[11.0.0, )",
           "Microsoft.EntityFrameworkCore": "[6.0.9, )",
-          "Microsoft.Extensions.Logging.Abstractions": "[6.0.1, )",
+          "Microsoft.Extensions.Logging.Abstractions": "[6.0.2, )",
           "Newtonsoft.Json": "[13.0.1, )",
+          "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )",
           "Wally.Lib.DDD.Abstractions": "[1.2.0, )"
         }
       }

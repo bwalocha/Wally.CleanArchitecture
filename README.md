@@ -32,10 +32,11 @@ dotnet new wally.cleanarchitecture --output . --name MyCompanyName.MyAppName --c
 	- [x] ValidationBehavior (IComamnd, IQuery)
 	- [ ] EventBehavior
 	- [ ] NotificationBehavior
+    - [ ] UpdateMetadataBehavior
 - [x] Scrutor [github](https://github.com/khellang/Scrutor)
 - [x] OData
 - [x] HttpGlobalExceptionFilter
-- [x] EntityFrameworkCore (Concurrency)
+- [ ] EntityFrameworkCore (Concurrency)
 - [ ] xUnit
 	- [ ] ApprovalTests
 	- [x] IntegrationTests
@@ -47,10 +48,9 @@ dotnet new wally.cleanarchitecture --output . --name MyCompanyName.MyAppName --c
 - [x] AutoMapper
 	- [x] Validation
 	- [x] Profiles
-- [z] SignalR
-- [z] Create ICommand and IQuery compatible with MediatR (new Wally.Lib.DDD)
+- [x] SignalR
 - [ ] Support MapsterMapper
-- [z] Template for ReverseProxy (template argument for Service/Proxy selector)
+- [x] Template for ReverseProxy (template argument for Service/Proxy selector)
 
 ## Info
 
@@ -58,10 +58,12 @@ dotnet new wally.cleanarchitecture --output . --name MyCompanyName.MyAppName --c
 
 ## TODO
 
+- [x] Create ICommand and IQuery compatible with MediatR (new Wally.Lib.DDD)
 - [ ] DomainEvent naming convention tests
 - [ ] DomainEvent with `[ExcludeFromCodeCoverage]` attribute convention tests
 - [ ] Fix `[CS1591] Missing XML comment` warnings
-- [z] Move CORS settings to ApiGateway
-- [z] Authentication in ApiGateway
+- [x] Move CORS settings to ApiGateway
+- [x] Authentication in ApiGateway
 - [ ] Authorization in MicroService
-- [z] SignalR Hub Service
+- [x] SignalR Hub Service
+- [ ] Add MassTransit

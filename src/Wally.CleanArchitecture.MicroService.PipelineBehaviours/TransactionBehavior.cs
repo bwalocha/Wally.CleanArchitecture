@@ -30,8 +30,6 @@ public class TransactionBehavior<TRequest, TResponse> : IPipelineBehavior<TReque
 		{
 			var response = await next();
 
-			// UpdateAggregateMetadata(_dbContext.ChangeTracker.Entries<AggregateRoot>());
-
 			await _dbContext.SaveChangesAsync(cancellationToken);
 
 			await transaction.CommitAsync(cancellationToken);
@@ -44,40 +42,4 @@ public class TransactionBehavior<TRequest, TResponse> : IPipelineBehavior<TReque
 			throw;
 		}
 	}
-
-	/*private void UpdateAggregateMetadata(IEnumerable<EntityEntry<AggregateRoot>> entries)
-	{
-		foreach (var entry in entries)
-		{
-			switch (entry.State)
-			{
-				case EntityState.Modified:
-					entry.CurrentValues.SetValues(
-						new Dictionary<string, object>
-						{
-							{
-								nameof(AggregateRoot.ModifiedAt), DateTime.Now
-							},
-							{
-								nameof(AggregateRoot.ModifiedById), _userProvider.GetUser()
-									.Id
-							}
-						});
-					break;
-				case EntityState.Added:
-					entry.CurrentValues.SetValues(
-						new Dictionary<string, object>
-						{
-							{
-								nameof(AggregateRoot.CreatedAt), DateTime.Now
-							},
-							{
-								nameof(AggregateRoot.CreatedById), _userProvider.GetUser()
-									.Id
-							},
-						});
-					break;
-			}
-		}
-	}*/
 }

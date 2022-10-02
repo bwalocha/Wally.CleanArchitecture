@@ -2,7 +2,6 @@
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
-// TODO: add ModifiedAt, ModifiedBy, CreatedAt, CreatedBy
 public abstract class AggregateRoot : Lib.DDD.Abstractions.DomainModels.AggregateRoot
 {
 	protected AggregateRoot()
@@ -13,4 +12,12 @@ public abstract class AggregateRoot : Lib.DDD.Abstractions.DomainModels.Aggregat
 		: base(id)
 	{
 	}
+
+	public DateTime CreatedAt { get; private set; }
+
+	public Guid CreatedById { get; private set; }
+
+	public DateTime? ModifiedAt { get; private set; }
+
+	public Guid? ModifiedById { get; private set; }
 }

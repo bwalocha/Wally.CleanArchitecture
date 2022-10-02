@@ -492,7 +492,7 @@
           "AutoMapper": "[12.0.0, )",
           "AutoMapper.Extensions.ExpressionMapping": "[6.0.0, )",
           "Microsoft.EntityFrameworkCore": "[6.0.9, )",
-          "Microsoft.EntityFrameworkCore.Relational": "[6.0.8, )",
+          "Microsoft.EntityFrameworkCore.Relational": "[6.0.9, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }

@@ -37,11 +37,11 @@
       },
       "Microsoft.EntityFrameworkCore.Relational": {
         "type": "Direct",
-        "requested": "[6.0.8, )",
-        "resolved": "6.0.8",
-        "contentHash": "laj1Kx0Ifny8E7dCCXV4+hYJkly8t9Gjc6/Trds1W4xg/vf/dzyuxTCUqQMHtGv29C8zV1+C2wnWVOcwWin5FQ==",
+        "requested": "[6.0.9, )",
+        "resolved": "6.0.9",
+        "contentHash": "LAZHEvlgSg6OUzLUH3BoVneYrQj7cQqwwFnzSfwVGNjQvj5RRh7Vz0eSXLKfQD4xv5QuSm3l+MzFMZC1NBPQHw==",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "6.0.8",
+          "Microsoft.EntityFrameworkCore": "6.0.9",
           "Microsoft.Extensions.Configuration.Abstractions": "6.0.0"
         }
       },

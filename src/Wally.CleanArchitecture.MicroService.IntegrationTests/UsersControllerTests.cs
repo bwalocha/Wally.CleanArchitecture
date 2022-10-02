@@ -394,4 +394,24 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 			.Name.Should()
 			.Be("newName3");
 	}
+
+	[Fact]
+	public async Task Create_ForInvalidModel_ReturnsBadRequest()
+	{
+		// Arrange
+		var request = new CreateUserRequest(string.Empty);
+
+		// Act
+		var response = await _httpClient.PostAsync("Users", request, CancellationToken.None);
+
+		// Assert
+		response.IsSuccessStatusCode.Should()
+			.BeFalse();
+		response.StatusCode.Should()
+			.Be(HttpStatusCode.BadRequest);
+		_factory.GetRequiredService<DbContext>()
+			.Set<User>()
+			.Should()
+			.BeEmpty();
+	}
 }
