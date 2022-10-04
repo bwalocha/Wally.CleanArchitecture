@@ -2,9 +2,9 @@
 
 public class AuthenticationSettings
 {
-	public string Authority { get; set; } = null!;
+	public string Authority { get; init; } = null!;
 
-	public string ClientId { get; set; } = null!;
+	public string ClientId { get; init; } = null!;
 
-	public string ClientSecret { get; set; } = null!;
+	public string ClientSecret { get; init; } = null!;
 }

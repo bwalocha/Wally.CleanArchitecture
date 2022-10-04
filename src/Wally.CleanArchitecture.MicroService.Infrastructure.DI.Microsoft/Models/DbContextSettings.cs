@@ -2,5 +2,5 @@
 
 public class DbContextSettings
 {
-	public bool IsMigrationEnabled { get; set; } = true;
+	public bool IsMigrationEnabled { get; init; } = true;
 }
