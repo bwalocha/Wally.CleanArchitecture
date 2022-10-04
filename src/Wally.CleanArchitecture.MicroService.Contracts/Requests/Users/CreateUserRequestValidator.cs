@@ -8,7 +8,6 @@ public class CreateUserRequestValidator : AbstractValidator<CreateUserRequest>
 	{
 		RuleFor(a => a.Name)
 			.NotEmpty()
-			.MinimumLength(1)
 			.MaximumLength(256);
 	}
 }

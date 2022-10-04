@@ -13,7 +13,6 @@ public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
 			.NotEqual(Guid.Empty);
 		RuleFor(a => a.Name)
 			.NotEmpty()
-			.MinimumLength(1)
 			.MaximumLength(256);
 	}
 }
