@@ -180,6 +180,38 @@
       ],
       "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
       "continueOnError": true
+    },
+    {
+      "condition": "(!skipRestore && enableFrontend)",
+      "description ": "Install Node packages requred by this project"
+      "manualInstructions": [
+        { "text": "Run 'npm i'" }
+      ],
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "continueOnError": true,
+      "args": 
+      {
+        "executable": "cd wally.cleanarchitecture.webapp && npm",
+        "args": "i",
+        "redirectStandardOutput": false,
+        "redirectStandardError": false
+      }
+    },
+    {
+      "condition": "(!skipRestore && enableStorybook)",
+      "description ": "Install Node packages requred by this project"
+      "manualInstructions": [
+        { "text": "Run 'npm i'" }
+      ],
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "continueOnError": true,
+      "args": 
+      {
+        "executable": "cd wally.cleanarchitecture.storybook && npm",
+        "args": "i",
+        "redirectStandardOutput": false,
+        "redirectStandardError": false
+      }
     }
   ]
 }
