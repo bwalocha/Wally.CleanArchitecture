@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 using Wally.CleanArchitecture.MicroService.Persistence.Exceptions;
 
-namespace Wally.CleanArchitecture.MicroService.WebApi.Filters;
+namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Filters;
 
 public class HttpGlobalExceptionFilter : IExceptionFilter
 {

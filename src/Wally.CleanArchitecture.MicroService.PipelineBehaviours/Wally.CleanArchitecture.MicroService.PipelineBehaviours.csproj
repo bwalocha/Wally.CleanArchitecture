@@ -9,7 +9,7 @@
     <ItemGroup>
         <PackageReference Include="FluentValidation" Version="11.2.2"/>
         <PackageReference Include="MediatR" Version="11.0.0"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.9"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10"/>
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.2"/>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
         <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.2.0"/>

@@ -34,8 +34,7 @@
             in attributes and in fluent methods then configuration from fluent methods will
             be used.
         -->
-        <RtConfigurationMethod>Wally.CleanArchitecture.MicroService.Contracts.ReinforcedTypingsConfiguration.Configure
-        </RtConfigurationMethod>
+        <RtConfigurationMethod>Wally.CleanArchitecture.MicroService.Contracts.ReinforcedTypingsConfiguration.Configure</RtConfigurationMethod>
 
         <!--
             By default all of your typings will be located in single file specified by RtTargetFile.

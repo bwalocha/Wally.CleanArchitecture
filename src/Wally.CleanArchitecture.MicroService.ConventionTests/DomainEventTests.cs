@@ -38,7 +38,8 @@ public class DomainEventTests
 
 		using (new AssertionScope())
 		{
-			foreach (var type in types.Where(a => a.Name.EndsWith("Event") && a.Name != nameof(DomainEvent)))
+			foreach (var type in types.Where(a => a.Name.EndsWith("Event"))
+						.Where(a => a != typeof(DomainEvent)))
 			{
 				type.Should()
 					.BeAssignableTo<DomainEvent>();

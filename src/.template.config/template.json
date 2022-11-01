@@ -79,7 +79,7 @@
       "type": "parameter",
       "dataType": "bool",
       "description": "If specified, generates Reverse Proxy solution.",
-      "defaultValue": "true"
+      "defaultValue": "false"
     },
     "enableMicroService": {
       "type": "parameter",
@@ -91,7 +91,13 @@
       "type": "parameter",
       "dataType": "bool",
       "description": "If specified, generates Frontend project.",
-      "defaultValue": "true"
+      "defaultValue": "false"
+    },
+    "enableStorybook": {
+      "type": "parameter",
+      "dataType": "bool",
+      "description": "If specified, generates Storybook project.",
+      "defaultValue": "false"
     },
     "skipRestore": {
       "type": "parameter",
@@ -143,7 +149,13 @@
         {
           "condition": "(!enableFrontend)",
           "exclude": [
-            "wally.cleanarchitecture.*/**/*"
+            "wally.cleanarchitecture.webapp*/**/*"
+          ]
+        },
+        {
+          "condition": "(!enableStorybook)",
+          "exclude": [
+            "wally.cleanarchitecture.storybook/**/*"
           ]
         }
       ]
@@ -161,7 +173,7 @@
   ],
   "postActions": [
     {
-      "condition": "(!skipRestore)",
+      "condition": "(!skipRestore && (enableReverseProxy || enableMicroService))",
       "description": "Restore NuGet packages required by this project.",
       "manualInstructions": [
         { "text": "Run 'dotnet restore'" }

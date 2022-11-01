@@ -15,6 +15,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Exten
 
 public static class HealthChecksExtensions
 {
+	// Adds Readiness
 	public static IServiceCollection AddHealthChecks(this IServiceCollection services, AppSettings settings)
 	{
 		var healthChecksBuilder = services.AddHealthChecks()
