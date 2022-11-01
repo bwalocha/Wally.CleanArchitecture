@@ -12,5 +12,9 @@
       "longName": "enable-frontend",
       "shortName": "frontend"
     },
+    "enableStorybook": {
+      "longName": "enable-storybook",
+      "shortName": "storybook"
+    }
   }
 }
