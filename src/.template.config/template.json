@@ -183,7 +183,7 @@
     },
     {
       "condition": "(!skipRestore && enableFrontend)",
-      "description ": "Install Node packages requred by this project"
+      "description ": "Install Node packages requred by this project",
       "manualInstructions": [
         { "text": "Run 'npm i'" }
       ],
@@ -199,7 +199,7 @@
     },
     {
       "condition": "(!skipRestore && enableStorybook)",
-      "description ": "Install Node packages requred by this project"
+      "description ": "Install Node packages requred by this project",
       "manualInstructions": [
         { "text": "Run 'npm i'" }
       ],
