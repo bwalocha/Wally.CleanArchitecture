@@ -72,8 +72,18 @@
         "source": "name",
         "toLower": true
       },
-	  "fileRename": "wally.cleanarchitecture",
-      "replaces": "wally.cleanarchitecture"
+	  "fileRename": "wally.cleanarchitecture.webapp",
+      "replaces": "wally.cleanarchitecture.webapp"
+    },
+    "storybookName": {
+      "type": "generated",
+      "generator": "casing",
+      "parameters": {
+        "source": "name",
+        "toLower": true
+      },
+	  "fileRename": "wally.cleanarchitecture.storybook",
+      "replaces": "wally.cleanarchitecture.storybook"
     },
     "enableReverseProxy": {
       "type": "parameter",
@@ -191,7 +201,7 @@
       "continueOnError": true,
       "args": 
       {
-        "executable": "cd wally.cleanarchitecture.webapp && npm",
+        "executable": "cd *.webapp* && npm",
         "args": "i",
         "redirectStandardOutput": false,
         "redirectStandardError": false
@@ -207,7 +217,7 @@
       "continueOnError": true,
       "args": 
       {
-        "executable": "cd wally.cleanarchitecture.storybook && npm",
+        "executable": "cd *.storybook && npm",
         "args": "i",
         "redirectStandardOutput": false,
         "redirectStandardError": false

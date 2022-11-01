@@ -9,7 +9,7 @@ dotnet new --install Wally.CleanArchitecture.Template
 ## Usage
 
 ```
-dotnet new wally.cleanarchitecture --output . --name MyCompanyName.MyAppName --copyrightName MyCompanyName --serviceName MyServiceName -proxy=true -service=true -frontend=true
+dotnet new wally.cleanarchitecture --output . --name MyCompanyName.MyAppName --copyrightName MyCompanyName --serviceName MyServiceName -proxy=true -service=true -frontend=true -storybook=true
 ```
 
 ## Details
@@ -49,7 +49,6 @@ dotnet new wally.cleanarchitecture --output . --name MyCompanyName.MyAppName --c
 	- [x] Validation
 	- [x] Profiles
 - [x] SignalR
-- [ ] Support MapsterMapper
 - [x] Template for ReverseProxy (template argument for Service/Proxy selector)
 
 ## Info

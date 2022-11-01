@@ -35,7 +35,6 @@ test:sln1:
     - .test:dotnet
   needs:
     - build:sln1
-  allow_failure: true
   variables:
     SOLUTION_NAME: ${SLN1_SOLUTION_NAME}
 
@@ -44,7 +43,6 @@ test:sln2:
     - .test:dotnet
   needs:
     - build:sln2
-  allow_failure: true
   variables:
     SOLUTION_NAME: ${SLN2_SOLUTION_NAME}
 
