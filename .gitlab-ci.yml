@@ -3,7 +3,7 @@ variables:
   SLN2_SOLUTION_NAME: "Wally.CleanArchitecture.MicroService"
   TPL_PROJECT_NAME: "Wally.CleanArchitecture.Template"
   #
-  VERSION: "1.1.${CI_PIPELINE_ID}"
+  VERSION: "1.2.${CI_PIPELINE_ID}"
   #CI_DEBUG_TRACE: "true"
 
 stages:
