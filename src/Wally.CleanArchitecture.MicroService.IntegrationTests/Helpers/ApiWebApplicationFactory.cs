@@ -22,13 +22,12 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 {
 	protected override IHostBuilder CreateHostBuilder()
 	{
-		return base.CreateHostBuilder()
-			.ConfigureAppConfiguration(
-				configurationBuilder =>
-				{
-					configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
-						.AddJsonFile("appsettings.IntegrationTests.json", false);
-				});
+		return base.CreateHostBuilder()!.ConfigureAppConfiguration(
+			configurationBuilder =>
+			{
+				configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
+					.AddJsonFile("appsettings.IntegrationTests.json", false);
+			});
 	}
 
 	protected override void ConfigureWebHost(IWebHostBuilder builder)

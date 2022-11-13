@@ -6,6 +6,7 @@ using HealthChecks.UI.Client;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
@@ -63,6 +64,20 @@ public static class HealthChecksExtensions
 		/*
 		app.UseHealthChecksUI(); // TODO: Consider only for ApiGateway
 		*/
+
+		app.UseEndpoints(
+			endpoints =>
+			{
+				// Adds Liveness
+				endpoints.MapGet(
+					"/",
+					async context =>
+					{
+						await context.Response.WriteAsync(
+							$"v{typeof(HealthChecksExtensions).Assembly.GetName().Version}",
+							context.RequestAborted);
+					});
+			});
 
 		return app;
 	}

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json.schemastore.org/template",
-  "author": "wally",
+  "author": "Wally",
   "classifications": [
     "Web",
     "MVC",
@@ -48,13 +48,13 @@
       "parameters": {
         "format": "yyyy-MM-dd"
       },
-      "replaces": "2022-01-01"
+      "replaces": "__DATE__"
     },
     "copyrightName": {
       "type": "parameter",
       "description": "Copyright name.",
-      "defaultValue": "wally",
-      "replaces": "COPYRIGHT"
+      "defaultValue": "Wally",
+      "replaces": "__COPYRIGHT__"
     },
     "serviceName": {
       "type": "parameter",

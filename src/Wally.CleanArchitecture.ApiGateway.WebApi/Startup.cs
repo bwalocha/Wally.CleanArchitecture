@@ -1,9 +1,5 @@
-using HealthChecks.UI.Client;
-
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,8 +12,6 @@ namespace Wally.CleanArchitecture.ApiGateway.WebApi;
 
 public class Startup
 {
-	private const string ReverseProxy = nameof(ReverseProxy);
-
 	public Startup(IConfiguration configuration)
 	{
 		Configuration = configuration;
@@ -33,16 +27,9 @@ public class Startup
 	// This method gets called by the runtime. Use this method to add services to the container.
 	public void ConfigureServices(IServiceCollection services)
 	{
-		services.AddReverseProxy()
-			.LoadFromConfig(Configuration.GetSection(ReverseProxy));
+		Configuration.Bind(AppSettings);
 
-		// Add HealthChecks (configuration in AppSettings.json file)
-		services.AddHealthChecks()
-			.AddVersionHealthCheck();
-		services.AddHealthChecksUI()
-			.AddInMemoryStorage();
-
-		services.AddApiCors(AppSettings.Cors);
+		services.AddInfrastructure(Configuration, AppSettings);
 	}
 
 	public void Configure(
@@ -71,25 +58,8 @@ public class Startup
 		app.UseApiCors();
 
 		// app.UseAuthentication(); // TODO: configure Auth2
-		app.UseHealthChecks(
-				"/healthChecks",
-				new HealthCheckOptions
-				{
-					Predicate = _ => true, ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
-				})
-			.UseHealthChecksUI();
-		app.UseEndpoints(
-			endpoints =>
-			{
-				endpoints.MapGet(
-					"/",
-					async context =>
-					{
-						await context.Response.WriteAsync(
-							$"v{GetType().Assembly.GetName().Version}",
-							context.RequestAborted);
-					});
-				endpoints.MapReverseProxy();
-			});
+
+		app.UseHealthChecks();
+		app.UseReverseProxy();
 	}
 }

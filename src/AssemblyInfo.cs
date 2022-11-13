@@ -1,5 +1,5 @@
 using System.Reflection;
 
 [assembly: AssemblyDescription("Wally.CleanArchitecture.MicroService")]
-[assembly: AssemblyCopyright("COPYRIGHT@2022-01-01")]
+[assembly: AssemblyCopyright("__COPYRIGHT__@__DATE__")]
 [assembly: AssemblyTrademark("Wally.CleanArchitecture")]
