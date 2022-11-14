@@ -72,8 +72,8 @@
         "source": "name",
         "toLower": true
       },
-	  "fileRename": "wally.cleanarchitecture.webapp",
-      "replaces": "wally.cleanarchitecture.webapp"
+      "fileRename": "wally.cleanarchitecture.webapp*",
+      "replaces": "wally.cleanarchitecture"
     },
     "storybookName": {
       "type": "generated",
@@ -82,8 +82,8 @@
         "source": "name",
         "toLower": true
       },
-	  "fileRename": "wally.cleanarchitecture.storybook",
-      "replaces": "wally.cleanarchitecture.storybook"
+      "fileRename": "wally.cleanarchitecture.storybook",
+      "replaces": "wally.cleanarchitecture"
     },
     "enableReverseProxy": {
       "type": "parameter",
