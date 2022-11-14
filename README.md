@@ -3,7 +3,7 @@
 ## Installation
 
 ```
-dotnet new --install Wally.CleanArchitecture.Template
+dotnet new install Wally.CleanArchitecture.Template
 ```
 
 ## Usage
