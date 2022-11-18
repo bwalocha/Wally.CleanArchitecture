@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: wally-cleanarchitecture
+  description: The dotnet template
+  labels:
+    example.com/custom: custom_label_value
+  annotations:
+    example.com/service-discovery: artistweb
+    circleci.com/project-slug: github/example-org/artist-website
+  tags:
+    - dotnet
+  links:
+    - url: https://www.nuget.org/packages/Wally.CleanArchitecture.Template/
+      title: NuGet
+      icon: dashboard
+      type: admin-dashboard
+spec:
+  type: package
+  lifecycle: production
+  owner: wally
+  system: public-packages
