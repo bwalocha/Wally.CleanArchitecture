@@ -60,7 +60,7 @@ public static class HealthChecksExtensions
 		return builder;
 	}
 
-	private class VersionHealthCheck : IHealthCheck
+	private sealed class VersionHealthCheck : IHealthCheck
 	{
 		private readonly string? _version;
 
@@ -71,7 +71,9 @@ public static class HealthChecksExtensions
 				.Version?.ToString();
 		}
 
-		public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken)
+		public Task<HealthCheckResult> CheckHealthAsync(
+			HealthCheckContext context,
+			CancellationToken cancellationToken = default)
 		{
 			return Task.FromResult(HealthCheckResult.Healthy(_version));
 		}

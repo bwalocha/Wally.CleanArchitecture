@@ -55,9 +55,17 @@ publish:tpl:
   variables:
     PROJECT_NAME: ${TPL_PROJECT_NAME}
 
-deploy:tpl:
+deploy:nuget:tpl:
   extends:
     - .deploy:nuget
+  needs:
+    - publish:tpl
+  variables:
+    PROJECT_NAME: ${TPL_PROJECT_NAME}
+
+deploy:baget:tpl:
+  extends:
+    - .deploy:baget
   needs:
     - publish:tpl
   variables:

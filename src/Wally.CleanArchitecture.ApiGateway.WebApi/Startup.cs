@@ -51,8 +51,7 @@ public class Startup
 			app.UseDeveloperExceptionPage();
 		}
 
-		// App is hosted by Docker, HTTPS is not required inside container
-		// app.UseHttpsRedirection();
+		// app.UseHttpsRedirection(); // TODO: App is hosted by Docker, HTTPS is not required inside container 
 
 		app.UseRouting();
 		app.UseApiCors();
