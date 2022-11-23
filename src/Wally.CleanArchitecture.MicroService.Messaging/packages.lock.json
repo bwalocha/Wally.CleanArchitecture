@@ -4,9 +4,9 @@
     "net7.0": {
       "MediatR": {
         "type": "Direct",
-        "requested": "[11.0.0, )",
-        "resolved": "11.0.0",
-        "contentHash": "8klzVGZQiA2oxZRzQFBZbdPD/IQUm9RYtfiyTDKhxDQ99Gi93+GXt1ZJjH2D7Lh7ZFHCv5XdkwbmfHEQBCatPg==",
+        "requested": "[11.1.0, )",
+        "resolved": "11.1.0",
+        "contentHash": "YIbtrLOyeCuIv8vIuHL/mMdls5xmgS36pIOJDxKZuu55nxA2MI2Z+E/Uk0z+F/LE11AGmpjplOM0NZ91m5LQBA==",
         "dependencies": {
           "MediatR.Contracts": "1.0.1"
         }
@@ -54,8 +54,8 @@
       },
       "FluentValidation": {
         "type": "Transitive",
-        "resolved": "11.3.0",
-        "contentHash": "AlsfUkdIzSMA2v091K0gT1YjEwc7YR5pIA5yq7PnZivhoH3YETMhZbUySzsLbJKhj/E3ei6nEgtqdm00AVHXeg=="
+        "resolved": "11.4.0",
+        "contentHash": "WZJyrNf4suiaI6avVG32W9kmBLC3+V5rDTcLeRJjeU4tDmTyDIOz1459DzCKppXs34YpZg9rCUzDY3M4XxG7Ug=="
       },
       "MediatR.Contracts": {
         "type": "Transitive",
@@ -160,7 +160,7 @@
       "wally.cleanarchitecture.microservice.contracts": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "[11.3.0, )",
+          "FluentValidation": "[11.4.0, )",
           "Reinforced.Typings": "[1.6.1, )",
           "Wally.Lib.DDD.Abstractions": "[1.2.0, )"
         }

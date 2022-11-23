@@ -2,7 +2,6 @@
 using FluentValidation.AspNetCore;
 
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.OData;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -40,21 +39,7 @@ public static class WebApiExtensions
 
 	public static IApplicationBuilder UseWebApi(this IApplicationBuilder app)
 	{
-		app.UseEndpoints(
-			endpoints =>
-			{
-				endpoints.MapControllers();
-
-				// Adds Liveness
-				endpoints.MapGet(
-					"/",
-					async context =>
-					{
-						await context.Response.WriteAsync(
-							$"v{typeof(WebApiExtensions).Assembly.GetName().Version}",
-							context.RequestAborted);
-					});
-			});
+		app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
 		return app;
 	}

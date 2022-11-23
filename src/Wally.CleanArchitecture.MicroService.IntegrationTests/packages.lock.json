@@ -240,8 +240,8 @@
       },
       "FluentValidation": {
         "type": "Transitive",
-        "resolved": "11.3.0",
-        "contentHash": "AlsfUkdIzSMA2v091K0gT1YjEwc7YR5pIA5yq7PnZivhoH3YETMhZbUySzsLbJKhj/E3ei6nEgtqdm00AVHXeg=="
+        "resolved": "11.4.0",
+        "contentHash": "WZJyrNf4suiaI6avVG32W9kmBLC3+V5rDTcLeRJjeU4tDmTyDIOz1459DzCKppXs34YpZg9rCUzDY3M4XxG7Ug=="
       },
       "FluentValidation.AspNetCore": {
         "type": "Transitive",
@@ -312,8 +312,8 @@
       },
       "MediatR": {
         "type": "Transitive",
-        "resolved": "11.0.0",
-        "contentHash": "8klzVGZQiA2oxZRzQFBZbdPD/IQUm9RYtfiyTDKhxDQ99Gi93+GXt1ZJjH2D7Lh7ZFHCv5XdkwbmfHEQBCatPg==",
+        "resolved": "11.1.0",
+        "contentHash": "YIbtrLOyeCuIv8vIuHL/mMdls5xmgS36pIOJDxKZuu55nxA2MI2Z+E/Uk0z+F/LE11AGmpjplOM0NZ91m5LQBA==",
         "dependencies": {
           "MediatR.Contracts": "1.0.1"
         }
@@ -1801,7 +1801,7 @@
       "wally.cleanarchitecture.microservice.contracts": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "[11.3.0, )",
+          "FluentValidation": "[11.4.0, )",
           "Reinforced.Typings": "[1.6.1, )",
           "Wally.Lib.DDD.Abstractions": "[1.2.0, )"
         }
@@ -1823,7 +1823,7 @@
           "AutoMapper.Extensions.ExpressionMapping": "[6.0.1, )",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "[12.0.0, )",
           "FluentValidation.AspNetCore": "[11.2.2, )",
-          "MediatR": "[11.0.0, )",
+          "MediatR": "[11.1.0, )",
           "MediatR.Extensions.Microsoft.DependencyInjection": "[11.0.0, )",
           "Microsoft.AspNetCore.Http.Abstractions": "[2.2.0, )",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "[7.0.0, )",
@@ -1853,7 +1853,7 @@
       "wally.cleanarchitecture.microservice.messaging": {
         "type": "Project",
         "dependencies": {
-          "MediatR": "[11.0.0, )",
+          "MediatR": "[11.1.0, )",
           "Microsoft.Extensions.Logging.Abstractions": "[7.0.0, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.IdentityProvider.Contracts": "[1.1.0, )",
@@ -1882,8 +1882,8 @@
       "wally.cleanarchitecture.microservice.pipelinebehaviours": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "[11.3.0, )",
-          "MediatR": "[11.0.0, )",
+          "FluentValidation": "[11.4.0, )",
+          "MediatR": "[11.1.0, )",
           "Microsoft.EntityFrameworkCore": "[7.0.0, )",
           "Microsoft.Extensions.Logging.Abstractions": "[7.0.0, )",
           "Newtonsoft.Json": "[13.0.1, )",
