@@ -64,13 +64,13 @@
       },
       "Microsoft.AspNetCore.OData": {
         "type": "Transitive",
-        "resolved": "8.0.11",
-        "contentHash": "SsvM2w4AjiFWbls6rcbW2bdDx6cK3oAccZgBWTfhf1gjmNVNAYPizx2F9sIJJB0eBV9LRnFTxlv8P8HJz2mlJQ==",
+        "resolved": "8.0.12",
+        "contentHash": "THP/yG3nQZZRTZ4Asly0/sBBBmR92pKEYMG9X2GHgaN8/268sz9e4pyWwgcR7J/uUjFYjiV2ufxr8wV5X3L4pg==",
         "dependencies": {
-          "Microsoft.OData.Core": "[7.12.2, 8.0.0)",
-          "Microsoft.OData.Edm": "[7.12.2, 8.0.0)",
+          "Microsoft.OData.Core": "[7.12.5, 8.0.0)",
+          "Microsoft.OData.Edm": "[7.12.5, 8.0.0)",
           "Microsoft.OData.ModelBuilder": "[1.0.8, 2.0.0)",
-          "Microsoft.Spatial": "[7.12.2, 8.0.0)"
+          "Microsoft.Spatial": "[7.12.5, 8.0.0)"
         }
       },
       "Microsoft.Bcl.AsyncInterfaces": {
@@ -80,18 +80,18 @@
       },
       "Microsoft.OData.Core": {
         "type": "Transitive",
-        "resolved": "7.12.2",
-        "contentHash": "5eIw638pNESFX6ptTZO+BXnRsE3PDvB7r/bFMYbZCBHVpFukBw2aLXBgRG+hFU7nH8FaeCdOAyb2hShF2ml+cQ==",
+        "resolved": "7.12.5",
+        "contentHash": "mMElnGayWVOrp5qX4B7eX05UBdK/LeNgaQc7wWNJHOXVnSjgZFq+gnAoSWNMQK37BJWxnYidzKm6+BSEitaVAQ==",
         "dependencies": {
           "Microsoft.Bcl.AsyncInterfaces": "5.0.0",
-          "Microsoft.OData.Edm": "[7.12.2]",
-          "Microsoft.Spatial": "[7.12.2]"
+          "Microsoft.OData.Edm": "[7.12.5]",
+          "Microsoft.Spatial": "[7.12.5]"
         }
       },
       "Microsoft.OData.Edm": {
         "type": "Transitive",
-        "resolved": "7.12.2",
-        "contentHash": "kloomMn+kiMtQeWvth02ODFDj2bmsI4MY2zagepIpq7SgwwNek1v8GxsLKyz6XTzQ71BunO7JVtPWADP1jBC7A==",
+        "resolved": "7.12.5",
+        "contentHash": "x6FOI1Ex9qldTk4WN7w4OVCP+1XJrFApW+JhRblo6+6kVDxN7Kfm/mniHMeGSGvd4KDvm8oxf9RyRwXoeZY4wQ==",
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "4.6.0",
           "System.Text.Encodings.Web": "4.7.2",
@@ -110,8 +110,8 @@
       },
       "Microsoft.Spatial": {
         "type": "Transitive",
-        "resolved": "7.12.2",
-        "contentHash": "jKqfHYUWyKRDH6xAiMN6IABn0kkGVsZR2BCVDG8WzOKBsKSayuBtNcWFmqjE0ibVdarIVROs48myVlAC6r1nMA=="
+        "resolved": "7.12.5",
+        "contentHash": "AjhsYDbi4HS6J5VzY0cwg5x6D/i8bK00WRK+2xZX0UcvxWggYiFVY4lX+aujUnq9tPYBe46m7ANpiTeAl0HgYA=="
       },
       "Newtonsoft.Json": {
         "type": "Transitive",
@@ -151,7 +151,7 @@
       "wally.cleanarchitecture.microservice.application": {
         "type": "Project",
         "dependencies": {
-          "Microsoft.AspNetCore.OData": "[8.0.11, )",
+          "Microsoft.AspNetCore.OData": "[8.0.12, )",
           "Wally.CleanArchitecture.MicroService.Contracts": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )",
           "Wally.Lib.ServiceBus.Abstractions": "[1.2.7, )"

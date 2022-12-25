@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-using Wally.CleanArchitecture.ApiGateway.WebApi.Models;
+using Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Models;
 
-namespace Wally.CleanArchitecture.ApiGateway.WebApi.Extensions;
+namespace Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Extensions;
 
 public static class HealthChecksExtensions
 {

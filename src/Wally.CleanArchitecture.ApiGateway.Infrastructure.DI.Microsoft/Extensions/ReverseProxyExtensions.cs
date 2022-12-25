@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Wally.CleanArchitecture.ApiGateway.WebApi.Extensions;
+namespace Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Extensions;
 
 public static class ReverseProxyExtensions
 {

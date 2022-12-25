@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-using Wally.CleanArchitecture.ApiGateway.WebApi.Extensions;
-using Wally.CleanArchitecture.ApiGateway.WebApi.Models;
+using Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Extensions;
+using Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Models;
 
-namespace Wally.CleanArchitecture.ApiGateway.WebApi;
+namespace Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft;
 
 public static class ServiceCollectionExtensions
 {

@@ -5,8 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-using Wally.CleanArchitecture.ApiGateway.WebApi.Extensions;
-using Wally.CleanArchitecture.ApiGateway.WebApi.Models;
+using Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft;
+using Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Extensions;
+using Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Models;
 
 namespace Wally.CleanArchitecture.ApiGateway.WebApi;
 
