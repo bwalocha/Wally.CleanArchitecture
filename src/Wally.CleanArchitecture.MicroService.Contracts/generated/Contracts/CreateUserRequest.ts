@@ -2,9 +2,6 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 
-import { Dayjs } from 'dayjs';
-
-export interface CreateUserRequest
-{
-	name: string;
+export interface CreateUserRequest {
+    name: string;
 }

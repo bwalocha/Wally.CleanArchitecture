@@ -21,14 +21,14 @@
           "outputTemplate": "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Properties:j}{NewLine}{Exception}{NewLine}"
         }
       },
-//      {
-//        "Name": "ApplicationInsights",
-//        "Args": {
-//          "connectionString": "---",
-//          "restrictedToMinimumLevel": "Information",
-//          "telemetryConverter": "Serilog.Sinks.ApplicationInsights.TelemetryConverters.TraceTelemetryConverter, Serilog.Sinks.ApplicationInsights"
-//        }
-//      },
+      //      {
+      //        "Name": "ApplicationInsights",
+      //        "Args": {
+      //          "connectionString": "---",
+      //          "restrictedToMinimumLevel": "Information",
+      //          "telemetryConverter": "Serilog.Sinks.ApplicationInsights.TelemetryConverters.TraceTelemetryConverter, Serilog.Sinks.ApplicationInsights"
+      //        }
+      //      },
       {
         "Name": "MSSqlServer",
         "Args": {

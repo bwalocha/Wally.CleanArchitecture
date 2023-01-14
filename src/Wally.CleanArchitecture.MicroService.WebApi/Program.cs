@@ -1,12 +1,14 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
-// using Azure.Identity;
+
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
 using Serilog;
+
+// using Azure.Identity;
 
 namespace Wally.CleanArchitecture.MicroService.WebApi;
 
@@ -20,8 +22,9 @@ public static class Program
 	public static int Main(string[] args)
 	{
 		var configurationBuilder = new ConfigurationBuilder();
-		var configuration = ConfigureDefaultConfiguration(configurationBuilder).Build();
-		
+		var configuration = ConfigureDefaultConfiguration(configurationBuilder)
+			.Build();
+
 		Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration)
 			.CreateLogger();
 
@@ -49,26 +52,19 @@ public static class Program
 	private static IConfigurationBuilder ConfigureDefaultConfiguration(IConfigurationBuilder configurationBuilder)
 	{
 		var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
-		
+
 		configurationBuilder.Sources.Clear();
 
-		return configurationBuilder
-			.SetBasePath(Directory.GetCurrentDirectory())
+		return configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
 			.AddJsonFile("appsettings.json", false, _reloadOnChange)
-			.AddJsonFile(
-				$"appsettings.{env}.json",
-				true,
-				_reloadOnChange)
+			.AddJsonFile($"appsettings.{env}.json", true, _reloadOnChange)
 			.AddJsonFile("serilog.json", true, _reloadOnChange)
-			.AddJsonFile(
-				$"serilog.{env}.json",
-				true,
-				_reloadOnChange)
-			.AddEnvironmentVariables(); 
+			.AddJsonFile($"serilog.{env}.json", true, _reloadOnChange)
+			.AddEnvironmentVariables();
 	}
 
 	/// <summary>
-	/// https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-nonaad#grant-access
+	///     https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-nonaad#grant-access
 	/// </summary>
 	/// <param name="configurationBuilder"></param>
 	/// <returns></returns>
@@ -88,8 +84,7 @@ public static class Program
 
 	private static IHostBuilder CreateHostBuilder(string[] args)
 	{
-		return Host
-			.CreateDefaultBuilder(args)
+		return Host.CreateDefaultBuilder(args)
 			.ConfigureAppConfiguration(a => ConfigureAppConfiguration(ConfigureDefaultConfiguration(a)))
 			.UseSerilog()
 			.UseDefaultServiceProvider(opt => { opt.ValidateScopes = true; })

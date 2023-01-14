@@ -3,6 +3,7 @@ using Wally.CleanArchitecture.MicroService.Contracts.Requests.Users;
 using Wally.CleanArchitecture.MicroService.ConventionTests.Helpers;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft;
+using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.MapperProfiles;
 using Wally.CleanArchitecture.MicroService.Messaging.Consumers;
 using Wally.CleanArchitecture.MicroService.Persistence;
@@ -14,6 +15,8 @@ namespace Wally.CleanArchitecture.MicroService.ConventionTests;
 
 public static class Configuration
 {
+	public static Types Types => new() { AppSettings = new[] { typeof(AppSettings), }, };
+
 	public static Assemblies Assemblies =>
 		new()
 		{

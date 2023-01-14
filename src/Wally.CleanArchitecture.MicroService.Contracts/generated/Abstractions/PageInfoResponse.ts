@@ -2,11 +2,8 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 
-import { Dayjs } from 'dayjs';
-
-export interface PageInfoResponse
-{
-	index: number;
-	size: number;
-	totalItems: number;
+export interface PageInfoResponse {
+    index: number;
+    size: number;
+    totalItems: number;
 }
