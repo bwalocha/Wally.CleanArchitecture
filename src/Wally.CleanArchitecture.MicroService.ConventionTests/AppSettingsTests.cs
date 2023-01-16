@@ -36,7 +36,7 @@ public class AppSettingsTests
 					}
 					else
 					{
-						property.DeclaringType.IsClass.Should()
+						property.DeclaringType!.IsClass.Should()
 							.BeTrue();
 					}
 				}

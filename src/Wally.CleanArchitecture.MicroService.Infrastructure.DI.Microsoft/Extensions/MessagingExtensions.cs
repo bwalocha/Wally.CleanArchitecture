@@ -20,7 +20,7 @@ public static class MessagingExtensions
 		services.AddPublisher();
 
 		services.Scan(
-			a => a.FromAssemblyOf<UserCreatedConsumer>()
+			a => a.FromAssemblyOf<UserCreatedMessageConsumer>()
 				.AddClasses(c => c.AssignableTo(typeof(Consumer<>)))
 				.AsImplementedInterfaces()
 				.WithScopedLifetime());

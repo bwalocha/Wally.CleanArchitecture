@@ -72,7 +72,7 @@ public class RequestTests
 	}
 
 	[Fact]
-	public void Application_AllClassessEndsWithRequest_ShouldImplementIRequest()
+	public void Application_AllClassesEndsWithRequest_ShouldImplementIRequest()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
@@ -88,7 +88,7 @@ public class RequestTests
 	}
 
 	[Fact]
-	public void Application_AllClassessImplementsIRequest_ShouldHaveRequestSuffix()
+	public void Application_AllClassesImplementsIRequest_ShouldHaveRequestSuffix()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
@@ -104,7 +104,7 @@ public class RequestTests
 	}
 
 	[Fact]
-	public void Application_AllClassessImplementsIRequest_ShouldHaveCorrespondingValidator()
+	public void Application_AllClassesImplementsIRequest_ShouldHaveCorrespondingValidator()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 

@@ -31,7 +31,7 @@ public class DomainEventTests
 	}
 
 	[Fact]
-	public void Domain_AllClassessEndsWithEvent_ShouldInheritDomainEvent()
+	public void Domain_AllClassesEndsWithEvent_ShouldInheritDomainEvent()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
@@ -48,7 +48,7 @@ public class DomainEventTests
 	}
 
 	[Fact]
-	public void Domain_AllClassessWhichInheritsDomainEvent_ShouldHasEventSuffix()
+	public void Domain_AllClassesWhichInheritsDomainEvent_ShouldHasEventSuffix()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();

@@ -9,15 +9,15 @@ using Wally.Lib.ServiceBus.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Messaging.Consumers;
 
-public class UserUpdatedConsumer : Consumer<UserUpdatedMessage>
+public class UserCreatedMessageConsumer : Consumer<UserCreatedMessage>
 {
-	public UserUpdatedConsumer(IMediator mediator, ILogger<UserUpdatedConsumer> logger)
+	public UserCreatedMessageConsumer(IMediator mediator, ILogger<UserCreatedMessageConsumer> logger)
 		: base(mediator, logger)
 	{
 	}
 
-	protected override ICommand CreateCommand(UserUpdatedMessage message)
+	protected override ICommand CreateCommand(UserCreatedMessage message)
 	{
-		return new UpdateUserCommand(message.UserId, message.UserName);
+		return new CreateUserCommand(message.UserId, message.UserName);
 	}
 }

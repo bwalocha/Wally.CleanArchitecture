@@ -29,7 +29,7 @@ public static class Configuration
 			Domain = new[] { typeof(User).Assembly, },
 			Infrastructure = new[]
 			{
-				typeof(ServiceCollectionExtensions).Assembly, typeof(UserCreatedConsumer).Assembly,
+				typeof(ServiceCollectionExtensions).Assembly, typeof(UserCreatedMessageConsumer).Assembly,
 				typeof(ApplicationDbContext).Assembly, typeof(Helper).Assembly, typeof(LogBehavior<,>).Assembly,
 			},
 			Presentation = new[] { typeof(Startup).Assembly, },
