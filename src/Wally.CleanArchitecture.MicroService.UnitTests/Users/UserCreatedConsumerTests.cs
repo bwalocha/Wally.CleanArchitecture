@@ -24,7 +24,9 @@ public class UserCreatedConsumerTests
 	public UserCreatedConsumerTests()
 	{
 		_mediatorMock = new Mock<IMediator>();
-		_consumer = new UserCreatedMessageConsumer(_mediatorMock.Object, new Mock<ILogger<UserCreatedMessageConsumer>>().Object);
+		_consumer = new UserCreatedMessageConsumer(
+			_mediatorMock.Object,
+			new Mock<ILogger<UserCreatedMessageConsumer>>().Object);
 	}
 
 	[Fact]

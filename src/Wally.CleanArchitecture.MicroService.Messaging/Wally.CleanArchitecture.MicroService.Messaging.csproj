@@ -7,15 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MediatR" Version="11.1.0"/>
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0"/>
-        <PackageReference Include="Wally.IdentityProvider.Contracts" Version="1.1.0"/>
-        <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.2.0"/>
-        <PackageReference Include="Wally.Lib.ServiceBus.Abstractions" Version="1.2.7"/>
+        <PackageReference Include="MediatR" Version="11.1.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
+        <PackageReference Include="Wally.IdentityProvider.Contracts" Version="1.1.0" />
+        <PackageReference Include="Wally.Lib.DDD.Abstractions" Version="1.2.0" />
+        <PackageReference Include="Wally.Lib.ServiceBus.Abstractions" Version="1.2.7" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application\Wally.CleanArchitecture.MicroService.Application.csproj"/>
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application\Wally.CleanArchitecture.MicroService.Application.csproj" />
     </ItemGroup>
 
 </Project>

@@ -62,6 +62,9 @@ deploy:nuget:tpl:
     - publish:tpl
   variables:
     PROJECT_NAME: ${TPL_PROJECT_NAME}
+  environment:
+    name: ${ENV}_${TPL_PROJECT_NAME}
+    url: https://www.nuget.org/packages/${TPL_PROJECT_NAME}
 
 deploy:baget:tpl:
   extends:

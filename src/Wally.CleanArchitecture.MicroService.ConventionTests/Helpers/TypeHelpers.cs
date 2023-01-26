@@ -101,7 +101,7 @@ public static class TypeHelpers
 			{
 				break;
 			}
-			
+
 			type = type.BaseType;
 		}
 

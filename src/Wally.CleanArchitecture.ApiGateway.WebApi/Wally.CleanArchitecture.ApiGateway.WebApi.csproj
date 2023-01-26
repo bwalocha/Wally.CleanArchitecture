@@ -7,12 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Serilog.AspNetCore" Version="6.1.0"/>
-        <PackageReference Include="Serilog.Sinks.ApplicationInsights" Version="4.0.0"/>
+        <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
+        <PackageReference Include="Serilog.Sinks.ApplicationInsights" Version="4.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft\Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.csproj"/>
+        <ProjectReference Include="..\Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft\Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.csproj" />
     </ItemGroup>
 
 </Project>

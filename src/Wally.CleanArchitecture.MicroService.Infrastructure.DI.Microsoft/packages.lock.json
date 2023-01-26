@@ -229,8 +229,8 @@
       },
       "AutoMapper": {
         "type": "Transitive",
-        "resolved": "12.0.0",
-        "contentHash": "0Rmg0zI5AFu1O/y//o9VGyhxKjhggWpk9mOA1tp0DEVx40c61bs+lnQv+0jUq8XbniF7FKgIVvI1perqiMtLrA==",
+        "resolved": "12.0.1",
+        "contentHash": "hvV62vl6Hp/WfQ24yzo3Co9+OPl8wH8hApwVtgWpiAynVJkUcs7xvehnSftawL8Pe8FrPffBRM3hwzLQqWDNjA==",
         "dependencies": {
           "Microsoft.CSharp": "4.7.0"
         }
@@ -1382,7 +1382,7 @@
       "wally.cleanarchitecture.microservice.mapperprofiles": {
         "type": "Project",
         "dependencies": {
-          "AutoMapper": "[12.0.0, )",
+          "AutoMapper": "[12.0.1, )",
           "Wally.CleanArchitecture.MicroService.Contracts": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
@@ -1401,7 +1401,7 @@
       "wally.cleanarchitecture.microservice.persistence": {
         "type": "Project",
         "dependencies": {
-          "AutoMapper": "[12.0.0, )",
+          "AutoMapper": "[12.0.1, )",
           "AutoMapper.Extensions.ExpressionMapping": "[6.0.2, )",
           "Microsoft.EntityFrameworkCore": "[7.0.2, )",
           "Microsoft.EntityFrameworkCore.Relational": "[7.0.2, )",
