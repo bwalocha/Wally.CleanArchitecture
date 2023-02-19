@@ -66,8 +66,8 @@ public static class Program
 	/// <summary>
 	///     https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-nonaad#grant-access
 	/// </summary>
-	/// <param name="configurationBuilder"></param>
-	/// <returns></returns>
+	/// <param name="configurationBuilder">The ConfigurationBuilder</param>
+	/// <returns>The ConfigurationBuilder.</returns>
 	private static IConfigurationBuilder ConfigureAppConfiguration(IConfigurationBuilder configurationBuilder)
 	{
 		/*var configuration = configurationBuilder.Build();

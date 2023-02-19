@@ -83,7 +83,9 @@ public class UsersController : ControllerBase
 	public async Task<ActionResult<object>> CreateAsync(CreateUserRequest request, CancellationToken cancellationToken)
 	{
 		var command = new CreateUserCommand(request.Name);
-		return Ok(await _mediator.Send(command, cancellationToken));
+		await _mediator.Send(command, cancellationToken);
+		
+		return Ok();
 	}
 
 	/// <summary>
@@ -107,6 +109,8 @@ public class UsersController : ControllerBase
 		CancellationToken cancellationToken)
 	{
 		var command = new UpdateUserCommand(id, request.Name);
-		return Ok(await _mediator.Send(command, cancellationToken));
+		await _mediator.Send(command, cancellationToken);
+		
+		return Ok();
 	}
 }

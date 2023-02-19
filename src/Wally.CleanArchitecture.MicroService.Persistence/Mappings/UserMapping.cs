@@ -12,7 +12,7 @@ internal class UserMapping : IEntityTypeConfiguration<User>
 		builder.HasIndex(a => a.Name)
 			.IsUnique();
 
-		builder.Property(user => user.Name)
+		builder.Property(a => a.Name)
 			.IsRequired()
 			.HasMaxLength(250);
 	}
