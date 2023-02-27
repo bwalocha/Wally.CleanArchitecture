@@ -24,7 +24,6 @@ using Wally.Lib.DDD.Abstractions.Responses;
 
 using Xunit;
 
-// [assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace Wally.CleanArchitecture.MicroService.IntegrationTests;
 
 // [Collection(nameof(UsersControllerTests))]
@@ -60,13 +59,13 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	}
 
 	[Fact]
-	public async Task Get_NoExistingUser_Returns404()
+	public async Task Get_NoExistingResource_Returns404()
 	{
 		// Arrange
-		var userId = Guid.NewGuid();
+		var resourceId = Guid.NewGuid();
 
 		// Act
-		var response = await _httpClient.GetAsync($"Users/{userId}");
+		var response = await _httpClient.GetAsync($"Users/{resourceId}");
 
 		// Assert
 		response.IsSuccessStatusCode.Should()
@@ -76,7 +75,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	}
 
 	[Fact]
-	public async Task GetOData_NoQueryStringNoUsers_ReturnsEmptyResponse()
+	public async Task GetOData_NoQueryStringNoResources_ReturnsEmptyResponse()
 	{
 		// Arrange
 
@@ -96,7 +95,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	}
 
 	[Fact]
-	public async Task GetOData_Top1NoUsers_ReturnsEmptyResponse()
+	public async Task GetOData_Top1NoResources_ReturnsEmptyResponse()
 	{
 		// Arrange
 
@@ -140,7 +139,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	}
 
 	[Fact]
-	public async Task GetOData_3Users_Returns3Users()
+	public async Task GetOData_3Resources_Returns3Users()
 	{
 		// Arrange
 		_database.Add(User.Create("testUser1"));
@@ -149,7 +148,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 		await _database.SaveChangesAsync();
 
 		// Act
-		var response = await _httpClient.GetAsync("Users"); // 3
+		var response = await _httpClient.GetAsync("Users"); // x3
 
 		// Assert
 		response.IsSuccessStatusCode.Should()
@@ -164,7 +163,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	}
 
 	[Fact]
-	public async Task GetOData_3UsersOrdered_Returns3Users()
+	public async Task GetOData_3ResourcesOrdered_Returns3Resources()
 	{
 		// Arrange
 		_database.Add(User.Create("testUser1"));
@@ -173,7 +172,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 		await _database.SaveChangesAsync();
 
 		// Act
-		var response = await _httpClient.GetAsync("Users?$orderby=Name"); // 3
+		var response = await _httpClient.GetAsync("Users?$orderby=Name"); // x3
 
 		// Assert
 		response.IsSuccessStatusCode.Should()
@@ -197,7 +196,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	}
 
 	[Fact]
-	public async Task GetOData_3UsersOrderedDesc_Returns3Users()
+	public async Task GetOData_3ResourcesOrderedDesc_Returns3Resources()
 	{
 		// Arrange
 		_database.Add(User.Create("testUser1"));
@@ -206,7 +205,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 		await _database.SaveChangesAsync();
 
 		// Act
-		var response = await _httpClient.GetAsync("Users?$orderby=Name desc"); // 3
+		var response = await _httpClient.GetAsync("Users?$orderby=Name desc"); // x3
 
 		// Assert
 		response.IsSuccessStatusCode.Should()
@@ -230,7 +229,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	}
 
 	[Fact]
-	public async Task GetOData_OrderSkip_ReturnsEmptyResponse()
+	public async Task GetOData_3ResourcesOrderedSkipped_Returns2Resources()
 	{
 		// Arrange
 		_database.Add(User.Create("testUser1"));
@@ -239,10 +238,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 		await _database.SaveChangesAsync();
 
 		// Act
-		var response = await _httpClient.GetAsync("Users?$orderby=Name&$skip=1"); // 1
-
-		// var response = await _httpClient.GetAsync($"Users?$orderby=Name&$top=1");
-		// var response = await _httpClient.GetAsync($"Users?$orderby=Name&$skip=1&$top=1");
+		var response = await _httpClient.GetAsync("Users?$orderby=Name&$skip=1"); // x2
 
 		// Assert
 		response.IsSuccessStatusCode.Should()
@@ -263,7 +259,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	}
 
 	[Fact]
-	public async Task GetOData_OrderTop2_ReturnsEmptyResponse()
+	public async Task GetOData_3ResourcesOrderedTop2_Returns2Resources()
 	{
 		// Arrange
 		_database.Add(User.Create("testUser1"));
@@ -272,7 +268,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 		await _database.SaveChangesAsync();
 
 		// Act
-		var response = await _httpClient.GetAsync("Users?$orderby=Name&$top=2"); // 1
+		var response = await _httpClient.GetAsync("Users?$orderby=Name&$top=2"); // x2
 
 		// Assert
 		response.IsSuccessStatusCode.Should()
@@ -293,7 +289,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	}
 
 	[Fact]
-	public async Task GetOData_OrderSkip1Top2_ReturnsEmptyResponse()
+	public async Task GetOData_3ResourcesOrderedSkipped1Top2_Returns2Resources()
 	{
 		// Arrange
 		_database.Add(User.Create("testUser1"));
@@ -323,7 +319,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	}
 
 	[Fact]
-	public async Task GetOData_OrderSkip1Top2Filter_ReturnsValidResponse()
+	public async Task GetOData_3ResourcesOrderedSkipped1Top2Filtered_Returns1Resource()
 	{
 		// Arrange
 		_database.Add(User.Create("testUser1"));
@@ -333,7 +329,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 
 		// Act
 		var response =
-			await _httpClient.GetAsync("Users?$orderby=Name&$skip=1&$top=2&$filter=Name ne 'testUser3'"); // 1
+			await _httpClient.GetAsync("Users?$orderby=Name&$skip=1&$top=2&$filter=Name ne 'testUser3'"); // x1
 
 		// Assert
 		response.IsSuccessStatusCode.Should()
@@ -351,16 +347,16 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	}
 
 	[Fact]
-	public async Task Put_ForExistingUser_UpdatesUserData()
+	public async Task Put_ForExistingResource_UpdatesResourceData()
 	{
 		// Arrange
-		var user = User.Create("testUser3");
-		_database.Add(user);
+		var resource = User.Create("testUser3");
+		_database.Add(resource);
 		await _database.SaveChangesAsync();
-		var request = new UpdateUserRequest("newTestUser3");
+		var request = new UpdateUserRequest("newTestResource1");
 
 		// Act
-		var response = await _httpClient.PutAsync($"Users/{user.Id}", request, CancellationToken.None);
+		var response = await _httpClient.PutAsync($"Users/{resource.Id}", request, CancellationToken.None);
 
 		// Assert
 		response.IsSuccessStatusCode.Should()
@@ -369,13 +365,13 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 			.Be(HttpStatusCode.OK);
 		_factory.GetRequiredService<DbContext>()
 			.Set<User>()
-			.Single(a => a.Id == user.Id)
+			.Single(a => a.Id == resource.Id)
 			.Name.Should()
-			.Be("newTestUser3");
+			.Be("newTestResource1");
 	}
 
 	[Fact]
-	public async Task Create_ForNewModel_CreatesNewEntry()
+	public async Task Create_ForNewResource_CreatesNewResource()
 	{
 		// Arrange
 		var request = new CreateUserRequest("newName3");
@@ -396,7 +392,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	}
 
 	[Fact]
-	public async Task Create_ForInvalidModel_ReturnsBadRequest()
+	public async Task Create_ForInvalidRequest_ReturnsBadRequest()
 	{
 		// Arrange
 		var request = new CreateUserRequest(string.Empty);

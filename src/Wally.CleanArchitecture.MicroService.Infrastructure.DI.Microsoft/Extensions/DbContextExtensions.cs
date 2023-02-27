@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
+using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Providers;
 using Wally.CleanArchitecture.MicroService.Persistence;
 using Wally.CleanArchitecture.MicroService.Persistence.SqlServer;
 
@@ -47,6 +48,8 @@ public static class DbContextExtensions
 				.AddClasses(c => c.AssignableTo(typeof(IReadOnlyRepository<>)))
 				.AsImplementedInterfaces()
 				.WithScopedLifetime());
+		
+		services.AddScoped<IUserProvider, HttpUserProvider>();
 
 		return services;
 	}
