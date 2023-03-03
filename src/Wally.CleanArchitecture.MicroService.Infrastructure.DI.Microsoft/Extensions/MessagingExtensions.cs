@@ -1,15 +1,11 @@
 ﻿using System;
 
-using Microsoft.AspNetCore.Builder;
+using MassTransit;
+
 using Microsoft.Extensions.DependencyInjection;
 
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Messaging.Consumers;
-using Wally.Lib.ServiceBus.Abstractions;
-using Wally.Lib.ServiceBus.DI.Microsoft;
-
-using MessageBroker_AzureServiceBus = Wally.Lib.ServiceBus.Azure;
-using MessageBroker_RabbitMQ = Wally.Lib.ServiceBus.RabbitMQ;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 
@@ -17,39 +13,36 @@ public static class MessagingExtensions
 {
 	public static IServiceCollection AddMessaging(this IServiceCollection services, AppSettings settings)
 	{
-		services.AddPublisher();
+		services.AddMassTransit(
+			a =>
+			{
+				a.AddConsumers(typeof(UserCreatedMessageConsumer).Assembly);
 
-		services.Scan(
-			a => a.FromAssemblyOf<UserCreatedMessageConsumer>()
-				.AddClasses(c => c.AssignableTo(typeof(Consumer<>)))
-				.AsImplementedInterfaces()
-				.WithScopedLifetime());
+				switch (settings.MessageBroker)
+				{
+					case MessageBrokerType.AzureServiceBus:
+						a.UsingAzureServiceBus(
+							(host, cfg) =>
+							{
+								cfg.Host(settings.ConnectionStrings.ServiceBus);
 
-		switch (settings.MessageBroker)
-		{
-			case MessageBrokerType.AzureServiceBus:
-				services.AddSingleton(
-					_ => MessageBroker_AzureServiceBus.Factory.Create(
-						new MessageBroker_AzureServiceBus.Settings(settings.ConnectionStrings.ServiceBus)));
-				break;
-			case MessageBrokerType.RabbitMQ:
-				services.AddSingleton(
-					_ => MessageBroker_RabbitMQ.Factory.Create(
-						new MessageBroker_RabbitMQ.Settings(settings.ConnectionStrings.ServiceBus)));
-				break;
-			default:
-				throw new ArgumentOutOfRangeException(nameof(settings.MessageBroker), "Unknown Message Broker");
-		}
+								cfg.ConfigureEndpoints(host);
+							});
+						break;
+					case MessageBrokerType.RabbitMQ:
+						a.UsingRabbitMq(
+							(host, cfg) =>
+							{
+								cfg.Host(new Uri(settings.ConnectionStrings.ServiceBus));
 
-		services.AddServiceBus();
+								cfg.ConfigureEndpoints(host);
+							});
+						break;
+					default:
+						throw new ArgumentOutOfRangeException(nameof(settings.MessageBroker), "Unknown Message Broker");
+				}
+			});
 
 		return services;
-	}
-
-	public static IApplicationBuilder UseMessaging(this IApplicationBuilder app)
-	{
-		app.UseServiceBus();
-
-		return app;
 	}
 }

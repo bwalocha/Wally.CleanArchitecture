@@ -139,7 +139,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	}
 
 	[Fact]
-	public async Task GetOData_3Resources_Returns3Users()
+	public async Task GetOData_3Resources_Returns3Resources()
 	{
 		// Arrange
 		_database.Add(User.Create("testUser1"));

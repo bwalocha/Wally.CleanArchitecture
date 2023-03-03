@@ -8,6 +8,8 @@ using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Types;
 
+using MassTransit;
+
 using MediatR;
 
 using Wally.CleanArchitecture.MicroService.ConventionTests.Helpers;
@@ -52,6 +54,12 @@ public class AsyncTests
 
 						if (type.ImplementsGenericInterface(typeof(IPipelineBehavior<,>)) &&
 							method.Name == nameof(IPipelineBehavior<IRequest<object>, object>.Handle))
+						{
+							continue;
+						}
+
+						if (type.ImplementsGenericInterface(typeof(IConsumer<>)) &&
+							method.Name == nameof(IConsumer<object>.Consume))
 						{
 							continue;
 						}
@@ -103,6 +111,12 @@ public class AsyncTests
 
 						if (type.ImplementsGenericInterface(typeof(IPipelineBehavior<,>)) &&
 							method.Name == nameof(IPipelineBehavior<IRequest<object>, object>.Handle))
+						{
+							continue;
+						}
+
+						if (type.ImplementsGenericInterface(typeof(IConsumer<>)) &&
+							method.Name == nameof(IConsumer<object>.Consume))
 						{
 							continue;
 						}

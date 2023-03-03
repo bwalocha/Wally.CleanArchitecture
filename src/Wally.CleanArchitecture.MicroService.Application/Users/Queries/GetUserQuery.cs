@@ -7,7 +7,7 @@ using Wally.Lib.DDD.Abstractions.Queries;
 namespace Wally.CleanArchitecture.MicroService.Application.Users.Queries;
 
 [ExcludeFromCodeCoverage]
-public class GetUserQuery : IQuery<GetUserResponse>
+public sealed class GetUserQuery : IQuery<GetUserResponse>
 {
 	public GetUserQuery(Guid id)
 	{

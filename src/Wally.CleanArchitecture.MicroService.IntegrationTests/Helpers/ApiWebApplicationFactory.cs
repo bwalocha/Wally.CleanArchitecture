@@ -4,6 +4,8 @@ using System.Linq;
 
 using HealthChecks.UI.Core.Data;
 
+using MassTransit;
+
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
@@ -14,11 +16,11 @@ using Microsoft.Extensions.Hosting;
 
 using Wally.CleanArchitecture.MicroService.Persistence;
 using Wally.Lib.DDD.Abstractions.DomainNotifications;
-using Wally.Lib.ServiceBus.Abstractions;
 
 using Xunit;
 
 [assembly: CollectionBehavior(DisableTestParallelization = true)]
+
 namespace Wally.CleanArchitecture.MicroService.IntegrationTests.Helpers;
 
 public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
@@ -82,7 +84,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 				var database = scopedServices.GetRequiredService<DbContext>();
 				database.Database.EnsureCreated();
 
-				services.AddTransient<IPublisher, PublisherStub>();
+				services.AddTransient<IBus, BusStub>();
 			});
 	}
 

@@ -19,8 +19,8 @@
       },
       "FluentValidation": {
         "type": "Transitive",
-        "resolved": "11.5.0",
-        "contentHash": "DExajJh+cguLk1XodH+LVVFuSsCqoEmXOQsxqP5rvVeUD1hIda59cyuL73LHJAYIrFatR8ZZ1H7kfejHN9XFWw=="
+        "resolved": "11.5.1",
+        "contentHash": "0h1Q5lNOLLyYTWMJmyNoMqhY4CBRvvUWvJP1R4F2CnmmzuWwvB0A8aVmw5+lOuwYnwUwCRrdeMLbc81F38ahNQ=="
       },
       "MediatR": {
         "type": "Transitive",
@@ -141,7 +141,7 @@
       "wally.cleanarchitecture.microservice.contracts": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "[11.5.0, )",
+          "FluentValidation": "[11.5.1, )",
           "Reinforced.Typings": "[1.6.1, )",
           "Wally.Lib.DDD.Abstractions": "[1.3.3, )"
         }

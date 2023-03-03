@@ -75,4 +75,15 @@ public class CommandTests
 			}
 		}
 	}
+
+	[Fact]
+	public void Application_Command_ShouldBeSealed()
+	{
+		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
+
+		applicationTypes.ThatImplement<ICommand>()
+			.ThatAreNotSealed()
+			.Should()
+			.BeSealed("commands should be sealed");
+	}
 }

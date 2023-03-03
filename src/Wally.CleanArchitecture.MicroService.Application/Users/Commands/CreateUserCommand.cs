@@ -6,7 +6,7 @@ using Wally.Lib.DDD.Abstractions.Commands;
 namespace Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 
 [ExcludeFromCodeCoverage]
-public class CreateUserCommand : ICommand
+public sealed class CreateUserCommand : ICommand
 {
 	public CreateUserCommand(Guid id, string name)
 	{

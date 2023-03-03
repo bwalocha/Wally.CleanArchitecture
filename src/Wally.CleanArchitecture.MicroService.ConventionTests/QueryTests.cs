@@ -44,7 +44,7 @@ public class QueryTests
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
 
-		types.Where(a => typeof(IQuery<>).IsAssignableFrom(a))
+		types.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)))
 			.Types()
 			.Should()
 			.BeSealed();

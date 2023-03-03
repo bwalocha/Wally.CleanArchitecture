@@ -48,7 +48,7 @@ public static class DbContextExtensions
 				.AddClasses(c => c.AssignableTo(typeof(IReadOnlyRepository<>)))
 				.AsImplementedInterfaces()
 				.WithScopedLifetime());
-		
+
 		services.AddScoped<IUserProvider, HttpUserProvider>();
 
 		return services;

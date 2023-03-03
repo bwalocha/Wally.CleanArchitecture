@@ -9,11 +9,12 @@
     <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Contracts\Wally.CleanArchitecture.MicroService.Contracts.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Messages\Wally.CleanArchitecture.MicroService.Messages.csproj" />
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="MassTransit.Abstractions" Version="8.0.13" />
         <PackageReference Include="Microsoft.AspNetCore.OData" Version="8.0.12" />
-        <PackageReference Include="Wally.Lib.ServiceBus.Abstractions" Version="1.3.3" />
     </ItemGroup>
 
 </Project>

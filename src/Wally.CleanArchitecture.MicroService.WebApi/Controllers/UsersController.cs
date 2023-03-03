@@ -84,7 +84,7 @@ public class UsersController : ControllerBase
 	{
 		var command = new CreateUserCommand(request.Name);
 		await _mediator.Send(command, cancellationToken);
-		
+
 		return Ok();
 	}
 
@@ -110,7 +110,7 @@ public class UsersController : ControllerBase
 	{
 		var command = new UpdateUserCommand(id, request.Name);
 		await _mediator.Send(command, cancellationToken);
-		
+
 		return Ok();
 	}
 }

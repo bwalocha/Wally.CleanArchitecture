@@ -2,15 +2,20 @@
   "version": 1,
   "dependencies": {
     "net7.0": {
+      "MassTransit.Abstractions": {
+        "type": "Direct",
+        "requested": "[8.0.13, )",
+        "resolved": "8.0.13",
+        "contentHash": "eoINmIoMobS3M4zli8kGugjKiuHTtJpxJibkeS0HuDKY9yKLIcVKtbsuYusLYbuLVycA0ybMiwmlBW18bcaG0A=="
+      },
       "MediatR": {
         "type": "Direct",
-        "requested": "[12.0.0, )",
-        "resolved": "12.0.0",
-        "contentHash": "1XodBmbn3I1y7T0iSCSl9sQqHOx/BF63GqWb7mtMQja9ESUk7QrcmzzJFOGie9ruSC7A/oaW/8TwaJLuA9RQRw==",
+        "requested": "[12.0.1, )",
+        "resolved": "12.0.1",
+        "contentHash": "vfxplMielft+g5jxGO31xjjQpI6yqe4r2YGt0Q8x23phwbpJNmUQGY+cCNNFMKKViXRM67ajUlAiwirMeuJWTQ==",
         "dependencies": {
-          "MediatR.Contracts": "[2.0.0, 3.0.0)",
-          "Microsoft.Bcl.AsyncInterfaces": "7.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0"
+          "MediatR.Contracts": "[2.0.1, 3.0.0)",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0"
         }
       },
       "Microsoft.Extensions.Logging.Abstractions": {
@@ -42,27 +47,15 @@
           "Newtonsoft.Json": "13.0.2"
         }
       },
-      "Wally.Lib.ServiceBus.Abstractions": {
-        "type": "Direct",
-        "requested": "[1.3.3, )",
-        "resolved": "1.3.3",
-        "contentHash": "txSKVOiPQBNOuWj+YM0MuX/ZNbxi3Re/StYrpwh6r94GLNL6gCudnDJLE4rIy6jBzE/sEl3tj7m40E2h7m4A2g==",
-        "dependencies": {
-          "MediatR": "12.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "7.0.0",
-          "Polly": "7.2.3",
-          "Wally.Lib.DDD.Abstractions": "1.3.3"
-        }
-      },
       "FluentValidation": {
         "type": "Transitive",
-        "resolved": "11.5.0",
-        "contentHash": "DExajJh+cguLk1XodH+LVVFuSsCqoEmXOQsxqP5rvVeUD1hIda59cyuL73LHJAYIrFatR8ZZ1H7kfejHN9XFWw=="
+        "resolved": "11.5.1",
+        "contentHash": "0h1Q5lNOLLyYTWMJmyNoMqhY4CBRvvUWvJP1R4F2CnmmzuWwvB0A8aVmw5+lOuwYnwUwCRrdeMLbc81F38ahNQ=="
       },
       "MediatR.Contracts": {
         "type": "Transitive",
-        "resolved": "2.0.0",
-        "contentHash": "DKkwHP3xb2BVeBQQedNvg7eMKvQU33H3SozHsc+drjDSCcnVb/ov4tSwdRAyLv74Nb0IUl2evVR9OQuqurGqpA=="
+        "resolved": "2.0.1",
+        "contentHash": "FYv95bNT4UwcNA+G/J1oX5OpRiSUxteXaUt2BJbRSdRNiIUNbggJF69wy6mnk2wYToaanpdXZdCwVylt96MpwQ=="
       },
       "Microsoft.AspNetCore.OData": {
         "type": "Transitive",
@@ -77,13 +70,13 @@
       },
       "Microsoft.Bcl.AsyncInterfaces": {
         "type": "Transitive",
-        "resolved": "7.0.0",
-        "contentHash": "3aeMZ1N0lJoSyzqiP03hqemtb1BijhsJADdobn/4nsMJ8V1H+CrpuduUe4hlRdx+ikBQju1VGjMD1GJ3Sk05Eg=="
+        "resolved": "5.0.0",
+        "contentHash": "W8DPQjkMScOMTtJbPwmPyj9c3zYSFGawDW3jwlBOOsnY+EzZFLgNQ/UMkK35JmkNOVPdCyPr2Tw7Vv9N+KA3ZQ=="
       },
       "Microsoft.Extensions.DependencyInjection.Abstractions": {
         "type": "Transitive",
-        "resolved": "7.0.0",
-        "contentHash": "h3j/QfmFN4S0w4C2A6X7arXij/M/OVw3uQHSOFxnND4DyAzO1F9eMX7Eti7lU/OkSthEE0WzRsfT/Dmx86jzCw=="
+        "resolved": "6.0.0",
+        "contentHash": "xlzi2IYREJH3/m6+lUrQlujzX8wDitm4QGnUu6kUXTQAWPuZY8i+ticFJbzfqaetLA6KR/rO6Ew/HuYD+bxifg=="
       },
       "Microsoft.OData.Core": {
         "type": "Transitive",
@@ -125,11 +118,6 @@
         "resolved": "13.0.2",
         "contentHash": "R2pZ3B0UjeyHShm9vG+Tu0EBb2lC8b0dFzV9gVn50ofHXh9Smjk6kTn7A/FdAsC8B5cKib1OnGYOXxRBz5XQDg=="
       },
-      "Polly": {
-        "type": "Transitive",
-        "resolved": "7.2.3",
-        "contentHash": "DeCY0OFbNdNxsjntr1gTXHJ5pKUwYzp04Er2LLeN3g6pWhffsGuKVfMBLe1lw7x76HrPkLxKEFxBlpRxS2nDEQ=="
-      },
       "Reinforced.Typings": {
         "type": "Transitive",
         "resolved": "1.6.1",
@@ -158,16 +146,17 @@
       "wally.cleanarchitecture.microservice.application": {
         "type": "Project",
         "dependencies": {
+          "MassTransit.Abstractions": "[8.0.13, )",
           "Microsoft.AspNetCore.OData": "[8.0.12, )",
           "Wally.CleanArchitecture.MicroService.Contracts": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )",
-          "Wally.Lib.ServiceBus.Abstractions": "[1.3.3, )"
+          "Wally.CleanArchitecture.MicroService.Messages": "[1.0.0, )"
         }
       },
       "wally.cleanarchitecture.microservice.contracts": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "[11.5.0, )",
+          "FluentValidation": "[11.5.1, )",
           "Reinforced.Typings": "[1.6.1, )",
           "Wally.Lib.DDD.Abstractions": "[1.3.3, )"
         }
@@ -176,6 +165,12 @@
         "type": "Project",
         "dependencies": {
           "Wally.Lib.DDD.Abstractions": "[1.3.3, )"
+        }
+      },
+      "wally.cleanarchitecture.microservice.messages": {
+        "type": "Project",
+        "dependencies": {
+          "FluentValidation": "[11.5.1, )"
         }
       }
     }

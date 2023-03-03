@@ -2,6 +2,12 @@
   "version": 1,
   "dependencies": {
     "net7.0": {
+      "MassTransit.Abstractions": {
+        "type": "Direct",
+        "requested": "[8.0.13, )",
+        "resolved": "8.0.13",
+        "contentHash": "eoINmIoMobS3M4zli8kGugjKiuHTtJpxJibkeS0HuDKY9yKLIcVKtbsuYusLYbuLVycA0ybMiwmlBW18bcaG0A=="
+      },
       "Microsoft.AspNetCore.OData": {
         "type": "Direct",
         "requested": "[8.0.12, )",
@@ -20,22 +26,10 @@
         "resolved": "1.1.118",
         "contentHash": "Onx6ovGSqXSK07n/0eM3ZusiNdB6cIlJdabQhWGgJp3Vooy9AaLS/tigeybOJAobqbtggTamoWndz72JscZBvw=="
       },
-      "Wally.Lib.ServiceBus.Abstractions": {
-        "type": "Direct",
-        "requested": "[1.3.3, )",
-        "resolved": "1.3.3",
-        "contentHash": "txSKVOiPQBNOuWj+YM0MuX/ZNbxi3Re/StYrpwh6r94GLNL6gCudnDJLE4rIy6jBzE/sEl3tj7m40E2h7m4A2g==",
-        "dependencies": {
-          "MediatR": "12.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "7.0.0",
-          "Polly": "7.2.3",
-          "Wally.Lib.DDD.Abstractions": "1.3.3"
-        }
-      },
       "FluentValidation": {
         "type": "Transitive",
-        "resolved": "11.5.0",
-        "contentHash": "DExajJh+cguLk1XodH+LVVFuSsCqoEmXOQsxqP5rvVeUD1hIda59cyuL73LHJAYIrFatR8ZZ1H7kfejHN9XFWw=="
+        "resolved": "11.5.1",
+        "contentHash": "0h1Q5lNOLLyYTWMJmyNoMqhY4CBRvvUWvJP1R4F2CnmmzuWwvB0A8aVmw5+lOuwYnwUwCRrdeMLbc81F38ahNQ=="
       },
       "MediatR": {
         "type": "Transitive",
@@ -61,11 +55,6 @@
         "type": "Transitive",
         "resolved": "7.0.0",
         "contentHash": "h3j/QfmFN4S0w4C2A6X7arXij/M/OVw3uQHSOFxnND4DyAzO1F9eMX7Eti7lU/OkSthEE0WzRsfT/Dmx86jzCw=="
-      },
-      "Microsoft.Extensions.Logging.Abstractions": {
-        "type": "Transitive",
-        "resolved": "7.0.0",
-        "contentHash": "kmn78+LPVMOWeITUjIlfxUPDsI0R6G0RkeAMBmQxAJ7vBJn4q2dTva7pWi65ceN5vPGjJ9q/Uae2WKgvfktJAw=="
       },
       "Microsoft.OData.Core": {
         "type": "Transitive",
@@ -107,11 +96,6 @@
         "resolved": "13.0.2",
         "contentHash": "R2pZ3B0UjeyHShm9vG+Tu0EBb2lC8b0dFzV9gVn50ofHXh9Smjk6kTn7A/FdAsC8B5cKib1OnGYOXxRBz5XQDg=="
       },
-      "Polly": {
-        "type": "Transitive",
-        "resolved": "7.2.3",
-        "contentHash": "DeCY0OFbNdNxsjntr1gTXHJ5pKUwYzp04Er2LLeN3g6pWhffsGuKVfMBLe1lw7x76HrPkLxKEFxBlpRxS2nDEQ=="
-      },
       "Reinforced.Typings": {
         "type": "Transitive",
         "resolved": "1.6.1",
@@ -150,7 +134,7 @@
       "wally.cleanarchitecture.microservice.contracts": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "[11.5.0, )",
+          "FluentValidation": "[11.5.1, )",
           "Reinforced.Typings": "[1.6.1, )",
           "Wally.Lib.DDD.Abstractions": "[1.3.3, )"
         }
@@ -159,6 +143,12 @@
         "type": "Project",
         "dependencies": {
           "Wally.Lib.DDD.Abstractions": "[1.3.3, )"
+        }
+      },
+      "wally.cleanarchitecture.microservice.messages": {
+        "type": "Project",
+        "dependencies": {
+          "FluentValidation": "[11.5.1, )"
         }
       }
     }

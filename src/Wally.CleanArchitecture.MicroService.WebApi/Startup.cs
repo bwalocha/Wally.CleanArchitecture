@@ -71,7 +71,6 @@ public class Startup
 		app.UseWebApi();
 
 		app.UseDbContext(dbContext, AppSettings.Database);
-		app.UseMessaging();
 		app.UseEventHub<EventHub>();
 	}
 }

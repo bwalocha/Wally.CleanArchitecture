@@ -2,9 +2,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-using MediatR;
+using MassTransit;
 
-using Microsoft.Extensions.Logging;
+using MediatR;
 
 using Moq;
 
@@ -24,9 +24,7 @@ public class UserCreatedConsumerTests
 	public UserCreatedConsumerTests()
 	{
 		_mediatorMock = new Mock<IMediator>();
-		_consumer = new UserCreatedMessageConsumer(
-			_mediatorMock.Object,
-			new Mock<ILogger<UserCreatedMessageConsumer>>().Object);
+		_consumer = new UserCreatedMessageConsumer(_mediatorMock.Object);
 	}
 
 	[Fact]
@@ -34,9 +32,12 @@ public class UserCreatedConsumerTests
 	{
 		// Arrange
 		var message = new UserCreatedMessage(Guid.NewGuid(), "testName", "test@email.com");
+		var context = new Mock<ConsumeContext<UserCreatedMessage>>();
+		context.SetupGet(a => a.Message)
+			.Returns(message);
 
 		// Act
-		await _consumer.ConsumeAsync(message, CancellationToken.None);
+		await _consumer.Consume(context.Object);
 
 		// Assert
 		_mediatorMock.Verify(

@@ -3,8 +3,9 @@ using System.Linq;
 using FluentAssertions;
 using FluentAssertions.Execution;
 
+using MassTransit;
+
 using Wally.CleanArchitecture.MicroService.ConventionTests.Helpers;
-using Wally.Lib.ServiceBus.Abstractions;
 
 using Xunit;
 
@@ -23,7 +24,7 @@ public class ConsumerTests
 			foreach (var type in types.Where(a => a.Name.EndsWith("Consumer")))
 			{
 				type.Should()
-					.BeAssignableTo(typeof(Consumer<>));
+					.BeAssignableTo(typeof(IConsumer<>));
 			}
 		}
 	}
@@ -37,7 +38,7 @@ public class ConsumerTests
 		using (new AssertionScope())
 		{
 			foreach (var type in types.Where(a => a.Name.EndsWith("Consumer"))
-						.Where(a => a.InheritsGenericClass(typeof(Consumer<>))))
+						.Where(a => a.InheritsGenericClass(typeof(IConsumer<>))))
 			{
 				type.Name.Should()
 					.EndWith("MessageConsumer");
@@ -54,7 +55,7 @@ public class ConsumerTests
 		using (new AssertionScope())
 		{
 			foreach (var type in types.Where(a => a.Name.EndsWith("Consumer"))
-						.Where(a => a.InheritsGenericClass(typeof(Consumer<>))))
+						.Where(a => a.InheritsGenericClass(typeof(IConsumer<>))))
 			{
 				var genericType = type.BaseType!.GenericTypeArguments.Single();
 
