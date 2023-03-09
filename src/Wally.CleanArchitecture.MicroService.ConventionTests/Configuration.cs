@@ -8,6 +8,7 @@ using Wally.CleanArchitecture.MicroService.MapperProfiles;
 using Wally.CleanArchitecture.MicroService.Messages;
 using Wally.CleanArchitecture.MicroService.Messaging;
 using Wally.CleanArchitecture.MicroService.Persistence;
+using Wally.CleanArchitecture.MicroService.Persistence.MySql;
 using Wally.CleanArchitecture.MicroService.Persistence.PostgreSQL;
 using Wally.CleanArchitecture.MicroService.Persistence.SqlServer;
 using Wally.CleanArchitecture.MicroService.PipelineBehaviours;
@@ -38,6 +39,7 @@ public static class Configuration
 				typeof(IInfrastructurePersistenceAssemblyMarker).Assembly,
 				typeof(IInfrastructureSqlServerAssemblyMarker).Assembly,
 				typeof(IInfrastructurePostgreSQLAssemblyMarker).Assembly,
+				typeof(IInfrastructureMySqlAssemblyMarker).Assembly,
 				typeof(IInfrastructurePipelineBehavioursAssemblyMarker).Assembly,
 			},
 			Presentation = new[] { typeof(IPresentationAssemblyMarker).Assembly, },

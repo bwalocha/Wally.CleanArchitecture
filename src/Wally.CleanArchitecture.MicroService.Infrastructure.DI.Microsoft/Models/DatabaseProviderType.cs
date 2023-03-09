@@ -3,6 +3,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Model
 public enum DatabaseProviderType
 {
 	Unknown = 0,
-	SqlServer,
+	MySql,
 	PostgreSQL,
+	SqlServer,
 }

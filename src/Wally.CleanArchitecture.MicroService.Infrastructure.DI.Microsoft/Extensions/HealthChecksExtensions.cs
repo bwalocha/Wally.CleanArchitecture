@@ -20,17 +20,42 @@ public static class HealthChecksExtensions
 	public static IServiceCollection AddHealthChecks(this IServiceCollection services, AppSettings settings)
 	{
 		var healthChecksBuilder = services.AddHealthChecks()
-			.AddSqlServer(
-				settings.ConnectionStrings.Database,
-				name: "DB",
-				failureStatus: HealthStatus.Degraded,
-				tags: new[] { "DB", "Database", "MSSQL", })
 			.AddVersionHealthCheck();
+
+		switch (settings.Database.ProviderType)
+		{
+			case DatabaseProviderType.MySql:
+				healthChecksBuilder.AddMySql(
+					settings.ConnectionStrings.Database,
+					"DB",
+					HealthStatus.Degraded,
+					new[] { "DB", "Database", nameof(DatabaseProviderType.MySql), });
+				break;
+			case DatabaseProviderType.PostgreSQL:
+				healthChecksBuilder.AddNpgSql(
+					settings.ConnectionStrings.Database,
+					name: "DB",
+					failureStatus: HealthStatus.Degraded,
+					tags: new[] { "DB", "Database", nameof(DatabaseProviderType.PostgreSQL), });
+				break;
+			case DatabaseProviderType.SqlServer:
+				healthChecksBuilder.AddSqlServer(
+					settings.ConnectionStrings.Database,
+					name: "DB",
+					failureStatus: HealthStatus.Degraded,
+					tags: new[] { "DB", "Database", nameof(DatabaseProviderType.SqlServer), });
+				break;
+			default:
+				throw new ArgumentOutOfRangeException(
+					nameof(settings.Database.ProviderType),
+					"Unknown Database Provider Type");
+		}
 
 		switch (settings.MessageBroker)
 		{
 			case MessageBrokerType.AzureServiceBus:
 				// TODO: Add AzureServiceBus HealthCheck
+				// healthChecksBuilder.AddAzureServiceBusQueue()
 				// ...
 
 				break;
@@ -39,7 +64,7 @@ public static class HealthChecksExtensions
 					new Uri(settings.ConnectionStrings.ServiceBus),
 					name: "MQ",
 					failureStatus: HealthStatus.Degraded,
-					tags: new[] { "MQ", "Messaging", "ServiceBus", });
+					tags: new[] { "MQ", "Messaging", nameof(MessageBrokerType.RabbitMQ), });
 				break;
 			default:
 				throw new ArgumentOutOfRangeException(nameof(settings.MessageBroker), "Unknown Message Broker");

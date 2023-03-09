@@ -7,6 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AspNetCore.HealthChecks.AzureServiceBus" Version="6.1.0" />
+        <PackageReference Include="AspNetCore.HealthChecks.MySql" Version="6.0.2" />
+        <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="6.0.2" />
         <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="6.0.3" />
         <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
         <PackageReference Include="MassTransit" Version="8.0.13" />
@@ -32,6 +35,7 @@
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.MapperProfiles\Wally.CleanArchitecture.MicroService.MapperProfiles.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Messaging\Wally.CleanArchitecture.MicroService.Messaging.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Persistence.MySql\Wally.CleanArchitecture.MicroService.Persistence.MySql.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Persistence.PostgreSQL\Wally.CleanArchitecture.MicroService.Persistence.PostgreSQL.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Persistence.SqlServer\Wally.CleanArchitecture.MicroService.Persistence.SqlServer.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.PipelineBehaviours\Wally.CleanArchitecture.MicroService.PipelineBehaviours.csproj" />

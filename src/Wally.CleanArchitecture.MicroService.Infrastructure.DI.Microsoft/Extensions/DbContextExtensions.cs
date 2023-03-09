@@ -9,6 +9,7 @@ using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Providers;
 using Wally.CleanArchitecture.MicroService.Persistence;
+using Wally.CleanArchitecture.MicroService.Persistence.MySql;
 using Wally.CleanArchitecture.MicroService.Persistence.PostgreSQL;
 using Wally.CleanArchitecture.MicroService.Persistence.SqlServer;
 
@@ -23,14 +24,15 @@ public static class DbContextExtensions
 		{
 			switch (settings.Database.ProviderType)
 			{
-				case DatabaseProviderType.SqlServer:
-					options.UseSqlServer(
+				case DatabaseProviderType.MySql:
+					options.UseMySql(
 						settings.ConnectionStrings.Database,
+						MySqlServerVersion.LatestSupportedServerVersion,
 						builder =>
 						{
 							builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
 							builder.MigrationsAssembly(
-								typeof(IInfrastructureSqlServerAssemblyMarker).Assembly.GetName()
+								typeof(IInfrastructureMySqlAssemblyMarker).Assembly.GetName()
 									.Name);
 						});
 					break;
@@ -42,6 +44,17 @@ public static class DbContextExtensions
 							builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
 							builder.MigrationsAssembly(
 								typeof(IInfrastructurePostgreSQLAssemblyMarker).Assembly.GetName()
+									.Name);
+						});
+					break;
+				case DatabaseProviderType.SqlServer:
+					options.UseSqlServer(
+						settings.ConnectionStrings.Database,
+						builder =>
+						{
+							builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
+							builder.MigrationsAssembly(
+								typeof(IInfrastructureSqlServerAssemblyMarker).Assembly.GetName()
 									.Name);
 						});
 					break;
