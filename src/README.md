@@ -186,7 +186,7 @@ Known Issues:
 
 Known Issuees:
 
-- [ ] https://github.com/MapsterMapper/Mapster/issues/381
+- [x] https://github.com/MapsterMapper/Mapster/issues/381
 
 ```
 System.MissingMethodException: Constructor on type 'Mapster.EFCore.MapsterAsyncEnumerable`1[[Wally.CleanArchitecture.Contracts.Responses.Users.GetUserResponse, Wally.CleanArchitecture.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]' not found.

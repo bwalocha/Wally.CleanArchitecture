@@ -32,7 +32,7 @@ dotnet new wally.cleanarchitecture --output . --name MyCompanyName.MyAppName --c
 	- [x] ValidationBehavior (IComamnd, IQuery)
 	- [ ] EventBehavior
 	- [ ] NotificationBehavior
-    - [ ] UpdateMetadataBehavior
+    - [x] UpdateMetadataBehavior
 - [x] Scrutor [github](https://github.com/khellang/Scrutor)
 - [x] OData
 - [x] HttpGlobalExceptionFilter
@@ -44,7 +44,7 @@ dotnet new wally.cleanarchitecture --output . --name MyCompanyName.MyAppName --c
 	- [x] ConventionTests
 - [ ] AppInsights Metrics
 - [ ] Terraform Azure Infrastructure code (Service Principal, Group, AppInsights)
-- [ ] Mapster [github](https://github.com/MapsterMapper/Mapster)
+- [-] Mapster [github](https://github.com/MapsterMapper/Mapster)
 - [x] AutoMapper
 	- [x] Validation
 	- [x] Profiles
@@ -66,11 +66,11 @@ npx storybook@next init --package-manager npm --parser ts --builder vite --disab
 ## TODO
 
 - [x] Create ICommand and IQuery compatible with MediatR (new Wally.Lib.DDD)
-- [ ] DomainEvent naming convention tests
+- [x] DomainEvent naming convention tests
 - [ ] DomainEvent with `[ExcludeFromCodeCoverage]` attribute convention tests
 - [ ] Fix `[CS1591] Missing XML comment` warnings
 - [x] Move CORS settings to ApiGateway
 - [x] Authentication in ApiGateway
 - [ ] Authorization in MicroService
 - [x] SignalR Hub Service
-- [ ] Add MassTransit
+- [x] Add MassTransit

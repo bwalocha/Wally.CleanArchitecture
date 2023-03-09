@@ -147,6 +147,7 @@
           "condition": "(!enableReverseProxy)",
           "exclude": [
             "Wally.CleanArchitecture.ApiGateway.WebApi/**/*",
+            "Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft/**/*",
             "Wally.CleanArchitecture.ApiGateway.UnitTests/**/*",
             "Wally.CleanArchitecture.ApiGateway.sln"
           ]
@@ -161,8 +162,11 @@
             "Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft/**/*",
             "Wally.CleanArchitecture.MicroService.IntegrationTests/**/*",
             "Wally.CleanArchitecture.MicroService.MapperProfiles/**/*",
+            "Wally.CleanArchitecture.MicroService.Messages/**/*",
             "Wally.CleanArchitecture.MicroService.Messaging/**/*",
             "Wally.CleanArchitecture.MicroService.Persistence/**/*",
+            "Wally.CleanArchitecture.MicroService.Persistence.MySql/**/*",
+            "Wally.CleanArchitecture.MicroService.Persistence.PostgreSQL/**/*",
             "Wally.CleanArchitecture.MicroService.Persistence.SqlServer/**/*",
             "Wally.CleanArchitecture.MicroService.PipelineBehaviours/**/*",
             "Wally.CleanArchitecture.MicroService.UnitTests/**/*",
@@ -179,7 +183,16 @@
         {
           "condition": "(!enableStorybook)",
           "exclude": [
-            "wally.cleanarchitecture.storybook/**/*"
+            "wally.cleanarchitecture.storybook*/**/*"
+          ]
+        },
+        {
+          "condition": "(!enableReverseProxy && !enableMicroService)",
+          "exclude": [
+            ".config/**/*",
+            "AssemblyInfo.cs",
+            "global.json",
+            "NuGet.config"
           ]
         }
       ]
