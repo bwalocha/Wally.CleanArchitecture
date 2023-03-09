@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-using Wally.CleanArchitecture.MicroService.Application.Users;
-using Wally.CleanArchitecture.MicroService.Application.Users.Queries;
+using Wally.CleanArchitecture.MicroService.Application;
 using Wally.CleanArchitecture.MicroService.PipelineBehaviours;
 using Wally.Lib.DDD.Abstractions.DomainEvents;
 
@@ -14,7 +13,7 @@ public static class CqrsExtensions
 		services.AddMediatR(
 			a =>
 			{
-				a.RegisterServicesFromAssemblyContaining<GetUserQuery>();
+				a.RegisterServicesFromAssemblyContaining<IApplicationAssemblyMarker>();
 
 				a.AddOpenBehavior(typeof(LogBehavior<,>));
 				a.AddOpenBehavior(typeof(TransactionBehavior<,>));
@@ -24,7 +23,7 @@ public static class CqrsExtensions
 			});
 
 		services.Scan(
-			a => a.FromAssemblyOf<UserCreatedDomainEventHandler>()
+			a => a.FromAssemblyOf<IApplicationAssemblyMarker>()
 				.AddClasses(c => c.AssignableTo(typeof(IDomainEventHandler<>)))
 				.AsImplementedInterfaces()
 				.WithScopedLifetime());

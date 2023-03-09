@@ -5,7 +5,7 @@ using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
-using Wally.CleanArchitecture.MicroService.Messaging.Consumers;
+using Wally.CleanArchitecture.MicroService.Messaging;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 
@@ -16,7 +16,7 @@ public static class MessagingExtensions
 		services.AddMassTransit(
 			a =>
 			{
-				a.AddConsumers(typeof(UserCreatedMessageConsumer).Assembly);
+				a.AddConsumers(typeof(IInfrastructureMessagingAssemblyMarker).Assembly);
 
 				switch (settings.MessageBroker)
 				{

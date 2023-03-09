@@ -7,8 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 
 using Newtonsoft.Json;
 
-using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
-using Wally.CleanArchitecture.MicroService.Contracts.Requests.Users;
+using Wally.CleanArchitecture.MicroService.Application;
+using Wally.CleanArchitecture.MicroService.Contracts;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Filters;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
@@ -29,8 +29,8 @@ public static class WebApiExtensions
 			.AddNewtonsoftJson(
 				options => { options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; });
 
-		services.AddValidatorsFromAssemblyContaining<UpdateUserRequestValidator>();
-		services.AddValidatorsFromAssemblyContaining<UpdateUserCommandValidator>();
+		services.AddValidatorsFromAssemblyContaining<IApplicationAssemblyMarker>();
+		services.AddValidatorsFromAssemblyContaining<IApplicationContractsAssemblyMarker>();
 		services.AddFluentValidationAutoValidation(config => config.DisableDataAnnotationsValidation = true);
 		services.AddFluentValidationClientsideAdapters(); // TODO: consider config => config.ClientValidatorFactories
 

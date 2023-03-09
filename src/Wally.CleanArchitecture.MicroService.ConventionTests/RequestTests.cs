@@ -1,12 +1,11 @@
 ﻿using System.Linq;
-using System.Text.RegularExpressions;
 
 using FluentAssertions;
 using FluentAssertions.Common;
 using FluentAssertions.Execution;
 using FluentAssertions.Types;
 
-using Wally.CleanArchitecture.MicroService.Contracts.Requests.Users;
+using Wally.CleanArchitecture.MicroService.Contracts;
 using Wally.CleanArchitecture.MicroService.ConventionTests.Helpers;
 using Wally.Lib.DDD.Abstractions.Requests;
 
@@ -53,10 +52,7 @@ public class RequestTests
 	public void Application_ClassesWhichImplementsIRequest_ShouldBeInTheSameProject()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var applicationNamespace = Regex.Match(
-				typeof(GetUsersRequest).Namespace!,
-				@"Wally.CleanArchitecture.MicroService\.Contracts\.Requests(?=[\.$])")
-			.Value;
+		var applicationNamespace = $"{typeof(IApplicationContractsAssemblyMarker).Namespace}.Requests";
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{
