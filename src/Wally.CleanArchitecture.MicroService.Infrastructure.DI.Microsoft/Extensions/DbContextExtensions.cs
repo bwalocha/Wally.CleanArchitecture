@@ -9,6 +9,7 @@ using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Providers;
 using Wally.CleanArchitecture.MicroService.Persistence;
+using Wally.CleanArchitecture.MicroService.Persistence.PostgreSQL;
 using Wally.CleanArchitecture.MicroService.Persistence.SqlServer;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
@@ -20,15 +21,35 @@ public static class DbContextExtensions
 		Action<DbContextOptionsBuilder> dbContextOptions;
 		dbContextOptions = options =>
 		{
-			options.UseSqlServer(
-				settings.ConnectionStrings.Database,
-				builder =>
-				{
-					builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-					builder.MigrationsAssembly(
-						typeof(Helper).Assembly.GetName()
-							.Name);
-				});
+			switch (settings.Database.ProviderType)
+			{
+				case DatabaseProviderType.SqlServer:
+					options.UseSqlServer(
+						settings.ConnectionStrings.Database,
+						builder =>
+						{
+							builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
+							builder.MigrationsAssembly(
+								typeof(IInfrastructureSqlServerAssemblyMarker).Assembly.GetName()
+									.Name);
+						});
+					break;
+				case DatabaseProviderType.PostgreSQL:
+					options.UseNpgsql(
+						settings.ConnectionStrings.Database,
+						builder =>
+						{
+							builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
+							builder.MigrationsAssembly(
+								typeof(IInfrastructurePostgreSQLAssemblyMarker).Assembly.GetName()
+									.Name);
+						});
+					break;
+				default:
+					throw new ArgumentOutOfRangeException(
+						nameof(settings.Database.ProviderType),
+						"Unknown Database Provider Type");
+			}
 
 			options.ConfigureWarnings(
 				builder =>

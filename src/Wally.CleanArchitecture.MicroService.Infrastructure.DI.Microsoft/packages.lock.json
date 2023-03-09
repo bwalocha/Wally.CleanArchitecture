@@ -812,6 +812,25 @@
           "Newtonsoft.Json": "12.0.1"
         }
       },
+      "Npgsql": {
+        "type": "Transitive",
+        "resolved": "7.0.2",
+        "contentHash": "/k12hfmg4PI0IU2UTLN6n0s/FKUfox8+RdWtzgADYZoyks7GH82WLyXm27eeqatsi/nmiK9lO3HyULlTD87szg==",
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.0"
+        }
+      },
+      "Npgsql.EntityFrameworkCore.PostgreSQL": {
+        "type": "Transitive",
+        "resolved": "7.0.3",
+        "contentHash": "3iVz7vcPAZt6iBSjJ8XyjtIP19jilNOJqTiTCs2UHWhpTyP+FbNhnzCBE/oyD3n49McmmenjKpva+yTy7q1z/g==",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "[7.0.3, 8.0.0)",
+          "Microsoft.EntityFrameworkCore.Abstractions": "[7.0.3, 8.0.0)",
+          "Microsoft.EntityFrameworkCore.Relational": "[7.0.3, 8.0.0)",
+          "Npgsql": "7.0.2"
+        }
+      },
       "Portable.BouncyCastle": {
         "type": "Transitive",
         "resolved": "1.8.1.3",
@@ -1415,6 +1434,13 @@
           "Microsoft.EntityFrameworkCore.Relational": "[7.0.3, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
+        }
+      },
+      "wally.cleanarchitecture.microservice.persistence.postgresql": {
+        "type": "Project",
+        "dependencies": {
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "[7.0.3, )",
+          "Wally.CleanArchitecture.MicroService.Persistence": "[1.0.0, )"
         }
       },
       "wally.cleanarchitecture.microservice.persistence.sqlserver": {

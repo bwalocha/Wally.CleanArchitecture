@@ -3,14 +3,15 @@
   "author": "Wally",
   "classifications": [
     "Web",
-    "MVC",
     "WebApi",
+    "REST",
+    "OData",
     "ReverseProxy"
   ],
   "identity": "Wally.CleanArchitecture",
   "groupIdentity": "Wally.CleanArchitecture",
   "name": "Wally.CleanArchitecture",
-  "description": "CleanArchitecture, DDD, CQRS, EF, WebApi, Swagger, HealthCheck, Mapster, Reinforced.Typings, ...",
+  "description": "CleanArchitecture, DDD, CQRS, EF, WebApi, Swagger, OData, HealthCheck, MediatR, MassTransit, AutoMapper, Reinforced.Typings, ...",
   "shortName": "wally.cleanarchitecture",
   "sourceName": "Wally.CleanArchitecture",
   "tags": {
@@ -27,18 +28,30 @@
     "F450E29C-53B7-4CD5-B19E-5A10901CA364",
     "78E2EE48-D658-4129-8CF3-452FC003D618",
     "8F56A431-191E-4881-A137-7C5236A7265C",
-    "6C1B6104-7628-4FC2-9CED-3BDA233E97CB",
-    "7CA1E01A-F818-48B9-A573-20A904B9F7C2",
-    "7DDF052D-3D5E-4C6B-9CDE-F4793B315C05",
-    "5C7411C2-8CAD-4F46-9741-14B5BEB222B1",
-    "A81A9220-878D-4D52-A278-BB93EF09EA4B",
-    "56971E79-C47B-463B-B8BC-E8F01D8B49C4",
     "0B86D7F8-0293-4D65-BDE3-E4E921DFE8BF",
     "505AA394-0CB4-4F90-B600-FA5D88437D10",
     "B618D678-EAE4-448C-B126-6E61844DCA95",
     "2B6BCDE8-AA6E-4CFE-A504-9D2E26F09163",
     "C9B64D74-D4A6-4821-9016-990EFE6D3FA4",
+    "0708CEB4-B5DE-4205-873B-525D159DD513",
+    "EE250951-AD1B-456C-8CCC-AF5187E684CC",
+
+    "6C1B6104-7628-4FC2-9CED-3BDA233E97CB",
+
+    "7CA1E01A-F818-48B9-A573-20A904B9F7C2",
+    "7DDF052D-3D5E-4C6B-9CDE-F4793B315C05",
+    "5C7411C2-8CAD-4F46-9741-14B5BEB222B1",
+    "A81A9220-878D-4D52-A278-BB93EF09EA4B",
+    "56971E79-C47B-463B-B8BC-E8F01D8B49C4",
+
     "2063FDB3-ED03-4EF9-AF3A-2FC1C5E8B695",
+    "E7D1FD7E-2105-4EAA-A1C8-0B4E81E17105",
+    "D4325D6A-E773-4072-84D4-42CB3ED09B37",
+
+    "EAC9C353-4F7C-43E9-92A6-226F43D221D8",
+    "54C7EE7B-ABBE-47BF-9872-4C5973304A44",
+    "C911A92B-E0AE-4965-AB10-5BCEF246CD78",
+
     "0AC225DA-9D8C-47EB-A4E1-9FA629332ABB"
   ],
   "symbols": {
@@ -95,7 +108,7 @@
       "type": "parameter",
       "dataType": "bool",
       "description": "If specified, generates Micro Service solution.",
-      "defaultValue": "true"
+      "defaultValue": "false"
     },
     "enableFrontend": {
       "type": "parameter",
@@ -201,8 +214,8 @@
       "continueOnError": true,
       "args": 
       {
-        "executable": "cd *.webapp* && npm",
-        "args": "i",
+        "executable": "cd",
+        "args": "*.webapp* && npm i",
         "redirectStandardOutput": false,
         "redirectStandardError": false
       }
@@ -217,8 +230,8 @@
       "continueOnError": true,
       "args": 
       {
-        "executable": "cd *.storybook && npm",
-        "args": "i",
+        "executable": "cd",
+        "args": "*.storybook && npm i",
         "redirectStandardOutput": false,
         "redirectStandardError": false
       }
