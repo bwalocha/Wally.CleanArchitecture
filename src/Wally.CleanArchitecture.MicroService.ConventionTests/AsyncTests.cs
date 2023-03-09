@@ -36,7 +36,7 @@ public class AsyncTests
 					foreach (var method in type.Methods()
 								.Where(
 									a => a.ReturnType == typeof(Task) ||
-										a.ReturnType.ImplementsGenericInterface(typeof(Task<>)) ||
+										a.ReturnType.InheritsGenericClass(typeof(Task<>)) ||
 										a.GetCustomAttribute(typeof(AsyncStateMachineAttribute)) != null))
 					{
 						if (method.Name.StartsWith("<>"))
@@ -94,7 +94,7 @@ public class AsyncTests
 					foreach (var method in type.Methods()
 								.Where(
 									a => a.ReturnType == typeof(Task) ||
-										a.ReturnType.ImplementsGenericInterface(typeof(Task<>)) ||
+										a.ReturnType.InheritsGenericClass(typeof(Task<>)) ||
 										a.GetCustomAttribute(typeof(AsyncStateMachineAttribute)) != null))
 					{
 						if (method.Name.StartsWith("<>"))

@@ -70,6 +70,11 @@ public static class TypeHelpers
 
 	public static bool ImplementsGenericInterface(this Type type, Type interfaceType)
 	{
+		if (!interfaceType.IsInterface)
+		{
+			throw new ArgumentException($"Parameter '{nameof(interfaceType)}' is not an Interface");
+		}
+
 		if (type.IsGenericType(interfaceType))
 		{
 			return true;
@@ -89,6 +94,11 @@ public static class TypeHelpers
 
 	public static bool InheritsGenericClass(this Type type, Type classType)
 	{
+		if (!classType.IsClass)
+		{
+			throw new ArgumentException($"Parameter '{nameof(classType)}' is not a Class");
+		}
+
 		while (type != null && type != typeof(object))
 		{
 			var current = type.IsGenericType ? type.GetGenericTypeDefinition() : type;
