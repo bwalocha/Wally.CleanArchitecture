@@ -10,7 +10,7 @@ using Moq;
 
 using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 using Wally.CleanArchitecture.MicroService.Messaging.Consumers;
-using Wally.IdentityProvider.Contracts.Messages;
+using Wally.Identity.Messages.Users;
 
 using Xunit;
 

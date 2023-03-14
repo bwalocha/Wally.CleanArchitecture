@@ -53,6 +53,8 @@ public static class HealthChecksExtensions
 
 		switch (settings.MessageBroker)
 		{
+			case MessageBrokerType.None:
+				break;
 			case MessageBrokerType.AzureServiceBus:
 				// TODO: Add AzureServiceBus HealthCheck
 				// healthChecksBuilder.AddAzureServiceBusQueue()

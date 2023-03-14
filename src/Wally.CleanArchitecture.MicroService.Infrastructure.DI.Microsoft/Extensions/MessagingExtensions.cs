@@ -20,13 +20,14 @@ public static class MessagingExtensions
 
 				switch (settings.MessageBroker)
 				{
+					case MessageBrokerType.None:
+						break; // TODO: register Stub
 					case MessageBrokerType.AzureServiceBus:
 						a.UsingAzureServiceBus(
 							(host, cfg) =>
 							{
 								cfg.Host(settings.ConnectionStrings.ServiceBus);
-
-								cfg.ConfigureEndpoints(host);
+								cfg.ConfigureEndpoints(host, new DefaultEndpointNameFormatter(".", "", true));
 							});
 						break;
 					case MessageBrokerType.RabbitMQ:
@@ -34,8 +35,7 @@ public static class MessagingExtensions
 							(host, cfg) =>
 							{
 								cfg.Host(new Uri(settings.ConnectionStrings.ServiceBus));
-
-								cfg.ConfigureEndpoints(host);
+								cfg.ConfigureEndpoints(host, new DefaultEndpointNameFormatter(".", "", true));
 							});
 						break;
 					default:

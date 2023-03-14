@@ -5,7 +5,7 @@ using MassTransit;
 using MediatR;
 
 using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
-using Wally.IdentityProvider.Contracts.Messages;
+using Wally.Identity.Messages.Users;
 
 namespace Wally.CleanArchitecture.MicroService.Messaging.Consumers;
 

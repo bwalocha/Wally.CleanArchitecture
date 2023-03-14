@@ -3,6 +3,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Model
 public enum MessageBrokerType
 {
 	Unknown = 0,
+	None,
 	AzureServiceBus,
 	RabbitMQ,
 }
