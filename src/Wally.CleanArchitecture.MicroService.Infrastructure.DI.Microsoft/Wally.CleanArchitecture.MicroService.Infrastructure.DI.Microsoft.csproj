@@ -27,18 +27,18 @@
         <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.5" />
         <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="6.0.5" />
         <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.4" />
         <PackageReference Include="Microsoft.AspNetCore.OData" Version="8.0.12" />
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj" />
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.MapperProfiles\Wally.CleanArchitecture.MicroService.MapperProfiles.csproj" />
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Messaging\Wally.CleanArchitecture.MicroService.Messaging.csproj" />
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Persistence.MySql\Wally.CleanArchitecture.MicroService.Persistence.MySql.csproj" />
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Persistence.PostgreSQL\Wally.CleanArchitecture.MicroService.Persistence.PostgreSQL.csproj" />
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Persistence.SqlServer\Wally.CleanArchitecture.MicroService.Persistence.SqlServer.csproj" />
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.PipelineBehaviours\Wally.CleanArchitecture.MicroService.PipelineBehaviours.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.MapperProfiles\Wally.CleanArchitecture.MicroService.Application.MapperProfiles.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Messaging\Wally.CleanArchitecture.MicroService.Infrastructure.Messaging.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours\Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours.csproj" />
     </ItemGroup>
 
 </Project>

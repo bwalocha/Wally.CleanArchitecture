@@ -131,7 +131,7 @@
           "Newtonsoft.Json": "13.0.2"
         }
       },
-      "wally.cleanarchitecture.microservice.contracts": {
+      "wally.cleanarchitecture.microservice.application.contracts": {
         "type": "Project",
         "dependencies": {
           "FluentValidation": "[11.5.1, )",
@@ -139,16 +139,16 @@
           "Wally.Lib.DDD.Abstractions": "[1.3.3, )"
         }
       },
+      "wally.cleanarchitecture.microservice.application.messages": {
+        "type": "Project",
+        "dependencies": {
+          "FluentValidation": "[11.5.1, )"
+        }
+      },
       "wally.cleanarchitecture.microservice.domain": {
         "type": "Project",
         "dependencies": {
           "Wally.Lib.DDD.Abstractions": "[1.3.3, )"
-        }
-      },
-      "wally.cleanarchitecture.microservice.messages": {
-        "type": "Project",
-        "dependencies": {
-          "FluentValidation": "[11.5.1, )"
         }
       }
     }

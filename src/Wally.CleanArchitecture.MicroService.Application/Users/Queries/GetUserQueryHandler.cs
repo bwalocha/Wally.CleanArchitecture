@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-using Wally.CleanArchitecture.MicroService.Contracts.Responses.Users;
+using Wally.CleanArchitecture.MicroService.Application.Contracts.Responses.Users;
 using Wally.Lib.DDD.Abstractions.Queries;
 
 namespace Wally.CleanArchitecture.MicroService.Application.Users.Queries;

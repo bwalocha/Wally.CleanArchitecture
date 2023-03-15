@@ -8,10 +8,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Providers;
-using Wally.CleanArchitecture.MicroService.Persistence;
-using Wally.CleanArchitecture.MicroService.Persistence.MySql;
-using Wally.CleanArchitecture.MicroService.Persistence.PostgreSQL;
-using Wally.CleanArchitecture.MicroService.Persistence.SqlServer;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 

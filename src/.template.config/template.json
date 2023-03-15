@@ -64,12 +64,6 @@
       },
       "replaces": "__DATE__"
     },
-    "copyrightName": {
-      "type": "parameter",
-      "description": "Copyright name.",
-      "defaultValue": "Wally",
-      "replaces": "__COPYRIGHT__"
-    },
     "serviceName": {
       "type": "parameter",
       "datatype": "text",
@@ -137,9 +131,9 @@
           "exclude": [
             ".idea/**",
             "Wally.Common.CodeStyleRules/**",
-            "Wally.CleanArchitecture.ConventionTests/coverage.json",
-            "Wally.CleanArchitecture.IntegrationTests/coverage.json",
-            "Wally.CleanArchitecture.UnitTests/coverage.json",
+            "Wally.CleanArchitecture.Tests.ConventionTests/coverage.json",
+            "Wally.CleanArchitecture.Tests.IntegrationTests/coverage.json",
+            "Wally.CleanArchitecture.Tests.UnitTests/coverage.json",
             "Directory.Build.props"
           ]
         },
@@ -148,7 +142,7 @@
           "exclude": [
             "Wally.CleanArchitecture.ApiGateway.WebApi/**/*",
             "Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft/**/*",
-            "Wally.CleanArchitecture.ApiGateway.UnitTests/**/*",
+            "Wally.CleanArchitecture.ApiGateway.Tests.UnitTests/**/*",
             "Wally.CleanArchitecture.ApiGateway.sln"
           ]
         },
@@ -156,20 +150,20 @@
           "condition": "(!enableMicroService)",
           "exclude": [
             "Wally.CleanArchitecture.MicroService.Application/**/*",
-            "Wally.CleanArchitecture.MicroService.Contracts/**/*",
-            "Wally.CleanArchitecture.MicroService.ConventionTests/**/*",
+            "Wally.CleanArchitecture.MicroService.Application.Contracts/**/*",
+            "Wally.CleanArchitecture.MicroService.Application.MapperProfiles/**/*",
+            "Wally.CleanArchitecture.MicroService.Application.Messages/**/*",
             "Wally.CleanArchitecture.MicroService.Domain/**/*",
             "Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft/**/*",
-            "Wally.CleanArchitecture.MicroService.IntegrationTests/**/*",
-            "Wally.CleanArchitecture.MicroService.MapperProfiles/**/*",
-            "Wally.CleanArchitecture.MicroService.Messages/**/*",
-            "Wally.CleanArchitecture.MicroService.Messaging/**/*",
-            "Wally.CleanArchitecture.MicroService.Persistence/**/*",
-            "Wally.CleanArchitecture.MicroService.Persistence.MySql/**/*",
-            "Wally.CleanArchitecture.MicroService.Persistence.PostgreSQL/**/*",
-            "Wally.CleanArchitecture.MicroService.Persistence.SqlServer/**/*",
-            "Wally.CleanArchitecture.MicroService.PipelineBehaviours/**/*",
-            "Wally.CleanArchitecture.MicroService.UnitTests/**/*",
+            "Wally.CleanArchitecture.MicroService.Infrastructure.Messaging/**/*",
+            "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence/**/*",
+            "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql/**/*",
+            "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL/**/*",
+            "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer/**/*",
+            "Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours/**/*",
+            "Wally.CleanArchitecture.MicroService.Tests.ConventionTests/**/*",
+            "Wally.CleanArchitecture.MicroService.Tests.IntegrationTests/**/*",
+            "Wally.CleanArchitecture.MicroService.Tests.UnitTests/**/*",
             "Wally.CleanArchitecture.MicroService.WebApi/**/*",
             "Wally.CleanArchitecture.MicroService.sln"
           ]

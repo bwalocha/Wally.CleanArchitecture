@@ -7,10 +7,10 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 
+using Wally.CleanArchitecture.MicroService.Application.Contracts.Requests.Users;
+using Wally.CleanArchitecture.MicroService.Application.Contracts.Responses.Users;
 using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 using Wally.CleanArchitecture.MicroService.Application.Users.Queries;
-using Wally.CleanArchitecture.MicroService.Contracts.Requests.Users;
-using Wally.CleanArchitecture.MicroService.Contracts.Responses.Users;
 using Wally.Lib.DDD.Abstractions.Responses;
 
 namespace Wally.CleanArchitecture.MicroService.WebApi.Controllers;

@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 
 using Wally.CleanArchitecture.MicroService.Application;
-using Wally.CleanArchitecture.MicroService.Contracts;
+using Wally.CleanArchitecture.MicroService.Application.Contracts;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Filters;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;

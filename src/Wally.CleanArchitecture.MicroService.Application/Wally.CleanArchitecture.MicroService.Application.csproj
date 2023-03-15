@@ -12,9 +12,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Contracts\Wally.CleanArchitecture.MicroService.Contracts.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.Contracts\Wally.CleanArchitecture.MicroService.Application.Contracts.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj" />
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Messages\Wally.CleanArchitecture.MicroService.Messages.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.Messages\Wally.CleanArchitecture.MicroService.Application.Messages.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
 using Wally.CleanArchitecture.MicroService.Application;
-using Wally.CleanArchitecture.MicroService.PipelineBehaviours;
+using Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 using Wally.Lib.DDD.Abstractions.DomainEvents;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;

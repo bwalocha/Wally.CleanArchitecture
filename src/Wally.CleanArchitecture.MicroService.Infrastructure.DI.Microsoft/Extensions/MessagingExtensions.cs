@@ -5,7 +5,7 @@ using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
-using Wally.CleanArchitecture.MicroService.Messaging;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Messaging;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 
