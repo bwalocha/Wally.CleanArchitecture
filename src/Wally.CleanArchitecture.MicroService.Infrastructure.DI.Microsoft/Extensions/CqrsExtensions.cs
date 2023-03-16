@@ -17,7 +17,9 @@ public static class CqrsExtensions
 
 				a.AddOpenBehavior(typeof(LogBehavior<,>));
 				a.AddOpenBehavior(typeof(TransactionBehavior<,>));
+				a.AddOpenBehavior(typeof(UpdateMetadataHandlerBehavior<,>));
 				a.AddOpenBehavior(typeof(DomainEventHandlerBehavior<,>));
+				a.AddOpenBehavior(typeof(UpdateMetadataHandlerBehavior<,>));
 				a.AddOpenBehavior(typeof(CommandHandlerValidatorBehavior<,>));
 				a.AddOpenBehavior(typeof(QueryHandlerValidatorBehavior<,>));
 			});
