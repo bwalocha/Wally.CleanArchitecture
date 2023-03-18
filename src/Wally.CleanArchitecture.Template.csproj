@@ -40,7 +40,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="./**/*" Exclude="./**/bin/**;./**/obj/**;/**/coverage.json;./*.user;./.content/**;./.idea/**;./Wally.CleanArchitecture.Template.csproj;./Wally.Common.CodeStyleRules/**;./Directory.Build.props" />
+		<Content Include="./**/*" Exclude="./**/bin/**;./**/obj/**;./**/coverage.json;./*.user;./.content/**;./.idea/**;./Wally.CleanArchitecture.Template.csproj;./Wally.Common.CodeStyleRules/**;./Directory.Build.props" />
 		<Compile Remove="**/*" />
 	</ItemGroup>
 

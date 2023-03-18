@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ using AutoMapper.Extensions.ExpressionMapping;
 
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OData.UriParser;
 
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Exceptions;
@@ -88,7 +90,17 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 		var quote = (UnaryExpression)mce.Arguments[1];
 		return (Expression<Func<T, bool>>)quote.Operand;
 	}
-
+	
+	private static LambdaExpression GetOrderByExpression<T>(OrderByQueryOption order)
+	{
+		var enumerable = Enumerable.Empty<T>()
+			.AsQueryable();
+		enumerable = order.ApplyTo(enumerable, new ODataQuerySettings());
+		var mce = (MethodCallExpression)enumerable.Expression;
+		var quote = (UnaryExpression)mce.Arguments[1];
+		return (LambdaExpression)quote.Operand;
+	}
+	
 	protected async Task<PagedResponse<TResponse>> GetAsync<TRequest, TResponse>(
 		IQueryable<TEntity> query,
 		ODataQueryOptions<TRequest> queryOptions,
@@ -96,14 +108,56 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 	{
 		if (queryOptions.Filter != null)
 		{
-			var mappedQueryFunc = GetFilterExpression<TRequest>(queryOptions.Filter);
-
-			query = query.Where(_mapper.MapExpression<Expression<Func<TEntity, bool>>>(mappedQueryFunc));
+			var queryFunc = GetFilterExpression<TRequest>(queryOptions.Filter);
+			var mappedQueryFunc = _mapper.MapExpression<Expression<Func<TEntity, bool>>>(queryFunc); 
+			
+			query = query.Where(mappedQueryFunc);
 		}
 
-		var allItems = _mapper.ProjectTo<TResponse>(query);
-		var data = queryOptions.ApplyTo(_mapper.ProjectTo<TRequest>(query), AllowedQueryOptions.Filter);
-		var items = await _mapper.ProjectTo<TResponse>(data)
+		var totalItems = await query.CountAsync(cancellationToken);
+
+		if (queryOptions.OrderBy != null)
+		{
+			// TODO: support for multiple OrderBy, ThenBy, desc, asc combination
+			var queryFunc = GetOrderByExpression<TRequest>(queryOptions.OrderBy);
+			var destExpressionType = typeof(Expression<>).MakeGenericType(
+				typeof(Func<,>).MakeGenericType(typeof(TEntity), queryFunc.ReturnType));
+			var mappedQueryFunc = _mapper.MapExpression(queryFunc, queryFunc.GetType(), destExpressionType);
+			MethodInfo[] methodInfo;
+			if (queryOptions.OrderBy.OrderByClause.Direction == OrderByDirection.Ascending)
+			{
+				methodInfo = typeof(Queryable).GetMethods()
+					.Where(a => a.Name == nameof(Queryable.OrderBy))
+					.ToArray();
+			}
+			else
+			{
+				methodInfo = typeof(Queryable).GetMethods()
+					.Where(a => a.Name == nameof(Queryable.OrderByDescending))
+					.ToArray();
+			}
+
+			var mi = methodInfo.First()
+				.MakeGenericMethod(typeof(TEntity), mappedQueryFunc.ReturnType); // TODO: get rid of First
+
+			query = (IOrderedQueryable<TEntity>)mi.Invoke(null, new object[] { query, mappedQueryFunc })!;
+		}
+		else
+		{
+			query = query.OrderBy(a => a.Id);
+		}
+		
+		if (queryOptions.Skip != null)
+		{
+			query = query.Skip(queryOptions.Skip.Value);
+		}
+		
+		if (queryOptions.Top != null)
+		{
+			query = query.Take(queryOptions.Top.Value);
+		}
+		
+		var items = await _mapper.ProjectTo<TResponse>(query)
 			.ToArrayAsync(cancellationToken);
 
 		var pageSize = queryOptions.Top?.Value ?? items.Length;
@@ -113,7 +167,7 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 			new PageInfoResponse(
 				queryOptions.Skip?.Value > 0 && pageSize != 0 ? queryOptions.Skip.Value / pageSize : 0,
 				pageSize,
-				allItems.Count()));
+				totalItems));
 	}
 
 	protected Task<TResult> MapExceptionAsync<TResult>(
