@@ -83,6 +83,7 @@ public static class DbContextExtensions
 				.AsImplementedInterfaces()
 				.WithScopedLifetime());
 
+		services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 		services.AddScoped<IUserProvider, HttpUserProvider>();
 
 		return services;

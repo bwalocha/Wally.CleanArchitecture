@@ -123,6 +123,12 @@ public static class TypeHelpers
 		return assemblies.SelectMany(a => a.GetTypes())
 			.Types();
 	}
+	
+	public static TypeSelector GetAllExportedTypes(this IEnumerable<Assembly> assemblies)
+	{
+		return assemblies.SelectMany(a => a.GetExportedTypes())
+			.Types();
+	}
 
 	/// <summary>
 	///     Determines if this property is marked as init-only.
