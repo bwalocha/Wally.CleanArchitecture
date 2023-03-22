@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -91,14 +92,31 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 		return (Expression<Func<T, bool>>)quote.Operand;
 	}
 	
-	private static LambdaExpression GetOrderByExpression<T>(OrderByQueryOption order)
+	private static IEnumerable<LambdaExpression> GetOrderByExpression<T>(OrderByQueryOption order)
 	{
 		var enumerable = Enumerable.Empty<T>()
 			.AsQueryable();
 		enumerable = order.ApplyTo(enumerable, new ODataQuerySettings());
 		var mce = (MethodCallExpression)enumerable.Expression;
-		var quote = (UnaryExpression)mce.Arguments[1];
-		return (LambdaExpression)quote.Operand;
+
+		foreach (var argument in mce.Arguments)
+		{
+			switch (argument)
+			{
+				case UnaryExpression unaryExpression:
+					yield return (LambdaExpression)unaryExpression.Operand;
+					break;
+				case MethodCallExpression callExpression:
+					yield return (LambdaExpression)((UnaryExpression)callExpression.Arguments[1]).Operand;
+					break;
+				
+				// TODO:
+				/*else
+				{
+					throw new NotSupportedException($"The Sort Order '{order.RawValue}' is not supported");
+				}*/
+			}
+		}
 	}
 	
 	protected async Task<PagedResponse<TResponse>> GetAsync<TRequest, TResponse>(
@@ -118,33 +136,39 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 
 		if (queryOptions.OrderBy != null)
 		{
-			// TODO: support for multiple OrderBy, ThenBy, desc, asc combination
-			var queryFunc = GetOrderByExpression<TRequest>(queryOptions.OrderBy);
-			var destExpressionType = typeof(Expression<>).MakeGenericType(
-				typeof(Func<,>).MakeGenericType(typeof(TEntity), queryFunc.ReturnType));
-			var mappedQueryFunc = _mapper.MapExpression(queryFunc, queryFunc.GetType(), destExpressionType);
-			MethodInfo[] methodInfo;
-			if (queryOptions.OrderBy.OrderByClause.Direction == OrderByDirection.Ascending)
-			{
-				methodInfo = typeof(Queryable).GetMethods()
-					.Where(a => a.Name == nameof(Queryable.OrderBy))
-					.ToArray();
-			}
-			else
-			{
-				methodInfo = typeof(Queryable).GetMethods()
-					.Where(a => a.Name == nameof(Queryable.OrderByDescending))
-					.ToArray();
-			}
+			var queryFuncs = GetOrderByExpression<TRequest>(queryOptions.OrderBy);
 
-			var mi = methodInfo.First()
-				.MakeGenericMethod(typeof(TEntity), mappedQueryFunc.ReturnType); // TODO: get rid of First
+			foreach (var queryFunc in queryFuncs.Select((a, i) => new { Expression = a, Index = i }))
+			{
+				var destExpressionType = typeof(Expression<>).MakeGenericType(
+					typeof(Func<,>).MakeGenericType(typeof(TEntity), queryFunc.Expression.ReturnType));
+				var mappedQueryFunc = _mapper.MapExpression(
+					queryFunc.Expression,
+					queryFunc.Expression.GetType(),
+					destExpressionType);
+				string orderMethodName;
+				if (queryOptions.OrderBy.OrderByNodes[queryFunc.Index]
+						.Direction == OrderByDirection.Ascending)
+				{
+					orderMethodName = queryFunc.Index == 0 ? nameof(Queryable.OrderBy) : nameof(Queryable.ThenBy);
+				}
+				else
+				{
+					orderMethodName = queryFunc.Index == 0 ? nameof(Queryable.OrderByDescending) : nameof(Queryable.ThenByDescending);
+				}
 
-			query = (IOrderedQueryable<TEntity>)mi.Invoke(null, new object[] { query, mappedQueryFunc })!;
+				var methodInfo = typeof(Queryable).GetMethods()
+					.Where(a => a.Name == orderMethodName)
+					.ToArray();
+				var mi = methodInfo.First()
+					.MakeGenericMethod(typeof(TEntity), mappedQueryFunc.ReturnType); // TODO: get rid of First
+
+				query = (IOrderedQueryable<TEntity>)mi.Invoke(null, new object[] { query, mappedQueryFunc }) !;
+			}
 		}
 		else
 		{
-			query = query.OrderBy(a => a.Id);
+			query = ApplyDefaultOrderBy(query);
 		}
 		
 		if (queryOptions.Skip != null)
@@ -168,6 +192,11 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 				queryOptions.Skip?.Value > 0 && pageSize != 0 ? queryOptions.Skip.Value / pageSize : 0,
 				pageSize,
 				totalItems));
+	}
+
+	protected virtual IQueryable<TEntity> ApplyDefaultOrderBy(IQueryable<TEntity> query)
+	{
+		return query.OrderBy(a => a.Id);
 	}
 
 	protected Task<TResult> MapExceptionAsync<TResult>(

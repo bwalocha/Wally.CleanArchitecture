@@ -227,6 +227,43 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 			.Name.Should()
 			.Be("testUser1");
 	}
+	
+	[Fact]
+	public async Task GetOData_3ResourcesOrderedBy2Properties_Returns3Resources()
+	{
+		// Arrange
+		_database.Add(User.Create("testUser3"));
+		_database.Add(User.Create("testUser3"));
+		_database.Add(User.Create("testUser2"));
+		await _database.SaveChangesAsync();
+
+		// Act
+		var response = await _httpClient.GetAsync("Users?$orderby=Name asc, Id desc"); // x3
+
+		// Assert
+		response.IsSuccessStatusCode.Should()
+			.BeTrue();
+		response.StatusCode.Should()
+			.Be(HttpStatusCode.OK);
+		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
+		data.Should()
+			.NotBeNull();
+		data.Items.Length.Should()
+			.Be(3);
+		data.Items[0]
+			.Name.Should()
+			.Be("testUser2");
+		data.Items[1]
+			.Name.Should()
+			.Be("testUser3");
+		data.Items[2]
+			.Name.Should()
+			.Be("testUser3");
+		data.Items[1]
+			.Id.CompareTo(data.Items[2].Id)
+			.Should()
+			.Be(1);
+	}
 
 	[Fact]
 	public async Task GetOData_3ResourcesOrderedSkipped_Returns2Resources()
