@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+
+using MySqlConnector;
 
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Exceptions;
@@ -51,6 +54,10 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 				HandleResourceNotFoundException(context);
 
 				break;
+			case DbUpdateException _:
+				HandleSqlException(context);
+				
+				break;
 			default:
 				Debugger.Break();
 				HandleUndefinedExceptions(context);
@@ -59,6 +66,28 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 		}
 
 		context.ExceptionHandled = true;
+	}
+	
+	private void HandleSqlException(ExceptionContext context)
+	{
+		var problemDetails = new ValidationProblemDetails
+		{
+			Instance = context.HttpContext.Request.Path,
+			Status = StatusCodes.Status409Conflict,
+			Detail = "Please refer to the errors property for additional details.",
+		};
+
+		if (context.Exception.InnerException! is MySqlException exception)
+		{
+			problemDetails.Errors.Add("Database", new[] { exception.ErrorCode.ToString(), exception.Message, });
+			context.Result = new ConflictObjectResult(problemDetails);
+		}
+		else
+		{
+			context.Result = new ConflictObjectResult(problemDetails);
+		}
+
+		context.HttpContext.Response.StatusCode = StatusCodes.Status409Conflict;
 	}
 
 	private void HandleUnauthorizedAccessException(ExceptionContext context)

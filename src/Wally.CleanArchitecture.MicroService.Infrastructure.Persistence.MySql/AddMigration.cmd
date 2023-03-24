@@ -11,7 +11,7 @@ ELSE (
 ECHO %MIGRATION_NAME%
 
 SET "STARTUP_PROJECT=./../Wally.CleanArchitecture.MicroService.WebApi/Wally.CleanArchitecture.MicroService.WebApi.csproj"
-SET "PROJECT=./Wally.CleanArchitecture.MicroService.Persistence.MySql.csproj"
+SET "PROJECT=./Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql.csproj"
 SET "Database__ProviderType=MySql"
 
 dotnet ef migrations add %MIGRATION_NAME% --context ApplicationDbContext --startup-project %STARTUP_PROJECT% --project %PROJECT% --verbose
