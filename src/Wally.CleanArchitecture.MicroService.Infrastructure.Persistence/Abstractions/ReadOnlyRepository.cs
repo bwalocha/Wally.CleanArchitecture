@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -124,16 +123,52 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 		ODataQueryOptions<TRequest> queryOptions,
 		CancellationToken cancellationToken) where TRequest : class, IRequest where TResponse : class, IResponse
 	{
-		if (queryOptions.Filter != null)
-		{
-			var queryFunc = GetFilterExpression<TRequest>(queryOptions.Filter);
-			var mappedQueryFunc = _mapper.MapExpression<Expression<Func<TEntity, bool>>>(queryFunc); 
-			
-			query = query.Where(mappedQueryFunc);
-		}
+		query = ApplyFilter<TRequest, TResponse>(query, queryOptions);
 
 		var totalItems = await query.CountAsync(cancellationToken);
 
+		query = ApplyOrderBy<TRequest, TResponse>(query, queryOptions);
+		query = ApplySkip<TRequest, TResponse>(query, queryOptions);
+		query = ApplyTop<TRequest, TResponse>(query, queryOptions);
+		
+		var items = await _mapper.ProjectTo<TResponse>(query)
+			.ToArrayAsync(cancellationToken);
+
+		var pageSize = queryOptions.Top?.Value ?? items.Length;
+
+		return new PagedResponse<TResponse>(
+			items,
+			new PageInfoResponse(
+				queryOptions.Skip?.Value > 0 && pageSize != 0 ? queryOptions.Skip.Value / pageSize : 0,
+				pageSize,
+				totalItems));
+	}
+
+	private static IQueryable<TEntity> ApplyTop<TRequest, TResponse>(IQueryable<TEntity> query, ODataQueryOptions<TRequest> queryOptions)
+		where TRequest : class, IRequest where TResponse : class, IResponse
+	{
+		if (queryOptions.Top == null)
+		{
+			return query;
+		}
+
+		return query.Take(queryOptions.Top.Value);
+	}
+
+	private static IQueryable<TEntity> ApplySkip<TRequest, TResponse>(IQueryable<TEntity> query, ODataQueryOptions<TRequest> queryOptions)
+		where TRequest : class, IRequest where TResponse : class, IResponse
+	{
+		if (queryOptions.Skip == null)
+		{
+			return query;
+		}
+
+		return query.Skip(queryOptions.Skip.Value);
+	}
+
+	private IQueryable<TEntity> ApplyOrderBy<TRequest, TResponse>(IQueryable<TEntity> query, ODataQueryOptions<TRequest> queryOptions)
+		where TRequest : class, IRequest where TResponse : class, IResponse
+	{
 		if (queryOptions.OrderBy != null)
 		{
 			var queryFuncs = GetOrderByExpression<TRequest>(queryOptions.OrderBy);
@@ -154,7 +189,9 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 				}
 				else
 				{
-					orderMethodName = queryFunc.Index == 0 ? nameof(Queryable.OrderByDescending) : nameof(Queryable.ThenByDescending);
+					orderMethodName = queryFunc.Index == 0
+						? nameof(Queryable.OrderByDescending)
+						: nameof(Queryable.ThenByDescending);
 				}
 
 				var methodInfo = typeof(Queryable).GetMethods()
@@ -170,28 +207,22 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 		{
 			query = ApplyDefaultOrderBy(query);
 		}
-		
-		if (queryOptions.Skip != null)
-		{
-			query = query.Skip(queryOptions.Skip.Value);
-		}
-		
-		if (queryOptions.Top != null)
-		{
-			query = query.Take(queryOptions.Top.Value);
-		}
-		
-		var items = await _mapper.ProjectTo<TResponse>(query)
-			.ToArrayAsync(cancellationToken);
 
-		var pageSize = queryOptions.Top?.Value ?? items.Length;
+		return query;
+	}
 
-		return new PagedResponse<TResponse>(
-			items,
-			new PageInfoResponse(
-				queryOptions.Skip?.Value > 0 && pageSize != 0 ? queryOptions.Skip.Value / pageSize : 0,
-				pageSize,
-				totalItems));
+	private IQueryable<TEntity> ApplyFilter<TRequest, TResponse>(IQueryable<TEntity> query, ODataQueryOptions<TRequest> queryOptions)
+		where TRequest : class, IRequest where TResponse : class, IResponse
+	{
+		if (queryOptions.Filter != null)
+		{
+			var queryFunc = GetFilterExpression<TRequest>(queryOptions.Filter);
+			var mappedQueryFunc = _mapper.MapExpression<Expression<Func<TEntity, bool>>>(queryFunc);
+
+			query = query.Where(mappedQueryFunc);
+		}
+
+		return query;
 	}
 
 	protected virtual IQueryable<TEntity> ApplyDefaultOrderBy(IQueryable<TEntity> query)
