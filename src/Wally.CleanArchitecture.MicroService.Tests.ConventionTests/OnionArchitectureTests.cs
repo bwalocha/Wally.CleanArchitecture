@@ -83,7 +83,8 @@ public class OnionArchitectureTests
 
 		using (new AssertionScope())
 		{
-			types.Should().BeUnderNamespace(applicationNamespace);
+			types.Should()
+				.BeUnderNamespace(applicationNamespace);
 		}
 	}
 }

@@ -82,12 +82,12 @@ public class DomainEventTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Domain_DomainEvent_ShouldBeExcludedFromCodeCoverage()
 	{
 		var assemblies = Configuration.Assemblies.Domain;
-		
+
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var assembly in assemblies)

@@ -90,7 +90,7 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 		var quote = (UnaryExpression)mce.Arguments[1];
 		return (Expression<Func<T, bool>>)quote.Operand;
 	}
-	
+
 	private static IEnumerable<LambdaExpression> GetOrderByExpression<T>(OrderByQueryOption order)
 	{
 		var enumerable = Enumerable.Empty<T>()
@@ -108,7 +108,7 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 				case MethodCallExpression callExpression:
 					yield return (LambdaExpression)((UnaryExpression)callExpression.Arguments[1]).Operand;
 					break;
-				
+
 				// TODO:
 				/*else
 				{
@@ -117,7 +117,7 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 			}
 		}
 	}
-	
+
 	protected async Task<PagedResponse<TResponse>> GetAsync<TRequest, TResponse>(
 		IQueryable<TEntity> query,
 		ODataQueryOptions<TRequest> queryOptions,
@@ -130,7 +130,7 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 		query = ApplyOrderBy<TRequest, TResponse>(query, queryOptions);
 		query = ApplySkip<TRequest, TResponse>(query, queryOptions);
 		query = ApplyTop<TRequest, TResponse>(query, queryOptions);
-		
+
 		var items = await _mapper.ProjectTo<TResponse>(query)
 			.ToArrayAsync(cancellationToken);
 
@@ -144,7 +144,8 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 				totalItems));
 	}
 
-	private static IQueryable<TEntity> ApplyTop<TRequest, TResponse>(IQueryable<TEntity> query, ODataQueryOptions<TRequest> queryOptions)
+	private static IQueryable<TEntity> ApplyTop
+		<TRequest, TResponse>(IQueryable<TEntity> query, ODataQueryOptions<TRequest> queryOptions)
 		where TRequest : class, IRequest where TResponse : class, IResponse
 	{
 		if (queryOptions.Top == null)
@@ -155,7 +156,8 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 		return query.Take(queryOptions.Top.Value);
 	}
 
-	private static IQueryable<TEntity> ApplySkip<TRequest, TResponse>(IQueryable<TEntity> query, ODataQueryOptions<TRequest> queryOptions)
+	private static IQueryable<TEntity> ApplySkip
+		<TRequest, TResponse>(IQueryable<TEntity> query, ODataQueryOptions<TRequest> queryOptions)
 		where TRequest : class, IRequest where TResponse : class, IResponse
 	{
 		if (queryOptions.Skip == null)
@@ -166,14 +168,15 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 		return query.Skip(queryOptions.Skip.Value);
 	}
 
-	private IQueryable<TEntity> ApplyOrderBy<TRequest, TResponse>(IQueryable<TEntity> query, ODataQueryOptions<TRequest> queryOptions)
+	private IQueryable<TEntity> ApplyOrderBy
+		<TRequest, TResponse>(IQueryable<TEntity> query, ODataQueryOptions<TRequest> queryOptions)
 		where TRequest : class, IRequest where TResponse : class, IResponse
 	{
 		if (queryOptions.OrderBy != null)
 		{
 			var queryFuncs = GetOrderByExpression<TRequest>(queryOptions.OrderBy);
 
-			foreach (var queryFunc in queryFuncs.Select((a, i) => new { Expression = a, Index = i }))
+			foreach (var queryFunc in queryFuncs.Select((a, i) => new { Expression = a, Index = i, }))
 			{
 				var destExpressionType = typeof(Expression<>).MakeGenericType(
 					typeof(Func<,>).MakeGenericType(typeof(TEntity), queryFunc.Expression.ReturnType));
@@ -200,7 +203,7 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 				var mi = methodInfo.First()
 					.MakeGenericMethod(typeof(TEntity), mappedQueryFunc.ReturnType); // TODO: get rid of First
 
-				query = (IOrderedQueryable<TEntity>)mi.Invoke(null, new object[] { query, mappedQueryFunc }) !;
+				query = (IOrderedQueryable<TEntity>)mi.Invoke(null, new object[] { query, mappedQueryFunc, }) !;
 			}
 		}
 		else
@@ -211,7 +214,8 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 		return query;
 	}
 
-	private IQueryable<TEntity> ApplyFilter<TRequest, TResponse>(IQueryable<TEntity> query, ODataQueryOptions<TRequest> queryOptions)
+	private IQueryable<TEntity> ApplyFilter
+		<TRequest, TResponse>(IQueryable<TEntity> query, ODataQueryOptions<TRequest> queryOptions)
 		where TRequest : class, IRequest where TResponse : class, IResponse
 	{
 		if (queryOptions.Filter != null)

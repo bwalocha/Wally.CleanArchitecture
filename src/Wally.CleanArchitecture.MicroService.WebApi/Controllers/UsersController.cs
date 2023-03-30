@@ -113,4 +113,23 @@ public class UsersController : ControllerBase
 
 		return Ok();
 	}
+
+	/// <summary>
+	///     Deletes User by Id.
+	/// </summary>
+	/// <param name="id">Unique identifier of User.</param>
+	/// <param name="cancellationToken">Cancellation token.</param>
+	/// <returns>.</returns>
+	/// <remarks>
+	///     Sample request:
+	///     DELETE /Users/6ff34249-ef96-432a-9822-d3aca639a986
+	/// </remarks>
+	[HttpDelete("{id:guid}")]
+	public async Task<ActionResult<object>> DeleteAsync(Guid id, CancellationToken cancellationToken)
+	{
+		var command = new DeleteUserCommand(id);
+		await _mediator.Send(command, cancellationToken);
+
+		return Ok();
+	}
 }

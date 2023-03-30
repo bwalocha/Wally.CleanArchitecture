@@ -56,7 +56,7 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 				break;
 			case DbUpdateException _:
 				HandleSqlException(context);
-				
+
 				break;
 			default:
 				Debugger.Break();
@@ -67,7 +67,7 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 
 		context.ExceptionHandled = true;
 	}
-	
+
 	private void HandleSqlException(ExceptionContext context)
 	{
 		var problemDetails = new ValidationProblemDetails

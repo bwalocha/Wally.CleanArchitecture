@@ -55,7 +55,10 @@ public static class ReinforcedTypingsConfiguration
 				exportBuilder.OverrideName(name);
 				if (exportBuilder.Type.Namespace != null)
 				{
-					exportBuilder.ExportTo($"{exportBuilder.Type.Namespace.Split('.')[3]}/{name}.ts");
+					var segments = exportBuilder.Type.Namespace.Split('.')
+						.Reverse()
+						.ToArray();
+					exportBuilder.ExportTo($"{segments[0]}/{segments[1]}/{name}.ts");
 				}
 			});
 	}

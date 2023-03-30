@@ -58,7 +58,7 @@ public static class MessagingExtensions
 		{
 			_logger = logger;
 		}
-		
+
 		public ConnectHandle ConnectPublishObserver(IPublishObserver observer)
 		{
 			throw new NotImplementedException();
@@ -69,34 +69,43 @@ public static class MessagingExtensions
 			throw new NotImplementedException();
 		}
 
-		public Task Publish<T>(T message, CancellationToken cancellationToken = new CancellationToken()) where T : class
+		public Task Publish<T>(T message, CancellationToken cancellationToken = new()) where T : class
 		{
 			_logger.LogWarning($"Message Bus is not enabled. The message '{typeof(T)}' has not been sent.");
-			
+
 			return Task.CompletedTask;
 		}
 
-		public Task Publish<T>(T message, IPipe<PublishContext<T>> publishPipe, CancellationToken cancellationToken = new CancellationToken()) where T : class
+		public Task Publish<T>(
+			T message,
+			IPipe<PublishContext<T>> publishPipe,
+			CancellationToken cancellationToken = new()) where T : class
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task Publish<T>(T message, IPipe<PublishContext> publishPipe, CancellationToken cancellationToken = new CancellationToken()) where T : class
+		public Task Publish<T>(
+			T message,
+			IPipe<PublishContext> publishPipe,
+			CancellationToken cancellationToken = new()) where T : class
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task Publish(object message, CancellationToken cancellationToken = new CancellationToken())
+		public Task Publish(object message, CancellationToken cancellationToken = new())
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task Publish(object message, IPipe<PublishContext> publishPipe, CancellationToken cancellationToken = new CancellationToken())
+		public Task Publish(
+			object message,
+			IPipe<PublishContext> publishPipe,
+			CancellationToken cancellationToken = new())
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task Publish(object message, Type messageType, CancellationToken cancellationToken = new CancellationToken())
+		public Task Publish(object message, Type messageType, CancellationToken cancellationToken = new())
 		{
 			throw new NotImplementedException();
 		}
@@ -105,22 +114,28 @@ public static class MessagingExtensions
 			object message,
 			Type messageType,
 			IPipe<PublishContext> publishPipe,
-			CancellationToken cancellationToken = new CancellationToken())
+			CancellationToken cancellationToken = new())
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task Publish<T>(object values, CancellationToken cancellationToken = new CancellationToken()) where T : class
+		public Task Publish<T>(object values, CancellationToken cancellationToken = new()) where T : class
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task Publish<T>(object values, IPipe<PublishContext<T>> publishPipe, CancellationToken cancellationToken = new CancellationToken()) where T : class
+		public Task Publish<T>(
+			object values,
+			IPipe<PublishContext<T>> publishPipe,
+			CancellationToken cancellationToken = new()) where T : class
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task Publish<T>(object values, IPipe<PublishContext> publishPipe, CancellationToken cancellationToken = new CancellationToken()) where T : class
+		public Task Publish<T>(
+			object values,
+			IPipe<PublishContext> publishPipe,
+			CancellationToken cancellationToken = new()) where T : class
 		{
 			throw new NotImplementedException();
 		}
@@ -140,7 +155,8 @@ public static class MessagingExtensions
 			throw new NotImplementedException();
 		}
 
-		public ConnectHandle ConnectConsumePipe<T>(IPipe<ConsumeContext<T>> pipe, ConnectPipeOptions options) where T : class
+		public ConnectHandle ConnectConsumePipe<T>(IPipe<ConsumeContext<T>> pipe, ConnectPipeOptions options)
+			where T : class
 		{
 			throw new NotImplementedException();
 		}
@@ -183,7 +199,9 @@ public static class MessagingExtensions
 			throw new NotImplementedException();
 		}
 
-		public HostReceiveEndpointHandle ConnectReceiveEndpoint(string queueName, Action<IReceiveEndpointConfigurator>? configureEndpoint = null)
+		public HostReceiveEndpointHandle ConnectReceiveEndpoint(
+			string queueName,
+			Action<IReceiveEndpointConfigurator>? configureEndpoint = null)
 		{
 			throw new NotImplementedException();
 		}

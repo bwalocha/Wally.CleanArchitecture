@@ -12,11 +12,14 @@ public class DateTimeProvider : IDateTimeProvider
 	{
 		_function = () => DateTime.UtcNow;
 	}
-	
+
 	public DateTimeProvider(Func<DateTime> function)
 	{
 		_function = function;
 	}
 
-	public DateTime GetDateTime() => _function();
+	public DateTime GetDateTime()
+	{
+		return _function();
+	}
 }

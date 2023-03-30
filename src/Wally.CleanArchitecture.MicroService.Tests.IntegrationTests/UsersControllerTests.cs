@@ -227,7 +227,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 			.Name.Should()
 			.Be("testUser1");
 	}
-	
+
 	[Fact]
 	public async Task GetOData_3ResourcesOrderedBy2Properties_Returns3Resources()
 	{
@@ -260,7 +260,9 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 			.Name.Should()
 			.Be("testUser3");
 		data.Items[1]
-			.Id.CompareTo(data.Items[2].Id)
+			.Id.CompareTo(
+				data.Items[2]
+					.Id)
 			.Should()
 			.Be(1);
 	}

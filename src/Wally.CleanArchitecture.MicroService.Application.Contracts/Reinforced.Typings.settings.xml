@@ -54,7 +54,7 @@
             Note that in case of using RtDivideTypesAmongFiles, RtTargetFile parameter will
             NOT be used anymore.
         -->
-        <RtTargetDirectory>$(ProjectDir)..\Wally.CleanArchitecture.MicroService.Contracts\generated</RtTargetDirectory>
+        <RtTargetDirectory>$(ProjectDir)..\Wally.CleanArchitecture.MicroService.Application.Contracts\generated</RtTargetDirectory>
 
         <!--
             Disables typescript compilation in solution.
