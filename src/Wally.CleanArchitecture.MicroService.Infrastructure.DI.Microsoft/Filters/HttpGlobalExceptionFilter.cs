@@ -2,6 +2,8 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
+using EntityFramework.Exceptions.Common;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -52,6 +54,15 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 				break;
 			case ResourceNotFoundException _:
 				HandleResourceNotFoundException(context);
+
+				break;
+			case UniqueConstraintException _:
+			case CannotInsertNullException _:
+			case MaxLengthExceededException _:
+			case NumericOverflowException _:
+			case ReferenceConstraintException _:
+				// TODO: test it
+				HandleSqlException(context);
 
 				break;
 			case DbUpdateException _:

@@ -35,6 +35,7 @@ public static class DbContextExtensions
 								typeof(IInfrastructureMySqlAssemblyMarker).Assembly.GetName()
 									.Name);
 						});
+					EntityFramework.Exceptions.MySQL.Pomelo.ExceptionProcessorExtensions.UseExceptionProcessor(options);
 					break;
 				case DatabaseProviderType.PostgreSQL:
 					options.UseNpgsql(
@@ -46,6 +47,7 @@ public static class DbContextExtensions
 								typeof(IInfrastructurePostgreSQLAssemblyMarker).Assembly.GetName()
 									.Name);
 						});
+					EntityFramework.Exceptions.PostgreSQL.ExceptionProcessorExtensions.UseExceptionProcessor(options);
 					break;
 				case DatabaseProviderType.SqlServer:
 					options.UseSqlServer(
@@ -57,6 +59,7 @@ public static class DbContextExtensions
 								typeof(IInfrastructureSqlServerAssemblyMarker).Assembly.GetName()
 									.Name);
 						});
+					EntityFramework.Exceptions.SqlServer.ExceptionProcessorExtensions.UseExceptionProcessor(options);
 					break;
 				default:
 					throw new ArgumentOutOfRangeException(

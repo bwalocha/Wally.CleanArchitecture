@@ -10,11 +10,15 @@
         <PackageReference Include="AspNetCore.HealthChecks.AzureServiceBus" Version="6.1.0" />
         <PackageReference Include="AspNetCore.HealthChecks.MySql" Version="6.0.2" />
         <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="6.0.2" />
-        <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="6.0.3" />
-        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
-        <PackageReference Include="MassTransit" Version="8.0.14" />
-        <PackageReference Include="MassTransit.Azure.ServiceBus.Core" Version="8.0.14" />
-        <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.14" />
+        <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="6.0.4" />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+        <PackageReference Include="EntityFrameworkCore.Exceptions.MySQL" Version="6.0.3" />
+        <PackageReference Include="EntityFrameworkCore.Exceptions.MySQL.Pomelo" Version="6.0.3" />
+        <PackageReference Include="EntityFrameworkCore.Exceptions.PostgreSQL" Version="6.0.3" />
+        <PackageReference Include="EntityFrameworkCore.Exceptions.SqlServer" Version="6.0.3.1" />
+        <PackageReference Include="MassTransit" Version="8.0.15" />
+        <PackageReference Include="MassTransit.Azure.ServiceBus.Core" Version="8.0.15" />
+        <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.15" />
         <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
@@ -27,8 +31,8 @@
         <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.5" />
         <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="6.0.5" />
         <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.4" />
-        <PackageReference Include="Microsoft.AspNetCore.OData" Version="8.1.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.5" />
+        <PackageReference Include="Microsoft.AspNetCore.OData" Version="8.1.2" />
     </ItemGroup>
 
     <ItemGroup>

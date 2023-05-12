@@ -17,10 +17,6 @@ using Microsoft.Extensions.Hosting;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 using Wally.Lib.DDD.Abstractions.DomainNotifications;
 
-using Xunit;
-
-[assembly: CollectionBehavior(DisableTestParallelization = true)]
-
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Helpers;
 
 public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
@@ -63,9 +59,10 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 				}
 
 				// Add ApplicationDbContext using an in-memory database for testing.
+				var databaseName = $"InMemoryDbForTesting_{Guid.NewGuid()}";
 				Action<DbContextOptionsBuilder> options = optionsAction =>
 				{
-					optionsAction.UseInMemoryDatabase("InMemoryDbForTesting");
+					optionsAction.UseInMemoryDatabase(databaseName);
 					optionsAction.ConfigureWarnings(a => { a.Ignore(InMemoryEventId.TransactionIgnoredWarning); });
 					optionsAction.EnableSensitiveDataLogging();
 				};

@@ -7,13 +7,8 @@ using System.Threading.Tasks;
 
 using FluentAssertions;
 
-using JsonNet.ContractResolvers;
-
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
-
-using Newtonsoft.Json;
 
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Requests.Users;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Responses.Users;
@@ -26,33 +21,17 @@ using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
 
-// [Collection(nameof(UsersControllerTests))]
-// [TestCaseOrderer(PriorityOrderer.Name, PriorityOrderer.Assembly)]
-// [Trait("TestTraitNames.Category", "TestCategoryNames.Integration")]
 public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Startup>>
 {
 	private readonly DbContext _database;
 	private readonly ApiWebApplicationFactory<Startup> _factory;
 
 	private readonly HttpClient _httpClient;
-	private readonly JsonSerializerSettings _jsonSettings;
 
 	public UsersControllerTests(ApiWebApplicationFactory<Startup> factory)
 	{
 		_factory = factory;
-		_httpClient = factory.WithWebHostBuilder(
-				builder =>
-				{
-					builder.ConfigureTestServices(
-						services =>
-						{
-							// services.AddAuthentication("Test")
-							// 	.AddScheme<AuthenticationSchemeOptions, TestAuthHandler>("Test", options => { });
-						});
-				})
-			.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false, });
-		_jsonSettings = new JsonSerializerSettings { ContractResolver = new PrivateSetterContractResolver(), };
-
+		_httpClient = factory.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false, });
 		_database = factory.GetRequiredService<DbContext>();
 		_database.RemoveRange(_database.Set<User>());
 		_database.SaveChanges();

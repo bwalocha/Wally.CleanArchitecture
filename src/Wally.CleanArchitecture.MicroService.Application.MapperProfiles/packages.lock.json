@@ -19,8 +19,8 @@
       },
       "FluentValidation": {
         "type": "Transitive",
-        "resolved": "11.5.1",
-        "contentHash": "0h1Q5lNOLLyYTWMJmyNoMqhY4CBRvvUWvJP1R4F2CnmmzuWwvB0A8aVmw5+lOuwYnwUwCRrdeMLbc81F38ahNQ=="
+        "resolved": "11.5.2",
+        "contentHash": "kj/hW/iusp2zq1Vt1YPLgDj6UG0DhoJXGkLwjLwm3j7vUtRF8DVA5vHJfItG3BxDjLWJUR2pvw8fK7rnuysZNA=="
       },
       "MediatR": {
         "type": "Transitive",
@@ -38,8 +38,8 @@
       },
       "Microsoft.AspNetCore.OData": {
         "type": "Transitive",
-        "resolved": "8.1.0",
-        "contentHash": "S+tvshgcNLW8bRqpXwNhAgZtui+98ofzteVFU2TG1PoGw99//eyaXNNnYcMbK1D0octBowutjkM2DDsyLfqhkg==",
+        "resolved": "8.1.2",
+        "contentHash": "oqslisegYIz72Ew7gem7mDnbIuipPiO+GsqEJh9SoIEuOwTB/zq9Xw5ByKXAPGuv4PoPb9bOEo/ZXYHwoT55fg==",
         "dependencies": {
           "Microsoft.OData.Core": "[7.15.0, 8.0.0)",
           "Microsoft.OData.Edm": "[7.15.0, 8.0.0)",
@@ -104,8 +104,8 @@
       },
       "Reinforced.Typings": {
         "type": "Transitive",
-        "resolved": "1.6.1",
-        "contentHash": "w0eQOQ/xR+ap+W2ewYDLgE9zPuq6dKUWLGDoaP7x0nZza1/n7qW/venMj3ykjUEQMmMIZOP7egCRnny1/WBszw=="
+        "resolved": "1.6.2",
+        "contentHash": "c/qEoIghbFrr4+AaZ7FLkS9bF0k8uQGrmrJl1meiZHbp0tGyK+kfYBWyi/TA7L0tB2r/uPzcYFpIcQCrKmL3mQ=="
       },
       "System.ComponentModel.Annotations": {
         "type": "Transitive",
@@ -129,26 +129,26 @@
       },
       "Wally.Lib.DDD.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.3.4",
-        "contentHash": "r3NYId6XBie7CuOoSnKaneGIHSYYc+7HpbAFvza6fhcRQhsHHCoeC32DgIb5JdVlr24tdVYi9K1eoDTz6eerjQ==",
+        "resolved": "1.3.5",
+        "contentHash": "eYNklQkr/ntfp7K5mj9hSPFbJSYwkSwHyzghzveFa+AIyQ8vzzMYUVUb9USgwiP6mZpFRRsjO16rVBwzZ2KzRg==",
         "dependencies": {
           "MediatR": "12.0.1",
-          "Microsoft.AspNetCore.OData": "8.1.0",
+          "Microsoft.AspNetCore.OData": "8.1.2",
           "Newtonsoft.Json": "13.0.3"
         }
       },
       "wally.cleanarchitecture.microservice.application.contracts": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "[11.5.1, )",
-          "Reinforced.Typings": "[1.6.1, )",
-          "Wally.Lib.DDD.Abstractions": "[1.3.4, )"
+          "FluentValidation": "[11.5.2, )",
+          "Reinforced.Typings": "[1.6.2, )",
+          "Wally.Lib.DDD.Abstractions": "[1.3.5, )"
         }
       },
       "wally.cleanarchitecture.microservice.domain": {
         "type": "Project",
         "dependencies": {
-          "Wally.Lib.DDD.Abstractions": "[1.3.4, )"
+          "Wally.Lib.DDD.Abstractions": "[1.3.5, )"
         }
       }
     }
