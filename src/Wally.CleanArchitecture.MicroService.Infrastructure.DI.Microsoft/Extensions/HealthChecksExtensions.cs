@@ -38,6 +38,13 @@ public static class HealthChecksExtensions
 					failureStatus: HealthStatus.Degraded,
 					tags: new[] { "DB", "Database", nameof(DatabaseProviderType.PostgreSQL), });
 				break;
+			case DatabaseProviderType.SQLite:
+				healthChecksBuilder.AddSqlite(
+					settings.ConnectionStrings.Database,
+					name: "DB",
+					failureStatus: HealthStatus.Degraded,
+					tags: new[] { "DB", "Database", nameof(DatabaseProviderType.SQLite), });
+				break;
 			case DatabaseProviderType.SqlServer:
 				healthChecksBuilder.AddSqlServer(
 					settings.ConnectionStrings.Database,

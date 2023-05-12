@@ -5,5 +5,6 @@ public enum DatabaseProviderType
 	Unknown = 0,
 	MySql,
 	PostgreSQL,
+	SQLite,
 	SqlServer,
 }

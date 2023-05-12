@@ -117,6 +117,15 @@
           "RabbitMQ.Client": "6.2.2"
         }
       },
+      "AspNetCore.HealthChecks.Sqlite": {
+        "type": "Transitive",
+        "resolved": "6.0.2",
+        "contentHash": "lVqIxKPQ3jK7XXSWo+rP8yFUK0dm/OSI4eOqmqHytHb4CIS5DxO2tTLx8IpjQUj2PEP9d+Tk1N076NllTMpdcg==",
+        "dependencies": {
+          "Microsoft.Data.Sqlite": "6.0.0",
+          "Microsoft.Extensions.Diagnostics.HealthChecks": "6.0.0"
+        }
+      },
       "AspNetCore.HealthChecks.SqlServer": {
         "type": "Transitive",
         "resolved": "6.0.2",
@@ -291,6 +300,15 @@
         "dependencies": {
           "EntityFrameworkCore.Exceptions.Common": "6.0.3",
           "Npgsql": "6.0.3"
+        }
+      },
+      "EntityFrameworkCore.Exceptions.Sqlite": {
+        "type": "Transitive",
+        "resolved": "6.0.3",
+        "contentHash": "pUkX0exR5ZntDyXKM1P+VbVmbHDNovKSEcP6k85XJ6GKC8ZG3c+jhazpe7UBHjPQBqJJYdtIxlqPBepyYOry2g==",
+        "dependencies": {
+          "EntityFrameworkCore.Exceptions.Common": "6.0.3",
+          "Microsoft.Data.SQLite": "6.0.3"
         }
       },
       "EntityFrameworkCore.Exceptions.SqlServer": {
@@ -558,12 +576,21 @@
         "resolved": "5.0.1",
         "contentHash": "y0X5MxiNdbITJYoafJ2ruaX6hqO0twpCGR/ipiDOe85JKLU8WL4TuAQfDe5qtt3bND5Je26HnrarLSAMMnVTNg=="
       },
+      "Microsoft.Data.Sqlite": {
+        "type": "Transitive",
+        "resolved": "6.0.3",
+        "contentHash": "7KR/Jde8nsii7aKWkT7VBmbOM6XuXD8tNImA0C69qPygtcNZXhqryVlINsQwd1FcpjCFXdBUjagml0I8MJ8++w==",
+        "dependencies": {
+          "Microsoft.Data.Sqlite.Core": "6.0.3",
+          "SQLitePCLRaw.bundle_e_sqlite3": "2.0.6"
+        }
+      },
       "Microsoft.Data.Sqlite.Core": {
         "type": "Transitive",
-        "resolved": "6.0.7",
-        "contentHash": "lB8T+Y/5pMDBf13dGnrQvZ9rfkZrvRY82FgVElWGIuIF3yFwYLR6475U4/IM+TNLPSk8SvTFBqdLN3gOm3suOQ==",
+        "resolved": "7.0.5",
+        "contentHash": "FTerRmQPqHrCrnoUzhBu+E+1DNGwyrAMLqHkAqOOOu5pGfyMOj8qQUBxI/gDtWtG11p49UxSfWmBzRNlwZqfUg==",
         "dependencies": {
-          "SQLitePCLRaw.core": "2.0.6"
+          "SQLitePCLRaw.core": "2.1.4"
         }
       },
       "Microsoft.EntityFrameworkCore": {
@@ -616,21 +643,21 @@
       },
       "Microsoft.EntityFrameworkCore.Sqlite": {
         "type": "Transitive",
-        "resolved": "6.0.7",
-        "contentHash": "HukwRx+19dkS1ITJHHHVDSpsD5Kjb+2AjFV6SfbAVIPzuXGHTXTlavjm2iq1VbZKH9JNoSnk3d3DleOGtqwpMQ==",
+        "resolved": "7.0.5",
+        "contentHash": "2XPZB9OLF5/m13HgZp7/Dv0u8FWEJzcaBsMYR9Kp3R6aygkb3RnOijofPDTsmdhAqG9YTysCmh2bFaGs0TCc7A==",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Sqlite.Core": "6.0.7",
-          "SQLitePCLRaw.bundle_e_sqlite3": "2.0.6"
+          "Microsoft.EntityFrameworkCore.Sqlite.Core": "7.0.5",
+          "SQLitePCLRaw.bundle_e_sqlite3": "2.1.4"
         }
       },
       "Microsoft.EntityFrameworkCore.Sqlite.Core": {
         "type": "Transitive",
-        "resolved": "6.0.7",
-        "contentHash": "HkbLD+OzmpsxG6OSazh5kgXCR/YLqQA3IWC/vz/Qx+hmNVAIoHm8v/9YQNoryDzCvRYOHYiK5/oOLl6OG05R2g==",
+        "resolved": "7.0.5",
+        "contentHash": "4C+9ct6A/Bq61Ta9Uh2td4/XwNpRCiPI03SWTa3hPJjA/g8wCw2hetbh3DDe5HcydzgDq/lRRjU/eRy3UODklQ==",
         "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "6.0.7",
-          "Microsoft.EntityFrameworkCore.Relational": "6.0.7",
-          "Microsoft.Extensions.DependencyModel": "6.0.0"
+          "Microsoft.Data.Sqlite.Core": "7.0.5",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.5",
+          "Microsoft.Extensions.DependencyModel": "7.0.0"
         }
       },
       "Microsoft.EntityFrameworkCore.Sqlite.Design": {
@@ -1164,33 +1191,32 @@
       },
       "SQLitePCLRaw.bundle_e_sqlite3": {
         "type": "Transitive",
-        "resolved": "2.0.6",
-        "contentHash": "zssYqiaucyGArZfg74rJuzK0ewgZiidsRVrZTmP7JLNvK806gXg6PGA46XzoJGpNPPA5uRcumwvVp6YTYxtQ5w==",
+        "resolved": "2.1.4",
+        "contentHash": "EWI1olKDjFEBMJu0+3wuxwziIAdWDVMYLhuZ3Qs84rrz+DHwD00RzWPZCa+bLnHCf3oJwuFZIRsHT5p236QXww==",
         "dependencies": {
-          "SQLitePCLRaw.core": "2.0.6",
-          "SQLitePCLRaw.lib.e_sqlite3": "2.0.6",
-          "SQLitePCLRaw.provider.e_sqlite3": "2.0.6"
+          "SQLitePCLRaw.lib.e_sqlite3": "2.1.4",
+          "SQLitePCLRaw.provider.e_sqlite3": "2.1.4"
         }
       },
       "SQLitePCLRaw.core": {
         "type": "Transitive",
-        "resolved": "2.0.6",
-        "contentHash": "Vh8n0dTvwXkCGur2WqQTITvk4BUO8i8h9ucSx3wwuaej3s2S6ZC0R7vqCTf9TfS/I4QkXO6g3W2YQIRFkOcijA==",
+        "resolved": "2.1.4",
+        "contentHash": "inBjvSHo9UDKneGNzfUfDjK08JzlcIhn1+SP5Y3m6cgXpCxXKCJDy6Mka7LpgSV+UZmKSnC8rTwB0SQ0xKu5pA==",
         "dependencies": {
           "System.Memory": "4.5.3"
         }
       },
       "SQLitePCLRaw.lib.e_sqlite3": {
         "type": "Transitive",
-        "resolved": "2.0.6",
-        "contentHash": "xlstskMKalKQl0H2uLNe0viBM6fvAGLWqKZUQ3twX5y1tSOZKe0+EbXopQKYdbjJytNGI6y5WSKjpI+kVr2Ckg=="
+        "resolved": "2.1.4",
+        "contentHash": "2C9Q9eX7CPLveJA0rIhf9RXAvu+7nWZu1A2MdG6SD/NOu26TakGgL1nsbc0JAspGijFOo3HoN79xrx8a368fBg=="
       },
       "SQLitePCLRaw.provider.e_sqlite3": {
         "type": "Transitive",
-        "resolved": "2.0.6",
-        "contentHash": "peXLJbhU+0clVBIPirihM1NoTBqw8ouBpcUsVMlcZ4k6fcL2hwgkctVB2Nt5VsbnOJcPspQL5xQK7QvLpxkMgg==",
+        "resolved": "2.1.4",
+        "contentHash": "CSlb5dUp1FMIkez9Iv5EXzpeq7rHryVNqwJMWnpq87j9zWZexaEMdisDktMsnnrzKM6ahNrsTkjqNodTBPBxtQ==",
         "dependencies": {
-          "SQLitePCLRaw.core": "2.0.6"
+          "SQLitePCLRaw.core": "2.1.4"
         }
       },
       "Swashbuckle.AspNetCore": {
@@ -1785,6 +1811,7 @@
           "AspNetCore.HealthChecks.NpgSql": "[6.0.2, )",
           "AspNetCore.HealthChecks.Rabbitmq": "[6.0.2, )",
           "AspNetCore.HealthChecks.SqlServer": "[6.0.2, )",
+          "AspNetCore.HealthChecks.Sqlite": "[6.0.2, )",
           "AspNetCore.HealthChecks.UI": "[6.0.5, )",
           "AspNetCore.HealthChecks.UI.Client": "[6.0.5, )",
           "AspNetCore.HealthChecks.UI.InMemory.Storage": "[6.0.5, )",
@@ -1794,6 +1821,7 @@
           "EntityFrameworkCore.Exceptions.MySQL.Pomelo": "[6.0.3, )",
           "EntityFrameworkCore.Exceptions.PostgreSQL": "[6.0.3, )",
           "EntityFrameworkCore.Exceptions.SqlServer": "[6.0.3.1, )",
+          "EntityFrameworkCore.Exceptions.Sqlite": "[6.0.3, )",
           "FluentValidation.AspNetCore": "[11.3.0, )",
           "MassTransit": "[8.0.15, )",
           "MassTransit.Azure.ServiceBus.Core": "[8.0.15, )",
@@ -1811,6 +1839,7 @@
           "Wally.CleanArchitecture.MicroService.Infrastructure.Messaging": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL": "[1.0.0, )",
+          "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours": "[1.0.0, )"
         }
@@ -1848,6 +1877,13 @@
         "type": "Project",
         "dependencies": {
           "Npgsql.EntityFrameworkCore.PostgreSQL": "[7.0.4, )",
+          "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence": "[1.0.0, )"
+        }
+      },
+      "wally.cleanarchitecture.microservice.infrastructure.persistence.sqlite": {
+        "type": "Project",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Sqlite": "[7.0.5, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence": "[1.0.0, )"
         }
       },

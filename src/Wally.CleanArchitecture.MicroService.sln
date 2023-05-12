@@ -26,6 +26,7 @@ ProjectSection(SolutionItems) = preProject
 	global.json = global.json
 	NuGet.config = NuGet.config
 	.config\dotnet-tools.json = .config\dotnet-tools.json
+	Directory.Build.props = Directory.Build.props
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{7CA1E01A-F818-48B9-A573-20A904B9F7C2}"
@@ -53,6 +54,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL", "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL.csproj", "{EE250951-AD1B-456C-8CCC-AF5187E684CC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql", "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql.csproj", "{0EC7A04A-D1AD-4EA0-AF00-EB4884A6B271}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite", "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite.csproj", "{8E7C4BE3-AD23-4682-93EA-74FA4B98A788}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -259,6 +262,18 @@ Global
 		{0EC7A04A-D1AD-4EA0-AF00-EB4884A6B271}.Release|x64.Build.0 = Release|Any CPU
 		{0EC7A04A-D1AD-4EA0-AF00-EB4884A6B271}.Release|x86.ActiveCfg = Release|Any CPU
 		{0EC7A04A-D1AD-4EA0-AF00-EB4884A6B271}.Release|x86.Build.0 = Release|Any CPU
+		{8E7C4BE3-AD23-4682-93EA-74FA4B98A788}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E7C4BE3-AD23-4682-93EA-74FA4B98A788}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E7C4BE3-AD23-4682-93EA-74FA4B98A788}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8E7C4BE3-AD23-4682-93EA-74FA4B98A788}.Debug|x64.Build.0 = Debug|Any CPU
+		{8E7C4BE3-AD23-4682-93EA-74FA4B98A788}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8E7C4BE3-AD23-4682-93EA-74FA4B98A788}.Debug|x86.Build.0 = Debug|Any CPU
+		{8E7C4BE3-AD23-4682-93EA-74FA4B98A788}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E7C4BE3-AD23-4682-93EA-74FA4B98A788}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E7C4BE3-AD23-4682-93EA-74FA4B98A788}.Release|x64.ActiveCfg = Release|Any CPU
+		{8E7C4BE3-AD23-4682-93EA-74FA4B98A788}.Release|x64.Build.0 = Release|Any CPU
+		{8E7C4BE3-AD23-4682-93EA-74FA4B98A788}.Release|x86.ActiveCfg = Release|Any CPU
+		{8E7C4BE3-AD23-4682-93EA-74FA4B98A788}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{566755FA-0E86-4B73-A72C-CE7A7908DA72} = {7CA1E01A-F818-48B9-A573-20A904B9F7C2}
@@ -277,5 +292,6 @@ Global
 		{0708CEB4-B5DE-4205-873B-525D159DD513} = {5C7411C2-8CAD-4F46-9741-14B5BEB222B1}
 		{EE250951-AD1B-456C-8CCC-AF5187E684CC} = {A81A9220-878D-4D52-A278-BB93EF09EA4B}
 		{0EC7A04A-D1AD-4EA0-AF00-EB4884A6B271} = {A81A9220-878D-4D52-A278-BB93EF09EA4B}
+		{8E7C4BE3-AD23-4682-93EA-74FA4B98A788} = {A81A9220-878D-4D52-A278-BB93EF09EA4B}
 	EndGlobalSection
 EndGlobal

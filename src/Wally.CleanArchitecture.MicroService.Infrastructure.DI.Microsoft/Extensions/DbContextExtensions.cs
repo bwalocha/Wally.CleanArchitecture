@@ -11,6 +11,7 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Providers
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
@@ -48,6 +49,18 @@ public static class DbContextExtensions
 									.Name);
 						});
 					EntityFramework.Exceptions.PostgreSQL.ExceptionProcessorExtensions.UseExceptionProcessor(options);
+					break;
+				case DatabaseProviderType.SQLite:
+					options.UseSqlite(
+						settings.ConnectionStrings.Database,
+						builder =>
+						{
+							builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
+							builder.MigrationsAssembly(
+								typeof(IInfrastructureSQLiteAssemblyMarker).Assembly.GetName()
+									.Name);
+						});
+					EntityFramework.Exceptions.Sqlite.ExceptionProcessorExtensions.UseExceptionProcessor(options);
 					break;
 				case DatabaseProviderType.SqlServer:
 					options.UseSqlServer(
