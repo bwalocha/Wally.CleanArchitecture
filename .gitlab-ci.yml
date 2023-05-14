@@ -47,6 +47,14 @@ test:sln2:
   variables:
     SOLUTION_NAME: ${SLN2_SOLUTION_NAME}
 
+test:npm:
+  extends:
+    - .test:node
+  needs:
+    - build:sln2
+  variables:
+    SOLUTION_NAME: ${NPM_SOLUTION_NAME}/generated
+
 publish:tpl:
   extends:
     - .publish:nuget
@@ -90,9 +98,7 @@ deploy:node:npm:
   extends:
     - .deploy:node
   needs:
-    #- publish:npm
-    #- test:sln1
-    - test:sln2
+    - test:npm
   variables:
     PROJECT_NAME: ${NPM_PROJECT_NAME}/generated
   environment:
