@@ -53,7 +53,7 @@ test:npm:
   needs:
     - build:sln2
   variables:
-    SOLUTION_NAME: ${NPM_SOLUTION_NAME}/generated
+    SOLUTION_NAME: ${NPM_PROJECT_NAME}/generated
   allow_failure: true
 
 publish:tpl:
