@@ -2,6 +2,7 @@ variables:
   SLN1_SOLUTION_NAME: "Wally.CleanArchitecture.ApiGateway"
   SLN2_SOLUTION_NAME: "Wally.CleanArchitecture.MicroService"
   TPL_PROJECT_NAME: "Wally.CleanArchitecture.Template"
+  NPM_PROJECT_NAME: "Wally.CleanArchitecture.MicroService.Application.Contracts"
   #
   VERSION: "1.3.${CI_PIPELINE_ID}"
   #CI_DEBUG_TRACE: "true"
@@ -55,6 +56,15 @@ publish:tpl:
   variables:
     PROJECT_NAME: ${TPL_PROJECT_NAME}
 
+# publish:npm:
+  # extends:
+    # - .publish:node
+  # needs:
+    # - test:sln1
+    # - test:sln2
+  # variables:
+    # PROJECT_NAME: ${NPM_PROJECT_NAME}
+
 deploy:nuget:tpl:
   extends:
     - .deploy:nuget
@@ -70,9 +80,22 @@ deploy:baget:tpl:
   extends:
     - .deploy:baget
   needs:
-    - publish:tpl
+    #- publish:tpl
+    - test:sln1
+    - test:sln2
   variables:
     PROJECT_NAME: ${TPL_PROJECT_NAME}
+
+deploy:node:npm:
+  extends:
+    - .deploy:dode
+  needs:
+    - publish:npm
+  variables:
+    PROJECT_NAME: ${NPM_PROJECT_NAME}/generated
+  environment:
+    name: ${ENV}_${NPM_PROJECT_NAME}
+    url: https://www.npmjs.com/package/${NPM_PROJECT_NAME}/${VERSION}
 
 include:
   - project: wally/wally.common.pipelines
