@@ -5,7 +5,7 @@ variables:
   NPM_PROJECT_NAME: "Wally.CleanArchitecture.MicroService.Application.Contracts"
   #
   VERSION: "1.3.${CI_PIPELINE_ID}"
-  CI_DEBUG_TRACE: "true"
+  #CI_DEBUG_TRACE: "true"
 
 stages:
   - build
