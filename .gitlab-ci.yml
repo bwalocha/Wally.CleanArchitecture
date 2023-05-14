@@ -65,15 +65,6 @@ publish:tpl:
   variables:
     PROJECT_NAME: ${TPL_PROJECT_NAME}
 
-# publish:npm:
-  # extends:
-    # - .publish:node
-  # needs:
-    # - test:sln1
-    # - test:sln2
-  # variables:
-    # PROJECT_NAME: ${NPM_PROJECT_NAME}
-
 deploy:nuget:tpl:
   extends:
     - .deploy:nuget
