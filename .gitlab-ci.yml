@@ -90,7 +90,9 @@ deploy:node:npm:
   extends:
     - .deploy:node
   needs:
-    - publish:npm
+    #- publish:npm
+    #- test:sln1
+    - test:sln2
   variables:
     PROJECT_NAME: ${NPM_PROJECT_NAME}/generated
   environment:
