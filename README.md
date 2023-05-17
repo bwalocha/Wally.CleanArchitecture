@@ -83,3 +83,5 @@ npx storybook@next init --package-manager npm --parser ts --builder vite --disab
 - [x] Authentication in ApiGateway
 - [ ] Authorization in MicroService
 - [x] SignalR Hub Service
+- [ ] Move Application.Contracts to Presentation layer
+- [ ] EntityId [YT](https://www.youtube.com/watch?v=B3Iq346KwUQ&t=655s)
