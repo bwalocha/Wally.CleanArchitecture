@@ -95,7 +95,7 @@ deploy:node:npm:
     PROJECT_NAME: ${NPM_PROJECT_NAME}/generated
   environment:
     name: ${ENV}_${NPM_PROJECT_NAME}
-    url: https://www.npmjs.com/package/${NPM_PROJECT_NAME}/${VERSION}
+    url: https://www.npmjs.com/package/${NPM_PROJECT_NAME}/v/${VERSION}
 
 include:
   - project: wally/wally.common.pipelines
