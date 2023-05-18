@@ -77,7 +77,7 @@
       "type": "generated",
       "generator": "casing",
       "parameters": {
-        "source": "name",
+        "source": "serviceName",
         "toLower": true
       },
       "replaces": "microservice"
