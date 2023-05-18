@@ -73,6 +73,15 @@
       "isRequired": false,
       "defaultValue": "MicroService"
     },
+    "serviceNameLower": {
+      "type": "generated",
+      "generator": "casing",
+      "parameters": {
+        "source": "name",
+        "toLower": true
+      },
+      "replaces": "microservice"
+    },
     "frontendName": {
       "type": "generated",
       "generator": "casing",
