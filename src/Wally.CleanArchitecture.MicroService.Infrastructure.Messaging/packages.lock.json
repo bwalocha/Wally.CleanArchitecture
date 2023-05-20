@@ -54,12 +54,12 @@
       },
       "Wally.Lib.DDD.Abstractions": {
         "type": "Direct",
-        "requested": "[1.3.5, )",
-        "resolved": "1.3.5",
-        "contentHash": "eYNklQkr/ntfp7K5mj9hSPFbJSYwkSwHyzghzveFa+AIyQ8vzzMYUVUb9USgwiP6mZpFRRsjO16rVBwzZ2KzRg==",
+        "requested": "[1.3.6, )",
+        "resolved": "1.3.6",
+        "contentHash": "kqZsZ1b6w2dFCUtkcSRut2UqvWKQ7dHecL9h66sChzPdeCWFt/aBFRBrjENBtoOTbPdyy1at5bplWqbBUNbtjw==",
         "dependencies": {
           "MediatR": "12.0.1",
-          "Microsoft.AspNetCore.OData": "8.1.2",
+          "Microsoft.AspNetCore.OData": "8.2.0",
           "Newtonsoft.Json": "13.0.3"
         }
       },
@@ -80,13 +80,13 @@
       },
       "Microsoft.AspNetCore.OData": {
         "type": "Transitive",
-        "resolved": "8.1.2",
-        "contentHash": "oqslisegYIz72Ew7gem7mDnbIuipPiO+GsqEJh9SoIEuOwTB/zq9Xw5ByKXAPGuv4PoPb9bOEo/ZXYHwoT55fg==",
+        "resolved": "8.2.0",
+        "contentHash": "no2bu7pbz0cxrVg2ORoMw29dyHtKAOXxF94Ha0bFwS576yow7kTc6AdERgp5lAYCfK/Snth0sO9qPdV7D/QKuw==",
         "dependencies": {
-          "Microsoft.OData.Core": "[7.15.0, 8.0.0)",
-          "Microsoft.OData.Edm": "[7.15.0, 8.0.0)",
+          "Microsoft.OData.Core": "[7.16.0, 8.0.0)",
+          "Microsoft.OData.Edm": "[7.16.0, 8.0.0)",
           "Microsoft.OData.ModelBuilder": "[1.0.9, 2.0.0)",
-          "Microsoft.Spatial": "[7.15.0, 8.0.0)"
+          "Microsoft.Spatial": "[7.16.0, 8.0.0)"
         }
       },
       "Microsoft.Bcl.AsyncInterfaces": {
@@ -160,18 +160,18 @@
       },
       "Microsoft.OData.Core": {
         "type": "Transitive",
-        "resolved": "7.15.0",
-        "contentHash": "FA7FCgB/yckJRaQQR/lXyzn62rK4Lpvco9n69xojtVDGx8tq06qdvfpjlOphe25lqodirhA9lb3FLq0ML77SxQ==",
+        "resolved": "7.16.0",
+        "contentHash": "6cskc9e8en3dPTHnMiGoDu9vYQ83OWg7klmwxE0ImI623XW8HTNGk7+Khm/Ell8SPGVxWfcju84owyURFUjhkA==",
         "dependencies": {
           "Microsoft.Bcl.AsyncInterfaces": "5.0.0",
-          "Microsoft.OData.Edm": "[7.15.0]",
-          "Microsoft.Spatial": "[7.15.0]"
+          "Microsoft.OData.Edm": "[7.16.0]",
+          "Microsoft.Spatial": "[7.16.0]"
         }
       },
       "Microsoft.OData.Edm": {
         "type": "Transitive",
-        "resolved": "7.15.0",
-        "contentHash": "86eVGNE3TrA+589cl93Jt6z+MiE5qa/tJLlxeFVhDdNi1q9oMn26nzLh5QUuokQktgwbb+Vt3Red8U3tLk5RYA==",
+        "resolved": "7.16.0",
+        "contentHash": "nFjO3E+8nFaNOoE/Ne3I5MWmrzQ43W5MeSEwGprKtqw3mn+2ZADxMMmJ2uFWdm2oxDo7CNQNzmb8xQmQP5Aitg==",
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "4.6.0",
           "System.Text.Encodings.Web": "4.7.2",
@@ -190,8 +190,8 @@
       },
       "Microsoft.Spatial": {
         "type": "Transitive",
-        "resolved": "7.15.0",
-        "contentHash": "aYgR3IpX311NfoYiN94gHryRa3D33MI6Or7OICIxgLD1M/gHZXjHQyeDqm9J/lRSEof5AyCmX0vRBBrs42xjLA=="
+        "resolved": "7.16.0",
+        "contentHash": "6MvTlVTYovRA9gXNfYdWq3TLwOaJuWGRG07A1U7LIteQYaHQZ1MejRU93/Hb0RLGXZq5cMZF8a9ZP3UXAshAtw=="
       },
       "Newtonsoft.Json": {
         "type": "Transitive",
@@ -257,7 +257,7 @@
         "type": "Project",
         "dependencies": {
           "MassTransit.Abstractions": "[8.0.15, )",
-          "Microsoft.AspNetCore.OData": "[8.1.2, )",
+          "Microsoft.AspNetCore.OData": "[8.2.0, )",
           "Wally.CleanArchitecture.MicroService.Application.Contracts": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Application.Messages": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
@@ -268,7 +268,7 @@
         "dependencies": {
           "FluentValidation": "[11.5.2, )",
           "Reinforced.Typings": "[1.6.2, )",
-          "Wally.Lib.DDD.Abstractions": "[1.3.5, )"
+          "Wally.Lib.DDD.Abstractions": "[1.3.6, )"
         }
       },
       "wally.cleanarchitecture.microservice.application.messages": {
@@ -280,7 +280,7 @@
       "wally.cleanarchitecture.microservice.domain": {
         "type": "Project",
         "dependencies": {
-          "Wally.Lib.DDD.Abstractions": "[1.3.5, )"
+          "Wally.Lib.DDD.Abstractions": "[1.3.6, )"
         }
       }
     }

@@ -60,7 +60,7 @@
       "type": "generated",
       "generator": "now",
       "parameters": {
-        "format": "yyyy-MM-dd"
+        "format": "yyyy"
       },
       "replaces": "__DATE__"
     },
