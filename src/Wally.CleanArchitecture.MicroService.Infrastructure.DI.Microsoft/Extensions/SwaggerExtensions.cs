@@ -45,7 +45,7 @@ public static class SwaggerExtensions
 				var xmlFilename = $"{assembly.GetName().Name}.xml";
 				options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 
-				options.OperationFilter<SwaggerDefaultValues>();
+				options.OperationFilter<ODataQueryOptionsOperationFilter>();
 			});
 
 		return services;
@@ -66,54 +66,79 @@ public static class SwaggerExtensions
 		return app;
 	}
 
-	private class SwaggerDefaultValues : IOperationFilter
+	private class ODataQueryOptionsOperationFilter : IOperationFilter
 	{
-		/// <summary>
-		///     Applies the filter to the specified operation using the given context.
-		/// </summary>
-		/// <param name="operation">The operation to apply the filter to.</param>
-		/// <param name="context">The current operation filter context.</param>
 		public void Apply(OpenApiOperation operation, OperationFilterContext context)
 		{
-			var apiDescription = context.ApiDescription;
+			var odataQueryParameterTypes = context.ApiDescription.ActionDescriptor.Parameters
+				.Where(p => p.ParameterType.IsAssignableTo(typeof(ODataQueryOptions)))
+				.ToList();
 
-			// operation.Deprecated |= apiDescription.IsDeprecated();
-
-			// REF: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/1752#issue-663991077
-			foreach (var responseType in context.ApiDescription.SupportedResponseTypes)
-			{
-				// REF: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/b7cf75e7905050305b115dd96640ddd6e74c7ac9/src/Swashbuckle.AspNetCore.SwaggerGen/SwaggerGenerator/SwaggerGenerator.cs#L383-L387
-				var responseKey = responseType.IsDefaultResponse ? "default" : responseType.StatusCode.ToString();
-				var response = operation.Responses[responseKey];
-
-				foreach (var contentType in response.Content.Keys)
-				{
-					if (!responseType.ApiResponseFormats.Any(x => x.MediaType == contentType))
-					{
-						response.Content.Remove(contentType);
-					}
-				}
-			}
-
-			if (operation.Parameters == null)
+			if (!odataQueryParameterTypes.Any())
 			{
 				return;
 			}
 
-			// REF: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/412
-			// REF: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/413
-			foreach (var parameter in operation.Parameters.ToArray())
+			// Remove the large queryOptions field from Swagger which gets added by default...
+			foreach (var queryParamType in odataQueryParameterTypes)
 			{
-				var description = apiDescription.ParameterDescriptions.First(p => p.Name == parameter.Name);
-				if (description.Type.BaseType == typeof(ODataQueryOptions))
+				var paramToRemove = operation.Parameters.SingleOrDefault(p => p.Name == queryParamType.Name);
+				if (paramToRemove != null)
 				{
-					operation.Parameters.Remove(parameter);
-					continue;
+					operation.Parameters.Remove(paramToRemove);
 				}
-
-				parameter.Description ??= description.ModelMetadata?.Description;
-				parameter.Required |= description.IsRequired;
 			}
+
+			// ...and add our own query parameters.
+			operation.Parameters.Add(
+				new OpenApiParameter
+				{
+					Name = "$filter",
+					In = ParameterLocation.Query,
+					Description = "Filter the results",
+					Required = false,
+					Schema = new OpenApiSchema { Type = "string", },
+				});
+
+			operation.Parameters.Add(
+				new OpenApiParameter
+				{
+					Name = "$orderby",
+					In = ParameterLocation.Query,
+					Description = "Order the results",
+					Required = false,
+					Schema = new OpenApiSchema { Type = "string", },
+				});
+
+			operation.Parameters.Add(
+				new OpenApiParameter
+				{
+					Name = "$select",
+					In = ParameterLocation.Query,
+					Description = "Select the properties to be returned in the response",
+					Required = false,
+					Schema = new OpenApiSchema { Type = "string", },
+				});
+
+			operation.Parameters.Add(
+				new OpenApiParameter
+				{
+					Name = "$top",
+					In = ParameterLocation.Query,
+					Description = "Limit the number of results returned",
+					Required = false,
+					Schema = new OpenApiSchema { Type = "integer", Format = "int32", },
+				});
+
+			operation.Parameters.Add(
+				new OpenApiParameter
+				{
+					Name = "$skip",
+					In = ParameterLocation.Query,
+					Description = "Skip the specified number of results",
+					Required = false,
+					Schema = new OpenApiSchema { Type = "integer", Format = "int32", },
+				});
 		}
 	}
 }
