@@ -40,9 +40,9 @@
       },
       "MassTransit.Abstractions": {
         "type": "Direct",
-        "requested": "[8.0.15, )",
-        "resolved": "8.0.15",
-        "contentHash": "mrTptFjSiHAcnfJcE3qk07403g7TO6Z8GGZqmWVnobMvUFhkBunSTnRdAlv4r0HAeAdz/EU5RefZnw5LgI+Rig=="
+        "requested": "[8.0.16, )",
+        "resolved": "8.0.16",
+        "contentHash": "acXJmEIlTIrhwqdpzsLSInHL3TMrrnqM4k4W3CvZCJ96GEAeEllNlJXfappOdVA2Zkcqw+05eOxThzLR3Rk8kA=="
       },
       "Microsoft.NET.Test.Sdk": {
         "type": "Direct",
@@ -441,20 +441,20 @@
       },
       "MassTransit.Azure.ServiceBus.Core": {
         "type": "Transitive",
-        "resolved": "8.0.15",
-        "contentHash": "FeLrlAZiWRgdlndjrm9IZjc4CxMr2C6PQzTUVDFhsVE2jhFk48LB/RXXoL948IyByaxZQhLNCg3mGvBYkptvrQ==",
+        "resolved": "8.0.16",
+        "contentHash": "P7It9QvM/3gbmWg5H75uPTOMcejkjSDrvj9ZVEkrXGphLZ6NX2SFM1W6c6CZqAC7U8fG03UqRteTb/4qrp+vGA==",
         "dependencies": {
           "Azure.Identity": "1.8.2",
           "Azure.Messaging.ServiceBus": "7.13.1",
-          "MassTransit": "8.0.15"
+          "MassTransit": "8.0.16"
         }
       },
       "MassTransit.RabbitMQ": {
         "type": "Transitive",
-        "resolved": "8.0.15",
-        "contentHash": "6sk4wlQyZWPiZxH6prQ9Q1mOXKu+NrkoG4Y9J6bQ60TvibqSwhkidAtfU6QDwPFXHsDuF/TTGUoeMlMPW33bMA==",
+        "resolved": "8.0.16",
+        "contentHash": "M97xmeV1MxCDV4RboVNbePqAZj+Haic+L4KAa8qJzkLIh0bqpCv+3Hb2X+snhGm03jS1Xknh+wzHR+upvIXf8w==",
         "dependencies": {
-          "MassTransit": "8.0.15",
+          "MassTransit": "8.0.16",
           "RabbitMQ.Client": "6.5.0"
         }
       },
@@ -1768,7 +1768,7 @@
       "wally.cleanarchitecture.microservice.application": {
         "type": "Project",
         "dependencies": {
-          "MassTransit.Abstractions": "[8.0.15, )",
+          "MassTransit.Abstractions": "[8.0.16, )",
           "Microsoft.AspNetCore.OData": "[8.2.0, )",
           "Wally.CleanArchitecture.MicroService.Application.Contracts": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Application.Messages": "[1.0.0, )",
@@ -1824,8 +1824,8 @@
           "EntityFrameworkCore.Exceptions.Sqlite": "[6.0.3, )",
           "FluentValidation.AspNetCore": "[11.3.0, )",
           "MassTransit": "[8.0.16, )",
-          "MassTransit.Azure.ServiceBus.Core": "[8.0.15, )",
-          "MassTransit.RabbitMQ": "[8.0.15, )",
+          "MassTransit.Azure.ServiceBus.Core": "[8.0.16, )",
+          "MassTransit.RabbitMQ": "[8.0.16, )",
           "MediatR": "[12.0.1, )",
           "Microsoft.AspNetCore.Http.Abstractions": "[2.2.0, )",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "[7.0.5, )",

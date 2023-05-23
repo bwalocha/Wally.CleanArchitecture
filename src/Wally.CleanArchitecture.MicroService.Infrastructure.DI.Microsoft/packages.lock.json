@@ -199,22 +199,22 @@
       },
       "MassTransit.Azure.ServiceBus.Core": {
         "type": "Direct",
-        "requested": "[8.0.15, )",
-        "resolved": "8.0.15",
-        "contentHash": "FeLrlAZiWRgdlndjrm9IZjc4CxMr2C6PQzTUVDFhsVE2jhFk48LB/RXXoL948IyByaxZQhLNCg3mGvBYkptvrQ==",
+        "requested": "[8.0.16, )",
+        "resolved": "8.0.16",
+        "contentHash": "P7It9QvM/3gbmWg5H75uPTOMcejkjSDrvj9ZVEkrXGphLZ6NX2SFM1W6c6CZqAC7U8fG03UqRteTb/4qrp+vGA==",
         "dependencies": {
           "Azure.Identity": "1.8.2",
           "Azure.Messaging.ServiceBus": "7.13.1",
-          "MassTransit": "8.0.15"
+          "MassTransit": "8.0.16"
         }
       },
       "MassTransit.RabbitMQ": {
         "type": "Direct",
-        "requested": "[8.0.15, )",
-        "resolved": "8.0.15",
-        "contentHash": "6sk4wlQyZWPiZxH6prQ9Q1mOXKu+NrkoG4Y9J6bQ60TvibqSwhkidAtfU6QDwPFXHsDuF/TTGUoeMlMPW33bMA==",
+        "requested": "[8.0.16, )",
+        "resolved": "8.0.16",
+        "contentHash": "M97xmeV1MxCDV4RboVNbePqAZj+Haic+L4KAa8qJzkLIh0bqpCv+3Hb2X+snhGm03jS1Xknh+wzHR+upvIXf8w==",
         "dependencies": {
-          "MassTransit": "8.0.15",
+          "MassTransit": "8.0.16",
           "RabbitMQ.Client": "6.5.0"
         }
       },
@@ -1564,7 +1564,7 @@
       "wally.cleanarchitecture.microservice.application": {
         "type": "Project",
         "dependencies": {
-          "MassTransit.Abstractions": "[8.0.15, )",
+          "MassTransit.Abstractions": "[8.0.16, )",
           "Microsoft.AspNetCore.OData": "[8.2.0, )",
           "Wally.CleanArchitecture.MicroService.Application.Contracts": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Application.Messages": "[1.0.0, )",

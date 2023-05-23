@@ -69,8 +69,8 @@
       },
       "MassTransit.Abstractions": {
         "type": "Transitive",
-        "resolved": "8.0.15",
-        "contentHash": "mrTptFjSiHAcnfJcE3qk07403g7TO6Z8GGZqmWVnobMvUFhkBunSTnRdAlv4r0HAeAdz/EU5RefZnw5LgI+Rig=="
+        "resolved": "8.0.16",
+        "contentHash": "acXJmEIlTIrhwqdpzsLSInHL3TMrrnqM4k4W3CvZCJ96GEAeEllNlJXfappOdVA2Zkcqw+05eOxThzLR3Rk8kA=="
       },
       "MediatR": {
         "type": "Transitive",
@@ -624,7 +624,7 @@
       "wally.cleanarchitecture.microservice.application": {
         "type": "Project",
         "dependencies": {
-          "MassTransit.Abstractions": "[8.0.15, )",
+          "MassTransit.Abstractions": "[8.0.16, )",
           "Microsoft.AspNetCore.OData": "[8.2.0, )",
           "Wally.CleanArchitecture.MicroService.Application.Contracts": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Application.Messages": "[1.0.0, )",
