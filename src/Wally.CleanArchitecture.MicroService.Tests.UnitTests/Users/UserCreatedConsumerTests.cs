@@ -19,11 +19,11 @@ namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests.Users;
 public class UserCreatedConsumerTests
 {
 	private readonly UserCreatedMessageConsumer _consumer;
-	private readonly Mock<IMediator> _mediatorMock;
+	private readonly Mock<ISender> _mediatorMock;
 
 	public UserCreatedConsumerTests()
 	{
-		_mediatorMock = new Mock<IMediator>();
+		_mediatorMock = new Mock<ISender>();
 		_consumer = new UserCreatedMessageConsumer(_mediatorMock.Object);
 	}
 

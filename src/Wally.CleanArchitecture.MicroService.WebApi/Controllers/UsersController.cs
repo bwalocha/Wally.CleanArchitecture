@@ -21,9 +21,9 @@ namespace Wally.CleanArchitecture.MicroService.WebApi.Controllers;
 [ProducesResponseType(typeof(int), 200, "application/json")]
 public class UsersController : ControllerBase
 {
-	private readonly IMediator _mediator;
+	private readonly ISender _mediator;
 
-	public UsersController(IMediator mediator)
+	public UsersController(ISender mediator)
 	{
 		_mediator = mediator;
 	}

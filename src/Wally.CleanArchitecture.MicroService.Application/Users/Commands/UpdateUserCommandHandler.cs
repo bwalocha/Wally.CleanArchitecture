@@ -20,6 +20,6 @@ public class UpdateUserCommandHandler : CommandHandler<UpdateUserCommand>
 
 		model.Update(command.Name);
 
-		_userRepository.Update(model);
+		// _userRepository.Update(model);
 	}
 }

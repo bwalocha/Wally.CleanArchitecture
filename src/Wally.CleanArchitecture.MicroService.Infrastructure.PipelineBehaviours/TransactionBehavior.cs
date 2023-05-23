@@ -29,9 +29,7 @@ public class TransactionBehavior<TRequest, TResponse> : IPipelineBehavior<TReque
 		try
 		{
 			var response = await next();
-
 			await _dbContext.SaveChangesAsync(cancellationToken);
-
 			await transaction.CommitAsync(cancellationToken);
 
 			return response;

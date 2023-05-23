@@ -50,7 +50,15 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 		finally
 		{
 			stopWatch.Stop();
-			_logger.LogInformation($"[{correlationId}] Executed in {stopWatch.ElapsedMilliseconds} ms.");
+
+			if (stopWatch.ElapsedMilliseconds > 500)
+			{
+				_logger.LogWarning($"[{correlationId}] Executed in {stopWatch.ElapsedMilliseconds} ms.");
+			}
+			else
+			{
+				_logger.LogInformation($"[{correlationId}] Executed in {stopWatch.ElapsedMilliseconds} ms.");
+			}
 		}
 	}
 }

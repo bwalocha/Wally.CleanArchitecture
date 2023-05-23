@@ -11,9 +11,9 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Messaging.Consumer
 
 public class UserCreatedMessageConsumer : IConsumer<UserCreatedMessage>
 {
-	private readonly IMediator _mediator;
+	private readonly ISender _mediator;
 
-	public UserCreatedMessageConsumer(IMediator mediator)
+	public UserCreatedMessageConsumer(ISender mediator)
 	{
 		_mediator = mediator;
 	}
