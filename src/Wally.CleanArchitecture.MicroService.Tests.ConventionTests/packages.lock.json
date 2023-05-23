@@ -423,10 +423,10 @@
       },
       "MassTransit": {
         "type": "Transitive",
-        "resolved": "8.0.15",
-        "contentHash": "7hbIaCz+WRUBwqfkmMqkH1wITyYMahGPysX2r4e6pATHT6+N5vudr/s3HY94QCxcLAoJiGBg6TfFNRCFn2iWGA==",
+        "resolved": "8.0.16",
+        "contentHash": "c9cI/N8x1EArfgNLMU5TfbqRSpXSrTzoFpnX/4jhCa2Y3VDxI13/SfAuOWwbujMFNgxhgKtSGC6OHa+vH4Qr6w==",
         "dependencies": {
-          "MassTransit.Abstractions": "8.0.15",
+          "MassTransit.Abstractions": "8.0.16",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
           "Microsoft.Extensions.Diagnostics.HealthChecks": "6.0.1",
           "Microsoft.Extensions.Hosting.Abstractions": "6.0.0",
@@ -1823,7 +1823,7 @@
           "EntityFrameworkCore.Exceptions.SqlServer": "[6.0.3.1, )",
           "EntityFrameworkCore.Exceptions.Sqlite": "[6.0.3, )",
           "FluentValidation.AspNetCore": "[11.3.0, )",
-          "MassTransit": "[8.0.15, )",
+          "MassTransit": "[8.0.16, )",
           "MassTransit.Azure.ServiceBus.Core": "[8.0.15, )",
           "MassTransit.RabbitMQ": "[8.0.15, )",
           "MediatR": "[12.0.1, )",
@@ -1847,7 +1847,7 @@
       "wally.cleanarchitecture.microservice.infrastructure.messaging": {
         "type": "Project",
         "dependencies": {
-          "MassTransit": "[8.0.15, )",
+          "MassTransit": "[8.0.16, )",
           "MediatR": "[12.0.1, )",
           "Microsoft.Extensions.Logging.Abstractions": "[7.0.0, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",

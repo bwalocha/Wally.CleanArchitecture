@@ -45,6 +45,7 @@ public class UsersController : ControllerBase
 	{
 		var query = new GetUsersQuery(queryOptions);
 		var response = await _mediator.Send(query, cancellationToken);
+		
 		return Ok(response);
 	}
 
@@ -63,6 +64,7 @@ public class UsersController : ControllerBase
 	{
 		var query = new GetUserQuery(id);
 		var result = await _mediator.Send(query, cancellationToken);
+		
 		return Ok(result);
 	}
 

@@ -14,7 +14,7 @@ public interface IReadOnlyRepository<TEntity> where TEntity : Entity
 {
 	Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken);
 
-	Task<TResult> GetAsync<TResult>(Guid id, CancellationToken cancellationToken) where TResult : IResponse;
+	Task<TResponse> GetAsync<TResponse>(Guid id, CancellationToken cancellationToken) where TResponse : IResponse;
 
 	Task<PagedResponse<TResponse>> GetAsync
 		<TRequest, TResponse>(ODataQueryOptions<TRequest> queryOptions, CancellationToken cancellationToken)

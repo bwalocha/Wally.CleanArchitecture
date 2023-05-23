@@ -39,11 +39,11 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 			.AnyAsync(a => a.Id.Equals(id), cancellationToken);
 	}
 
-	public Task<TResult> GetAsync<TResult>(Guid id, CancellationToken cancellationToken) where TResult : IResponse
+	public Task<TResponse> GetAsync<TResponse>(Guid id, CancellationToken cancellationToken) where TResponse : IResponse
 	{
 		var query = GetReadOnlyEntitySet()
 			.Where(a => a.Id.Equals(id));
-		var task = _mapper.ProjectTo<TResult>(query)
+		var task = _mapper.ProjectTo<TResponse>(query)
 			.SingleAsync(cancellationToken);
 
 		return MapExceptionAsync(task, id, cancellationToken);
@@ -234,8 +234,8 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 		return query.OrderBy(a => a.Id);
 	}
 
-	protected Task<TResult> MapExceptionAsync<TResult>(
-		Task<TResult> task,
+	protected Task<TResponse> MapExceptionAsync<TResponse>(
+		Task<TResponse> task,
 		Guid id = default,
 		CancellationToken cancellationToken = default)
 	{
@@ -244,7 +244,7 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 			throw new ArgumentNullException(nameof(task));
 		}
 
-		var tcs = new TaskCompletionSource<TResult>();
+		var tcs = new TaskCompletionSource<TResponse>();
 
 		task.ContinueWith(
 			t => tcs.TrySetCanceled(),
@@ -265,7 +265,7 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 					{
 						case "ThrowNoElementsException":
 						case "MoveNext":
-							var message = $"The '{typeof(TResult).Name}' could not be found";
+							var message = $"The '{typeof(TResponse).Name}' could not be found";
 							if (id != Guid.Empty)
 							{
 								message += $" for Id: '{id}'";

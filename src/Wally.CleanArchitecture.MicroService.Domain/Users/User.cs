@@ -42,8 +42,10 @@ public class User : AggregateRoot
 		return model;
 	}
 
-	public void Update(string name)
+	public User Update(string name)
 	{
 		Name = name;
+
+		return this;
 	}
 }
