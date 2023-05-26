@@ -44,6 +44,8 @@ public static class SwaggerExtensions
 
 				options.OperationFilter<ResponseTypesOperationFilter>();
 				options.OperationFilter<ODataQueryOptionsOperationFilter>();
+				
+				options.DocumentFilter<SchemasFilter>();
 			});
 
 		return services;
