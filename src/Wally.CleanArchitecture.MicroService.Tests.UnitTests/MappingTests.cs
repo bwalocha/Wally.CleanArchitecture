@@ -19,8 +19,8 @@ public class MappingTests
 
 	public MappingTests()
 	{
-		_configuration = new MapperConfiguration(config => config
-			.AddMaps(typeof(IApplicationMapperProfilesAssemblyMarker).Assembly));
+		_configuration = new MapperConfiguration(
+			config => config.AddMaps(typeof(IApplicationMapperProfilesAssemblyMarker).Assembly));
 
 		_mapper = _configuration.CreateMapper();
 	}

@@ -32,6 +32,7 @@ public static class WebApiExtensions
 		services.AddValidatorsFromAssemblyContaining<IApplicationAssemblyMarker>();
 		services.AddValidatorsFromAssemblyContaining<IApplicationContractsAssemblyMarker>();
 		services.AddFluentValidationAutoValidation(config => config.DisableDataAnnotationsValidation = true);
+
 		// services.AddFluentValidationClientsideAdapters(); // TODO: consider config => config.ClientValidatorFactories
 
 		return services;

@@ -132,6 +132,6 @@ public class UsersController : ControllerBase
 		var command = new DeleteUserCommand(id);
 		await _mediator.Send(command, cancellationToken);
 
-		return Ok();
+		return Accepted();
 	}
 }

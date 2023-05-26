@@ -85,3 +85,5 @@ npx storybook@next init --package-manager npm --parser ts --builder vite --disab
 - [x] SignalR Hub Service
 - [ ] Move Application.Contracts to Presentation layer
 - [ ] EntityId [YT](https://www.youtube.com/watch?v=B3Iq346KwUQ&t=655s)
+- [ ] Entity Framework Repository [GH](https://github.com/ffernandolima/ef-core-data-access)
+- [ ] Multitenancy [GH](https://github.com/Finbuckle/Finbuckle.MultiTenant)

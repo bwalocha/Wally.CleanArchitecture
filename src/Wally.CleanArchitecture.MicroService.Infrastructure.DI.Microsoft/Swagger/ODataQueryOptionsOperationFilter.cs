@@ -1,6 +1,8 @@
 using System.Linq;
+
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.OpenApi.Models;
+
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Swagger;
@@ -38,7 +40,7 @@ internal class ODataQueryOptionsOperationFilter : IOperationFilter
 				Required = false,
 				Schema = new OpenApiSchema { Type = "string", },
 			});
-		
+
 		operation.Parameters.Add(
 			new OpenApiParameter
 			{

@@ -20,6 +20,7 @@ public static class CqrsExtensions
 				a.AddOpenBehavior(typeof(UpdateMetadataHandlerBehavior<,>));
 				a.AddOpenBehavior(typeof(DomainEventHandlerBehavior<,>));
 				a.AddOpenBehavior(typeof(UpdateMetadataHandlerBehavior<,>));
+
 				// a.AddOpenBehavior(typeof(CommandHandlerValidatorBehavior<,>));
 				a.AddOpenBehavior(typeof(CommandHandlerValidatorsBehavior<,>));
 				a.AddOpenBehavior(typeof(QueryHandlerValidatorBehavior<,>));
