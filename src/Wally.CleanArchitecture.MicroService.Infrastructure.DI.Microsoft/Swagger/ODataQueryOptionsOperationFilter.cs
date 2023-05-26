@@ -38,6 +38,16 @@ internal class ODataQueryOptionsOperationFilter : IOperationFilter
 				Required = false,
 				Schema = new OpenApiSchema { Type = "string", },
 			});
+		
+		operation.Parameters.Add(
+			new OpenApiParameter
+			{
+				Name = "$search",
+				In = ParameterLocation.Query,
+				Description = "Search term",
+				Required = false,
+				Schema = new OpenApiSchema { Type = "string", },
+			});
 
 		operation.Parameters.Add(
 			new OpenApiParameter
@@ -56,7 +66,7 @@ internal class ODataQueryOptionsOperationFilter : IOperationFilter
 				In = ParameterLocation.Query,
 				Description = "Select the properties to be returned in the response",
 				Required = false,
-				Schema = new OpenApiSchema { Type = "string", },
+				Schema = new OpenApiSchema { Type = "string", Deprecated = true, },
 			});
 
 		operation.Parameters.Add(
@@ -66,7 +76,7 @@ internal class ODataQueryOptionsOperationFilter : IOperationFilter
 				In = ParameterLocation.Query,
 				Description = "Limit the number of results returned",
 				Required = false,
-				Schema = new OpenApiSchema { Type = "integer", Format = "int32", },
+				Schema = new OpenApiSchema { Type = "integer", Format = "int32", Minimum = 0, },
 			});
 
 		operation.Parameters.Add(
@@ -76,7 +86,7 @@ internal class ODataQueryOptionsOperationFilter : IOperationFilter
 				In = ParameterLocation.Query,
 				Description = "Skip the specified number of results",
 				Required = false,
-				Schema = new OpenApiSchema { Type = "integer", Format = "int32", },
+				Schema = new OpenApiSchema { Type = "integer", Format = "int32", Minimum = 0, },
 			});
 	}
 }

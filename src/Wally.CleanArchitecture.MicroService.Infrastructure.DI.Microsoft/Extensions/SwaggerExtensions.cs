@@ -59,6 +59,7 @@ public static class SwaggerExtensions
 				opt.OAuthClientId(settings.ClientId);
 				opt.OAuthClientSecret(settings.ClientSecret);
 				opt.OAuthUsePkce();
+				opt.DefaultModelsExpandDepth(0);
 			});
 
 		return app;
