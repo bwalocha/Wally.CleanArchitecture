@@ -4,8 +4,7 @@
 
 import {PageInfoResponse} from './PageInfoResponse';
 
-export interface PagedResponse<TResponse>
-{
-	items: TResponse[];
-	pageInfo: PageInfoResponse;
+export interface PagedResponse<TResponse> {
+    items: TResponse[];
+    pageInfo: PageInfoResponse;
 }
