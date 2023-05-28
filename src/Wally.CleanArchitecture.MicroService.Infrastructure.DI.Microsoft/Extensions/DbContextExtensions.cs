@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
@@ -105,15 +106,17 @@ public static class DbContextExtensions
 		return services;
 	}
 
-	public static IApplicationBuilder UseDbContext(
-		this IApplicationBuilder app,
-		DbContext dbContext,
-		DbContextSettings settings)
+	public static IApplicationBuilder UseDbContext(this IApplicationBuilder app)
 	{
-		if (settings.IsMigrationEnabled)
+		var settings = app.ApplicationServices.GetRequiredService<IOptions<AppSettings>>();
+
+		if (!settings.Value.Database.IsMigrationEnabled)
 		{
-			dbContext.Database.Migrate();
+			return app;
 		}
+
+		var dbContext = app.ApplicationServices.GetRequiredService<DbContext>();
+		dbContext.Database.Migrate();
 
 		return app;
 	}

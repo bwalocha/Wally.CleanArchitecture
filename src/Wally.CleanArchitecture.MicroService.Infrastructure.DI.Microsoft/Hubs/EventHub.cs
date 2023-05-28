@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.SignalR;
 
-namespace Wally.CleanArchitecture.MicroService.WebApi.Hubs;
+namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Hubs;
 
 public class EventHub : Hub<IEventHub>
 {

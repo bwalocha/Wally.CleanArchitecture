@@ -4,6 +4,7 @@ using System.Reflection;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
@@ -51,18 +52,20 @@ public static class SwaggerExtensions
 		return services;
 	}
 
-	public static IApplicationBuilder UseSwagger(this IApplicationBuilder app, AuthenticationSettings settings)
+	public static IApplicationBuilder UseSwagger(this IApplicationBuilder app)
 	{
-		app.UseSwagger();
-		app.UseSwaggerUI(
-			opt =>
-			{
-				// opt.SwaggerEndpoint("v1/swagger.json", "Wally.CleanArchitecture WebApi v1");
-				opt.OAuthClientId(settings.ClientId);
-				opt.OAuthClientSecret(settings.ClientSecret);
-				opt.OAuthUsePkce();
-				opt.DefaultModelsExpandDepth(0);
-			});
+		app.UseSwagger(setupAction: null)
+			.UseSwaggerUI(
+				options =>
+				{
+					var settings = app.ApplicationServices.GetRequiredService<IOptions<AppSettings>>();
+
+					// options.SwaggerEndpoint("v1/swagger.json", "Wally.CleanArchitecture WebApi v1");
+					options.OAuthClientId(settings.Value.SwaggerAuthentication.ClientId);
+					options.OAuthClientSecret(settings.Value.SwaggerAuthentication.ClientSecret);
+					options.OAuthUsePkce();
+					options.DefaultModelsExpandDepth(0);
+				});
 
 		return app;
 	}

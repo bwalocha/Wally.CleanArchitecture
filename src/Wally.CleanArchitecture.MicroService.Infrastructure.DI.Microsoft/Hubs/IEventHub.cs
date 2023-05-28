@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace Wally.CleanArchitecture.MicroService.WebApi.Hubs;
+namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Hubs;
 
 public interface IEventHub
 {

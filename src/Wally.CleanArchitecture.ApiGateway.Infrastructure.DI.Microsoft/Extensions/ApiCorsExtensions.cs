@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Linq;
+
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 using Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Models;
@@ -17,7 +19,7 @@ public static class ApiCorsExtensions
 				builder => builder.WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
 					.AllowAnyHeader()
 					.AllowCredentials()
-					.WithOrigins(settings.Origins.ToArray())));
+					.WithOrigins(settings.Origins.Select(a => a.ToString()).ToArray())));
 
 		return services;
 	}
