@@ -23,7 +23,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 {
 	protected override IHostBuilder CreateHostBuilder()
 	{
-		return base.CreateHostBuilder()!.ConfigureAppConfiguration(
+		return base.CreateHostBuilder() !.ConfigureAppConfiguration(
 			configurationBuilder =>
 			{
 				configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())

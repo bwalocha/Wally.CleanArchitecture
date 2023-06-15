@@ -14,8 +14,5 @@ public class UserProfile : Profile
 		CreateMap<User, GetUsersResponse>();
 
 		CreateMap<User, GetUserResponse>();
-
-		// OData
-		CreateMap<GetUsersRequest, GetUsersResponse>();
 	}
 }

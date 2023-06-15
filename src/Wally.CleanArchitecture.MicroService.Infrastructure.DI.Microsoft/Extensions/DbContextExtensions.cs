@@ -115,7 +115,8 @@ public static class DbContextExtensions
 			return app;
 		}
 
-		var dbContext = app.ApplicationServices.GetRequiredService<DbContext>();
+		using var scope = app.ApplicationServices.CreateScope();
+		var dbContext = scope.ServiceProvider.GetRequiredService<DbContext>();
 		dbContext.Database.Migrate();
 
 		return app;

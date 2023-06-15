@@ -57,7 +57,7 @@ public class ConsumerTests
 			foreach (var type in types.Where(a => a.Name.EndsWith("Consumer"))
 						.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>))))
 			{
-				var genericType = type.GetGenericInterface(typeof(IConsumer<>))!.GenericTypeArguments.Single();
+				var genericType = type.GetGenericInterface(typeof(IConsumer<>)) !.GenericTypeArguments.Single();
 
 				type.Name.Should()
 					.Be(

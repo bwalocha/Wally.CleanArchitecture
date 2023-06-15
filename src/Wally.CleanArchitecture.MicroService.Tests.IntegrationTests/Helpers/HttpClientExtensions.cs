@@ -42,7 +42,7 @@ public static class HttpClientExtensions
 	{
 		var json = await response.Content.ReadAsStringAsync(
 			cancellationToken); // TODO: get Stream instead of loading String
-		return JsonConvert.DeserializeObject<T>(json, _jsonSettings)!;
+		return JsonConvert.DeserializeObject<T>(json, _jsonSettings) !;
 	}
 
 	private static StringContent CreateContent<T>(T item)

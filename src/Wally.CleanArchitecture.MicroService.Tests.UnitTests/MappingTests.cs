@@ -3,6 +3,8 @@ using System.Runtime.Serialization;
 
 using AutoMapper;
 
+using FluentAssertions;
+
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Requests.Users;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Responses.Users;
 using Wally.CleanArchitecture.MicroService.Application.MapperProfiles;
@@ -35,19 +37,31 @@ public class MappingTests
 	[InlineData(typeof(User), typeof(GetUsersRequest))]
 	[InlineData(typeof(User), typeof(GetUsersResponse))]
 	[InlineData(typeof(User), typeof(GetUserResponse))]
-	[InlineData(typeof(GetUsersRequest), typeof(GetUsersResponse))]
 	public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
 	{
 		var instance = GetInstanceOf(source);
 
 		_mapper.Map(instance, source, destination);
 	}
+	
+	[Theory]
+	[InlineData(typeof(GetUsersRequest), typeof(GetUsersResponse))]
+	[InlineData(typeof(GetUsersResponse), typeof(GetUsersRequest))]
+	public void ShouldNotSupportMappingFromSourceToDestination(Type source, Type destination)
+	{
+		var instance = GetInstanceOf(source);
+
+		var act = () => _mapper.Map(instance, source, destination);
+
+		act.Should()
+			.ThrowExactly<AutoMapperMappingException>();
+	}
 
 	private object GetInstanceOf(Type type)
 	{
 		if (type.GetConstructor(Type.EmptyTypes) != null)
 		{
-			return Activator.CreateInstance(type)!;
+			return Activator.CreateInstance(type) !;
 		}
 
 		// Type without parameterless constructor

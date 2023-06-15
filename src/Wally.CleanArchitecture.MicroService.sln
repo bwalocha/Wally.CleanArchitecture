@@ -27,6 +27,7 @@ ProjectSection(SolutionItems) = preProject
 	NuGet.config = NuGet.config
 	.config\dotnet-tools.json = .config\dotnet-tools.json
 	Directory.Build.props = Directory.Build.props
+	Directory.BuildTests.props = Directory.BuildTests.props
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{7CA1E01A-F818-48B9-A573-20A904B9F7C2}"
