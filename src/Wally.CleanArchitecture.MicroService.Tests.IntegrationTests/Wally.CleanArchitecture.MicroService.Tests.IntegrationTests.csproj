@@ -10,9 +10,9 @@
 
     <ItemGroup>
         <PackageReference Include="JsonNet.ContractResolvers" Version="2.0.0" />
-        <PackageReference Include="MassTransit.Abstractions" Version="8.0.16" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.8" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.8" />
+        <PackageReference Include="MassTransit.Abstractions" Version="8.1.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.10" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.10" />
     </ItemGroup>
 
     <ItemGroup>

@@ -18,7 +18,7 @@ public static class ServiceCollectionExtensions
 	{
 		var settings = new AppSettings();
 		configuration.Bind(settings);
-		
+
 		services.AddOptions(settings);
 		services.AddWebApi();
 		services.AddCqrs();
@@ -54,7 +54,7 @@ public static class ServiceCollectionExtensions
 
 		app.UseDbContext();
 		app.UseEventHub<EventHub>();
-		
+
 		return app;
 	}
 }

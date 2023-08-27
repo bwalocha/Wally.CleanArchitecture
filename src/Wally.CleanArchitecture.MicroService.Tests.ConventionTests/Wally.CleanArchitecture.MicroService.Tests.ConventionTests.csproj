@@ -7,10 +7,10 @@
     </PropertyGroup>
 
     <Import Project="..\Directory.BuildTests.props" />
-    
+
     <ItemGroup>
         <PackageReference Include="AutoMapper" Version="12.0.1" />
-        <PackageReference Include="MassTransit.Abstractions" Version="8.0.16" />
+        <PackageReference Include="MassTransit.Abstractions" Version="8.1.0" />
     </ItemGroup>
 
     <ItemGroup>

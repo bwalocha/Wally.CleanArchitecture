@@ -11,13 +11,11 @@ namespace Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft;
 
 public static class ServiceCollectionExtensions
 {
-	public static IServiceCollection AddInfrastructure(
-		this IServiceCollection services,
-		IConfiguration configuration)
+	public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
 	{
 		var settings = new AppSettings();
 		configuration.Bind(settings);
-		
+
 		services.AddOptions(settings);
 		services.AddReverseProxy(configuration);
 		services.AddHealthChecks(settings);
@@ -43,7 +41,7 @@ public static class ServiceCollectionExtensions
 
 		app.UseHealthChecks();
 		app.UseReverseProxy();
-		
+
 		return app;
 	}
 }

@@ -63,10 +63,11 @@ public static class SwaggerExtensions
 					// options.SwaggerEndpoint("v1/swagger.json", "Wally.CleanArchitecture WebApi v1");
 					options.OAuthClientId(settings.Value.SwaggerAuthentication.ClientId);
 					options.OAuthClientSecret(settings.Value.SwaggerAuthentication.ClientSecret);
+
 					// TODO:
 					// options.OAuthScopes(string.Join(", ", settings.Value.SwaggerAuthentication.Scopes.Values));
 					options.OAuthUsePkce();
-					
+
 					options.OAuthAppName("Wally.CleanArchitecture");
 					options.EnablePersistAuthorization();
 					options.DefaultModelsExpandDepth(0);

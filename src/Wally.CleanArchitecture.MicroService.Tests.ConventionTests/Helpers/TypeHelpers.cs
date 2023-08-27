@@ -67,7 +67,7 @@ public static class TypeHelpers
 			: type.GetInterfaces()
 				.FirstOrDefault(t => t.IsGenericType(genericInterface));
 	}
-	
+
 	public static bool ImplementsInterface(this Type type, Type interfaceType)
 	{
 		if (!interfaceType.IsInterface)

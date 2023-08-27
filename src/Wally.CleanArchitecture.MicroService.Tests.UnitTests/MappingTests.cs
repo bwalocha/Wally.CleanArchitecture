@@ -43,7 +43,7 @@ public class MappingTests
 
 		_mapper.Map(instance, source, destination);
 	}
-	
+
 	[Theory]
 	[InlineData(typeof(GetUsersRequest), typeof(GetUsersResponse))]
 	[InlineData(typeof(GetUsersResponse), typeof(GetUsersRequest))]

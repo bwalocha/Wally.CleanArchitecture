@@ -27,8 +27,7 @@ public class RepositoryTests
 			foreach (var assembly in assemblies)
 			{
 				var types = AllTypes.From(assembly)
-					.ThatSatisfy(
-						a => a.ImplementsGenericInterface(typeof(IReadOnlyRepository<>)));
+					.ThatSatisfy(a => a.ImplementsGenericInterface(typeof(IReadOnlyRepository<>)));
 
 				var notAllowedTypes = new List<Type>
 				{
@@ -49,7 +48,7 @@ public class RepositoryTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Repository_Interfaces_ShouldBeInApplicationLayer()
 	{
@@ -60,10 +59,7 @@ public class RepositoryTests
 			foreach (var assembly in assemblies)
 			{
 				var types = AllTypes.From(assembly)
-					.ThatSatisfy(
-						a =>
-							a.IsInterface &&
-							a.ImplementsGenericInterface(typeof(IReadOnlyRepository<>)));
+					.ThatSatisfy(a => a.IsInterface && a.ImplementsGenericInterface(typeof(IReadOnlyRepository<>)));
 
 				foreach (var type in types)
 				{
@@ -71,37 +67,37 @@ public class RepositoryTests
 					{
 						continue;
 					}
-					
+
 					if (type == typeof(IRepository<>))
 					{
 						continue;
 					}
-					
+
 					Configuration.Assemblies.Application.Should()
-						.Contain(type.Assembly, $"type '{type}' should be located in Application Layer, not in '{0}'", type.Assembly);
+						.Contain(
+							type.Assembly,
+							$"type '{type}' should be located in Application Layer, not in '{0}'",
+							type.Assembly);
 				}
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Repository_Interfaces_ShouldHaveImplementationInPersistent()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var repositories = AllTypes.From(typeof(IInfrastructurePersistenceAssemblyMarker).Assembly)
-			.ThatSatisfy(
-				a =>
-					a.ImplementsGenericInterface(typeof(IReadOnlyRepository<>))).ToList();
+			.ThatSatisfy(a => a.ImplementsGenericInterface(typeof(IReadOnlyRepository<>)))
+			.ToList();
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var assembly in assemblies)
 			{
 				var types = AllTypes.From(assembly)
-					.ThatSatisfy(
-						a =>
-							a.IsInterface &&
-							a.ImplementsGenericInterface(typeof(IReadOnlyRepository<>))).ToList();
+					.ThatSatisfy(a => a.IsInterface && a.ImplementsGenericInterface(typeof(IReadOnlyRepository<>)))
+					.ToList();
 
 				foreach (var type in types)
 				{
@@ -109,7 +105,7 @@ public class RepositoryTests
 					{
 						continue;
 					}
-					
+
 					if (type == typeof(IRepository<>))
 					{
 						continue;

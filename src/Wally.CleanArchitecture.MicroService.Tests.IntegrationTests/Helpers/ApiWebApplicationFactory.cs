@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 
-using HealthChecks.UI.Core.Data;
+using HealthChecks.UI.Data;
 
 using MassTransit;
 

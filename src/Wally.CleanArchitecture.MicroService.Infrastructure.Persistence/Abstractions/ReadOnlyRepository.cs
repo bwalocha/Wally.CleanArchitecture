@@ -126,11 +126,9 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 		var items = await _mapper.ProjectTo<TResponse>(query)
 			.ToArrayAsync(cancellationToken);
 
-		return new PagedResponse<TResponse>(
-			items,
-			new PageInfoResponse(0, items.Length, totalItems));
+		return new PagedResponse<TResponse>(items, new PageInfoResponse(0, items.Length, totalItems));
 	}
-	
+
 	protected async Task<PagedResponse<TResponse>> GetAsync<TRequest, TResponse>(
 		IQueryable<TEntity> query,
 		ODataQueryOptions<TRequest> queryOptions,
@@ -199,8 +197,7 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 					queryFunc.Expression.GetType(),
 					destExpressionType);
 				string orderMethodName;
-				if (queryOptions.OrderBy.OrderByNodes[queryFunc.Index]
-						.Direction == OrderByDirection.Ascending)
+				if (queryOptions.OrderBy.OrderByNodes[queryFunc.Index].Direction == OrderByDirection.Ascending)
 				{
 					orderMethodName = queryFunc.Index == 0 ? nameof(Queryable.OrderBy) : nameof(Queryable.ThenBy);
 				}
