@@ -120,10 +120,24 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 
 	protected async Task<PagedResponse<TResponse>> GetAsync<TRequest, TResponse>(
 		IQueryable<TEntity> query,
+		CancellationToken cancellationToken) where TRequest : class, IRequest where TResponse : class, IResponse
+	{
+		var totalItems = await query.CountAsync(cancellationToken);
+		var items = await _mapper.ProjectTo<TResponse>(query)
+			.ToArrayAsync(cancellationToken);
+
+		return new PagedResponse<TResponse>(
+			items,
+			new PageInfoResponse(0, items.Length, totalItems));
+	}
+	
+	protected async Task<PagedResponse<TResponse>> GetAsync<TRequest, TResponse>(
+		IQueryable<TEntity> query,
 		ODataQueryOptions<TRequest> queryOptions,
 		CancellationToken cancellationToken) where TRequest : class, IRequest where TResponse : class, IResponse
 	{
 		query = ApplyFilter<TRequest, TResponse>(query, queryOptions);
+		query = ApplySearch<TRequest, TResponse>(query, queryOptions);
 
 		var totalItems = await query.CountAsync(cancellationToken);
 
@@ -218,15 +232,37 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 		<TRequest, TResponse>(IQueryable<TEntity> query, ODataQueryOptions<TRequest> queryOptions)
 		where TRequest : class, IRequest where TResponse : class, IResponse
 	{
-		if (queryOptions.Filter != null)
+		if (queryOptions.Filter == null)
 		{
-			var queryFunc = GetFilterExpression<TRequest>(queryOptions.Filter);
-			var mappedQueryFunc = _mapper.MapExpression<Expression<Func<TEntity, bool>>>(queryFunc);
-
-			query = query.Where(mappedQueryFunc);
+			return query;
 		}
 
-		return query;
+		var queryFunc = GetFilterExpression<TRequest>(queryOptions.Filter);
+		var mappedQueryFunc = _mapper.MapExpression<Expression<Func<TEntity, bool>>>(queryFunc);
+
+		return query.Where(mappedQueryFunc);
+	}
+
+	private IQueryable<TEntity> ApplySearch
+		<TRequest, TResponse>(IQueryable<TEntity> query, ODataQueryOptions<TRequest>? queryOptions)
+		where TRequest : class, IRequest where TResponse : class, IResponse
+	{
+		if (queryOptions?.Search == null)
+		{
+			return query;
+		}
+
+		if (queryOptions.Search.SearchClause.Expression is not SearchTermNode searchTermNode)
+		{
+			throw new NotSupportedException($"Advanced Search on {typeof(TEntity).Name} is not supported");
+		}
+
+		return ApplySearch(query, searchTermNode.Text);
+	}
+
+	protected virtual IQueryable<TEntity> ApplySearch(IQueryable<TEntity> query, string term)
+	{
+		throw new NotSupportedException($"Search on {typeof(TEntity).Name} is not supported");
 	}
 
 	protected virtual IQueryable<TEntity> ApplyDefaultOrderBy(IQueryable<TEntity> query)

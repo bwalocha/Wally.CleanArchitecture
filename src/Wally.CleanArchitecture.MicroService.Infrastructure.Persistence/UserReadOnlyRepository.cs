@@ -1,3 +1,5 @@
+using System.Linq;
+
 using AutoMapper;
 
 using Microsoft.EntityFrameworkCore;
@@ -13,5 +15,10 @@ public class UserReadOnlyRepository : ReadOnlyRepository<User>, IUserReadOnlyRep
 	public UserReadOnlyRepository(DbContext context, IMapper mapper)
 		: base(context, mapper)
 	{
+	}
+
+	protected override IQueryable<User> ApplySearch(IQueryable<User> query, string term)
+	{
+		return query.Where(a => a.Name.StartsWith(term));
 	}
 }
