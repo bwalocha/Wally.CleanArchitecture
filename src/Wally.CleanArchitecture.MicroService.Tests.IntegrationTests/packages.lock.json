@@ -75,12 +75,6 @@
           "Microsoft.TestPlatform.TestHost": "17.7.1"
         }
       },
-      "StyleCop.Analyzers": {
-        "type": "Direct",
-        "requested": "[1.1.118, )",
-        "resolved": "1.1.118",
-        "contentHash": "Onx6ovGSqXSK07n/0eM3ZusiNdB6cIlJdabQhWGgJp3Vooy9AaLS/tigeybOJAobqbtggTamoWndz72JscZBvw=="
-      },
       "xunit": {
         "type": "Direct",
         "requested": "[2.5.0, )",
