@@ -57,7 +57,7 @@ public class MappingTests
 			.ThrowExactly<AutoMapperMappingException>();
 	}
 
-	private object GetInstanceOf(Type type)
+	private static object GetInstanceOf(Type type)
 	{
 		if (type.GetConstructor(Type.EmptyTypes) != null)
 		{
