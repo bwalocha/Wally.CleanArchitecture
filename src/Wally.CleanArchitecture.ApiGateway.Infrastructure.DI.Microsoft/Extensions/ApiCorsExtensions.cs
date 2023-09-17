@@ -19,7 +19,9 @@ public static class ApiCorsExtensions
 				builder => builder.WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
 					.AllowAnyHeader()
 					.AllowCredentials()
-					.WithOrigins(settings.Origins.Select(a => a.ToString()).ToArray())));
+					.WithOrigins(
+						settings.Origins.Select(a => a.ToString())
+							.ToArray())));
 
 		return services;
 	}

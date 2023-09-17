@@ -36,6 +36,7 @@
     "0708CEB4-B5DE-4205-873B-525D159DD513",
     "EE250951-AD1B-456C-8CCC-AF5187E684CC",
     "0EC7A04A-D1AD-4EA0-AF00-EB4884A6B271",
+    "8E7C4BE3-AD23-4682-93EA-74FA4B98A788",
 
     "6C1B6104-7628-4FC2-9CED-3BDA233E97CB",
 
@@ -168,6 +169,7 @@
             "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence/**/*",
             "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql/**/*",
             "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL/**/*",
+            "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite/**/*",
             "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer/**/*",
             "Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours/**/*",
             "Wally.CleanArchitecture.MicroService.Tests.ConventionTests/**/*",

@@ -2,9 +2,11 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 
-import {PageInfoResponse} from './PageInfoResponse';
+import { Dayjs } from 'dayjs';
+import { PageInfoResponse } from './PageInfoResponse';
 
-export interface PagedResponse<TResponse> {
-    items: TResponse[];
-    pageInfo: PageInfoResponse;
+export interface PagedResponse<TResponse>
+{
+	items: TResponse[];
+	pageInfo: PageInfoResponse;
 }

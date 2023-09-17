@@ -57,7 +57,7 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 		return GetAsync<TRequest, TResponse>(query, queryOptions, cancellationToken);
 	}
 
-	protected IQueryable<TEntity> GetReadOnlyEntitySet()
+	protected virtual IQueryable<TEntity> GetReadOnlyEntitySet()
 	{
 		return _context.Set<TEntity>()
 			.AsNoTracking();

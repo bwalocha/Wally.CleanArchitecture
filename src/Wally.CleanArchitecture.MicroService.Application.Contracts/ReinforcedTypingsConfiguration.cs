@@ -39,6 +39,7 @@ public static class ReinforcedTypingsConfiguration
 			});
 
 		builder.Substitute(typeof(Guid), new RtSimpleTypeName("string"));
+		builder.Substitute(typeof(Uri), new RtSimpleTypeName("string"));
 		builder.Substitute(typeof(Stream), new RtSimpleTypeName("any"));
 		builder.Substitute(typeof(DateTime), new RtSimpleTypeName("Dayjs"))
 			.AddImport("{ Dayjs }", "dayjs");

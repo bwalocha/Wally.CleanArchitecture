@@ -80,8 +80,8 @@
       },
       "Microsoft.AspNetCore.OData": {
         "type": "Transitive",
-        "resolved": "8.2.1",
-        "contentHash": "ec65uEEI5Cd5yffdi4E0U7IaA+4WMUGD49ZLi1gZrCJNiSo2PcCYK5Wx9vuSfRlOX81cUVGNWmPdSKj+NPYfSg==",
+        "resolved": "8.2.3",
+        "contentHash": "Yso0uznce29LwgAdaWE+j9B3vp3g9yoVfsKuO3KzRAJcsjVtuxoi+OKLlBVWXpBp2fki2+6WASo1xolL+3MClw==",
         "dependencies": {
           "Microsoft.OData.Core": "[7.16.0, 8.0.0)",
           "Microsoft.OData.Edm": "[7.16.0, 8.0.0)",
@@ -247,7 +247,7 @@
         "type": "Project",
         "dependencies": {
           "MassTransit.Abstractions": "[8.1.0, )",
-          "Microsoft.AspNetCore.OData": "[8.2.1, )",
+          "Microsoft.AspNetCore.OData": "[8.2.3, )",
           "Wally.CleanArchitecture.MicroService.Application.Contracts": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Application.Messages": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"

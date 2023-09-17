@@ -2,7 +2,10 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 
-export interface GetUserResponse {
-    id: string;
-    name?: string;
+import { Dayjs } from 'dayjs';
+
+export interface GetUserResponse
+{
+	id: string;
+	name?: string;
 }

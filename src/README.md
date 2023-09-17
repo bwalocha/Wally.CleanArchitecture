@@ -1,4 +1,4 @@
-# Wally.CleanArchitecture.MicroService
+# Wally.CleanArchitecture
 
 [[_TOC_]]
 
