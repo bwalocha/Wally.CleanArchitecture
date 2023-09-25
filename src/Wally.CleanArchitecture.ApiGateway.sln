@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.ApiGateway.WebApi", "Wally.CleanArchitecture.ApiGateway.WebApi\Wally.CleanArchitecture.ApiGateway.WebApi.csproj", "{2063FDB3-ED03-4EF9-AF3A-2FC1C5E8B695}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.ApiGateway.WebApi", "Wally.CleanArchitecture.ApiGateway\Wally.CleanArchitecture.ApiGateway.WebApi\Wally.CleanArchitecture.ApiGateway.WebApi.csproj", "{2063FDB3-ED03-4EF9-AF3A-2FC1C5E8B695}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft", "Wally.CleanArchitecture.ApiGateway\Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft\Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.csproj", "{D4325D6A-E773-4072-84D4-42CB3ED09B37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.ApiGateway.Tests.UnitTests", "Wally.CleanArchitecture.ApiGateway\Wally.CleanArchitecture.ApiGateway.Tests.UnitTests\Wally.CleanArchitecture.ApiGateway.Tests.UnitTests.csproj", "{E7D1FD7E-2105-4EAA-A1C8-0B4E81E17105}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{C911A92B-E0AE-4965-AB10-5BCEF246CD78}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{54C7EE7B-ABBE-47BF-9872-4C5973304A44}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EAC9C353-4F7C-43E9-92A6-226F43D221D8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0AC225DA-9D8C-47EB-A4E1-9FA629332ABB}"
 	ProjectSection(SolutionItems) = preProject
@@ -15,16 +25,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directory.BuildTests.props = Directory.BuildTests.props
 		.config\dotnet-tools.json = .config\dotnet-tools.json
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.ApiGateway.Tests.UnitTests", "Wally.CleanArchitecture.ApiGateway.Tests.UnitTests\Wally.CleanArchitecture.ApiGateway.Tests.UnitTests.csproj", "{E7D1FD7E-2105-4EAA-A1C8-0B4E81E17105}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft", "Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft\Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.csproj", "{D4325D6A-E773-4072-84D4-42CB3ED09B37}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EAC9C353-4F7C-43E9-92A6-226F43D221D8}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{54C7EE7B-ABBE-47BF-9872-4C5973304A44}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{C911A92B-E0AE-4965-AB10-5BCEF246CD78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

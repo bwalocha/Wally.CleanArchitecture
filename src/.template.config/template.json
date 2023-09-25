@@ -19,7 +19,7 @@
     "type": "solution"
   },
   "preferNameDirectory": true,
-  "guids": [
+  "_guids": [
     "0CCA9773-E741-4161-8E53-6692CB97CD69",
     "566755FA-0E86-4B73-A72C-CE7A7908DA72",
     "AD247D0C-C02A-4F5F-B261-86E06C683E39",
@@ -141,41 +141,20 @@
           "exclude": [
             ".idea/**",
             "Wally.Common.CodeStyleRules/**",
-            "Wally.CleanArchitecture.Tests.ConventionTests/coverage.json",
-            "Wally.CleanArchitecture.Tests.IntegrationTests/coverage.json",
-            "Wally.CleanArchitecture.Tests.UnitTests/coverage.json",
             "Directory.Build.props"
           ]
         },
         {
           "condition": "(!enableReverseProxy)",
           "exclude": [
-            "Wally.CleanArchitecture.ApiGateway.WebApi/**/*",
-            "Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft/**/*",
-            "Wally.CleanArchitecture.ApiGateway.Tests.UnitTests/**/*",
+            "Wally.CleanArchitecture.ApiGateway/**/*",
             "Wally.CleanArchitecture.ApiGateway.sln"
           ]
         },
         {
           "condition": "(!enableMicroService)",
           "exclude": [
-            "Wally.CleanArchitecture.MicroService.Application/**/*",
-            "Wally.CleanArchitecture.MicroService.Application.Contracts/**/*",
-            "Wally.CleanArchitecture.MicroService.Application.MapperProfiles/**/*",
-            "Wally.CleanArchitecture.MicroService.Application.Messages/**/*",
-            "Wally.CleanArchitecture.MicroService.Domain/**/*",
-            "Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft/**/*",
-            "Wally.CleanArchitecture.MicroService.Infrastructure.Messaging/**/*",
-            "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence/**/*",
-            "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql/**/*",
-            "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL/**/*",
-            "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite/**/*",
-            "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer/**/*",
-            "Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours/**/*",
-            "Wally.CleanArchitecture.MicroService.Tests.ConventionTests/**/*",
-            "Wally.CleanArchitecture.MicroService.Tests.IntegrationTests/**/*",
-            "Wally.CleanArchitecture.MicroService.Tests.UnitTests/**/*",
-            "Wally.CleanArchitecture.MicroService.WebApi/**/*",
+            "Wally.CleanArchitecture.MicroService/**/*",
             "Wally.CleanArchitecture.MicroService.sln"
           ]
         },
