@@ -53,7 +53,7 @@ test:npm:
   needs:
     - build:sln2
   variables:
-    PROJECT_NAME: ${NPM_PROJECT_NAME}/generated
+    PROJECT_NAME: Wally.CleanArchitecture.MicroService/${NPM_PROJECT_NAME}/generated
   allow_failure: true
 
 publish:tpl:
@@ -92,7 +92,7 @@ deploy:node:npm:
   needs:
     - test:npm
   variables:
-    PROJECT_NAME: ${NPM_PROJECT_NAME}/generated
+    PROJECT_NAME: Wally.CleanArchitecture.MicroService/${NPM_PROJECT_NAME}/generated
   environment:
     name: ${ENV}_${NPM_PROJECT_NAME}
     url: https://www.npmjs.com/package/${NPM_PROJECT_NAME}/v/${VERSION}
