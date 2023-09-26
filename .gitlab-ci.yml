@@ -60,8 +60,8 @@ publish:tpl:
   extends:
     - .publish:nuget
   needs:
-    - test:sln1
-    - test:sln2
+    - test:gate_sln
+    - test:service_sln
   variables:
     PROJECT_NAME: ${TPL_PROJECT_NAME}
 
