@@ -51,7 +51,7 @@ test:npm:
   extends:
     - .test:node
   needs:
-    - build:sln2
+    - build:service_sln
   variables:
     PROJECT_NAME: ${SERVICE_SOLUTION_NAME}/${NPM_PROJECT_NAME}/generated
   allow_failure: true
