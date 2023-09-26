@@ -1,6 +1,6 @@
 variables:
-  SLN1_SOLUTION_NAME: "Wally.CleanArchitecture.ApiGateway"
-  SLN2_SOLUTION_NAME: "Wally.CleanArchitecture.MicroService"
+  GATE_SOLUTION_NAME: "Wally.CleanArchitecture.ApiGateway"
+  SERVICE_SOLUTION_NAME: "Wally.CleanArchitecture.MicroService"
   TPL_PROJECT_NAME: "Wally.CleanArchitecture.Template"
   NPM_PROJECT_NAME: "Wally.CleanArchitecture.MicroService.Application.Contracts"
   #
@@ -13,17 +13,17 @@ stages:
   - publish
   - deploy
 
-build:sln1:
+build:gate_sln:
   extends:
     - .build:dotnet
   variables:
-    SOLUTION_NAME: ${SLN1_SOLUTION_NAME}
+    SOLUTION_NAME: ${GATE_SOLUTION_NAME}
 
-build:sln2:
+build:service_sln:
   extends:
     - .build:dotnet
   variables:
-    SOLUTION_NAME: ${SLN2_SOLUTION_NAME}
+    SOLUTION_NAME: ${SERVICE_SOLUTION_NAME}
 
 build:tpl:
   extends:
@@ -31,21 +31,21 @@ build:tpl:
   variables:
     SOLUTION_NAME: ${TPL_PROJECT_NAME}
 
-test:sln1:
+test:gate_sln:
   extends:
     - .test:dotnet
   needs:
-    - build:sln1
+    - build:gate_sln
   variables:
-    SOLUTION_NAME: ${SLN1_SOLUTION_NAME}
+    SOLUTION_NAME: ${GATE_SOLUTION_NAME}
 
-test:sln2:
+test:service_sln:
   extends:
     - .test:dotnet
   needs:
-    - build:sln2
+    - build:service_sln
   variables:
-    SOLUTION_NAME: ${SLN2_SOLUTION_NAME}
+    SOLUTION_NAME: ${SERVICE_SOLUTION_NAME}
 
 test:npm:
   extends:
@@ -53,7 +53,7 @@ test:npm:
   needs:
     - build:sln2
   variables:
-    PROJECT_NAME: Wally.CleanArchitecture.MicroService/${NPM_PROJECT_NAME}/generated
+    PROJECT_NAME: ${SERVICE_SOLUTION_NAME}/${NPM_PROJECT_NAME}/generated
   allow_failure: true
 
 publish:tpl:
@@ -81,8 +81,8 @@ deploy:baget:tpl:
     - .deploy:baget
   needs:
     #- publish:tpl
-    - test:sln1
-    - test:sln2
+    - test:gate_sln
+    - test:service_sln
   variables:
     PROJECT_NAME: ${TPL_PROJECT_NAME}
 
@@ -92,7 +92,7 @@ deploy:node:npm:
   needs:
     - test:npm
   variables:
-    PROJECT_NAME: Wally.CleanArchitecture.MicroService/${NPM_PROJECT_NAME}/generated
+    PROJECT_NAME: ${SERVICE_SOLUTION_NAME}/${NPM_PROJECT_NAME}/generated
   environment:
     name: ${ENV}_${NPM_PROJECT_NAME}
     url: https://www.npmjs.com/package/${NPM_PROJECT_NAME}/v/${VERSION}
