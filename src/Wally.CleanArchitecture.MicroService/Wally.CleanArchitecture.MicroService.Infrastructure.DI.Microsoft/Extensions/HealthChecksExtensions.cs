@@ -2,6 +2,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 
+using Confluent.Kafka;
+
+using HealthChecks.Kafka;
 using HealthChecks.MySql;
 using HealthChecks.UI.Client;
 
@@ -69,6 +72,19 @@ public static class HealthChecksExtensions
 				// ...
 
 				break;
+			case MessageBrokerType.Kafka:
+				healthChecksBuilder.AddKafka(
+					new KafkaHealthCheckOptions
+					{
+						Configuration = new ProducerConfig(new ClientConfig
+						{
+							BootstrapServers = settings.ConnectionStrings.ServiceBus,
+						}),
+					},
+					name: "MQ",
+					failureStatus: HealthStatus.Degraded,
+					tags: new[] { "MQ", "Messaging", nameof(MessageBrokerType.Kafka), });
+				break;
 			case MessageBrokerType.RabbitMQ:
 				healthChecksBuilder.AddRabbitMQ(
 					new Uri(settings.ConnectionStrings.ServiceBus),
@@ -77,7 +93,7 @@ public static class HealthChecksExtensions
 					tags: new[] { "MQ", "Messaging", nameof(MessageBrokerType.RabbitMQ), });
 				break;
 			default:
-				throw new ArgumentOutOfRangeException(nameof(settings.MessageBroker), "Unknown Message Broker");
+				throw new ArgumentOutOfRangeException(nameof(settings.MessageBroker), $"Unknown Message Broker: '{settings.MessageBroker}'");
 		}
 
 		/*

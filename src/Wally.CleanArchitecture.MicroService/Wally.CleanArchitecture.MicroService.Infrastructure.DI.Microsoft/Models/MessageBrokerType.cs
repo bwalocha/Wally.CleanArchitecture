@@ -5,5 +5,6 @@ public enum MessageBrokerType
 	Unknown = 0,
 	None,
 	AzureServiceBus,
+	Kafka,
 	RabbitMQ,
 }
