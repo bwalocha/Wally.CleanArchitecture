@@ -49,75 +49,15 @@ public abstract class ValueObject
 }
 ```
 
-II. Use Aspect Oriented Programming
+II. IRequestContext
 
-[YouTube](https://www.youtube.com/watch?v=dLPKwEeqwgU&ab_channel=NickChapsas)
+III. CorrelationId + SeriLog.Enrich.CorrelationId
 
 ## Components
 
 ### Swagger
 
 UI: https://localhost:7197/swagger/index.html
-
-### Serilog
-
-`serilog.json`
-
-```json
-{
-  "Serilog": {
-    "Using": [
-      "Serilog.Sinks.Console",
-      "Serilog.Sinks.ApplicationInsights"
-    ],
-    "MinimumLevel": {
-      "Default": "Debug",
-      "Override": {
-        "Microsoft": "Information"
-      }
-    },
-    "WriteTo": [
-      {
-        "Name": "Debug"
-      },
-      {
-        "Name": "Console",
-        "Args": {
-          "theme": "Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme::Code, Serilog.Sinks.Console",
-          "outputTemplate": "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Properties:j}{NewLine}{Exception}{NewLine}"
-        }
-      },
-      {
-        "Name": "ApplicationInsights",
-        "Args": {
-          "instrumentationKey": "---",
-          "restrictedToMinimumLevel": "Information",
-          "telemetryConverter": "Serilog.Sinks.ApplicationInsights.Sinks.ApplicationInsights.TelemetryConverters.TraceTelemetryConverter, Serilog.Sinks.ApplicationInsights"
-        }
-      },
-      {
-        "Name": "MSSqlServer",
-        "Args": {
-          "connectionString": "---",
-          "tableName": "Log",
-          "columnOptionsSection": {
-            "addStandardColumns": [ "LogEvent" ],
-            "removeStandardColumns": [ "Properties" ]
-          }
-        }
-      }
-    ],
-    "Enrich": [
-      "FromLogContext",
-      "WithMachineName",
-      "WithThreadId"
-    ],
-    "Properties": {
-      "Application": "Wally.CleanArchitecture"
-    }
-  }
-}
-```
 
 ### Health Checks
 
@@ -132,34 +72,6 @@ API: https://localhost:7197/healthchecks-api
 Webhooks: https://localhost:7197/healthchecks-webhooks
 
 [website](https://github.com/xabaril/AspNetCore.Diagnostics.HealthChecks)
-
-`appsettings.json`
-
-```json
-{
-  "HealthChecks-UI": {
-    "DisableMigrations": true,
-    "HealthChecks": [
-      {
-        "Name": "Poll Manager",
-        "Uri": "/healthChecks"
-      }
-    ],
-    "Webhooks": [
-      {
-        "Name": "",
-        "Uri": "",
-        "Payload": "",
-        "RestoredPayload": ""
-      }
-    ],
-    "EvaluationTimeOnSeconds": 10,
-    "MinimumSecondsBetweenFailureNotifications": 60,
-    "MaximumExecutionHistoriesPerEndpoint": 15,
-    "HealthCheckDatabaseConnectionString": "Data Source=healthChecks"
-  }
-}
-```
 
 ### AutoMapper
 
