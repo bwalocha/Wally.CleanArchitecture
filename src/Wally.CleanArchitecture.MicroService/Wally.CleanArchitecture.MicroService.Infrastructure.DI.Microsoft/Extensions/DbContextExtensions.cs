@@ -26,6 +26,8 @@ public static class DbContextExtensions
 		{
 			switch (settings.Database.ProviderType)
 			{
+				case DatabaseProviderType.None:
+					break;
 				case DatabaseProviderType.MySql:
 					options.UseMySql(
 						settings.ConnectionStrings.Database,

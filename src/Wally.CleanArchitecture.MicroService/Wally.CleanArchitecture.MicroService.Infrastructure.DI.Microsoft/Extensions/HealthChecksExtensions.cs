@@ -28,6 +28,8 @@ public static class HealthChecksExtensions
 
 		switch (settings.Database.ProviderType)
 		{
+			case DatabaseProviderType.None:
+				break;
 			case DatabaseProviderType.MySql:
 				healthChecksBuilder.AddMySql(
 					new MySqlHealthCheckOptions { ConnectionString = settings.ConnectionStrings.Database, },
