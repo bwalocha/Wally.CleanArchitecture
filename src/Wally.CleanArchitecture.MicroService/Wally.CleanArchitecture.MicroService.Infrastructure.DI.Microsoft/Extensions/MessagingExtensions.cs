@@ -36,27 +36,30 @@ public static class MessagingExtensions
 						break;
 					case MessageBrokerType.Kafka:
 						a.UsingInMemory((context, config) => config.ConfigureEndpoints(context));
+
 						// a.UsingRabbitMq((context, cfg) => cfg.ConfigureEndpoints(context));
 
-						a.AddRider(rider =>
-						{
-							// rider.AddConsumer<KafkaMessageConsumer>();
-							// rider.AddProducer<FileCreatedMessage>(nameof(FileCreatedMessage));
-							// rider.AddProducer<FileModifiedMessage>(nameof(FileModifiedMessage));
-
-							rider.UsingKafka((context, k) =>
+						a.AddRider(
+							rider =>
 							{
-								k.ClientId = typeof(IInfrastructureMessagingAssemblyMarker).Namespace;
-								k.Host(settings.ConnectionStrings.ServiceBus);
+								// rider.AddConsumer<KafkaMessageConsumer>();
+								// rider.AddProducer<FileCreatedMessage>(nameof(FileCreatedMessage));
+								// rider.AddProducer<FileModifiedMessage>(nameof(FileModifiedMessage));
 
-								/*k.TopicEndpoint<KafkaMessage>(typeof(IInfrastructureMessagingAssemblyMarker).Namespace, typeof(IInfrastructureMessagingAssemblyMarker).Namespace, e =>
-								{
-									e.ConfigureConsumer<KafkaMessageConsumer>(context);
-								});*/
+								rider.UsingKafka(
+									(context, k) =>
+									{
+										k.ClientId = typeof(IInfrastructureMessagingAssemblyMarker).Namespace;
+										k.Host(settings.ConnectionStrings.ServiceBus);
+
+										/*k.TopicEndpoint<KafkaMessage>(typeof(IInfrastructureMessagingAssemblyMarker).Namespace, typeof(IInfrastructureMessagingAssemblyMarker).Namespace, e =>
+										{
+											e.ConfigureConsumer<KafkaMessageConsumer>(context);
+										});*/
+									});
+
+								services.AddScoped<IBus, KafkaBus>();
 							});
-
-							services.AddScoped<IBus, KafkaBus>();
-						});
 						break;
 					case MessageBrokerType.RabbitMQ:
 						a.UsingRabbitMq(
@@ -67,7 +70,9 @@ public static class MessagingExtensions
 							});
 						break;
 					default:
-						throw new ArgumentOutOfRangeException(nameof(settings.MessageBroker), $"Unknown Message Broker: '{settings.MessageBroker}'");
+						throw new ArgumentOutOfRangeException(
+							nameof(settings.MessageBroker),
+							$"Unknown Message Broker: '{settings.MessageBroker}'");
 				}
 			});
 
@@ -242,8 +247,8 @@ public static class MessagingExtensions
 
 	private class KafkaBus : IBus
 	{
-		private readonly IServiceProvider _serviceProvider;
 		private readonly ILogger<KafkaBus> _logger;
+		private readonly IServiceProvider _serviceProvider;
 
 		public KafkaBus(IServiceProvider serviceProvider, ILogger<KafkaBus> logger)
 		{

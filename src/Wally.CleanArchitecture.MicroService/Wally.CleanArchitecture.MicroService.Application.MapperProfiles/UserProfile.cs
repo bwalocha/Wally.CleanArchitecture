@@ -16,7 +16,7 @@ public class UserProfile : Profile
 		CreateMap<User, GetUsersResponse>();
 
 		CreateMap<User, GetUserResponse>();
-		
+
 		CreateMap<UserId, Guid>()
 			.ConvertUsing(a => a.Value);
 

@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 using FluentAssertions;
 using FluentAssertions.Common;
 using FluentAssertions.Execution;
 
+using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
-using Wally.Lib.DDD.Abstractions.DomainModels;
 
 using Xunit;
+
+// using Wally.Lib.DDD.Abstractions.DomainModels;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 
@@ -18,12 +21,13 @@ public class EntityTests
 	public void Entity_Constructor_ShouldBePrivate()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllTypes();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.InheritsGenericClass(typeof(Entity<,>)))
+			.Types();
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{
-			types.ThatImplement<Entity>()
-				.Should()
+			types.Should()
 				.HaveOnlyPrivateParameterlessConstructor();
 		}
 	}
@@ -32,11 +36,13 @@ public class EntityTests
 	public void Entity_AggregateRootAndEntity_ShouldNotExposeSetter()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllTypes();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.InheritsGenericClass(typeof(Entity<,>)))
+			.Types();
 
 		using (new AssertionScope())
 		{
-			foreach (var type in types.ThatImplement<Entity>())
+			foreach (var type in types)
 			{
 				foreach (var property in type.Properties())
 				{
@@ -64,11 +70,13 @@ public class EntityTests
 	public void Entity_AggregateRootAndEntity_ShouldNotExposeWritableCollection()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllTypes();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.InheritsGenericClass(typeof(Entity<,>)))
+			.Types();
 
 		using (new AssertionScope())
 		{
-			foreach (var type in types.ThatImplement<Entity>())
+			foreach (var type in types)
 			{
 				foreach (var property in type.Properties())
 				{
@@ -92,11 +100,13 @@ public class EntityTests
 	public void Entity_ValueObject_ShouldNotExposeSetter()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllTypes();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.InheritsGenericClass(typeof(ValueObject<,>)))
+			.Types();
 
 		using (new AssertionScope())
 		{
-			foreach (var type in types.ThatImplement<ValueObject>())
+			foreach (var type in types)
 			{
 				foreach (var property in type.Properties())
 				{

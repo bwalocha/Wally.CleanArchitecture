@@ -78,14 +78,12 @@ public static class HealthChecksExtensions
 				healthChecksBuilder.AddKafka(
 					new KafkaHealthCheckOptions
 					{
-						Configuration = new ProducerConfig(new ClientConfig
-						{
-							BootstrapServers = settings.ConnectionStrings.ServiceBus,
-						}),
+						Configuration = new ProducerConfig(
+							new ClientConfig { BootstrapServers = settings.ConnectionStrings.ServiceBus, }),
 					},
-					name: "MQ",
-					failureStatus: HealthStatus.Degraded,
-					tags: new[] { "MQ", "Messaging", nameof(MessageBrokerType.Kafka), });
+					"MQ",
+					HealthStatus.Degraded,
+					new[] { "MQ", "Messaging", nameof(MessageBrokerType.Kafka), });
 				break;
 			case MessageBrokerType.RabbitMQ:
 				healthChecksBuilder.AddRabbitMQ(
@@ -95,7 +93,9 @@ public static class HealthChecksExtensions
 					tags: new[] { "MQ", "Messaging", nameof(MessageBrokerType.RabbitMQ), });
 				break;
 			default:
-				throw new ArgumentOutOfRangeException(nameof(settings.MessageBroker), $"Unknown Message Broker: '{settings.MessageBroker}'");
+				throw new ArgumentOutOfRangeException(
+					nameof(settings.MessageBroker),
+					$"Unknown Message Broker: '{settings.MessageBroker}'");
 		}
 
 		/*
