@@ -16,7 +16,7 @@ public class DeleteUserCommandHandler : CommandHandler<DeleteUserCommand>
 
 	public override async Task HandleAsync(DeleteUserCommand command, CancellationToken cancellationToken)
 	{
-		var model = await _userRepository.GetAsync(command.Id, cancellationToken);
+		var model = await _userRepository.GetAsync(command.UserId, cancellationToken);
 
 		_userRepository.Remove(model);
 	}

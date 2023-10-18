@@ -6,19 +6,19 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Provi
 
 public class DateTimeProvider : IDateTimeProvider
 {
-	private readonly Func<DateTime> _function;
+	private readonly Func<DateTimeOffset> _function;
 
 	public DateTimeProvider()
 	{
-		_function = () => DateTime.UtcNow;
+		_function = () => DateTimeOffset.UtcNow;
 	}
 
-	public DateTimeProvider(Func<DateTime> function)
+	public DateTimeProvider(Func<DateTimeOffset> function)
 	{
 		_function = function;
 	}
 
-	public DateTime GetDateTime()
+	public DateTimeOffset GetDateTime()
 	{
 		return _function();
 	}

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
+using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.Lib.DDD.Abstractions.Commands;
 
 namespace Wally.CleanArchitecture.MicroService.Application.Users.Commands;
@@ -8,18 +9,18 @@ namespace Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 [ExcludeFromCodeCoverage]
 public sealed class CreateUserCommand : ICommand
 {
-	public CreateUserCommand(Guid id, string name)
+	public CreateUserCommand(UserId userId, string name)
 	{
-		Id = id;
+		UserId = userId;
 		Name = name;
 	}
 
 	public CreateUserCommand(string name)
-		: this(Guid.NewGuid(), name)
+		: this(new UserId(Guid.NewGuid()), name)
 	{
 	}
 
-	public Guid Id { get; }
+	public UserId UserId { get; }
 
 	public string Name { get; }
 }

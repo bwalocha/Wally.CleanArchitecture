@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Wally.CleanArchitecture.MicroService.Domain.Users;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
 public interface IUserProvider
 {
-	Guid GetCurrentUserId();
+	UserId GetCurrentUserId();
 }

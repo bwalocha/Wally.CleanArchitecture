@@ -20,7 +20,7 @@ public class UserCreatedDomainEventHandler : IDomainEventHandler<UserCreatedDoma
 
 	public Task HandleAsync(UserCreatedDomainEvent domainEvent, CancellationToken cancellationToken)
 	{
-		var message = new UserCreatedMessage(domainEvent.Id, domainEvent.Name);
+		var message = new UserCreatedMessage(domainEvent.Id.Value, domainEvent.Name);
 
 		return _bus.Publish(message, cancellationToken);
 	}

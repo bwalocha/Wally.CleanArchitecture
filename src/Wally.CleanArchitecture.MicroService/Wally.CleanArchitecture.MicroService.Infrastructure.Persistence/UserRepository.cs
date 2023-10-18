@@ -8,7 +8,7 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractio
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 
-public class UserRepository : Repository<User>, IUserRepository
+public class UserRepository : Repository<User, UserId>, IUserRepository
 {
 	public UserRepository(DbContext context, IMapper mapper)
 		: base(context, mapper)

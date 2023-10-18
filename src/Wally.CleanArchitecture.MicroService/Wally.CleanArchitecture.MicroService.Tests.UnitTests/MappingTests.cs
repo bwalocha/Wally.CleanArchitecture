@@ -40,6 +40,8 @@ public class MappingTests
 	public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
 	{
 		var instance = GetInstanceOf(source);
+		var idProperty = source.GetProperty(nameof(User.Id)) !;
+		idProperty.DeclaringType!.GetProperty(nameof(User.Id)) !.SetValue(instance, new UserId(Guid.NewGuid()));
 
 		_mapper.Map(instance, source, destination);
 	}

@@ -16,7 +16,7 @@ public class UpdateUserCommandHandler : CommandHandler<UpdateUserCommand>
 
 	public override async Task HandleAsync(UpdateUserCommand command, CancellationToken cancellationToken)
 	{
-		var model = await _userRepository.GetAsync(command.Id, cancellationToken);
+		var model = await _userRepository.GetAsync(command.UserId, cancellationToken);
 
 		model.Update(command.Name);
 

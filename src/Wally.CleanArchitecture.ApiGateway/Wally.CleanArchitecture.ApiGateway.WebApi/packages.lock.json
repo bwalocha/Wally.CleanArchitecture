@@ -186,8 +186,8 @@
       },
       "Microsoft.AspNetCore.JsonPatch": {
         "type": "Transitive",
-        "resolved": "7.0.11",
-        "contentHash": "i3TITRzWt92b5NV30jRmPLpMW3XkUKwtiTMZlglYkfYxEtfD30Q2/1APIwmHNEd3DbGg3+9sGQFK0MA0KO9koQ==",
+        "resolved": "7.0.12",
+        "contentHash": "7eBfKD1Hsl9fP0zO3OiuIeH+YbZBVGsvBnsqbRdoKGby9Z2IzmxTF3S/dhzT2yDF3oqAIsfv82dcn4lNJUUY9w==",
         "dependencies": {
           "Microsoft.CSharp": "4.7.0",
           "Newtonsoft.Json": "13.0.1"
@@ -195,10 +195,10 @@
       },
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
         "type": "Transitive",
-        "resolved": "7.0.11",
-        "contentHash": "wwGG0XwSSntsQpzN1kUhv44PfOF9aPWNLCRZEi1IekGMy3L2/LNZVIZ4eU6JAkstks2xxHsHNpar6zLH+fpg+g==",
+        "resolved": "7.0.12",
+        "contentHash": "9Kicj85ynnKqtejtqetQJEuS96A0Ma4ihm6BN30PUREcTjq+R4CEPy6xKlJhbDKtYlsxb1O2FrdMPAcNzivH6Q==",
         "dependencies": {
-          "Microsoft.AspNetCore.JsonPatch": "7.0.11",
+          "Microsoft.AspNetCore.JsonPatch": "7.0.12",
           "Newtonsoft.Json": "13.0.1",
           "Newtonsoft.Json.Bson": "1.0.2"
         }
@@ -620,7 +620,7 @@
           "AspNetCore.HealthChecks.UI.InMemory.Storage": "[7.0.0, )",
           "FluentValidation.AspNetCore": "[11.3.0, )",
           "Microsoft.AspNetCore.Http.Abstractions": "[2.2.0, )",
-          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "[7.0.11, )",
+          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "[7.0.12, )",
           "Microsoft.Extensions.Configuration.Abstractions": "[7.0.0, )",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[7.0.0, )",
           "Yarp.ReverseProxy": "[2.0.1, )"

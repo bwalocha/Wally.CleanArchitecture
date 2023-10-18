@@ -20,7 +20,7 @@ public static class ApiCorsExtensions
 					.AllowAnyHeader()
 					.AllowCredentials()
 					.WithOrigins(
-						settings.Origins.Select(a => a.ToString())
+						settings.Origins.Select(a => a.OriginalString)
 							.ToArray())));
 
 		return services;

@@ -1,5 +1,5 @@
 # https://hub.docker.com/_/microsoft-dotnet-aspnet
-FROM mcr.microsoft.com/dotnet/aspnet:7.0.3-alpine3.16
+FROM mcr.microsoft.com/dotnet/aspnet:7.0.11-alpine3.18-amd64
 LABEL maintainer="wally"
 ARG PROJECT_NAME
 
@@ -19,4 +19,4 @@ RUN apk add icu-libs --no-cache && \
 WORKDIR /app
 COPY ./packages/${PROJECT_NAME} .
 
-ENTRYPOINT dotnet ${PROJECT_NAME}.dll
+ENTRYPOINT dotnet `basename ${PROJECT_NAME}`.dll

@@ -11,6 +11,7 @@ using Wally.CleanArchitecture.MicroService.Application.Contracts.Requests.Users;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Responses.Users;
 using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 using Wally.CleanArchitecture.MicroService.Application.Users.Queries;
+using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.Lib.DDD.Abstractions.Responses;
 
 namespace Wally.CleanArchitecture.MicroService.WebApi.Controllers;
@@ -62,7 +63,7 @@ public class UsersController : ControllerBase
 	[HttpGet("{id:guid}")]
 	public async Task<ActionResult<GetUserResponse>> GetAsync(Guid id, CancellationToken cancellationToken)
 	{
-		var query = new GetUserQuery(id);
+		var query = new GetUserQuery(new UserId(id));
 		var result = await _mediator.Send(query, cancellationToken);
 
 		return Ok(result);
@@ -110,7 +111,7 @@ public class UsersController : ControllerBase
 		UpdateUserRequest request,
 		CancellationToken cancellationToken)
 	{
-		var command = new UpdateUserCommand(id, request.Name);
+		var command = new UpdateUserCommand(new UserId(id), request.Name);
 		await _mediator.Send(command, cancellationToken);
 
 		return Ok();
@@ -129,7 +130,7 @@ public class UsersController : ControllerBase
 	[HttpDelete("{id:guid}")]
 	public async Task<ActionResult<object>> DeleteAsync(Guid id, CancellationToken cancellationToken)
 	{
-		var command = new DeleteUserCommand(id);
+		var command = new DeleteUserCommand(new UserId(id));
 		await _mediator.Send(command, cancellationToken);
 
 		return Accepted();

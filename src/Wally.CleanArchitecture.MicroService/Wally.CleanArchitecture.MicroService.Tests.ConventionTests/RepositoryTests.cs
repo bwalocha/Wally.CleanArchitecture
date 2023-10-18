@@ -27,7 +27,7 @@ public class RepositoryTests
 			foreach (var assembly in assemblies)
 			{
 				var types = AllTypes.From(assembly)
-					.ThatSatisfy(a => a.ImplementsGenericInterface(typeof(IReadOnlyRepository<>)));
+					.ThatSatisfy(a => a.ImplementsGenericInterface(typeof(IReadOnlyRepository<,>)));
 
 				var notAllowedTypes = new List<Type>
 				{
@@ -59,16 +59,16 @@ public class RepositoryTests
 			foreach (var assembly in assemblies)
 			{
 				var types = AllTypes.From(assembly)
-					.ThatSatisfy(a => a.IsInterface && a.ImplementsGenericInterface(typeof(IReadOnlyRepository<>)));
+					.ThatSatisfy(a => a.IsInterface && a.ImplementsGenericInterface(typeof(IReadOnlyRepository<,>)));
 
 				foreach (var type in types)
 				{
-					if (type == typeof(IReadOnlyRepository<>))
+					if (type == typeof(IReadOnlyRepository<,>))
 					{
 						continue;
 					}
 
-					if (type == typeof(IRepository<>))
+					if (type == typeof(IRepository<,>))
 					{
 						continue;
 					}
@@ -88,7 +88,7 @@ public class RepositoryTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var repositories = AllTypes.From(typeof(IInfrastructurePersistenceAssemblyMarker).Assembly)
-			.ThatSatisfy(a => a.ImplementsGenericInterface(typeof(IReadOnlyRepository<>)))
+			.ThatSatisfy(a => a.ImplementsGenericInterface(typeof(IReadOnlyRepository<,>)))
 			.ToList();
 
 		using (new AssertionScope(new AssertionStrategy()))
@@ -96,17 +96,17 @@ public class RepositoryTests
 			foreach (var assembly in assemblies)
 			{
 				var types = AllTypes.From(assembly)
-					.ThatSatisfy(a => a.IsInterface && a.ImplementsGenericInterface(typeof(IReadOnlyRepository<>)))
+					.ThatSatisfy(a => a.IsInterface && a.ImplementsGenericInterface(typeof(IReadOnlyRepository<,>)))
 					.ToList();
 
 				foreach (var type in types)
 				{
-					if (type == typeof(IReadOnlyRepository<>))
+					if (type == typeof(IReadOnlyRepository<,>))
 					{
 						continue;
 					}
 
-					if (type == typeof(IRepository<>))
+					if (type == typeof(IRepository<,>))
 					{
 						continue;
 					}

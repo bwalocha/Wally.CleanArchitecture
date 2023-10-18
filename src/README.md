@@ -53,6 +53,9 @@ II. IRequestContext
 
 III. CorrelationId + SeriLog.Enrich.CorrelationId
 
+https://www.code4it.dev/blog/serilog-correlation-id/
+https://github.com/ekmsystems/serilog-enrichers-correlation-id
+
 ## Components
 
 ### Swagger

@@ -37,6 +37,17 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 		_database.SaveChanges();
 	}
 
+	private User UserCreate(int index)
+	{
+		var resource = User.Create($"testUser{index}");
+		var createdByIdProperty = typeof(User).GetProperty(nameof(User.CreatedById)) !;
+		createdByIdProperty.DeclaringType!.GetProperty(nameof(User.CreatedById)) !.SetValue(
+			resource,
+			new UserId(Guid.NewGuid()));
+
+		return resource;
+	}
+
 	[Fact]
 	public async Task Get_NoExistingResource_Returns404()
 	{
@@ -121,9 +132,9 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	public async Task GetOData_3Resources_Returns3Resources()
 	{
 		// Arrange
-		_database.Add(User.Create("testUser1"));
-		_database.Add(User.Create("testUser3"));
-		_database.Add(User.Create("testUser2"));
+		_database.Add(UserCreate(1));
+		_database.Add(UserCreate(3));
+		_database.Add(UserCreate(2));
 		await _database.SaveChangesAsync();
 
 		// Act
@@ -145,9 +156,9 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	public async Task GetOData_3ResourcesOrdered_Returns3Resources()
 	{
 		// Arrange
-		_database.Add(User.Create("testUser1"));
-		_database.Add(User.Create("testUser3"));
-		_database.Add(User.Create("testUser2"));
+		_database.Add(UserCreate(1));
+		_database.Add(UserCreate(3));
+		_database.Add(UserCreate(2));
 		await _database.SaveChangesAsync();
 
 		// Act
@@ -178,9 +189,9 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	public async Task GetOData_3ResourcesOrderedDesc_Returns3Resources()
 	{
 		// Arrange
-		_database.Add(User.Create("testUser1"));
-		_database.Add(User.Create("testUser3"));
-		_database.Add(User.Create("testUser2"));
+		_database.Add(UserCreate(1));
+		_database.Add(UserCreate(3));
+		_database.Add(UserCreate(2));
 		await _database.SaveChangesAsync();
 
 		// Act
@@ -211,9 +222,9 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	public async Task GetOData_3ResourcesOrderedBy2Properties_Returns3Resources()
 	{
 		// Arrange
-		_database.Add(User.Create("testUser3"));
-		_database.Add(User.Create("testUser3"));
-		_database.Add(User.Create("testUser2"));
+		_database.Add(UserCreate(3));
+		_database.Add(UserCreate(3));
+		_database.Add(UserCreate(2));
 		await _database.SaveChangesAsync();
 
 		// Act
@@ -248,9 +259,9 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	public async Task GetOData_3ResourcesOrderedSkipped_Returns2Resources()
 	{
 		// Arrange
-		_database.Add(User.Create("testUser1"));
-		_database.Add(User.Create("testUser3"));
-		_database.Add(User.Create("testUser2"));
+		_database.Add(UserCreate(1));
+		_database.Add(UserCreate(3));
+		_database.Add(UserCreate(2));
 		await _database.SaveChangesAsync();
 
 		// Act
@@ -278,9 +289,9 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	public async Task GetOData_3ResourcesOrderedTop2_Returns2Resources()
 	{
 		// Arrange
-		_database.Add(User.Create("testUser1"));
-		_database.Add(User.Create("testUser3"));
-		_database.Add(User.Create("testUser2"));
+		_database.Add(UserCreate(1));
+		_database.Add(UserCreate(3));
+		_database.Add(UserCreate(2));
 		await _database.SaveChangesAsync();
 
 		// Act
@@ -308,9 +319,9 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	public async Task GetOData_3ResourcesOrderedSkipped1Top2_Returns2Resources()
 	{
 		// Arrange
-		_database.Add(User.Create("testUser1"));
-		_database.Add(User.Create("testUser3"));
-		_database.Add(User.Create("testUser2"));
+		_database.Add(UserCreate(1));
+		_database.Add(UserCreate(3));
+		_database.Add(UserCreate(2));
 		await _database.SaveChangesAsync();
 
 		// Act
@@ -338,9 +349,9 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	public async Task GetOData_3ResourcesOrderedSkipped1Top2Filtered_Returns1Resource()
 	{
 		// Arrange
-		_database.Add(User.Create("testUser1"));
-		_database.Add(User.Create("testUser3"));
-		_database.Add(User.Create("testUser2"));
+		_database.Add(UserCreate(1));
+		_database.Add(UserCreate(3));
+		_database.Add(UserCreate(2));
 		await _database.SaveChangesAsync();
 
 		// Act
@@ -366,13 +377,13 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	public async Task Put_ForExistingResource_UpdatesResourceData()
 	{
 		// Arrange
-		var resource = User.Create("testUser3");
+		var resource = UserCreate(3);
 		_database.Add(resource);
 		await _database.SaveChangesAsync();
 		var request = new UpdateUserRequest("newTestResource1");
 
 		// Act
-		var response = await _httpClient.PutAsync($"Users/{resource.Id}", request, CancellationToken.None);
+		var response = await _httpClient.PutAsync($"Users/{resource.Id.Value}", request, CancellationToken.None);
 
 		// Assert
 		response.IsSuccessStatusCode.Should()

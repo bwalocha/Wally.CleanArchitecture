@@ -1,6 +1,6 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 
+using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.Lib.DDD.Abstractions.Commands;
 
 namespace Wally.CleanArchitecture.MicroService.Application.Users.Commands;
@@ -8,13 +8,13 @@ namespace Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 [ExcludeFromCodeCoverage]
 public sealed class UpdateUserCommand : ICommand
 {
-	public UpdateUserCommand(Guid id, string name)
+	public UpdateUserCommand(UserId userId, string name)
 	{
-		Id = id;
+		UserId = userId;
 		Name = name;
 	}
 
-	public Guid Id { get; }
+	public UserId UserId { get; }
 
 	public string Name { get; }
 }

@@ -6,6 +6,6 @@ import { Dayjs } from 'dayjs';
 
 export interface GetUsersRequest
 {
-	id: string;
+	id?: string;
 	name?: string;
 }

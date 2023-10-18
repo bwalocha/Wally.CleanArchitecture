@@ -10,7 +10,7 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractio
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 
-public class UserReadOnlyRepository : ReadOnlyRepository<User>, IUserReadOnlyRepository
+public class UserReadOnlyRepository : ReadOnlyRepository<User, UserId>, IUserReadOnlyRepository
 {
 	public UserReadOnlyRepository(DbContext context, IMapper mapper)
 		: base(context, mapper)

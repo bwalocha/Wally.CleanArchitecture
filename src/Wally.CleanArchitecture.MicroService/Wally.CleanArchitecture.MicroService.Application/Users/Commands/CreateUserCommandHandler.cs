@@ -17,7 +17,7 @@ public class CreateUserCommandHandler : CommandHandler<CreateUserCommand>
 
 	public override Task HandleAsync(CreateUserCommand command, CancellationToken cancellationToken)
 	{
-		var model = User.Create(command.Id, command.Name);
+		var model = User.Create(command.UserId, command.Name);
 
 		_userRepository.Add(model);
 

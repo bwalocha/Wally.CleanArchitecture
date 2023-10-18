@@ -14,7 +14,6 @@ using Microsoft.OData.UriParser;
 
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Exceptions;
-using Wally.Lib.DDD.Abstractions.DomainModels;
 using Wally.Lib.DDD.Abstractions.Requests;
 using Wally.Lib.DDD.Abstractions.Responses;
 
@@ -22,7 +21,9 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstra
 
 // Right now the ReadOnlyRepository uses EF for obtaining data form the Database.
 // We can consider to use Dapper or even ADO .Net if the performance in not efficient.
-public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity> where TEntity : Entity
+public abstract class ReadOnlyRepository<TEntity, TKey> : IReadOnlyRepository<TEntity, TKey>
+	where TEntity : Entity<TEntity, TKey>
+	where TKey : notnull, IComparable<TKey>, IEquatable<TKey>, IStronglyTypedId<TKey, Guid>, new()
 {
 	private readonly DbContext _context;
 	private readonly IMapper _mapper;
@@ -33,13 +34,13 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 		_mapper = mapper;
 	}
 
-	public Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken)
+	public Task<bool> ExistsAsync(TKey id, CancellationToken cancellationToken)
 	{
 		return GetReadOnlyEntitySet()
 			.AnyAsync(a => a.Id.Equals(id), cancellationToken);
 	}
 
-	public Task<TResponse> GetAsync<TResponse>(Guid id, CancellationToken cancellationToken) where TResponse : IResponse
+	public Task<TResponse> GetAsync<TResponse>(TKey id, CancellationToken cancellationToken) where TResponse : IResponse
 	{
 		var query = GetReadOnlyEntitySet()
 			.Where(a => a.Id.Equals(id));
@@ -63,7 +64,7 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 			.AsNoTracking();
 	}
 
-	protected Task<TResponse> GetAsync<TResponse>(IQueryable<Entity> query, CancellationToken cancellationToken)
+	protected Task<TResponse> GetAsync<TResponse>(IQueryable<TEntity> query, CancellationToken cancellationToken)
 		where TResponse : IResponse
 	{
 		var task = _mapper.ProjectTo<TResponse>(query)
@@ -73,7 +74,7 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 	}
 
 	protected Task<TResponse?> GetOrDefaultAsync
-		<TResponse>(IQueryable<Entity> query, CancellationToken cancellationToken) where TResponse : IResponse
+		<TResponse>(IQueryable<TEntity> query, CancellationToken cancellationToken) where TResponse : IResponse
 	{
 		var task = _mapper.ProjectTo<TResponse>(query)
 			.SingleOrDefaultAsync(cancellationToken);
@@ -269,7 +270,7 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 
 	protected Task<TResponse> MapExceptionAsync<TResponse>(
 		Task<TResponse> task,
-		Guid id = default,
+		TKey? id = default,
 		CancellationToken cancellationToken = default)
 	{
 		if (task == null)
@@ -299,7 +300,7 @@ public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
 						case "ThrowNoElementsException":
 						case "MoveNext":
 							var message = $"The '{typeof(TResponse).Name}' could not be found";
-							if (id != Guid.Empty)
+							if (id != null)
 							{
 								message += $" for Id: '{id}'";
 							}

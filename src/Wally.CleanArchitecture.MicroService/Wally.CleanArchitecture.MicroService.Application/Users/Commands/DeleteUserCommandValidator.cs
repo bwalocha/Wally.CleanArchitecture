@@ -6,7 +6,7 @@ public class DeleteUserCommandValidator : AbstractValidator<DeleteUserCommand>
 {
 	public DeleteUserCommandValidator()
 	{
-		RuleFor(a => a.Id)
+		RuleFor(a => a.UserId)
 			.NotEmpty();
 	}
 }

@@ -36,12 +36,12 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 	{
 		var response = await next();
 
-		UpdateAggregateMetadata(_dbContext.ChangeTracker.Entries<AggregateRoot>());
+		UpdateAggregateMetadata(_dbContext.ChangeTracker.Entries<IAggregateRoot>());
 
 		return response;
 	}
 
-	private void UpdateAggregateMetadata(IEnumerable<EntityEntry<AggregateRoot>> entries)
+	private void UpdateAggregateMetadata(IEnumerable<EntityEntry<IAggregateRoot>> entries)
 	{
 		var now = _dateTimeProvider.GetDateTime();
 
@@ -53,16 +53,16 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 					entry.CurrentValues.SetValues(
 						new Dictionary<string, object>
 						{
-							{ nameof(AggregateRoot.ModifiedAt), now },
-							{ nameof(AggregateRoot.ModifiedById), _userProvider.GetCurrentUserId() },
+							{ nameof(IAggregateRoot.ModifiedAt), now },
+							{ nameof(IAggregateRoot.ModifiedById), _userProvider.GetCurrentUserId() },
 						});
 					break;
 				case EntityState.Added:
 					entry.CurrentValues.SetValues(
 						new Dictionary<string, object>
 						{
-							{ nameof(AggregateRoot.CreatedAt), now },
-							{ nameof(AggregateRoot.CreatedById), _userProvider.GetCurrentUserId() },
+							{ nameof(IAggregateRoot.CreatedAt), now },
+							{ nameof(IAggregateRoot.CreatedById), _userProvider.GetCurrentUserId() },
 						});
 					break;
 			}

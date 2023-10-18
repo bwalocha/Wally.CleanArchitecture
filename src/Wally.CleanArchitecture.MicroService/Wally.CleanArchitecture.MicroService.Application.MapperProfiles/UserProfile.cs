@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using System;
+
+using AutoMapper;
 
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Requests.Users;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Responses.Users;
@@ -14,5 +16,11 @@ public class UserProfile : Profile
 		CreateMap<User, GetUsersResponse>();
 
 		CreateMap<User, GetUserResponse>();
+		
+		CreateMap<UserId, Guid>()
+			.ConvertUsing(a => a.Value);
+
+		CreateMap<Guid, UserId>()
+			.ConvertUsing(a => new UserId(a));
 	}
 }

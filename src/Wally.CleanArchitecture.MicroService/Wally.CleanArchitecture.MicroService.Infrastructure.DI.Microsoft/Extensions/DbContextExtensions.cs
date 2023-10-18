@@ -98,7 +98,7 @@ public static class DbContextExtensions
 
 		services.Scan(
 			a => a.FromAssemblyOf<IInfrastructurePersistenceAssemblyMarker>()
-				.AddClasses(c => c.AssignableTo(typeof(IReadOnlyRepository<>)))
+				.AddClasses(c => c.AssignableTo(typeof(IReadOnlyRepository<,>)))
 				.AsImplementedInterfaces()
 				.WithScopedLifetime());
 

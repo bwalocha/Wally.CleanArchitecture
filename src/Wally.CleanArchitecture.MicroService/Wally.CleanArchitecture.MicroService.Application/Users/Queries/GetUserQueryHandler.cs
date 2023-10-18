@@ -17,6 +17,6 @@ public class GetUserQueryHandler : QueryHandler<GetUserQuery, GetUserResponse>
 
 	public override Task<GetUserResponse> HandleAsync(GetUserQuery query, CancellationToken cancellationToken)
 	{
-		return _userRepository.GetAsync<GetUserResponse>(query.Id, cancellationToken);
+		return _userRepository.GetAsync<GetUserResponse>(query.UserId, cancellationToken);
 	}
 }

@@ -22,6 +22,8 @@ public class UserTests
 
 		// Assert
 		user.Id.Should()
+			.NotBeNull();
+		user.Id.Value.Should()
 			.NotBeEmpty();
 		user.Name.Should()
 			.NotBeNullOrWhiteSpace();
@@ -31,7 +33,7 @@ public class UserTests
 	public void Update_ForSpecifiedUser_UpdatesName()
 	{
 		// Arrange
-		var id = Guid.NewGuid();
+		var id = new UserId(Guid.NewGuid());
 		var user = User.Create(id, "testUserName");
 
 		// Act
@@ -48,7 +50,7 @@ public class UserTests
 	public void Create_ForNewDomainModel_ProducesDomainEvent()
 	{
 		// Arrange
-		var id = Guid.NewGuid();
+		var id = new UserId(Guid.NewGuid());
 
 		// Act
 		var model = User.Create(id, "testUserName");
