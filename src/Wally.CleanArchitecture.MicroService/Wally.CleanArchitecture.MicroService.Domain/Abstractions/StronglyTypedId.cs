@@ -5,6 +5,8 @@ using System.Linq;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
+// TODO: https://github.com/dotnet/efcore/blob/release/8.0/src/EFCore/ValueGeneration/SequentialGuidValueGenerator.cs
+
 [TypeConverter(typeof(StronglyTypedIdConverter))]
 public abstract class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStronglyTypedId, TValue>
 	where TStronglyTypedId : StronglyTypedId<TStronglyTypedId, TValue> where TValue : notnull, IComparable

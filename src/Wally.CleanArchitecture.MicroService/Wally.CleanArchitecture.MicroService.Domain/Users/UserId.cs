@@ -4,10 +4,9 @@ using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Users;
 
-public class UserId : StronglyTypedId<UserId, Guid>
+public class UserId : GuidId<UserId>
 {
 	public UserId()
-		: this(Guid.NewGuid())
 	{
 	}
 
