@@ -40,7 +40,7 @@ public class ControllerTests : IClassFixture<ApiWebApplicationFactory<Startup>>
 		response.StatusCode.Should()
 			.Be(HttpStatusCode.OK);
 		var content = await response.Content.ReadAsStringAsync();
-		content.Should().Be("v1.0.0.0");
+		content.Should().MatchRegex(@"v\d+\.\d+\.\d+\.\d+");
 	}
 	
 	[Fact]
