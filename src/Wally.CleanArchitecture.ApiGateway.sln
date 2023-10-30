@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.Api
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft", "Wally.CleanArchitecture.ApiGateway\Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft\Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.csproj", "{D4325D6A-E773-4072-84D4-42CB3ED09B37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.ApiGateway.Tests.IntegrationTests", "Wally.CleanArchitecture.ApiGateway\Wally.CleanArchitecture.ApiGateway.Tests.IntegrationTests\Wally.CleanArchitecture.ApiGateway.Tests.IntegrationTests.csproj", "{6373CA55-3529-4DA3-B920-1F7D48967014}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.ApiGateway.Tests.UnitTests", "Wally.CleanArchitecture.ApiGateway\Wally.CleanArchitecture.ApiGateway.Tests.UnitTests\Wally.CleanArchitecture.ApiGateway.Tests.UnitTests.csproj", "{E7D1FD7E-2105-4EAA-A1C8-0B4E81E17105}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{C911A92B-E0AE-4965-AB10-5BCEF246CD78}"
@@ -47,10 +49,15 @@ Global
 		{D4325D6A-E773-4072-84D4-42CB3ED09B37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4325D6A-E773-4072-84D4-42CB3ED09B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4325D6A-E773-4072-84D4-42CB3ED09B37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6373CA55-3529-4DA3-B920-1F7D48967014}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6373CA55-3529-4DA3-B920-1F7D48967014}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6373CA55-3529-4DA3-B920-1F7D48967014}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6373CA55-3529-4DA3-B920-1F7D48967014}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E7D1FD7E-2105-4EAA-A1C8-0B4E81E17105} = {EAC9C353-4F7C-43E9-92A6-226F43D221D8}
 		{D4325D6A-E773-4072-84D4-42CB3ED09B37} = {54C7EE7B-ABBE-47BF-9872-4C5973304A44}
 		{2063FDB3-ED03-4EF9-AF3A-2FC1C5E8B695} = {C911A92B-E0AE-4965-AB10-5BCEF246CD78}
+		{6373CA55-3529-4DA3-B920-1F7D48967014} = {EAC9C353-4F7C-43E9-92A6-226F43D221D8}
 	EndGlobalSection
 EndGlobal
