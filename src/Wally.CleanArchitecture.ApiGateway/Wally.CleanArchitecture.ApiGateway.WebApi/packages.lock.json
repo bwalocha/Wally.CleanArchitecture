@@ -538,6 +538,11 @@
           "Serilog": "2.10.0"
         }
       },
+      "Swashbuckle.AspNetCore.SwaggerUI": {
+        "type": "Transitive",
+        "resolved": "6.5.0",
+        "contentHash": "OvbvxX+wL8skxTBttcBsVxdh73Fag4xwqEU2edh4JMn7Ws/xJHnY/JB1e9RoCb6XpDxUF3hD9A0Z1lEUx40Pfw=="
+      },
       "System.CodeDom": {
         "type": "Transitive",
         "resolved": "4.4.0",
@@ -623,6 +628,7 @@
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "[7.0.13, )",
           "Microsoft.Extensions.Configuration.Abstractions": "[7.0.0, )",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[7.0.0, )",
+          "Swashbuckle.AspNetCore.SwaggerUI": "[6.5.0, )",
           "Yarp.ReverseProxy": "[2.0.1, )"
         }
       }
