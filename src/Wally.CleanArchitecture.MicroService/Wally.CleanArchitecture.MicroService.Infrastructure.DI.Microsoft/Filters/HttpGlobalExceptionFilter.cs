@@ -1,4 +1,5 @@
 using System;
+using System.Data.Common;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -9,8 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-
-using MySqlConnector;
 
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Exceptions;
@@ -88,7 +87,7 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 			Detail = "Please refer to the errors property for additional details.",
 		};
 
-		if (context.Exception.InnerException! is MySqlException exception)
+		if (context.Exception.InnerException! is DbException exception)
 		{
 			problemDetails.Errors.Add("Database", new[] { exception.ErrorCode.ToString(), exception.Message, });
 			context.Result = new ConflictObjectResult(problemDetails);

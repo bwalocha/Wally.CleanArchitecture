@@ -125,8 +125,8 @@ public abstract class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTyped
 	///     Checks if the given IDs are not equal.
 	/// </summary>
 	public static bool operator !=(
-		StronglyTypedId<TStronglyTypedId, TValue> left,
-		StronglyTypedId<TStronglyTypedId, TValue> right)
+		StronglyTypedId<TStronglyTypedId, TValue>? left,
+		StronglyTypedId<TStronglyTypedId, TValue>? right)
 	{
 		return !(left == right);
 	}

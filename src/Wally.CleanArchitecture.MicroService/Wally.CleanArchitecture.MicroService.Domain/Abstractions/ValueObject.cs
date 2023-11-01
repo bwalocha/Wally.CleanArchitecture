@@ -6,10 +6,15 @@ public abstract class ValueObject<TValueObject, TValue> where TValueObject : Val
 	{
 		Value = value;
 
-		Validate();
+		ExecuteValidation();
 	}
 
 	public TValue Value { get; }
+
+	private void ExecuteValidation()
+	{
+		Validate();
+	}
 
 	protected abstract void Validate();
 }

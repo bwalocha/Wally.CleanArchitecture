@@ -4,7 +4,7 @@ namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
 public abstract class GuidId<TId> : StronglyTypedId<TId, Guid> where TId : StronglyTypedId<TId, Guid>
 {
-	private static readonly long _baseDateTicks = new DateTime(1900, 1, 1).Ticks;
+	private static readonly long _baseDateTicks = new DateTime(2000, 1, 1).Ticks;
 
 	public GuidId()
 		: this(Generate())
@@ -23,6 +23,7 @@ public abstract class GuidId<TId> : StronglyTypedId<TId, Guid> where TId : Stron
 
 	/// <summary>
 	///     https://github.com/nhibernate/nhibernate-core/blob/master/src/NHibernate/Id/GuidCombGenerator.cs
+	///     https://www.codeproject.com/Articles/388157/GUIDs-as-fast-primary-keys-under-multiple-database
 	/// </summary>
 	/// <returns>Sequential Id</returns>
 	private static Guid Generate()
