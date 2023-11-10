@@ -7,9 +7,9 @@ public static class StronglyTypedIdExtensions
 	/// <summary>
 	///     Checks the given type if it is an <see cref="StronglyTypedId{TStronglyTypedId,TValue}" />.
 	/// </summary>
-	/// <param name="type"></param>
+	/// <param name="type">The StronglyTypedId type.</param>
 	/// <returns>True, if the type is an enumeration, false otherwise.</returns>
-	public static bool IsStronglyTypedId(this Type type)
+	public static bool IsStronglyTypedId(this Type? type)
 	{
 		if (type is null || type.IsAbstract || type.IsGenericTypeDefinition)
 		{
@@ -33,9 +33,9 @@ public static class StronglyTypedIdExtensions
 	/// <summary>
 	///     Gets the type of the generic value parameter from the base type.
 	/// </summary>
-	/// <param name="type"></param>
+	/// <param name="type">The StronglyTypedId type.</param>
 	/// <returns>The type of the value.</returns>
-	public static Type GetStronglyTypedIdValueType(this Type type)
+	public static Type? GetStronglyTypedIdValueType(this Type? type)
 	{
 		do
 		{

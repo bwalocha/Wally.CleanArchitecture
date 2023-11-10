@@ -149,10 +149,10 @@ public abstract class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTyped
 	/// <summary>
 	///     Converts a value implicitly to an instance of TStronglyTypedId.
 	/// </summary>
-	/// <param name="value">The value</param>
+	/// <param name="value">The value.</param>
 	public static explicit operator StronglyTypedId<TStronglyTypedId, TValue>(TValue value)
 	{
-		var instance = Activator.CreateInstance(typeof(TStronglyTypedId), new object[] { value, }) !;
+		var instance = Activator.CreateInstance(typeof(TStronglyTypedId), value) !;
 		return (TStronglyTypedId)instance;
 	}
 
@@ -161,7 +161,7 @@ public abstract class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTyped
 		return id.Value;
 	}*/
 
-	public override string ToString()
+	public override string? ToString()
 	{
 		return Value.ToString();
 	}
@@ -179,6 +179,43 @@ public interface IStronglyTypedId
 
 public static class TypeExtensions
 {
+	private static readonly Dictionary<Type, bool> NumericTypes = new()
+	{
+		{
+			typeof(sbyte), true
+		},
+		{
+			typeof(byte), true
+		},
+		{
+			typeof(short), true
+		},
+		{
+			typeof(ushort), true
+		},
+		{
+			typeof(int), true
+		},
+		{
+			typeof(uint), true
+		},
+		{
+			typeof(long), true
+		},
+		{
+			typeof(ulong), true
+		},
+		{
+			typeof(decimal), true
+		},
+		{
+			typeof(float), true
+		},
+		{
+			typeof(double), true
+		}
+	};
+
 	/// <summary>
 	///     Determines if the given type is numeric.
 	/// </summary>
@@ -189,9 +226,8 @@ public static class TypeExtensions
 	public static bool IsNumeric(this Type type)
 	{
 		type = type.UnwrapNullableType();
-		return type == typeof(sbyte) || type == typeof(byte) || type == typeof(short) || type == typeof(ushort) ||
-				type == typeof(int) || type == typeof(uint) || type == typeof(long) || type == typeof(ulong) ||
-				type == typeof(decimal) || type == typeof(float) || type == typeof(double);
+
+		return NumericTypes.ContainsKey(type) && NumericTypes[type];
 	}
 
 	/// <summary>
