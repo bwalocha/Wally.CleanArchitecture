@@ -15,9 +15,10 @@ public class UserUpdatedMessageConsumerDefinition : ConsumerDefinition<UserUpdat
 
 	protected override void ConfigureConsumer(
 		IReceiveEndpointConfigurator endpointConfigurator,
-		IConsumerConfigurator<UserUpdatedMessageConsumer> consumerConfigurator)
+		IConsumerConfigurator<UserUpdatedMessageConsumer> consumerConfigurator,
+		IRegistrationContext context)
 	{
 		endpointConfigurator.UseMessageRetry(r => r.Interval(5, TimeSpan.FromSeconds(60)));
-		endpointConfigurator.UseInMemoryOutbox();
+		endpointConfigurator.UseInMemoryOutbox(context);
 	}
 }

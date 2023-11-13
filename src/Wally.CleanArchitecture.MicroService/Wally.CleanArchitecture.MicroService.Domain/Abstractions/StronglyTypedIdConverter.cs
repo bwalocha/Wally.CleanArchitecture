@@ -16,25 +16,25 @@ internal sealed class StronglyTypedIdConverter : TypeConverter
 		_innerConverter = ActualConverters.GetOrAdd(stronglyTypedIdType, CreateActualConverter);
 	}
 
-	public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+	public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType)
 	{
 		return _innerConverter.CanConvertFrom(context, sourceType);
 	}
 
-	public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+	public override bool CanConvertTo(ITypeDescriptorContext? context, Type? destinationType)
 	{
 		return _innerConverter.CanConvertTo(context, destinationType);
 	}
 
-	public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+	public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value)
 	{
 		return _innerConverter.ConvertFrom(context, culture, value);
 	}
 
-	public override object ConvertTo(
-		ITypeDescriptorContext context,
-		CultureInfo culture,
-		object value,
+	public override object? ConvertTo(
+		ITypeDescriptorContext? context,
+		CultureInfo? culture,
+		object? value,
 		Type destinationType)
 	{
 		return _innerConverter.ConvertTo(context, culture, value, destinationType);
@@ -47,16 +47,20 @@ internal sealed class StronglyTypedIdConverter : TypeConverter
 			throw new InvalidOperationException($"The type '{stronglyTypedIdType}' is not a strongly-typed ID.");
 		}
 
-		var idValueType = stronglyTypedIdType.GetStronglyTypedIdValueType();
+		var idValueType = stronglyTypedIdType.GetStronglyTypedIdValueType() !;
 		var actualConverterType = typeof(StronglyTypedIdConverter<,>).MakeGenericType(stronglyTypedIdType, idValueType);
-		return (TypeConverter)Activator.CreateInstance(actualConverterType);
+		return (TypeConverter)Activator.CreateInstance(actualConverterType) !;
 	}
 }
 
 internal sealed class StronglyTypedIdConverter<TStronglyTypedId, TValue> : TypeConverter
 	where TStronglyTypedId : StronglyTypedId<TStronglyTypedId, TValue> where TValue : notnull, IComparable
 {
+#pragma warning disable S2743
+
+	// ReSharper disable once StaticMemberInGenericType
 	private static TypeConverter IdValueConverter { get; } = GetIdValueConverter();
+#pragma warning restore S2743
 
 	private static TypeConverter GetIdValueConverter()
 	{
@@ -72,29 +76,30 @@ internal sealed class StronglyTypedIdConverter<TStronglyTypedId, TValue> : TypeC
 	}
 
 	/// <inheritdoc />
-	public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+	public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType)
 	{
 		return sourceType == typeof(string) || sourceType == typeof(TValue) || base.CanConvertFrom(context, sourceType);
 	}
 
 	/// <inheritdoc />
-	public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+	public override bool CanConvertTo(ITypeDescriptorContext? context, Type? destinationType)
 	{
 		return destinationType == typeof(string) || destinationType == typeof(TValue) ||
 				base.CanConvertTo(context, destinationType);
 	}
 
 	/// <inheritdoc />
-	public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+	public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value)
 	{
 		if (value is string str)
 		{
-			value = IdValueConverter.ConvertFrom(str);
+			value = IdValueConverter.ConvertFrom(str) ?? throw GetConvertFromException(value);
 		}
 
 		if (value is TValue idValue)
 		{
-			var instance = Activator.CreateInstance(typeof(TStronglyTypedId), new object[] { idValue, });
+			var instance = Activator.CreateInstance(typeof(TStronglyTypedId), idValue) !;
+
 			return instance;
 		}
 
@@ -102,12 +107,17 @@ internal sealed class StronglyTypedIdConverter<TStronglyTypedId, TValue> : TypeC
 	}
 
 	/// <inheritdoc />
-	public override object ConvertTo(
-		ITypeDescriptorContext context,
-		CultureInfo culture,
-		object value,
+	public override object? ConvertTo(
+		ITypeDescriptorContext? context,
+		CultureInfo? culture,
+		object? value,
 		Type destinationType)
 	{
+		if (value == null)
+		{
+			return null;
+		}
+
 		var stronglyTypedId = (StronglyTypedId<TStronglyTypedId, TValue>)value;
 
 		var idValue = stronglyTypedId.Value;

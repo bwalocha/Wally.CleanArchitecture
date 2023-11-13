@@ -33,7 +33,7 @@ public class CommandHandlerValidatorsBehavior<TRequest, TResponse> : IPipelineBe
 
 		var validationResults =
 			await Task.WhenAll(_validators.Select(a => a.ValidateAsync(request, cancellationToken)));
-		var validationErrors = validationResults.Where(a => a.IsValid == false)
+		var validationErrors = validationResults.Where(a => !a.IsValid)
 			.SelectMany(a => a.Errors)
 			.ToArray();
 

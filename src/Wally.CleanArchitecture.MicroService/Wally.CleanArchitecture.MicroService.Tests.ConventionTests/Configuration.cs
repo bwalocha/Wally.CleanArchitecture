@@ -38,7 +38,7 @@ public static class Configuration
 				typeof(IInfrastructureMessagingAssemblyMarker).Assembly,
 				typeof(IInfrastructurePersistenceAssemblyMarker).Assembly,
 				typeof(IInfrastructureSqlServerAssemblyMarker).Assembly,
-				typeof(IInfrastructurePostgreSQLAssemblyMarker).Assembly,
+				typeof(IInfrastructurePostgreSqlAssemblyMarker).Assembly,
 				typeof(IInfrastructureMySqlAssemblyMarker).Assembly,
 				typeof(IInfrastructurePipelineBehavioursAssemblyMarker).Assembly,
 			},

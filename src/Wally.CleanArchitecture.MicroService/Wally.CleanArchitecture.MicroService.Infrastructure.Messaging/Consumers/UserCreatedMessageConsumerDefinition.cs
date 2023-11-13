@@ -15,9 +15,10 @@ public class UserCreatedMessageConsumerDefinition : ConsumerDefinition<UserCreat
 
 	protected override void ConfigureConsumer(
 		IReceiveEndpointConfigurator endpointConfigurator,
-		IConsumerConfigurator<UserCreatedMessageConsumer> consumerConfigurator)
+		IConsumerConfigurator<UserCreatedMessageConsumer> consumerConfigurator,
+		IRegistrationContext context)
 	{
 		endpointConfigurator.UseMessageRetry(r => r.Interval(5, TimeSpan.FromSeconds(60)));
-		endpointConfigurator.UseInMemoryOutbox();
+		endpointConfigurator.UseInMemoryOutbox(context);
 	}
 }

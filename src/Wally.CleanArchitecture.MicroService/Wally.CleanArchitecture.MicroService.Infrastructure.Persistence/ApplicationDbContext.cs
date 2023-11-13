@@ -3,7 +3,6 @@ using System.Linq;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Logging;
 
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
@@ -13,18 +12,16 @@ public sealed class ApplicationDbContext : DbContext
 {
 	private const string RowVersion = nameof(RowVersion);
 
-	private readonly ILogger<ApplicationDbContext> _logger;
-
-	public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ILogger<ApplicationDbContext> logger)
+	public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
 		: base(options)
 	{
-		_logger = logger;
 		ChangeTracker.LazyLoadingEnabled = false;
 	}
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		// modelBuilder.HasDefaultSchema("users");
+		// modelBuilder.HasDefaultSchema("users"); // TODO: consider to set DB Schema
+
 		ConfigureProperties(modelBuilder);
 		ConfigureStronglyTypedId(modelBuilder);
 		ConfigureIdentityProperties(modelBuilder);
@@ -47,7 +44,7 @@ public sealed class ApplicationDbContext : DbContext
 		var allEntities = modelBuilder.Model.GetEntityTypes();
 		foreach (var entity in allEntities)
 		{
-			var idPropertyName = "Id"; // nameof(AggregateRoot<,>.Id); // TODO: "Id"
+			const string idPropertyName = "Id"; // nameof(AggregateRoot<,>.Id); // TODO: "Id"
 			var idProperty = entity.FindProperty(idPropertyName);
 			if (idProperty != null)
 			{
@@ -69,10 +66,10 @@ public sealed class ApplicationDbContext : DbContext
 	}
 
 	/// <summary>
-	///     Configure the <see cref="EntityTypeBuilder" /> to use the
+	///     Configure the <see cref="ModelBuilder" /> to use the
 	///     <see cref="StronglyTypedIdConverter{TStronglyTypedId,TValue}" />.
 	/// </summary>
-	/// <param name="entityTypeBuilder"></param>
+	/// <param name="modelBuilder">The ModelBuilder</param>
 	public static void ConfigureStronglyTypedId(ModelBuilder modelBuilder)
 	{
 		var allEntities = modelBuilder.Model.GetEntityTypes();
@@ -85,7 +82,7 @@ public sealed class ApplicationDbContext : DbContext
 		}
 	}
 
-	public static bool InheritsGenericClass(Type type, Type classType)
+	private static bool InheritsGenericClass(Type type, Type classType)
 	{
 		if (!classType.IsClass)
 		{

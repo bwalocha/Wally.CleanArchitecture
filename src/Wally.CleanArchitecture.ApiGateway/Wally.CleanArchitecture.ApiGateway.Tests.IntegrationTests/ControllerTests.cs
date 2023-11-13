@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -14,15 +15,13 @@ using Xunit;
 
 namespace Wally.CleanArchitecture.ApiGateway.Tests.IntegrationTests;
 
+[SuppressMessage("Major Code Smell", "S4005:\"System.Uri\" arguments should be used instead of strings")]
 public class ControllerTests : IClassFixture<ApiWebApplicationFactory<Startup>>
 {
-	private readonly ApiWebApplicationFactory<Startup> _factory;
-
 	private readonly HttpClient _httpClient;
 
 	public ControllerTests(ApiWebApplicationFactory<Startup> factory)
 	{
-		_factory = factory;
 		_httpClient = factory.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false, });
 	}
 
@@ -42,7 +41,7 @@ public class ControllerTests : IClassFixture<ApiWebApplicationFactory<Startup>>
 		var content = await response.Content.ReadAsStringAsync();
 		content.Should().MatchRegex(@"v\d+\.\d+\.\d+\.\d+");
 	}
-	
+
 	[Fact]
 	public async Task Get_NoExistingResource_Returns404()
 	{

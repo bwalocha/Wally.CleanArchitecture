@@ -5,10 +5,10 @@ using System.Linq;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
-// TODO: https://github.com/dotnet/efcore/blob/release/8.0/src/EFCore/ValueGeneration/SequentialGuidValueGenerator.cs
-
+// https://github.com/dotnet/efcore/blob/release/8.0/src/EFCore/ValueGeneration/SequentialGuidValueGenerator.cs
+// https://andrewlock.net/series/using-strongly-typed-entity-ids-to-avoid-primitive-obsession/
 [TypeConverter(typeof(StronglyTypedIdConverter))]
-public abstract class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStronglyTypedId, TValue>
+public class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStronglyTypedId, TValue>
 	where TStronglyTypedId : StronglyTypedId<TStronglyTypedId, TValue> where TValue : notnull, IComparable
 {
 	/// <summary>
@@ -18,20 +18,12 @@ public abstract class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTyped
 	/// <remarks>
 	///     See http://computinglife.wordpress.com/2008/11/20/why-do-hash-functions-use-prime-numbers/
 	/// </remarks>
-	private const int HashMultiplier = 37;
-
-	/*static StronglyTypedId()
-	{
-		Type valueType = typeof(TValue);
-		bool isIdentifierType = valueType.IsNumeric() || valueType == typeof(string) || valueType == typeof(Guid);
-
-		// Guard.Against.False(isIdentifierType, nameof(Value), "The value of a strongly-typed ID must be a numeric, string or Guid type.");
-	}*/
+	private const int _hashMultiplier = 37;
 
 	/// <summary>
-	///     Initializes a new instance of the <see cref="StronglyTypedId{TStronglyTypedId,TValue}" /> type.
+	///     Initializes a new instance of the <see cref="StronglyTypedId{TStronglyTypedId, TValue}" /> class.
 	/// </summary>
-	/// <param name="value"></param>
+	/// <param name="value">The Value.</param>
 	protected StronglyTypedId(TValue value)
 	{
 		Value = value;
@@ -39,37 +31,41 @@ public abstract class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTyped
 
 	public TValue Value { get; }
 
-	public bool Equals(TStronglyTypedId other)
-	{
-		return Equals(other as object);
-	}
-
 	public int CompareTo(TStronglyTypedId? other)
 	{
+		if (other is null)
+		{
+			return 1;
+		}
+
 		return (Value, other.Value) switch
 		{
 			(null, null) => 0,
 			(null, _) => -1,
 			(_, null) => 1,
-			(_, _) => Value.CompareTo(other.Value),
+			_ => Value.CompareTo(other.Value),
 		};
 	}
 
-	public sealed override bool Equals(object? obj)
+	public bool Equals(TStronglyTypedId? other)
 	{
-		if (obj is null)
+		if (other is null)
 		{
 			return false;
 		}
 
-		if (ReferenceEquals(this, obj))
+		if (ReferenceEquals(this, other))
 		{
 			return true;
 		}
 
-		var other = obj as StronglyTypedId<TStronglyTypedId, TValue>;
-		return other != null && GetType() == other.GetType() && GetEqualityComponents()
+		return GetType() == other.GetType() && GetEqualityComponents()
 			.SequenceEqual(other.GetEqualityComponents());
+	}
+
+	public sealed override bool Equals(object? obj)
+	{
+		return Equals(obj as TStronglyTypedId);
 	}
 
 	/// <summary>
@@ -96,10 +92,7 @@ public abstract class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTyped
 
 			foreach (var component in GetEqualityComponents())
 			{
-				if (component != null)
-				{
-					hashCode = (hashCode * HashMultiplier) ^ component.GetHashCode();
-				}
+				hashCode = (hashCode * _hashMultiplier) ^ component.GetHashCode();
 			}
 
 			return hashCode;
@@ -131,21 +124,6 @@ public abstract class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTyped
 		return !(left == right);
 	}
 
-	/*/// <summary>
-	///     Converts a value implicitly to an instance of TStronglyTypedId.
-	/// </summary>
-	/// <param name="value">The value</param>
-	public static explicit operator StronglyTypedId<TStronglyTypedId, TValue>(TValue value)
-	{
-		object instance = Activator.CreateInstance(typeof(TStronglyTypedId), new object[] { value });
-		return (TStronglyTypedId)instance;
-	}
-
-	public static implicit operator TValue(StronglyTypedId<TStronglyTypedId, TValue> id)
-	{
-		return id.Value;
-	}*/
-
 	/// <summary>
 	///     Converts a value implicitly to an instance of TStronglyTypedId.
 	/// </summary>
@@ -155,11 +133,6 @@ public abstract class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTyped
 		var instance = Activator.CreateInstance(typeof(TStronglyTypedId), value) !;
 		return (TStronglyTypedId)instance;
 	}
-
-	/*public static explicit operator TValue(StronglyTypedId<TStronglyTypedId, TValue> id)
-	{
-		return id.Value;
-	}*/
 
 	public override string? ToString()
 	{
@@ -179,41 +152,19 @@ public interface IStronglyTypedId
 
 public static class TypeExtensions
 {
-	private static readonly Dictionary<Type, bool> NumericTypes = new()
+	private static readonly Dictionary<Type, bool> _numericTypes = new()
 	{
-		{
-			typeof(sbyte), true
-		},
-		{
-			typeof(byte), true
-		},
-		{
-			typeof(short), true
-		},
-		{
-			typeof(ushort), true
-		},
-		{
-			typeof(int), true
-		},
-		{
-			typeof(uint), true
-		},
-		{
-			typeof(long), true
-		},
-		{
-			typeof(ulong), true
-		},
-		{
-			typeof(decimal), true
-		},
-		{
-			typeof(float), true
-		},
-		{
-			typeof(double), true
-		}
+		{ typeof(sbyte), true },
+		{ typeof(byte), true },
+		{ typeof(short), true },
+		{ typeof(ushort), true },
+		{ typeof(int), true },
+		{ typeof(uint), true },
+		{ typeof(long), true },
+		{ typeof(ulong), true },
+		{ typeof(decimal), true },
+		{ typeof(float), true },
+		{ typeof(double), true },
 	};
 
 	/// <summary>
@@ -227,7 +178,7 @@ public static class TypeExtensions
 	{
 		type = type.UnwrapNullableType();
 
-		return NumericTypes.ContainsKey(type) && NumericTypes[type];
+		return _numericTypes.ContainsKey(type) && _numericTypes[type];
 	}
 
 	/// <summary>

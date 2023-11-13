@@ -1,5 +1,5 @@
 ﻿namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL;
 
-public interface IInfrastructurePostgreSQLAssemblyMarker
+public interface IInfrastructurePostgreSqlAssemblyMarker
 {
 }

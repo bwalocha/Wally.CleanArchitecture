@@ -41,7 +41,7 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 		return response;
 	}
 
-	private void UpdateAggregateMetadata(IEnumerable<EntityEntry<IAggregateRoot>> entries)
+	private void UpdateAggregateMetadata(IEnumerable<EntityEntry> entries)
 	{
 		var now = _dateTimeProvider.GetDateTime();
 
@@ -65,6 +65,8 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 							{ nameof(IAggregateRoot.CreatedById), _userProvider.GetCurrentUserId() },
 						});
 					break;
+				default:
+					continue;
 			}
 		}
 	}

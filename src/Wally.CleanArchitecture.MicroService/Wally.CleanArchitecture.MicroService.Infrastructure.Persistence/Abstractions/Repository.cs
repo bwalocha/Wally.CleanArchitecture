@@ -13,7 +13,7 @@ using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions;
 
-public abstract class Repository
+public class Repository
 	<TAggregateRoot, TKey> : ReadOnlyRepository<TAggregateRoot, TKey>, IRepository<TAggregateRoot, TKey>
 	where TAggregateRoot : AggregateRoot<TAggregateRoot, TKey>
 	where TKey : notnull, IComparable<TKey>, IEquatable<TKey>, IStronglyTypedId<TKey, Guid>, new()

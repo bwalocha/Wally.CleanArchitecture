@@ -1,20 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
-        <ImplicitUsings>disable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="MassTransit.Abstractions" Version="8.1.1" />
-        <PackageReference Include="Microsoft.AspNetCore.OData" Version="8.2.3" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MassTransit.Abstractions" Version="8.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.OData" Version="8.2.3" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.Contracts\Wally.CleanArchitecture.MicroService.Application.Contracts.csproj" />
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj" />
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.Messages\Wally.CleanArchitecture.MicroService.Application.Messages.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.Contracts\Wally.CleanArchitecture.MicroService.Application.Contracts.csproj" />
+    <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj" />
+    <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.Messages\Wally.CleanArchitecture.MicroService.Application.Messages.csproj" />
+  </ItemGroup>
 
 </Project>

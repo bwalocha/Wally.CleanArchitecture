@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 
 using Wally.Lib.DDD.Abstractions.DomainEvents;
-using Wally.Lib.DDD.Abstractions.Validators;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
-public abstract class Entity<TEntity, TKey>
+public class Entity<TEntity, TKey>
 	where TEntity : Entity<TEntity, TKey>
 	where TKey : notnull, IComparable<TKey>, IEquatable<TKey>, IStronglyTypedId<TKey, Guid>, new()
 {
@@ -32,18 +31,5 @@ public abstract class Entity<TEntity, TKey>
 	protected void AddDomainEvent(DomainEvent domainEvent)
 	{
 		_domainEvents.Add(domainEvent);
-	}
-
-	public void RemoveDomainEvent(DomainEvent domainEvent)
-	{
-		_domainEvents.Remove(domainEvent);
-	}
-
-	protected static void CheckRule(IBusinessRule rule)
-	{
-		if (rule.IsBroken())
-		{
-			throw new NotImplementedException();
-		}
 	}
 }

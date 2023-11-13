@@ -4,7 +4,7 @@ using Wally.CleanArchitecture.MicroService.Domain.Users;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
-public abstract class AggregateRoot<TAggregateRoot, TKey> : Entity<TAggregateRoot, TKey>, IAggregateRoot
+public class AggregateRoot<TAggregateRoot, TKey> : Entity<TAggregateRoot, TKey>, IAggregateRoot
 	where TAggregateRoot : AggregateRoot<TAggregateRoot, TKey>
 	where TKey : notnull, IComparable<TKey>, IEquatable<TKey>, IStronglyTypedId<TKey, Guid>, new()
 {

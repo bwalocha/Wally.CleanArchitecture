@@ -12,7 +12,7 @@ public static class EntityTypeBuilderExtensions
 	///     Configure the <see cref="EntityTypeBuilder" /> to use the
 	///     <see cref="StronglyTypedIdConverter{TStronglyTypedId,TValue}" />.
 	/// </summary>
-	/// <param name="entityTypeBuilder"></param>
+	/// <param name="entityTypeBuilder">The EntityTypeBuilder.</param>
 	public static void UseStronglyTypedId(this EntityTypeBuilder entityTypeBuilder)
 	{
 		var properties = entityTypeBuilder.Metadata.ClrType.GetProperties()
@@ -23,7 +23,7 @@ public static class EntityTypeBuilderExtensions
 		foreach (var property in properties)
 		{
 			var idType = property.PropertyType;
-			var valueType = idType.GetStronglyTypedIdValueType();
+			var valueType = idType.GetStronglyTypedIdValueType() !;
 
 			var converterTypeTemplate = typeof(StronglyTypedIdConverter<,>);
 			var converterType = converterTypeTemplate.MakeGenericType(idType, valueType);

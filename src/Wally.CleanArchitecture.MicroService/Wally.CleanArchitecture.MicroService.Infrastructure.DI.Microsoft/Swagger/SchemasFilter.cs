@@ -7,9 +7,9 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Swagg
 
 internal class SchemasFilter : IDocumentFilter
 {
-	public void Apply(OpenApiDocument document, DocumentFilterContext context)
+	public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
 	{
-		var schemas = document.Components.Schemas;
+		var schemas = swaggerDoc.Components.Schemas;
 		foreach (var schema in schemas)
 		{
 			if (schema.Key.EndsWith("Request") && schema.Key != nameof(HttpRequest))
@@ -22,7 +22,7 @@ internal class SchemasFilter : IDocumentFilter
 				continue;
 			}
 
-			document.Components.Schemas.Remove(schema);
+			swaggerDoc.Components.Schemas.Remove(schema);
 		}
 	}
 }

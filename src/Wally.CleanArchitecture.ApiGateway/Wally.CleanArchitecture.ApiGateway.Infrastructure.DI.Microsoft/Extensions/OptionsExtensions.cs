@@ -32,7 +32,7 @@ public static class OptionsExtensions
 		return builder;
 	}
 
-	private class ValidateOptions<TOptions> : IValidateOptions<TOptions> where TOptions : class
+	private sealed class ValidateOptions<TOptions> : IValidateOptions<TOptions> where TOptions : class
 	{
 		private readonly string? _name;
 		private readonly IValidator<TOptions> _validator;

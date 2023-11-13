@@ -15,8 +15,6 @@ internal class ResponseTypesOperationFilter : IOperationFilter
 	/// <param name="context">The current operation filter context.</param>
 	public void Apply(OpenApiOperation operation, OperationFilterContext context)
 	{
-		// operation.Deprecated |= apiDescription.IsDeprecated();
-
 		// REF: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/1752#issue-663991077
 		foreach (var responseType in context.ApiDescription.SupportedResponseTypes)
 		{
@@ -26,7 +24,7 @@ internal class ResponseTypesOperationFilter : IOperationFilter
 
 			foreach (var contentType in response.Content.Keys)
 			{
-				if (!responseType.ApiResponseFormats.Any(x => x.MediaType == contentType))
+				if (responseType.ApiResponseFormats.All(x => x.MediaType != contentType))
 				{
 					response.Content.Remove(contentType);
 				}

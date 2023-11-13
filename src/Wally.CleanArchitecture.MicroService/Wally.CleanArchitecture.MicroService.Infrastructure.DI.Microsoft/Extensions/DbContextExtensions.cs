@@ -48,7 +48,7 @@ public static class DbContextExtensions
 						{
 							builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
 							builder.MigrationsAssembly(
-								typeof(IInfrastructurePostgreSQLAssemblyMarker).Assembly.GetName()
+								typeof(IInfrastructurePostgreSqlAssemblyMarker).Assembly.GetName()
 									.Name);
 						});
 					EntityFramework.Exceptions.PostgreSQL.ExceptionProcessorExtensions.UseExceptionProcessor(options);
