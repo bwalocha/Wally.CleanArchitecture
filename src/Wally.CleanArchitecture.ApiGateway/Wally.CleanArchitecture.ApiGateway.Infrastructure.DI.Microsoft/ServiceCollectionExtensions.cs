@@ -23,7 +23,7 @@ public static class ServiceCollectionExtensions
 		services.AddReverseProxy(configuration);
 		services.AddHealthChecks(settings);
 		services.AddApiCors(settings.Cors);
-		services.AddSwagger(Assembly.GetCallingAssembly(), settings);
+		services.AddOpenApi(Assembly.GetCallingAssembly(), settings);
 
 		return services;
 	}
@@ -39,11 +39,11 @@ public static class ServiceCollectionExtensions
 			app.UseDeveloperExceptionPage();
 		}
 
-		app.UseSwagger(
+		app.UseOpenApi(
 			options.Value.SwaggerAuthentication,
 			options.Value.ReverseProxy); // TODO: disable based on AppSettings or Env
 
-		// app.UseHttpsRedirection(); // TODO: App is hosted by Docker, HTTPS is not required inside container 
+		// app.UseHttpsRedirection(); // TODO: App is hosted by Docker, HTTPS is not required inside container
 
 		app.UseRouting();
 		app.UseApiCors();

@@ -22,9 +22,9 @@ public static class ServiceCollectionExtensions
 		services.AddOptions(settings);
 		services.AddWebApi();
 		services.AddCqrs();
-		services.AddSwagger(Assembly.GetCallingAssembly());
+		services.AddOpenApi(Assembly.GetCallingAssembly());
 		services.AddHealthChecks(settings);
-		services.AddDbContext(settings);
+		services.AddAddPersistence(settings);
 		services.AddMapper();
 		services.AddMessaging(settings);
 		services.AddEventHub();
@@ -52,7 +52,7 @@ public static class ServiceCollectionExtensions
 
 		app.UseWebApi();
 
-		app.UseDbContext();
+		app.UsePersistence();
 		app.UseEventHub<EventHub>();
 
 		return app;

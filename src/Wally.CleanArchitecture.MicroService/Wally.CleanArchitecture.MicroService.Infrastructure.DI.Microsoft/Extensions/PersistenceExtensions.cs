@@ -17,9 +17,9 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 
-public static class DbContextExtensions
+public static class PersistenceExtensions
 {
-	public static IServiceCollection AddDbContext(this IServiceCollection services, AppSettings settings)
+	public static IServiceCollection AddAddPersistence(this IServiceCollection services, AppSettings settings)
 	{
 		Action<DbContextOptionsBuilder> dbContextOptions;
 		dbContextOptions = options =>
@@ -108,7 +108,7 @@ public static class DbContextExtensions
 		return services;
 	}
 
-	public static IApplicationBuilder UseDbContext(this IApplicationBuilder app)
+	public static IApplicationBuilder UsePersistence(this IApplicationBuilder app)
 	{
 		var settings = app.ApplicationServices.GetRequiredService<IOptions<AppSettings>>();
 

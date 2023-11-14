@@ -12,9 +12,9 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Swagger;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 
-public static class SwaggerExtensions
+public static class OpenApiExtensions
 {
-	public static IServiceCollection AddSwagger(this IServiceCollection services, Assembly assembly)
+	public static IServiceCollection AddOpenApi(this IServiceCollection services, Assembly assembly)
 	{
 		// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 		services.AddEndpointsApiExplorer();
@@ -52,7 +52,7 @@ public static class SwaggerExtensions
 		return services;
 	}
 
-	public static IApplicationBuilder UseSwagger(this IApplicationBuilder app)
+	public static IApplicationBuilder UseOpenApi(this IApplicationBuilder app)
 	{
 		app.UseSwagger(setupAction: null)
 			.UseSwaggerUI(

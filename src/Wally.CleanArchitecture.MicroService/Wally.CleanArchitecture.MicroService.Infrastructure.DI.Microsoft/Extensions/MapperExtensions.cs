@@ -6,7 +6,7 @@ using Wally.CleanArchitecture.MicroService.Application.MapperProfiles;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 
-public static class AutoMapperExtensions
+public static class MapperExtensions
 {
 	public static IServiceCollection AddMapper(this IServiceCollection services)
 	{
