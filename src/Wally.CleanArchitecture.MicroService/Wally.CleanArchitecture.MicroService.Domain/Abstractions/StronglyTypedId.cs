@@ -99,6 +99,21 @@ public class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStron
 		}
 	}
 
+	public bool Equals(TStronglyTypedId? x, TStronglyTypedId? y)
+	{
+		if (x is null)
+		{
+			return y is null;
+		}
+
+		return x.Equals(y);
+	}
+
+	public int GetHashCode(TStronglyTypedId obj)
+	{
+		return obj.GetHashCode();
+	}
+
 	/// <summary>
 	///     Checks if the given IDs are equal.
 	/// </summary>
@@ -141,7 +156,12 @@ public class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStron
 }
 
 public interface IStronglyTypedId
-	<TStronglyTypedId, out TKey> : IComparable<TStronglyTypedId>, IEquatable<TStronglyTypedId>
+	<TStronglyTypedId, out TKey> : IStronglyTypedId<TKey>, IComparable<TStronglyTypedId>, IEquatable<TStronglyTypedId>, IEqualityComparer<TStronglyTypedId>
+	where TKey : notnull, IComparable
+{
+}
+
+public interface IStronglyTypedId<out TKey>
 	where TKey : notnull, IComparable
 {
 	/// <summary>

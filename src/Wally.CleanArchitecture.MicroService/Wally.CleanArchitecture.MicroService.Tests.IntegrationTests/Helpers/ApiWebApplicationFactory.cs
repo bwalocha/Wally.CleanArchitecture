@@ -1,62 +1,51 @@
 using System;
 using System.IO;
-using System.Linq;
-
-using HealthChecks.UI.Data;
 
 using MassTransit;
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
-using Wally.Lib.DDD.Abstractions.DomainNotifications;
+// using Wally.Lib.DDD.Abstractions.DomainNotifications;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Helpers;
 
 public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
 {
+	public TService GetRequiredService<TService>() where TService : notnull
+	{
+		var scopeFactory = Services.GetService<IServiceScopeFactory>();
+		return scopeFactory!.CreateScope()
+			.ServiceProvider.GetRequiredService<TService>();
+	}
+
 	protected override IHostBuilder CreateHostBuilder()
 	{
 		return base.CreateHostBuilder() !.ConfigureAppConfiguration(
-			configurationBuilder =>
-			{
-				configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
-					.AddJsonFile("appsettings.IntegrationTests.json", false);
-			});
+				configurationBuilder =>
+				{
+					configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
+						.AddJsonFile("appsettings.json", false)
+						.AddJsonFile("appsettings.IntegrationTests.json", false);
+				})
+			.UseEnvironment("IntegrationTests");
 	}
 
 	protected override void ConfigureWebHost(IWebHostBuilder builder)
 	{
-		builder.ConfigureServices(
+		builder.ConfigureTestServices(
 			services =>
 			{
-				// Remove the app's ApplicationDbContext registration.
-				var descriptors = services.Where(
-						a => a.ServiceType.IsSubclassOf(typeof(DbContextOptions)) ||
-							a.ServiceType.IsSubclassOf(typeof(DbContext)))
-					.Where(
-						a => a.ServiceType != typeof(DbContextOptions<HealthChecksDb>) &&
-							a.ServiceType != typeof(HealthChecksDb));
-
-				foreach (var descriptor in descriptors.ToArray())
-				{
-					services.Remove(descriptor);
-				}
-
-				var notifications = services.Where(
-					a => a.ServiceType.IsGenericType && a.ServiceType.GetGenericTypeDefinition() ==
-						typeof(IDomainNotificationHandler<>));
-
-				foreach (var descriptor in notifications.ToArray())
-				{
-					services.Remove(descriptor);
-				}
+				services.RemoveAll<DbContextOptions<ApplicationDbContext>>();
+				services.RemoveAll<ApplicationDbContext>();
 
 				// Add ApplicationDbContext using an in-memory database for testing.
 				var databaseName = $"InMemoryDbForTesting_{Guid.NewGuid()}";
@@ -83,12 +72,5 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 
 				services.AddTransient<IBus, BusStub>();
 			});
-	}
-
-	public TService GetRequiredService<TService>() where TService : notnull
-	{
-		var scopeFactory = Services.GetService<IServiceScopeFactory>();
-		return scopeFactory!.CreateScope()
-			.ServiceProvider.GetRequiredService<TService>();
 	}
 }
