@@ -8,8 +8,10 @@ using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
+using Wally.CleanArchitecture.MicroService.Application.Messages.Users;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Messaging;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Messaging.Consumers;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 
@@ -37,15 +39,13 @@ public static class MessagingExtensions
 						break;
 					case MessageBrokerType.Kafka:
 						a.UsingInMemory((context, config) => config.ConfigureEndpoints(context));
-
-						// a.UsingRabbitMq((context, cfg) => cfg.ConfigureEndpoints(context));
-
 						a.AddRider(
 							rider =>
 							{
-								// rider.AddConsumer<KafkaMessageConsumer>();
-								// rider.AddProducer<FileCreatedMessage>(nameof(FileCreatedMessage));
-								// rider.AddProducer<FileModifiedMessage>(nameof(FileModifiedMessage));
+								rider.AddConsumersFromNamespaceContaining<IInfrastructureMessagingAssemblyMarker>();
+								// TODO: auto-register
+								rider.AddProducer<UserCreatedMessage>(nameof(UserCreatedMessage));
+								// rider.AddProducer<UserUpdatedMessage>(nameof(FileModifiedMessage));
 
 								rider.UsingKafka(
 									(context, k) =>
@@ -53,10 +53,11 @@ public static class MessagingExtensions
 										k.ClientId = typeof(IInfrastructureMessagingAssemblyMarker).Namespace;
 										k.Host(settings.ConnectionStrings.ServiceBus);
 
-										/*k.TopicEndpoint<KafkaMessage>(typeof(IInfrastructureMessagingAssemblyMarker).Namespace, typeof(IInfrastructureMessagingAssemblyMarker).Namespace, e =>
+										// TODO: auto-register
+										k.TopicEndpoint<UserCreatedMessage>(typeof(IInfrastructureMessagingAssemblyMarker).Namespace, typeof(IInfrastructureMessagingAssemblyMarker).Namespace, e =>
 										{
-											e.ConfigureConsumer<KafkaMessageConsumer>(context);
-										});*/
+											e.ConfigureConsumer<UserCreatedMessageConsumer>(context);
+										});
 									});
 
 								services.AddScoped<IBus, KafkaBus>();

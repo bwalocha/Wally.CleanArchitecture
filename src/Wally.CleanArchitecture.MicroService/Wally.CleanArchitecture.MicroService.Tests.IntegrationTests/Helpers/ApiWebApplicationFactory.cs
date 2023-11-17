@@ -14,7 +14,6 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
-// using Wally.Lib.DDD.Abstractions.DomainNotifications;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Helpers;
 

@@ -20,7 +20,7 @@ public sealed class ApplicationDbContext : DbContext
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		// modelBuilder.HasDefaultSchema("users"); // TODO: consider to set DB Schema
+		modelBuilder.HasDefaultSchema("MicroService");
 
 		ConfigureMappings(modelBuilder);
 		ConfigureStronglyTypedId(modelBuilder);

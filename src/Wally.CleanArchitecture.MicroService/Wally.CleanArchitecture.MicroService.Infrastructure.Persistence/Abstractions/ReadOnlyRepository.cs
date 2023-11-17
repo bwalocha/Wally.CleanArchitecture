@@ -25,12 +25,12 @@ public class ReadOnlyRepository<TEntity, TKey> : IReadOnlyRepository<TEntity, TK
 	where TEntity : Entity<TEntity, TKey>
 	where TKey : notnull, IComparable<TKey>, IEquatable<TKey>, IStronglyTypedId<TKey, Guid>, new()
 {
-	private readonly DbContext _context;
+	protected readonly DbContext DbContext;
 	private readonly IMapper _mapper;
 
 	protected ReadOnlyRepository(DbContext context, IMapper mapper)
 	{
-		_context = context;
+		DbContext = context;
 		_mapper = mapper;
 	}
 
@@ -116,7 +116,7 @@ public class ReadOnlyRepository<TEntity, TKey> : IReadOnlyRepository<TEntity, TK
 
 	protected virtual IQueryable<TEntity> GetReadOnlyEntitySet()
 	{
-		return _context.Set<TEntity>()
+		return DbContext.Set<TEntity>()
 			.AsNoTracking();
 	}
 
@@ -196,6 +196,7 @@ public class ReadOnlyRepository<TEntity, TKey> : IReadOnlyRepository<TEntity, TK
 				destExpressionType);
 			string orderMethodName;
 			var direction = queryOptions.OrderBy.OrderByNodes[queryFunc.Index].Direction;
+
 			if (direction == OrderByDirection.Ascending)
 			{
 				orderMethodName = queryFunc.Index == 0 ? nameof(Queryable.OrderBy) : nameof(Queryable.ThenBy);

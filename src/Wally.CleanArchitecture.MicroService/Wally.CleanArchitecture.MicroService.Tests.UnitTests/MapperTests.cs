@@ -14,12 +14,12 @@ using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests;
 
-public class MappingTests
+public class MapperTests
 {
 	private readonly IConfigurationProvider _configuration;
 	private readonly IMapper _mapper;
 
-	public MappingTests()
+	public MapperTests()
 	{
 		_configuration = new MapperConfiguration(
 			config => config.AddMaps(typeof(IApplicationMapperProfilesAssemblyMarker).Assembly));
@@ -43,7 +43,10 @@ public class MappingTests
 		var idProperty = source.GetProperty(nameof(User.Id)) !;
 		idProperty.DeclaringType!.GetProperty(nameof(User.Id)) !.SetValue(instance, new UserId(Guid.NewGuid()));
 
-		_mapper.Map(instance, source, destination);
+		var act = () => _mapper.Map(instance, source, destination);
+
+		act.Should()
+			.NotThrow();
 	}
 
 	[Theory]

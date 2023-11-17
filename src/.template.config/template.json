@@ -149,14 +149,16 @@
           "condition": "(!enableReverseProxy)",
           "exclude": [
             "Wally.CleanArchitecture.ApiGateway/**/*",
-            "Wally.CleanArchitecture.ApiGateway.sln"
+            "Wally.CleanArchitecture.ApiGateway.sln",
+            "Wally.CleanArchitecture.ApiGateway-update.cmd"
           ]
         },
         {
           "condition": "(!enableMicroService)",
           "exclude": [
             "Wally.CleanArchitecture.MicroService/**/*",
-            "Wally.CleanArchitecture.MicroService.sln"
+            "Wally.CleanArchitecture.MicroService.sln",
+            "Wally.CleanArchitecture.MicroService-update.cmd"
           ]
         },
         {
