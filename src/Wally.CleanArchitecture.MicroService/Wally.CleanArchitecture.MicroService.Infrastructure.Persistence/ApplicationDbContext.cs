@@ -22,21 +22,16 @@ public sealed class ApplicationDbContext : DbContext
 	{
 		// modelBuilder.HasDefaultSchema("users"); // TODO: consider to set DB Schema
 
-		ConfigureProperties(modelBuilder);
+		ConfigureMappings(modelBuilder);
 		ConfigureStronglyTypedId(modelBuilder);
 		ConfigureIdentityProperties(modelBuilder);
 
 		// ConfigureConcurrencyTokens(modelBuilder); // TODO: Fix
 	}
 
-	private void ConfigureProperties(ModelBuilder modelBuilder)
+	private static void ConfigureMappings(ModelBuilder modelBuilder)
 	{
-		modelBuilder.ApplyConfigurationsFromAssembly(
-			GetType()
-				.Assembly,
-			type => type.Namespace!.StartsWith(
-				GetType()
-					.Namespace!));
+		modelBuilder.ApplyConfigurationsFromAssembly(typeof(IInfrastructurePersistenceAssemblyMarker).Assembly);
 	}
 
 	private static void ConfigureIdentityProperties(ModelBuilder modelBuilder)
@@ -70,7 +65,7 @@ public sealed class ApplicationDbContext : DbContext
 	///     <see cref="StronglyTypedIdConverter{TStronglyTypedId,TValue}" />.
 	/// </summary>
 	/// <param name="modelBuilder">The ModelBuilder</param>
-	public static void ConfigureStronglyTypedId(ModelBuilder modelBuilder)
+	private static void ConfigureStronglyTypedId(ModelBuilder modelBuilder)
 	{
 		var allEntities = modelBuilder.Model.GetEntityTypes();
 		foreach (var entity in allEntities.Where(a => InheritsGenericClass(a.ClrType, typeof(Entity<,>)))
