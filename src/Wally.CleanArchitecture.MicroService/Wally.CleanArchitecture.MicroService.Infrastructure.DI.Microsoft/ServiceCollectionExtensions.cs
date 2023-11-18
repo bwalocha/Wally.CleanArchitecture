@@ -1,11 +1,9 @@
 ﻿using System.Reflection;
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Hubs;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;

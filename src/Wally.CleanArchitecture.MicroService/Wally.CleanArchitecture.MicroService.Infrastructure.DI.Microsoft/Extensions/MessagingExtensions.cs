@@ -2,12 +2,9 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
-
 using MassTransit;
-
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-
 using Wally.CleanArchitecture.MicroService.Application.Messages.Users;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Messaging;
@@ -43,8 +40,10 @@ public static class MessagingExtensions
 							rider =>
 							{
 								rider.AddConsumersFromNamespaceContaining<IInfrastructureMessagingAssemblyMarker>();
+
 								// TODO: auto-register
 								rider.AddProducer<UserCreatedMessage>(nameof(UserCreatedMessage));
+
 								// rider.AddProducer<UserUpdatedMessage>(nameof(FileModifiedMessage));
 
 								rider.UsingKafka(
@@ -54,10 +53,10 @@ public static class MessagingExtensions
 										k.Host(settings.ConnectionStrings.ServiceBus);
 
 										// TODO: auto-register
-										k.TopicEndpoint<UserCreatedMessage>(typeof(IInfrastructureMessagingAssemblyMarker).Namespace, typeof(IInfrastructureMessagingAssemblyMarker).Namespace, e =>
-										{
-											e.ConfigureConsumer<UserCreatedMessageConsumer>(context);
-										});
+										k.TopicEndpoint<UserCreatedMessage>(
+											typeof(IInfrastructureMessagingAssemblyMarker).Namespace,
+											typeof(IInfrastructureMessagingAssemblyMarker).Namespace,
+											e => { e.ConfigureConsumer<UserCreatedMessageConsumer>(context); });
 									});
 
 								services.AddScoped<IBus, KafkaBus>();
@@ -72,9 +71,7 @@ public static class MessagingExtensions
 							});
 						break;
 					default:
-						throw new ArgumentOutOfRangeException(
-							nameof(settings.MessageBroker),
-							$"Unknown Message Broker: '{settings.MessageBroker}'");
+						throw new ArgumentOutOfRangeException(nameof(settings.MessageBroker), $"Unknown Message Broker: '{settings.MessageBroker}'");
 				}
 			});
 

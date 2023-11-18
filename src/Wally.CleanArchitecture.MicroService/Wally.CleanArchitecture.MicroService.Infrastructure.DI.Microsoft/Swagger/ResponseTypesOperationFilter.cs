@@ -1,7 +1,5 @@
 using System.Linq;
-
 using Microsoft.OpenApi.Models;
-
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Swagger;
@@ -9,7 +7,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Swagg
 internal class ResponseTypesOperationFilter : IOperationFilter
 {
 	/// <summary>
-	///     Applies the filter to the specified operation using the given context.
+	/// Applies the filter to the specified operation using the given context.
 	/// </summary>
 	/// <param name="operation">The operation to apply the filter to.</param>
 	/// <param name="context">The current operation filter context.</param>
@@ -22,12 +20,10 @@ internal class ResponseTypesOperationFilter : IOperationFilter
 			var responseKey = responseType.IsDefaultResponse ? "default" : responseType.StatusCode.ToString();
 			var response = operation.Responses[responseKey];
 
-			foreach (var contentType in response.Content.Keys)
+			foreach (var contentType in response.Content.Keys
+						.Where(a => responseType.ApiResponseFormats.All(x => x.MediaType != a)))
 			{
-				if (responseType.ApiResponseFormats.All(x => x.MediaType != contentType))
-				{
-					response.Content.Remove(contentType);
-				}
+				response.Content.Remove(contentType);
 			}
 		}
 	}

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Requests.Users;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Responses.Users;
 using Wally.CleanArchitecture.MicroService.Domain.Users;

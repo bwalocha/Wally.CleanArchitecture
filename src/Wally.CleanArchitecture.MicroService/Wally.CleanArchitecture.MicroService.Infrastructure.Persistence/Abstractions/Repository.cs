@@ -2,19 +2,14 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-
 using AutoMapper;
-
 using Microsoft.EntityFrameworkCore;
-
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions;
 
-public class Repository
-	<TAggregateRoot, TKey> : ReadOnlyRepository<TAggregateRoot, TKey>, IRepository<TAggregateRoot, TKey>
-	where TAggregateRoot : AggregateRoot<TAggregateRoot, TKey>
-	where TKey : notnull, IComparable<TKey>, IEquatable<TKey>, IStronglyTypedId<TKey, Guid>, new()
+public class Repository<TAggregateRoot, TKey> : ReadOnlyRepository<TAggregateRoot, TKey>, IRepository<TAggregateRoot, TKey>
+	where TAggregateRoot : AggregateRoot<TAggregateRoot, TKey> where TKey : notnull, IComparable<TKey>, IEquatable<TKey>, IStronglyTypedId<TKey, Guid>, new()
 {
 	protected Repository(DbContext context, IMapper mapper)
 		: base(context, mapper)

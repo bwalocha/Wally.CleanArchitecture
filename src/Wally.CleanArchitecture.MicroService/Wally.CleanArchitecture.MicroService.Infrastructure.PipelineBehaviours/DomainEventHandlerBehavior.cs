@@ -2,12 +2,9 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-
 using MediatR;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-
 using Wally.Lib.DDD.Abstractions.Commands;
 using Wally.Lib.DDD.Abstractions.DomainEvents;
 using Wally.Lib.DDD.Abstractions.DomainModels;

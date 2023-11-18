@@ -1,8 +1,6 @@
 using System.IO;
 using System.Linq;
-
 using HealthChecks.UI.Data;
-
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;

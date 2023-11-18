@@ -4,9 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
 using JsonNet.ContractResolvers;
-
 using Newtonsoft.Json;
 
 namespace Wally.CleanArchitecture.ApiGateway.Tests.IntegrationTests.Helpers;

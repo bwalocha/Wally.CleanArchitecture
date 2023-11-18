@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-
+using Microsoft.Extensions.Hosting;
+using Wally.CleanArchitecture.MicroService.Infrastructure.BackgroundServices;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
@@ -8,18 +9,11 @@ public static class BackgroundServicesExtensions
 {
 	public static IServiceCollection AddBackgroundServices(this IServiceCollection services, AppSettings settings)
 	{
-		/*
-		services.AddHostedService(?);
-		services.AddHostedService(?);
-		*/
-
-		/*
 		services.Scan(
-			a => a.FromAssemblyOf<?>()
+			a => a.FromAssemblyOf<IInfrastructureBackgroundServicesAssemblyMarker>()
 				.AddClasses(c => c.AssignableTo(typeof(BackgroundService)))
-				.AsImplementedInterfaces()
+				.As<IHostedService>()
 				.WithScopedLifetime());
-		*/
 
 		return services;
 	}

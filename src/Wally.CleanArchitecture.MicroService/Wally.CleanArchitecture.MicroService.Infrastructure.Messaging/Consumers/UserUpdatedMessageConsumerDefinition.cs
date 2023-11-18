@@ -1,5 +1,4 @@
 using System;
-
 using MassTransit;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Messaging.Consumers;

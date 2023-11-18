@@ -1,9 +1,6 @@
 using System.Threading.Tasks;
-
 using MassTransit;
-
 using MediatR;
-
 using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.Identity.Messages.Users;

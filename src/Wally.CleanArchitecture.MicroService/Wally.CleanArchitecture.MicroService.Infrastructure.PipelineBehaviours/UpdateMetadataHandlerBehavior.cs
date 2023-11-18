@@ -1,12 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-
 using MediatR;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.Lib.DDD.Abstractions.Commands;
 
@@ -53,16 +50,24 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 					entry.CurrentValues.SetValues(
 						new Dictionary<string, object>
 						{
-							{ nameof(IAggregateRoot.ModifiedAt), now },
-							{ nameof(IAggregateRoot.ModifiedById), _userProvider.GetCurrentUserId() },
+							{
+								nameof(IAggregateRoot.ModifiedAt), now
+							},
+							{
+								nameof(IAggregateRoot.ModifiedById), _userProvider.GetCurrentUserId()
+							},
 						});
 					break;
 				case EntityState.Added:
 					entry.CurrentValues.SetValues(
 						new Dictionary<string, object>
 						{
-							{ nameof(IAggregateRoot.CreatedAt), now },
-							{ nameof(IAggregateRoot.CreatedById), _userProvider.GetCurrentUserId() },
+							{
+								nameof(IAggregateRoot.CreatedAt), now
+							},
+							{
+								nameof(IAggregateRoot.CreatedById), _userProvider.GetCurrentUserId()
+							},
 						});
 					break;
 				default:

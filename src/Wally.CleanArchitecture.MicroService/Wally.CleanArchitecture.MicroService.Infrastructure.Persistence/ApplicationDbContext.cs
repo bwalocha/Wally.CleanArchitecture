@@ -1,9 +1,7 @@
 using System;
 using System.Linq;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
@@ -25,8 +23,6 @@ public sealed class ApplicationDbContext : DbContext
 		ConfigureMappings(modelBuilder);
 		ConfigureStronglyTypedId(modelBuilder);
 		ConfigureIdentityProperties(modelBuilder);
-
-		// ConfigureConcurrencyTokens(modelBuilder); // TODO: Fix
 	}
 
 	private static void ConfigureMappings(ModelBuilder modelBuilder)
@@ -48,21 +44,9 @@ public sealed class ApplicationDbContext : DbContext
 		}
 	}
 
-	private static void ConfigureConcurrencyTokens(ModelBuilder modelBuilder)
-	{
-		var allEntities = modelBuilder.Model.GetEntityTypes();
-		foreach (var entity in allEntities.Where(a => a.ClrType.IsSubclassOf(typeof(AggregateRoot<,>)))
-					.Where(a => string.IsNullOrEmpty(a.GetViewName())))
-		{
-			var property = entity.AddProperty(RowVersion, typeof(DateTime));
-			property.IsConcurrencyToken = true;
-			property.ValueGenerated = ValueGenerated.OnAddOrUpdate;
-		}
-	}
-
 	/// <summary>
-	///     Configure the <see cref="ModelBuilder" /> to use the
-	///     <see cref="StronglyTypedIdConverter{TStronglyTypedId,TValue}" />.
+	/// Configure the <see cref="ModelBuilder" /> to use the
+	/// <see cref="StronglyTypedIdConverter{TStronglyTypedId,TValue}" />.
 	/// </summary>
 	/// <param name="modelBuilder">The ModelBuilder</param>
 	private static void ConfigureStronglyTypedId(ModelBuilder modelBuilder)

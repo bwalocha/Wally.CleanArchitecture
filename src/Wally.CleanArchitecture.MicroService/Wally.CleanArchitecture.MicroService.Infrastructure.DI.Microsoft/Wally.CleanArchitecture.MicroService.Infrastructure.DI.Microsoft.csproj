@@ -42,6 +42,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj" />
     <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.MapperProfiles\Wally.CleanArchitecture.MicroService.Application.MapperProfiles.csproj" />
+    <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.BackgroundServices\Wally.CleanArchitecture.MicroService.Infrastructure.BackgroundServices.csproj" />
     <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Messaging\Wally.CleanArchitecture.MicroService.Infrastructure.Messaging.csproj" />
     <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql.csproj" />
     <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL.csproj" />

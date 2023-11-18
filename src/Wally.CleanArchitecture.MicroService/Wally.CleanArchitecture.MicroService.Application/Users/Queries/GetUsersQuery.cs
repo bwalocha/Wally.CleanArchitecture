@@ -1,7 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.AspNetCore.OData.Query;
-
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Requests.Users;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Responses.Users;
 using Wally.Lib.DDD.Abstractions.Queries;

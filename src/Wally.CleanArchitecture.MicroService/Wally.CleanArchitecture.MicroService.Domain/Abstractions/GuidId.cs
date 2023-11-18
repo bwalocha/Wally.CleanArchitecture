@@ -2,7 +2,8 @@
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
-public class GuidId<TId> : StronglyTypedId<TId, Guid> where TId : StronglyTypedId<TId, Guid>
+public class GuidId<TId> : StronglyTypedId<TId, Guid>
+	where TId : StronglyTypedId<TId, Guid>
 {
 	protected GuidId()
 		: this(Generate())
@@ -15,8 +16,8 @@ public class GuidId<TId> : StronglyTypedId<TId, Guid> where TId : StronglyTypedI
 	}
 
 	/// <summary>
-	///     https://github.com/nhibernate/nhibernate-core/blob/master/src/NHibernate/Id/GuidCombGenerator.cs
-	///     https://www.codeproject.com/Articles/388157/GUIDs-as-fast-primary-keys-under-multiple-database
+	/// https://github.com/nhibernate/nhibernate-core/blob/master/src/NHibernate/Id/GuidCombGenerator.cs
+	/// https://www.codeproject.com/Articles/388157/GUIDs-as-fast-primary-keys-under-multiple-database
 	/// </summary>
 	/// <returns>Sequential Id</returns>
 	private static Guid Generate()

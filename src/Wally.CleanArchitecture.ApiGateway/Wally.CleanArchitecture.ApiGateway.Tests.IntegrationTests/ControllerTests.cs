@@ -3,14 +3,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-
 using FluentAssertions;
-
 using Microsoft.AspNetCore.Mvc.Testing;
-
 using Wally.CleanArchitecture.ApiGateway.Tests.IntegrationTests.Helpers;
 using Wally.CleanArchitecture.ApiGateway.WebApi;
-
 using Xunit;
 
 namespace Wally.CleanArchitecture.ApiGateway.Tests.IntegrationTests;
@@ -22,7 +18,11 @@ public class ControllerTests : IClassFixture<ApiWebApplicationFactory<Startup>>
 
 	public ControllerTests(ApiWebApplicationFactory<Startup> factory)
 	{
-		_httpClient = factory.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false, });
+		_httpClient = factory.CreateClient(
+			new WebApplicationFactoryClientOptions
+			{
+				AllowAutoRedirect = false,
+			});
 	}
 
 	[Fact]
@@ -31,7 +31,7 @@ public class ControllerTests : IClassFixture<ApiWebApplicationFactory<Startup>>
 		// Arrange
 
 		// Act
-		var response = await _httpClient.GetAsync($"/");
+		var response = await _httpClient.GetAsync("/");
 
 		// Assert
 		response.IsSuccessStatusCode.Should()
@@ -39,7 +39,8 @@ public class ControllerTests : IClassFixture<ApiWebApplicationFactory<Startup>>
 		response.StatusCode.Should()
 			.Be(HttpStatusCode.OK);
 		var content = await response.Content.ReadAsStringAsync();
-		content.Should().MatchRegex(@"v\d+\.\d+\.\d+\.\d+");
+		content.Should()
+			.MatchRegex(@"v\d+\.\d+\.\d+\.\d+");
 	}
 
 	[Fact]

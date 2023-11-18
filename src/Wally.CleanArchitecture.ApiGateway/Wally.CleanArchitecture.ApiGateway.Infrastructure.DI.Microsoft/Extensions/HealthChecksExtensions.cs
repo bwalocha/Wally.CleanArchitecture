@@ -1,14 +1,11 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-
 using HealthChecks.UI.Client;
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-
 using Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Models;
 
 namespace Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Extensions;
@@ -32,7 +29,8 @@ public static class HealthChecksExtensions
 			"/healthChecks",
 			new HealthCheckOptions
 			{
-				Predicate = _ => true, ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+				Predicate = _ => true,
+				ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
 			});
 		app.UseHealthChecksUI();
 
@@ -55,7 +53,12 @@ public static class HealthChecksExtensions
 
 	private static IHealthChecksBuilder AddVersionHealthCheck(this IHealthChecksBuilder builder)
 	{
-		builder.AddCheck<VersionHealthCheck>("VER", tags: new[] { "VER", "Version", });
+		builder.AddCheck<VersionHealthCheck>(
+			"VER",
+			tags: new[]
+			{
+				"VER", "Version",
+			});
 
 		return builder;
 	}

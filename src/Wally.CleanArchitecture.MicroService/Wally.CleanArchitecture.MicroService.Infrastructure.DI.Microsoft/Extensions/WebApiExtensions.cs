@@ -1,12 +1,9 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.OData;
 using Microsoft.Extensions.DependencyInjection;
-
 using Newtonsoft.Json;
-
 using Wally.CleanArchitecture.MicroService.Application;
 using Wally.CleanArchitecture.MicroService.Application.Contracts;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Filters;
@@ -26,8 +23,7 @@ public static class WebApiExtensions
 						.Count()
 						.SetMaxTop(1000);
 				})
-			.AddNewtonsoftJson(
-				options => { options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; });
+			.AddNewtonsoftJson(options => { options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; });
 
 		services.AddValidatorsFromAssemblyContaining<IApplicationAssemblyMarker>();
 		services.AddValidatorsFromAssemblyContaining<IApplicationContractsAssemblyMarker>();

@@ -4,14 +4,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-
 using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
-
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OData.UriParser;
-
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Exceptions;
 using Wally.Lib.DDD.Abstractions.Requests;

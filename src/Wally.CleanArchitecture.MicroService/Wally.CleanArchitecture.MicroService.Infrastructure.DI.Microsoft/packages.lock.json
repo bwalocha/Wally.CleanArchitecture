@@ -1362,6 +1362,12 @@
           "Wally.Lib.DDD.Abstractions": "[1.3.6, )"
         }
       },
+      "wally.cleanarchitecture.microservice.infrastructure.backgroundservices": {
+        "type": "Project",
+        "dependencies": {
+          "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
+        }
+      },
       "wally.cleanarchitecture.microservice.infrastructure.messaging": {
         "type": "Project",
         "dependencies": {

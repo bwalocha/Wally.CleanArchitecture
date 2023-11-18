@@ -1,8 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-
 using MassTransit;
-
 using Wally.CleanArchitecture.MicroService.Application.Messages.Users;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.Lib.DDD.Abstractions.DomainEvents;

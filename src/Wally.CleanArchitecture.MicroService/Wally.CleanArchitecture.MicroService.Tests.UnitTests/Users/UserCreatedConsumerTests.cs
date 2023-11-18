@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-
 using MassTransit;
-
 using MediatR;
-
 using Moq;
-
 using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Messaging.Consumers;
 using Wally.Identity.Messages.Users;
-
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests.Users;
@@ -40,10 +35,6 @@ public class UserCreatedConsumerTests
 		await _consumer.Consume(context.Object);
 
 		// Assert
-		_mediatorMock.Verify(
-			a => a.Send(
-				It.Is<CreateUserCommand>(a => a.UserId.Value == message.UserId && a.Name == message.UserName),
-				CancellationToken.None),
-			Times.Once());
+		_mediatorMock.Verify(a => a.Send(It.Is<CreateUserCommand>(a => a.UserId.Value == message.UserId && a.Name == message.UserName), CancellationToken.None), Times.Once());
 	}
 }

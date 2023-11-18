@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using FluentAssertions;
 using FluentAssertions.Common;
 using FluentAssertions.Execution;
 using FluentAssertions.Types;
-
 using Wally.CleanArchitecture.MicroService.Application.Contracts;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Wally.Lib.DDD.Abstractions.Responses;
-
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -78,7 +75,10 @@ public class ResponseTests
 						property.Should()
 							.NotBeWritable(
 								"Response class '{0}' should not have setter '{1}'",
-								new object[] { type, property, });
+								new object[]
+								{
+									type, property,
+								});
 					}
 				}
 			}

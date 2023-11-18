@@ -18,20 +18,29 @@ namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 
 public static class Configuration
 {
-	public static Types Types => new() { AppSettings = new[] { typeof(AppSettings), }, };
-
-	public static Assemblies Assemblies =>
-		new()
+	public static Types Types
+		=> new()
 		{
-			Application =
-				new[]
-				{
-					typeof(IApplicationAssemblyMarker).Assembly,
-					typeof(IApplicationContractsAssemblyMarker).Assembly,
-					typeof(IApplicationMapperProfilesAssemblyMarker).Assembly,
-					typeof(IApplicationMessagesAssemblyMarker).Assembly,
-				},
-			Domain = new[] { typeof(IDomainAssemblyMarker).Assembly, },
+			AppSettings = new[]
+			{
+				typeof(AppSettings),
+			},
+		};
+
+	public static Assemblies Assemblies
+		=> new()
+		{
+			Application = new[]
+			{
+				typeof(IApplicationAssemblyMarker).Assembly,
+				typeof(IApplicationContractsAssemblyMarker).Assembly,
+				typeof(IApplicationMapperProfilesAssemblyMarker).Assembly,
+				typeof(IApplicationMessagesAssemblyMarker).Assembly,
+			},
+			Domain = new[]
+			{
+				typeof(IDomainAssemblyMarker).Assembly,
+			},
 			Infrastructure = new[]
 			{
 				typeof(IInfrastructureDIMicrosoftAssemblyMarker).Assembly,
@@ -42,6 +51,9 @@ public static class Configuration
 				typeof(IInfrastructureMySqlAssemblyMarker).Assembly,
 				typeof(IInfrastructurePipelineBehavioursAssemblyMarker).Assembly,
 			},
-			Presentation = new[] { typeof(IPresentationAssemblyMarker).Assembly, },
+			Presentation = new[]
+			{
+				typeof(IPresentationAssemblyMarker).Assembly,
+			},
 		};
 }

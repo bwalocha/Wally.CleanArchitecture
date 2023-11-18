@@ -13,7 +13,8 @@ public static class HubsExtensions
 		return services;
 	}
 
-	public static IApplicationBuilder UseEventHub<THub>(this IApplicationBuilder app) where THub : Hub
+	public static IApplicationBuilder UseEventHub<THub>(this IApplicationBuilder app)
+		where THub : Hub
 	{
 		app.UseDefaultFiles();
 		app.UseStaticFiles();

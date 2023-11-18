@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-
 using FluentAssertions;
 using FluentAssertions.Common;
 using FluentAssertions.Types;
-
 using Wally.CleanArchitecture.MicroService.WebApi;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 
 public static class TypeHelpers
 {
-	private static readonly List<string> _prefixes = new() { "Wally.CleanArchitecture.MicroService", };
+	private static readonly List<string> _prefixes = new()
+	{
+		"Wally.CleanArchitecture.MicroService",
+	};
 
 	public static IEnumerable<Assembly> GetAllInternalAssemblies()
 	{

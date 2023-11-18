@@ -5,7 +5,7 @@ namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 public static class StronglyTypedIdExtensions
 {
 	/// <summary>
-	///     Checks the given type if it is an <see cref="StronglyTypedId{TStronglyTypedId,TValue}" />.
+	/// Checks the given type if it is an <see cref="StronglyTypedId{TStronglyTypedId,TValue}" />.
 	/// </summary>
 	/// <param name="type">The StronglyTypedId type.</param>
 	/// <returns>True, if the type is an enumeration, false otherwise.</returns>
@@ -31,7 +31,7 @@ public static class StronglyTypedIdExtensions
 	}
 
 	/// <summary>
-	///     Gets the type of the generic value parameter from the base type.
+	/// Gets the type of the generic value parameter from the base type.
 	/// </summary>
 	/// <param name="type">The StronglyTypedId type.</param>
 	/// <returns>The type of the value.</returns>

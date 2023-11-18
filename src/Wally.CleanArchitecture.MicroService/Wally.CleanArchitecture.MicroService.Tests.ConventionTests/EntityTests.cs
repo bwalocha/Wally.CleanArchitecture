@@ -1,14 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
 using FluentAssertions;
 using FluentAssertions.Common;
 using FluentAssertions.Execution;
-
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
-
 using Xunit;
 
 // using Wally.Lib.DDD.Abstractions.DomainModels;

@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Reflection;
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Models;

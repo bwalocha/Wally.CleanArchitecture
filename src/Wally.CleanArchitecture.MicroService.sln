@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.Tests.UnitTests", "Wally.CleanArchitecture.MicroService\Wally.CleanArchitecture.MicroService.Tests.UnitTests\Wally.CleanArchitecture.MicroService.Tests.UnitTests.csproj", "{0CCA9773-E741-4161-8E53-6692CB97CD69}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.Domain", "Wally.CleanArchitecture.MicroService\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj", "{566755FA-0E86-4B73-A72C-CE7A7908DA72}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.Application", "Wally.CleanArchitecture.MicroService\Wally.CleanArchitecture.MicroService.Application\Wally.CleanArchitecture.MicroService.Application.csproj", "{AD247D0C-C02A-4F5F-B261-86E06C683E39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.Tests.UnitTests", "Wally.CleanArchitecture.MicroService\Wally.CleanArchitecture.MicroService.Tests.UnitTests\Wally.CleanArchitecture.MicroService.Tests.UnitTests.csproj", "{0CCA9773-E741-4161-8E53-6692CB97CD69}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence", "Wally.CleanArchitecture.MicroService\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.csproj", "{C0586FB0-EEFE-49C5-AB94-D8EC1B5623F9}"
 EndProject
@@ -36,6 +36,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql", "Wally.CleanArchitecture.MicroService\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql.csproj", "{0EC7A04A-D1AD-4EA0-AF00-EB4884A6B271}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite", "Wally.CleanArchitecture.MicroService\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite.csproj", "{8E7C4BE3-AD23-4682-93EA-74FA4B98A788}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.Infrastructure.BackgroundServices", "Wally.CleanArchitecture.MicroService\Wally.CleanArchitecture.MicroService.Infrastructure.BackgroundServices\Wally.CleanArchitecture.MicroService.Infrastructure.BackgroundServices.csproj", "{86CDBA0D-4135-4001-A978-28E46C96404A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{7CA1E01A-F818-48B9-A573-20A904B9F7C2}"
 EndProject
@@ -275,6 +277,18 @@ Global
 		{8E7C4BE3-AD23-4682-93EA-74FA4B98A788}.Release|x64.Build.0 = Release|Any CPU
 		{8E7C4BE3-AD23-4682-93EA-74FA4B98A788}.Release|x86.ActiveCfg = Release|Any CPU
 		{8E7C4BE3-AD23-4682-93EA-74FA4B98A788}.Release|x86.Build.0 = Release|Any CPU
+		{86CDBA0D-4135-4001-A978-28E46C96404A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86CDBA0D-4135-4001-A978-28E46C96404A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86CDBA0D-4135-4001-A978-28E46C96404A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{86CDBA0D-4135-4001-A978-28E46C96404A}.Debug|x64.Build.0 = Debug|Any CPU
+		{86CDBA0D-4135-4001-A978-28E46C96404A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{86CDBA0D-4135-4001-A978-28E46C96404A}.Debug|x86.Build.0 = Debug|Any CPU
+		{86CDBA0D-4135-4001-A978-28E46C96404A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86CDBA0D-4135-4001-A978-28E46C96404A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86CDBA0D-4135-4001-A978-28E46C96404A}.Release|x64.ActiveCfg = Release|Any CPU
+		{86CDBA0D-4135-4001-A978-28E46C96404A}.Release|x64.Build.0 = Release|Any CPU
+		{86CDBA0D-4135-4001-A978-28E46C96404A}.Release|x86.ActiveCfg = Release|Any CPU
+		{86CDBA0D-4135-4001-A978-28E46C96404A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{566755FA-0E86-4B73-A72C-CE7A7908DA72} = {7CA1E01A-F818-48B9-A573-20A904B9F7C2}
@@ -294,5 +308,6 @@ Global
 		{EE250951-AD1B-456C-8CCC-AF5187E684CC} = {A81A9220-878D-4D52-A278-BB93EF09EA4B}
 		{0EC7A04A-D1AD-4EA0-AF00-EB4884A6B271} = {A81A9220-878D-4D52-A278-BB93EF09EA4B}
 		{8E7C4BE3-AD23-4682-93EA-74FA4B98A788} = {A81A9220-878D-4D52-A278-BB93EF09EA4B}
+		{86CDBA0D-4135-4001-A978-28E46C96404A} = {A81A9220-878D-4D52-A278-BB93EF09EA4B}
 	EndGlobalSection
 EndGlobal

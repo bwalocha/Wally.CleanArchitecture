@@ -2,15 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
 using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Types;
-
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
-
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -31,16 +28,17 @@ public class RepositoryTests
 
 				var notAllowedTypes = new List<Type>
 				{
-					typeof(IEnumerable), typeof(IEnumerable<>), typeof(IQueryable), typeof(IQueryable<>),
+					typeof(IEnumerable),
+					typeof(IEnumerable<>),
+					typeof(IQueryable),
+					typeof(IQueryable<>),
 				};
 
 				foreach (var type in types)
 				{
 					type.Methods()
 						.ThatArePublicOrInternal.ReturnTypes()
-						.ThatSatisfy(
-							a => notAllowedTypes.Contains(a) || notAllowedTypes.Any(
-								n => a.GenericTypeArguments.Any(g => g.GetTypeDefinitionIfGeneric() == n)))
+						.ThatSatisfy(a => notAllowedTypes.Contains(a) || notAllowedTypes.Any(n => a.GenericTypeArguments.Any(g => g.GetTypeDefinitionIfGeneric() == n)))
 						.ToArray()
 						.Should()
 						.BeEmpty("do not return not materialized collections from Repository '{0}'", type);

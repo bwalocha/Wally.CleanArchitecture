@@ -1,10 +1,7 @@
 using System;
 using System.Linq;
-
 using FluentAssertions;
-
 using Wally.CleanArchitecture.MicroService.Domain.Users;
-
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests.Users;

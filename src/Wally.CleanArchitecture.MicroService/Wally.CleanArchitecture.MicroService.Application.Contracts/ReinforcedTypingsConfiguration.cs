@@ -2,10 +2,8 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
-
 using Reinforced.Typings.Ast.TypeNames;
 using Reinforced.Typings.Fluent;
-
 using Wally.Lib.DDD.Abstractions.Requests;
 
 namespace Wally.CleanArchitecture.MicroService.Application.Contracts;

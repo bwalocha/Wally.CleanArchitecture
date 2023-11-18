@@ -1,10 +1,7 @@
 using System.Linq;
-
 using FluentAssertions;
 using FluentAssertions.Execution;
-
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
-
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;

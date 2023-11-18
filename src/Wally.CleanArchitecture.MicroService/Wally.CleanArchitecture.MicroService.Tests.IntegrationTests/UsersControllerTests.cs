@@ -4,19 +4,15 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-
 using FluentAssertions;
-
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
-
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Requests.Users;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Responses.Users;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Helpers;
 using Wally.CleanArchitecture.MicroService.WebApi;
 using Wally.Lib.DDD.Abstractions.Responses;
-
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
@@ -31,7 +27,11 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 	public UsersControllerTests(ApiWebApplicationFactory<Startup> factory)
 	{
 		_factory = factory;
-		_httpClient = factory.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false, });
+		_httpClient = factory.CreateClient(
+			new WebApplicationFactoryClientOptions
+			{
+				AllowAutoRedirect = false,
+			});
 		_database = factory.GetRequiredService<DbContext>();
 		_database.RemoveRange(_database.Set<User>());
 		_database.SaveChanges();

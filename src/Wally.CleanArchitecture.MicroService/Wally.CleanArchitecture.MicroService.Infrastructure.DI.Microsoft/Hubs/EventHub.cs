@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-
 using Microsoft.AspNetCore.SignalR;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Hubs;

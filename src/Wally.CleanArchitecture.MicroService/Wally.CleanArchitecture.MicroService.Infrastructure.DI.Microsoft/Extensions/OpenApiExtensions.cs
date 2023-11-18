@@ -1,12 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Swagger;
 
@@ -32,11 +30,14 @@ public static class OpenApiExtensions
 						// TermsOfService = new Uri("https://example.com/terms"),
 						Contact = new OpenApiContact
 						{
-							Name = "Wally", Email = "b.walocha@gmail.com", Url = new Uri("https://wally.best"),
+							Name = "Wally",
+							Email = "b.walocha@gmail.com",
+							Url = new Uri("https://wally.best"),
 						},
 						License = new OpenApiLicense
 						{
-							Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT"),
+							Name = "MIT",
+							Url = new Uri("https://opensource.org/licenses/MIT"),
 						},
 					});
 

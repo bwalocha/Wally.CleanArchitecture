@@ -1,8 +1,6 @@
 using System;
 using System.IO;
-
 using MassTransit;
-
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
@@ -12,14 +10,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Helpers;
 
-public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
+public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup>
+	where TStartup : class
 {
-	public TService GetRequiredService<TService>() where TService : notnull
+	public TService GetRequiredService<TService>()
+		where TService : notnull
 	{
 		var scopeFactory = Services.GetService<IServiceScopeFactory>();
 		return scopeFactory!.CreateScope()

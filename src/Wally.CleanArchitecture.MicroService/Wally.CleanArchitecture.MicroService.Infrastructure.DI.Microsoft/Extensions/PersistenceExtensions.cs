@@ -1,11 +1,9 @@
 ﻿using System;
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Providers;
@@ -21,64 +19,26 @@ public static class PersistenceExtensions
 {
 	public static IServiceCollection AddAddPersistence(this IServiceCollection services, AppSettings settings)
 	{
-		Action<DbContextOptionsBuilder> dbContextOptions;
-		dbContextOptions = options =>
+		Action<DbContextOptionsBuilder> dbContextOptions = options =>
 		{
 			switch (settings.Database.ProviderType)
 			{
 				case DatabaseProviderType.None:
 					break;
 				case DatabaseProviderType.InMemory:
-					options.UseInMemoryDatabase(databaseName: nameof(DatabaseProviderType.InMemory), builder => builder.EnableNullChecks());
+					WithInMemory(options);
 					break;
 				case DatabaseProviderType.MySql:
-					options.UseMySql(
-						settings.ConnectionStrings.Database,
-						MySqlServerVersion.LatestSupportedServerVersion,
-						builder =>
-						{
-							builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-							builder.MigrationsAssembly(
-								typeof(IInfrastructureMySqlAssemblyMarker).Assembly.GetName()
-									.Name);
-						});
-					EntityFramework.Exceptions.MySQL.Pomelo.ExceptionProcessorExtensions.UseExceptionProcessor(options);
+					WithMySql(options, settings);
 					break;
 				case DatabaseProviderType.PostgreSQL:
-					options.UseNpgsql(
-						settings.ConnectionStrings.Database,
-						builder =>
-						{
-							builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-							builder.MigrationsAssembly(
-								typeof(IInfrastructurePostgreSqlAssemblyMarker).Assembly.GetName()
-									.Name);
-						});
-					EntityFramework.Exceptions.PostgreSQL.ExceptionProcessorExtensions.UseExceptionProcessor(options);
+					WithPostgreSQL(options, settings);
 					break;
 				case DatabaseProviderType.SQLite:
-					options.UseSqlite(
-						settings.ConnectionStrings.Database,
-						builder =>
-						{
-							builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-							builder.MigrationsAssembly(
-								typeof(IInfrastructureSQLiteAssemblyMarker).Assembly.GetName()
-									.Name);
-						});
-					EntityFramework.Exceptions.Sqlite.ExceptionProcessorExtensions.UseExceptionProcessor(options);
+					WithSQLite(options, settings);
 					break;
 				case DatabaseProviderType.SqlServer:
-					options.UseSqlServer(
-						settings.ConnectionStrings.Database,
-						builder =>
-						{
-							builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-							builder.MigrationsAssembly(
-								typeof(IInfrastructureSqlServerAssemblyMarker).Assembly.GetName()
-									.Name);
-						});
-					EntityFramework.Exceptions.SqlServer.ExceptionProcessorExtensions.UseExceptionProcessor(options);
+					WithSqlServer(options, settings);
 					break;
 				default:
 					throw new ArgumentOutOfRangeException(
@@ -109,6 +69,68 @@ public static class PersistenceExtensions
 		services.AddScoped<IUserProvider, HttpUserProvider>();
 
 		return services;
+	}
+
+	private static void WithInMemory(DbContextOptionsBuilder options)
+	{
+		options.UseInMemoryDatabase(databaseName: nameof(DatabaseProviderType.InMemory), builder => builder.EnableNullChecks());
+	}
+
+	private static void WithMySql(DbContextOptionsBuilder options, AppSettings settings)
+	{
+		options.UseMySql(
+			settings.ConnectionStrings.Database,
+			MySqlServerVersion.LatestSupportedServerVersion,
+			builder =>
+			{
+				builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
+				builder.MigrationsAssembly(
+					typeof(IInfrastructureMySqlAssemblyMarker).Assembly.GetName()
+						.Name);
+			});
+		EntityFramework.Exceptions.MySQL.Pomelo.ExceptionProcessorExtensions.UseExceptionProcessor(options);
+	}
+
+	private static void WithPostgreSQL(DbContextOptionsBuilder options, AppSettings settings)
+	{
+		options.UseNpgsql(
+			settings.ConnectionStrings.Database,
+			builder =>
+			{
+				builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
+				builder.MigrationsAssembly(
+					typeof(IInfrastructurePostgreSqlAssemblyMarker).Assembly.GetName()
+						.Name);
+			});
+		EntityFramework.Exceptions.PostgreSQL.ExceptionProcessorExtensions.UseExceptionProcessor(options);
+	}
+
+	private static void WithSQLite(DbContextOptionsBuilder options, AppSettings settings)
+	{
+		options.UseSqlite(
+			settings.ConnectionStrings.Database,
+			builder =>
+			{
+				builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
+				builder.MigrationsAssembly(
+					typeof(IInfrastructureSQLiteAssemblyMarker).Assembly.GetName()
+						.Name);
+			});
+		EntityFramework.Exceptions.Sqlite.ExceptionProcessorExtensions.UseExceptionProcessor(options);
+	}
+
+	private static void WithSqlServer(DbContextOptionsBuilder options, AppSettings settings)
+	{
+		options.UseSqlServer(
+			settings.ConnectionStrings.Database,
+			builder =>
+			{
+				builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
+				builder.MigrationsAssembly(
+					typeof(IInfrastructureSqlServerAssemblyMarker).Assembly.GetName()
+						.Name);
+			});
+		EntityFramework.Exceptions.SqlServer.ExceptionProcessorExtensions.UseExceptionProcessor(options);
 	}
 
 	public static IApplicationBuilder UsePersistence(this IApplicationBuilder app)

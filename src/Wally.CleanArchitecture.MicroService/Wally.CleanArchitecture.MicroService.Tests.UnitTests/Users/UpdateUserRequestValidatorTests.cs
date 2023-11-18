@@ -1,9 +1,6 @@
 using FluentAssertions;
-
 using FluentValidation;
-
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Requests.Users;
-
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests.Users;
@@ -22,7 +19,12 @@ public class UpdateUserRequestValidatorTests
 	[InlineData("a")]
 	[InlineData("testName")]
 	[InlineData(
-		"testName Not Loong... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ..")]
+		"testName Not Loong... ... ... ... ... ... ... ... " +
+		"... ... ... ... ... ... ... ... ... ... ... ... .." +
+		". ... ... ... ... ... ... ... ... ... ... ... ... " +
+		"... ... ... ... ... ... ... ... ... ... ... ... .." +
+		". ... ... ... ... ... ... ... ... ... ... ... ... " +
+		"... ..")]
 	public void Validate_ForValidData_IsValid(string name)
 	{
 		// Arrange
@@ -40,7 +42,12 @@ public class UpdateUserRequestValidatorTests
 	[InlineData(null)]
 	[InlineData("")]
 	[InlineData(
-		"testName Too Loong... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ...")]
+		"testName Too Loong... ... ... ... ... ... ... ... " +
+		"... ... ... ... ... ... ... ... ... ... ... ... .." +
+		". ... ... ... ... ... ... ... ... ... ... ... ... " +
+		"... ... ... ... ... ... ... ... ... ... ... ... .." +
+		". ... ... ... ... ... ... ... ... ... ... ... ... " +
+		"... ...")]
 	public void Validate_ForInvalidData_IsNotValid(string name)
 	{
 		// Arrange

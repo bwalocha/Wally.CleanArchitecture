@@ -12,16 +12,16 @@ public class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStron
 	where TStronglyTypedId : StronglyTypedId<TStronglyTypedId, TValue> where TValue : notnull, IComparable
 {
 	/// <summary>
-	///     To ensure hashcode uniqueness, a carefully selected random number multiplier
-	///     is used within the calculation.
+	/// To ensure hashcode uniqueness, a carefully selected random number multiplier
+	/// is used within the calculation.
 	/// </summary>
 	/// <remarks>
-	///     See http://computinglife.wordpress.com/2008/11/20/why-do-hash-functions-use-prime-numbers/
+	/// See http://computinglife.wordpress.com/2008/11/20/why-do-hash-functions-use-prime-numbers/
 	/// </remarks>
 	private const int _hashMultiplier = 37;
 
 	/// <summary>
-	///     Initializes a new instance of the <see cref="StronglyTypedId{TStronglyTypedId, TValue}" /> class.
+	/// Initializes a new instance of the <see cref="StronglyTypedId{TStronglyTypedId, TValue}" /> class.
 	/// </summary>
 	/// <param name="value">The Value.</param>
 	protected StronglyTypedId(TValue value)
@@ -63,15 +63,27 @@ public class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStron
 			.SequenceEqual(other.GetEqualityComponents());
 	}
 
+	public bool Equals(TStronglyTypedId? x, TStronglyTypedId? y)
+	{
+		if (x is null) return y is null;
+
+		return x.Equals(y);
+	}
+
+	public int GetHashCode(TStronglyTypedId obj)
+	{
+		return obj.GetHashCode();
+	}
+
 	public sealed override bool Equals(object? obj)
 	{
 		return Equals(obj as TStronglyTypedId);
 	}
 
 	/// <summary>
-	///     Gets all components of the value object that are used for equality. <br />
-	///     The default implementation get all properties via reflection. One
-	///     can at any time override this behavior with a manual or custom implementation.
+	/// Gets all components of the value object that are used for equality. <br />
+	/// The default implementation get all properties via reflection. One
+	/// can at any time override this behavior with a manual or custom implementation.
 	/// </summary>
 	/// <returns>The components to use for equality.</returns>
 	private IEnumerable<object> GetEqualityComponents()
@@ -99,23 +111,8 @@ public class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStron
 		}
 	}
 
-	public bool Equals(TStronglyTypedId? x, TStronglyTypedId? y)
-	{
-		if (x is null)
-		{
-			return y is null;
-		}
-
-		return x.Equals(y);
-	}
-
-	public int GetHashCode(TStronglyTypedId obj)
-	{
-		return obj.GetHashCode();
-	}
-
 	/// <summary>
-	///     Checks if the given IDs are equal.
+	/// Checks if the given IDs are equal.
 	/// </summary>
 	public static bool operator ==(
 		StronglyTypedId<TStronglyTypedId, TValue>? left,
@@ -130,7 +127,7 @@ public class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStron
 	}
 
 	/// <summary>
-	///     Checks if the given IDs are not equal.
+	/// Checks if the given IDs are not equal.
 	/// </summary>
 	public static bool operator !=(
 		StronglyTypedId<TStronglyTypedId, TValue>? left,
@@ -140,7 +137,7 @@ public class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStron
 	}
 
 	/// <summary>
-	///     Converts a value implicitly to an instance of TStronglyTypedId.
+	/// Converts a value implicitly to an instance of TStronglyTypedId.
 	/// </summary>
 	/// <param name="value">The value.</param>
 	public static explicit operator StronglyTypedId<TStronglyTypedId, TValue>(TValue value)
@@ -165,7 +162,7 @@ public interface IStronglyTypedId<out TKey>
 	where TKey : notnull, IComparable
 {
 	/// <summary>
-	///     Gets the underlying value of the strongly-typed ID.
+	/// Gets the underlying value of the strongly-typed ID.
 	/// </summary>
 	public TKey Value { get; }
 }
@@ -174,25 +171,47 @@ public static class TypeExtensions
 {
 	private static readonly Dictionary<Type, bool> _numericTypes = new()
 	{
-		{ typeof(sbyte), true },
-		{ typeof(byte), true },
-		{ typeof(short), true },
-		{ typeof(ushort), true },
-		{ typeof(int), true },
-		{ typeof(uint), true },
-		{ typeof(long), true },
-		{ typeof(ulong), true },
-		{ typeof(decimal), true },
-		{ typeof(float), true },
-		{ typeof(double), true },
+		{
+			typeof(sbyte), true
+		},
+		{
+			typeof(byte), true
+		},
+		{
+			typeof(short), true
+		},
+		{
+			typeof(ushort), true
+		},
+		{
+			typeof(int), true
+		},
+		{
+			typeof(uint), true
+		},
+		{
+			typeof(long), true
+		},
+		{
+			typeof(ulong), true
+		},
+		{
+			typeof(decimal), true
+		},
+		{
+			typeof(float), true
+		},
+		{
+			typeof(double), true
+		}
 	};
 
 	/// <summary>
-	///     Determines if the given type is numeric.
+	/// Determines if the given type is numeric.
 	/// </summary>
 	/// <param name="type">The type.</param>
 	/// <returns>
-	///     <c>true</c> if the specified type is numeric; otherwise, <c>false</c>.
+	/// <c>true</c> if the specified type is numeric; otherwise, <c>false</c>.
 	/// </returns>
 	public static bool IsNumeric(this Type type)
 	{
@@ -202,7 +221,7 @@ public static class TypeExtensions
 	}
 
 	/// <summary>
-	///     Gets the type without nullable if the type is a <see cref="Nullable{T}" />.
+	/// Gets the type without nullable if the type is a <see cref="Nullable{T}" />.
 	/// </summary>
 	/// <param name="type">The type.</param>
 	/// <returns></returns>

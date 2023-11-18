@@ -1,7 +1,5 @@
 using AutoMapper;
-
 using Microsoft.EntityFrameworkCore;
-
 using Wally.CleanArchitecture.MicroService.Application.Users;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions;

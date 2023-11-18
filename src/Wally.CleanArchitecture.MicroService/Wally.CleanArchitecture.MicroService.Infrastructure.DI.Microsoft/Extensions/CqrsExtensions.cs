@@ -1,7 +1,5 @@
 ﻿using MediatR;
-
 using Microsoft.Extensions.DependencyInjection;
-
 using Wally.CleanArchitecture.MicroService.Application;
 using Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 using Wally.Lib.DDD.Abstractions.DomainEvents;

@@ -1,10 +1,7 @@
 ﻿using System.Linq;
-
 using FluentValidation;
-
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-
 using Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Models;
 
 namespace Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Extensions;
@@ -13,8 +10,7 @@ public static class OptionsExtensions
 {
 	public static IServiceCollection AddOptions(this IServiceCollection services, AppSettings settings)
 	{
-		services.AddValidatorsFromAssemblyContaining<IInfrastructureDIMicrosoftAssemblyMarker>(
-			ServiceLifetime.Transient);
+		services.AddValidatorsFromAssemblyContaining<IInfrastructureDIMicrosoftAssemblyMarker>(ServiceLifetime.Transient);
 		services.AddOptions<AppSettings>()
 			.BindConfiguration(string.Empty)
 			.ValidateFluently()
@@ -26,13 +22,13 @@ public static class OptionsExtensions
 	private static OptionsBuilder<TOptions> ValidateFluently<TOptions>(this OptionsBuilder<TOptions> builder)
 		where TOptions : class
 	{
-		builder.Services.AddSingleton<IValidateOptions<TOptions>>(
-			s => new ValidateOptions<TOptions>(builder.Name, s.GetRequiredService<IValidator<TOptions>>()));
+		builder.Services.AddSingleton<IValidateOptions<TOptions>>(s => new ValidateOptions<TOptions>(builder.Name, s.GetRequiredService<IValidator<TOptions>>()));
 
 		return builder;
 	}
 
-	private sealed class ValidateOptions<TOptions> : IValidateOptions<TOptions> where TOptions : class
+	private sealed class ValidateOptions<TOptions> : IValidateOptions<TOptions>
+		where TOptions : class
 	{
 		private readonly string? _name;
 		private readonly IValidator<TOptions> _validator;
@@ -58,8 +54,7 @@ public static class OptionsExtensions
 				return ValidateOptionsResult.Success;
 			}
 
-			var errors =
-				result.Errors.Select(a => $"Options validation failed for '{a.PropertyName}': {a.ErrorMessage}");
+			var errors = result.Errors.Select(a => $"Options validation failed for '{a.PropertyName}': {a.ErrorMessage}");
 			return ValidateOptionsResult.Fail(errors);
 		}
 	}

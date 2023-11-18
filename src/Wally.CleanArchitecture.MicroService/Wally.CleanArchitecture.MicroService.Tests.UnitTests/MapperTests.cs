@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Runtime.Serialization;
-
 using AutoMapper;
-
 using FluentAssertions;
-
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Requests.Users;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Responses.Users;
 using Wally.CleanArchitecture.MicroService.Application.MapperProfiles;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
-
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests;
