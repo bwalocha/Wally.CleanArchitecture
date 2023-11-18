@@ -28,6 +28,9 @@ public static class PersistenceExtensions
 			{
 				case DatabaseProviderType.None:
 					break;
+				case DatabaseProviderType.InMemory:
+					options.UseInMemoryDatabase(databaseName: nameof(DatabaseProviderType.InMemory), builder => builder.EnableNullChecks());
+					break;
 				case DatabaseProviderType.MySql:
 					options.UseMySql(
 						settings.ConnectionStrings.Database,
@@ -112,7 +115,7 @@ public static class PersistenceExtensions
 	{
 		var settings = app.ApplicationServices.GetRequiredService<IOptions<AppSettings>>();
 
-		if (!settings.Value.Database.IsMigrationEnabled)
+		if (!settings.Value.Database.IsMigrationEnabled || settings.Value.Database.ProviderType == DatabaseProviderType.None || settings.Value.Database.ProviderType == DatabaseProviderType.InMemory)
 		{
 			return app;
 		}
