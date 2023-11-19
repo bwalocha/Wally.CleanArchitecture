@@ -42,14 +42,16 @@ public static class HttpClientExtensions
 		return client.PostAsync(url, content, cancellationToken);
 	}
 
-	public static async Task<TResponse> ReadAsync<TResponse>(this HttpResponseMessage response, CancellationToken cancellationToken)
+	public static async Task<TResponse> ReadAsync<TResponse>(this HttpResponseMessage response,
+		CancellationToken cancellationToken)
 	{
 		var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
 
 		using TextReader textReader = new StreamReader(stream);
 		using JsonReader jsonReader = new JsonTextReader(textReader);
 
-		return JsonSerializer.Create(_jsonSettings).Deserialize<TResponse>(jsonReader) !;
+		return JsonSerializer.Create(_jsonSettings)
+			.Deserialize<TResponse>(jsonReader) !;
 	}
 
 	private static StringContent CreateContent<TPayload>(TPayload payload)

@@ -74,11 +74,7 @@ public class ResponseTests
 					{
 						property.Should()
 							.NotBeWritable(
-								"Response class '{0}' should not have setter '{1}'",
-								new object[]
-								{
-									type, property,
-								});
+								"Response class '{0}' should not have setter '{1}'", type, property);
 					}
 				}
 			}

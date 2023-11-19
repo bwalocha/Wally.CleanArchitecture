@@ -7,7 +7,8 @@ using Wally.Lib.DDD.Abstractions.Responses;
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 
 public class QueryHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-	where TRequest : IRequest<TResponse> where TResponse : IResponse
+	where TRequest : IRequest<TResponse>
+	where TResponse : IResponse
 {
 	private readonly IValidator<TRequest>? _validator;
 

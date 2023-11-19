@@ -23,7 +23,10 @@ public static class WebApiExtensions
 						.Count()
 						.SetMaxTop(1000);
 				})
-			.AddNewtonsoftJson(options => { options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; });
+			.AddNewtonsoftJson(options =>
+			{
+				options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+			});
 
 		services.AddValidatorsFromAssemblyContaining<IApplicationAssemblyMarker>();
 		services.AddValidatorsFromAssemblyContaining<IApplicationContractsAssemblyMarker>();

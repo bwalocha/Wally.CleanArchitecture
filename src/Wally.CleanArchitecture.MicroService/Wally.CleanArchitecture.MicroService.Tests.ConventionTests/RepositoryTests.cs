@@ -38,7 +38,8 @@ public class RepositoryTests
 				{
 					type.Methods()
 						.ThatArePublicOrInternal.ReturnTypes()
-						.ThatSatisfy(a => notAllowedTypes.Contains(a) || notAllowedTypes.Any(n => a.GenericTypeArguments.Any(g => g.GetTypeDefinitionIfGeneric() == n)))
+						.ThatSatisfy(a => notAllowedTypes.Contains(a) || notAllowedTypes.Any(n =>
+							a.GenericTypeArguments.Any(g => g.GetTypeDefinitionIfGeneric() == n)))
 						.ToArray()
 						.Should()
 						.BeEmpty("do not return not materialized collections from Repository '{0}'", type);

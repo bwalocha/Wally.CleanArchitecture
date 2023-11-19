@@ -71,7 +71,8 @@ public static class MessagingExtensions
 							});
 						break;
 					default:
-						throw new ArgumentOutOfRangeException(nameof(settings.MessageBroker), $"Unknown Message Broker: '{settings.MessageBroker}'");
+						throw new ArgumentOutOfRangeException(nameof(settings.MessageBroker),
+							$"Unknown Message Broker: '{settings.MessageBroker}'");
 				}
 			});
 
@@ -93,12 +94,14 @@ public static class MessagingExtensions
 			throw new NotSupportedException();
 		}
 
-		public Task<ISendEndpoint> GetPublishSendEndpoint<T>() where T : class
+		public Task<ISendEndpoint> GetPublishSendEndpoint<T>()
+			where T : class
 		{
 			throw new NotSupportedException();
 		}
 
-		public Task Publish<T>(T message, CancellationToken cancellationToken = new()) where T : class
+		public Task Publish<T>(T message, CancellationToken cancellationToken = new())
+			where T : class
 		{
 			_logger.LogWarning($"Message Bus is not enabled. The message '{typeof(T)}' has not been sent.");
 
@@ -108,7 +111,8 @@ public static class MessagingExtensions
 		public Task Publish<T>(
 			T message,
 			IPipe<PublishContext<T>> publishPipe,
-			CancellationToken cancellationToken = new()) where T : class
+			CancellationToken cancellationToken = new())
+			where T : class
 		{
 			throw new NotSupportedException();
 		}
@@ -116,7 +120,8 @@ public static class MessagingExtensions
 		public Task Publish<T>(
 			T message,
 			IPipe<PublishContext> publishPipe,
-			CancellationToken cancellationToken = new()) where T : class
+			CancellationToken cancellationToken = new())
+			where T : class
 		{
 			throw new NotSupportedException();
 		}
@@ -148,7 +153,8 @@ public static class MessagingExtensions
 			throw new NotSupportedException();
 		}
 
-		public Task Publish<T>(object values, CancellationToken cancellationToken = new()) where T : class
+		public Task Publish<T>(object values, CancellationToken cancellationToken = new())
+			where T : class
 		{
 			throw new NotSupportedException();
 		}
@@ -156,7 +162,8 @@ public static class MessagingExtensions
 		public Task Publish<T>(
 			object values,
 			IPipe<PublishContext<T>> publishPipe,
-			CancellationToken cancellationToken = new()) where T : class
+			CancellationToken cancellationToken = new())
+			where T : class
 		{
 			throw new NotSupportedException();
 		}
@@ -164,7 +171,8 @@ public static class MessagingExtensions
 		public Task Publish<T>(
 			object values,
 			IPipe<PublishContext> publishPipe,
-			CancellationToken cancellationToken = new()) where T : class
+			CancellationToken cancellationToken = new())
+			where T : class
 		{
 			throw new NotSupportedException();
 		}
@@ -179,7 +187,8 @@ public static class MessagingExtensions
 			throw new NotSupportedException();
 		}
 
-		public ConnectHandle ConnectConsumePipe<T>(IPipe<ConsumeContext<T>> pipe) where T : class
+		public ConnectHandle ConnectConsumePipe<T>(IPipe<ConsumeContext<T>> pipe)
+			where T : class
 		{
 			throw new NotSupportedException();
 		}
@@ -190,12 +199,14 @@ public static class MessagingExtensions
 			throw new NotSupportedException();
 		}
 
-		public ConnectHandle ConnectRequestPipe<T>(Guid requestId, IPipe<ConsumeContext<T>> pipe) where T : class
+		public ConnectHandle ConnectRequestPipe<T>(Guid requestId, IPipe<ConsumeContext<T>> pipe)
+			where T : class
 		{
 			throw new NotSupportedException();
 		}
 
-		public ConnectHandle ConnectConsumeMessageObserver<T>(IConsumeMessageObserver<T> observer) where T : class
+		public ConnectHandle ConnectConsumeMessageObserver<T>(IConsumeMessageObserver<T> observer)
+			where T : class
 		{
 			throw new NotSupportedException();
 		}
@@ -262,12 +273,14 @@ public static class MessagingExtensions
 			throw new NotSupportedException();
 		}
 
-		public Task<ISendEndpoint> GetPublishSendEndpoint<T>() where T : class
+		public Task<ISendEndpoint> GetPublishSendEndpoint<T>()
+			where T : class
 		{
 			throw new NotSupportedException();
 		}
 
-		public async Task Publish<T>(T message, CancellationToken cancellationToken = new()) where T : class
+		public async Task Publish<T>(T message, CancellationToken cancellationToken = new())
+			where T : class
 		{
 			_logger.LogDebug("Publishing {FullName}", typeof(T).FullName);
 
@@ -278,7 +291,8 @@ public static class MessagingExtensions
 		public Task Publish<T>(
 			T message,
 			IPipe<PublishContext<T>> publishPipe,
-			CancellationToken cancellationToken = new()) where T : class
+			CancellationToken cancellationToken = new())
+			where T : class
 		{
 			throw new NotSupportedException();
 		}
@@ -286,7 +300,8 @@ public static class MessagingExtensions
 		public Task Publish<T>(
 			T message,
 			IPipe<PublishContext> publishPipe,
-			CancellationToken cancellationToken = new()) where T : class
+			CancellationToken cancellationToken = new())
+			where T : class
 		{
 			throw new NotSupportedException();
 		}
@@ -318,7 +333,8 @@ public static class MessagingExtensions
 			throw new NotSupportedException();
 		}
 
-		public Task Publish<T>(object values, CancellationToken cancellationToken = new()) where T : class
+		public Task Publish<T>(object values, CancellationToken cancellationToken = new())
+			where T : class
 		{
 			throw new NotSupportedException();
 		}
@@ -326,7 +342,8 @@ public static class MessagingExtensions
 		public Task Publish<T>(
 			object values,
 			IPipe<PublishContext<T>> publishPipe,
-			CancellationToken cancellationToken = new()) where T : class
+			CancellationToken cancellationToken = new())
+			where T : class
 		{
 			throw new NotSupportedException();
 		}
@@ -334,7 +351,8 @@ public static class MessagingExtensions
 		public Task Publish<T>(
 			object values,
 			IPipe<PublishContext> publishPipe,
-			CancellationToken cancellationToken = new()) where T : class
+			CancellationToken cancellationToken = new())
+			where T : class
 		{
 			throw new NotSupportedException();
 		}
@@ -349,7 +367,8 @@ public static class MessagingExtensions
 			throw new NotSupportedException();
 		}
 
-		public ConnectHandle ConnectConsumePipe<T>(IPipe<ConsumeContext<T>> pipe) where T : class
+		public ConnectHandle ConnectConsumePipe<T>(IPipe<ConsumeContext<T>> pipe)
+			where T : class
 		{
 			throw new NotSupportedException();
 		}
@@ -360,12 +379,14 @@ public static class MessagingExtensions
 			throw new NotSupportedException();
 		}
 
-		public ConnectHandle ConnectRequestPipe<T>(Guid requestId, IPipe<ConsumeContext<T>> pipe) where T : class
+		public ConnectHandle ConnectRequestPipe<T>(Guid requestId, IPipe<ConsumeContext<T>> pipe)
+			where T : class
 		{
 			throw new NotSupportedException();
 		}
 
-		public ConnectHandle ConnectConsumeMessageObserver<T>(IConsumeMessageObserver<T> observer) where T : class
+		public ConnectHandle ConnectConsumeMessageObserver<T>(IConsumeMessageObserver<T> observer)
+			where T : class
 		{
 			throw new NotSupportedException();
 		}

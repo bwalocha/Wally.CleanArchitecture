@@ -45,8 +45,8 @@ public sealed class ApplicationDbContext : DbContext
 	}
 
 	/// <summary>
-	/// Configure the <see cref="ModelBuilder" /> to use the
-	/// <see cref="StronglyTypedIdConverter{TStronglyTypedId,TValue}" />.
+	///     Configure the <see cref="ModelBuilder" /> to use the
+	///     <see cref="StronglyTypedIdConverter{TStronglyTypedId,TValue}" />.
 	/// </summary>
 	/// <param name="modelBuilder">The ModelBuilder</param>
 	private static void ConfigureStronglyTypedId(ModelBuilder modelBuilder)

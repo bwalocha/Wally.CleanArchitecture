@@ -73,7 +73,7 @@ public static class PersistenceExtensions
 
 	private static void WithInMemory(DbContextOptionsBuilder options)
 	{
-		options.UseInMemoryDatabase(databaseName: nameof(DatabaseProviderType.InMemory), builder => builder.EnableNullChecks());
+		options.UseInMemoryDatabase(nameof(DatabaseProviderType.InMemory), builder => builder.EnableNullChecks());
 	}
 
 	private static void WithMySql(DbContextOptionsBuilder options, AppSettings settings)
@@ -137,7 +137,9 @@ public static class PersistenceExtensions
 	{
 		var settings = app.ApplicationServices.GetRequiredService<IOptions<AppSettings>>();
 
-		if (!settings.Value.Database.IsMigrationEnabled || settings.Value.Database.ProviderType == DatabaseProviderType.None || settings.Value.Database.ProviderType == DatabaseProviderType.InMemory)
+		if (!settings.Value.Database.IsMigrationEnabled ||
+			settings.Value.Database.ProviderType == DatabaseProviderType.None ||
+			settings.Value.Database.ProviderType == DatabaseProviderType.InMemory)
 		{
 			return app;
 		}

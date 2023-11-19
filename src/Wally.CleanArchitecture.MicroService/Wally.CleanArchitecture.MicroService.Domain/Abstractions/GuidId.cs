@@ -16,8 +16,8 @@ public class GuidId<TId> : StronglyTypedId<TId, Guid>
 	}
 
 	/// <summary>
-	/// https://github.com/nhibernate/nhibernate-core/blob/master/src/NHibernate/Id/GuidCombGenerator.cs
-	/// https://www.codeproject.com/Articles/388157/GUIDs-as-fast-primary-keys-under-multiple-database
+	///     https://github.com/nhibernate/nhibernate-core/blob/master/src/NHibernate/Id/GuidCombGenerator.cs
+	///     https://www.codeproject.com/Articles/388157/GUIDs-as-fast-primary-keys-under-multiple-database
 	/// </summary>
 	/// <returns>Sequential Id</returns>
 	private static Guid Generate()

@@ -356,7 +356,8 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 
 		// Act
 		var response =
-			await _httpClient.GetAsync(new Uri("Users?$orderby=Name&$skip=1&$top=2&$filter=Name ne 'testUser3'", UriKind.Relative)); // x1
+			await _httpClient.GetAsync(new Uri("Users?$orderby=Name&$skip=1&$top=2&$filter=Name ne 'testUser3'",
+				UriKind.Relative)); // x1
 
 		// Assert
 		response.IsSuccessStatusCode.Should()

@@ -7,8 +7,8 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 public static class EntityTypeBuilderExtensions
 {
 	/// <summary>
-	/// Configure the <see cref="EntityTypeBuilder" /> to use the
-	/// <see cref="StronglyTypedIdConverter{TStronglyTypedId,TValue}" />.
+	///     Configure the <see cref="EntityTypeBuilder" /> to use the
+	///     <see cref="StronglyTypedIdConverter{TStronglyTypedId,TValue}" />.
 	/// </summary>
 	/// <param name="entityTypeBuilder">The EntityTypeBuilder.</param>
 	public static void UseStronglyTypedId(this EntityTypeBuilder entityTypeBuilder)

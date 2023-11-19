@@ -22,8 +22,8 @@ public class ReadOnlyRepository<TEntity, TKey> : IReadOnlyRepository<TEntity, TK
 	where TEntity : Entity<TEntity, TKey>
 	where TKey : notnull, IComparable<TKey>, IEquatable<TKey>, IStronglyTypedId<TKey, Guid>, new()
 {
-	protected readonly DbContext DbContext;
 	private readonly IMapper _mapper;
+	protected readonly DbContext DbContext;
 
 	protected ReadOnlyRepository(DbContext context, IMapper mapper)
 	{
@@ -37,7 +37,8 @@ public class ReadOnlyRepository<TEntity, TKey> : IReadOnlyRepository<TEntity, TK
 			.AnyAsync(a => a.Id.Equals(id), cancellationToken);
 	}
 
-	public Task<TResponse> GetAsync<TResponse>(TKey id, CancellationToken cancellationToken) where TResponse : IResponse
+	public Task<TResponse> GetAsync<TResponse>(TKey id, CancellationToken cancellationToken)
+		where TResponse : IResponse
 	{
 		var query = GetReadOnlyEntitySet()
 			.Where(a => a.Id.Equals(id));
@@ -49,7 +50,8 @@ public class ReadOnlyRepository<TEntity, TKey> : IReadOnlyRepository<TEntity, TK
 
 	public Task<PagedResponse<TResponse>> GetAsync
 		<TRequest, TResponse>(ODataQueryOptions<TRequest> queryOptions, CancellationToken cancellationToken)
-		where TRequest : class, IRequest where TResponse : class, IResponse
+		where TRequest : class, IRequest
+		where TResponse : class, IResponse
 	{
 		var query = GetReadOnlyEntitySet();
 		return GetAsync<TRequest, TResponse>(query, queryOptions, cancellationToken);
@@ -66,7 +68,9 @@ public class ReadOnlyRepository<TEntity, TKey> : IReadOnlyRepository<TEntity, TK
 
 	protected async Task<PagedResponse<TResponse>> GetAsync<TRequest, TResponse>(
 		IQueryable<TEntity> query,
-		CancellationToken cancellationToken) where TRequest : class, IRequest where TResponse : class, IResponse
+		CancellationToken cancellationToken)
+		where TRequest : class, IRequest
+		where TResponse : class, IResponse
 	{
 		var totalItems = await query.CountAsync(cancellationToken);
 		var items = await _mapper.ProjectTo<TResponse>(query)
@@ -78,7 +82,9 @@ public class ReadOnlyRepository<TEntity, TKey> : IReadOnlyRepository<TEntity, TK
 	protected async Task<PagedResponse<TResponse>> GetAsync<TRequest, TResponse>(
 		IQueryable<TEntity> query,
 		ODataQueryOptions<TRequest> queryOptions,
-		CancellationToken cancellationToken) where TRequest : class, IRequest where TResponse : class, IResponse
+		CancellationToken cancellationToken)
+		where TRequest : class, IRequest
+		where TResponse : class, IResponse
 	{
 		query = ApplyFilter(query, queryOptions);
 		query = ApplySearch(query, queryOptions);
@@ -103,7 +109,8 @@ public class ReadOnlyRepository<TEntity, TKey> : IReadOnlyRepository<TEntity, TK
 	}
 
 	protected Task<TResponse?> GetOrDefaultAsync
-		<TResponse>(IQueryable<TEntity> query, CancellationToken cancellationToken) where TResponse : IResponse
+		<TResponse>(IQueryable<TEntity> query, CancellationToken cancellationToken)
+		where TResponse : IResponse
 	{
 		var task = _mapper.ProjectTo<TResponse>(query)
 			.SingleOrDefaultAsync(cancellationToken);
@@ -151,7 +158,8 @@ public class ReadOnlyRepository<TEntity, TKey> : IReadOnlyRepository<TEntity, TK
 		}
 	}
 
-	private static IQueryable<TEntity> ApplyTop<TRequest>(IQueryable<TEntity> query, ODataQueryOptions<TRequest> queryOptions)
+	private static IQueryable<TEntity> ApplyTop<TRequest>(IQueryable<TEntity> query,
+		ODataQueryOptions<TRequest> queryOptions)
 		where TRequest : class, IRequest
 	{
 		if (queryOptions.Top == null)
@@ -162,7 +170,8 @@ public class ReadOnlyRepository<TEntity, TKey> : IReadOnlyRepository<TEntity, TK
 		return query.Take(queryOptions.Top.Value);
 	}
 
-	private static IQueryable<TEntity> ApplySkip<TRequest>(IQueryable<TEntity> query, ODataQueryOptions<TRequest> queryOptions)
+	private static IQueryable<TEntity> ApplySkip<TRequest>(IQueryable<TEntity> query,
+		ODataQueryOptions<TRequest> queryOptions)
 		where TRequest : class, IRequest
 	{
 		if (queryOptions.Skip == null)
@@ -173,7 +182,8 @@ public class ReadOnlyRepository<TEntity, TKey> : IReadOnlyRepository<TEntity, TK
 		return query.Skip(queryOptions.Skip.Value);
 	}
 
-	private IQueryable<TEntity> ApplyOrderBy<TRequest>(IQueryable<TEntity> query, ODataQueryOptions<TRequest> queryOptions)
+	private IQueryable<TEntity> ApplyOrderBy<TRequest>(IQueryable<TEntity> query,
+		ODataQueryOptions<TRequest> queryOptions)
 		where TRequest : class, IRequest
 	{
 		if (queryOptions.OrderBy == null)
@@ -211,14 +221,15 @@ public class ReadOnlyRepository<TEntity, TKey> : IReadOnlyRepository<TEntity, TK
 			var mi = methodInfo[0]
 				.MakeGenericMethod(typeof(TEntity), mappedQueryFunc.ReturnType);
 
-			query = (IOrderedQueryable<TEntity>)mi.Invoke(null, new object[] { query, mappedQueryFunc, }) !;
+			query = (IOrderedQueryable<TEntity>)mi.Invoke(null, new object[] {query, mappedQueryFunc,}) !;
 		}
 
 		return query;
 	}
 
 	private IQueryable<TEntity> ApplyFilter
-		<TRequest>(IQueryable<TEntity> query, ODataQueryOptions<TRequest> queryOptions) where TRequest : class, IRequest
+		<TRequest>(IQueryable<TEntity> query, ODataQueryOptions<TRequest> queryOptions)
+		where TRequest : class, IRequest
 	{
 		if (queryOptions.Filter == null)
 		{

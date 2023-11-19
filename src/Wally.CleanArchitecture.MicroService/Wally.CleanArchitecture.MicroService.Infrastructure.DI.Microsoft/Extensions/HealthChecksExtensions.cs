@@ -54,9 +54,13 @@ public static class HealthChecksExtensions
 		return app;
 	}
 
-	private static IHealthChecksBuilder WithVersion(this IHealthChecksBuilder healthChecksBuilder) => healthChecksBuilder.AddVersionHealthCheck();
+	private static IHealthChecksBuilder WithVersion(this IHealthChecksBuilder healthChecksBuilder)
+	{
+		return healthChecksBuilder.AddVersionHealthCheck();
+	}
 
-	private static IHealthChecksBuilder WithDatabase(this IHealthChecksBuilder healthChecksBuilder, AppSettings settings)
+	private static IHealthChecksBuilder WithDatabase(this IHealthChecksBuilder healthChecksBuilder,
+		AppSettings settings)
 	{
 		switch (settings.Database.ProviderType)
 		{
@@ -108,13 +112,15 @@ public static class HealthChecksExtensions
 					});
 				break;
 			default:
-				throw new ArgumentOutOfRangeException(nameof(settings.Database.ProviderType), "Unknown Database Provider Type");
+				throw new ArgumentOutOfRangeException(nameof(settings.Database.ProviderType),
+					"Unknown Database Provider Type");
 		}
 
 		return healthChecksBuilder;
 	}
 
-	private static IHealthChecksBuilder WithMessageBroker(this IHealthChecksBuilder healthChecksBuilder, AppSettings settings)
+	private static IHealthChecksBuilder WithMessageBroker(this IHealthChecksBuilder healthChecksBuilder,
+		AppSettings settings)
 	{
 		switch (settings.MessageBroker)
 		{
@@ -130,7 +136,8 @@ public static class HealthChecksExtensions
 				healthChecksBuilder.WithRabbitMQ(settings);
 				break;
 			default:
-				throw new ArgumentOutOfRangeException(nameof(settings.MessageBroker), $"Unknown Message Broker: '{settings.MessageBroker}'");
+				throw new ArgumentOutOfRangeException(nameof(settings.MessageBroker),
+					$"Unknown Message Broker: '{settings.MessageBroker}'");
 		}
 
 		return healthChecksBuilder;
@@ -145,7 +152,8 @@ public static class HealthChecksExtensions
 		return healthChecksBuilder;
 	}
 
-	private static IHealthChecksBuilder WithRabbitMQ(this IHealthChecksBuilder healthChecksBuilder, AppSettings settings)
+	private static IHealthChecksBuilder WithRabbitMQ(this IHealthChecksBuilder healthChecksBuilder,
+		AppSettings settings)
 	{
 		healthChecksBuilder.AddRabbitMQ(
 			new Uri(settings.ConnectionStrings.ServiceBus),
@@ -182,16 +190,18 @@ public static class HealthChecksExtensions
 
 	private static IHealthChecksBuilder AddVersionHealthCheck(this IHealthChecksBuilder builder)
 	{
-		builder.AddCheck<VersionHealthCheck>("VER", tags: new[] { "VER", "Version", });
+		builder.AddCheck<VersionHealthCheck>("VER", tags: new[] {"VER", "Version",});
 
 		return builder;
 	}
 
 	private sealed class VersionHealthCheck : IHealthCheck
 	{
-		private readonly string? _version = typeof(VersionHealthCheck).Assembly.GetName().Version?.ToString();
+		private readonly string? _version = typeof(VersionHealthCheck).Assembly.GetName()
+			.Version?.ToString();
 
-		public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
+		public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context,
+			CancellationToken cancellationToken = default)
 		{
 			return Task.FromResult(HealthCheckResult.Healthy(_version));
 		}

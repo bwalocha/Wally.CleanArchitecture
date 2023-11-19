@@ -12,13 +12,14 @@ public abstract class ValueObject<TValueObject, TValue> : ValueObject<TValue>
 	{
 	}
 
-	public static implicit operator TValue(ValueObject<TValueObject, TValue> value) => value.Value;
+	public static implicit operator TValue(ValueObject<TValueObject, TValue> value)
+	{
+		return value.Value;
+	}
 }
 
 public abstract class ValueObject<TValue>
 {
-	public TValue Value { get; private set; }
-
 	protected ValueObject()
 	{
 		Value = default!;
@@ -30,6 +31,8 @@ public abstract class ValueObject<TValue>
 
 		ExecuteValidation();
 	}
+
+	public TValue Value { get; private set; }
 
 	protected abstract void Validate();
 

@@ -19,7 +19,6 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 	private readonly ILogger<HttpGlobalExceptionFilter> _logger;
 
 	public HttpGlobalExceptionFilter(
-
 		// IErrorResultProvider errorResultProvider,
 #pragma warning disable SA1114
 		ILogger<HttpGlobalExceptionFilter> logger)
