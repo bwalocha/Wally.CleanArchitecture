@@ -221,7 +221,7 @@ public class ReadOnlyRepository<TEntity, TKey> : IReadOnlyRepository<TEntity, TK
 			var mi = methodInfo[0]
 				.MakeGenericMethod(typeof(TEntity), mappedQueryFunc.ReturnType);
 
-			query = (IOrderedQueryable<TEntity>)mi.Invoke(null, new object[] {query, mappedQueryFunc,}) !;
+			query = (IOrderedQueryable<TEntity>)mi.Invoke(null, new object[] { query, mappedQueryFunc, }) !;
 		}
 
 		return query;
