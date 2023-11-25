@@ -22,26 +22,11 @@ public sealed class ApplicationDbContext : DbContext
 
 		ConfigureMappings(modelBuilder);
 		ConfigureStronglyTypedId(modelBuilder);
-		ConfigureIdentityProperties(modelBuilder);
 	}
 
 	private static void ConfigureMappings(ModelBuilder modelBuilder)
 	{
 		modelBuilder.ApplyConfigurationsFromAssembly(typeof(IInfrastructurePersistenceAssemblyMarker).Assembly);
-	}
-
-	private static void ConfigureIdentityProperties(ModelBuilder modelBuilder)
-	{
-		var allEntities = modelBuilder.Model.GetEntityTypes();
-		foreach (var entity in allEntities)
-		{
-			const string idPropertyName = "Id"; // nameof(AggregateRoot<,>.Id); // TODO: "Id"
-			var idProperty = entity.FindProperty(idPropertyName);
-			if (idProperty != null)
-			{
-				idProperty.ValueGenerated = ValueGenerated.Never;
-			}
-		}
 	}
 
 	/// <summary>
