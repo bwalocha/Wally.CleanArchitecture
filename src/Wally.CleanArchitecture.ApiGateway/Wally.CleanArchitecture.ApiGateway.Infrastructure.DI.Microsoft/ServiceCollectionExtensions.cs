@@ -26,7 +26,8 @@ public static class ServiceCollectionExtensions
 		return services;
 	}
 
-	public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app, IWebHostEnvironment env, IOptions<AppSettings> options)
+	public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app, IWebHostEnvironment env,
+		IOptions<AppSettings> options)
 	{
 		// Configure the HTTP request pipeline.
 		if (env.IsDevelopment())
@@ -34,7 +35,8 @@ public static class ServiceCollectionExtensions
 			app.UseDeveloperExceptionPage();
 		}
 
-		app.UseOpenApi(options.Value.SwaggerAuthentication, options.Value.ReverseProxy); // TODO: disable based on AppSettings or Env
+		app.UseOpenApi(options.Value.SwaggerAuthentication,
+			options.Value.ReverseProxy); // TODO: disable based on AppSettings or Env
 
 		// app.UseHttpsRedirection(); // TODO: App is hosted by Docker, HTTPS is not required inside container
 

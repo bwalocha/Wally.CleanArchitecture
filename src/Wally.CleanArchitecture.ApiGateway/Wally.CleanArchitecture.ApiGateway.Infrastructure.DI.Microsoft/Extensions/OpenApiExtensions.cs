@@ -8,12 +8,14 @@ namespace Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Extensi
 
 public static class OpenApiExtensions
 {
-	public static IServiceCollection AddOpenApi(this IServiceCollection services, Assembly assembly, AppSettings settings)
+	public static IServiceCollection AddOpenApi(this IServiceCollection services, Assembly assembly,
+		AppSettings settings)
 	{
 		return services;
 	}
 
-	public static IApplicationBuilder UseOpenApi(this IApplicationBuilder app, AuthenticationSettings settings, ReverseProxySettings reverseProxySettings)
+	public static IApplicationBuilder UseOpenApi(this IApplicationBuilder app, AuthenticationSettings settings,
+		ReverseProxySettings reverseProxySettings)
 	{
 		app.UseSwaggerUI(
 			options =>

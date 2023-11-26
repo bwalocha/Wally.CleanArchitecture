@@ -1,26 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>disable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
 
-  <Import Project="..\..\Directory.BuildTests.props" />
+    <Import Project="..\..\Directory.BuildTests.props" />
 
-  <ItemGroup>
-    <PackageReference Include="JsonNet.ContractResolvers" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.13" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="JsonNet.ContractResolvers" Version="2.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.13" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Wally.CleanArchitecture.ApiGateway.WebApi\Wally.CleanArchitecture.ApiGateway.WebApi.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Wally.CleanArchitecture.ApiGateway.WebApi\Wally.CleanArchitecture.ApiGateway.WebApi.csproj" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <None Update="appsettings.IntegrationTests.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+    <ItemGroup>
+        <None Update="appsettings.IntegrationTests.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 
 </Project>
