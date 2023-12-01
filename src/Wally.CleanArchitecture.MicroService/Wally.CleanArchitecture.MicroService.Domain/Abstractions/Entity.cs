@@ -6,7 +6,7 @@ namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
 public class Entity<TEntity, TKey>
 	where TEntity : Entity<TEntity, TKey>
-	where TKey : notnull, IComparable<TKey>, IEquatable<TKey>, IStronglyTypedId<TKey, Guid>, new()
+	where TKey : notnull, IComparable<TKey>, IEquatable<TKey>, new()
 {
 	private readonly List<DomainEvent> _domainEvents = new();
 

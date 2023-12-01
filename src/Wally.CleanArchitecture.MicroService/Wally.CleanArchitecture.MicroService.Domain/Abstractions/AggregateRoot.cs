@@ -5,7 +5,7 @@ namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
 public class AggregateRoot<TAggregateRoot, TKey> : Entity<TAggregateRoot, TKey>, IAggregateRoot
 	where TAggregateRoot : AggregateRoot<TAggregateRoot, TKey>
-	where TKey : notnull, IComparable<TKey>, IEquatable<TKey>, IStronglyTypedId<TKey, Guid>, new()
+	where TKey : notnull, IComparable<TKey>, IEquatable<TKey>, new()
 {
 	protected AggregateRoot()
 	{

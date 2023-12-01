@@ -16,6 +16,7 @@ public static class OpenApiExtensions
 	{
 		// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 		services.AddEndpointsApiExplorer();
+		// services.AddODataApiExplorer();
 		services.AddSwaggerGen(
 			options =>
 			{
