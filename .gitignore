@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/rider,sonarqube,dotnetcore,visualstudio,webstorm+all,jetbrains+all,visualstudiocode,intellij+all
-# Edit at https://www.toptal.com/developers/gitignore?templates=rider,sonarqube,dotnetcore,visualstudio,webstorm+all,jetbrains+all,visualstudiocode,intellij+all
+# Created by https://www.toptal.com/developers/gitignore/api/rider,sonarqube,dotnetcore,intellij+all,visualstudio,webstorm+all,jetbrains+all,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=rider,sonarqube,dotnetcore,intellij+all,visualstudio,webstorm+all,jetbrains+all,visualstudiocode
 
 ### DotnetCore ###
 # .NET Core build folders
@@ -684,4 +684,4 @@ FodyWeavers.xsd
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
-# End of https://www.toptal.com/developers/gitignore/api/rider,sonarqube,dotnetcore,visualstudio,webstorm+all,jetbrains+all,visualstudiocode,intellij+all
+# End of https://www.toptal.com/developers/gitignore/api/rider,sonarqube,dotnetcore,intellij+all,visualstudio,webstorm+all,jetbrains+all,visualstudiocode

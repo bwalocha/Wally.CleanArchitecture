@@ -6,8 +6,6 @@
 
 I. Improve `ValueObject` base class:
 
-[MSDN](https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/implement-value-objects)
-
 II. IRequestContext
 
 III. CorrelationId + SeriLog.Enrich.CorrelationId

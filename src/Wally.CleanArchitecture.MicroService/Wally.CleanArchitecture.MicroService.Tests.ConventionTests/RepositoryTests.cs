@@ -111,7 +111,6 @@ public class RepositoryTests
 					}
 
 					repositories.ThatSatisfy(a => a.ImplementsInterface(type))
-						.ToList()
 						.Should()
 						.NotBeEmpty("all Repositiory Interfaces should be implemented, and '{0}' is not", type);
 				}

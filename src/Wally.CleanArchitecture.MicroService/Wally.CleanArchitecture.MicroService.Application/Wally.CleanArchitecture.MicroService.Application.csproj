@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MassTransit.Abstractions" Version="8.1.1" />
+        <PackageReference Include="MassTransit.Abstractions" Version="8.1.2" />
         <PackageReference Include="Microsoft.AspNetCore.OData" Version="8.2.3" />
     </ItemGroup>
 

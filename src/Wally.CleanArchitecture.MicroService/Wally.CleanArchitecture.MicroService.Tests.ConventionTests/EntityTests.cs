@@ -8,8 +8,6 @@ using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Xunit;
 
-// using Wally.Lib.DDD.Abstractions.DomainModels;
-
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 
 public class EntityTests

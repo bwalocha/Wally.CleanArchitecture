@@ -1,5 +1,6 @@
 # https://hub.docker.com/_/microsoft-dotnet-aspnet
-FROM mcr.microsoft.com/dotnet/aspnet:7.0.11-alpine3.18-amd64
+#FROM mcr.microsoft.com/dotnet/aspnet:7.0.11-alpine3.18-amd64
+FROM mcr.microsoft.com/dotnet/aspnet:8.0.0-alpine3.18-amd64
 LABEL maintainer="wally"
 ARG PROJECT_NAME
 
