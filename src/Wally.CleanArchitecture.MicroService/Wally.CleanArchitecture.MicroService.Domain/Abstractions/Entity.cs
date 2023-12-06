@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Wally.Lib.DDD.Abstractions.DomainEvents;
+using Wally.Lib.DDD.Abstractions.DomainModels;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
-public class Entity<TEntity, TKey>
+public class Entity<TEntity, TKey> : IEntity
 	where TEntity : Entity<TEntity, TKey>
 	where TKey : notnull, IComparable<TKey>, IEquatable<TKey>, new()
 {
@@ -30,5 +31,10 @@ public class Entity<TEntity, TKey>
 	protected void AddDomainEvent(DomainEvent domainEvent)
 	{
 		_domainEvents.Add(domainEvent);
+	}
+
+	public void RemoveDomainEvent(DomainEvent domainEvent)
+	{
+		_domainEvents.Remove(domainEvent);
 	}
 }

@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.Lib.DDD.Abstractions.Commands;
 using Wally.Lib.DDD.Abstractions.DomainEvents;
-using Wally.Lib.DDD.Abstractions.DomainModels;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 
@@ -30,7 +30,7 @@ public class DomainEventHandlerBehavior<TRequest, TResponse> : IPipelineBehavior
 	{
 		var response = await next();
 
-		var domainEntities = _dbContext.ChangeTracker.Entries<Entity>()
+		var domainEntities = _dbContext.ChangeTracker.Entries<IEntity>()
 			.Where(
 				e => e.Entity.GetDomainEvents()
 					.Any())
@@ -50,6 +50,12 @@ public class DomainEventHandlerBehavior<TRequest, TResponse> : IPipelineBehavior
 			{
 				await service!.HandleAsync((dynamic)domainEvent, cancellationToken);
 			}
+			
+			domainEntities.Single(a => a.Entity
+					.GetDomainEvents()
+					.Contains(domainEvent))
+				.Entity
+				.RemoveDomainEvent(domainEvent);
 		}
 
 		return response;
