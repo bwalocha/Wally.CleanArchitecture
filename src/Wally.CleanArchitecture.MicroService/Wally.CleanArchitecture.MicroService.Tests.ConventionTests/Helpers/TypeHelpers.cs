@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using FluentAssertions;
 using FluentAssertions.Common;
 using FluentAssertions.Types;
+using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft;
 using Wally.CleanArchitecture.MicroService.WebApi;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
@@ -19,7 +20,8 @@ public static class TypeHelpers
 
 	public static IEnumerable<Assembly> GetAllInternalAssemblies()
 	{
-		var assemblies = typeof(Startup).Assembly.GetReferencedAssemblies()
+		var assemblies = typeof(IInfrastructureDIMicrosoftAssemblyMarker).Assembly.GetReferencedAssemblies().Concat(
+				typeof(Startup).Assembly.GetReferencedAssemblies())
 			.Where(a => _prefixes.Exists(b => a.FullName.StartsWith(b)));
 
 		foreach (var assembly in assemblies)

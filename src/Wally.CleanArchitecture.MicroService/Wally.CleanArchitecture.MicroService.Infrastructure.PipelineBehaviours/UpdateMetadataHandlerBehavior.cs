@@ -33,7 +33,7 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 	{
 		var response = await next();
 
-		UpdateAggregateMetadata(_dbContext.ChangeTracker.Entries<IAggregateRoot>());
+		UpdateAggregateMetadata(_dbContext.ChangeTracker.Entries<IAuditable>());
 
 		return response;
 	}
@@ -41,6 +41,7 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 	private void UpdateAggregateMetadata(IEnumerable<EntityEntry> entries)
 	{
 		var now = _dateTimeProvider.GetDateTime();
+		var userId = _userProvider.GetCurrentUserId();
 
 		foreach (var entry in entries)
 		{
@@ -54,7 +55,7 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 								nameof(IAggregateRoot.ModifiedAt), now
 							},
 							{
-								nameof(IAggregateRoot.ModifiedById), _userProvider.GetCurrentUserId()
+								nameof(IAggregateRoot.ModifiedById), userId
 							},
 						});
 					break;
@@ -66,7 +67,7 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 								nameof(IAggregateRoot.CreatedAt), now
 							},
 							{
-								nameof(IAggregateRoot.CreatedById), _userProvider.GetCurrentUserId()
+								nameof(IAggregateRoot.CreatedById), userId
 							},
 						});
 					break;
