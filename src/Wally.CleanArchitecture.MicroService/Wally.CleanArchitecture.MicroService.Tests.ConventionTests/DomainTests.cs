@@ -5,15 +5,16 @@ using FluentAssertions;
 using FluentAssertions.Common;
 using FluentAssertions.Execution;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
+using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 
-public class EntityTests
+public class DomainTests
 {
 	[Fact]
-	public void Entity_Constructor_ShouldBePrivate()
+	public void Domain_Constructor_ShouldBePrivate()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
@@ -28,7 +29,7 @@ public class EntityTests
 	}
 
 	[Fact]
-	public void Entity_AggregateRootAndEntity_ShouldNotExposeSetter()
+	public void Domain_AggregateRootAndEntity_ShouldNotExposeSetter()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
@@ -52,7 +53,7 @@ public class EntityTests
 						property.Should()
 							.BeWritable(
 								CSharpAccessModifier.Private,
-								"Entity '{0}' should not expose setter '{1}'",
+								"Entity '{0}' should not expose writable setter '{1}'",
 								type,
 								property);
 					}
@@ -62,7 +63,7 @@ public class EntityTests
 	}
 
 	[Fact]
-	public void Entity_AggregateRootAndEntity_ShouldNotExposeWritableCollection()
+	public void Domain_AggregateRootAndEntity_ShouldNotExposeWritableCollection()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
@@ -92,7 +93,7 @@ public class EntityTests
 	}
 
 	[Fact]
-	public void Entity_ValueObject_ShouldNotExposeSetter()
+	public void Domain_ValueObject_ShouldNotExposeSetter()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()

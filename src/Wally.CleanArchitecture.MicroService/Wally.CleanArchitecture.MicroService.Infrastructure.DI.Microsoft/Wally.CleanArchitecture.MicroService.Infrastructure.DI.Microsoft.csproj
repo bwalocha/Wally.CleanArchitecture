@@ -7,18 +7,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AspNetCore.HealthChecks.AzureServiceBus" Version="7.0.0" />
-        <PackageReference Include="AspNetCore.HealthChecks.Kafka" Version="7.0.0" />
-        <PackageReference Include="AspNetCore.HealthChecks.MySql" Version="7.0.0" />
-        <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="7.1.0" />
-        <PackageReference Include="AspNetCore.HealthChecks.Sqlite" Version="7.0.0" />
-        <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="6.0.4" />
-        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+        <PackageReference Include="AspNetCore.HealthChecks.AzureServiceBus" Version="8.0.0" />
+        <PackageReference Include="AspNetCore.HealthChecks.Kafka" Version="8.0.0" />
+        <PackageReference Include="AspNetCore.HealthChecks.MySql" Version="8.0.0" />
+        <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="8.0.0" />
+        <PackageReference Include="AspNetCore.HealthChecks.Sqlite" Version="8.0.0" />
+        <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="7.0.0" />
         <PackageReference Include="EntityFrameworkCore.Exceptions.MySQL" Version="6.0.3" />
         <PackageReference Include="EntityFrameworkCore.Exceptions.MySQL.Pomelo" Version="6.0.3" />
-        <PackageReference Include="EntityFrameworkCore.Exceptions.PostgreSQL" Version="6.0.3" />
-        <PackageReference Include="EntityFrameworkCore.Exceptions.Sqlite" Version="6.0.3" />
-        <PackageReference Include="EntityFrameworkCore.Exceptions.SqlServer" Version="6.0.3.2" />
+        <PackageReference Include="EntityFrameworkCore.Exceptions.PostgreSQL" Version="8.0.0" />
+        <PackageReference Include="EntityFrameworkCore.Exceptions.Sqlite" Version="8.0.0" />
+        <PackageReference Include="EntityFrameworkCore.Exceptions.SqlServer" Version="8.0.0.2" />
         <PackageReference Include="MassTransit" Version="8.1.2" />
         <PackageReference Include="MassTransit.Azure.ServiceBus.Core" Version="8.1.2" />
         <PackageReference Include="MassTransit.Kafka" Version="8.1.2" />
@@ -29,13 +28,13 @@
         <PackageReference Include="Scrutor" Version="4.2.2" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
         <PackageReference Include="MediatR" Version="12.2.0" />
-        <PackageReference Include="AspNetCore.HealthChecks.Rabbitmq" Version="7.0.0" />
-        <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="7.0.0" />
-        <PackageReference Include="AspNetCore.HealthChecks.UI" Version="7.0.2" />
-        <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="7.1.0" />
-        <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="7.0.0" />
+        <PackageReference Include="AspNetCore.HealthChecks.Rabbitmq" Version="8.0.0" />
+        <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.0" />
+        <PackageReference Include="AspNetCore.HealthChecks.UI" Version="8.0.0" />
+        <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.0" />
+        <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="8.0.0" />
         <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.1" />
         <PackageReference Include="Microsoft.AspNetCore.OData" Version="8.2.3" />
     </ItemGroup>
 

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using FluentAssertions;
-using FluentAssertions.Common;
 using FluentAssertions.Types;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft;
 using Wally.CleanArchitecture.MicroService.WebApi;
@@ -30,27 +29,6 @@ public static class TypeHelpers
 		}
 
 		yield return typeof(Startup).Assembly;
-	}
-
-	public static void HaveOnlyPrivateParameterlessConstructor(this TypeSelectorAssertions typeSelectorAssertions)
-	{
-		const string because = "entity '{0}' should have private parameterless constructor only.";
-
-		foreach (var type in typeSelectorAssertions.Subject)
-		{
-			var constructors = type.GetConstructors();
-			foreach (var constructor in constructors)
-			{
-				constructor.Should()
-					.HaveAccessModifier(CSharpAccessModifier.Private, because, type);
-				constructor.GetParameters()
-					.Should()
-					.BeEmpty(because, type);
-			}
-
-			type.Should()
-				.HaveDefaultConstructor(because, type);
-		}
 	}
 
 	public static Type GetTypeDefinitionIfGeneric(this Type type)
@@ -114,66 +92,9 @@ public static class TypeHelpers
 		return false;
 	}
 
-	public static bool InheritsGenericClass(this Type type, Type classType)
-	{
-		if (!classType.IsClass)
-		{
-			throw new ArgumentException($"Parameter '{nameof(classType)}' is not a Class");
-		}
-
-		while (type != null && type != typeof(object))
-		{
-			var current = type.IsGenericType ? type.GetGenericTypeDefinition() : type;
-			if (classType == current)
-			{
-				return true;
-			}
-
-			if (type.BaseType == null)
-			{
-				break;
-			}
-
-			type = type.BaseType;
-		}
-
-		return false;
-	}
-
-	public static TypeSelector GetAllTypes(this IEnumerable<Assembly> assemblies)
-	{
-		return assemblies.SelectMany(a => a.GetTypes())
-			.Types();
-	}
-
 	public static TypeSelector GetAllExportedTypes(this IEnumerable<Assembly> assemblies)
 	{
 		return assemblies.SelectMany(a => a.GetExportedTypes())
 			.Types();
-	}
-
-	/// <summary>
-	///     Determines if this property is marked as init-only.
-	/// </summary>
-	/// <param name="property">The property.</param>
-	/// <returns>True if the property is init-only, false otherwise.</returns>
-	public static bool IsInitOnly(this PropertyInfo property)
-	{
-		if (!property.CanWrite)
-		{
-			return false;
-		}
-
-		var setMethod = property.SetMethod;
-		if (setMethod == null)
-		{
-			return true;
-		}
-
-		// Get the modifiers applied to the return parameter.
-		var setMethodReturnParameterModifiers = setMethod.ReturnParameter.GetRequiredCustomModifiers();
-
-		// Init-only properties are marked with the IsExternalInit type.
-		return setMethodReturnParameterModifiers.Contains(typeof(IsExternalInit));
 	}
 }

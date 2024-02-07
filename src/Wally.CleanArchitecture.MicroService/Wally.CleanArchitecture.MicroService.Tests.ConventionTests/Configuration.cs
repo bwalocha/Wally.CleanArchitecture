@@ -18,6 +18,8 @@ namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 
 public static class Configuration
 {
+	public const string Namespace = "Wally.CleanArchitecture.MicroService";
+	
 	public static Types Types
 		=> new()
 		{

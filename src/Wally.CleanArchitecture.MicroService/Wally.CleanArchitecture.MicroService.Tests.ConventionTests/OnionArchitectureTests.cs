@@ -1,4 +1,3 @@
-using System.Linq;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
@@ -9,10 +8,10 @@ namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 public class OnionArchitectureTests
 {
 	[Fact]
-	public void Domain_IsNotReferencedByApplication()
+	public void Domain_ShouldNotUseReferenceToApplication()
 	{
 		var domainAssemblies = Configuration.Assemblies.Domain;
-		var applicationTypes = Configuration.Assemblies.Application.SelectMany(a => a.GetTypes());
+		var applicationTypes = Configuration.Assemblies.Application.GetAllExportedTypes();
 
 		using (new AssertionScope())
 		{
@@ -30,10 +29,10 @@ public class OnionArchitectureTests
 	}
 
 	[Fact]
-	public void Domain_IsNotReferencedByInfrastructure()
+	public void Domain_ShouldNotUseReferenceToInfrastructure()
 	{
 		var domainAssemblies = Configuration.Assemblies.Domain;
-		var infrastructureTypes = Configuration.Assemblies.Infrastructure.SelectMany(a => a.GetTypes());
+		var infrastructureTypes = Configuration.Assemblies.Infrastructure.GetAllExportedTypes();
 
 		using (new AssertionScope())
 		{
@@ -51,10 +50,10 @@ public class OnionArchitectureTests
 	}
 
 	[Fact]
-	public void Domain_IsNotReferencedByPersistence()
+	public void Domain_ShouldNotUseReferenceToPresentation()
 	{
 		var domainAssemblies = Configuration.Assemblies.Domain;
-		var persistenceTypes = Configuration.Assemblies.Infrastructure.SelectMany(a => a.GetTypes());
+		var infrastructureTypes = Configuration.Assemblies.Presentation.GetAllExportedTypes();
 
 		using (new AssertionScope())
 		{
@@ -62,7 +61,7 @@ public class OnionArchitectureTests
 				.SatisfyRespectively(
 					a =>
 					{
-						foreach (var type in persistenceTypes)
+						foreach (var type in infrastructureTypes)
 						{
 							a.Should()
 								.NotReference(type.Assembly);
@@ -74,14 +73,13 @@ public class OnionArchitectureTests
 	[Fact]
 	public void OnionArchitecture_AllNamespaces_ShouldBeConsistent()
 	{
-		var applicationNamespace = "Wally.CleanArchitecture.MicroService";
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllExportedTypes();
 
 		using (new AssertionScope())
 		{
 			types.Should()
-				.BeUnderNamespace(applicationNamespace);
+				.BeUnderNamespace(Configuration.Namespace);
 		}
 	}
 }

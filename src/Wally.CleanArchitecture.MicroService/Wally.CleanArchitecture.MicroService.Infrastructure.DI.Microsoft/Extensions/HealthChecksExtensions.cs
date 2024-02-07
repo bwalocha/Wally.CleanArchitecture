@@ -70,10 +70,7 @@ public static class HealthChecksExtensions
 				break;
 			case DatabaseProviderType.MySql:
 				healthChecksBuilder.AddMySql(
-					new MySqlHealthCheckOptions
-					{
-						ConnectionString = settings.ConnectionStrings.Database,
-					},
+					new MySqlHealthCheckOptions(settings.ConnectionStrings.Database),
 					"DB",
 					HealthStatus.Degraded,
 					new[]
