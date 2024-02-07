@@ -152,7 +152,6 @@ public class ReadOnlyRepository<TEntity, TKey> : IReadOnlyRepository<TEntity, TK
 					yield return (LambdaExpression)((UnaryExpression)callExpression.Arguments[1]).Operand;
 					break;
 				default:
-					// TODO: throw new NotSupportedException($"The Sort Order '{order.RawValue}' is not supported");
 					continue;
 			}
 		}

@@ -19,9 +19,4 @@ public class DomainException : Exception
 		: base(message, innerException)
 	{
 	}
-
-	protected DomainException(SerializationInfo info, StreamingContext context)
-		: base(info, context)
-	{
-	}
 }

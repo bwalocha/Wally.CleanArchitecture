@@ -20,9 +20,4 @@ public class ResourceNotFoundException : Exception, INotFound
 		: base(message, innerException)
 	{
 	}
-
-	protected ResourceNotFoundException(SerializationInfo info, StreamingContext context)
-		: base(info, context)
-	{
-	}
 }
