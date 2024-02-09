@@ -24,7 +24,7 @@ public class DomainEventTests
 					.ThatImplement<DomainEvent>();
 
 				types.Should()
-					.BeUnderNamespace("Wally.CleanArchitecture.MicroService.Domain");
+					.BeUnderNamespace($"{Configuration.Namespace}.Domain");
 			}
 		}
 	}

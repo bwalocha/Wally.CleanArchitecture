@@ -1,6 +1,6 @@
 using FluentAssertions;
 using FluentAssertions.Execution;
-using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
+using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;

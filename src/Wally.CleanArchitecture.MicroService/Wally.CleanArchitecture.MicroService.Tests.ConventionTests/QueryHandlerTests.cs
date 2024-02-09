@@ -4,49 +4,47 @@ using FluentAssertions.Execution;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Wally.Lib.DDD.Abstractions.Commands;
+using Wally.Lib.DDD.Abstractions.Queries;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 
-public class CommandHandlerTests
+public class QueryHandlerTests
 {
 	[Fact]
-	public void Application_AllClassesEndsWithCommandHandler_ShouldImplementICommandHandler()
+	public void Application_AllClassesEndsWithQueryHandler_ShouldImplementIQueryHandler()
 	{
 		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{
-			foreach (var type in applicationTypes.Where(a => a.Name.EndsWith("CommandHandler")))
+			foreach (var type in applicationTypes.Where(a => a.Name.EndsWith("QueryHandler")))
 			{
 				type.Should()
 					.BeAssignableTo(
-						type.ImplementsGenericInterface(typeof(ICommandHandler<>))
-							? typeof(ICommandHandler<>)
-							: typeof(ICommandHandler<,>),
-						"All command handlers should implement ICommandHandler interface");
+						typeof(IQueryHandler<,>),
+						"All query handlers should implement IQueryHandler interface");
 			}
 		}
 	}
-	
+
 	[Fact]
-	public void Application_AllClassesImplementedICommandHandler_ShouldEndsWithCommandHandler()
+	public void Application_AllClassesImplementedIQueryHandler_ShouldEndsWithQueryHandler()
 	{
 		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
-		var commandHandlerTypes = applicationTypes
+		var handlerTypes = applicationTypes
 			.Where(a => a.IsClass)
 			.Where(a => !a.IsAbstract)
 			.Where(
-				a => a.ImplementsGenericInterface(typeof(ICommandHandler<>)) ||
-					a.ImplementsGenericInterface(typeof(ICommandHandler<,>)));
+				a => a.ImplementsGenericInterface(typeof(IQueryHandler<,>)));
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{
-			foreach (var type in commandHandlerTypes)
+			foreach (var type in handlerTypes)
 			{
 				type.Name
 					.Should()
-					.EndWith("CommandHandler", "All command handlers name should ends with 'CommanHandler'");
+					.EndWith("QueryHandler", "All query handlers name should ends with 'QueryHandler'");
 			}
 		}
 	}

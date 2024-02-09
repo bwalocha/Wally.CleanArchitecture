@@ -6,6 +6,7 @@ using FluentAssertions.Common;
 using FluentAssertions.Execution;
 using FluentAssertions.Types;
 using Wally.CleanArchitecture.MicroService.Application.Contracts;
+using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Wally.Lib.DDD.Abstractions.Responses;
 using Xunit;
