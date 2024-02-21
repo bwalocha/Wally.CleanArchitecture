@@ -50,7 +50,7 @@ public class DomainEventHandlerBehavior<TRequest, TResponse> : IPipelineBehavior
 			{
 				await service!.HandleAsync((dynamic)domainEvent, cancellationToken);
 			}
-			
+
 			domainEntities.Single(a => a.Entity
 					.GetDomainEvents()
 					.Contains(domainEvent))

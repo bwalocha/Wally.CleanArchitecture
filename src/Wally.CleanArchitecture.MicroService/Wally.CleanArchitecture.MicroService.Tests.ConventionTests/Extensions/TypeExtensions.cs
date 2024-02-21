@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using System.Linq;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 
@@ -29,7 +28,7 @@ public static class TypeExtensions
 
 		return false;
 	}
-	
+
 	public static bool ImplementsInterface(this Type type, Type interfaceType)
 	{
 		if (!interfaceType.IsInterface)
@@ -48,7 +47,7 @@ public static class TypeExtensions
 
 		return false;
 	}
-	
+
 	public static bool InheritsGenericClass(this Type type, Type classType)
 	{
 		if (!classType.IsClass)
@@ -74,7 +73,32 @@ public static class TypeExtensions
 
 		return false;
 	}
-	
+
+	public static bool InheritsClass(this Type type, Type classType)
+	{
+		if (!classType.IsClass)
+		{
+			throw new ArgumentException($"Parameter '{nameof(classType)}' is not a Class");
+		}
+
+		while (type != null && type != typeof(object))
+		{
+			if (classType == type)
+			{
+				return true;
+			}
+
+			if (type.BaseType == null)
+			{
+				break;
+			}
+
+			type = type.BaseType;
+		}
+
+		return false;
+	}
+
 	public static Type GetTypeDefinitionIfGeneric(this Type type)
 	{
 		return type.IsGenericType ? type.GetGenericTypeDefinition() : type;
@@ -89,7 +113,7 @@ public static class TypeExtensions
 	{
 		return type.IsGenericType(genericInterface)
 			? type
-			: type.GetInterfaces()
-				.FirstOrDefault(t => t.IsGenericType(genericInterface));
+			: Array.Find(type.GetInterfaces(),
+				t => t.IsGenericType(genericInterface));
 	}
 }

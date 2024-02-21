@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 using AutoMapper;
 using FluentAssertions;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Requests.Users;
@@ -60,6 +59,6 @@ public class MapperTests
 
 	private static object GetInstanceOf(Type type)
 	{
-		return Activator.CreateInstance(type, nonPublic: true) !;
+		return Activator.CreateInstance(type, true) !;
 	}
 }

@@ -28,7 +28,7 @@ public class CommandHandlerTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Application_AllClassesImplementedICommandHandler_ShouldEndsWithCommandHandler()
 	{

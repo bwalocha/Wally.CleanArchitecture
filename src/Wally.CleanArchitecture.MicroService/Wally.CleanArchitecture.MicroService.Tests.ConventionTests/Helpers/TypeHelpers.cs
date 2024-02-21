@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -16,7 +15,8 @@ public static class TypeHelpers
 
 	public static IEnumerable<Assembly> GetAllInternalAssemblies()
 	{
-		var assemblies = typeof(IInfrastructureDIMicrosoftAssemblyMarker).Assembly.GetReferencedAssemblies().Concat(
+		var assemblies = typeof(IInfrastructureDIMicrosoftAssemblyMarker).Assembly.GetReferencedAssemblies()
+			.Concat(
 				typeof(Startup).Assembly.GetReferencedAssemblies())
 			.Where(a => _prefixes.Exists(b => a.FullName.StartsWith(b)));
 

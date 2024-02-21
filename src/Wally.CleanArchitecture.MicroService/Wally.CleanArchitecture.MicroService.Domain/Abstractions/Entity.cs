@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Wally.Lib.DDD.Abstractions.DomainEvents;
-using Wally.Lib.DDD.Abstractions.DomainModels;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
@@ -28,13 +27,13 @@ public class Entity<TEntity, TKey> : IEntity
 		return _domainEvents.AsReadOnly();
 	}
 
-	protected void AddDomainEvent(DomainEvent domainEvent)
-	{
-		_domainEvents.Add(domainEvent);
-	}
-
 	public void RemoveDomainEvent(DomainEvent domainEvent)
 	{
 		_domainEvents.Remove(domainEvent);
+	}
+
+	protected void AddDomainEvent(DomainEvent domainEvent)
+	{
+		_domainEvents.Add(domainEvent);
 	}
 }

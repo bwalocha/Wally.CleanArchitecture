@@ -2,6 +2,7 @@
 using System.Linq;
 using FluentAssertions;
 using FluentAssertions.Execution;
+using FluentValidation;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Wally.Lib.DDD.Abstractions.Commands;
@@ -58,9 +59,10 @@ public class CommandTests
 			foreach (var assembly in assemblies)
 			{
 				var types = assembly.GetTypes()
-					.Where(a => a.ImplementsInterface(typeof(ICommand)) || a.ImplementsGenericInterface(typeof(ICommand<>)))
+					.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
+						a.ImplementsGenericInterface(typeof(ICommand<>)))
 					.Where(a => a.IsClass);
-				
+
 				foreach (var type in types)
 				{
 					assemblies.SelectMany(a => a.GetTypes())
@@ -75,23 +77,27 @@ public class CommandTests
 	[Fact]
 	public void Application_Command_ShouldHaveCorrespondingValidator()
 	{
-		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var assemblies = Configuration.Assemblies.GetAllAssemblies()
+			.ToArray();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.ImplementsInterface(typeof(ICommand)) || a.ImplementsGenericInterface(typeof(ICommand<>)))
+			.Where(a => a.IsClass);
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{
-			foreach (var assembly in assemblies)
+			foreach (var type in types)
 			{
-				var types = assembly.GetTypes()
-					.Where(a => a.ImplementsInterface(typeof(ICommand)) || a.ImplementsGenericInterface(typeof(ICommand<>)))
-					.Where(a => a.IsClass);
-				
-				foreach (var type in types)
-				{
-					assemblies.SelectMany(a => a.GetTypes())
-						.SingleOrDefault(a => a.Name == $"{type.Name}Validator")
-						.Should()
-						.NotBeNull("Command '{0}' should have corresponding Validator", type);
-				}
+				var expectedBaseType = typeof(AbstractValidator<>).MakeGenericType(type);
+
+				var subject = assemblies.SelectMany(a => a.GetTypes())
+					.SingleOrDefault(a => a.Name == $"{type.Name}Validator");
+
+				subject.Should()
+					.NotBeNull("Command '{0}' should have corresponding Validator", type);
+
+				subject!.InheritsClass(expectedBaseType)
+					.Should()
+					.BeTrue("Command '{0}' should inherits {1} base class", type, expectedBaseType);
 			}
 		}
 	}

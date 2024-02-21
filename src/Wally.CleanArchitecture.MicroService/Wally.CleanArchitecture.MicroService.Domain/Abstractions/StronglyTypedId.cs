@@ -158,7 +158,7 @@ public class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStron
 
 public interface IStronglyTypedId
 	<TStronglyTypedId, out TKey> : IStronglyTypedId<TKey>, IComparable<TStronglyTypedId>, IEquatable<TStronglyTypedId>,
-		IEqualityComparer<TStronglyTypedId>
+	IEqualityComparer<TStronglyTypedId>
 	where TKey : notnull, IComparable
 {
 }
