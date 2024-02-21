@@ -13,8 +13,8 @@ namespace Wally.CleanArchitecture.MicroService.WebApi;
 [ExcludeFromCodeCoverage]
 public static class Program
 {
-	private const string _azureADManagedIdentityClientIdConfigName = "AzureADManagedIdentityClientId";
-	private const string _keyVaultNameConfigName = "KeyVaultName";
+	// private const string _azureADManagedIdentityClientIdConfigName = "AzureADManagedIdentityClientId";
+	// private const string _keyVaultNameConfigName = "KeyVaultName";
 	private const bool _reloadOnChange = false;
 
 	public static int Main(string[] args)

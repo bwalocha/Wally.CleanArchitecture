@@ -109,8 +109,8 @@ public static class HealthChecksExtensions
 					});
 				break;
 			default:
-				throw new ArgumentOutOfRangeException(nameof(settings.Database.ProviderType),
-					"Unknown Database Provider Type");
+				throw new NotSupportedException(
+					$"Not supported Database Provider type: '{settings.Database.ProviderType}'");
 		}
 
 		return healthChecksBuilder;
@@ -133,8 +133,7 @@ public static class HealthChecksExtensions
 				healthChecksBuilder.WithRabbitMQ(settings);
 				break;
 			default:
-				throw new ArgumentOutOfRangeException(nameof(settings.MessageBroker),
-					$"Unknown Message Broker: '{settings.MessageBroker}'");
+				throw new NotSupportedException($"Not supported Message Broker type: '{settings.MessageBroker}'");
 		}
 
 		return healthChecksBuilder;

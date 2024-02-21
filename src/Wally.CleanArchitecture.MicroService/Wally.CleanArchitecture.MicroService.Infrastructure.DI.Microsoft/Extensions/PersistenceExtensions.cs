@@ -1,5 +1,4 @@
 ﻿using System;
-using EntityFramework.Exceptions.MySQL.Pomelo;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -42,9 +41,8 @@ public static class PersistenceExtensions
 					WithSqlServer(options, settings);
 					break;
 				default:
-					throw new ArgumentOutOfRangeException(
-						nameof(settings.Database.ProviderType),
-						"Unknown Database Provider Type");
+					throw new NotSupportedException(
+						$"Not supported Database Provider type: '{settings.Database.ProviderType}'");
 			}
 
 			options.ConfigureWarnings(
@@ -89,7 +87,7 @@ public static class PersistenceExtensions
 					typeof(IInfrastructureMySqlAssemblyMarker).Assembly.GetName()
 						.Name);
 			});
-		ExceptionProcessorExtensions.UseExceptionProcessor(options);
+		EntityFramework.Exceptions.MySQL.Pomelo.ExceptionProcessorExtensions.UseExceptionProcessor(options);
 	}
 
 	private static void WithNpgsql(DbContextOptionsBuilder options, AppSettings settings)

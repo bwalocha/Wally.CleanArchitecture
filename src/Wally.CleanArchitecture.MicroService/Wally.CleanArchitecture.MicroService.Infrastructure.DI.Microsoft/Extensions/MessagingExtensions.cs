@@ -71,8 +71,8 @@ public static class MessagingExtensions
 							});
 						break;
 					default:
-						throw new ArgumentOutOfRangeException(nameof(settings.MessageBroker),
-							$"Unknown Message Broker: '{settings.MessageBroker}'");
+						throw new NotSupportedException(
+							$"Not supported Message Broker type: '{settings.MessageBroker}'");
 				}
 			});
 
