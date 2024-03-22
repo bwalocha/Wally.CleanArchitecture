@@ -13,11 +13,11 @@
         <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="8.0.0" />
         <PackageReference Include="AspNetCore.HealthChecks.Sqlite" Version="8.0.0" />
         <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="7.0.0" />
-        <PackageReference Include="EntityFrameworkCore.Exceptions.MySQL" Version="8.0.0" />
-        <PackageReference Include="EntityFrameworkCore.Exceptions.MySQL.Pomelo" Version="8.0.0" />
-        <PackageReference Include="EntityFrameworkCore.Exceptions.PostgreSQL" Version="8.0.0" />
-        <PackageReference Include="EntityFrameworkCore.Exceptions.Sqlite" Version="8.0.0" />
-        <PackageReference Include="EntityFrameworkCore.Exceptions.SqlServer" Version="8.0.0.2" />
+        <PackageReference Include="EntityFrameworkCore.Exceptions.MySQL" Version="8.1.1" />
+        <PackageReference Include="EntityFrameworkCore.Exceptions.MySQL.Pomelo" Version="8.1.1" />
+        <PackageReference Include="EntityFrameworkCore.Exceptions.PostgreSQL" Version="8.1.1" />
+        <PackageReference Include="EntityFrameworkCore.Exceptions.Sqlite" Version="8.1.1" />
+        <PackageReference Include="EntityFrameworkCore.Exceptions.SqlServer" Version="8.1.1" />
         <PackageReference Include="MassTransit" Version="8.1.3" />
         <PackageReference Include="MassTransit.Azure.ServiceBus.Core" Version="8.1.3" />
         <PackageReference Include="MassTransit.Kafka" Version="8.1.3" />

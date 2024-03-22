@@ -45,9 +45,9 @@
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
-        "requested": "[9.21.0.86780, )",
-        "resolved": "9.21.0.86780",
-        "contentHash": "m+0RKlTMGDLKH8zDwGqWtvVVbY7leuDWNjcGDqEtvI12lR0fQtmPV8eooMyaA76QxUxRnbIMmilwqba1lXMvJQ=="
+        "requested": "[9.22.0.87781, )",
+        "resolved": "9.22.0.87781",
+        "contentHash": "2I6a87QiJ8plPibNryS2fYB6metZxqT/8UUyMky4EPb6XNLRJLMrO0tNdgrPdIhXxF8FcLOcIUf9/1pGNMezqg=="
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
@@ -247,54 +247,54 @@
       },
       "EntityFrameworkCore.Exceptions.Common": {
         "type": "Transitive",
-        "resolved": "8.0.0.2",
-        "contentHash": "4hyRcf5UH2JmVlQYvGHBi5J6Uw47/nSkgKfj0/kOgXgIQVZIFr7ibC2qJIa4VJ8hh4zzdiXx6c9l9YfJDsHQ8w==",
+        "resolved": "8.1.1",
+        "contentHash": "/YpiqzIJwGvy0JX+2XWHfL7IcE0J3x1tlI7hyHpvtgC+FMq0+tmgpNGcMAktYFtnu44Pb9JeeafdoMyv6dQBaQ==",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "8.0.0"
+          "Microsoft.EntityFrameworkCore.Relational": "8.0.0"
         }
       },
       "EntityFrameworkCore.Exceptions.MySQL": {
         "type": "Transitive",
-        "resolved": "8.0.0",
-        "contentHash": "SUOXMUOSD9wGjviaH2/M+eLNrDf9P72SCqELY6iiyWqe/HNCjX4aD+oA6avlpx/kImPieSLgKG3Q4HOxg7dg/w==",
+        "resolved": "8.1.1",
+        "contentHash": "h78pcU8XEwaLL2T+xtE4dBXcrdWzeGinbFLm0AaUkA9XNSMQ7GcXehSId8rNBc6SoeaTNlchCjjloN7NXUZRIQ==",
         "dependencies": {
-          "EntityFrameworkCore.Exceptions.Common": "8.0.0",
-          "MySql.Data": "8.2.0"
+          "EntityFrameworkCore.Exceptions.Common": "8.1.1",
+          "MySql.Data": "8.3.0"
         }
       },
       "EntityFrameworkCore.Exceptions.MySQL.Pomelo": {
         "type": "Transitive",
-        "resolved": "8.0.0",
-        "contentHash": "yA6ruvcZK1LGZOhIAZaZWmRspKvJDHUNYy2EP3NOCM4bK/BJ1+I16gmB/Kqdf0CQEZR5JkuGyOXOqS8XGWaNnQ==",
+        "resolved": "8.1.1",
+        "contentHash": "9UwCrYc3Hd75y9s42REP2wALzlBY700nGkidcfhkZ2ltzmGq79dlYK1Sjt/5JVGZ2dKpqQtqALAtt47lJSYSyQ==",
         "dependencies": {
-          "EntityFrameworkCore.Exceptions.Common": "8.0.0",
+          "EntityFrameworkCore.Exceptions.Common": "8.1.1",
           "MySqlConnector": "2.3.1"
         }
       },
       "EntityFrameworkCore.Exceptions.PostgreSQL": {
         "type": "Transitive",
-        "resolved": "8.0.0",
-        "contentHash": "TRWtcUfSJIpS9KibsvozAHKwwWdkF91Lq4ecTxfeB/IVM30J/GRM5MCP7RL9i78463B5BPXpfDtGAejrKJ6plA==",
+        "resolved": "8.1.1",
+        "contentHash": "KtBBNwmRmz5Re3X95fgO4gkEWNusRKrjxm2rTmVqQ+zga/KUBFpJ7HXoQCGqj0Ug51yP9GHtsWI7KqdmG2jKCQ==",
         "dependencies": {
-          "EntityFrameworkCore.Exceptions.Common": "8.0.0",
+          "EntityFrameworkCore.Exceptions.Common": "8.1.1",
           "Npgsql": "8.0.1"
         }
       },
       "EntityFrameworkCore.Exceptions.Sqlite": {
         "type": "Transitive",
-        "resolved": "8.0.0",
-        "contentHash": "O5lgddKj8HxU5uwq8BE9ZeY+F7aUHOcGc0ultuckNJlTavUa4HCQ1qWfuqXTf+bGZsu3946x+2/9Q8mNyOTfKA==",
+        "resolved": "8.1.1",
+        "contentHash": "M1LAv2/RLrA6GYKjIanCU/FGun+Wg7DkWhs+M/fewi3piNfvN1dRdCqAfV75LGyfUSLKY9EOmQ5DQJNXJsDE3g==",
         "dependencies": {
-          "EntityFrameworkCore.Exceptions.Common": "8.0.0",
+          "EntityFrameworkCore.Exceptions.Common": "8.1.1",
           "Microsoft.Data.SQLite": "8.0.0"
         }
       },
       "EntityFrameworkCore.Exceptions.SqlServer": {
         "type": "Transitive",
-        "resolved": "8.0.0.2",
-        "contentHash": "ewORic1WhfHW2sTX73fsxRNKiFzRX7PYRycU2HkXiGNj+H6wzYMxBRZpp9Z7zEffJCBIQ3PqD6p9ITUo2inIYw==",
+        "resolved": "8.1.1",
+        "contentHash": "4egRaJ8V00cfU2YCcKJlx/mXy94678jXoHiXSz9ML2T1eztzTr4DtjV5a05aqzz74L+cIGne1F2loaP265gzUg==",
         "dependencies": {
-          "EntityFrameworkCore.Exceptions.Common": "8.0.0.2",
+          "EntityFrameworkCore.Exceptions.Common": "8.1.1",
           "Microsoft.Data.SqlClient": "5.1.4"
         }
       },
@@ -328,8 +328,8 @@
       },
       "Google.Protobuf": {
         "type": "Transitive",
-        "resolved": "3.21.9",
-        "contentHash": "OTpFujTgkmqMLbg3KT7F/iuKi1rg6s5FCS2M9XcVLDn40zL8wgXm37CY/F6MeOEXKjdcnXGCN/h7oyMkVydVsg=="
+        "resolved": "3.25.1",
+        "contentHash": "Sw9bq4hOD+AaS3RrnmP5IT25cyZ/T1qpM0e8+G+23Nojhv7+ScJFPEAQo1m4EFQWhXoI4FRZDrK+wjHCPw9yxg=="
       },
       "Humanizer.Core": {
         "type": "Transitive",
@@ -1004,11 +1004,11 @@
       },
       "MySql.Data": {
         "type": "Transitive",
-        "resolved": "8.2.0",
-        "contentHash": "p62lWlKvJJ5UnBNvtal3JM9SOyQaaIA4C6E5LO2TOlO8CF5BDX0I8HsihbzP8wOELZhD4I3vpferDRv7uBNkOg==",
+        "resolved": "8.3.0",
+        "contentHash": "bAQlkLYvTYt5MtXAgHGURSBSUWynIvyN2FVQFUg51I2grxsOfnJSyGvO7YsDRnU7IvUNfMdxq8rNXiP5P4hMlw==",
         "dependencies": {
           "BouncyCastle.Cryptography": "2.2.1",
-          "Google.Protobuf": "3.21.9",
+          "Google.Protobuf": "3.25.1",
           "K4os.Compression.LZ4.Streams": "1.3.5",
           "System.Buffers": "4.5.1",
           "System.Configuration.ConfigurationManager": "4.4.1",
@@ -1064,10 +1064,10 @@
       },
       "Pomelo.EntityFrameworkCore.MySql": {
         "type": "Transitive",
-        "resolved": "8.0.1",
-        "contentHash": "szwVNxovhjdIlX1zx0tkEwVrR2hGRFqNVm77bqU8ZPdUNIk2NoxaHY5skZyPnrtUb+5Kp6+NhbUraQ7oOmyOpA==",
+        "resolved": "8.0.2",
+        "contentHash": "XjnlcxVBLnEMbyEc5cZzgZeDyLvAniACZQ04W1slWN0f4rmfNzl98gEMvHnFH0fMDF06z9MmgGi/Sr7hJ+BVnw==",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "[8.0.1, 8.0.999]",
+          "Microsoft.EntityFrameworkCore.Relational": "[8.0.2, 8.0.999]",
           "MySqlConnector": "2.3.5"
         }
       },
@@ -1634,11 +1634,11 @@
           "AspNetCore.HealthChecks.UI.Client": "[8.0.0, )",
           "AspNetCore.HealthChecks.UI.InMemory.Storage": "[8.0.0, )",
           "AutoMapper.Extensions.ExpressionMapping": "[7.0.0, )",
-          "EntityFrameworkCore.Exceptions.MySQL": "[8.0.0, )",
-          "EntityFrameworkCore.Exceptions.MySQL.Pomelo": "[8.0.0, )",
-          "EntityFrameworkCore.Exceptions.PostgreSQL": "[8.0.0, )",
-          "EntityFrameworkCore.Exceptions.SqlServer": "[8.0.0.2, )",
-          "EntityFrameworkCore.Exceptions.Sqlite": "[8.0.0, )",
+          "EntityFrameworkCore.Exceptions.MySQL": "[8.1.1, )",
+          "EntityFrameworkCore.Exceptions.MySQL.Pomelo": "[8.1.1, )",
+          "EntityFrameworkCore.Exceptions.PostgreSQL": "[8.1.1, )",
+          "EntityFrameworkCore.Exceptions.SqlServer": "[8.1.1, )",
+          "EntityFrameworkCore.Exceptions.Sqlite": "[8.1.1, )",
           "FluentValidation.AspNetCore": "[11.3.0, )",
           "MassTransit": "[8.1.3, )",
           "MassTransit.Azure.ServiceBus.Core": "[8.1.3, )",
@@ -1688,7 +1688,7 @@
       "wally.cleanarchitecture.microservice.infrastructure.persistence.mysql": {
         "type": "Project",
         "dependencies": {
-          "Pomelo.EntityFrameworkCore.MySql": "[8.0.1, )",
+          "Pomelo.EntityFrameworkCore.MySql": "[8.0.2, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence": "[1.0.0, )"
         }
       },
