@@ -4,6 +4,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using Serilog.Context;
+using Wally.CleanArchitecture.MicroService.Domain;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 
@@ -22,11 +24,13 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 		RequestHandlerDelegate<TResponse> next,
 		CancellationToken cancellationToken)
 	{
-		var correlationId = Guid.NewGuid();
+		var correlationId = GetCorrelationId();
 
-		// https://stackoverflow.com/questions/56600156/simple-serialize-odataqueryoptions
+		using var logContext = LogContext.PushProperty("CorrelationId", correlationId);
+		
 		_logger.LogInformation(
-			$"[{correlationId}] Executing request handler for request type: '{typeof(TRequest).Name}' and response type: '{typeof(TResponse).Name}'.");
+			"[{CorrelationId}] Executing request handler for request type: '{TypeofTRequestName}' and response type: '{TypeofTResponseName}'",
+			correlationId, typeof(TRequest).Name, typeof(TResponse).Name);
 		var stopWatch = Stopwatch.StartNew();
 		try
 		{
@@ -38,12 +42,23 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 
 			if (stopWatch.ElapsedMilliseconds > 500)
 			{
-				_logger.LogWarning($"[{correlationId}] Executed in {stopWatch.ElapsedMilliseconds} ms.");
+				_logger.LogWarning("[{CorrelationId}] Executed in {StopWatchElapsedMilliseconds} ms", correlationId,
+					stopWatch.ElapsedMilliseconds);
 			}
 			else
 			{
-				_logger.LogInformation($"[{correlationId}] Executed in {stopWatch.ElapsedMilliseconds} ms.");
+				_logger.LogInformation("[{CorrelationId}] Executed in {StopWatchElapsedMilliseconds} ms", correlationId,
+					stopWatch.ElapsedMilliseconds);
 			}
 		}
+	}
+
+	private CorrelationId GetCorrelationId()
+	{
+		// const string CorrelationIdHeaderName = "X-Correlation-Id";
+		// TODO: use HttpContext or CorrelationId from MassTransit Message
+		// ...
+
+		return new CorrelationId(Guid.NewGuid());
 	}
 }
