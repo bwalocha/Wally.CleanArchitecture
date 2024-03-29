@@ -29,7 +29,7 @@ public static class ServiceCollectionExtensions
 	}
 
 	public static IApplicationBuilder UseInfrastructure(
-		this IApplicationBuilder app, 
+		this IApplicationBuilder app,
 		IWebHostEnvironment env,
 		IOptions<AppSettings> options,
 		IFeatureManager featureManager)
