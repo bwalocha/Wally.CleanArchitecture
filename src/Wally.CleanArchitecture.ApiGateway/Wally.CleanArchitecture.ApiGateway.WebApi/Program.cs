@@ -56,7 +56,7 @@ public static class Program
 		return configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
 			.AddJsonFile("appsettings.json", false, _reloadOnChange)
 			.AddJsonFile($"appsettings.{env}.json", true, _reloadOnChange)
-			.AddJsonFile("serilog.json", true, _reloadOnChange)
+			.AddJsonFile("serilog.json", false, _reloadOnChange)
 			.AddJsonFile($"serilog.{env}.json", true, _reloadOnChange)
 			.AddEnvironmentVariables();
 	}

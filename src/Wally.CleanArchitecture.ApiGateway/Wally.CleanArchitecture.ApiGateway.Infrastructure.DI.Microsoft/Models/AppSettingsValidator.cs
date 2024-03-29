@@ -9,7 +9,14 @@ public class AppSettingsValidator : AbstractValidator<AppSettings>
 		RuleFor(a => a.Authentication)
 			.NotEmpty()
 			.SetValidator(new AuthenticationSettingsValidator());
+		/*RuleFor(a => a.SwaggerAuthentication)
+			.NotEmpty()
+			.SetValidator(new AuthenticationSettingsValidator());*/
 		RuleFor(a => a.Cors)
-			.NotNull();
+			.NotNull()
+			.SetValidator(new CorsSettingsValidator());
+		RuleFor(a => a.ReverseProxy)
+			.NotNull()
+			.SetValidator(new ReverseProxySettingsValidator());
 	}
 }

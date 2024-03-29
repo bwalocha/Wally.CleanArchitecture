@@ -15,6 +15,7 @@
         <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.0" />
         <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="8.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.3" />
+        <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="3.2.0" />
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
         <PackageReference Include="Yarp.ReverseProxy" Version="2.1.0" />
     </ItemGroup>

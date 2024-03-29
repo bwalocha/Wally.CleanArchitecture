@@ -62,9 +62,9 @@
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
-        "requested": "[9.21.0.86780, )",
-        "resolved": "9.21.0.86780",
-        "contentHash": "m+0RKlTMGDLKH8zDwGqWtvVVbY7leuDWNjcGDqEtvI12lR0fQtmPV8eooMyaA76QxUxRnbIMmilwqba1lXMvJQ=="
+        "requested": "[9.23.0.88079, )",
+        "resolved": "9.23.0.88079",
+        "contentHash": "/dwzO34zmW3xDv1i3QfhoyaKZ2aCBPWoRBwRw5Vnextq7nD2sWB+/6yjxn/Fa+Z3xhdsYoVbzIIvN5RvJ81dRw=="
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
@@ -706,6 +706,24 @@
         "resolved": "8.0.0",
         "contentHash": "bXJEZrW9ny8vjMF1JV253WeLhpEVzFo1lyaZu1vQ4ZxWUlVvknZ/+ftFgVheLubb4eZPSwwxBeqS1JkCOjxd8g=="
       },
+      "Microsoft.FeatureManagement": {
+        "type": "Transitive",
+        "resolved": "3.2.0",
+        "contentHash": "P7lyetFgBb75OdOiugkqRNv3jyCSsc2Qmszx8KwdzN7EG3b6scaXzaSE0t52g1cGxWrONCmGHDoX3aDxh+XlPg==",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Memory": "2.1.23",
+          "Microsoft.Extensions.Configuration.Binder": "2.1.10",
+          "Microsoft.Extensions.Logging": "2.1.1"
+        }
+      },
+      "Microsoft.FeatureManagement.AspNetCore": {
+        "type": "Transitive",
+        "resolved": "3.2.0",
+        "contentHash": "k47A25SbOG8IX/mlXUwAOjj0O1CFYpfq9ZKso+azdnXMYFcjPIT08xkZpg2aCdybT6RttiCmf36Cl8pcCCRpFw==",
+        "dependencies": {
+          "Microsoft.FeatureManagement": "3.2.0"
+        }
+      },
       "Microsoft.IdentityModel.Abstractions": {
         "type": "Transitive",
         "resolved": "7.0.0",
@@ -1092,6 +1110,7 @@
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "[8.0.3, )",
           "Microsoft.Extensions.Configuration.Abstractions": "[8.0.0, )",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[8.0.1, )",
+          "Microsoft.FeatureManagement.AspNetCore": "[3.2.0, )",
           "Swashbuckle.AspNetCore.SwaggerUI": "[6.5.0, )",
           "Yarp.ReverseProxy": "[2.1.0, )"
         }
