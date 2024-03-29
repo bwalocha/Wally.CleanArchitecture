@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.FeatureManagement;
 using Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft;
 using Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Models;
 
@@ -30,7 +31,8 @@ public class Startup
 		IWebHostEnvironment env,
 		IHostApplicationLifetime appLifetime,
 		ILogger<Startup> logger,
-		IOptions<AppSettings> options)
+		IOptions<AppSettings> options,
+		IFeatureManager featureManager)
 	{
 		appLifetime.ApplicationStarted.Register(
 			() => logger.LogInformation("The 'Wally.CleanArchitecture.ApiGateway.WebApi' is started"));
@@ -39,6 +41,6 @@ public class Startup
 		appLifetime.ApplicationStopped.Register(
 			() => logger.LogInformation("The 'Wally.CleanArchitecture.ApiGateway.WebApi' is stopped"));
 
-		app.UseInfrastructure(env, options);
+		app.UseInfrastructure(env, options, featureManager);
 	}
 }

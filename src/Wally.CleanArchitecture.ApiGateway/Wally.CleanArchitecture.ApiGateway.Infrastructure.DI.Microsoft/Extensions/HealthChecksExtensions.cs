@@ -32,7 +32,7 @@ public static class HealthChecksExtensions
 				Predicate = _ => true,
 				ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
 			});
-		app.UseHealthChecksUI();
+		app.UseHealthChecksUI(); // TODO: https://stackoverflow.com/questions/77696948/healtcheckui-in-net-issues-with-icons
 
 		app.UseEndpoints(
 			endpoints =>
