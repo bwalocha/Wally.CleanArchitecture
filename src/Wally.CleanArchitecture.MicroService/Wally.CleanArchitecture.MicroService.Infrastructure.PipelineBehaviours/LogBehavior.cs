@@ -27,7 +27,7 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 		var correlationId = GetCorrelationId();
 
 		using var logContext = LogContext.PushProperty("CorrelationId", correlationId);
-		
+
 		_logger.LogInformation(
 			"[{CorrelationId}] Executing request handler for request type: '{TypeofTRequestName}' and response type: '{TypeofTResponseName}'",
 			correlationId, typeof(TRequest).Name, typeof(TResponse).Name);

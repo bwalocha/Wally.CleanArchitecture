@@ -1,4 +1,5 @@
 ﻿using System;
+using EntityFramework.Exceptions.MySQL.Pomelo;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -87,7 +88,7 @@ public static class PersistenceExtensions
 					typeof(IInfrastructureMySqlAssemblyMarker).Assembly.GetName()
 						.Name);
 			});
-		EntityFramework.Exceptions.MySQL.Pomelo.ExceptionProcessorExtensions.UseExceptionProcessor(options);
+		ExceptionProcessorExtensions.UseExceptionProcessor(options);
 	}
 
 	private static void WithNpgsql(DbContextOptionsBuilder options, AppSettings settings)
