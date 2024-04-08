@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Requests.Users;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Responses.Users;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
+using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Extensions;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Helpers;
 using Wally.CleanArchitecture.MicroService.WebApi;
 using Wally.Lib.DDD.Abstractions.Responses;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using JsonNet.ContractResolvers;
 using Newtonsoft.Json;
 
-namespace Wally.CleanArchitecture.ApiGateway.Tests.IntegrationTests.Extensions;
+namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Extensions;
 
 [SuppressMessage("Major Code Smell", "S4005:\"System.Uri\" arguments should be used instead of strings")]
 public static class HttpClientExtensions
@@ -48,7 +48,7 @@ public static class HttpClientExtensions
 		var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
 
 		using TextReader textReader = new StreamReader(stream);
-		await using JsonReader jsonReader = new JsonTextReader(textReader);
+		using JsonReader jsonReader = new JsonTextReader(textReader);
 
 		return JsonSerializer.Create(JsonSettings)
 			.Deserialize<TResponse>(jsonReader) !;
