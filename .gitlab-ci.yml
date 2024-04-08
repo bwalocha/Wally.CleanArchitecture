@@ -63,6 +63,7 @@ publish:tpl:
     - test:gate_sln
     - test:service_sln
   variables:
+    SOLUTION_NAME: ${TPL_PROJECT_NAME}
     PROJECT_NAME: ${TPL_PROJECT_NAME}
 
 deploy:nuget:tpl:
