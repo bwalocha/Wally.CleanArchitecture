@@ -72,6 +72,7 @@ deploy:nuget:tpl:
   needs:
     - publish:tpl
   variables:
+    SOLUTION_NAME: ${TPL_PROJECT_NAME}
     PROJECT_NAME: ${TPL_PROJECT_NAME}
   environment:
     name: ${ENV}_${TPL_PROJECT_NAME}
@@ -93,7 +94,8 @@ deploy:node:npm:
   needs:
     - test:npm
   variables:
-    PROJECT_NAME: ${SERVICE_SOLUTION_NAME}/${NPM_PROJECT_NAME}/generated
+    SOLUTION_NAME: ${SERVICE_SOLUTION_NAME}
+    PROJECT_NAME: ${NPM_PROJECT_NAME}/generated
   environment:
     name: ${ENV}_${NPM_PROJECT_NAME}
     url: https://www.npmjs.com/package/${NPM_PROJECT_NAME}/v/${VERSION}
