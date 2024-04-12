@@ -60,6 +60,7 @@ publish:tpl:
   extends:
     - .publish:nuget
   needs:
+    - build:tpl
     - test:gate_sln
     - test:service_sln
   variables:
