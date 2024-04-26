@@ -10,13 +10,45 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Testcontainers.MsSql;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Helpers;
 
 public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup>
 	where TStartup : class
 {
+	private readonly MsSqlContainer _dbContainer = new MsSqlBuilder()
+		.WithImage("mcr.microsoft.com/mssql/server:2022-latest")
+		.WithPassword(Guid.NewGuid()
+			.ToString())
+		.WithCleanUp(true)
+		.Build();
+
+	protected override IHost CreateHost(IHostBuilder builder)
+	{
+		_dbContainer
+			.StartAsync()
+			.ConfigureAwait(false)
+			.GetAwaiter()
+			.GetResult();
+
+		return base.CreateHost(builder);
+	}
+
+	protected override void Dispose(bool disposing)
+	{
+		// _dbContainer.StopAsync();
+		_dbContainer.DisposeAsync()
+			.AsTask()
+			.ConfigureAwait(false)
+			.GetAwaiter()
+			.GetResult();
+
+		base.Dispose(disposing);
+	}
+
 	public TService GetRequiredService<TService>()
 		where TService : notnull
 	{
@@ -46,10 +78,26 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 				services.RemoveAll<ApplicationDbContext>();
 
 				// Add ApplicationDbContext using an in-memory database for testing.
-				var databaseName = $"InMemoryDbForTesting_{Guid.NewGuid()}";
+				/*var databaseName = $"InMemoryDbForTesting_{Guid.NewGuid()}";
 				Action<DbContextOptionsBuilder> options = optionsAction =>
 				{
 					optionsAction.UseInMemoryDatabase(databaseName);
+					optionsAction.ConfigureWarnings(a => { a.Ignore(InMemoryEventId.TransactionIgnoredWarning); });
+					optionsAction.EnableSensitiveDataLogging();
+				};*/
+
+				// Add ApplicationDbContext using a SqlServer database for testing.
+				Action<DbContextOptionsBuilder> options = optionsAction =>
+				{
+					optionsAction.UseSqlServer(
+						_dbContainer.GetConnectionString(),
+						opt =>
+						{
+							opt.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
+							opt.MigrationsAssembly(
+								typeof(IInfrastructureSqlServerAssemblyMarker).Assembly.GetName()
+									.Name);
+						});
 					optionsAction.ConfigureWarnings(a => { a.Ignore(InMemoryEventId.TransactionIgnoredWarning); });
 					optionsAction.EnableSensitiveDataLogging();
 				};
