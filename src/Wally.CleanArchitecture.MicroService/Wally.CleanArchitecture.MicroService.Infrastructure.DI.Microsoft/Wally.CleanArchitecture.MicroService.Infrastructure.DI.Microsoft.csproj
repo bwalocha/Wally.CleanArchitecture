@@ -18,10 +18,10 @@
         <PackageReference Include="EntityFrameworkCore.Exceptions.PostgreSQL" Version="8.1.2" />
         <PackageReference Include="EntityFrameworkCore.Exceptions.Sqlite" Version="8.1.2" />
         <PackageReference Include="EntityFrameworkCore.Exceptions.SqlServer" Version="8.1.2" />
-        <PackageReference Include="MassTransit" Version="8.2.0" />
-        <PackageReference Include="MassTransit.Azure.ServiceBus.Core" Version="8.2.0" />
-        <PackageReference Include="MassTransit.Kafka" Version="8.2.0" />
-        <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.0" />
+        <PackageReference Include="MassTransit" Version="8.2.1" />
+        <PackageReference Include="MassTransit.Azure.ServiceBus.Core" Version="8.2.1" />
+        <PackageReference Include="MassTransit.Kafka" Version="8.2.1" />
+        <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.1" />
         <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />

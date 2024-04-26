@@ -439,4 +439,46 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 			.Should()
 			.BeEmpty();
 	}
+
+	[Fact]
+	public async Task Delete_ForExistingResource_SoftDeletesResourceData()
+	{
+		// Arrange
+		var resource1 = UserCreate(1);
+		var resource2 = UserCreate(2);
+		_database.Add(resource1);
+		_database.Add(resource2);
+		await _database.SaveChangesAsync();
+
+		// Act
+		var response = await _httpClient.DeleteAsync($"Users/{resource2.Id.Value}", CancellationToken.None);
+
+		// Assert
+		response.IsSuccessStatusCode.Should()
+			.BeTrue();
+		response.StatusCode.Should()
+			.Be(HttpStatusCode.Accepted);
+		_factory.GetRequiredService<DbContext>()
+			.Set<User>()
+			.Single(a => a.Id == resource1.Id)
+			.IsDeleted.Should()
+			.Be(false);
+		_factory.GetRequiredService<DbContext>()
+			.Set<User>()
+			.FirstOrDefault(a => a.Id == resource2.Id)
+			.Should()
+			.BeNull();
+		_factory.GetRequiredService<DbContext>()
+			.Set<User>()
+			.IgnoreQueryFilters()
+			.Single(a => a.Id == resource1.Id)
+			.IsDeleted.Should()
+			.Be(false);
+		_factory.GetRequiredService<DbContext>()
+			.Set<User>()
+			.IgnoreQueryFilters()
+			.Single(a => a.Id == resource2.Id)
+			.IsDeleted.Should()
+			.Be(true);
+	}
 }

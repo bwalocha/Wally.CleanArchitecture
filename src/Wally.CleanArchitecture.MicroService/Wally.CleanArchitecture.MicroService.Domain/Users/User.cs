@@ -1,8 +1,9 @@
-﻿using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
+﻿using System;
+using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Users;
 
-public class User : AggregateRoot<User, UserId>
+public class User : AggregateRoot<User, UserId>, ISoftDeletable
 {
 	// Hide public .ctor
 #pragma warning disable CS8618
@@ -23,6 +24,11 @@ public class User : AggregateRoot<User, UserId>
 	}
 
 	public string Name { get; private set; }
+
+	public bool IsDeleted { get; private set; }
+	public DateTimeOffset? DeletedAt { get; private set; }
+
+	public UserId? DeletedById { get; private set; }
 
 	public static User Create(string name)
 	{
