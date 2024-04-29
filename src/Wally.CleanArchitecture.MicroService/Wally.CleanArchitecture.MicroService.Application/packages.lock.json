@@ -4,9 +4,9 @@
     "net8.0": {
       "MassTransit.Abstractions": {
         "type": "Direct",
-        "requested": "[8.2.1, )",
-        "resolved": "8.2.1",
-        "contentHash": "9dk3hcAlXXXEVPZC+5UPJnYnQ9Hcv71kXtkHL85w5wtQ43go1Ieso6QJYvCVj++mq61LCjnhJSPlN/eWgScbkw=="
+        "requested": "[8.2.2, )",
+        "resolved": "8.2.2",
+        "contentHash": "kxrXaOMj+koCpkUKyjctv1+vKrk7t8dBU62duD4CoFA1pVdwwaTtiTXEoDfgR+gikT2aKDmP6DNvWOhxia5xOA=="
       },
       "Microsoft.AspNetCore.OData": {
         "type": "Direct",
