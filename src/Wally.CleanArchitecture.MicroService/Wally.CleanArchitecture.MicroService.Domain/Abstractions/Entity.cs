@@ -1,26 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Wally.Lib.DDD.Abstractions.DomainEvents;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
-public class Entity<TEntity, TKey> : IEntity
-	where TEntity : Entity<TEntity, TKey>
-	where TKey : notnull, IComparable<TKey>, IEquatable<TKey>, new()
+public class Entity<TEntity, TStronglyTypedId> : IEntity
+	where TEntity : Entity<TEntity, TStronglyTypedId>
+	where TStronglyTypedId : new()
 {
 	private readonly List<DomainEvent> _domainEvents = new();
 
 	protected Entity()
-		: this(new TKey())
+		: this(new TStronglyTypedId())
 	{
 	}
 
-	protected Entity(TKey id)
+	protected Entity(TStronglyTypedId id)
 	{
 		Id = id;
 	}
 
-	public TKey Id { get; private set; }
+	public TStronglyTypedId Id { get; private set; }
 
 	public IReadOnlyCollection<DomainEvent> GetDomainEvents()
 	{

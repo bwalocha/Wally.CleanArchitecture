@@ -1,30 +1,29 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Exceptions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions;
 
-public class Repository<TAggregateRoot, TKey> : ReadOnlyRepository<TAggregateRoot, TKey>,
-	IRepository<TAggregateRoot, TKey>
-	where TAggregateRoot : AggregateRoot<TAggregateRoot, TKey>
-	where TKey : notnull, IComparable<TKey>, IEquatable<TKey>, IStronglyTypedId<TKey, Guid>, new()
+public class Repository<TAggregateRoot, TStronglyTypedId> : ReadOnlyRepository<TAggregateRoot, TStronglyTypedId>,
+	IRepository<TAggregateRoot, TStronglyTypedId>
+	where TAggregateRoot : AggregateRoot<TAggregateRoot, TStronglyTypedId>
+	where TStronglyTypedId : notnull, new()
 {
 	protected Repository(DbContext context, IMapper mapper)
 		: base(context, mapper)
 	{
 	}
 
-	public Task<TAggregateRoot> GetAsync(TKey id, CancellationToken cancellationToken)
+	public async Task<TAggregateRoot> GetAsync(TStronglyTypedId id, CancellationToken cancellationToken)
 	{
-		var task = GetReadWriteEntitySet()
-			.SingleAsync(a => a.Id.Equals(id), cancellationToken);
-
-		return MapExceptionAsync(task, id, cancellationToken);
+		return await GetReadWriteEntitySet()
+			.SingleOrDefaultAsync(a => a.Id.Equals(id), cancellationToken)
+			?? throw new ResourceNotFoundException<TAggregateRoot>(id);
 	}
 
 	public TAggregateRoot Add(TAggregateRoot aggregateRoot)

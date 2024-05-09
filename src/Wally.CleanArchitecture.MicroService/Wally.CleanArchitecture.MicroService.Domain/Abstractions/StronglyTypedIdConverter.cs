@@ -55,7 +55,7 @@ internal sealed class StronglyTypedIdConverter : TypeConverter
 
 internal sealed class StronglyTypedIdConverter<TStronglyTypedId, TValue> : TypeConverter
 	where TStronglyTypedId : StronglyTypedId<TStronglyTypedId, TValue>
-	where TValue : notnull, IComparable
+	where TValue : struct, IComparable<TValue>, IEquatable<TValue>
 {
 #pragma warning disable S2743
 

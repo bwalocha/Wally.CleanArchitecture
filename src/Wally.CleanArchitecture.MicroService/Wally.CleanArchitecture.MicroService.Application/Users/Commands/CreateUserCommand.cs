@@ -15,7 +15,7 @@ public sealed class CreateUserCommand : ICommand
 	}
 
 	public CreateUserCommand(string name)
-		: this(new UserId(Guid.NewGuid()), name)
+		: this(new UserId(), name)
 	{
 	}
 

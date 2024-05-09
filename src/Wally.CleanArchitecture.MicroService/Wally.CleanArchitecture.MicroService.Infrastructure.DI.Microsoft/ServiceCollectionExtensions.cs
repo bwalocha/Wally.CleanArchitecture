@@ -22,7 +22,7 @@ public static class ServiceCollectionExtensions
 		services.AddCqrs();
 		services.AddOpenApi(Assembly.GetCallingAssembly());
 		services.AddHealthChecks(settings);
-		services.AddAddPersistence(settings);
+		services.AddPersistence(settings);
 		services.AddMapper();
 		services.AddMessaging(settings);
 		services.AddEventHub();

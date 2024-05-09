@@ -18,7 +18,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Exten
 
 public static class PersistenceExtensions
 {
-	public static IServiceCollection AddAddPersistence(this IServiceCollection services, AppSettings settings)
+	public static IServiceCollection AddPersistence(this IServiceCollection services, AppSettings settings)
 	{
 		Action<DbContextOptionsBuilder> dbContextOptions = options =>
 		{
@@ -54,8 +54,9 @@ public static class PersistenceExtensions
 					builder.Ignore(SqlServerEventId.SavepointsDisabledBecauseOfMARS);
 					builder.Log(CoreEventId.SensitiveDataLoggingEnabledWarning);
 				});
-
-			options.EnableSensitiveDataLogging(); // TODO: get from configuration
+#if DEBUG
+			options.EnableSensitiveDataLogging();
+#endif
 		};
 		services.AddDbContext<DbContext, ApplicationDbContext>(dbContextOptions);
 
@@ -88,7 +89,7 @@ public static class PersistenceExtensions
 					typeof(IInfrastructureMySqlAssemblyMarker).Assembly.GetName()
 						.Name);
 			});
-		ExceptionProcessorExtensions.UseExceptionProcessor(options);
+		options.UseExceptionProcessor();
 	}
 
 	private static void WithNpgsql(DbContextOptionsBuilder options, AppSettings settings)

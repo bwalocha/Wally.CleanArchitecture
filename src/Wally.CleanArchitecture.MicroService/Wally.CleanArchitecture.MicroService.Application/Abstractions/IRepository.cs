@@ -1,15 +1,14 @@
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Application.Abstractions;
 
-public interface IRepository<TAggregateRoot, in TKey> : IReadOnlyRepository<TAggregateRoot, TKey>
-	where TAggregateRoot : AggregateRoot<TAggregateRoot, TKey>
-	where TKey : notnull, IComparable<TKey>, IEquatable<TKey>, IStronglyTypedId<TKey, Guid>, new()
+public interface IRepository<TAggregateRoot, TStronglyTypedId> : IReadOnlyRepository<TAggregateRoot, TStronglyTypedId>
+	where TAggregateRoot : AggregateRoot<TAggregateRoot, TStronglyTypedId>
+	where TStronglyTypedId : new()
 {
-	Task<TAggregateRoot> GetAsync(TKey id, CancellationToken cancellationToken);
+	Task<TAggregateRoot> GetAsync(TStronglyTypedId id, CancellationToken cancellationToken);
 
 	TAggregateRoot Add(TAggregateRoot aggregateRoot);
 

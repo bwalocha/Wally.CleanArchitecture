@@ -36,7 +36,7 @@ public class MapperTests
 	{
 		var instance = GetInstanceOf(source);
 		var idProperty = source.GetProperty(nameof(User.Id)) !;
-		idProperty.DeclaringType!.GetProperty(nameof(User.Id)) !.SetValue(instance, new UserId(Guid.NewGuid()));
+		idProperty.DeclaringType!.GetProperty(nameof(User.Id)) !.SetValue(instance, new UserId());
 
 		var act = () => _mapper.Map(instance, source, destination);
 

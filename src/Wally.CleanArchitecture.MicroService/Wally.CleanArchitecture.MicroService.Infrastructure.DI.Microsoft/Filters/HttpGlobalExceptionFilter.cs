@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Exceptions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Filters;
@@ -47,7 +48,7 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 				HandleUnauthorizedAccessException(context);
 
 				break;
-			case ResourceNotFoundException _:
+			case INotFound _:
 				HandleResourceNotFoundException(context);
 
 				break;

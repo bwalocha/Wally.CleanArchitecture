@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
@@ -14,8 +15,7 @@ public static class EntityTypeBuilderExtensions
 	public static void UseStronglyTypedId(this EntityTypeBuilder entityTypeBuilder)
 	{
 		var properties = entityTypeBuilder.Metadata.ClrType.GetProperties()
-			.Where(
-				propertyInfo => propertyInfo.PropertyType.UnwrapNullableType()
+			.Where(a => (Nullable.GetUnderlyingType(a.PropertyType) ?? a.PropertyType)
 					.IsStronglyTypedId());
 
 		foreach (var property in properties)

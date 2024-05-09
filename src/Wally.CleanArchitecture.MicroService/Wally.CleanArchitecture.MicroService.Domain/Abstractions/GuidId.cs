@@ -2,11 +2,11 @@
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
-public class GuidId<TId> : StronglyTypedId<TId, Guid>
-	where TId : StronglyTypedId<TId, Guid>
+public class GuidId<TStronglyTypedId> : StronglyTypedId<TStronglyTypedId, Guid>
+	where TStronglyTypedId : StronglyTypedId<TStronglyTypedId, Guid>
 {
 	protected GuidId()
-		: this(NewSequentialGuid())
+		: this(NewSequentialId())
 	{
 	}
 
@@ -47,7 +47,7 @@ public class GuidId<TId> : StronglyTypedId<TId, Guid>
 		return new Guid(guidArray);
 	}
 	
-	private static Guid NewSequentialGuid()
+	private static Guid NewSequentialId()
 	{
 		var guidBytes = Guid.NewGuid().ToByteArray();
 		var counterBytes = BitConverter.GetBytes(DateTime.UnixEpoch.Ticks);

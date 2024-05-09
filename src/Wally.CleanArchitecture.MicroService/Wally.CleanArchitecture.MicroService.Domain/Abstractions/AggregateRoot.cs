@@ -3,15 +3,16 @@ using Wally.CleanArchitecture.MicroService.Domain.Users;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
-public class AggregateRoot<TAggregateRoot, TKey> : Entity<TAggregateRoot, TKey>, IAggregateRoot
-	where TAggregateRoot : AggregateRoot<TAggregateRoot, TKey>
-	where TKey : notnull, IComparable<TKey>, IEquatable<TKey>, new()
+public class AggregateRoot<TAggregateRoot, TStronglyTypedId>
+	: Entity<TAggregateRoot, TStronglyTypedId>, IAggregateRoot
+	where TAggregateRoot : AggregateRoot<TAggregateRoot, TStronglyTypedId>
+	where TStronglyTypedId : new()
 {
 	protected AggregateRoot()
 	{
 	}
 
-	protected AggregateRoot(TKey id)
+	protected AggregateRoot(TStronglyTypedId id)
 		: base(id)
 	{
 	}

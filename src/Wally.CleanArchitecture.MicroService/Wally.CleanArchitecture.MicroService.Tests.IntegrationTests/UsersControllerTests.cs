@@ -39,7 +39,7 @@ public class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Start
 
 	private static User UserCreate(int index)
 	{
-		var userId = new UserId(Guid.NewGuid());
+		var userId = new UserId();
 		var resource = User
 			.Create($"testUser{index}")
 			.SetCreatedById(userId);
