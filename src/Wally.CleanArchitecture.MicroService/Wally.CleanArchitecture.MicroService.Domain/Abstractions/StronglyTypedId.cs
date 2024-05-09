@@ -74,11 +74,6 @@ public class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStron
 		return x.Equals(y);
 	}
 
-	public int GetHashCode(TStronglyTypedId obj)
-	{
-		return obj.GetHashCode();
-	}
-
 	public sealed override bool Equals(object? obj)
 	{
 		return Equals(obj as TStronglyTypedId);
@@ -113,6 +108,11 @@ public class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStron
 
 			return hashCode;
 		}
+	}
+	
+	public int GetHashCode(TStronglyTypedId obj)
+	{
+		return obj.GetHashCode();
 	}
 
 	/// <summary>

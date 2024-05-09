@@ -2,7 +2,6 @@
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
-[Serializable]
 public class DomainException : Exception
 {
 	public DomainException()

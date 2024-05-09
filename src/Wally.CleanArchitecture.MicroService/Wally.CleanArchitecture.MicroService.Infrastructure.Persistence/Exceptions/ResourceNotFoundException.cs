@@ -3,7 +3,6 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractio
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Exceptions;
 
-[Serializable]
 public class ResourceNotFoundException : Exception, INotFound
 {
 	public ResourceNotFoundException()
