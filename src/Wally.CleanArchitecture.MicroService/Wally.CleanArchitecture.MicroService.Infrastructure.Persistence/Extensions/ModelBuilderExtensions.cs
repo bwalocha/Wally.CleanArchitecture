@@ -24,7 +24,7 @@ public static class ModelBuilderExtensions
 	{
 		var allEntities = modelBuilder.Model.GetEntityTypes();
 		foreach (var entity in allEntities
-					.Where(a => a.ClrType.HasInterface(typeof(IEntity)))
+					.Where(a => typeof(IEntity).IsAssignableFrom(a.ClrType))
 					.Where(a => string.IsNullOrEmpty(a.GetViewName()))
 					.ToArray())
 		{
@@ -39,7 +39,7 @@ public static class ModelBuilderExtensions
 	{
 		var allEntities = modelBuilder.Model.GetEntityTypes();
 		foreach (var entity in allEntities
-					.Where(a => a.ClrType.HasInterface(typeof(ISoftDeletable)))
+					.Where(a => typeof(ISoftDeletable).IsAssignableFrom(a.ClrType))
 					.Where(a => string.IsNullOrEmpty(a.GetViewName()))
 					.Select(a => a.ClrType)
 					.ToArray())

@@ -5,6 +5,8 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 
 public sealed class ApplicationDbContext : DbContext
 {
+	private const string DefaultSchema = "MicroService";
+		
 	public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
 		: base(options)
 	{
@@ -14,7 +16,7 @@ public sealed class ApplicationDbContext : DbContext
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
 		modelBuilder
-			.HasDefaultSchema("MicroService")
+			.HasDefaultSchema(DefaultSchema)
 			.ApplyMappings<IInfrastructurePersistenceAssemblyMarker>()
 			.ApplyStronglyTypedId()
 			.ApplySoftDelete();
