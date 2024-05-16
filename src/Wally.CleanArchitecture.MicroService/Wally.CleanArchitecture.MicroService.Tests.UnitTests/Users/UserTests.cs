@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using FluentAssertions;
 using Wally.CleanArchitecture.MicroService.Domain.Users;

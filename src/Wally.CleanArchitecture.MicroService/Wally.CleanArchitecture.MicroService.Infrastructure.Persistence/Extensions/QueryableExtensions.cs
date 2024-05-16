@@ -12,7 +12,8 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Extens
 
 public static class QueryableExtensions
 {
-	public static IQueryable<TEntity> ApplyFilter<TEntity, TRequest>(this IQueryable<TEntity> query, ODataQueryOptions<TRequest> queryOptions, IMapper mapper)
+	public static IQueryable<TEntity> ApplyFilter<TEntity, TRequest>(this IQueryable<TEntity> query,
+		ODataQueryOptions<TRequest> queryOptions, IMapper mapper)
 		where TRequest : class, IRequest
 	{
 		if (queryOptions.Filter == null)
@@ -25,8 +26,9 @@ public static class QueryableExtensions
 
 		return query.Where(mappedQueryFunc);
 	}
-	
-	public static IQueryable<TEntity> ApplySearch<TEntity, TRequest>(this IQueryable<TEntity> query, ODataQueryOptions<TRequest>? queryOptions, Func<IQueryable<TEntity>, string, IQueryable<TEntity>> applySearch)
+
+	public static IQueryable<TEntity> ApplySearch<TEntity, TRequest>(this IQueryable<TEntity> query,
+		ODataQueryOptions<TRequest>? queryOptions, Func<IQueryable<TEntity>, string, IQueryable<TEntity>> applySearch)
 		where TRequest : class, IRequest
 	{
 		if (queryOptions?.Search == null)
@@ -41,9 +43,10 @@ public static class QueryableExtensions
 
 		return applySearch(query, searchTermNode.Text);
 	}
-	
+
 	public static IQueryable<TEntity> ApplyOrderBy<TEntity, TRequest>(this IQueryable<TEntity> query,
-		ODataQueryOptions<TRequest> queryOptions, Func<IQueryable<TEntity>, IQueryable<TEntity>> applyDefaultOrderBy, IMapper mapper)
+		ODataQueryOptions<TRequest> queryOptions, Func<IQueryable<TEntity>, IQueryable<TEntity>> applyDefaultOrderBy,
+		IMapper mapper)
 		where TRequest : class, IRequest
 	{
 		if (queryOptions.OrderBy == null)
@@ -86,7 +89,7 @@ public static class QueryableExtensions
 
 		return query;
 	}
-	
+
 	private static Expression<Func<T, bool>> GetFilterExpression<T>(FilterQueryOption filter)
 	{
 		var enumerable = Enumerable.Empty<T>()
@@ -94,10 +97,10 @@ public static class QueryableExtensions
 		enumerable = (IQueryable<T>)filter.ApplyTo(enumerable, new ODataQuerySettings());
 		var mce = (MethodCallExpression)enumerable.Expression;
 		var quote = (UnaryExpression)mce.Arguments[1];
-		
+
 		return (Expression<Func<T, bool>>)quote.Operand;
 	}
-	
+
 	private static IEnumerable<LambdaExpression> GetOrderByExpression<T>(OrderByQueryOption order)
 	{
 		var enumerable = Enumerable.Empty<T>()
@@ -120,7 +123,7 @@ public static class QueryableExtensions
 			}
 		}
 	}
-	
+
 	public static IQueryable<TEntity> ApplyTop<TEntity, TRequest>(this IQueryable<TEntity> query,
 		ODataQueryOptions<TRequest> queryOptions)
 		where TRequest : class, IRequest

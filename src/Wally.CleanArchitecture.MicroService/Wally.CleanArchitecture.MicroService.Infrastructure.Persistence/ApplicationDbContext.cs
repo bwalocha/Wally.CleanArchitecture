@@ -6,7 +6,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 public sealed class ApplicationDbContext : DbContext
 {
 	private const string DefaultSchema = "MicroService";
-		
+
 	public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
 		: base(options)
 	{

@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Exceptions;

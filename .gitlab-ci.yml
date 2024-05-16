@@ -64,6 +64,10 @@ publish:tpl:
     - test:gate_sln
     - test:service_sln
   variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+    GIT_STRATEGY: fetch
+    GIT_CHECKOUT: "true"
+    GIT_DEPTH: 1 
     SOLUTION_NAME: ${TPL_PROJECT_NAME}
     PROJECT_NAME: ${TPL_PROJECT_NAME}
 

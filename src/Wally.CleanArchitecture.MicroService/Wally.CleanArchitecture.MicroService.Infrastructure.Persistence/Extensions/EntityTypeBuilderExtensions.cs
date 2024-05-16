@@ -16,7 +16,7 @@ public static class EntityTypeBuilderExtensions
 	{
 		var properties = entityTypeBuilder.Metadata.ClrType.GetProperties()
 			.Where(a => (Nullable.GetUnderlyingType(a.PropertyType) ?? a.PropertyType)
-					.IsStronglyTypedId());
+				.IsStronglyTypedId());
 
 		foreach (var property in properties)
 		{

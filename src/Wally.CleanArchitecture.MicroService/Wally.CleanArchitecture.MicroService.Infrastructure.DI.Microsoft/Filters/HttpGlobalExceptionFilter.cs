@@ -10,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions;
-using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Exceptions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Filters;
 

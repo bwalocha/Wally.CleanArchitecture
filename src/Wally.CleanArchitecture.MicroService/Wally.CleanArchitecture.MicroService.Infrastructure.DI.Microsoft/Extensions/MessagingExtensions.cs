@@ -103,7 +103,8 @@ public static class MessagingExtensions
 		public Task Publish<T>(T message, CancellationToken cancellationToken = new())
 			where T : class
 		{
-			_logger.LogWarning("Message Bus is not enabled. The message '{TypeofTName}' has not been sent.", typeof(T).Name);
+			_logger.LogWarning("Message Bus is not enabled. The message '{TypeofTName}' has not been sent.",
+				typeof(T).Name);
 
 			return Task.CompletedTask;
 		}
