@@ -38,9 +38,9 @@ public class ReadOnlyRepository<TEntity, TStronglyTypedId> : IReadOnlyRepository
 	{
 		var query = GetReadOnlyEntitySet()
 			.Where(a => a.Id.Equals(id));
-		
+
 		return await _mapper.ProjectTo<TResponse>(query)
-			.SingleOrDefaultAsync(cancellationToken)
+				.SingleOrDefaultAsync(cancellationToken)
 		?? throw new ResourceNotFoundException<TResponse>(id);
 	}
 
@@ -51,7 +51,7 @@ public class ReadOnlyRepository<TEntity, TStronglyTypedId> : IReadOnlyRepository
 		where TResponse : class, IResponse
 	{
 		var query = GetReadOnlyEntitySet();
-		
+
 		return GetAsync<TRequest, TResponse>(query, queryOptions, cancellationToken);
 	}
 
@@ -59,7 +59,7 @@ public class ReadOnlyRepository<TEntity, TStronglyTypedId> : IReadOnlyRepository
 		where TResponse : IResponse
 	{
 		return await _mapper.ProjectTo<TResponse>(query)
-			.FirstOrDefaultAsync(cancellationToken)
+				.FirstOrDefaultAsync(cancellationToken)
 		?? throw new ResourceNotFoundException<TResponse>();
 	}
 
@@ -111,8 +111,8 @@ public class ReadOnlyRepository<TEntity, TStronglyTypedId> : IReadOnlyRepository
 		where TResponse : IResponse
 	{
 		return await _mapper.ProjectTo<TResponse>(query)
-			.SingleOrDefaultAsync(cancellationToken)
-			?? throw new ResourceNotFoundException<TResponse>();
+				.SingleOrDefaultAsync(cancellationToken)
+		?? throw new ResourceNotFoundException<TResponse>();
 	}
 
 	protected virtual IQueryable<TEntity> GetReadOnlyEntitySet()

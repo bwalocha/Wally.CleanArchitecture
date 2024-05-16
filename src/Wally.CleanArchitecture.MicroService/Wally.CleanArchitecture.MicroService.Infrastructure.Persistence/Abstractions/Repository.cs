@@ -22,8 +22,8 @@ public class Repository<TAggregateRoot, TStronglyTypedId> : ReadOnlyRepository<T
 	public async Task<TAggregateRoot> GetAsync(TStronglyTypedId id, CancellationToken cancellationToken)
 	{
 		return await GetReadWriteEntitySet()
-			.SingleOrDefaultAsync(a => a.Id.Equals(id), cancellationToken)
-			?? throw new ResourceNotFoundException<TAggregateRoot>(id);
+				.SingleOrDefaultAsync(a => a.Id.Equals(id), cancellationToken)
+		?? throw new ResourceNotFoundException<TAggregateRoot>(id);
 	}
 
 	public TAggregateRoot Add(TAggregateRoot aggregateRoot)
