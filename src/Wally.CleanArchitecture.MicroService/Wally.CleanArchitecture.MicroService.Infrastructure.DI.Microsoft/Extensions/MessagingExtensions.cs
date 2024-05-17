@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
+using Confluent.Kafka;
 using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -42,9 +43,9 @@ public static class MessagingExtensions
 								rider.AddConsumersFromNamespaceContaining<IInfrastructureMessagingAssemblyMarker>();
 
 								// TODO: auto-register
-								rider.AddProducer<UserCreatedMessage>(nameof(UserCreatedMessage));
+								rider.AddProducer<UserCreatedMessage>(typeof(UserCreatedMessage).FullName);
 
-								// rider.AddProducer<UserUpdatedMessage>(nameof(FileModifiedMessage));
+								// rider.AddProducer<UserUpdatedMessage>(typeof(FileModifiedMessage).FullName);
 
 								rider.UsingKafka(
 									(context, k) =>
@@ -53,10 +54,14 @@ public static class MessagingExtensions
 										k.Host(settings.ConnectionStrings.ServiceBus);
 
 										// TODO: auto-register
-										k.TopicEndpoint<UserCreatedMessage>(
+										k.TopicEndpoint<Wally.Identity.Messages.Users.UserCreatedMessage>(
+											typeof(Wally.Identity.Messages.Users.UserCreatedMessage).FullName,
 											typeof(IInfrastructureMessagingAssemblyMarker).Namespace,
-											typeof(IInfrastructureMessagingAssemblyMarker).Namespace,
-											e => { e.ConfigureConsumer<UserCreatedMessageConsumer>(context); });
+											e =>
+											{
+												e.AutoOffsetReset = AutoOffsetReset.Earliest;
+												e.ConfigureConsumer<UserCreatedMessageConsumer>(context);
+											});
 									});
 
 								services.AddScoped<IBus, KafkaBus>();
