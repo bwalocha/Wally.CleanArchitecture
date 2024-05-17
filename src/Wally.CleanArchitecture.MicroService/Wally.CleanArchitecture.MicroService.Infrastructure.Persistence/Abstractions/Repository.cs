@@ -18,39 +18,39 @@ public class Repository<TAggregateRoot, TStronglyTypedId> : ReadOnlyRepository<T
 		: base(context, mapper)
 	{
 	}
-
+	
 	public async Task<TAggregateRoot> GetAsync(TStronglyTypedId id, CancellationToken cancellationToken)
 	{
 		return await GetReadWriteEntitySet()
 				.SingleOrDefaultAsync(a => a.Id.Equals(id), cancellationToken)
 		?? throw new ResourceNotFoundException<TAggregateRoot>(id);
 	}
-
+	
 	public TAggregateRoot Add(TAggregateRoot aggregateRoot)
 	{
 		return DbContext.Add(aggregateRoot)
 			.Entity;
 	}
-
+	
 	public TAggregateRoot Remove(TAggregateRoot aggregateRoot)
 	{
 		return DbContext.Remove(aggregateRoot)
 			.Entity;
 	}
-
+	
 	public TAggregateRoot Update(TAggregateRoot aggregateRoot)
 	{
 		DbContext.Attach(aggregateRoot)
 			.State = EntityState.Modified;
-
+		
 		return aggregateRoot;
 	}
-
+	
 	protected IQueryable<TAggregateRoot> GetReadWriteEntitySet()
 	{
 		return WithIncludes(DbContext.Set<TAggregateRoot>());
 	}
-
+	
 	protected virtual IQueryable<TAggregateRoot> WithIncludes(DbSet<TAggregateRoot> set)
 	{
 		return set;

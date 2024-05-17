@@ -20,14 +20,14 @@ public class DomainTests
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.InheritsGenericClass(typeof(Entity<,>)))
 			.Types();
-
+		
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			types.Should()
 				.HaveOnlyPrivateParameterlessConstructor();
 		}
 	}
-
+	
 	[Fact]
 	public void Domain_AggregateRootAndEntity_ShouldNotExposeSetter()
 	{
@@ -35,7 +35,7 @@ public class DomainTests
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.InheritsGenericClass(typeof(Entity<,>)))
 			.Types();
-
+		
 		using (new AssertionScope())
 		{
 			foreach (var type in types)
@@ -61,7 +61,7 @@ public class DomainTests
 			}
 		}
 	}
-
+	
 	[Fact]
 	public void Domain_AggregateRootAndEntity_ShouldNotExposeWritableCollection()
 	{
@@ -69,7 +69,7 @@ public class DomainTests
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.InheritsGenericClass(typeof(Entity<,>)))
 			.Types();
-
+		
 		using (new AssertionScope())
 		{
 			foreach (var type in types)
@@ -91,7 +91,7 @@ public class DomainTests
 			}
 		}
 	}
-
+	
 	[Fact]
 	public void Domain_ValueObject_ShouldNotExposeSetter()
 	{
@@ -99,7 +99,7 @@ public class DomainTests
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.InheritsGenericClass(typeof(ValueObject<,>)))
 			.Types();
-
+		
 		using (new AssertionScope())
 		{
 			foreach (var type in types)

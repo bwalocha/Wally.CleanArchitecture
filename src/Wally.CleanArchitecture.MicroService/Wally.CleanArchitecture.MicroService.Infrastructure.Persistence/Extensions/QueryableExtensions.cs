@@ -20,13 +20,13 @@ public static class QueryableExtensions
 		{
 			return query;
 		}
-
+		
 		var queryFunc = GetFilterExpression<TRequest>(queryOptions.Filter);
 		var mappedQueryFunc = mapper.MapExpression<Expression<Func<TEntity, bool>>>(queryFunc);
-
+		
 		return query.Where(mappedQueryFunc);
 	}
-
+	
 	public static IQueryable<TEntity> ApplySearch<TEntity, TRequest>(this IQueryable<TEntity> query,
 		ODataQueryOptions<TRequest>? queryOptions, Func<IQueryable<TEntity>, string, IQueryable<TEntity>> applySearch)
 		where TRequest : class, IRequest
@@ -35,15 +35,15 @@ public static class QueryableExtensions
 		{
 			return query;
 		}
-
+		
 		if (queryOptions.Search.SearchClause.Expression is not SearchTermNode searchTermNode)
 		{
 			throw new NotSupportedException($"Advanced Search on {typeof(TEntity).Name} is not supported");
 		}
-
+		
 		return applySearch(query, searchTermNode.Text);
 	}
-
+	
 	public static IQueryable<TEntity> ApplyOrderBy<TEntity, TRequest>(this IQueryable<TEntity> query,
 		ODataQueryOptions<TRequest> queryOptions, Func<IQueryable<TEntity>, IQueryable<TEntity>> applyDefaultOrderBy,
 		IMapper mapper)
@@ -53,9 +53,9 @@ public static class QueryableExtensions
 		{
 			return applyDefaultOrderBy(query);
 		}
-
+		
 		var queryFuncs = GetOrderByExpression<TRequest>(queryOptions.OrderBy);
-
+		
 		foreach (var queryFunc in queryFuncs.Select((a, i) => new { Expression = a, Index = i, }))
 		{
 			var destExpressionType = typeof(Expression<>).MakeGenericType(
@@ -66,7 +66,7 @@ public static class QueryableExtensions
 				destExpressionType);
 			string orderMethodName;
 			var direction = queryOptions.OrderBy.OrderByNodes[queryFunc.Index].Direction;
-
+			
 			if (direction == OrderByDirection.Ascending)
 			{
 				orderMethodName = queryFunc.Index == 0 ? nameof(Queryable.OrderBy) : nameof(Queryable.ThenBy);
@@ -77,19 +77,19 @@ public static class QueryableExtensions
 					? nameof(Queryable.OrderByDescending)
 					: nameof(Queryable.ThenByDescending);
 			}
-
+			
 			var methodInfo = typeof(Queryable).GetMethods()
 				.Where(a => a.Name == orderMethodName)
 				.ToArray();
 			var mi = methodInfo[0]
 				.MakeGenericMethod(typeof(TEntity), mappedQueryFunc.ReturnType);
-
+			
 			query = (IOrderedQueryable<TEntity>)mi.Invoke(null, new object[] { query, mappedQueryFunc, }) !;
 		}
-
+		
 		return query;
 	}
-
+	
 	private static Expression<Func<T, bool>> GetFilterExpression<T>(FilterQueryOption filter)
 	{
 		var enumerable = Enumerable.Empty<T>()
@@ -97,17 +97,17 @@ public static class QueryableExtensions
 		enumerable = (IQueryable<T>)filter.ApplyTo(enumerable, new ODataQuerySettings());
 		var mce = (MethodCallExpression)enumerable.Expression;
 		var quote = (UnaryExpression)mce.Arguments[1];
-
+		
 		return (Expression<Func<T, bool>>)quote.Operand;
 	}
-
+	
 	private static IEnumerable<LambdaExpression> GetOrderByExpression<T>(OrderByQueryOption order)
 	{
 		var enumerable = Enumerable.Empty<T>()
 			.AsQueryable();
 		enumerable = order.ApplyTo(enumerable, new ODataQuerySettings());
 		var mce = (MethodCallExpression)enumerable.Expression;
-
+		
 		foreach (var argument in mce.Arguments)
 		{
 			switch (argument)
@@ -123,7 +123,7 @@ public static class QueryableExtensions
 			}
 		}
 	}
-
+	
 	public static IQueryable<TEntity> ApplyTop<TEntity, TRequest>(this IQueryable<TEntity> query,
 		ODataQueryOptions<TRequest> queryOptions)
 		where TRequest : class, IRequest
@@ -132,10 +132,10 @@ public static class QueryableExtensions
 		{
 			return query;
 		}
-
+		
 		return query.Take(queryOptions.Top.Value);
 	}
-
+	
 	public static IQueryable<TEntity> ApplySkip<TEntity, TRequest>(this IQueryable<TEntity> query,
 		ODataQueryOptions<TRequest> queryOptions)
 		where TRequest : class, IRequest
@@ -144,7 +144,7 @@ public static class QueryableExtensions
 		{
 			return query;
 		}
-
+		
 		return query.Skip(queryOptions.Skip.Value);
 	}
 }

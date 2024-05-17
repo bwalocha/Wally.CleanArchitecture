@@ -10,7 +10,7 @@ public static class MapperExtensions
 	{
 		services.AddAutoMapper(cfg => { cfg.AddExpressionMapping(); },
 			typeof(IApplicationMapperProfilesAssemblyMarker).Assembly);
-
+		
 		return services;
 	}
 }

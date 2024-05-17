@@ -10,7 +10,7 @@ public class GuidIdProfile : Profile
 	{
 		CreateMap<IStronglyTypedId<Guid>, Guid>()
 			.ConvertUsing(a => a.Value);
-
+		
 		CreateMap<IStronglyTypedId<Guid>?, Guid?>()
 			.ConvertUsing(a => a == null ? null : a.Value);
 	}

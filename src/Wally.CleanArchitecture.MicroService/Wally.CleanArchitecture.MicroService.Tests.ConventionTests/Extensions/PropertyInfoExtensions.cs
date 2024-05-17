@@ -17,16 +17,16 @@ public static class PropertyInfoExtensions
 		{
 			return false;
 		}
-
+		
 		var setMethod = property.SetMethod;
 		if (setMethod == null)
 		{
 			return true;
 		}
-
+		
 		// Get the modifiers applied to the return parameter.
 		var setMethodReturnParameterModifiers = setMethod.ReturnParameter.GetRequiredCustomModifiers();
-
+		
 		// Init-only properties are marked with the IsExternalInit type.
 		return setMethodReturnParameterModifiers.Contains(typeof(IsExternalInit));
 	}

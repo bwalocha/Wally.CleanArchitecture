@@ -17,14 +17,14 @@ public class RequestTests
 	public void Application_Request_ShouldNotExposeSetter()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-
+		
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var assembly in assemblies)
 			{
 				var types = AllTypes.From(assembly)
 					.ThatImplement<IRequest>();
-
+				
 				foreach (var type in types)
 				{
 					foreach (var property in type.Properties())
@@ -33,7 +33,7 @@ public class RequestTests
 						{
 							continue;
 						}
-
+						
 						property.Should()
 							.BeWritable(
 								CSharpAccessModifier.Private,
@@ -45,32 +45,32 @@ public class RequestTests
 			}
 		}
 	}
-
+	
 	[Fact]
 	public void Application_ClassesWhichImplementsIRequest_ShouldBeInTheSameProject()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var applicationNamespace = $"{typeof(IApplicationContractsAssemblyMarker).Namespace}.Requests";
-
+		
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var assembly in assemblies)
 			{
 				var types = AllTypes.From(assembly);
-
+				
 				types.ThatImplement<IRequest>()
 					.Should()
 					.BeUnderNamespace(applicationNamespace);
 			}
 		}
 	}
-
+	
 	[Fact]
 	public void Application_AllClassesEndsWithRequest_ShouldImplementIRequest()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
-
+		
 		using (new AssertionScope())
 		{
 			foreach (var type in types.Where(a => a.Name.EndsWith("Request") && a.Name != nameof(IRequest)))
@@ -80,13 +80,13 @@ public class RequestTests
 			}
 		}
 	}
-
+	
 	[Fact]
 	public void Application_AllClassesImplementsIRequest_ShouldHaveRequestSuffix()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
-
+		
 		using (new AssertionScope())
 		{
 			foreach (var type in types.ThatImplement<IRequest>())
@@ -96,12 +96,12 @@ public class RequestTests
 			}
 		}
 	}
-
+	
 	[Fact]
 	public void Application_AllClassesImplementsIRequest_ShouldHaveCorrespondingValidator()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-
+		
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var assembly in assemblies)

@@ -27,20 +27,20 @@ public static class WebApiExtensions
 			{
 				options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 			});
-
+		
 		services.AddValidatorsFromAssemblyContaining<IApplicationAssemblyMarker>();
 		services.AddValidatorsFromAssemblyContaining<IApplicationContractsAssemblyMarker>();
 		services.AddFluentValidationAutoValidation(config => config.DisableDataAnnotationsValidation = true);
-
+		
 		// services.AddFluentValidationClientsideAdapters(); // TODO: consider config => config.ClientValidatorFactories
-
+		
 		return services;
 	}
-
+	
 	public static IApplicationBuilder UseWebApi(this IApplicationBuilder app)
 	{
 		app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-
+		
 		return app;
 	}
 }

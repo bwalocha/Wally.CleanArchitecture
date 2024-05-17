@@ -9,7 +9,7 @@ public class ResourceNotFoundException<TResource> : Exception, INotFound
 		: base($"The '{typeof(TResource).Name}' could not be found")
 	{
 	}
-
+	
 	public ResourceNotFoundException(object id)
 		: base($"The '{typeof(TResource).Name}' with Id='{id}' could not be found")
 	{

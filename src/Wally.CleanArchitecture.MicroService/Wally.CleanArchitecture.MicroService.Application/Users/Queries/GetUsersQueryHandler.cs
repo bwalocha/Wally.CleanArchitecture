@@ -10,12 +10,12 @@ namespace Wally.CleanArchitecture.MicroService.Application.Users.Queries;
 public class GetUsersQueryHandler : QueryHandler<GetUsersQuery, PagedResponse<GetUsersResponse>>
 {
 	private readonly IUserReadOnlyRepository _userRepository;
-
+	
 	public GetUsersQueryHandler(IUserReadOnlyRepository userRepository)
 	{
 		_userRepository = userRepository;
 	}
-
+	
 	public override Task<PagedResponse<GetUsersResponse>> HandleAsync(
 		GetUsersQuery query,
 		CancellationToken cancellationToken)

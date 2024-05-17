@@ -20,12 +20,12 @@ namespace Wally.CleanArchitecture.MicroService.WebApi.Controllers;
 public class UsersController : ControllerBase
 {
 	private readonly ISender _mediator;
-
+	
 	public UsersController(ISender mediator)
 	{
 		_mediator = mediator;
 	}
-
+	
 	/// <summary>
 	///     Gets Users.
 	/// </summary>
@@ -42,10 +42,10 @@ public class UsersController : ControllerBase
 	{
 		var query = new GetUsersQuery(queryOptions);
 		var response = await _mediator.Send(query, cancellationToken);
-
+		
 		return Ok(response);
 	}
-
+	
 	/// <summary>
 	///     Gets User by Id.
 	/// </summary>
@@ -61,10 +61,10 @@ public class UsersController : ControllerBase
 	{
 		var query = new GetUserQuery(new UserId(id));
 		var result = await _mediator.Send(query, cancellationToken);
-
+		
 		return Ok(result);
 	}
-
+	
 	/// <summary>
 	///     Creates User.
 	/// </summary>
@@ -83,10 +83,10 @@ public class UsersController : ControllerBase
 	{
 		var command = new CreateUserCommand(request.Name);
 		await _mediator.Send(command, cancellationToken);
-
+		
 		return Ok();
 	}
-
+	
 	/// <summary>
 	///     Updates User by Id.
 	/// </summary>
@@ -107,10 +107,10 @@ public class UsersController : ControllerBase
 	{
 		var command = new UpdateUserCommand(new UserId(id), request.Name);
 		await _mediator.Send(command, cancellationToken);
-
+		
 		return Ok();
 	}
-
+	
 	/// <summary>
 	///     Deletes User by Id.
 	/// </summary>
@@ -126,7 +126,7 @@ public class UsersController : ControllerBase
 	{
 		var command = new DeleteUserCommand(new UserId(id));
 		await _mediator.Send(command, cancellationToken);
-
+		
 		return Accepted();
 	}
 }

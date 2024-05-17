@@ -9,6 +9,6 @@ public class UpdateUserRequest : IRequest
 	{
 		Name = name;
 	}
-
+	
 	public string Name { get; }
 }

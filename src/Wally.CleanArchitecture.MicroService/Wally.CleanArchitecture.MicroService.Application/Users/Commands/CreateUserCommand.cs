@@ -12,13 +12,13 @@ public sealed class CreateUserCommand : ICommand
 		UserId = userId;
 		Name = name;
 	}
-
+	
 	public CreateUserCommand(string name)
 		: this(new UserId(), name)
 	{
 	}
-
+	
 	public UserId UserId { get; }
-
+	
 	public string Name { get; }
 }

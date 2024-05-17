@@ -17,14 +17,14 @@ public class QueryTests
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)));
-
+		
 		types
 			.Types()
 			.Properties()
 			.Should()
 			.NotBeWritable("query should be immutable");
 	}
-
+	
 	[Fact]
 	public void Application_Query_ShouldBeExcludedFromCodeCoverage()
 	{
@@ -32,13 +32,13 @@ public class QueryTests
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)))
 			.Where(a => a.IsClass);
-
+		
 		types
 			.Types()
 			.Should()
 			.BeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
 	}
-
+	
 	[Fact]
 	public void Application_Query_ShouldBeSealed()
 	{
@@ -46,18 +46,18 @@ public class QueryTests
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)))
 			.Where(a => a.IsClass);
-
+		
 		types
 			.Types()
 			.Should()
 			.BeSealed();
 	}
-
+	
 	[Fact]
 	public void Application_Query_ShouldHaveCorrespondingHandler()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-
+		
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var assembly in assemblies)

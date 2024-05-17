@@ -23,7 +23,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 	where TStartup : class
 {
 	private MsSqlContainer _dbContainer = null!;
-
+	
 	protected override void Dispose(bool disposing)
 	{
 		_dbContainer.DisposeAsync()
@@ -31,10 +31,10 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 			.ConfigureAwait(false)
 			.GetAwaiter()
 			.GetResult();
-
+		
 		base.Dispose(disposing);
 	}
-
+	
 	public TService GetRequiredService<TService>()
 		where TService : notnull
 	{
@@ -42,15 +42,15 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 		return scopeFactory!.CreateScope()
 			.ServiceProvider.GetRequiredService<TService>();
 	}
-
+	
 	public async Task<int> SeedAsync(params object[] entities)
 	{
 		var dbContext = GetRequiredService<DbContext>();
-
+		
 		await dbContext.AddRangeAsync(entities);
 		return await dbContext.SaveChangesAsync();
 	}
-
+	
 	protected override IHostBuilder CreateHostBuilder()
 	{
 		return base.CreateHostBuilder() !.ConfigureAppConfiguration(
@@ -62,7 +62,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 				})
 			.UseEnvironment("IntegrationTests");
 	}
-
+	
 	protected override void ConfigureWebHost(IWebHostBuilder builder)
 	{
 		builder.ConfigureTestServices(
@@ -72,27 +72,27 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 				services.AddTransient<IBus, BusStub>();
 			});
 	}
-
+	
 	private AppSettings GetAppSettings(IServiceCollection services)
 	{
 		// Create a scope to obtain a reference to the AppConfiguration
 		using var scope = services.BuildServiceProvider()
 			.CreateScope();
 		var scopedServices = scope.ServiceProvider;
-
+		
 		return scopedServices.GetRequiredService<IOptions<AppSettings>>()
 			.Value;
 	}
-
+	
 	private void ConfigureDbContext(IServiceCollection services)
 	{
 		services.RemoveAll<DbContextOptions<ApplicationDbContext>>();
 		services.RemoveAll<ApplicationDbContext>();
-
+		
 		var settings = GetAppSettings(services);
-
+		
 		Action<DbContextOptionsBuilder> options;
-
+		
 		switch (settings.Database.ProviderType)
 		{
 			case DatabaseProviderType.InMemory:
@@ -136,13 +136,13 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 			default:
 				throw new NotSupportedException();
 		}
-
+		
 		services.AddDbContext<DbContext, ApplicationDbContext>(options);
-
+		
 		// Create a scope to obtain a reference to the AppConfiguration
 		using var scope = services.BuildServiceProvider()
 			.CreateScope();
-
+		
 		// Ensure the database is created.
 		var database = scope.ServiceProvider.GetRequiredService<DbContext>();
 		database.Database.EnsureCreated();

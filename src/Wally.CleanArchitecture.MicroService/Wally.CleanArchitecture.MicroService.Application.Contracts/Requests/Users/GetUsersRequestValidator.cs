@@ -9,7 +9,7 @@ public class GetUsersRequestValidator : AbstractValidator<GetUsersRequest>
 		RuleFor(a => a.Id)
 			.NotEmpty()
 			.When(a => a.Id != null);
-
+		
 		RuleFor(a => a.Name)
 			.NotEmpty()
 			.MaximumLength(256)

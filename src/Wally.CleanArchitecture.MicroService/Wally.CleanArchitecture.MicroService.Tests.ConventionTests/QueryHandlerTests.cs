@@ -14,7 +14,7 @@ public class QueryHandlerTests
 	public void Application_AllClassesEndsWithQueryHandler_ShouldImplementIQueryHandler()
 	{
 		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
-
+		
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var type in applicationTypes.Where(a => a.Name.EndsWith("QueryHandler")))
@@ -26,7 +26,7 @@ public class QueryHandlerTests
 			}
 		}
 	}
-
+	
 	[Fact]
 	public void Application_AllClassesImplementedIQueryHandler_ShouldEndsWithQueryHandler()
 	{
@@ -36,7 +36,7 @@ public class QueryHandlerTests
 			.Where(a => !a.IsAbstract)
 			.Where(
 				a => a.ImplementsGenericInterface(typeof(IQueryHandler<,>)));
-
+		
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var type in handlerTypes)

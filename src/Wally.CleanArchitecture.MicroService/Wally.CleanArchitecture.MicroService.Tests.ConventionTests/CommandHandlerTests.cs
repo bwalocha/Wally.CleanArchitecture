@@ -14,7 +14,7 @@ public class CommandHandlerTests
 	public void Application_AllClassesEndsWithCommandHandler_ShouldImplementICommandHandler()
 	{
 		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
-
+		
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var type in applicationTypes.Where(a => a.Name.EndsWith("CommandHandler")))
@@ -28,7 +28,7 @@ public class CommandHandlerTests
 			}
 		}
 	}
-
+	
 	[Fact]
 	public void Application_AllClassesImplementedICommandHandler_ShouldEndsWithCommandHandler()
 	{
@@ -39,7 +39,7 @@ public class CommandHandlerTests
 			.Where(
 				a => a.ImplementsGenericInterface(typeof(ICommandHandler<>)) ||
 					a.ImplementsGenericInterface(typeof(ICommandHandler<,>)));
-
+		
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var type in commandHandlerTypes)

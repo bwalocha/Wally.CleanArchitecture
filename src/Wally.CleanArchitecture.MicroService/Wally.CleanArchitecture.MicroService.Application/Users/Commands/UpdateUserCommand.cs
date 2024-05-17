@@ -12,8 +12,8 @@ public sealed class UpdateUserCommand : ICommand
 		UserId = userId;
 		Name = name;
 	}
-
+	
 	public UserId UserId { get; }
-
+	
 	public string Name { get; }
 }

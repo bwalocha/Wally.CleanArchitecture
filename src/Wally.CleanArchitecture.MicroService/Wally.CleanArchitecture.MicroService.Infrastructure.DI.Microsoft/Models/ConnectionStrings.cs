@@ -3,6 +3,6 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Model
 public class ConnectionStrings
 {
 	public string Database { get; init; } = null!;
-
+	
 	public string ServiceBus { get; init; } = null!;
 }
