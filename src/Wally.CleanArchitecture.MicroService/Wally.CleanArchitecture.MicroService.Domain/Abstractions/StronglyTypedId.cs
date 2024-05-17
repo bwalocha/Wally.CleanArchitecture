@@ -21,6 +21,11 @@ public class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStron
 	
 	public TValue Value { get; }
 	
+	public int CompareTo(TStronglyTypedId? other)
+	{
+		return other is null ? 1 : Value.CompareTo(other.Value);
+	}
+	
 	public bool Equals(TStronglyTypedId? other)
 	{
 		if (other is null)
@@ -36,6 +41,16 @@ public class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStron
 		return GetType() == other.GetType() && Value.Equals(other.Value);
 	}
 	
+	public override bool Equals(object? obj)
+	{
+		return Equals(obj as TStronglyTypedId);
+	}
+	
+	public override int GetHashCode()
+	{
+		return Value.GetHashCode();
+	}
+	
 	public override string? ToString()
 	{
 		return Value.ToString();
@@ -43,7 +58,7 @@ public class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStron
 }
 
 public interface IStronglyTypedId<TStronglyTypedId, TValue>
-	: IStronglyTypedId<TValue>, IEquatable<TStronglyTypedId>
+	: IStronglyTypedId<TValue>, IEquatable<TStronglyTypedId>, IComparable<TStronglyTypedId>
 	where TValue : struct, IEquatable<TValue>
 {
 }

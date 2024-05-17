@@ -26,7 +26,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 	
 	protected override void Dispose(bool disposing)
 	{
-		_dbContainer.DisposeAsync()
+		_dbContainer?.DisposeAsync()
 			.AsTask()
 			.ConfigureAwait(false)
 			.GetAwaiter()
