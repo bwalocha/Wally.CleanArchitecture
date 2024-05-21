@@ -633,8 +633,8 @@
       },
       "Swashbuckle.AspNetCore.SwaggerUI": {
         "type": "Transitive",
-        "resolved": "6.6.1",
-        "contentHash": "a+nN88DS6OuzaPqwFox8nvEuvsrJFXW4NgzeRBUdGqLbUb1yTcIkuzUS3gbzPXC8HQ+NmbydeMRFudnNX2NKag=="
+        "resolved": "6.6.2",
+        "contentHash": "mBBb+/8Hm2Q3Wygag+hu2jj69tZW5psuv0vMRXY07Wy+Rrj40vRP8ZTbKBhs91r45/HXT4aY4z0iSBYx1h6JvA=="
       },
       "System.CodeDom": {
         "type": "Transitive",
@@ -785,7 +785,7 @@
           "Microsoft.Extensions.Configuration.Abstractions": "[8.0.0, )",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[8.0.1, )",
           "Microsoft.FeatureManagement.AspNetCore": "[3.3.0, )",
-          "Swashbuckle.AspNetCore.SwaggerUI": "[6.6.1, )",
+          "Swashbuckle.AspNetCore.SwaggerUI": "[6.6.2, )",
           "Yarp.ReverseProxy": "[2.1.0, )"
         }
       }
