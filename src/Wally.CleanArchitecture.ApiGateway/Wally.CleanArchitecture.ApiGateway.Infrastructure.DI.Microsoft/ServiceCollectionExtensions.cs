@@ -24,6 +24,7 @@ public static class ServiceCollectionExtensions
 		services.AddHealthChecks(settings);
 		services.AddApiCors(settings.Cors);
 		services.AddOpenApi(Assembly.GetCallingAssembly(), settings);
+		services.AddOpenTelemetry(settings.OpenTelemetry);
 
 		return services;
 	}

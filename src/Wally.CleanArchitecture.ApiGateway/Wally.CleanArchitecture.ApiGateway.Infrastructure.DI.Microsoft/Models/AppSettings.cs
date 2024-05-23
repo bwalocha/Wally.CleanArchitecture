@@ -9,4 +9,6 @@ public class AppSettings
 	public CorsSettings Cors { get; } = new();
 
 	public ReverseProxySettings ReverseProxy { get; } = new();
+	
+	public OpenTelemetrySettings OpenTelemetry { get; } = new();
 }

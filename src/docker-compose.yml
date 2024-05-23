@@ -1,0 +1,32 @@
+﻿version: '3.9'
+
+services:
+    gateway_api:
+        container_name: gateway_api
+        image: wally.cleanarchitecture.apigateway.webapi
+        restart: "no"
+        build:
+            context: .
+            dockerfile: ./Wally.CleanArchitecture.ApiGateway/Wally.CleanArchitecture.ApiGateway.WebApi/Dockerfile.development
+        environment:
+            TZ: Europe/Warsaw
+            PROJECT_NAME: Wally.CleanArchitecture.ApiGateway.WebApi
+            DOTNET_DASHBOARD_OTLP_ENDPOINT_URL: http://aspire:18889
+        volumes:
+            - ./Wally.CleanArchitecture.ApiGateway/Wally.CleanArchitecture.ApiGateway.WebApi/appsettings.Development.json:/app/appsettings.json:ro
+
+    aspire:
+        # http://localhost:18888
+        # http://localhost:18889
+        image: mcr.microsoft.com/dotnet/nightly/aspire-dashboard:latest
+        container_name: aspire
+        ports:
+            - "18888:18888"
+            - "18889:18889"
+#        environment:
+#            DASHBOARD__OTLP__AUTHMODE: ApiKey
+#            DASHBOARD__OTLP__PRIMARYAPIKEY: 6da31e39-07af-4210-9e8c-5393f8c6ce0c
+
+networks:
+    default:
+        name: "Wally.CleanArchitecture"
