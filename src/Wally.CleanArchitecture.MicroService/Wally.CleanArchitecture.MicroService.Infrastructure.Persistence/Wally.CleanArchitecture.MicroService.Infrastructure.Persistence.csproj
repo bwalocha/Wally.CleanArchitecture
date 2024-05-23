@@ -7,10 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" Version="13.0.1" />
-        <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="7.0.1" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.5" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.5" />
+        <PackageReference Include="AutoMapper" />
+        <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
     </ItemGroup>
 
     <ItemGroup>

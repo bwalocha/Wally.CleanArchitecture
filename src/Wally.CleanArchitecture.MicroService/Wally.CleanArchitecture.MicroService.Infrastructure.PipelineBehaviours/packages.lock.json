@@ -47,15 +47,24 @@
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
-        "requested": "[9.25.0.90414, )",
-        "resolved": "9.25.0.90414",
-        "contentHash": "T5zhLMv1uC98eDXZtLNOcS+fIlRJZ8VNlWLaXVlgmI7wPuYwTPDpfaKXB0UfTMFAvnMCAsG2kFpdRszUY3kh5g=="
+        "requested": "[9.25.1.91650, )",
+        "resolved": "9.25.1.91650",
+        "contentHash": "Z1/H8vGk2FZ8m6TK++A1Tn5npEw0L0ZNVAgf0aPI/nkq4mTER+enRZcgrkhdSo1mGbFDFgEh5ym/j3Onk6mROA=="
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
         "requested": "[1.1.118, )",
         "resolved": "1.1.118",
         "contentHash": "Onx6ovGSqXSK07n/0eM3ZusiNdB6cIlJdabQhWGgJp3Vooy9AaLS/tigeybOJAobqbtggTamoWndz72JscZBvw=="
+      },
+      "Wally.Identity.Messages": {
+        "type": "Direct",
+        "requested": "[2.1.1842, )",
+        "resolved": "2.1.1842",
+        "contentHash": "fJPUxPvGTE46eEbnidc61/u3drFaV9+avPB9KhiSbWwns9tTRyZJ6weUAFP2QoOn09z+e7s53QNuFoxcoqONpg==",
+        "dependencies": {
+          "FluentValidation": "11.5.1"
+        }
       },
       "Wally.Lib.DDD.Abstractions": {
         "type": "Direct",
@@ -72,17 +81,6 @@
         "type": "Transitive",
         "resolved": "2.0.1",
         "contentHash": "FYv95bNT4UwcNA+G/J1oX5OpRiSUxteXaUt2BJbRSdRNiIUNbggJF69wy6mnk2wYToaanpdXZdCwVylt96MpwQ=="
-      },
-      "Microsoft.AspNetCore.OData": {
-        "type": "Transitive",
-        "resolved": "8.2.0",
-        "contentHash": "no2bu7pbz0cxrVg2ORoMw29dyHtKAOXxF94Ha0bFwS576yow7kTc6AdERgp5lAYCfK/Snth0sO9qPdV7D/QKuw==",
-        "dependencies": {
-          "Microsoft.OData.Core": "[7.16.0, 8.0.0)",
-          "Microsoft.OData.Edm": "[7.16.0, 8.0.0)",
-          "Microsoft.OData.ModelBuilder": "[1.0.9, 2.0.0)",
-          "Microsoft.Spatial": "[7.16.0, 8.0.0)"
-        }
       },
       "Microsoft.Bcl.AsyncInterfaces": {
         "type": "Transitive",
@@ -126,11 +124,6 @@
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
         }
-      },
-      "Microsoft.Extensions.DependencyInjection.Abstractions": {
-        "type": "Transitive",
-        "resolved": "8.0.1",
-        "contentHash": "fGLiCRLMYd00JYpClraLjJTNKLmMJPnqxMaiRzEBIIvevlzxz33mXy39Lkd48hu1G+N21S7QpaO5ZzKsI6FRuA=="
       },
       "Microsoft.Extensions.Logging": {
         "type": "Transitive",
@@ -219,8 +212,27 @@
       "wally.cleanarchitecture.microservice.domain": {
         "type": "Project",
         "dependencies": {
+          "Wally.Identity.Messages": "[2.1.1842, )",
           "Wally.Lib.DDD.Abstractions": "[1.3.6, )"
         }
+      },
+      "Microsoft.AspNetCore.OData": {
+        "type": "CentralTransitive",
+        "requested": "[8.2.5, )",
+        "resolved": "8.2.0",
+        "contentHash": "no2bu7pbz0cxrVg2ORoMw29dyHtKAOXxF94Ha0bFwS576yow7kTc6AdERgp5lAYCfK/Snth0sO9qPdV7D/QKuw==",
+        "dependencies": {
+          "Microsoft.OData.Core": "[7.16.0, 8.0.0)",
+          "Microsoft.OData.Edm": "[7.16.0, 8.0.0)",
+          "Microsoft.OData.ModelBuilder": "[1.0.9, 2.0.0)",
+          "Microsoft.Spatial": "[7.16.0, 8.0.0)"
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions": {
+        "type": "CentralTransitive",
+        "requested": "[8.0.1, )",
+        "resolved": "8.0.1",
+        "contentHash": "fGLiCRLMYd00JYpClraLjJTNKLmMJPnqxMaiRzEBIIvevlzxz33mXy39Lkd48hu1G+N21S7QpaO5ZzKsI6FRuA=="
       }
     }
   }
