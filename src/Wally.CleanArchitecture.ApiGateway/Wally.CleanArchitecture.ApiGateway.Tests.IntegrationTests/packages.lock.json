@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "dependencies": {
     "net8.0": {
       "coverlet.collector": {
@@ -71,15 +71,6 @@
         "requested": "[1.1.118, )",
         "resolved": "1.1.118",
         "contentHash": "Onx6ovGSqXSK07n/0eM3ZusiNdB6cIlJdabQhWGgJp3Vooy9AaLS/tigeybOJAobqbtggTamoWndz72JscZBvw=="
-      },
-      "Wally.Identity.Messages": {
-        "type": "Direct",
-        "requested": "[2.1.1842, )",
-        "resolved": "2.1.1842",
-        "contentHash": "fJPUxPvGTE46eEbnidc61/u3drFaV9+avPB9KhiSbWwns9tTRyZJ6weUAFP2QoOn09z+e7s53QNuFoxcoqONpg==",
-        "dependencies": {
-          "FluentValidation": "11.5.1"
-        }
       },
       "xunit": {
         "type": "Direct",
@@ -1019,8 +1010,9 @@
           "OpenTelemetry.Extensions.Hosting": "[1.8.1, )",
           "OpenTelemetry.Instrumentation.AspNetCore": "[1.8.1, )",
           "OpenTelemetry.Instrumentation.Http": "[1.8.1, )",
+          "SonarAnalyzer.CSharp": "[9.25.1.91650, )",
+          "StyleCop.Analyzers": "[1.1.118, )",
           "Swashbuckle.AspNetCore.SwaggerUI": "[6.6.2, )",
-          "Wally.Identity.Messages": "[2.1.1842, )",
           "Yarp.ReverseProxy": "[2.1.0, )"
         }
       },
@@ -1029,8 +1021,9 @@
         "dependencies": {
           "Serilog.AspNetCore": "[8.0.1, )",
           "Serilog.Sinks.ApplicationInsights": "[4.0.0, )",
-          "Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft": "[1.0.0, )",
-          "Wally.Identity.Messages": "[2.1.1842, )"
+          "SonarAnalyzer.CSharp": "[9.25.1.91650, )",
+          "StyleCop.Analyzers": "[1.1.118, )",
+          "Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft": "[1.0.0, )"
         }
       },
       "AspNetCore.HealthChecks.UI": {

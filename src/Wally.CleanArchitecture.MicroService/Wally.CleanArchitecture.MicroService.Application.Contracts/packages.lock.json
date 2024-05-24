@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "dependencies": {
     "net8.0": {
       "FluentValidation": {
@@ -25,15 +25,6 @@
         "requested": "[1.1.118, )",
         "resolved": "1.1.118",
         "contentHash": "Onx6ovGSqXSK07n/0eM3ZusiNdB6cIlJdabQhWGgJp3Vooy9AaLS/tigeybOJAobqbtggTamoWndz72JscZBvw=="
-      },
-      "Wally.Identity.Messages": {
-        "type": "Direct",
-        "requested": "[2.1.1842, )",
-        "resolved": "2.1.1842",
-        "contentHash": "fJPUxPvGTE46eEbnidc61/u3drFaV9+avPB9KhiSbWwns9tTRyZJ6weUAFP2QoOn09z+e7s53QNuFoxcoqONpg==",
-        "dependencies": {
-          "FluentValidation": "11.5.1"
-        }
       },
       "Wally.Lib.DDD.Abstractions": {
         "type": "Direct",

@@ -19,7 +19,7 @@ public static class HealthChecksExtensions
 			.AddVersionHealthCheck();
 		services.AddHealthChecksUI()
 			.AddInMemoryStorage();
-
+		
 		return services;
 	}
 
