@@ -9,11 +9,11 @@
     <Import Project="..\..\Directory.BuildTests.props" />
 
     <ItemGroup>
-        <PackageReference Include="JsonNet.ContractResolvers" Version="2.0.0" />
-        <PackageReference Include="MassTransit.Abstractions" Version="8.2.2" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.5" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.5" />
-        <PackageReference Include="Testcontainers.MsSql" Version="3.8.0" />
+        <PackageReference Include="JsonNet.ContractResolvers" />
+        <PackageReference Include="MassTransit.Abstractions" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" />
+        <PackageReference Include="Testcontainers.MsSql" />
     </ItemGroup>
 
     <ItemGroup>
