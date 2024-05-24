@@ -1,7 +1,13 @@
 {
-  "version": 1,
+  "version": 2,
   "dependencies": {
-    "net6.0": {
+    "net8.0": {
+      "SonarAnalyzer.CSharp": {
+        "type": "Direct",
+        "requested": "[9.25.1.91650, )",
+        "resolved": "9.25.1.91650",
+        "contentHash": "Z1/H8vGk2FZ8m6TK++A1Tn5npEw0L0ZNVAgf0aPI/nkq4mTER+enRZcgrkhdSo1mGbFDFgEh5ym/j3Onk6mROA=="
+      },
       "StyleCop.Analyzers": {
         "type": "Direct",
         "requested": "[1.1.118, )",
