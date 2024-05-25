@@ -1,20 +1,20 @@
 ﻿version: '3.9'
 
 services:
-    gateway_api:
+    api:
         # http://localhost:5000
         # https://localhost:5001
         image: wally.cleanarchitecture.apigateway.webapi
-        container_name: gateway_api
+        container_name: api
         restart: "no"
         ports:
             - "5000:5000"
             - "5001:5001"
         build:
-            context: .
-            dockerfile: ./Wally.CleanArchitecture.ApiGateway/Wally.CleanArchitecture.ApiGateway.WebApi/Dockerfile.development
+            context: ./Wally.CleanArchitecture.ApiGateway/Wally.CleanArchitecture.ApiGateway.WebApi/
+            dockerfile: Dockerfile.development
         environment:
-            TZ: Europe/Warsaw
+            TZ: ${TZ}
             PROJECT_NAME: Wally.CleanArchitecture.ApiGateway.WebApi
             DOTNET_DASHBOARD_OTLP_ENDPOINT_URL: http://aspire:18889
             OTEL_EXPORTER_OTLP_ENDPOINT: http://aspire:18889
@@ -30,9 +30,10 @@ services:
         ports:
             - "18888:18888"
             - "18889:18889"
-#        environment:
-#            DASHBOARD__OTLP__AUTHMODE: ApiKey
-#            DASHBOARD__OTLP__PRIMARYAPIKEY: 6da31e39-07af-4210-9e8c-5393f8c6ce0c
+        environment:
+            TZ: ${TZ}
+            # DASHBOARD__OTLP__AUTHMODE: ApiKey
+            # DASHBOARD__OTLP__PRIMARYAPIKEY: ${DASHBOARD__OTLP__PRIMARYAPIKEY}
 
 networks:
     default:
