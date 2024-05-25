@@ -28,18 +28,18 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="GetUsersControllerTests.cs">
-        <DependentUpon>UsersControllerTests.cs</DependentUpon>
-      </Compile>
-      <Compile Update="PutUsersControllerTests.cs">
-        <DependentUpon>UsersControllerTests.cs</DependentUpon>
-      </Compile>
-      <Compile Update="PostUsersControllerTests.cs">
-        <DependentUpon>UsersControllerTests.cs</DependentUpon>
-      </Compile>
-      <Compile Update="DeleteUsersControllerTests.cs">
-        <DependentUpon>UsersControllerTests.cs</DependentUpon>
-      </Compile>
+        <Compile Update="GetUsersControllerTests.cs">
+            <DependentUpon>UsersControllerTests.cs</DependentUpon>
+        </Compile>
+        <Compile Update="PutUsersControllerTests.cs">
+            <DependentUpon>UsersControllerTests.cs</DependentUpon>
+        </Compile>
+        <Compile Update="PostUsersControllerTests.cs">
+            <DependentUpon>UsersControllerTests.cs</DependentUpon>
+        </Compile>
+        <Compile Update="DeleteUsersControllerTests.cs">
+            <DependentUpon>UsersControllerTests.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
 
 </Project>

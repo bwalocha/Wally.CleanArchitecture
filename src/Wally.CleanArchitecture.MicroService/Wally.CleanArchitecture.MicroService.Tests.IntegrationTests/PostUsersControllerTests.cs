@@ -27,8 +27,8 @@ public partial class UsersControllerTests
 		response.StatusCode.Should()
 			.Be(HttpStatusCode.OK);
 		(await _factory.GetRequiredService<DbContext>()
-			.Set<User>()
-			.SingleAsync())
+				.Set<User>()
+				.SingleAsync())
 			.Name.Should()
 			.Be("newName3");
 	}

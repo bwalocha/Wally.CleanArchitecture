@@ -27,25 +27,25 @@ public partial class UsersControllerTests
 		response.StatusCode.Should()
 			.Be(HttpStatusCode.Accepted);
 		(await _factory.GetRequiredService<DbContext>()
-			.Set<User>()
-			.SingleAsync(a => a.Id == resource1.Id))
+				.Set<User>()
+				.SingleAsync(a => a.Id == resource1.Id))
 			.IsDeleted.Should()
 			.Be(false);
 		(await _factory.GetRequiredService<DbContext>()
-			.Set<User>()
-			.FirstOrDefaultAsync(a => a.Id == resource2.Id))
+				.Set<User>()
+				.FirstOrDefaultAsync(a => a.Id == resource2.Id))
 			.Should()
 			.BeNull();
 		(await _factory.GetRequiredService<DbContext>()
-			.Set<User>()
-			.IgnoreQueryFilters()
-			.SingleAsync(a => a.Id == resource1.Id))
+				.Set<User>()
+				.IgnoreQueryFilters()
+				.SingleAsync(a => a.Id == resource1.Id))
 			.IsDeleted.Should()
 			.Be(false);
 		(await _factory.GetRequiredService<DbContext>()
-			.Set<User>()
-			.IgnoreQueryFilters()
-			.SingleAsync(a => a.Id == resource2.Id))
+				.Set<User>()
+				.IgnoreQueryFilters()
+				.SingleAsync(a => a.Id == resource2.Id))
 			.IsDeleted.Should()
 			.Be(true);
 	}

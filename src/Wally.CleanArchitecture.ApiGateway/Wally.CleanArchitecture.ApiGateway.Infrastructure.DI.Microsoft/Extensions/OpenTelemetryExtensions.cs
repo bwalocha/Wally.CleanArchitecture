@@ -30,16 +30,16 @@ public static class OpenTelemetryExtensions
 			{
 				tracing.AddAspNetCoreInstrumentation()
 					.AddHttpClientInstrumentation();
-					// .AddEntityFrameworkCoreInstrumentation();
+				// .AddEntityFrameworkCoreInstrumentation();
 				
 				tracing.AddOtlpExporter();
 			});
-
+		
 		// builder.Logging.AddOpenTelemetry(logging => logging.AddOtlpExplerer());
 		
 		return services;
 	}
-
+	
 	public static IApplicationBuilder UseOpenTelemetry(this IApplicationBuilder app)
 	{
 		return app;

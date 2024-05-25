@@ -82,11 +82,11 @@
       },
       "Microsoft.FeatureManagement.AspNetCore": {
         "type": "Direct",
-        "requested": "[3.3.0, )",
-        "resolved": "3.3.0",
-        "contentHash": "YgpX9CiQwgzARgguAM2VYzC4QgQNramtenk5slhIFpKktxSBPUfzH9UFx9gtPAb6P16MSuF13TwiV3p5CuDj7w==",
+        "requested": "[3.3.1, )",
+        "resolved": "3.3.1",
+        "contentHash": "JBviIvxQmZzKtJMyJwic8tXNOQyA40aSAG7yC+nLqlTjXkbLEz3+5GggViiXAVqXJKgPa4BvgM4OVcaVcuLiYA==",
         "dependencies": {
-          "Microsoft.FeatureManagement": "3.3.0"
+          "Microsoft.FeatureManagement": "3.3.1"
         }
       },
       "OpenTelemetry.Exporter.OpenTelemetryProtocol": {
@@ -518,8 +518,8 @@
       },
       "Microsoft.FeatureManagement": {
         "type": "Transitive",
-        "resolved": "3.3.0",
-        "contentHash": "XHOmuBpY6R4sKEsbUI5yY2RAXQ8YAT2JoRs25WN+veWYE0TMMEKKMmeETvhj7plyqgso3Dvw7+GTpy/DJP20Wg==",
+        "resolved": "3.3.1",
+        "contentHash": "AR7x1Dc9OlhJg0pwWREdV9lWswfMguurUZAFwT64nYnVaK3kLSGJ39MH5fwH0qbpF1PZ9PFzdJma7ryDicaIbQ==",
         "dependencies": {
           "Microsoft.Extensions.Caching.Memory": "2.1.23",
           "Microsoft.Extensions.Configuration.Binder": "2.1.10",
