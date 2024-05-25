@@ -11,7 +11,7 @@ services:
             - "5000:5000"
             - "5001:5001"
         build:
-            context: ./Wally.CleanArchitecture.ApiGateway/Wally.CleanArchitecture.ApiGateway.WebApi/
+            context: ./Wally.CleanArchitecture.ApiGateway/Wally.CleanArchitecture.ApiGateway.WebApi
             dockerfile: Dockerfile.development
         environment:
             TZ: ${TZ}
