@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Wally.CleanArchitecture.MicroService.Persistence.PostgreSQL.Migrations
+namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL.Migrations
 {
 	/// <inheritdoc />
 	public partial class Initial : Migration

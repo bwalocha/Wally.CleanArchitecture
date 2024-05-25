@@ -6,11 +6,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
-using Wally.CleanArchitecture.MicroService.Persistence;
 
 #nullable disable
 
-namespace Wally.CleanArchitecture.MicroService.Persistence.SqlServer.Migrations
+namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot

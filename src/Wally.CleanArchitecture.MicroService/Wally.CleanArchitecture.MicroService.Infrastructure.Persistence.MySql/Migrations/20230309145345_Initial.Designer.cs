@@ -6,11 +6,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
-using Wally.CleanArchitecture.MicroService.Persistence;
 
 #nullable disable
 
-namespace Wally.CleanArchitecture.MicroService.Persistence.MySql.Migrations
+namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20230309145345_Initial")]

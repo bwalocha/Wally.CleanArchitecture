@@ -5,11 +5,10 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
-using Wally.CleanArchitecture.MicroService.Persistence;
 
 #nullable disable
 
-namespace Wally.CleanArchitecture.MicroService.Persistence.MySql.Migrations
+namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
