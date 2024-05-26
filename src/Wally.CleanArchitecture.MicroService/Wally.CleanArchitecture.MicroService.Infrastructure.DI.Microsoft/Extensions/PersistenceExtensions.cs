@@ -22,7 +22,7 @@ public static class PersistenceExtensions
 {
 	public static IServiceCollection AddPersistence(this IServiceCollection services, AppSettings settings)
 	{
-		Action<DbContextOptionsBuilder> dbContextOptions = options =>
+		void DbContextOptions(DbContextOptionsBuilder options)
 		{
 			switch (settings.Database.ProviderType)
 			{
@@ -44,23 +44,22 @@ public static class PersistenceExtensions
 					WithSqlServer(options, settings);
 					break;
 				default:
-					throw new NotSupportedException(
-						$"Not supported Database Provider type: '{settings.Database.ProviderType}'");
+					throw new NotSupportedException($"Not supported Database Provider type: '{settings.Database.ProviderType}'");
 			}
 			
-			options.ConfigureWarnings(
-				builder =>
-				{
-					builder.Default(WarningBehavior.Throw);
-					builder.Ignore(RelationalEventId.MultipleCollectionIncludeWarning);
-					builder.Ignore(SqlServerEventId.SavepointsDisabledBecauseOfMARS);
-					builder.Log(CoreEventId.SensitiveDataLoggingEnabledWarning);
-				});
+			options.ConfigureWarnings(builder =>
+			{
+				builder.Default(WarningBehavior.Throw);
+				builder.Ignore(RelationalEventId.MultipleCollectionIncludeWarning);
+				builder.Ignore(SqlServerEventId.SavepointsDisabledBecauseOfMARS);
+				builder.Log(CoreEventId.SensitiveDataLoggingEnabledWarning);
+			});
 #if DEBUG
 			options.EnableSensitiveDataLogging();
 #endif
-		};
-		services.AddDbContext<DbContext, ApplicationDbContext>(dbContextOptions);
+		}
+		
+		services.AddDbContext<DbContext, ApplicationDbContext>((Action<DbContextOptionsBuilder>)DbContextOptions);
 		
 		services.Scan(
 			a => a.FromAssemblyOf<IInfrastructurePersistenceAssemblyMarker>()
@@ -86,12 +85,13 @@ public static class PersistenceExtensions
 			MySqlServerVersion.LatestSupportedServerVersion,
 			builder =>
 			{
+				builder.MigrationsHistoryTable(global::Microsoft.EntityFrameworkCore.Migrations.HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
 				builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
 				builder.MigrationsAssembly(
 					typeof(IInfrastructureMySqlAssemblyMarker).Assembly.GetName()
 						.Name);
-			});
-		options.UseExceptionProcessor();
+			})
+			.UseExceptionProcessor();
 	}
 	
 	private static void WithNpgsql(DbContextOptionsBuilder options, AppSettings settings)
@@ -100,6 +100,7 @@ public static class PersistenceExtensions
 			settings.ConnectionStrings.Database,
 			builder =>
 			{
+				builder.MigrationsHistoryTable(global::Microsoft.EntityFrameworkCore.Migrations.HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
 				builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
 				builder.MigrationsAssembly(
 					typeof(IInfrastructurePostgreSqlAssemblyMarker).Assembly.GetName()
@@ -111,14 +112,27 @@ public static class PersistenceExtensions
 	private static void WithSqlite(DbContextOptionsBuilder options, AppSettings settings)
 	{
 		options.UseSqlite(
-			settings.ConnectionStrings.Database,
-			builder =>
-			{
-				builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-				builder.MigrationsAssembly(
-					typeof(IInfrastructureSQLiteAssemblyMarker).Assembly.GetName()
-						.Name);
-			});
+				settings.ConnectionStrings.Database,
+				builder =>
+				{
+					/*
+					Unable to create a 'DbContext' of type 'ApplicationDbContext'.
+					The exception 'An error was generated for warning 'Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning':
+					The entity type 'User' is configured to use schema 'MicroService', but SQLite does not support schemas.
+					This configuration will be ignored by the SQLite provider.
+					This exception can be suppressed or logged by passing event ID 'SqliteEventId.SchemaConfiguredWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.' was thrown while attempting to create an instance. For the different patterns supported at design time, see https://go.microsoft.com/fwlink/?linkid=851728
+					*/
+					builder.MigrationsHistoryTable(global::Microsoft.EntityFrameworkCore.Migrations.HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
+					builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
+					builder.MigrationsAssembly(
+						typeof(IInfrastructureSQLiteAssemblyMarker).Assembly.GetName()
+							.Name);
+				})
+			.ConfigureWarnings(
+				builder =>
+				{
+					builder.Ignore(SqliteEventId.SchemaConfiguredWarning);
+				});
 		EntityFramework.Exceptions.Sqlite.ExceptionProcessorExtensions.UseExceptionProcessor(options);
 	}
 	
@@ -128,6 +142,9 @@ public static class PersistenceExtensions
 			settings.ConnectionStrings.Database,
 			builder =>
 			{
+				builder.MigrationsHistoryTable(
+					global::Microsoft.EntityFrameworkCore.Migrations.HistoryRepository.DefaultTableName,
+					ApplicationDbContext.SchemaName);
 				builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
 				builder.MigrationsAssembly(
 					typeof(IInfrastructureSqlServerAssemblyMarker).Assembly.GetName()

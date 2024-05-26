@@ -2,8 +2,8 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 
 #nullable disable
@@ -17,21 +17,33 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql.
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.3")
+                .HasDefaultSchema("MicroService")
+                .HasAnnotation("ProductVersion", "8.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
             modelBuilder.Entity("Wally.CleanArchitecture.MicroService.Domain.Users.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("char(36)");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<Guid>("CreatedById")
                         .HasColumnType("char(36)");
 
-                    b.Property<DateTime?>("ModifiedAt")
+                    b.Property<DateTimeOffset?>("DeletedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<Guid?>("DeletedById")
+                        .HasColumnType("char(36)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTimeOffset?>("ModifiedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<Guid?>("ModifiedById")
@@ -39,15 +51,16 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql.
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("varchar(250)");
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Name")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("IsDeleted != 1");
 
-                    b.ToTable("User");
+                    b.ToTable("User", "MicroService");
                 });
 #pragma warning restore 612, 618
         }

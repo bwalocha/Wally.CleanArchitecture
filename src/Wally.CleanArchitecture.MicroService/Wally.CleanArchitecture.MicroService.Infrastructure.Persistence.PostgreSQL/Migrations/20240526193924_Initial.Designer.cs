@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 
 #nullable disable
@@ -13,7 +12,7 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230309130109_Initial")]
+    [Migration("20240526193924_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -21,7 +20,8 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Postgr
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.3")
+                .HasDefaultSchema("MicroService")
+                .HasAnnotation("ProductVersion", "8.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -31,13 +31,22 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Postgr
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("CreatedById")
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime?>("ModifiedAt")
+                    b.Property<DateTimeOffset?>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("DeletedById")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTimeOffset?>("ModifiedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid?>("ModifiedById")
@@ -45,15 +54,16 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Postgr
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Name")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("IsDeleted != 1");
 
-                    b.ToTable("User");
+                    b.ToTable("User", "MicroService");
                 });
 #pragma warning restore 612, 618
         }
