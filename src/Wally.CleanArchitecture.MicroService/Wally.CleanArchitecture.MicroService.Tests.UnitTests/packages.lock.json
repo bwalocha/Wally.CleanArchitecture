@@ -59,9 +59,9 @@
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
-        "requested": "[9.25.1.91650, )",
-        "resolved": "9.25.1.91650",
-        "contentHash": "Z1/H8vGk2FZ8m6TK++A1Tn5npEw0L0ZNVAgf0aPI/nkq4mTER+enRZcgrkhdSo1mGbFDFgEh5ym/j3Onk6mROA=="
+        "requested": "[9.26.0.92422, )",
+        "resolved": "9.26.0.92422",
+        "contentHash": "xfyzQhAZ5Qyxkl/KkLUfvLQR6eMCXJG1bngvJNFypZYkuGU0Inb4lWi6I6HCgUnVCJSoafLRJzyWC0HYinhR3A=="
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
@@ -319,7 +319,7 @@
         "dependencies": {
           "MassTransit.Abstractions": "[8.2.2, )",
           "Microsoft.AspNetCore.OData": "[8.2.5, )",
-          "SonarAnalyzer.CSharp": "[9.25.1.91650, )",
+          "SonarAnalyzer.CSharp": "[9.26.0.92422, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application.Contracts": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Application.Messages": "[1.0.0, )",
@@ -331,7 +331,7 @@
         "dependencies": {
           "FluentValidation": "[11.9.1, )",
           "Reinforced.Typings": "[1.6.3, )",
-          "SonarAnalyzer.CSharp": "[9.25.1.91650, )",
+          "SonarAnalyzer.CSharp": "[9.26.0.92422, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.Lib.DDD.Abstractions": "[1.3.6, )"
         }
@@ -340,7 +340,7 @@
         "type": "Project",
         "dependencies": {
           "AutoMapper": "[13.0.1, )",
-          "SonarAnalyzer.CSharp": "[9.25.1.91650, )",
+          "SonarAnalyzer.CSharp": "[9.26.0.92422, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application.Contracts": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
@@ -350,14 +350,14 @@
         "type": "Project",
         "dependencies": {
           "FluentValidation": "[11.9.1, )",
-          "SonarAnalyzer.CSharp": "[9.25.1.91650, )",
+          "SonarAnalyzer.CSharp": "[9.26.0.92422, )",
           "StyleCop.Analyzers": "[1.1.118, )"
         }
       },
       "wally.cleanarchitecture.microservice.domain": {
         "type": "Project",
         "dependencies": {
-          "SonarAnalyzer.CSharp": "[9.25.1.91650, )",
+          "SonarAnalyzer.CSharp": "[9.26.0.92422, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.Lib.DDD.Abstractions": "[1.3.6, )"
         }
@@ -368,7 +368,7 @@
           "MassTransit": "[8.2.2, )",
           "MediatR": "[12.2.0, )",
           "Microsoft.Extensions.Logging.Abstractions": "[8.0.1, )",
-          "SonarAnalyzer.CSharp": "[9.25.1.91650, )",
+          "SonarAnalyzer.CSharp": "[9.26.0.92422, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.Identity.Messages": "[2.1.1842, )",

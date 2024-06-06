@@ -13,9 +13,9 @@
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
-        "requested": "[9.25.1.91650, )",
-        "resolved": "9.25.1.91650",
-        "contentHash": "Z1/H8vGk2FZ8m6TK++A1Tn5npEw0L0ZNVAgf0aPI/nkq4mTER+enRZcgrkhdSo1mGbFDFgEh5ym/j3Onk6mROA=="
+        "requested": "[9.26.0.92422, )",
+        "resolved": "9.26.0.92422",
+        "contentHash": "xfyzQhAZ5Qyxkl/KkLUfvLQR6eMCXJG1bngvJNFypZYkuGU0Inb4lWi6I6HCgUnVCJSoafLRJzyWC0HYinhR3A=="
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
@@ -115,7 +115,7 @@
         "dependencies": {
           "FluentValidation": "[11.9.1, )",
           "Reinforced.Typings": "[1.6.3, )",
-          "SonarAnalyzer.CSharp": "[9.25.1.91650, )",
+          "SonarAnalyzer.CSharp": "[9.26.0.92422, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.Lib.DDD.Abstractions": "[1.3.6, )"
         }
@@ -123,7 +123,7 @@
       "wally.cleanarchitecture.microservice.domain": {
         "type": "Project",
         "dependencies": {
-          "SonarAnalyzer.CSharp": "[9.25.1.91650, )",
+          "SonarAnalyzer.CSharp": "[9.26.0.92422, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.Lib.DDD.Abstractions": "[1.3.6, )"
         }
