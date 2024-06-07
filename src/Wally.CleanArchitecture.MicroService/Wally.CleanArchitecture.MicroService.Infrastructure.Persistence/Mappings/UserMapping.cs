@@ -14,5 +14,7 @@ internal class UserMapping : IEntityTypeConfiguration<User>
 		
 		builder.Property(a => a.Name)
 			.HasMaxLength(256);
+		
+		// TODO: add example of ValueObject using Complex
 	}
 }
