@@ -97,7 +97,7 @@ public class DomainTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
-			.Where(a => a.InheritsGenericClass(typeof(ValueObject<,>)))
+			.Where(a => a.InheritsGenericClass(typeof(ValueObject<>)))
 			.Types();
 		
 		using (new AssertionScope())

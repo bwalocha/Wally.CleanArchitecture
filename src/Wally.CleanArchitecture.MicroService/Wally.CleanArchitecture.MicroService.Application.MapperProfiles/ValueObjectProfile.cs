@@ -7,10 +7,10 @@ public class ValueObjectProfile : Profile
 {
 	public ValueObjectProfile()
 	{
-		CreateMap<ValueObject<string>, string>()
+		/*CreateMap<ValueObject<string>, string>()
 			.ConvertUsing(a => a.Value);
 		
 		CreateMap<ValueObject<int>, int>()
-			.ConvertUsing(a => a.Value);
+			.ConvertUsing(a => a.Value);*/
 	}
 }
