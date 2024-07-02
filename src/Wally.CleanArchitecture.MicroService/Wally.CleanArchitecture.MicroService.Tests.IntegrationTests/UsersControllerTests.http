@@ -1,5 +1,3 @@
-@host = http://localhost:5181
-
 GET {{host}}/Users
 Accept: application/json
 

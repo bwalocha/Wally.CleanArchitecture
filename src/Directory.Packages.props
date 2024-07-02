@@ -5,6 +5,9 @@
   <ItemGroup>
     <PackageVersion Include="AutoMapper" Version="13.0.1" />
     <PackageVersion Include="AutoMapper.Extensions.ExpressionMapping" Version="7.0.1" />
+    <PackageVersion Include="Testcontainers.MariaDb" Version="3.9.0" />
+    <PackageVersion Include="Testcontainers.MySql" Version="3.9.0" />
+    <PackageVersion Include="Testcontainers.PostgreSql" Version="3.9.0" />
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Serilog" Version="4.0.0" />

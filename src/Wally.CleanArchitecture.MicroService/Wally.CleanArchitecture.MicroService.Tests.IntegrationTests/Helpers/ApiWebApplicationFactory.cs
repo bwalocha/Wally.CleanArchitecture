@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using DotNet.Testcontainers.Containers;
 using MassTransit;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -12,28 +13,21 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Testcontainers.MariaDb;
 using Testcontainers.MsSql;
+using Testcontainers.MySql;
+using Testcontainers.PostgreSql;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer;
+using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Helpers;
 
-public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup>
+public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup>, IAsyncLifetime
 	where TStartup : class
 {
-	private MsSqlContainer _dbContainer = null!;
-	
-	protected override void Dispose(bool disposing)
-	{
-		_dbContainer?.DisposeAsync()
-			.AsTask()
-			.ConfigureAwait(false)
-			.GetAwaiter()
-			.GetResult();
-		
-		base.Dispose(disposing);
-	}
+	private DockerContainer _dbContainer = null!;
 	
 	public TService GetRequiredService<TService>()
 		where TService : notnull
@@ -105,6 +99,96 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 					optionsAction.EnableSensitiveDataLogging();
 				};
 				break;
+			case DatabaseProviderType.MariaDb:
+				_dbContainer = new MariaDbBuilder()
+					.WithUsername(Guid.NewGuid()
+						.ToString())
+					.WithPassword(Guid.NewGuid()
+						.ToString())
+					.WithDatabase(Guid.NewGuid()
+						.ToString())
+					.Build();
+				_dbContainer
+					.StartAsync()
+					.ConfigureAwait(false)
+					.GetAwaiter()
+					.GetResult();
+				options = optionsAction =>
+				{
+					optionsAction.UseMySql(
+						((IDatabaseContainer)_dbContainer).GetConnectionString(),
+						MySqlServerVersion.LatestSupportedServerVersion,
+						opt =>
+						{
+							opt.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
+							opt.MigrationsAssembly(
+								typeof(IInfrastructureSqlServerAssemblyMarker).Assembly.GetName()
+									.Name);
+						});
+					optionsAction.ConfigureWarnings(a => { a.Ignore(InMemoryEventId.TransactionIgnoredWarning); });
+					optionsAction.EnableSensitiveDataLogging();
+				};
+				break;
+			case DatabaseProviderType.MySql:
+				_dbContainer = new MySqlBuilder()
+					.WithUsername(Guid.NewGuid()
+						.ToString())
+					.WithPassword(Guid.NewGuid()
+						.ToString())
+					.WithDatabase(Guid.NewGuid()
+						.ToString())
+					.Build();
+				_dbContainer
+					.StartAsync()
+					.ConfigureAwait(false)
+					.GetAwaiter()
+					.GetResult();
+				options = optionsAction =>
+				{
+					optionsAction.UseMySql(
+						((IDatabaseContainer)_dbContainer).GetConnectionString(),
+						MySqlServerVersion.LatestSupportedServerVersion,
+						opt =>
+						{
+							opt.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
+							opt.MigrationsAssembly(
+								typeof(IInfrastructureSqlServerAssemblyMarker).Assembly.GetName()
+									.Name);
+						});
+					optionsAction.ConfigureWarnings(a => { a.Ignore(InMemoryEventId.TransactionIgnoredWarning); });
+					optionsAction.EnableSensitiveDataLogging();
+				};
+				break;
+			case DatabaseProviderType.PostgreSQL:
+				// Add ApplicationDbContext using a PostgreSQL database for testing.
+				_dbContainer = new PostgreSqlBuilder()
+					.WithUsername(Guid.NewGuid()
+						.ToString())
+					.WithPassword(Guid.NewGuid()
+						.ToString())
+					.WithDatabase(Guid.NewGuid()
+						.ToString())
+					.Build();
+				_dbContainer
+					.StartAsync()
+					.ConfigureAwait(false)
+					.GetAwaiter()
+					.GetResult();
+				options = optionsAction =>
+				{
+					optionsAction.UseNpgsql(
+						((IDatabaseContainer)_dbContainer).GetConnectionString(),
+						opt =>
+						{
+							opt.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
+							opt.MigrationsAssembly(
+								typeof(IInfrastructureSqlServerAssemblyMarker).Assembly.GetName()
+									.Name);
+						});
+					optionsAction.ConfigureWarnings(a => { a.Ignore(InMemoryEventId.TransactionIgnoredWarning); });
+					optionsAction.EnableSensitiveDataLogging();
+				};
+				break;
 			case DatabaseProviderType.SqlServer:
 				// Add ApplicationDbContext using a SqlServer database for testing.
 				_dbContainer = new MsSqlBuilder()
@@ -121,7 +205,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 				options = optionsAction =>
 				{
 					optionsAction.UseSqlServer(
-						_dbContainer.GetConnectionString(),
+						((IDatabaseContainer)_dbContainer).GetConnectionString(),
 						opt =>
 						{
 							opt.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
@@ -146,5 +230,29 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 		// Ensure the database is created.
 		var database = scope.ServiceProvider.GetRequiredService<DbContext>();
 		database.Database.EnsureCreated();
+	}
+
+	public Task InitializeAsync()
+	{
+		/*await _dbContainer
+			.StartAsync();*/
+		return Task.CompletedTask;
+	}
+
+	public new async Task DisposeAsync()
+	{
+		await _dbContainer
+			.StopAsync();
+	}
+	
+	protected override void Dispose(bool disposing)
+	{
+		_dbContainer?.DisposeAsync()
+			.AsTask()
+			.ConfigureAwait(false)
+			.GetAwaiter()
+			.GetResult();
+		
+		base.Dispose(disposing);
 	}
 }

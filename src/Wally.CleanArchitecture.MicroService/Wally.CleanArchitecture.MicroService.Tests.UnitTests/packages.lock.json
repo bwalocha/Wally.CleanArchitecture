@@ -377,13 +377,13 @@
       },
       "FluentValidation": {
         "type": "CentralTransitive",
-        "requested": "[11.9.1, )",
+        "requested": "[11.9.2, )",
         "resolved": "11.9.2",
         "contentHash": "XeHp9LvFvu1fsQ/NvDCymV02GOCB1nz7ZUhfpI3uMhCcHTkV1K5bMkv+Nc/kuNYyAsX5+5bcmUanIEMd5QN+Eg=="
       },
       "MassTransit": {
         "type": "CentralTransitive",
-        "requested": "[8.2.2, )",
+        "requested": "[8.2.3, )",
         "resolved": "8.2.3",
         "contentHash": "gh6xXWOs/dTVQsJF+40bMKNYxNr915GuyF9goi+Fa+EMLbeVxTVXBXV+h5WlGm0S4yaX0qLGEKSPPcCzYCvFLg==",
         "dependencies": {
@@ -397,7 +397,7 @@
       },
       "MassTransit.Abstractions": {
         "type": "CentralTransitive",
-        "requested": "[8.2.2, )",
+        "requested": "[8.2.3, )",
         "resolved": "8.2.3",
         "contentHash": "dKD1gZ2c75tzaShRGuPuKm3/gviiUzn3ZG0E9alu4vJqQJQRNwSIAZ088NocYy8l4fRs3+La+C2sa9OolkEamw=="
       },

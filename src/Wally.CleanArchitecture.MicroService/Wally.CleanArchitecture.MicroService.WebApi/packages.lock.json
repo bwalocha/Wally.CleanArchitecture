@@ -1514,7 +1514,7 @@
       },
       "FluentValidation": {
         "type": "CentralTransitive",
-        "requested": "[11.9.1, )",
+        "requested": "[11.9.2, )",
         "resolved": "11.9.2",
         "contentHash": "XeHp9LvFvu1fsQ/NvDCymV02GOCB1nz7ZUhfpI3uMhCcHTkV1K5bMkv+Nc/kuNYyAsX5+5bcmUanIEMd5QN+Eg=="
       },
@@ -1530,7 +1530,7 @@
       },
       "MassTransit": {
         "type": "CentralTransitive",
-        "requested": "[8.2.2, )",
+        "requested": "[8.2.3, )",
         "resolved": "8.2.3",
         "contentHash": "gh6xXWOs/dTVQsJF+40bMKNYxNr915GuyF9goi+Fa+EMLbeVxTVXBXV+h5WlGm0S4yaX0qLGEKSPPcCzYCvFLg==",
         "dependencies": {
@@ -1544,13 +1544,13 @@
       },
       "MassTransit.Abstractions": {
         "type": "CentralTransitive",
-        "requested": "[8.2.2, )",
+        "requested": "[8.2.3, )",
         "resolved": "8.2.3",
         "contentHash": "dKD1gZ2c75tzaShRGuPuKm3/gviiUzn3ZG0E9alu4vJqQJQRNwSIAZ088NocYy8l4fRs3+La+C2sa9OolkEamw=="
       },
       "MassTransit.Azure.ServiceBus.Core": {
         "type": "CentralTransitive",
-        "requested": "[8.2.2, )",
+        "requested": "[8.2.3, )",
         "resolved": "8.2.3",
         "contentHash": "e8/qUA33aftm5RWNp24dUapSKt/WGt3RJ89UnOXqWeNlVCiCPP7M/pEf5bQjPnQlXfklruN/3aJyv3qXc8+OaQ==",
         "dependencies": {
@@ -1561,7 +1561,7 @@
       },
       "MassTransit.Kafka": {
         "type": "CentralTransitive",
-        "requested": "[8.2.2, )",
+        "requested": "[8.2.3, )",
         "resolved": "8.2.3",
         "contentHash": "R2xQH2MbVZp26TRSLcUjqJ6XwGjDFH48g1ZcvtD0UY1CG7c2v4fOfBJYC1IzdxVBz+zpTpPjV+C2s/LX7esigg==",
         "dependencies": {
@@ -1571,7 +1571,7 @@
       },
       "MassTransit.RabbitMQ": {
         "type": "CentralTransitive",
-        "requested": "[8.2.2, )",
+        "requested": "[8.2.3, )",
         "resolved": "8.2.3",
         "contentHash": "vCb9byv0tlSbWPneQlkJyY46SmpNLf/DHYKzgBLcxG1NiDbL6b4sVhjCXojY31MOkpjLcU2iduTuuT+uyqlx7w==",
         "dependencies": {

@@ -87,11 +87,38 @@
         "resolved": "1.1.118",
         "contentHash": "Onx6ovGSqXSK07n/0eM3ZusiNdB6cIlJdabQhWGgJp3Vooy9AaLS/tigeybOJAobqbtggTamoWndz72JscZBvw=="
       },
+      "Testcontainers.MariaDb": {
+        "type": "Direct",
+        "requested": "[3.9.0, )",
+        "resolved": "3.9.0",
+        "contentHash": "uWM3/hdFOWUV/4e6Lfet2roFNIUwMP1n7ZgIns6SGntnveRZWKLcc3g95Vk3uZ36QZD7aRWlJ3Gj3BTzY3tT3g==",
+        "dependencies": {
+          "Testcontainers": "3.9.0"
+        }
+      },
       "Testcontainers.MsSql": {
         "type": "Direct",
         "requested": "[3.9.0, )",
         "resolved": "3.9.0",
         "contentHash": "+Yt4acggC6CVIUByprO57dVUf87a6jQpIkS7MGpjYYhYXfYrYeaZ/fNsp6wZRqaUkcU421X+Uuz5vlIw9q8/Nw==",
+        "dependencies": {
+          "Testcontainers": "3.9.0"
+        }
+      },
+      "Testcontainers.MySql": {
+        "type": "Direct",
+        "requested": "[3.9.0, )",
+        "resolved": "3.9.0",
+        "contentHash": "aAkfn5+f2vnDttUNa7lkejJUd0H90NKZofvfakbetCisRGOpSd7pt7if+PhJTfv16Z//HU01Fd3Rd10tiEa73g==",
+        "dependencies": {
+          "Testcontainers": "3.9.0"
+        }
+      },
+      "Testcontainers.PostgreSql": {
+        "type": "Direct",
+        "requested": "[3.9.0, )",
+        "resolved": "3.9.0",
+        "contentHash": "Dj53LrCZk1PZSmb4tngxSuvC+sa2ft99uD516JlSZJdCRawBmK5Fr2AHzEjw9O/pivEHBv3DGJ5nkt9obiMEKQ==",
         "dependencies": {
           "Testcontainers": "3.9.0"
         }
