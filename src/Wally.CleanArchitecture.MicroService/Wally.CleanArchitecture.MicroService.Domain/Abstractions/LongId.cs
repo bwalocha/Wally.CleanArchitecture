@@ -9,12 +9,12 @@ public class LongId<TStronglyTypedId> : StronglyTypedId<TStronglyTypedId, long>
 		: this(NewSequentialId())
 	{
 	}
-	
+
 	protected LongId(long value)
 		: base(value)
 	{
 	}
-	
+
 	private static long NewSequentialId()
 	{
 		return DateTime.UnixEpoch.Ticks;

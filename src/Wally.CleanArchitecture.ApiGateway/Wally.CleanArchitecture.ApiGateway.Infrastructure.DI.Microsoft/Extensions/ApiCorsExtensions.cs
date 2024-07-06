@@ -8,7 +8,7 @@ namespace Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Extensi
 public static class ApiCorsExtensions
 {
 	private const string CorsPolicy = nameof(CorsPolicy);
-	
+
 	public static IServiceCollection AddApiCors(this IServiceCollection services, CorsSettings settings)
 	{
 		services.AddCors(
@@ -20,14 +20,14 @@ public static class ApiCorsExtensions
 					.WithOrigins(
 						settings.Origins.Select(a => a.OriginalString)
 							.ToArray())));
-		
+
 		return services;
 	}
-	
+
 	public static IApplicationBuilder UseApiCors(this IApplicationBuilder app)
 	{
 		app.UseCors(CorsPolicy);
-		
+
 		return app;
 	}
 }

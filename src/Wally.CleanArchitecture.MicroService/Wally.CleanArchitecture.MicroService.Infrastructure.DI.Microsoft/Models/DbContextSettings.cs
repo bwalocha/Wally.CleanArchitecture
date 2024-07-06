@@ -3,6 +3,6 @@
 public class DbContextSettings
 {
 	public DatabaseProviderType ProviderType { get; init; }
-	
+
 	public bool IsMigrationEnabled { get; init; } = true;
 }

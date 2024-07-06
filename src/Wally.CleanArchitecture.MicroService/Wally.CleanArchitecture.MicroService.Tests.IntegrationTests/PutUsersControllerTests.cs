@@ -19,10 +19,10 @@ public partial class UsersControllerTests
 		var resource = UserCreate(3);
 		await _factory.SeedAsync(resource);
 		var request = new UpdateUserRequest("newTestResource1");
-		
+
 		// Act
 		var response = await _httpClient.PutAsync($"Users/{resource.Id.Value}", request, CancellationToken.None);
-		
+
 		// Assert
 		response.IsSuccessStatusCode.Should()
 			.BeTrue();

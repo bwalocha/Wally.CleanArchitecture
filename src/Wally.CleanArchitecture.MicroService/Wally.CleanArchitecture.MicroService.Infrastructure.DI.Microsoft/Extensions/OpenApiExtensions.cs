@@ -27,7 +27,7 @@ public static class OpenApiExtensions
 						Version = "v1",
 						Title = "Wally.CleanArchitecture API",
 						Description = "An ASP.NET Core Web API for managing 'Wally.CleanArchitecture' items",
-						
+
 						// TermsOfService = new Uri("https://example.com/terms"),
 						Contact = new OpenApiContact
 						{
@@ -41,19 +41,19 @@ public static class OpenApiExtensions
 							Url = new Uri("https://opensource.org/licenses/MIT"),
 						},
 					});
-				
+
 				var xmlFilename = $"{assembly.GetName().Name}.xml";
 				options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
-				
+
 				options.OperationFilter<ResponseTypesOperationFilter>();
 				options.OperationFilter<ODataQueryOptionsOperationFilter>();
-				
+
 				options.DocumentFilter<SchemasFilter>();
 			});
-		
+
 		return services;
 	}
-	
+
 	public static IApplicationBuilder UseOpenApi(this IApplicationBuilder app)
 	{
 		app.UseSwagger(setupAction: null)
@@ -61,20 +61,20 @@ public static class OpenApiExtensions
 				options =>
 				{
 					var settings = app.ApplicationServices.GetRequiredService<IOptions<AppSettings>>();
-					
+
 					// options.SwaggerEndpoint("v1/swagger.json", "Wally.CleanArchitecture WebApi v1");
 					options.OAuthClientId(settings.Value.SwaggerAuthentication.ClientId);
 					options.OAuthClientSecret(settings.Value.SwaggerAuthentication.ClientSecret);
-					
+
 					// TODO:
 					// options.OAuthScopes(string.Join(", ", settings.Value.SwaggerAuthentication.Scopes.Values));
 					options.OAuthUsePkce();
-					
+
 					options.OAuthAppName("Wally.CleanArchitecture");
 					options.EnablePersistAuthorization();
 					options.DefaultModelsExpandDepth(0);
 				});
-		
+
 		return app;
 	}
 }

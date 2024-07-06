@@ -12,12 +12,12 @@ internal class ODataQueryOptionsOperationFilter : IOperationFilter
 		var odataQueryParameterTypes = context.ApiDescription.ActionDescriptor.Parameters
 			.Where(p => p.ParameterType.IsAssignableTo(typeof(ODataQueryOptions)))
 			.ToList();
-		
+
 		if (!odataQueryParameterTypes.Any())
 		{
 			return;
 		}
-		
+
 		// Remove the large queryOptions field from Swagger which gets added by default...
 		foreach (var queryParamType in odataQueryParameterTypes)
 		{
@@ -27,7 +27,7 @@ internal class ODataQueryOptionsOperationFilter : IOperationFilter
 				operation.Parameters.Remove(paramToRemove);
 			}
 		}
-		
+
 		// ...and add our own query parameters.
 		operation.Parameters.Add(
 			new OpenApiParameter
@@ -41,7 +41,7 @@ internal class ODataQueryOptionsOperationFilter : IOperationFilter
 					Type = "string",
 				},
 			});
-		
+
 		operation.Parameters.Add(
 			new OpenApiParameter
 			{
@@ -54,7 +54,7 @@ internal class ODataQueryOptionsOperationFilter : IOperationFilter
 					Type = "string",
 				},
 			});
-		
+
 		operation.Parameters.Add(
 			new OpenApiParameter
 			{
@@ -67,7 +67,7 @@ internal class ODataQueryOptionsOperationFilter : IOperationFilter
 					Type = "string",
 				},
 			});
-		
+
 		operation.Parameters.Add(
 			new OpenApiParameter
 			{
@@ -81,7 +81,7 @@ internal class ODataQueryOptionsOperationFilter : IOperationFilter
 					Deprecated = true,
 				},
 			});
-		
+
 		operation.Parameters.Add(
 			new OpenApiParameter
 			{
@@ -96,7 +96,7 @@ internal class ODataQueryOptionsOperationFilter : IOperationFilter
 					Minimum = 0,
 				},
 			});
-		
+
 		operation.Parameters.Add(
 			new OpenApiParameter
 			{

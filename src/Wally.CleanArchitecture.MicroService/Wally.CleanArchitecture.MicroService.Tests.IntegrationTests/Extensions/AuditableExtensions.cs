@@ -10,7 +10,7 @@ public static class AuditableExtensions
 		where TAuditable : IAuditable
 	{
 		var type = auditable.GetType();
-		
+
 		do
 		{
 			var propertyInfo = type.GetProperty(nameof(IAuditable.CreatedAt));
@@ -19,19 +19,19 @@ public static class AuditableExtensions
 				propertyInfo.SetValue(auditable, createdAt);
 				return auditable;
 			}
-			
+
 			type = type.BaseType;
 		}
 		while (type != null);
-		
+
 		throw new ArgumentException(nameof(auditable));
 	}
-	
+
 	public static TAuditable SetCreatedById<TAuditable>(this TAuditable auditable, UserId createdByUserId)
 		where TAuditable : IAuditable
 	{
 		var type = auditable.GetType();
-		
+
 		do
 		{
 			var propertyInfo = type.GetProperty(nameof(IAuditable.CreatedById));
@@ -40,11 +40,11 @@ public static class AuditableExtensions
 				propertyInfo.SetValue(auditable, createdByUserId);
 				return auditable;
 			}
-			
+
 			type = type.BaseType;
 		}
 		while (type != null);
-		
+
 		throw new ArgumentException(nameof(auditable));
 	}
 }

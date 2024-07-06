@@ -7,6 +7,6 @@ namespace Wally.CleanArchitecture.MicroService.Application.Contracts.Requests.Us
 public class GetUsersRequest : IRequest
 {
 	public Guid? Id { get; private set; }
-	
+
 	public string? Name { get; private set; }
 }

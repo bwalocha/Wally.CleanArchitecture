@@ -15,12 +15,12 @@ internal class SchemasFilter : IDocumentFilter
 			{
 				continue;
 			}
-			
+
 			if (schema.Key.EndsWith("Response") && schema.Key != nameof(HttpResponse))
 			{
 				continue;
 			}
-			
+
 			swaggerDoc.Components.Schemas.Remove(schema);
 		}
 	}

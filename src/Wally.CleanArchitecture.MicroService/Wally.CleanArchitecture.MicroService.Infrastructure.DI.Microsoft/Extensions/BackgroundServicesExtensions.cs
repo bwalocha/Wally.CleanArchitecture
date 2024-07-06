@@ -14,7 +14,7 @@ public static class BackgroundServicesExtensions
 				.AddClasses(c => c.AssignableTo(typeof(IHostedService)))
 				.As<IHostedService>()
 				.WithSingletonLifetime());
-		
+
 		return services;
 	}
 }

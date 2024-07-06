@@ -15,7 +15,7 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 	private readonly IDateTimeProvider _dateTimeProvider;
 	private readonly DbContext _dbContext;
 	private readonly IUserProvider _userProvider;
-	
+
 	public UpdateMetadataHandlerBehavior(
 		DbContext dbContext,
 		IUserProvider userProvider,
@@ -25,24 +25,24 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 		_userProvider = userProvider;
 		_dateTimeProvider = dateTimeProvider;
 	}
-	
+
 	public async Task<TResponse> Handle(
 		TRequest request,
 		RequestHandlerDelegate<TResponse> next,
 		CancellationToken cancellationToken)
 	{
 		var response = await next();
-		
+
 		UpdateAggregateMetadata(_dbContext.ChangeTracker.Entries<IAuditable>());
-		
+
 		return response;
 	}
-	
+
 	private void UpdateAggregateMetadata(IEnumerable<EntityEntry> entries)
 	{
 		var now = _dateTimeProvider.GetDateTime();
 		var userId = _userProvider.GetCurrentUserId();
-		
+
 		foreach (var entry in entries)
 		{
 			switch (entry.State)

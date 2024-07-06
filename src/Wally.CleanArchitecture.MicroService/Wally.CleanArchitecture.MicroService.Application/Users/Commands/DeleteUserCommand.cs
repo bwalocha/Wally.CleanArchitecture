@@ -11,6 +11,6 @@ public sealed class DeleteUserCommand : ICommand
 	{
 		UserId = userId;
 	}
-	
+
 	public UserId UserId { get; }
 }

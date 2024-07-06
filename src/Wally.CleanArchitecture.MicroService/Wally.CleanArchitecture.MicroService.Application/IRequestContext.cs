@@ -6,6 +6,6 @@ namespace Wally.CleanArchitecture.MicroService.Application;
 public interface IRequestContext
 {
 	public CorrelationId CorrelationId { get; }
-	
+
 	public UserId UserId { get; }
 }

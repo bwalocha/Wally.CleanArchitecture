@@ -9,6 +9,6 @@ public class CreateUserRequest : IRequest
 	{
 		Name = name;
 	}
-	
+
 	public string Name { get; }
 }

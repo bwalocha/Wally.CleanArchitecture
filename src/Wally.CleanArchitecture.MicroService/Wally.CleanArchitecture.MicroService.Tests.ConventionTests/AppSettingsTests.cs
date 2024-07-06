@@ -15,9 +15,9 @@ public class AppSettingsTests
 	{
 		// Arrange
 		var appSettingsTypes = Configuration.Types.AppSettings.ToList();
-		
+
 		// Act
-		
+
 		// Assert
 		using (new AssertionScope(new AssertionStrategy()))
 		{

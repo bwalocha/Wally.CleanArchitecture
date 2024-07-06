@@ -18,7 +18,7 @@ public class CommandTests
 		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
 		var types = applicationTypes
 			.Where(a => a.ImplementsInterface(typeof(ICommand)) || a.ImplementsGenericInterface(typeof(ICommand<>)));
-		
+
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var type in types)
@@ -30,14 +30,14 @@ public class CommandTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Application_Command_ShouldBeExcludedFromCodeCoverage()
 	{
 		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
 		var types = applicationTypes
 			.Where(a => a.ImplementsInterface(typeof(ICommand)) || a.ImplementsGenericInterface(typeof(ICommand<>)));
-		
+
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var type in types)
@@ -48,12 +48,12 @@ public class CommandTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Application_Command_ShouldHaveCorrespondingHandler()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		
+
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var assembly in assemblies)
@@ -62,7 +62,7 @@ public class CommandTests
 					.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
 						a.ImplementsGenericInterface(typeof(ICommand<>)))
 					.Where(a => a.IsClass);
-				
+
 				foreach (var type in types)
 				{
 					assemblies.SelectMany(a => a.GetTypes())
@@ -73,7 +73,7 @@ public class CommandTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Application_Command_ShouldHaveCorrespondingValidator()
 	{
@@ -82,26 +82,26 @@ public class CommandTests
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.ImplementsInterface(typeof(ICommand)) || a.ImplementsGenericInterface(typeof(ICommand<>)))
 			.Where(a => a.IsClass);
-		
+
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var type in types)
 			{
 				var expectedBaseType = typeof(AbstractValidator<>).MakeGenericType(type);
-				
+
 				var subject = assemblies.SelectMany(a => a.GetTypes())
 					.SingleOrDefault(a => a.Name == $"{type.Name}Validator");
-				
+
 				subject.Should()
 					.NotBeNull("Command '{0}' should have corresponding Validator", type);
-				
+
 				subject!.InheritsClass(expectedBaseType)
 					.Should()
 					.BeTrue("Command '{0}' should inherits {1} base class", type, expectedBaseType);
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Application_Command_ShouldBeSealed()
 	{
@@ -109,7 +109,7 @@ public class CommandTests
 		var types = applicationTypes
 			.Where(a => a.ImplementsInterface(typeof(ICommand)) || a.ImplementsGenericInterface(typeof(ICommand<>)))
 			.Where(a => a.IsClass);
-		
+
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var type in types)

@@ -23,10 +23,10 @@ public static class HealthChecksExtensions
 			.WithVersion()
 			.WithDatabase(settings)
 			.WithMessageBroker(settings);
-		
+
 		return services;
 	}
-	
+
 	public static IApplicationBuilder UseHealthChecks(this IApplicationBuilder app)
 	{
 		app.UseHealthChecks(
@@ -36,7 +36,7 @@ public static class HealthChecksExtensions
 				Predicate = _ => true,
 				ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
 			});
-		
+
 		app.UseEndpoints(
 			endpoints =>
 			{
@@ -50,15 +50,15 @@ public static class HealthChecksExtensions
 							context.RequestAborted);
 					});
 			});
-		
+
 		return app;
 	}
-	
+
 	private static IHealthChecksBuilder WithVersion(this IHealthChecksBuilder healthChecksBuilder)
 	{
 		return healthChecksBuilder.AddVersionHealthCheck();
 	}
-	
+
 	private static IHealthChecksBuilder WithDatabase(this IHealthChecksBuilder healthChecksBuilder,
 		AppSettings settings)
 	{
@@ -112,10 +112,10 @@ public static class HealthChecksExtensions
 				throw new NotSupportedException(
 					$"Not supported Database Provider type: '{settings.Database.ProviderType}'");
 		}
-		
+
 		return healthChecksBuilder;
 	}
-	
+
 	private static IHealthChecksBuilder WithMessageBroker(this IHealthChecksBuilder healthChecksBuilder,
 		AppSettings settings)
 	{
@@ -135,19 +135,19 @@ public static class HealthChecksExtensions
 			default:
 				throw new NotSupportedException($"Not supported Message Broker type: '{settings.MessageBroker}'");
 		}
-		
+
 		return healthChecksBuilder;
 	}
-	
+
 	private static IHealthChecksBuilder WithAzureServiceBus(this IHealthChecksBuilder healthChecksBuilder)
 	{
 		// TODO: Add AzureServiceBus HealthCheck
 		// healthChecksBuilder.AddAzureServiceBusQueue()
 		// ...
-		
+
 		return healthChecksBuilder;
 	}
-	
+
 	private static IHealthChecksBuilder WithRabbitMQ(this IHealthChecksBuilder healthChecksBuilder,
 		AppSettings settings)
 	{
@@ -159,10 +159,10 @@ public static class HealthChecksExtensions
 			{
 				"MQ", "Messaging", nameof(MessageBrokerType.RabbitMQ),
 			});
-		
+
 		return healthChecksBuilder;
 	}
-	
+
 	private static IHealthChecksBuilder WithKafka(this IHealthChecksBuilder healthChecksBuilder, AppSettings settings)
 	{
 		healthChecksBuilder.AddKafka(
@@ -180,22 +180,22 @@ public static class HealthChecksExtensions
 			{
 				"MQ", "Messaging", nameof(MessageBrokerType.Kafka),
 			});
-		
+
 		return healthChecksBuilder;
 	}
-	
+
 	private static IHealthChecksBuilder AddVersionHealthCheck(this IHealthChecksBuilder builder)
 	{
 		builder.AddCheck<VersionHealthCheck>("VER", tags: new[] { "VER", "Version", });
-		
+
 		return builder;
 	}
-	
+
 	private sealed class VersionHealthCheck : IHealthCheck
 	{
 		private readonly string? _version = typeof(VersionHealthCheck).Assembly.GetName()
 			.Version?.ToString();
-		
+
 		public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context,
 			CancellationToken cancellationToken = default)
 		{

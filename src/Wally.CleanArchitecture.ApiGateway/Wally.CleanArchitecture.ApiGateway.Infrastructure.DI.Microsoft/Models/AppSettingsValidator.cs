@@ -17,7 +17,7 @@ public class AppSettingsValidator : AbstractValidator<AppSettings>
 				.NotEmpty()
 				.SetValidator(new AuthenticationSettingsValidator());
 		}
-		
+
 		RuleFor(a => a.Cors)
 			.NotNull()
 			.SetValidator(new CorsSettingsValidator());

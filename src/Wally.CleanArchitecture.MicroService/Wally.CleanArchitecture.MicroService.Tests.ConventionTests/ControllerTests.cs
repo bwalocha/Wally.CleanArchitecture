@@ -19,7 +19,7 @@ public class ControllerTests
 	public void Controller_Constructor_ShouldNotHaveICommandHandler()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		
+
 		using (new AssertionScope())
 		{
 			foreach (var assembly in assemblies)
@@ -27,7 +27,7 @@ public class ControllerTests
 				var types = AllTypes.From(assembly)
 					.Where(a => a.BaseType == typeof(ControllerBase))
 					.ToList();
-				
+
 				foreach (var type in types)
 				{
 					foreach (var constructor in type.GetConstructors())
@@ -48,12 +48,12 @@ public class ControllerTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Controller_Constructor_ShouldntHaveIQueryHandler()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		
+
 		using (new AssertionScope())
 		{
 			foreach (var assembly in assemblies)
@@ -61,7 +61,7 @@ public class ControllerTests
 				var types = AllTypes.From(assembly)
 					.Where(a => a.BaseType == typeof(ControllerBase))
 					.ToList();
-				
+
 				foreach (var type in types)
 				{
 					foreach (var constructor in type.GetConstructors())
@@ -81,7 +81,7 @@ public class ControllerTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Controller_ReturnType_ShouldBeOfTypeActionResult()
 	{
@@ -89,7 +89,7 @@ public class ControllerTests
 		var types = assemblies.GetAllTypes()
 			.ThatDeriveFrom<ControllerBase>()
 			.ToList();
-		
+
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var type in types)
@@ -99,17 +99,17 @@ public class ControllerTests
 				{
 					method.ReturnType.Should()
 						.BeDerivedFrom(typeof(Task<>), "controller '{0}', '{1}' should return Task", type, method);
-					
+
 					if (method.ReturnType.GenericTypeArguments.SingleOrDefault() == typeof(CreatedAtActionResult))
 					{
 						continue;
 					}
-					
+
 					if (method.ReturnType.GenericTypeArguments.SingleOrDefault() == typeof(FileStreamResult))
 					{
 						continue;
 					}
-					
+
 					method.ReturnType.GenericTypeArguments.SingleOrDefault()
 						.Should()
 						.BeDerivedFrom(

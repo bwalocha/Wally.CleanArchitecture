@@ -11,12 +11,12 @@ public static class TypeExtensions
 		{
 			throw new ArgumentException($"Parameter '{nameof(interfaceType)}' is not an Interface");
 		}
-		
+
 		if (type.IsGenericType(interfaceType))
 		{
 			return true;
 		}
-		
+
 		foreach (var @interface in type.GetTypeInfo()
 					.ImplementedInterfaces)
 		{
@@ -25,17 +25,17 @@ public static class TypeExtensions
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
-	
+
 	public static bool ImplementsInterface(this Type type, Type interfaceType)
 	{
 		if (!interfaceType.IsInterface)
 		{
 			throw new ArgumentException($"Parameter '{nameof(interfaceType)}' is not an Interface");
 		}
-		
+
 		foreach (var @interface in type.GetTypeInfo()
 					.ImplementedInterfaces)
 		{
@@ -44,17 +44,17 @@ public static class TypeExtensions
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
-	
+
 	public static bool InheritsGenericClass(this Type type, Type classType)
 	{
 		if (!classType.IsClass)
 		{
 			throw new ArgumentException($"Parameter '{nameof(classType)}' is not a Class");
 		}
-		
+
 		while (type != null && type != typeof(object))
 		{
 			var current = type.IsGenericType ? type.GetGenericTypeDefinition() : type;
@@ -62,53 +62,53 @@ public static class TypeExtensions
 			{
 				return true;
 			}
-			
+
 			if (type.BaseType == null)
 			{
 				break;
 			}
-			
+
 			type = type.BaseType;
 		}
-		
+
 		return false;
 	}
-	
+
 	public static bool InheritsClass(this Type type, Type classType)
 	{
 		if (!classType.IsClass)
 		{
 			throw new ArgumentException($"Parameter '{nameof(classType)}' is not a Class");
 		}
-		
+
 		while (type != null && type != typeof(object))
 		{
 			if (classType == type)
 			{
 				return true;
 			}
-			
+
 			if (type.BaseType == null)
 			{
 				break;
 			}
-			
+
 			type = type.BaseType;
 		}
-		
+
 		return false;
 	}
-	
+
 	public static Type GetTypeDefinitionIfGeneric(this Type type)
 	{
 		return type.IsGenericType ? type.GetGenericTypeDefinition() : type;
 	}
-	
+
 	public static bool IsGenericType(this Type type, Type genericType)
 	{
 		return type.IsGenericType && type.GetGenericTypeDefinition() == genericType;
 	}
-	
+
 	public static Type? GetGenericInterface(this Type type, Type genericInterface)
 	{
 		return type.IsGenericType(genericInterface)

@@ -8,7 +8,7 @@ public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommand>
 	{
 		RuleFor(a => a.UserId)
 			.NotEmpty();
-		
+
 		RuleFor(a => a.Name)
 			.NotEmpty()
 			.MaximumLength(256);

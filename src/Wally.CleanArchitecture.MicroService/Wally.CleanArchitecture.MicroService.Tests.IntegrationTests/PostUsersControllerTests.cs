@@ -17,10 +17,10 @@ public partial class UsersControllerTests
 	{
 		// Arrange
 		var request = new CreateUserRequest("newName3");
-		
+
 		// Act
 		var response = await _httpClient.PostAsync("Users", request, CancellationToken.None);
-		
+
 		// Assert
 		response.IsSuccessStatusCode.Should()
 			.BeTrue();
@@ -32,16 +32,16 @@ public partial class UsersControllerTests
 			.Name.Should()
 			.Be("newName3");
 	}
-	
+
 	[Fact]
 	public async Task Post_ForInvalidRequest_ReturnsBadRequest()
 	{
 		// Arrange
 		var request = new CreateUserRequest(string.Empty);
-		
+
 		// Act
 		var response = await _httpClient.PostAsync("Users", request, CancellationToken.None);
-		
+
 		// Assert
 		response.IsSuccessStatusCode.Should()
 			.BeFalse();

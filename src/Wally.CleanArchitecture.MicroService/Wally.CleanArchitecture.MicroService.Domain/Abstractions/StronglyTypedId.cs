@@ -18,39 +18,39 @@ public class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStron
 	{
 		Value = value;
 	}
-	
+
 	public TValue Value { get; }
-	
+
 	public int CompareTo(TStronglyTypedId? other)
 	{
 		return other is null ? 1 : Value.CompareTo(other.Value);
 	}
-	
+
 	public bool Equals(TStronglyTypedId? other)
 	{
 		if (other is null)
 		{
 			return false;
 		}
-		
+
 		if (ReferenceEquals(this, other))
 		{
 			return true;
 		}
-		
+
 		return GetType() == other.GetType() && Value.Equals(other.Value);
 	}
-	
+
 	public override bool Equals(object? obj)
 	{
 		return Equals(obj as TStronglyTypedId);
 	}
-	
+
 	public override int GetHashCode()
 	{
 		return Value.GetHashCode();
 	}
-	
+
 	public override string? ToString()
 	{
 		return Value.ToString();

@@ -9,12 +9,12 @@ namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests.Users;
 public class UpdateUserRequestValidatorTests
 {
 	private readonly AbstractValidator<UpdateUserRequest> _validator;
-	
+
 	public UpdateUserRequestValidatorTests()
 	{
 		_validator = new UpdateUserRequestValidator();
 	}
-	
+
 	[Theory]
 	[InlineData("a")]
 	[InlineData("testName")]
@@ -29,15 +29,15 @@ public class UpdateUserRequestValidatorTests
 	{
 		// Arrange
 		var instance = new UpdateUserRequest(name);
-		
+
 		// Act
 		var result = _validator.Validate(instance);
-		
+
 		// Assert
 		result.IsValid.Should()
 			.BeTrue();
 	}
-	
+
 	[Theory]
 	[InlineData(null)]
 	[InlineData("")]
@@ -48,14 +48,14 @@ public class UpdateUserRequestValidatorTests
 		"... ... ... ... ... ... ... ... ... ... ... ... .." +
 		". ... ... ... ... ... ... ... ... ... ... ... ... " +
 		"... ...")]
-	public void Validate_ForInvalidData_IsNotValid(string name)
+	public void Validate_ForInvalidData_IsNotValid(string? name)
 	{
 		// Arrange
-		var instance = new UpdateUserRequest(name);
-		
+		var instance = new UpdateUserRequest(name!);
+
 		// Act
 		var result = _validator.Validate(instance);
-		
+
 		// Assert
 		result.IsValid.Should()
 			.BeFalse();

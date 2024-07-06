@@ -28,7 +28,7 @@ public class RepositoryTests
 			typeof(IQueryable),
 			typeof(IQueryable<>),
 		};
-		
+
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var type in types)
@@ -45,14 +45,14 @@ public class RepositoryTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Repository_Interfaces_ShouldBeInApplicationLayer()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
 			.ThatSatisfy(a => a.IsInterface && a.ImplementsGenericInterface(typeof(IReadOnlyRepository<,>)));
-		
+
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var type in types)
@@ -61,12 +61,12 @@ public class RepositoryTests
 				{
 					continue;
 				}
-				
+
 				if (type == typeof(IRepository<,>))
 				{
 					continue;
 				}
-				
+
 				Configuration.Assemblies.Application.Should()
 					.Contain(
 						type.Assembly,
@@ -75,7 +75,7 @@ public class RepositoryTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Repository_Interfaces_ShouldHaveImplementationInPersistent()
 	{
@@ -86,7 +86,7 @@ public class RepositoryTests
 		var repositories = AllTypes.From(typeof(IInfrastructurePersistenceAssemblyMarker).Assembly)
 			.ThatSatisfy(a => a.ImplementsGenericInterface(typeof(IReadOnlyRepository<,>)))
 			.ToList();
-		
+
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var type in types)
@@ -95,12 +95,12 @@ public class RepositoryTests
 				{
 					continue;
 				}
-				
+
 				if (type == typeof(IRepository<,>))
 				{
 					continue;
 				}
-				
+
 				repositories.ThatSatisfy(a => a.ImplementsInterface(type))
 					.Should()
 					.NotBeEmpty("all Repository Interfaces should be implemented, and '{0}' is not", type);

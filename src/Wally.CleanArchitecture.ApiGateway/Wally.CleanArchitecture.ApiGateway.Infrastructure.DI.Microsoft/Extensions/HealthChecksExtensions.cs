@@ -19,10 +19,10 @@ public static class HealthChecksExtensions
 			.AddVersionHealthCheck();
 		services.AddHealthChecksUI()
 			.AddInMemoryStorage();
-		
+
 		return services;
 	}
-	
+
 	public static IApplicationBuilder UseHealthChecks(this IApplicationBuilder app)
 	{
 		app.UseHealthChecks(
@@ -32,10 +32,10 @@ public static class HealthChecksExtensions
 				Predicate = _ => true,
 				ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
 			});
-		
+
 		// TODO: https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks/issues/2130
 		app.UseHealthChecksUI(); // TODO: https://stackoverflow.com/questions/77696948/healtcheckui-in-net-issues-with-icons
-		
+
 		app.UseEndpoints(
 			endpoints =>
 			{
@@ -49,10 +49,10 @@ public static class HealthChecksExtensions
 							context.RequestAborted);
 					});
 			});
-		
+
 		return app;
 	}
-	
+
 	private static IHealthChecksBuilder AddVersionHealthCheck(this IHealthChecksBuilder builder)
 	{
 		builder.AddCheck<VersionHealthCheck>(
@@ -61,21 +61,21 @@ public static class HealthChecksExtensions
 			{
 				"VER", "Version",
 			});
-		
+
 		return builder;
 	}
-	
+
 	private sealed class VersionHealthCheck : IHealthCheck
 	{
 		private readonly string? _version;
-		
+
 		public VersionHealthCheck()
 		{
 			_version = GetType()
 				.Assembly.GetName()
 				.Version?.ToString();
 		}
-		
+
 		public Task<HealthCheckResult> CheckHealthAsync(
 			HealthCheckContext context,
 			CancellationToken cancellationToken = default)

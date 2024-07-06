@@ -13,7 +13,7 @@ public static class ModelBuilderExtensions
 	{
 		return modelBuilder.ApplyConfigurationsFromAssembly(typeof(TInfrastructurePersistenceAssemblyMarker).Assembly);
 	}
-	
+
 	/// <summary>
 	///     Configure the <see cref="ModelBuilder" /> to use the
 	///     <see cref="StronglyTypedIdConverter{TStronglyTypedId,TValue}" />.
@@ -30,10 +30,10 @@ public static class ModelBuilderExtensions
 			var entityBuilder = modelBuilder.Entity(entity.ClrType);
 			entityBuilder.UseStronglyTypedId();
 		}
-		
+
 		return modelBuilder;
 	}
-	
+
 	public static ModelBuilder ApplySoftDelete(this ModelBuilder modelBuilder)
 	{
 		var allEntities = modelBuilder.Model.GetEntityTypes();
@@ -44,14 +44,14 @@ public static class ModelBuilderExtensions
 					.ToArray())
 		{
 			var entityBuilder = modelBuilder.Entity(entity);
-			
+
 			// TBD: https://learn.microsoft.com/en-us/ef/core/modeling/indexes?tabs=data-annotations#index-filter
 			Expression<Func<ISoftDeletable, bool>> expression = a => !a.IsDeleted;
 			var newParam = Expression.Parameter(entity);
 			var newBody = ReplacingExpressionVisitor.Replace(expression.Parameters.Single(), newParam, expression.Body);
 			entityBuilder.HasQueryFilter(Expression.Lambda(newBody, newParam));
 		}
-		
+
 		return modelBuilder;
 	}
 }

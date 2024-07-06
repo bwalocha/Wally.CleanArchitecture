@@ -13,7 +13,7 @@ public class UserReadOnlyRepository : ReadOnlyRepository<User, UserId>, IUserRea
 		: base(context, mapper)
 	{
 	}
-	
+
 	protected override IQueryable<User> ApplySearch(IQueryable<User> query, string term)
 	{
 		return query.Where(a => a.Name.StartsWith(term));

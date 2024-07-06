@@ -19,7 +19,7 @@ public class ResponseTests
 	public void Application_ResponseWithParameterlessConstructor_ShouldNotExposeSetter()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		
+
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var assembly in assemblies)
@@ -28,14 +28,14 @@ public class ResponseTests
 					.ThatImplement<IResponse>()
 					.Where(a => a != typeof(PageInfoResponse))
 					.Where(a => a.GetTypeDefinitionIfGeneric() != typeof(PagedResponse<>));
-				
+
 				foreach (var type in types)
 				{
 					if (type.GetConstructor(Type.EmptyTypes) == null)
 					{
 						continue;
 					}
-					
+
 					foreach (var property in type.Properties())
 					{
 						property.Should()
@@ -49,12 +49,12 @@ public class ResponseTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Application_ResponseWithParametrizedConstructor_ShouldNotHaveSetter()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		
+
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var assembly in assemblies)
@@ -63,14 +63,14 @@ public class ResponseTests
 					.ThatImplement<IResponse>()
 					.Where(a => a != typeof(PageInfoResponse))
 					.Where(a => a.GetTypeDefinitionIfGeneric() != typeof(PagedResponse<>));
-				
+
 				foreach (var type in types)
 				{
 					if (type.GetConstructor(Type.EmptyTypes) != null)
 					{
 						continue;
 					}
-					
+
 					foreach (var property in type.Properties())
 					{
 						property.Should()
@@ -81,19 +81,19 @@ public class ResponseTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Application_ClassesWhichImplementsIResponse_ShouldBeInApplicationContractsProject()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var applicationNamespace = $"{typeof(IApplicationContractsAssemblyMarker).Namespace}.Responses";
-		
+
 		using (new AssertionScope(new AssertionStrategy()))
 		{
 			foreach (var assembly in assemblies)
 			{
 				var types = AllTypes.From(assembly);
-				
+
 				types.ThatImplement<IResponse>()
 					.ThatDoNotImplement<PageInfoResponse>()
 					.Should()
@@ -101,7 +101,7 @@ public class ResponseTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Application_AllClassesEndsWithResponse_ShouldImplementIResponse()
 	{
@@ -119,7 +119,7 @@ public class ResponseTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Application_AllClassesImplementsIResponse_ShouldHasResponseSuffix()
 	{
@@ -137,7 +137,7 @@ public class ResponseTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Application_AllResponseObjects_ShouldBeExcludedFromCodeCoverage()
 	{
@@ -147,7 +147,7 @@ public class ResponseTests
 			{
 				var types = AllTypes.From(assembly)
 					.ThatImplement<IResponse>();
-				
+
 				foreach (var type in types)
 				{
 					type.Should()

@@ -22,7 +22,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 					.AddJsonFile("appsettings.IntegrationTests.json", false);
 			});
 	}
-	
+
 	protected override void ConfigureWebHost(IWebHostBuilder builder)
 	{
 		builder.ConfigureServices(
@@ -35,14 +35,14 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 					.Where(
 						a => a.ServiceType != typeof(DbContextOptions<HealthChecksDb>) &&
 							a.ServiceType != typeof(HealthChecksDb));
-				
+
 				foreach (var descriptor in descriptors.ToArray())
 				{
 					services.Remove(descriptor);
 				}
 			});
 	}
-	
+
 	public TService GetRequiredService<TService>()
 		where TService : notnull
 	{

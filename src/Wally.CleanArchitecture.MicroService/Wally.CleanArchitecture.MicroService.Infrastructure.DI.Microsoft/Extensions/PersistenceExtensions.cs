@@ -3,6 +3,7 @@ using EntityFramework.Exceptions.MySQL.Pomelo;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
@@ -44,9 +45,10 @@ public static class PersistenceExtensions
 					WithSqlServer(options, settings);
 					break;
 				default:
-					throw new NotSupportedException($"Not supported Database Provider type: '{settings.Database.ProviderType}'");
+					throw new NotSupportedException(
+						$"Not supported Database Provider type: '{settings.Database.ProviderType}'");
 			}
-			
+
 			options.ConfigureWarnings(builder =>
 			{
 				builder.Default(WarningBehavior.Throw);
@@ -58,49 +60,49 @@ public static class PersistenceExtensions
 			options.EnableSensitiveDataLogging();
 #endif
 		}
-		
+
 		services.AddDbContext<DbContext, ApplicationDbContext>((Action<DbContextOptionsBuilder>)DbContextOptions);
-		
+
 		services.Scan(
 			a => a.FromAssemblyOf<IInfrastructurePersistenceAssemblyMarker>()
 				.AddClasses(c => c.AssignableTo(typeof(IReadOnlyRepository<,>)))
 				.AsImplementedInterfaces()
 				.WithScopedLifetime());
-		
+
 		services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 		services.AddScoped<IUserProvider, HttpUserProvider>();
-		
+
 		return services;
 	}
-	
+
 	private static void WithInMemory(DbContextOptionsBuilder options)
 	{
 		options.UseInMemoryDatabase(nameof(DatabaseProviderType.InMemory), builder => builder.EnableNullChecks());
 	}
-	
+
 	private static void WithMySql(DbContextOptionsBuilder options, AppSettings settings)
 	{
 		options.UseMySql(
-			settings.ConnectionStrings.Database,
-			MySqlServerVersion.LatestSupportedServerVersion,
-			builder =>
-			{
-				builder.MigrationsHistoryTable(global::Microsoft.EntityFrameworkCore.Migrations.HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
-				builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-				builder.MigrationsAssembly(
-					typeof(IInfrastructureMySqlAssemblyMarker).Assembly.GetName()
-						.Name);
-			})
+				settings.ConnectionStrings.Database,
+				MySqlServerVersion.LatestSupportedServerVersion,
+				builder =>
+				{
+					builder.MigrationsHistoryTable(HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
+					builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
+					builder.MigrationsAssembly(
+						typeof(IInfrastructureMySqlAssemblyMarker).Assembly.GetName()
+							.Name);
+				})
 			.UseExceptionProcessor();
 	}
-	
+
 	private static void WithNpgsql(DbContextOptionsBuilder options, AppSettings settings)
 	{
 		options.UseNpgsql(
 			settings.ConnectionStrings.Database,
 			builder =>
 			{
-				builder.MigrationsHistoryTable(global::Microsoft.EntityFrameworkCore.Migrations.HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
+				builder.MigrationsHistoryTable(HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
 				builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
 				builder.MigrationsAssembly(
 					typeof(IInfrastructurePostgreSqlAssemblyMarker).Assembly.GetName()
@@ -108,7 +110,7 @@ public static class PersistenceExtensions
 			});
 		ExceptionProcessorExtensions.UseExceptionProcessor(options);
 	}
-	
+
 	private static void WithSqlite(DbContextOptionsBuilder options, AppSettings settings)
 	{
 		options.UseSqlite(
@@ -122,20 +124,17 @@ public static class PersistenceExtensions
 					This configuration will be ignored by the SQLite provider.
 					This exception can be suppressed or logged by passing event ID 'SqliteEventId.SchemaConfiguredWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.' was thrown while attempting to create an instance. For the different patterns supported at design time, see https://go.microsoft.com/fwlink/?linkid=851728
 					*/
-					builder.MigrationsHistoryTable(global::Microsoft.EntityFrameworkCore.Migrations.HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
+					builder.MigrationsHistoryTable(HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
 					builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
 					builder.MigrationsAssembly(
 						typeof(IInfrastructureSQLiteAssemblyMarker).Assembly.GetName()
 							.Name);
 				})
 			.ConfigureWarnings(
-				builder =>
-				{
-					builder.Ignore(SqliteEventId.SchemaConfiguredWarning);
-				});
+				builder => { builder.Ignore(SqliteEventId.SchemaConfiguredWarning); });
 		EntityFramework.Exceptions.Sqlite.ExceptionProcessorExtensions.UseExceptionProcessor(options);
 	}
-	
+
 	private static void WithSqlServer(DbContextOptionsBuilder options, AppSettings settings)
 	{
 		options.UseSqlServer(
@@ -143,7 +142,7 @@ public static class PersistenceExtensions
 			builder =>
 			{
 				builder.MigrationsHistoryTable(
-					global::Microsoft.EntityFrameworkCore.Migrations.HistoryRepository.DefaultTableName,
+					HistoryRepository.DefaultTableName,
 					ApplicationDbContext.SchemaName);
 				builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
 				builder.MigrationsAssembly(
@@ -152,22 +151,22 @@ public static class PersistenceExtensions
 			});
 		EntityFramework.Exceptions.SqlServer.ExceptionProcessorExtensions.UseExceptionProcessor(options);
 	}
-	
+
 	public static IApplicationBuilder UsePersistence(this IApplicationBuilder app)
 	{
 		var settings = app.ApplicationServices.GetRequiredService<IOptions<AppSettings>>();
-		
+
 		if (!settings.Value.Database.IsMigrationEnabled ||
 			settings.Value.Database.ProviderType == DatabaseProviderType.None ||
 			settings.Value.Database.ProviderType == DatabaseProviderType.InMemory)
 		{
 			return app;
 		}
-		
+
 		using var scope = app.ApplicationServices.CreateScope();
 		var dbContext = scope.ServiceProvider.GetRequiredService<DbContext>();
 		dbContext.Database.Migrate();
-		
+
 		return app;
 	}
 }

@@ -15,21 +15,21 @@ public static class StronglyTypedIdExtensions
 		{
 			return false;
 		}
-		
+
 		do
 		{
 			if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(StronglyTypedId<,>))
 			{
 				return true;
 			}
-			
+
 			type = type.BaseType;
 		}
 		while (type is not null);
-		
+
 		return false;
 	}
-	
+
 	/// <summary>
 	///     Gets the type of the generic value parameter from the base type.
 	/// </summary>
@@ -44,11 +44,11 @@ public static class StronglyTypedIdExtensions
 				var valueType = type.GetGenericArguments()[1];
 				return valueType;
 			}
-			
+
 			type = type?.BaseType;
 		}
 		while (type is not null);
-		
+
 		return null;
 	}
 }

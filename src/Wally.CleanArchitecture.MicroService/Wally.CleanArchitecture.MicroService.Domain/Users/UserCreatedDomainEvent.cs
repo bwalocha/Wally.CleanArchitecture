@@ -11,8 +11,8 @@ public class UserCreatedDomainEvent : DomainEvent
 		Id = id;
 		Name = name;
 	}
-	
+
 	public UserId Id { get; }
-	
+
 	public string Name { get; }
 }

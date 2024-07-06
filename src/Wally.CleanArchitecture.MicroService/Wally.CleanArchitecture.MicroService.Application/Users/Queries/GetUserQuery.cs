@@ -12,6 +12,6 @@ public sealed class GetUserQuery : IQuery<GetUserResponse>
 	{
 		UserId = userId;
 	}
-	
+
 	public UserId UserId { get; }
 }

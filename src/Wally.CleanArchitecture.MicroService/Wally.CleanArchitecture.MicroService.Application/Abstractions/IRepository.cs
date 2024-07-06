@@ -9,10 +9,10 @@ public interface IRepository<TAggregateRoot, TStronglyTypedId> : IReadOnlyReposi
 	where TStronglyTypedId : new()
 {
 	Task<TAggregateRoot> GetAsync(TStronglyTypedId id, CancellationToken cancellationToken);
-	
+
 	TAggregateRoot Add(TAggregateRoot aggregateRoot);
-	
+
 	TAggregateRoot Update(TAggregateRoot aggregateRoot);
-	
+
 	TAggregateRoot Remove(TAggregateRoot aggregateRoot);
 }

@@ -16,7 +16,7 @@ public static class ReinforcedTypingsConfiguration
 		{
 			Assembly.GetAssembly(typeof(IResponse)), Assembly.GetAssembly(typeof(ReinforcedTypingsConfiguration)),
 		};
-		
+
 		var types = assemblies.SelectMany(a => a!.GetTypes())
 			.Where(x => x.IsPublic)
 			.Where(x => x.IsClass)
@@ -25,7 +25,7 @@ public static class ReinforcedTypingsConfiguration
 					.Contains(typeof(IResponse)) || x.GetInterfaces()
 					.Contains(typeof(IRequest)))
 			.ToArray();
-		
+
 		builder.Global(
 			g =>
 			{
@@ -35,13 +35,13 @@ public static class ReinforcedTypingsConfiguration
 				g.ReorderMembers();
 				g.RootNamespace("Wally.CleanArchitecture.MicroService");
 			});
-		
+
 		builder.Substitute(typeof(Guid), new RtSimpleTypeName("string"));
 		builder.Substitute(typeof(Uri), new RtSimpleTypeName("string"));
 		builder.Substitute(typeof(Stream), new RtSimpleTypeName("any"));
 		builder.Substitute(typeof(DateTime), new RtSimpleTypeName("Dayjs"))
 			.AddImport("{ Dayjs }", "dayjs");
-		
+
 		builder.ExportAsInterfaces(
 			types,
 			exportBuilder =>
@@ -50,7 +50,7 @@ public static class ReinforcedTypingsConfiguration
 				exportBuilder.AutoI(false);
 				exportBuilder.WithPublicProperties();
 				exportBuilder.WithAllProperties();
-				
+
 				exportBuilder.OverrideName(name);
 				if (exportBuilder.Type.Namespace != null)
 				{

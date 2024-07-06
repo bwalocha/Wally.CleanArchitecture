@@ -13,21 +13,21 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 	where TRequest : IRequest<TResponse>
 {
 	private readonly ILogger<LogBehavior<TRequest, TResponse>> _logger;
-	
+
 	public LogBehavior(ILogger<LogBehavior<TRequest, TResponse>> logger)
 	{
 		_logger = logger;
 	}
-	
+
 	public async Task<TResponse> Handle(
 		TRequest request,
 		RequestHandlerDelegate<TResponse> next,
 		CancellationToken cancellationToken)
 	{
 		var correlationId = GetCorrelationId();
-		
+
 		using var logContext = LogContext.PushProperty("CorrelationId", correlationId);
-		
+
 		_logger.LogInformation(
 			"[{CorrelationId}] Executing request handler for request type: '{TypeofTRequestName}' and response type: '{TypeofTResponseName}'",
 			correlationId, typeof(TRequest).Name, typeof(TResponse).Name);
@@ -39,7 +39,7 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 		finally
 		{
 			stopWatch.Stop();
-			
+
 			if (stopWatch.ElapsedMilliseconds > 500)
 			{
 				_logger.LogWarning("[{CorrelationId}] Executed in {StopWatchElapsedMilliseconds} ms", correlationId,
@@ -52,13 +52,13 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 			}
 		}
 	}
-	
+
 	private CorrelationId GetCorrelationId()
 	{
 		// const string CorrelationIdHeaderName = "X-Correlation-Id";
 		// TODO: use HttpContext or CorrelationId from MassTransit Message
 		// ...
-		
+
 		return new CorrelationId(Guid.NewGuid());
 	}
 }

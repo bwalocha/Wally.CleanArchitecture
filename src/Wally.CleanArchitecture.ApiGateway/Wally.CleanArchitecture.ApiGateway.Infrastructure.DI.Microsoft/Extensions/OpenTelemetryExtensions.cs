@@ -17,7 +17,7 @@ public static class OpenTelemetryExtensions
 			{
 				metrics.AddAspNetCoreInstrumentation()
 					.AddHttpClientInstrumentation();
-				
+
 				metrics.AddOtlpExporter(options =>
 				{
 					if (settings.Endpoint != null)
@@ -31,15 +31,15 @@ public static class OpenTelemetryExtensions
 				tracing.AddAspNetCoreInstrumentation()
 					.AddHttpClientInstrumentation();
 				// .AddEntityFrameworkCoreInstrumentation();
-				
+
 				tracing.AddOtlpExporter();
 			});
-		
+
 		// builder.Logging.AddOpenTelemetry(logging => logging.AddOtlpExplerer());
-		
+
 		return services;
 	}
-	
+
 	public static IApplicationBuilder UseOpenTelemetry(this IApplicationBuilder app)
 	{
 		return app;

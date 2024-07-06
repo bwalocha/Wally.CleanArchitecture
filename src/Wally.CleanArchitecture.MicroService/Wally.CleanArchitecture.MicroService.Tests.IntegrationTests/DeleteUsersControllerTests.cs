@@ -17,10 +17,10 @@ public partial class UsersControllerTests
 		var resource1 = UserCreate(1);
 		var resource2 = UserCreate(2);
 		await _factory.SeedAsync(resource1, resource2);
-		
+
 		// Act
 		var response = await _httpClient.DeleteAsync($"Users/{resource2.Id.Value}", CancellationToken.None);
-		
+
 		// Assert
 		response.IsSuccessStatusCode.Should()
 			.BeTrue();

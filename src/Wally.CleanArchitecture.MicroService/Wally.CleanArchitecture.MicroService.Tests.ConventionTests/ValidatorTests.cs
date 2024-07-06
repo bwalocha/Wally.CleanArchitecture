@@ -13,7 +13,7 @@ public class ValidatorTests
 	public void Application_Validator_ShouldHaveNamingConvention()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		
+
 		using (new AssertionScope())
 		{
 			foreach (var assembly in assemblies)
@@ -23,7 +23,7 @@ public class ValidatorTests
 				{
 					var genericInterface = type.GetGenericInterface(typeof(IValidator<>));
 					var genericArgument = genericInterface?.GenericTypeArguments.SingleOrDefault();
-					
+
 					type.Name.Should()
 						.Be(
 							$"{genericArgument?.Name}Validator",

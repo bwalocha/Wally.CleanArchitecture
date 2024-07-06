@@ -14,7 +14,7 @@ public class ConsumerDefinitionTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
-		
+
 		using (new AssertionScope())
 		{
 			foreach (var type in types.Where(a => a.Name.EndsWith("ConsumerDefinition")))
@@ -24,13 +24,13 @@ public class ConsumerDefinitionTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Infrastructure_AllClassesInheritsConsumerDefinition_ShouldHaveConsumerDefinitionSuffix()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
-		
+
 		using (new AssertionScope())
 		{
 			foreach (var type in types.Where(a => a.Name.EndsWith("ConsumerDefinition"))
@@ -41,20 +41,20 @@ public class ConsumerDefinitionTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Infrastructure_AllClassesInheritsConsumerDefinition_ShouldHaveConsumerPrefix()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
-		
+
 		using (new AssertionScope())
 		{
 			foreach (var type in types.Where(a => a.Name.EndsWith("ConsumerDefinition"))
 						.Where(a => a.ImplementsGenericInterface(typeof(IConsumerDefinition<>))))
 			{
 				var genericType = type.BaseType!.GenericTypeArguments.Single();
-				
+
 				type.Name.Should()
 					.Be(
 						$"{genericType.Name}Definition",

@@ -11,12 +11,12 @@ public class QueryHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBehav
 	where TResponse : IResponse
 {
 	private readonly IValidator<TRequest>? _validator;
-	
+
 	public QueryHandlerValidatorBehavior(IValidator<TRequest>? validator = null)
 	{
 		_validator = validator;
 	}
-	
+
 	public async Task<TResponse> Handle(
 		TRequest request,
 		RequestHandlerDelegate<TResponse> next,
@@ -25,13 +25,13 @@ public class QueryHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBehav
 		if (_validator != null)
 		{
 			var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-			
+
 			if (!validationResult.IsValid)
 			{
 				throw new ValidationException(validationResult.Errors);
 			}
 		}
-		
+
 		return await next();
 	}
 }

@@ -15,9 +15,9 @@ public class ConfigurationTests
 			.ToList();
 		var fromInternal = TypeHelpers.GetAllInternalAssemblies()
 			.ToList();
-		
+
 		// Act
-		
+
 		// Assert
 		fromConfig.Should()
 			.AllSatisfy(a => fromInternal.Should()

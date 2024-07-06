@@ -12,12 +12,12 @@ public class CommandHandlerValidatorsBehavior<TRequest, TResponse> : IPipelineBe
 	where TRequest : ICommand, IRequest<TResponse>
 {
 	private readonly IEnumerable<IValidator<TRequest>> _validators;
-	
+
 	public CommandHandlerValidatorsBehavior(IEnumerable<IValidator<TRequest>> validators)
 	{
 		_validators = validators;
 	}
-	
+
 	public async Task<TResponse> Handle(
 		TRequest request,
 		RequestHandlerDelegate<TResponse> next,
@@ -27,18 +27,18 @@ public class CommandHandlerValidatorsBehavior<TRequest, TResponse> : IPipelineBe
 		{
 			return await next();
 		}
-		
+
 		var validationResults =
 			await Task.WhenAll(_validators.Select(a => a.ValidateAsync(request, cancellationToken)));
 		var validationErrors = validationResults.Where(a => !a.IsValid)
 			.SelectMany(a => a.Errors)
 			.ToArray();
-		
+
 		if (validationErrors.Any())
 		{
 			throw new ValidationException(validationErrors);
 		}
-		
+
 		return await next();
 	}
 }
