@@ -4,6 +4,10 @@ services:
     api:
         # http://localhost:5000
         # https://localhost:5001
+        # http://localhost:5000/healthchecks
+        # http://localhost:5000/healthchecks-UI
+        # http://localhost:5000/healthchecks-api
+        # http://localhost:5000/healthchecks-api/ui-settings
         image: wally.cleanarchitecture.apigateway.webapi
         container_name: api
         restart: "no"
@@ -15,9 +19,11 @@ services:
             dockerfile: Dockerfile.development
         environment:
             TZ: ${TZ}
-            PROJECT_NAME: Wally.CleanArchitecture.ApiGateway.WebApi
             DOTNET_DASHBOARD_OTLP_ENDPOINT_URL: http://aspire:18889
             OTEL_EXPORTER_OTLP_ENDPOINT: http://aspire:18889
+            #
+            HealthChecksUI__HealthChecks__0__Uri: http://api/healthChecks
+            # ...
         volumes:
             - ./Wally.CleanArchitecture.ApiGateway/Wally.CleanArchitecture.ApiGateway.WebApi/bin/Debug/net8.0:/app
 
@@ -32,9 +38,11 @@ services:
             - "18889:18889"
         environment:
             TZ: ${TZ}
+            DASHBOARD__FRONTEND__BROWSERTOKEN: ${DASHBOARD__OTLP__PRIMARYAPIKEY} # Dashboard:Frontend:BrowserToken
             # DASHBOARD__OTLP__AUTHMODE: ApiKey
             # DASHBOARD__OTLP__PRIMARYAPIKEY: ${DASHBOARD__OTLP__PRIMARYAPIKEY}
 
 networks:
     default:
+        external: false
         name: "Wally.CleanArchitecture"
