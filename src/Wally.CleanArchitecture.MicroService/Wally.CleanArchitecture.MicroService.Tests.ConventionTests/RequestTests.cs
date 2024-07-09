@@ -4,9 +4,9 @@ using FluentAssertions.Common;
 using FluentAssertions.Execution;
 using FluentAssertions.Types;
 using Wally.CleanArchitecture.MicroService.Application.Contracts;
+using Wally.CleanArchitecture.MicroService.Application.Contracts.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
-using Wally.Lib.DDD.Abstractions.Requests;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -50,7 +50,7 @@ public class RequestTests
 	public void Application_ClassesWhichImplementsIRequest_ShouldBeInTheSameProject()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var applicationNamespace = $"{typeof(IApplicationContractsAssemblyMarker).Namespace}.Requests";
+		var applicationNamespace = typeof(IApplicationContractsAssemblyMarker).Namespace;
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{

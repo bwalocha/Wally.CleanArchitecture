@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.OData.Query;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Requests.Users;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Responses.Users;
-using Wally.Lib.DDD.Abstractions.Queries;
+using Wally.CleanArchitecture.MicroService.Application.Abstractions;
+using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Requests;
+using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Responses;
 
 namespace Wally.CleanArchitecture.MicroService.Application.Users.Queries;
 

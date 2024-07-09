@@ -4,9 +4,9 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Responses.Users;
+using Wally.CleanArchitecture.MicroService.Application.Contracts;
+using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Responses;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Extensions;
-using Wally.Lib.DDD.Abstractions.Responses;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;

@@ -1,6 +1,7 @@
 ﻿using System;
+using Wally.CleanArchitecture.MicroService.Application.Contracts.Abstractions;
 
-namespace Wally.CleanArchitecture.MicroService.Application.Contracts.Responses.Users;
+namespace Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Responses;
 
 [ExcludeFromCodeCoverage]
 public class GetUsersResponse : IResponse

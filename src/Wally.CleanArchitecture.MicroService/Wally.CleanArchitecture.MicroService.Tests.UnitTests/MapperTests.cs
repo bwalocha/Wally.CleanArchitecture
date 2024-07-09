@@ -1,8 +1,8 @@
 ﻿using System;
 using AutoMapper;
 using FluentAssertions;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Requests.Users;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Responses.Users;
+using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Requests;
+using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Responses;
 using Wally.CleanArchitecture.MicroService.Application.MapperProfiles;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Xunit;

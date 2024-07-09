@@ -8,5 +8,5 @@ export interface PageInfoResponse
 {
 	index: number;
 	size: number;
-	totalItems: number;
+	total: number;
 }

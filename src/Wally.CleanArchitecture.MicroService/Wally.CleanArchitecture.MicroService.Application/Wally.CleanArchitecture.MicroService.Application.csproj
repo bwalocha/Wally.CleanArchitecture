@@ -8,6 +8,7 @@
 
     <ItemGroup>
         <PackageReference Include="MassTransit.Abstractions" />
+        <PackageReference Include="MediatR" />
         <PackageReference Include="Microsoft.AspNetCore.OData" />
     </ItemGroup>
 

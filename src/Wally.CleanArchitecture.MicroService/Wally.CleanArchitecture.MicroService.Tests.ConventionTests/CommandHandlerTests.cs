@@ -1,9 +1,9 @@
 using System.Linq;
 using FluentAssertions;
 using FluentAssertions.Execution;
+using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
-using Wally.Lib.DDD.Abstractions.Commands;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;

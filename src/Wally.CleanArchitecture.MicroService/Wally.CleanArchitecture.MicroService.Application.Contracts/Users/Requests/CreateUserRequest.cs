@@ -1,6 +1,6 @@
-﻿using Wally.Lib.DDD.Abstractions.Requests;
+﻿using Wally.CleanArchitecture.MicroService.Application.Contracts.Abstractions;
 
-namespace Wally.CleanArchitecture.MicroService.Application.Contracts.Requests.Users;
+namespace Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Requests;
 
 [ExcludeFromCodeCoverage]
 public class CreateUserRequest : IRequest

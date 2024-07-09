@@ -9,7 +9,6 @@
     <ItemGroup>
         <PackageReference Include="FluentValidation" />
         <PackageReference Include="Reinforced.Typings" />
-        <PackageReference Include="Wally.Lib.DDD.Abstractions" />
     </ItemGroup>
 
 </Project>

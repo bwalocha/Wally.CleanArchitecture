@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
-using Wally.Lib.DDD.Abstractions.Commands;
 
 namespace Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 

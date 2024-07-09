@@ -3,9 +3,9 @@ using System.Linq;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentValidation;
+using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
-using Wally.Lib.DDD.Abstractions.Commands;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -36,7 +36,9 @@ public class CommandTests
 	{
 		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
 		var types = applicationTypes
-			.Where(a => a.ImplementsInterface(typeof(ICommand)) || a.ImplementsGenericInterface(typeof(ICommand<>)));
+			.Where(a => a.IsClass)
+			.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
+				a.ImplementsGenericInterface(typeof(ICommand<>)));
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{
@@ -59,9 +61,9 @@ public class CommandTests
 			foreach (var assembly in assemblies)
 			{
 				var types = assembly.GetTypes()
+					.Where(a => a.IsClass)
 					.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
-						a.ImplementsGenericInterface(typeof(ICommand<>)))
-					.Where(a => a.IsClass);
+						a.ImplementsGenericInterface(typeof(ICommand<>)));
 
 				foreach (var type in types)
 				{
@@ -80,8 +82,9 @@ public class CommandTests
 		var assemblies = Configuration.Assemblies.GetAllAssemblies()
 			.ToArray();
 		var types = assemblies.GetAllTypes()
-			.Where(a => a.ImplementsInterface(typeof(ICommand)) || a.ImplementsGenericInterface(typeof(ICommand<>)))
-			.Where(a => a.IsClass);
+			.Where(a => a.IsClass)
+			.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
+				a.ImplementsGenericInterface(typeof(ICommand<>)));
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{
@@ -107,8 +110,9 @@ public class CommandTests
 	{
 		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
 		var types = applicationTypes
-			.Where(a => a.ImplementsInterface(typeof(ICommand)) || a.ImplementsGenericInterface(typeof(ICommand<>)))
-			.Where(a => a.IsClass);
+			.Where(a => a.IsClass)
+			.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
+				a.ImplementsGenericInterface(typeof(ICommand<>)));
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{

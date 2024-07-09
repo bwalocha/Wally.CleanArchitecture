@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
-using Wally.Lib.DDD.Abstractions.Responses;
+using Wally.CleanArchitecture.MicroService.Application.Contracts.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 

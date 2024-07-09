@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using Wally.Lib.DDD.Abstractions.DomainEvents;
+using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Users;
 

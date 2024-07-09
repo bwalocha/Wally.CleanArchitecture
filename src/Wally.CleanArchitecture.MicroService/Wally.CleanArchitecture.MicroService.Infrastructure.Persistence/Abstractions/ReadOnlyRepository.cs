@@ -6,11 +6,11 @@ using AutoMapper;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.EntityFrameworkCore;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
+using Wally.CleanArchitecture.MicroService.Application.Contracts;
+using Wally.CleanArchitecture.MicroService.Application.Contracts.Abstractions;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Exceptions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Extensions;
-using Wally.Lib.DDD.Abstractions.Requests;
-using Wally.Lib.DDD.Abstractions.Responses;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions;
 

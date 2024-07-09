@@ -2,9 +2,9 @@
 using System.Linq;
 using FluentAssertions;
 using FluentAssertions.Execution;
+using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
-using Wally.Lib.DDD.Abstractions.Queries;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -30,8 +30,8 @@ public class QueryTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
-			.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)))
-			.Where(a => a.IsClass);
+			.Where(a => a.IsClass)
+			.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)));
 
 		types
 			.Types()
@@ -44,8 +44,9 @@ public class QueryTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
+			.Where(a => a.IsClass)
 			.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)))
-			.Where(a => a.IsClass);
+			.Where(a => a != typeof(PagedQuery<,>));
 
 		types
 			.Types()
@@ -63,8 +64,9 @@ public class QueryTests
 			foreach (var assembly in assemblies)
 			{
 				foreach (var type in assembly.GetTypes()
-							.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)))
 							.Where(a => a.IsClass)
+							.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)))
+							.Where(a => a != typeof(PagedQuery<,>))
 							.Types())
 				{
 					assemblies.SelectMany(a => a.GetTypes())

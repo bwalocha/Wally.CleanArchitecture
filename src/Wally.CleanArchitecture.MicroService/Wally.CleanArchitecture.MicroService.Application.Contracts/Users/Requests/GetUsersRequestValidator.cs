@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Wally.CleanArchitecture.MicroService.Application.Contracts.Requests.Users;
+namespace Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Requests;
 
 public class GetUsersRequestValidator : AbstractValidator<GetUsersRequest>
 {

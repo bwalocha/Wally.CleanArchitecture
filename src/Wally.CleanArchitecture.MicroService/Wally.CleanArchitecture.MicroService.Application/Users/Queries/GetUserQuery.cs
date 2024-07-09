@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Responses.Users;
+using Wally.CleanArchitecture.MicroService.Application.Abstractions;
+using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Responses;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
-using Wally.Lib.DDD.Abstractions.Queries;
 
 namespace Wally.CleanArchitecture.MicroService.Application.Users.Queries;
 

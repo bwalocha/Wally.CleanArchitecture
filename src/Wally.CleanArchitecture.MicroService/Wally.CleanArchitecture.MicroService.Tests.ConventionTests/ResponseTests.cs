@@ -6,9 +6,9 @@ using FluentAssertions.Common;
 using FluentAssertions.Execution;
 using FluentAssertions.Types;
 using Wally.CleanArchitecture.MicroService.Application.Contracts;
+using Wally.CleanArchitecture.MicroService.Application.Contracts.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
-using Wally.Lib.DDD.Abstractions.Responses;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -86,7 +86,7 @@ public class ResponseTests
 	public void Application_ClassesWhichImplementsIResponse_ShouldBeInApplicationContractsProject()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var applicationNamespace = $"{typeof(IApplicationContractsAssemblyMarker).Namespace}.Responses";
+		var applicationNamespace = typeof(IApplicationContractsAssemblyMarker).Namespace;
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{
@@ -95,7 +95,6 @@ public class ResponseTests
 				var types = AllTypes.From(assembly);
 
 				types.ThatImplement<IResponse>()
-					.ThatDoNotImplement<PageInfoResponse>()
 					.Should()
 					.BeUnderNamespace(applicationNamespace);
 			}
@@ -110,6 +109,7 @@ public class ResponseTests
 			foreach (var assembly in TypeHelpers.GetAllInternalAssemblies())
 			{
 				var types = AllTypes.From(assembly)
+					.Where(a => a.IsClass)
 					.Where(a => a.Name.EndsWith("Response"));
 				foreach (var type in types)
 				{
@@ -131,7 +131,8 @@ public class ResponseTests
 					.ThatImplement<IResponse>();
 				foreach (var type in types)
 				{
-					type.Name.Should()
+					type.Name.Split('`')[0]
+						.Should()
 						.EndWith("Response", "Type '{0}' should ends with 'Response'", type);
 				}
 			}

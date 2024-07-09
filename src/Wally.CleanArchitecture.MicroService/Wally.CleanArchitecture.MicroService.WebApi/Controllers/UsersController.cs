@@ -4,12 +4,12 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Requests.Users;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Responses.Users;
+using Wally.CleanArchitecture.MicroService.Application.Contracts;
+using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Requests;
+using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Responses;
 using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 using Wally.CleanArchitecture.MicroService.Application.Users.Queries;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
-using Wally.Lib.DDD.Abstractions.Responses;
 
 namespace Wally.CleanArchitecture.MicroService.WebApi.Controllers;
 

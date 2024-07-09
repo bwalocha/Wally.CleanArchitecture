@@ -1,9 +1,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.OData.Query;
+using Wally.CleanArchitecture.MicroService.Application.Contracts;
+using Wally.CleanArchitecture.MicroService.Application.Contracts.Abstractions;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
-using Wally.Lib.DDD.Abstractions.Requests;
-using Wally.Lib.DDD.Abstractions.Responses;
 
 namespace Wally.CleanArchitecture.MicroService.Application.Abstractions;
 
