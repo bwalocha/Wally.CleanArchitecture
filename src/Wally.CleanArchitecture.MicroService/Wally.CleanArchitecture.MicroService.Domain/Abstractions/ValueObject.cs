@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
@@ -43,6 +44,7 @@ public abstract class ValueObject<TValueObject> : IEquatable<TValueObject>
 	protected abstract IEnumerable<object?> GetEqualityComponents();
 }
 
+[DebuggerDisplay("{Value}")]
 public abstract class ValueObject<TValueObject, TValue> : ValueObject<TValueObject>
 	where TValueObject : ValueObject<TValueObject>
 {
