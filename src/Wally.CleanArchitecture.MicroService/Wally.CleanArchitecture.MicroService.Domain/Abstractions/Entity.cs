@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
@@ -22,7 +23,9 @@ public class Entity<TEntity, TStronglyTypedId> : IEntity
 
 	public IReadOnlyCollection<DomainEvent> GetDomainEvents()
 	{
-		return _domainEvents.AsReadOnly();
+		return _domainEvents.DistinctBy(a => a.GetType())
+			.ToList()
+			.AsReadOnly();
 	}
 
 	public void RemoveDomainEvent(DomainEvent domainEvent)

@@ -56,11 +56,11 @@
       },
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
         "type": "Direct",
-        "requested": "[8.0.6, )",
-        "resolved": "8.0.6",
-        "contentHash": "AOoi7cmh2yTVHMNMRYEfAj26NCOur9pd70GSXaDNJvVtD7e/I9UddIkwnj7HAWKtUn2EUOzSKCpt/RZllYiO5w==",
+        "requested": "[8.0.7, )",
+        "resolved": "8.0.7",
+        "contentHash": "Y8v0z0Zrc28wKxY98sGBwjnHqXeSDFh3VQ5ZEsIxGHD/1g9z2zulDJ8ue6Vww1F4gcUkY9XCQUHljNQu3my35A==",
         "dependencies": {
-          "Microsoft.AspNetCore.JsonPatch": "8.0.6",
+          "Microsoft.AspNetCore.JsonPatch": "8.0.7",
           "Newtonsoft.Json": "13.0.3",
           "Newtonsoft.Json.Bson": "1.0.2"
         }
@@ -261,8 +261,8 @@
       },
       "Microsoft.AspNetCore.JsonPatch": {
         "type": "Transitive",
-        "resolved": "8.0.6",
-        "contentHash": "f23867xv+b5Cps3G2WDqjx3JjluLdR/TxfVI9sqk3d1ceQgOSD1WrqrQA66frdd5eQq+uqTGRReq1OQhQqodWQ==",
+        "resolved": "8.0.7",
+        "contentHash": "/cNcH8Qd+3yH4yVUlOsZnxPcsmwnYSnkybKX7PMgrJkaH7ilp2IrcqJN4M376As+y1f+MVUyRqRtosB+PWWQbg==",
         "dependencies": {
           "Microsoft.CSharp": "4.7.0",
           "Newtonsoft.Json": "13.0.3"
@@ -754,7 +754,7 @@
       },
       "Microsoft.EntityFrameworkCore": {
         "type": "CentralTransitive",
-        "requested": "[8.0.6, )",
+        "requested": "[8.0.7, )",
         "resolved": "8.0.0",
         "contentHash": "SoODat83pGQUpWB9xULdMX6tuKpq/RTXDuJ2WeC1ldUKcKzLkaFJD1n+I0nOLY58odez/e7z8b6zdp235G/kyg==",
         "dependencies": {
@@ -766,7 +766,7 @@
       },
       "Microsoft.EntityFrameworkCore.Design": {
         "type": "CentralTransitive",
-        "requested": "[8.0.6, )",
+        "requested": "[8.0.7, )",
         "resolved": "8.0.0",
         "contentHash": "94reKYu63jg4O75UI3LMJHwOSi8tQ6IfubiZhdnSsWcgtmAuF8OyLfjK/MIxuvaQRJZAF6E747FIuxjOtb8/og==",
         "dependencies": {
@@ -779,7 +779,7 @@
       },
       "Microsoft.EntityFrameworkCore.InMemory": {
         "type": "CentralTransitive",
-        "requested": "[8.0.6, )",
+        "requested": "[8.0.7, )",
         "resolved": "8.0.0",
         "contentHash": "/pT9FOO0BxGSRscK/ekEb6TdiP3+nnyhPLElE1yuVG/QaZLaBAuM3RoywBHdIxWoFALaOS7ktXlKzuMX3khJ4A==",
         "dependencies": {
@@ -788,7 +788,7 @@
       },
       "Microsoft.EntityFrameworkCore.Relational": {
         "type": "CentralTransitive",
-        "requested": "[8.0.6, )",
+        "requested": "[8.0.7, )",
         "resolved": "8.0.0",
         "contentHash": "fFKkr24cYc7Zw5T6DC4tEyOEPgPbq23BBmym1r9kn4ET9F3HKaetpOeQtV2RryYyUxEeNkJuxgfiZHTisqZc+A==",
         "dependencies": {
