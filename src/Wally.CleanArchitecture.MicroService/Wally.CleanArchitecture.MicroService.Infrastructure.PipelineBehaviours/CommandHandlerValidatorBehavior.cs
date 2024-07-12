@@ -7,7 +7,7 @@ using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 
 public class CommandHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-	where TRequest : ICommand, IRequest<TResponse>
+	where TRequest : ICommand<TResponse>
 {
 	private readonly IValidator<TRequest> _validator;
 

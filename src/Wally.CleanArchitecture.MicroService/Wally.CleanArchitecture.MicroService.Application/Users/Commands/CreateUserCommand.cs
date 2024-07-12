@@ -5,7 +5,7 @@ using Wally.CleanArchitecture.MicroService.Domain.Users;
 namespace Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 
 [ExcludeFromCodeCoverage]
-public sealed class CreateUserCommand : ICommand
+public sealed class CreateUserCommand : ICommand<UserId>
 {
 	public CreateUserCommand(UserId userId, string name)
 	{

@@ -6,7 +6,7 @@ namespace Wally.CleanArchitecture.MicroService.Application.Abstractions;
 
 public abstract class CommandHandler<TCommand>
 	: ICommandHandler<TCommand>
-	where TCommand : ICommand, IRequest<Unit>
+	where TCommand : ICommand
 {
 	public abstract Task HandleAsync(TCommand command, CancellationToken cancellationToken);
 
@@ -19,7 +19,7 @@ public abstract class CommandHandler<TCommand>
 
 public abstract class CommandHandler<TCommand, TResult>
 	: ICommandHandler<TCommand, TResult>
-	where TCommand : ICommand<TResult>, IRequest<TResult>
+	where TCommand : ICommand<TResult>
 {
 	public abstract Task<TResult> HandleAsync(TCommand command, CancellationToken cancellationToken);
 

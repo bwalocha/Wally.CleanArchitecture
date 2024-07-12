@@ -10,7 +10,7 @@ using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 
 public class SoftDeleteBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-	where TRequest : ICommand, IRequest<TResponse>
+	where TRequest : ICommand<TResponse>
 {
 	private readonly IDateTimeProvider _dateTimeProvider;
 	private readonly DbContext _dbContext;
