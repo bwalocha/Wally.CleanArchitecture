@@ -2,12 +2,13 @@
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
+using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 
 public class QueryHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-	where TRequest : IRequest<TResponse>
+	where TRequest : IQuery<TResponse>
 	where TResponse : IResponse
 {
 	private readonly IValidator<TRequest>? _validator;
