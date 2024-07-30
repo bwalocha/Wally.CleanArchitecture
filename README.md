@@ -38,6 +38,7 @@ dotnet new wally.cleanarchitecture --output . --name MyCompanyName.MyAppName --s
 - [x] MassTransit
     - [x] Azure ServiceBus
     - [x] RabbitMQ
+    - [x] Kafka
 - [x] Scrutor [github](https://github.com/khellang/Scrutor)
 - [x] OData
 - [x] HttpGlobalExceptionFilter
@@ -87,5 +88,5 @@ npx storybook@next init --package-manager npm --parser ts --builder vite --disab
 - [x] EntityId [YT](https://www.youtube.com/watch?v=B3Iq346KwUQ&t=655s)
 - [ ] Entity Framework Repository [GH](https://github.com/ffernandolima/ef-core-data-access)
 - [ ] Multitenancy [GH](https://github.com/Finbuckle/Finbuckle.MultiTenant)
-- [ ] Improve `ValueObject` base class
+- [x] Improve `ValueObject` base class
 - [ ] IRequestContext with CorrelationId + SeriLog.Enrich.CorrelationId [1.](https://www.code4it.dev/blog/serilog-correlation-id/) [2.](https://github.com/ekmsystems/serilog-enrichers-correlation-id)

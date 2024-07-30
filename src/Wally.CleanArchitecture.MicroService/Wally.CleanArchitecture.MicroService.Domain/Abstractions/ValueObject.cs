@@ -8,7 +8,7 @@ namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 public abstract class ValueObject<TValueObject> : IEquatable<TValueObject>
 	where TValueObject : ValueObject<TValueObject>
 {
-	public bool Equals(TValueObject? other)
+	public virtual bool Equals(TValueObject? other)
 	{
 		if (other is null)
 		{
@@ -25,38 +25,39 @@ public abstract class ValueObject<TValueObject> : IEquatable<TValueObject>
 				.SequenceEqual(other.GetEqualityComponents());
 	}
 
+	public override bool Equals(object? obj) => Equals(obj as TValueObject);
+
+	public override int GetHashCode() => GetEqualityComponents()
+		.Select(a => a?.GetHashCode() ?? 0)
+		.Aggregate((a, b) => a ^ b);
+
 	protected virtual void Validate()
 	{
-	}
-
-	public override bool Equals(object? obj)
-	{
-		return Equals(obj as TValueObject);
-	}
-
-	public override int GetHashCode()
-	{
-		return GetEqualityComponents()
-			.Select(a => a?.GetHashCode() ?? 0)
-			.Aggregate((a, b) => a ^ b);
 	}
 
 	protected abstract IEnumerable<object?> GetEqualityComponents();
 }
 
 [DebuggerDisplay("{Value}")]
-public abstract class ValueObject<TValueObject, TValue> : ValueObject<TValueObject>
+public class ValueObject<TValueObject, TValue> : ValueObject<TValueObject>
 	where TValueObject : ValueObject<TValueObject>
 {
 	protected ValueObject(TValue value)
 	{
 		Value = value;
+
+		Validate();
 	}
 
-	public TValue Value { get; }
+	public TValue Value { get; private set; }
 
-	public static implicit operator TValue(ValueObject<TValueObject, TValue> value)
+	/*public static implicit operator TValue(ValueObject<TValueObject, TValue> value)
 	{
 		return value.Value;
+	}*/
+
+	protected override IEnumerable<object?> GetEqualityComponents()
+	{
+		yield return Value;
 	}
 }

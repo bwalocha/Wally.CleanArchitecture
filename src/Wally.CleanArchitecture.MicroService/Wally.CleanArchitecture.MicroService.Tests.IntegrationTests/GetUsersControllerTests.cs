@@ -89,8 +89,8 @@ public partial class UsersControllerTests
 		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
 		data.Should()
 			.NotBeNull();
-		data.Items.Length.Should()
-			.Be(0);
+		data.Items.Should()
+			.BeEmpty();
 	}
 
 	[Fact]

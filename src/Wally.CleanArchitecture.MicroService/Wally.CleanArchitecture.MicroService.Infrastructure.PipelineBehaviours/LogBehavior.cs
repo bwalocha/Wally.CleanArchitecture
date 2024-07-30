@@ -56,7 +56,7 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 	private CorrelationId GetCorrelationId()
 	{
 		// const string CorrelationIdHeaderName = "X-Correlation-Id";
-		// TODO: use HttpContext or CorrelationId from MassTransit Message
+		// TODO: use HttpContext (TraceId?) or CorrelationId from MassTransit Message
 		// ...
 
 		return new CorrelationId(Guid.NewGuid());

@@ -1,25 +1,15 @@
-using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using DotNet.Testcontainers.Containers;
 using MassTransit;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
-using Testcontainers.MariaDb;
 using Testcontainers.MsSql;
-using Testcontainers.MySql;
-using Testcontainers.PostgreSql;
-using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
-using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
-using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Helpers;
@@ -27,35 +17,56 @@ namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Helpers;
 public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup>, IAsyncLifetime
 	where TStartup : class
 {
-	private DockerContainer _dbContainer = null!;
-
-	public Task InitializeAsync()
-	{
-		/*await _dbContainer
-			.StartAsync();*/
-		return Task.CompletedTask;
-	}
-
-	public new async Task DisposeAsync()
-	{
-		await _dbContainer
-			.StopAsync();
-	}
+	private readonly MsSqlContainer _dbContainer = new MsSqlBuilder()
+		.WithImage("mcr.microsoft.com/mssql/server:2022-latest")
+		.WithReuse(true)
+		.Build();
+	
+	/*private readonly KafkaContainer _kafkaContainer = new KafkaBuilder()
+		.WithImage("confluentinc/cp-kafka:6.2.10")
+		.WithReuse(true)
+		.Build();*/
+	
+	public Task InitializeAsync() => Task.WhenAll(_dbContainer.StartAsync() /*, _kafkaContainer.StartAsync()*/);
+	
+	public new Task DisposeAsync() => Task.WhenAll(_dbContainer.DisposeAsync().AsTask() /*, _kafkaContainer.StopAsync()*/);
 
 	public TService GetRequiredService<TService>()
 		where TService : notnull
 	{
-		var scopeFactory = Services.GetService<IServiceScopeFactory>();
-		return scopeFactory!.CreateScope()
-			.ServiceProvider.GetRequiredService<TService>();
+		var scopeFactory = Services.GetRequiredService<IServiceScopeFactory>();
+		
+		return scopeFactory
+			.CreateScope()
+			.ServiceProvider
+			.GetRequiredService<TService>();
 	}
 
 	public async Task<int> SeedAsync(params object[] entities)
 	{
 		var dbContext = GetRequiredService<DbContext>();
-
 		await dbContext.AddRangeAsync(entities);
+		
 		return await dbContext.SaveChangesAsync();
+	}
+	
+	public ApiWebApplicationFactory<TStartup> RemoveAll<TEntity>()
+		where TEntity : class
+	{
+		var dbContext = GetRequiredService<DbContext>();
+		dbContext.RemoveRange(dbContext.Set<TEntity>());
+		dbContext.SaveChanges();
+
+		return this;
+	}
+
+	public Task<int> RemoveAllAsync<TEntity>()
+		where TEntity : class
+	{
+		var dbContext = GetRequiredService<DbContext>();
+		dbContext.RemoveRange(dbContext.Set<TEntity>());
+
+		return dbContext.SaveChangesAsync();
 	}
 
 	protected override IHostBuilder CreateHostBuilder()
@@ -65,7 +76,12 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 				{
 					configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
 						.AddJsonFile("appsettings.json", false)
-						.AddJsonFile("appsettings.IntegrationTests.json", false);
+						.AddJsonFile("appsettings.IntegrationTests.json", false)
+						.AddInMemoryCollection([
+							new KeyValuePair<string, string?>("ConnectionStrings:Database",
+								_dbContainer.GetConnectionString()),
+							// new KeyValuePair<string, string>("Database:ServiceBus", _kafkaContainer.GetBootstrapAddress())
+						]);
 				})
 			.UseEnvironment("IntegrationTests");
 	}
@@ -75,12 +91,11 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 		builder.ConfigureTestServices(
 			services =>
 			{
-				ConfigureDbContext(services);
 				services.AddTransient<IBus, BusStub>();
 			});
 	}
 
-	private AppSettings GetAppSettings(IServiceCollection services)
+	/*private AppSettings GetAppSettings(IServiceCollection services)
 	{
 		// Create a scope to obtain a reference to the AppConfiguration
 		using var scope = services.BuildServiceProvider()
@@ -89,9 +104,9 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 
 		return scopedServices.GetRequiredService<IOptions<AppSettings>>()
 			.Value;
-	}
+	}*/
 
-	private void ConfigureDbContext(IServiceCollection services)
+	/*private void ConfigureDbContext(IServiceCollection services)
 	{
 		services.RemoveAll<DbContextOptions<ApplicationDbContext>>();
 		services.RemoveAll<ApplicationDbContext>();
@@ -243,16 +258,5 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 		// Ensure the database is created.
 		var database = scope.ServiceProvider.GetRequiredService<DbContext>();
 		database.Database.EnsureCreated();
-	}
-
-	protected override void Dispose(bool disposing)
-	{
-		_dbContainer?.DisposeAsync()
-			.AsTask()
-			.ConfigureAwait(false)
-			.GetAwaiter()
-			.GetResult();
-
-		base.Dispose(disposing);
-	}
+	}*/
 }

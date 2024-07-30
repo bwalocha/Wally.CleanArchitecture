@@ -26,7 +26,7 @@ public class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStron
 		return other is null ? 1 : Value.CompareTo(other.Value);
 	}
 
-	public bool Equals(TStronglyTypedId? other)
+	public virtual bool Equals(TStronglyTypedId? other)
 	{
 		if (other is null)
 		{

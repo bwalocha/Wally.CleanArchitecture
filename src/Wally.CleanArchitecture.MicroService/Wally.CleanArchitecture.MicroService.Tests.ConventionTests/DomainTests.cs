@@ -104,10 +104,15 @@ public class DomainTests
 		{
 			foreach (var type in types)
 			{
-				foreach (var property in type.Properties())
+				foreach (var property in type.Properties()
+							.Where(a => a.CanWrite))
 				{
 					property.Should()
-						.NotBeWritable("ValueObject '{0}' should not expose setter '{1}'", type, property);
+						.BeWritable(
+							CSharpAccessModifier.Private,
+							"ValueObject '{0}' should not expose setter '{1}'",
+							type,
+							property);
 				}
 			}
 		}

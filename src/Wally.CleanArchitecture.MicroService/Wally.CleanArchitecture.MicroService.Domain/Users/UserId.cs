@@ -13,9 +13,4 @@ public class UserId : GuidId<UserId>
 		: base(value)
 	{
 	}
-
-	public static explicit operator Guid(UserId id)
-	{
-		return id.Value;
-	}
 }
