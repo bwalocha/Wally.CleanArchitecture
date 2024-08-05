@@ -238,7 +238,7 @@
       },
       "MediatR": {
         "type": "CentralTransitive",
-        "requested": "[12.3.0, )",
+        "requested": "[12.4.0, )",
         "resolved": "12.4.0",
         "contentHash": "s8xhhvsTQqt7jI1XeVqcniiph/QoRmJb1qxVgk7UFpAgOzpzZ0VTl8zV+lFJgxISVqZuJRjmxF+P3AuHyelCrg==",
         "dependencies": {

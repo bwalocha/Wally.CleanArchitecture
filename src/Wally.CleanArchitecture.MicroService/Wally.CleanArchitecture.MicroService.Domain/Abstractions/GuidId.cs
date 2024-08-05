@@ -49,11 +49,12 @@ public class GuidId<TStronglyTypedId> : StronglyTypedId<TStronglyTypedId, Guid>
 
 	private static Guid NewSequentialId()
 	{
-		var guidBytes = Guid.NewGuid()
+		var guidBytes = Guid
+			.NewGuid()
 			.ToByteArray();
 		var counterBytes = BitConverter.GetBytes(DateTime.UnixEpoch.Ticks);
 
-		if (!BitConverter.IsLittleEndian)
+		/*if (!BitConverter.IsLittleEndian)
 		{
 			Array.Reverse(counterBytes);
 		}
@@ -65,7 +66,14 @@ public class GuidId<TStronglyTypedId> : StronglyTypedId<TStronglyTypedId, Guid>
 		guidBytes[12] = counterBytes[5];
 		guidBytes[13] = counterBytes[4];
 		guidBytes[14] = counterBytes[3];
-		guidBytes[15] = counterBytes[2];
+		guidBytes[15] = counterBytes[2];*/
+
+		guidBytes[10] = counterBytes[0];
+		guidBytes[11] = counterBytes[1];
+		guidBytes[12] = counterBytes[2];
+		guidBytes[13] = counterBytes[3];
+		guidBytes[14] = counterBytes[4];
+		guidBytes[15] = counterBytes[5];
 
 		return new Guid(guidBytes);
 	}
