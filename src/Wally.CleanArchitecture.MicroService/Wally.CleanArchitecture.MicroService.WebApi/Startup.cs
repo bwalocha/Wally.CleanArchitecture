@@ -8,6 +8,9 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft;
 
 namespace Wally.CleanArchitecture.MicroService.WebApi;
 
+/// <summary>
+/// The Startup class.
+/// </summary>
 public class Startup
 {
 	public Startup(IConfiguration configuration)
@@ -20,7 +23,10 @@ public class Startup
 	/// </summary>
 	public IConfiguration Configuration { get; }
 
-	// This method gets called by the runtime. Use this method to add services to the container.
+	/// <summary>
+	/// This method gets called by the runtime. Use this method to add services to the container. 
+	/// </summary>
+	/// <param name="services">The Service Collection.</param>
 	public void ConfigureServices(IServiceCollection services)
 	{
 		services.AddInfrastructure(Configuration);

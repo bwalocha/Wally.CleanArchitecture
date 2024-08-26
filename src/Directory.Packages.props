@@ -23,22 +23,22 @@
     <PackageVersion Include="FluentAssertions" Version="6.12.0" />
     <PackageVersion Include="FluentValidation" Version="11.9.2" />
     <PackageVersion Include="FluentValidation.AspNetCore" Version="11.3.0" />
-    <PackageVersion Include="MassTransit" Version="8.2.3" />
-    <PackageVersion Include="MassTransit.Abstractions" Version="8.2.3" />
-    <PackageVersion Include="MassTransit.Azure.ServiceBus.Core" Version="8.2.3" />
-    <PackageVersion Include="MassTransit.Kafka" Version="8.2.3" />
-    <PackageVersion Include="MassTransit.RabbitMQ" Version="8.2.3" />
+    <PackageVersion Include="MassTransit" Version="8.2.4" />
+    <PackageVersion Include="MassTransit.Abstractions" Version="8.2.4" />
+    <PackageVersion Include="MassTransit.Azure.ServiceBus.Core" Version="8.2.4" />
+    <PackageVersion Include="MassTransit.Kafka" Version="8.2.4" />
+    <PackageVersion Include="MassTransit.RabbitMQ" Version="8.2.4" />
     <PackageVersion Include="MediatR" Version="12.4.0" />
     <PackageVersion Include="MediatR.Contracts" Version="2.0.1" />
     <PackageVersion Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
-    <PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.7" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.8" />
     <PackageVersion Include="Microsoft.AspNetCore.OData" Version="8.2.5" />
-    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.7" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.7" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.7" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.7" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.7" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.8" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.8" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.8" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.8" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
@@ -55,8 +55,8 @@
     <PackageVersion Include="Serilog.AspNetCore" Version="8.0.2" />
     <PackageVersion Include="Serilog.Sinks.ApplicationInsights" Version="4.0.0" />
     <PackageVersion Include="Scrutor" Version="4.2.2" />
-    <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.7.0" />
-    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.6.2" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.7.1" />
+    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.7.1" />
     <PackageVersion Include="Testcontainers.MariaDb" Version="3.9.0" />
     <PackageVersion Include="Testcontainers.MySql" Version="3.9.0" />
     <PackageVersion Include="Testcontainers.MsSql" Version="3.9.0" />
@@ -65,7 +65,7 @@
     <PackageVersion Include="JsonNet.ContractResolvers" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
@@ -75,7 +75,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="9.30.0.95878">
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="9.32.0.97167">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>

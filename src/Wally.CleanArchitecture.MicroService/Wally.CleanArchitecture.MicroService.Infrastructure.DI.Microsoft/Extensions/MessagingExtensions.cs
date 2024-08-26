@@ -263,6 +263,7 @@ public static class MessagingExtensions
 	}
 
 	[SuppressMessage("Major Code Smell", "S4017:Method signatures should not contain nested generic types")]
+	[SuppressMessage("Major Code Smell", "S1144:Unused private types or members should be removed")]
 	private sealed class KafkaBus : IBus
 	{
 		private readonly ILogger<KafkaBus> _logger;

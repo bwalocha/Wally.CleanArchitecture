@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using FluentAssertions.Common;
@@ -12,6 +13,7 @@ public class AssertionStrategy : IAssertionStrategy
 	private readonly int _allowedExceptionNumber;
 	private readonly List<string> _failureMessages = new();
 
+	[SuppressMessage("Info Code Smell", "S1133:Deprecated code should be removed")]
 	[Obsolete("Fix test issues and use parameterless constructor.")]
 	public AssertionStrategy(int allowedExceptionNumber)
 	{
