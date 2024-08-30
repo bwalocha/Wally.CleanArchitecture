@@ -1521,7 +1521,7 @@
       },
       "MassTransit": {
         "type": "CentralTransitive",
-        "requested": "[8.2.4, )",
+        "requested": "[8.2.5, )",
         "resolved": "8.2.5",
         "contentHash": "b/gNaT6IxX+BZnLCLTzjqia5iQJxpmIGOjPiLnD6SLBRX9tyIsYVNKPAqQ6txNe2ztOOaW4ntef84VxSvA0IEA==",
         "dependencies": {
@@ -1535,13 +1535,13 @@
       },
       "MassTransit.Abstractions": {
         "type": "CentralTransitive",
-        "requested": "[8.2.4, )",
+        "requested": "[8.2.5, )",
         "resolved": "8.2.5",
         "contentHash": "TcAV7ZEdXTrw6D74g55mlEYLBBQvsifNrdfwt0UCps7mZVBoXoS3fvMHCQguRgj+6k1Q1qEV9kZa0aUOT7GcPQ=="
       },
       "MassTransit.Azure.ServiceBus.Core": {
         "type": "CentralTransitive",
-        "requested": "[8.2.4, )",
+        "requested": "[8.2.5, )",
         "resolved": "8.2.5",
         "contentHash": "ZA7ushYtjZRZR+9thElO035wLH4IuX3fEKQW4iihssH4K8smwoN7nxxC+DBuy0TvhtwG03g/Jw8kcESn7bQneA==",
         "dependencies": {
@@ -1552,7 +1552,7 @@
       },
       "MassTransit.Kafka": {
         "type": "CentralTransitive",
-        "requested": "[8.2.4, )",
+        "requested": "[8.2.5, )",
         "resolved": "8.2.5",
         "contentHash": "sTHco39MgRebXdfcmDW469lOMHmehw2TtwQuypAw6O4WdW3FYuiOdtsHyW34g7NNPTsWZ+XP2XJ/EWmLzkvcyw==",
         "dependencies": {
@@ -1562,7 +1562,7 @@
       },
       "MassTransit.RabbitMQ": {
         "type": "CentralTransitive",
-        "requested": "[8.2.4, )",
+        "requested": "[8.2.5, )",
         "resolved": "8.2.5",
         "contentHash": "gIBF5plL/BZo5/SNDo0C6BjOZoGqJu5YdqoDm0MI6A7kJad9H/5qfWdB4AK1A97vpK7At3i3uXTuriqx5+UKMg==",
         "dependencies": {
@@ -1609,7 +1609,7 @@
       },
       "Microsoft.AspNetCore.OData": {
         "type": "CentralTransitive",
-        "requested": "[8.2.5, )",
+        "requested": "[9.0.0, )",
         "resolved": "9.0.0",
         "contentHash": "XDt4jrnXIKiBTjp/6eqqmVgOKTJ3vTbP0O+cur0PnZT0HD9rh8JZGo85L4c4WCa8rMTuNMUU5jCgX0UTWm8+rQ==",
         "dependencies": {
@@ -1740,7 +1740,7 @@
       },
       "Swashbuckle.AspNetCore": {
         "type": "CentralTransitive",
-        "requested": "[6.7.1, )",
+        "requested": "[6.7.3, )",
         "resolved": "6.7.3",
         "contentHash": "PYTm/M5YrkEUHmguhj6vF1DshG2deKMMcsnhKet1BkcKzZHNX/VVQady0T/jNpXrtxhLR3vB10hWhONF1Nbglw==",
         "dependencies": {

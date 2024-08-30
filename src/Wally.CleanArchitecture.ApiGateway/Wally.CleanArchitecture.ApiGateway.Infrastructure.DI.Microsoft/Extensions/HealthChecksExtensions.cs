@@ -69,12 +69,14 @@ public static class HealthChecksExtensions
 	{
 		private readonly string? _version;
 
+#pragma warning disable S1144
 		public VersionHealthCheck()
 		{
 			_version = GetType()
 				.Assembly.GetName()
 				.Version?.ToString();
 		}
+#pragma warning restore S1144
 
 		public Task<HealthCheckResult> CheckHealthAsync(
 			HealthCheckContext context,

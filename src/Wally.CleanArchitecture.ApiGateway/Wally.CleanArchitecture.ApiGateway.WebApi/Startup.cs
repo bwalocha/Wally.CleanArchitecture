@@ -26,6 +26,7 @@ public class Startup
 		services.AddInfrastructure(Configuration);
 	}
 
+#pragma warning disable S2325
 	public void Configure(
 		IApplicationBuilder app,
 		IWebHostEnvironment env,
@@ -43,4 +44,5 @@ public class Startup
 
 		app.UseInfrastructure(env, options, featureManager);
 	}
+#pragma warning restore S2325
 }

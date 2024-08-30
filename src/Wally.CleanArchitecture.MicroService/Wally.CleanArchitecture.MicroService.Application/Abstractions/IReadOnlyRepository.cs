@@ -19,5 +19,5 @@ public interface IReadOnlyRepository<TEntity, TStronglyTypedId>
 	Task<PagedResponse<TResponse>> GetAsync<TRequest, TResponse>(ODataQueryOptions<TRequest> queryOptions,
 		CancellationToken cancellationToken)
 		where TRequest : class, IRequest
-		where TResponse : class, IResponse;
+		where TResponse : class, IResponse; // TODO: struct?
 }

@@ -7,7 +7,7 @@ namespace Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Models;
 
 public class ReverseProxySettings // : IProxyConfig
 {
-	public List<RouteConfig> Routes { get; } = new();
+	public RouteConfig[] Routes { get; } = [];
 
 	public Dictionary<string, ClusterConfig> Clusters { get; } = new();
 

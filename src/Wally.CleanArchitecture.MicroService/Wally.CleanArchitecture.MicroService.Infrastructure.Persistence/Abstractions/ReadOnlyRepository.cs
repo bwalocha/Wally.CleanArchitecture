@@ -48,7 +48,7 @@ public class ReadOnlyRepository<TEntity, TStronglyTypedId> : IReadOnlyRepository
 		ODataQueryOptions<TRequest> queryOptions,
 		CancellationToken cancellationToken)
 		where TRequest : class, IRequest
-		where TResponse : class, IResponse
+		where TResponse : class, IResponse // TODO: struct?
 	{
 		var query = GetReadOnlyEntitySet();
 
@@ -81,7 +81,7 @@ public class ReadOnlyRepository<TEntity, TStronglyTypedId> : IReadOnlyRepository
 		ODataQueryOptions<TRequest> queryOptions,
 		CancellationToken cancellationToken)
 		where TRequest : class, IRequest
-		where TResponse : class, IResponse
+		where TResponse : class, IResponse // TODO: struct?
 	{
 		query = query.ApplyFilter(queryOptions, _mapper)
 			.ApplySearch(queryOptions, ApplySearch);

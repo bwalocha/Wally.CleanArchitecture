@@ -12,6 +12,10 @@ ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT false
 ENV ASPNETCORE_FORWARDEDHEADERS_ENABLED true
 ENV PROJECT_NAME ${PROJECT_NAME}
 
+#RUN groupadd -g 1000 users && \
+#    useradd -u 1000 --create-home -s /bin/bash -g users users
+#RUN adduser -u 1000 -S user -G users 
+
 RUN apk add --no-cache tzdata && \
     apk add --no-cache icu-libs && \
     apk add libgdiplus --repository https://dl-3.alpinelinux.org/alpine/edge/testing/ && \
@@ -20,5 +24,7 @@ RUN apk add --no-cache tzdata && \
 
 WORKDIR /app
 COPY ./packages/${PROJECT_NAME} .
+
+#USER user
 
 ENTRYPOINT dotnet `basename ${PROJECT_NAME}`.dll

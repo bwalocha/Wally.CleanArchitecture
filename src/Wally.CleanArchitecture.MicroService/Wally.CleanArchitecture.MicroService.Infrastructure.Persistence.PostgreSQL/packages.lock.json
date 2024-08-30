@@ -238,7 +238,7 @@
       },
       "MassTransit.Abstractions": {
         "type": "CentralTransitive",
-        "requested": "[8.2.4, )",
+        "requested": "[8.2.5, )",
         "resolved": "8.2.5",
         "contentHash": "TcAV7ZEdXTrw6D74g55mlEYLBBQvsifNrdfwt0UCps7mZVBoXoS3fvMHCQguRgj+6k1Q1qEV9kZa0aUOT7GcPQ=="
       },
@@ -260,7 +260,7 @@
       },
       "Microsoft.AspNetCore.OData": {
         "type": "CentralTransitive",
-        "requested": "[8.2.5, )",
+        "requested": "[9.0.0, )",
         "resolved": "9.0.0",
         "contentHash": "XDt4jrnXIKiBTjp/6eqqmVgOKTJ3vTbP0O+cur0PnZT0HD9rh8JZGo85L4c4WCa8rMTuNMUU5jCgX0UTWm8+rQ==",
         "dependencies": {
