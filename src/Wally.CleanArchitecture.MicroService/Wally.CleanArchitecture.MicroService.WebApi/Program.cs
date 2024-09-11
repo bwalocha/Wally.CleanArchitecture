@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using Serilog.Context;
 
 // using Azure.Identity;
 
@@ -28,10 +29,13 @@ public static class Program
 
 		try
 		{
-			Log.Information("Starting host...");
-			CreateHostBuilder(args)
-				.Build()
-				.Run();
+			using (LogContext.PushProperty("CorrelationId", Guid.NewGuid()))
+			{
+				Log.Information("Starting host...");
+				CreateHostBuilder(args)
+					.Build()
+					.Run();
+			}
 		}
 		catch (Exception ex)
 		{
