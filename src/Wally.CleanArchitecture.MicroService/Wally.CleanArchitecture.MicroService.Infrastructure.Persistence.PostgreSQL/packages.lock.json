@@ -178,7 +178,7 @@
       "wally.cleanarchitecture.microservice.application.contracts": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "[11.9.2, )",
+          "FluentValidation": "[11.10.0, )",
           "Reinforced.Typings": "[1.6.3, )",
           "SonarAnalyzer.CSharp": "[9.32.0.97167, )",
           "StyleCop.Analyzers": "[1.1.118, )"
@@ -187,7 +187,7 @@
       "wally.cleanarchitecture.microservice.application.messages": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "[11.9.2, )",
+          "FluentValidation": "[11.10.0, )",
           "SonarAnalyzer.CSharp": "[9.32.0.97167, )",
           "StyleCop.Analyzers": "[1.1.118, )"
         }
@@ -203,7 +203,7 @@
         "type": "Project",
         "dependencies": {
           "AutoMapper": "[13.0.1, )",
-          "AutoMapper.Extensions.ExpressionMapping": "[7.0.1, )",
+          "AutoMapper.Extensions.ExpressionMapping": "[7.0.2, )",
           "Microsoft.EntityFrameworkCore": "[8.0.8, )",
           "Microsoft.EntityFrameworkCore.Relational": "[8.0.8, )",
           "SonarAnalyzer.CSharp": "[9.32.0.97167, )",
@@ -224,8 +224,8 @@
       "AutoMapper.Extensions.ExpressionMapping": {
         "type": "CentralTransitive",
         "requested": "[7.0.1, )",
-        "resolved": "7.0.1",
-        "contentHash": "vHGQE/ZQGVHgX/p8pu+EtfBfcB5se433wC6PkGcA5zPkgcTKg+1SV2/NejDBna0gkM55W+Artgu/w7wfq2jD2Q==",
+        "resolved": "7.0.2",
+        "contentHash": "lYvbA1OFi15epeHrrhbNuM/mJgcGGElYDd4MVuPjoqOjzMrwk263WZhzOIGaTxNmUzHkkG5wx4NEszGItvSX7g==",
         "dependencies": {
           "AutoMapper": "[13.0.0, 14.0.0)"
         }
@@ -233,8 +233,8 @@
       "FluentValidation": {
         "type": "CentralTransitive",
         "requested": "[11.9.2, )",
-        "resolved": "11.9.2",
-        "contentHash": "XeHp9LvFvu1fsQ/NvDCymV02GOCB1nz7ZUhfpI3uMhCcHTkV1K5bMkv+Nc/kuNYyAsX5+5bcmUanIEMd5QN+Eg=="
+        "resolved": "11.10.0",
+        "contentHash": "qsJGSJDdZ8qiG+lVJ70PZfJHcEdq8UQZ/tZDXoj78/iHKG6lVKtMJsD11zyyv/IPc7rwqGqnFoFLTNzpo3IPYg=="
       },
       "MassTransit.Abstractions": {
         "type": "CentralTransitive",

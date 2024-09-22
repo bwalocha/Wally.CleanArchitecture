@@ -1232,7 +1232,7 @@
       },
       "Yarp.ReverseProxy": {
         "type": "CentralTransitive",
-        "requested": "[2.1.0, )",
+        "requested": "[2.2.0, )",
         "resolved": "2.2.0",
         "contentHash": "t16Z+OplJEElJy1Q6t12EwMGF2BeLw8IKjD1ema7ewbCRaMqeVIRPZo3MlxidnRFRK+tV6II8tKYX+7N5ZS98A==",
         "dependencies": {
