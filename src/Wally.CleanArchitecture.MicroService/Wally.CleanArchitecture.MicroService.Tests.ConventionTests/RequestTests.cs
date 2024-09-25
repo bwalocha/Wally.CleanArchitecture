@@ -101,19 +101,38 @@ public class RequestTests
 	public void Application_AllClassesImplementsIRequest_ShouldHaveCorrespondingValidator()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies
+			.GetAllTypes()
+			.ThatImplement<IRequest>();
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{
-			foreach (var assembly in assemblies)
+			foreach (var type in types)
 			{
-				foreach (var type in assembly.GetTypes()
-							.ThatImplement<IRequest>())
-				{
-					assemblies.SelectMany(a => a.GetTypes())
-						.SingleOrDefault(a => a.Name == $"{type.Name}Validator")
-						.Should()
-						.NotBeNull("every Request '{0}' should have corresponding Validator", type);
-				}
+				assemblies.SelectMany(a => a.GetTypes())
+					.Where(a => a.Name == $"{type.Name}Validator")
+					.Should()
+					.NotBeNull("every Request '{0}' should have corresponding Validator", type);
+			}
+		}
+	}
+	
+	[Fact]
+	public void Application_AllClassesImplementsIRequest_ShouldHaveSingleCorrespondingValidator()
+	{
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies
+			.GetAllTypes()
+			.ThatImplement<IRequest>();
+
+		using (new AssertionScope(new AssertionStrategy()))
+		{
+			foreach (var type in types)
+			{
+				assemblies.SelectMany(a => a.GetTypes())
+					.Count(a => a.Name == $"{type.Name}Validator")
+					.Should()
+					.Be(1, "every Request '{0}' should have single corresponding Validator", type);
 			}
 		}
 	}
