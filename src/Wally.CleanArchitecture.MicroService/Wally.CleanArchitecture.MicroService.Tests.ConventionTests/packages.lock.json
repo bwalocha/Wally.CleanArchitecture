@@ -1790,7 +1790,7 @@
       },
       "Npgsql.EntityFrameworkCore.PostgreSQL": {
         "type": "CentralTransitive",
-        "requested": "[8.0.4, )",
+        "requested": "[8.0.8, )",
         "resolved": "8.0.8",
         "contentHash": "D5WWJZJTgZYUmGv66BARXbTlinp2a5f5RueJqGYoHuWJw02J0i2va/RA+8N4A5hLORK5YKMRqXhFWtKsZdrksw==",
         "dependencies": {
@@ -1818,7 +1818,7 @@
       },
       "Scrutor": {
         "type": "CentralTransitive",
-        "requested": "[5.0.0, )",
+        "requested": "[5.0.1, )",
         "resolved": "5.0.1",
         "contentHash": "lODLSduex32544jZZom2bN73mg4DfyGCNdywismPv2D2Hslv4jaq1Y+apV24xTW65tDMXskZHwVFSg2xIs3jtQ==",
         "dependencies": {
@@ -1828,7 +1828,7 @@
       },
       "Serilog": {
         "type": "CentralTransitive",
-        "requested": "[4.0.1, )",
+        "requested": "[4.0.2, )",
         "resolved": "4.0.2",
         "contentHash": "Vehq4uNYtURe/OnHEpWGvMgrvr5Vou7oZLdn3BuEH5FSCeHXDpNJtpzWoqywXsSvCTuiv0I65mZDRnJSeUvisA=="
       },
@@ -1860,7 +1860,7 @@
       },
       "Swashbuckle.AspNetCore": {
         "type": "CentralTransitive",
-        "requested": "[6.8.0, )",
+        "requested": "[6.8.1, )",
         "resolved": "6.8.1",
         "contentHash": "JN6ccH37QKtNOwBrvSxc+jBYIB+cw6RlZie2IKoJhjjf6HzBH+2kPJCpxmJ5EHIqmxvq6aQG+0A8XklGx9rAxA==",
         "dependencies": {
