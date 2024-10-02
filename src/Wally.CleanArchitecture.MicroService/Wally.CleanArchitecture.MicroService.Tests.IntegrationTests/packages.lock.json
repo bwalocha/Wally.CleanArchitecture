@@ -65,6 +65,12 @@
           "Microsoft.EntityFrameworkCore": "8.0.8"
         }
       },
+      "Microsoft.Extensions.TimeProvider.Testing": {
+        "type": "Direct",
+        "requested": "[8.9.1, )",
+        "resolved": "8.9.1",
+        "contentHash": "Tws9OrfpwnQl+Cxm1onBG27tLekwqktxgykZohHYXnDL2j9xBTcAIRjMilXHXg9GmBPhBcGTUaIq3gO06mKYtw=="
+      },
       "Microsoft.NET.Test.Sdk": {
         "type": "Direct",
         "requested": "[17.11.1, )",

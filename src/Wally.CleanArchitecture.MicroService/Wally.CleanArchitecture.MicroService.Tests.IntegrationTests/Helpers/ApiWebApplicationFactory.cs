@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Testcontainers.MsSql;
 using Xunit;
@@ -92,6 +94,9 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 			services =>
 			{
 				services.AddTransient<IBus, BusStub>();
+
+				services.RemoveAll<TimeProvider>();
+				services.AddSingleton<TimeProvider, Microsoft.Extensions.Time.Testing.FakeTimeProvider>();
 			});
 	}
 

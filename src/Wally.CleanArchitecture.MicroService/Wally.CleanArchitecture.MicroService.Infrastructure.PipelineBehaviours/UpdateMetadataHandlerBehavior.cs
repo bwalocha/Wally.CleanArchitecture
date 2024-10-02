@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -12,18 +13,18 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours
 public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
 	where TRequest : ICommand<TResponse>
 {
-	private readonly IDateTimeProvider _dateTimeProvider;
+	private readonly TimeProvider _timeProvider;
 	private readonly DbContext _dbContext;
 	private readonly IUserProvider _userProvider;
 
 	public UpdateMetadataHandlerBehavior(
 		DbContext dbContext,
 		IUserProvider userProvider,
-		IDateTimeProvider dateTimeProvider)
+		TimeProvider timeProvider)
 	{
 		_dbContext = dbContext;
 		_userProvider = userProvider;
-		_dateTimeProvider = dateTimeProvider;
+		_timeProvider = timeProvider;
 	}
 
 	public async Task<TResponse> Handle(
@@ -40,7 +41,7 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 
 	private void UpdateAggregateMetadata(IEnumerable<EntityEntry> entries)
 	{
-		var now = _dateTimeProvider.GetDateTime();
+		var now = _timeProvider.GetUtcNow();
 		var userId = _userProvider.GetCurrentUserId();
 
 		foreach (var entry in entries)

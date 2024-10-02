@@ -13,6 +13,7 @@
         <PackageReference Include="MassTransit.Abstractions" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" />
+        <PackageReference Include="Microsoft.Extensions.TimeProvider.Testing" />
         <PackageReference Include="Testcontainers.MariaDb" />
         <PackageReference Include="Testcontainers.MsSql" />
         <PackageReference Include="Testcontainers.MySql" />
