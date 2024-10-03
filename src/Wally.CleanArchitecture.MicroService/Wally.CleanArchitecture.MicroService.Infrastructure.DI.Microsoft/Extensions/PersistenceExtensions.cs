@@ -69,7 +69,7 @@ public static class PersistenceExtensions
 				.AsImplementedInterfaces()
 				.WithScopedLifetime());
 
-		services.AddSingleton<TimeProvider, TimeProvider>();
+		services.AddSingleton(TimeProvider.System);
 		services.AddScoped<IUserProvider, HttpUserProvider>();
 
 		return services;
