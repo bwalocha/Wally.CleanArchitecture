@@ -13,6 +13,11 @@
         <PackageReference Include="MassTransit.Abstractions" />
     </ItemGroup>
 
+    <!-- Updates for vulnerable packages -->
+    <ItemGroup>
+        <PackageReference Include="System.Drawing.Common" />
+    </ItemGroup>
+
     <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.WebApi\Wally.CleanArchitecture.MicroService.WebApi.csproj" />

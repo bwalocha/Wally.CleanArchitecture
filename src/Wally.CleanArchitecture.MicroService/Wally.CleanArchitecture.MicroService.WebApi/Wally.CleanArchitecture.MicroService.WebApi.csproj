@@ -13,6 +13,11 @@
         <PackageReference Include="Serilog.Sinks.ApplicationInsights" />
     </ItemGroup>
 
+    <!-- Updates for vulnerable packages -->
+    <ItemGroup>
+        <PackageReference Include="System.Drawing.Common" />
+    </ItemGroup>
+
     <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application\Wally.CleanArchitecture.MicroService.Application.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.Contracts\Wally.CleanArchitecture.MicroService.Application.Contracts.csproj" />

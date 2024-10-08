@@ -20,6 +20,11 @@
         <PackageReference Include="Testcontainers.PostgreSql" />
     </ItemGroup>
 
+    <!-- Updates for vulnerable packages -->
+    <ItemGroup>
+        <PackageReference Include="System.Drawing.Common" />
+    </ItemGroup>
+
     <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.WebApi\Wally.CleanArchitecture.MicroService.WebApi.csproj" />

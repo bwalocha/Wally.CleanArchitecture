@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
@@ -21,37 +22,51 @@ public static class ModelBuilderExtensions
 	/// <param name="modelBuilder">The ModelBuilder</param>
 	public static ModelBuilder ApplyStronglyTypedId(this ModelBuilder modelBuilder)
 	{
-		var allEntities = modelBuilder.Model.GetEntityTypes();
-		foreach (var entity in allEntities
-					.Where(a => typeof(IEntity).IsAssignableFrom(a.ClrType))
-					.Where(a => string.IsNullOrEmpty(a.GetViewName()))
-					.ToArray())
+		foreach (var entityType in GetEntityTypes<IEntity>(modelBuilder))
 		{
-			var entityBuilder = modelBuilder.Entity(entity.ClrType);
+			var entityBuilder = modelBuilder.Entity(entityType);
+			
 			entityBuilder.UseStronglyTypedId();
 		}
 
 		return modelBuilder;
 	}
 
+	public static ModelBuilder ApplyOptimisticConcurrency(this ModelBuilder modelBuilder)
+	{
+		foreach (var entityType in GetEntityTypes<IAggregateRoot>(modelBuilder))
+		{
+			var entityBuilder = modelBuilder.Entity(entityType);
+			
+			// https://learn.microsoft.com/en-us/ef/core/saving/concurrency?tabs=fluent-api
+			entityBuilder.Property(nameof(IAggregateRoot.ModifiedAt)).IsConcurrencyToken();
+		}
+		
+		return modelBuilder;
+	}
+
 	public static ModelBuilder ApplySoftDelete(this ModelBuilder modelBuilder)
 	{
-		var allEntities = modelBuilder.Model.GetEntityTypes();
-		foreach (var entity in allEntities
-					.Where(a => typeof(ISoftDeletable).IsAssignableFrom(a.ClrType))
-					.Where(a => string.IsNullOrEmpty(a.GetViewName()))
-					.Select(a => a.ClrType)
-					.ToArray())
+		foreach (var entityType in GetEntityTypes<ISoftDeletable>(modelBuilder))
 		{
-			var entityBuilder = modelBuilder.Entity(entity);
+			var entityBuilder = modelBuilder.Entity(entityType);
 
 			// TBD: https://learn.microsoft.com/en-us/ef/core/modeling/indexes?tabs=data-annotations#index-filter
 			Expression<Func<ISoftDeletable, bool>> expression = a => !a.IsDeleted;
-			var newParam = Expression.Parameter(entity);
+			var newParam = Expression.Parameter(entityType);
 			var newBody = ReplacingExpressionVisitor.Replace(expression.Parameters.Single(), newParam, expression.Body);
 			entityBuilder.HasQueryFilter(Expression.Lambda(newBody, newParam));
 		}
 
 		return modelBuilder;
+	}
+
+	private static IEnumerable<Type> GetEntityTypes<TType>(this ModelBuilder modelBuilder)
+	{
+		var allEntities = modelBuilder.Model.GetEntityTypes();
+		return allEntities
+			.Where(a => typeof(TType).IsAssignableFrom(a.ClrType))
+			.Where(a => string.IsNullOrEmpty(a.GetViewName()))
+			.Select(a => a.ClrType);
 	}
 }

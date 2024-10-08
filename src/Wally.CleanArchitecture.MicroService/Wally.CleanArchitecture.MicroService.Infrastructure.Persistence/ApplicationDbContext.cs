@@ -19,6 +19,7 @@ public sealed class ApplicationDbContext : DbContext
 			.HasDefaultSchema(SchemaName)
 			.ApplyMappings<IInfrastructurePersistenceAssemblyMarker>()
 			.ApplyStronglyTypedId()
+			.ApplyOptimisticConcurrency()
 			.ApplySoftDelete();
 	}
 }

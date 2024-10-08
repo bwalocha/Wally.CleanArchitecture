@@ -38,6 +38,11 @@
         <PackageReference Include="Microsoft.AspNetCore.OData" />
     </ItemGroup>
 
+    <!-- Updates for vulnerable packages -->
+    <ItemGroup>
+        <PackageReference Include="System.Drawing.Common" />
+    </ItemGroup>
+
     <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.MapperProfiles\Wally.CleanArchitecture.MicroService.Application.MapperProfiles.csproj" />
