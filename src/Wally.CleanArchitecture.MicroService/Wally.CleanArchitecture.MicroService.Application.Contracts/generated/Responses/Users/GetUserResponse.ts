@@ -7,5 +7,5 @@ import { Dayjs } from 'dayjs';
 export interface GetUserResponse
 {
 	id: string;
-	name?: string;
+	name: string;
 }

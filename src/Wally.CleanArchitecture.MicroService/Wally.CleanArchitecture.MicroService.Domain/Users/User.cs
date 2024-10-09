@@ -33,7 +33,7 @@ public class User : AggregateRoot<User, UserId>, ISoftDeletable
 	public static User Create(string name)
 	{
 		var model = new User(name);
-		model.AddDomainEvent(new UserCreatedDomainEvent(model.Id, model.Name));
+		model.AddDomainEvent(new UserCreatedDomainEvent(model.Id));
 
 		return model;
 	}
@@ -41,7 +41,7 @@ public class User : AggregateRoot<User, UserId>, ISoftDeletable
 	public static User Create(UserId id, string name)
 	{
 		var model = new User(id, name);
-		model.AddDomainEvent(new UserCreatedDomainEvent(model.Id, model.Name));
+		model.AddDomainEvent(new UserCreatedDomainEvent(model.Id));
 
 		return model;
 	}
