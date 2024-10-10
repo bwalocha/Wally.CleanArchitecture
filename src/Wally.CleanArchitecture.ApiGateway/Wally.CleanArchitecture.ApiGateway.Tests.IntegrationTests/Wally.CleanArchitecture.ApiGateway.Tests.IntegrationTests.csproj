@@ -13,6 +13,11 @@
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
     </ItemGroup>
 
+    <!-- Updates for vulnerable packages -->
+    <ItemGroup>
+        <PackageReference Include="System.Text.Encodings.Web" />
+    </ItemGroup>
+
     <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.ApiGateway.WebApi\Wally.CleanArchitecture.ApiGateway.WebApi.csproj" />
     </ItemGroup>

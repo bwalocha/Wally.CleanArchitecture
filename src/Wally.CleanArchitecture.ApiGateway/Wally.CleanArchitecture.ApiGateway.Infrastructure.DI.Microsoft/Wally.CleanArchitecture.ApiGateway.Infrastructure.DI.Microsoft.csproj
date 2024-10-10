@@ -24,4 +24,9 @@
         <PackageReference Include="Yarp.ReverseProxy" />
     </ItemGroup>
 
+    <!-- Updates for vulnerable packages -->
+    <ItemGroup>
+        <PackageReference Include="System.Text.Json" />
+    </ItemGroup>
+
 </Project>
