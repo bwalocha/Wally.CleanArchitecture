@@ -10,6 +10,13 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
     </ItemGroup>
 
+    <!-- Updates for vulnerable packages -->
+    <ItemGroup>
+        <PackageReference Include="Azure.Identity" />
+        <PackageReference Include="Microsoft.Identity.Client" />
+        <PackageReference Include="System.Formats.Asn1" />
+    </ItemGroup>
+
     <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.csproj" />
     </ItemGroup>

@@ -11,6 +11,11 @@
         <PackageReference Include="Serilog.Sinks.ApplicationInsights" />
     </ItemGroup>
 
+    <!-- Updates for vulnerable packages -->
+    <!--<ItemGroup>
+        <PackageReference Include="System.Text.Json" />
+    </ItemGroup>-->
+
     <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft\Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.csproj" />
     </ItemGroup>

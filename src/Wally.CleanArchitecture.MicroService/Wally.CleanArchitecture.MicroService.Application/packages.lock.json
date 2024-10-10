@@ -98,16 +98,6 @@
         "resolved": "4.6.0",
         "contentHash": "HxozeSlipUK7dAroTYwIcGwKDeOVpQnJlpVaOkBz7CM4TsE5b/tKlQBZecTjh6FzcSbxndYaxxpsBMz+wMJeyw=="
       },
-      "System.Text.Encodings.Web": {
-        "type": "Transitive",
-        "resolved": "4.7.2",
-        "contentHash": "iTUgB/WtrZ1sWZs84F2hwyQhiRH6QNjQv2DkwrH+WP6RoFga2Q1m3f9/Q7FG8cck8AdHitQkmkXSY8qylcDmuA=="
-      },
-      "System.Text.Json": {
-        "type": "Transitive",
-        "resolved": "4.6.0",
-        "contentHash": "4F8Xe+JIkVoDJ8hDAZ7HqLkjctN/6WItJIzQaifBwClC7wmoLSda/Sv2i6i1kycqDb3hWF4JCVbpAweyOKHEUA=="
-      },
       "wally.cleanarchitecture.microservice.application.contracts": {
         "type": "Project",
         "dependencies": {
@@ -146,7 +136,7 @@
       },
       "Microsoft.Extensions.DependencyInjection.Abstractions": {
         "type": "CentralTransitive",
-        "requested": "[8.0.1, )",
+        "requested": "[8.0.2, )",
         "resolved": "8.0.0",
         "contentHash": "cjWrLkJXK0rs4zofsK4bSdg+jhDLTaxrkXu4gS6Y7MAlCvRyNNgwY/lJi5RDlQOnSZweHqoyvgvbdvQsRIW+hg=="
       },
@@ -155,6 +145,18 @@
         "requested": "[1.6.3, )",
         "resolved": "1.6.3",
         "contentHash": "lLdMeO5ybDagOGtRvuhyAGiPCJrJwU6PDGG3JIImQp+gYEQdpuUj8PjE5agv/Ujktx2XwCoEPnQDqtPm+/fZLQ=="
+      },
+      "System.Text.Encodings.Web": {
+        "type": "CentralTransitive",
+        "requested": "[8.0.0, )",
+        "resolved": "4.7.2",
+        "contentHash": "iTUgB/WtrZ1sWZs84F2hwyQhiRH6QNjQv2DkwrH+WP6RoFga2Q1m3f9/Q7FG8cck8AdHitQkmkXSY8qylcDmuA=="
+      },
+      "System.Text.Json": {
+        "type": "CentralTransitive",
+        "requested": "[8.0.5, )",
+        "resolved": "4.6.0",
+        "contentHash": "4F8Xe+JIkVoDJ8hDAZ7HqLkjctN/6WItJIzQaifBwClC7wmoLSda/Sv2i6i1kycqDb3hWF4JCVbpAweyOKHEUA=="
       }
     }
   }

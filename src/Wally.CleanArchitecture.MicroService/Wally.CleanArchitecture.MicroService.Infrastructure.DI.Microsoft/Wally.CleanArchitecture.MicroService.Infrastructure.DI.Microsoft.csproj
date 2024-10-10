@@ -40,7 +40,10 @@
 
     <!-- Updates for vulnerable packages -->
     <ItemGroup>
+        <PackageReference Include="BouncyCastle.Cryptography" />
         <PackageReference Include="System.Drawing.Common" />
+        <PackageReference Include="System.Runtime.Caching" />
+        <PackageReference Include="System.Text.Json" />
     </ItemGroup>
 
     <ItemGroup>
