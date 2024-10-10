@@ -1,0 +1,17 @@
+{
+  "name": "wally.cleanarchitecture.microservice.application.contracts",
+  "version": "0.0.1",
+  "description": "Wally.CleanArchitecture.MicroService.Application.Contracts",
+  "main": "index.js",
+  "scripts": {
+    "test:unit": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Wally.CleanArchitecture.MicroService.Application.Contracts"
+  ],
+  "author": "Wally",
+  "license": "ISC",
+  "dependencies": {
+    "dayjs": "1.11.7"
+  }
+}
