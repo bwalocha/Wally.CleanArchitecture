@@ -56,7 +56,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 		where TEntity : class
 	{
 		var dbContext = GetRequiredService<DbContext>();
-		dbContext.RemoveRange(dbContext.Set<TEntity>());
+		dbContext.RemoveRange(dbContext.Set<TEntity>().IgnoreQueryFilters());
 		dbContext.SaveChanges();
 
 		return this;

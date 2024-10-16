@@ -64,6 +64,7 @@ public static class ModelBuilderExtensions
 	private static IEnumerable<Type> GetEntityTypes<TType>(this ModelBuilder modelBuilder)
 	{
 		var allEntities = modelBuilder.Model.GetEntityTypes();
+
 		return allEntities
 			.Where(a => typeof(TType).IsAssignableFrom(a.ClrType))
 			.Where(a => string.IsNullOrEmpty(a.GetViewName()))

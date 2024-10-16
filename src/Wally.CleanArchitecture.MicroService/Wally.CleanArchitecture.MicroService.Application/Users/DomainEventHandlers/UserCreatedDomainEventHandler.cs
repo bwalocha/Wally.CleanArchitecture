@@ -6,7 +6,7 @@ using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Responses
 using Wally.CleanArchitecture.MicroService.Application.Messages.Users;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 
-namespace Wally.CleanArchitecture.MicroService.Application.Users;
+namespace Wally.CleanArchitecture.MicroService.Application.Users.DomainEventHandlers;
 
 public class UserCreatedDomainEventHandler : IDomainEventHandler<UserCreatedDomainEvent>
 {

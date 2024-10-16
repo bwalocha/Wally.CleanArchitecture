@@ -1,7 +1,6 @@
 using System;
 using System.Net.Http;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.EntityFrameworkCore;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Extensions;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Helpers;
@@ -24,6 +23,9 @@ public partial class UsersControllerTests : IClassFixture<ApiWebApplicationFacto
 			{
 				AllowAutoRedirect = false,
 			});
+
+		// Clean the Database
+		_factory.RemoveAll<User>();
 	}
 
 	private static User UserCreate(int index)
@@ -46,7 +48,6 @@ public partial class UsersControllerTests : IClassFixture<ApiWebApplicationFacto
 	{
 		if (disposing)
 		{
-			_factory.RemoveAll<User>();
 			_httpClient.Dispose();
 		}
 	}

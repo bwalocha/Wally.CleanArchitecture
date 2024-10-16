@@ -46,7 +46,7 @@ public class CommandHandlerTests
 			{
 				type.Name
 					.Should()
-					.EndWith("CommandHandler", "All command handlers name should ends with 'CommanHandler'");
+					.EndWith("CommandHandler", "All CommandHandler names should end with 'CommandHandler'");
 			}
 		}
 	}

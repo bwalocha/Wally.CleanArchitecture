@@ -4,6 +4,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
+using Microsoft.AspNetCore.Mvc;
 using Wally.CleanArchitecture.MicroService.Application.Contracts;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Responses;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Extensions;
@@ -27,6 +28,24 @@ public partial class UsersControllerTests
 			.BeFalse();
 		response.StatusCode.Should()
 			.Be(HttpStatusCode.NotFound);
+		
+		/* ValidationProblemDetails:
+		 *{
+  "errors": {},
+  "title": "One or more validation errors occurred.",
+  "status": 404,
+  "detail": "The \u0027GetUserResponse\u0027 with Id\u003d\u00279bab9bd7-5cb0-48ea-b7cd-f3d99eb820a1\u0027 could not be found",
+  "instance": "/Users/9bab9bd7-5cb0-48ea-b7cd-f3d99eb820a1"
+}
+		 * 
+		 */
+		var data = await response.ReadAsync<ProblemDetails>(CancellationToken.None);
+		data.Should()
+			.BeEquivalentTo(new
+			{
+				Title = "Resource not found",
+				Status = (int)HttpStatusCode.NotFound,
+			});
 	}
 
 	[Fact]
@@ -47,6 +66,31 @@ public partial class UsersControllerTests
 			.NotBeNull();
 		data.Items.Length.Should()
 			.Be(0);
+	}
+	
+	[Fact]
+	public async Task Get_ExistingResource_ReturnsData()
+	{
+		// Arrange
+		var resource = UserCreate(1);
+		await _factory.SeedAsync(resource);
+
+		// Act
+		var response = await _httpClient.GetAsync(new Uri($"Users/{resource.Id}", UriKind.Relative));
+
+		// Assert
+		response.IsSuccessStatusCode.Should()
+			.BeTrue();
+		response.StatusCode.Should()
+			.Be(HttpStatusCode.OK);
+		
+		var data = await response.ReadAsync<GetUserResponse>(CancellationToken.None);
+		data.Should()
+			.BeEquivalentTo(new
+			{
+				Id = resource.Id.Value,
+				resource.Name,
+			});
 	}
 
 	[Fact]
