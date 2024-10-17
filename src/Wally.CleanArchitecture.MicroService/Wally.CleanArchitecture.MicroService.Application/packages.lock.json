@@ -4,9 +4,9 @@
     "net8.0": {
       "MassTransit.Abstractions": {
         "type": "Direct",
-        "requested": "[8.2.5, )",
-        "resolved": "8.2.5",
-        "contentHash": "TcAV7ZEdXTrw6D74g55mlEYLBBQvsifNrdfwt0UCps7mZVBoXoS3fvMHCQguRgj+6k1Q1qEV9kZa0aUOT7GcPQ=="
+        "requested": "[8.3.0, )",
+        "resolved": "8.3.0",
+        "contentHash": "smYAGbCnHXl927Xvr2nzxtQAhfJfRSnVZAcIHGMI3QQq/aK3KvsCqgail1bw7acw0NkEhw8yv7cnKBGYKKFXPQ=="
       },
       "MediatR": {
         "type": "Direct",

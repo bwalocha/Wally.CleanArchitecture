@@ -12,9 +12,10 @@
     </ItemGroup>
 
     <!-- Updates for vulnerable packages -->
-    <!--<ItemGroup>
-        <PackageReference Include="System.Text.Json" />
-    </ItemGroup>-->
+    <ItemGroup>
+        <!--<PackageReference Include="System.Text.Json" />-->
+        <PackageReference Include="System.Text.Encodings.Web" />
+    </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft\Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.csproj" />

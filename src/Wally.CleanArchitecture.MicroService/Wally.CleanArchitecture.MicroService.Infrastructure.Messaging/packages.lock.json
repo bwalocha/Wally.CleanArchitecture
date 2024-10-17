@@ -4,11 +4,11 @@
     "net8.0": {
       "MassTransit": {
         "type": "Direct",
-        "requested": "[8.2.5, )",
-        "resolved": "8.2.5",
-        "contentHash": "b/gNaT6IxX+BZnLCLTzjqia5iQJxpmIGOjPiLnD6SLBRX9tyIsYVNKPAqQ6txNe2ztOOaW4ntef84VxSvA0IEA==",
+        "requested": "[8.3.0, )",
+        "resolved": "8.3.0",
+        "contentHash": "LZbHqGeP+enkeidjyLeAFQjOFyc5eCJmc5Wru/9Xv1dtcfI2wT+Ga5OQqUCJsqIQzcV1yfumRtbMnAVxwxB/4g==",
         "dependencies": {
-          "MassTransit.Abstractions": "8.2.5",
+          "MassTransit.Abstractions": "8.3.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
           "Microsoft.Extensions.Diagnostics.HealthChecks": "8.0.0",
           "Microsoft.Extensions.Hosting.Abstractions": "8.0.0",
@@ -180,7 +180,7 @@
       "wally.cleanarchitecture.microservice.application": {
         "type": "Project",
         "dependencies": {
-          "MassTransit.Abstractions": "[8.2.5, )",
+          "MassTransit.Abstractions": "[8.3.0, )",
           "MediatR": "[12.4.1, )",
           "Microsoft.AspNetCore.OData": "[9.0.0, )",
           "SonarAnalyzer.CSharp": "[9.32.0.97167, )",
@@ -222,9 +222,9 @@
       },
       "MassTransit.Abstractions": {
         "type": "CentralTransitive",
-        "requested": "[8.2.5, )",
-        "resolved": "8.2.5",
-        "contentHash": "TcAV7ZEdXTrw6D74g55mlEYLBBQvsifNrdfwt0UCps7mZVBoXoS3fvMHCQguRgj+6k1Q1qEV9kZa0aUOT7GcPQ=="
+        "requested": "[8.3.0, )",
+        "resolved": "8.3.0",
+        "contentHash": "smYAGbCnHXl927Xvr2nzxtQAhfJfRSnVZAcIHGMI3QQq/aK3KvsCqgail1bw7acw0NkEhw8yv7cnKBGYKKFXPQ=="
       },
       "MediatR.Contracts": {
         "type": "CentralTransitive",
