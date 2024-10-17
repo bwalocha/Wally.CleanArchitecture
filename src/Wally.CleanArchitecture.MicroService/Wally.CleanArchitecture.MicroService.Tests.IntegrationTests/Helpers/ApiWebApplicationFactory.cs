@@ -31,7 +31,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 	
 	public Task InitializeAsync() => Task.WhenAll(_dbContainer.StartAsync() /*, _kafkaContainer.StartAsync()*/);
 	
-	public new Task DisposeAsync() => Task.WhenAll(_dbContainer.DisposeAsync().AsTask() /*, _kafkaContainer.StopAsync()*/);
+	public new Task DisposeAsync() => Task.WhenAll(/*_dbContainer.DisposeAsync().AsTask()*/ /*, _kafkaContainer.StopAsync()*/);
 
 	public TService GetRequiredService<TService>()
 		where TService : notnull
