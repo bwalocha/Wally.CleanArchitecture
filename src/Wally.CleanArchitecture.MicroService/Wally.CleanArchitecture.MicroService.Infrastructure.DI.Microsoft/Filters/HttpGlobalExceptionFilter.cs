@@ -8,23 +8,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Wally.CleanArchitecture.MicroService.Application;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
+using Wally.CleanArchitecture.MicroService.Domain.Exceptions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Filters;
 
 public class HttpGlobalExceptionFilter : IExceptionFilter
 {
-	// private readonly IErrorResultProvider _errorResultProvider;
+	private readonly IRequestContext _requestContext;
 	private readonly ILogger<HttpGlobalExceptionFilter> _logger;
 
-	public HttpGlobalExceptionFilter(
-		// IErrorResultProvider errorResultProvider,
-#pragma warning disable SA1114
-		ILogger<HttpGlobalExceptionFilter> logger)
-#pragma warning restore SA1114
+	public HttpGlobalExceptionFilter(IRequestContext requestContext, ILogger<HttpGlobalExceptionFilter> logger)
 	{
-		// _errorResultProvider = errorResultProvider;
+		_requestContext = requestContext;
 		_logger = logger;
 	}
 
@@ -41,40 +39,36 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 		{
 			case DomainException _:
 				HandleDomainValidationException(context);
-
+				break;
+			case PermissionDeniedException _:
+				HandlePermissionDeniedException(context);
 				break;
 			case UnauthorizedAccessException _:
 				HandleUnauthorizedAccessException(context);
-
 				break;
 			case INotFound _:
 				HandleResourceNotFoundException(context);
-
 				break;
 			case UniqueConstraintException _:
 			case CannotInsertNullException _:
 			case MaxLengthExceededException _:
 			case NumericOverflowException _:
 			case ReferenceConstraintException _:
-				// TODO: test it
 				HandleSqlException(context);
-
 				break;
 			case DbUpdateException _:
 				HandleSqlException(context);
-
 				break;
 			default:
+				HandleUndefinedExceptions(context, _requestContext);
 				Debugger.Break();
-				HandleUndefinedExceptions(context);
-
 				break;
 		}
 
 		context.ExceptionHandled = true;
 	}
 
-	private void HandleSqlException(ExceptionContext context)
+	private static void HandleSqlException(ExceptionContext context)
 	{
 		var problemDetails = new ValidationProblemDetails
 		{
@@ -91,19 +85,30 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 				{
 					exception.ErrorCode.ToString(), exception.Message,
 				});
-			context.Result = new ConflictObjectResult(problemDetails);
-		}
-		else
-		{
-			context.Result = new ConflictObjectResult(problemDetails);
 		}
 
-		context.HttpContext.Response.StatusCode = StatusCodes.Status409Conflict;
+		context.Result = new ConflictObjectResult(problemDetails);
 	}
 
-	private void HandleUnauthorizedAccessException(ExceptionContext context)
+	private static void HandlePermissionDeniedException(ExceptionContext context)
 	{
-		var problemDetails = new ValidationProblemDetails
+		var problemDetails = new ProblemDetails
+		{
+			Title = "Permission denied",
+			Instance = context.HttpContext.Request.Path,
+			Status = StatusCodes.Status403Forbidden,
+			Detail = context.Exception.Message,
+		};
+
+		context.Result = new ObjectResult(problemDetails)
+		{
+			StatusCode = problemDetails.Status,
+		};
+	}
+	
+	private static void HandleUnauthorizedAccessException(ExceptionContext context)
+	{
+		var problemDetails = new ProblemDetails
 		{
 			Instance = context.HttpContext.Request.Path,
 			Status = StatusCodes.Status401Unauthorized,
@@ -111,26 +116,26 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 		};
 
 		context.Result = new UnauthorizedObjectResult(problemDetails);
-		context.HttpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
 	}
 
-	private void HandleResourceNotFoundException(ExceptionContext context)
+	private static void HandleResourceNotFoundException(ExceptionContext context)
 	{
-		var problemDetails = new ValidationProblemDetails
+		var problemDetails = new ProblemDetails
 		{
+			Title = "Resource not found",
 			Instance = context.HttpContext.Request.Path,
 			Status = StatusCodes.Status404NotFound,
 			Detail = context.Exception.Message,
 		};
 
 		context.Result = new NotFoundObjectResult(problemDetails);
-		context.HttpContext.Response.StatusCode = StatusCodes.Status404NotFound;
 	}
 
-	private void HandleDomainValidationException(ExceptionContext context)
+	private static void HandleDomainValidationException(ExceptionContext context)
 	{
 		var problemDetails = new ValidationProblemDetails
 		{
+			Title = "Validation error",
 			Instance = context.HttpContext.Request.Path,
 			Status = StatusCodes.Status400BadRequest,
 			Detail = "Please refer to the errors property for additional details.",
@@ -139,14 +144,21 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 		problemDetails.Errors.Add("DomainValidations", new[] { context.Exception.Message, });
 
 		context.Result = new BadRequestObjectResult(problemDetails);
-		context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
 	}
 
-	private static void HandleUndefinedExceptions(ExceptionContext context)
+	private static void HandleUndefinedExceptions(ExceptionContext context, IRequestContext requestContext)
 	{
-		// var response = _errorResultProvider.GetResult(context);
+		var problemDetails = new ProblemDetails
+		{
+			Title = "Internal Server Error",
+			Instance = context.HttpContext.Request.Path,
+			Status = StatusCodes.Status500InternalServerError,
+			Detail = $"Internal Server Error. CorrelationId: '{requestContext.CorrelationId}'.",
+		};
 
-		// context.Result = new InternalServerErrorObjectResult(response);
-		context.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
+		context.Result = new ObjectResult(problemDetails)
+		{
+			StatusCode = problemDetails.Status,
+		};
 	}
 }

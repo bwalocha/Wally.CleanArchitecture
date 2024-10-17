@@ -33,6 +33,9 @@ public static class WebApiExtensions
 		services.AddFluentValidationAutoValidation(config => config.DisableDataAnnotationsValidation = true);
 
 		// services.AddFluentValidationClientsideAdapters(); // TODO: consider config => config.ClientValidatorFactories
+		
+		services.AddHttpContextAccessor();
+		services.AddScoped<IRequestContext, HttpRequestContext>();
 
 		return services;
 	}

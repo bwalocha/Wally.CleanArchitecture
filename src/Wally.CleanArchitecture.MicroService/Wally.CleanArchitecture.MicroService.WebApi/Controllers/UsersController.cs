@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Wally.CleanArchitecture.MicroService.Application.Contracts;
@@ -122,6 +123,8 @@ public class UsersController : ControllerBase
 	///     DELETE /Users/6ff34249-ef96-432a-9822-d3aca639a986
 	/// </remarks>
 	[HttpDelete("{id:guid}")]
+	// [Authorize("Users.Write")]
+	// [Authorize]
 	public async Task<ActionResult<object>> DeleteAsync(Guid id, CancellationToken cancellationToken)
 	{
 		var command = new DeleteUserCommand(new UserId(id));

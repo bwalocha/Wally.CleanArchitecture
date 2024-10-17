@@ -38,7 +38,7 @@ public static class OpenApiExtensions
 					}
 				}
 
-				options.ConfigObject.Urls = options.ConfigObject.Urls.DistinctBy(a => a.Url);
+				options.ConfigObject.Urls = options.ConfigObject.Urls?.DistinctBy(a => a.Url);
 			});
 
 		return app;

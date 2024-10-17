@@ -31,7 +31,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 	
 	public Task InitializeAsync() => Task.WhenAll(_dbContainer.StartAsync() /*, _kafkaContainer.StartAsync()*/);
 	
-	public new Task DisposeAsync() => Task.WhenAll(_dbContainer.DisposeAsync().AsTask() /*, _kafkaContainer.StopAsync()*/);
+	public new Task DisposeAsync() => Task.WhenAll(/*_dbContainer.DisposeAsync().AsTask()*/ /*, _kafkaContainer.StopAsync()*/);
 
 	public TService GetRequiredService<TService>()
 		where TService : notnull
@@ -56,7 +56,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 		where TEntity : class
 	{
 		var dbContext = GetRequiredService<DbContext>();
-		dbContext.RemoveRange(dbContext.Set<TEntity>());
+		dbContext.RemoveRange(dbContext.Set<TEntity>().IgnoreQueryFilters());
 		dbContext.SaveChanges();
 
 		return this;

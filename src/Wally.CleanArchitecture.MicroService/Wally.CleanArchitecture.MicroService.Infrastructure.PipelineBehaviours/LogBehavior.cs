@@ -1,11 +1,10 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
-using Wally.CleanArchitecture.MicroService.Domain;
+using Wally.CleanArchitecture.MicroService.Application;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 
@@ -13,10 +12,12 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 	where TRequest : IRequest<TResponse>
 {
 	private readonly ILogger<LogBehavior<TRequest, TResponse>> _logger;
+	private readonly IRequestContext _requestContext;
 
-	public LogBehavior(ILogger<LogBehavior<TRequest, TResponse>> logger)
+	public LogBehavior(ILogger<LogBehavior<TRequest, TResponse>> logger, IRequestContext requestContext)
 	{
 		_logger = logger;
+		_requestContext = requestContext;
 	}
 
 	public async Task<TResponse> Handle(
@@ -24,13 +25,11 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 		RequestHandlerDelegate<TResponse> next,
 		CancellationToken cancellationToken)
 	{
-		var correlationId = GetCorrelationId();
-
-		using var logContext = LogContext.PushProperty("CorrelationId", correlationId);
+		using var logContext = LogContext.PushProperty("CorrelationId", _requestContext.CorrelationId);
 
 		_logger.LogInformation(
 			"[{CorrelationId}] Executing request handler for request type: '{TypeofTRequestName}' and response type: '{TypeofTResponseName}'",
-			correlationId, typeof(TRequest).Name, typeof(TResponse).Name);
+			_requestContext.CorrelationId, typeof(TRequest).Name, typeof(TResponse).Name);
 		var stopWatch = Stopwatch.StartNew();
 		try
 		{
@@ -42,23 +41,14 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 
 			if (stopWatch.ElapsedMilliseconds > 500)
 			{
-				_logger.LogWarning("[{CorrelationId}] Executed in {StopWatchElapsedMilliseconds} ms", correlationId,
+				_logger.LogWarning("[{CorrelationId}] Executed in {StopWatchElapsedMilliseconds} ms", _requestContext.CorrelationId,
 					stopWatch.ElapsedMilliseconds);
 			}
 			else
 			{
-				_logger.LogInformation("[{CorrelationId}] Executed in {StopWatchElapsedMilliseconds} ms", correlationId,
+				_logger.LogInformation("[{CorrelationId}] Executed in {StopWatchElapsedMilliseconds} ms", _requestContext.CorrelationId,
 					stopWatch.ElapsedMilliseconds);
 			}
 		}
-	}
-
-	private CorrelationId GetCorrelationId()
-	{
-		// const string CorrelationIdHeaderName = "X-Correlation-Id";
-		// TODO: use HttpContext (TraceId?) or CorrelationId from MassTransit Message
-		// ...
-
-		return new CorrelationId(Guid.NewGuid());
 	}
 }

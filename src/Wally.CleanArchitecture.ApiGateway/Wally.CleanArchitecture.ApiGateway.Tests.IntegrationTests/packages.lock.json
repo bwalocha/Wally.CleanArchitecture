@@ -303,18 +303,6 @@
           "Microsoft.Extensions.Primitives": "8.0.0"
         }
       },
-      "Microsoft.Extensions.Caching.Memory": {
-        "type": "Transitive",
-        "resolved": "8.0.0",
-        "contentHash": "7pqivmrZDzo1ADPkRwjy+8jtRKWRCPag9qPI+p7sgu7Q4QreWhcvbiWXsbhP+yY8XSiDvZpu2/LWdBv7PnmOpQ==",
-        "dependencies": {
-          "Microsoft.Extensions.Caching.Abstractions": "8.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
-          "Microsoft.Extensions.Options": "8.0.0",
-          "Microsoft.Extensions.Primitives": "8.0.0"
-        }
-      },
       "Microsoft.Extensions.Configuration": {
         "type": "Transitive",
         "resolved": "8.0.0",
@@ -966,6 +954,7 @@
           "FluentValidation.AspNetCore": "[11.3.0, )",
           "Microsoft.AspNetCore.Http.Abstractions": "[2.2.0, )",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "[8.0.10, )",
+          "Microsoft.Extensions.Caching.Memory": "[8.0.1, )",
           "Microsoft.Extensions.Configuration.Abstractions": "[8.0.0, )",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[8.0.2, )",
           "Microsoft.FeatureManagement.AspNetCore": "[3.5.0, )",
@@ -975,7 +964,7 @@
           "OpenTelemetry.Instrumentation.Http": "[1.9.0, )",
           "SonarAnalyzer.CSharp": "[9.32.0.97167, )",
           "StyleCop.Analyzers": "[1.1.118, )",
-          "Swashbuckle.AspNetCore.SwaggerUI": "[6.8.1, )",
+          "Swashbuckle.AspNetCore.SwaggerUI": "[6.9.0, )",
           "System.Text.Json": "[8.0.5, )",
           "Yarp.ReverseProxy": "[2.2.0, )"
         }
@@ -987,6 +976,7 @@
           "Serilog.Sinks.ApplicationInsights": "[4.0.0, )",
           "SonarAnalyzer.CSharp": "[9.32.0.97167, )",
           "StyleCop.Analyzers": "[1.1.118, )",
+          "System.Text.Encodings.Web": "[8.0.0, )",
           "Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft": "[1.0.0, )"
         }
       },
@@ -1103,6 +1093,19 @@
           "Microsoft.Extensions.Configuration.Abstractions": "8.0.0"
         }
       },
+      "Microsoft.Extensions.Caching.Memory": {
+        "type": "CentralTransitive",
+        "requested": "[8.0.1, )",
+        "resolved": "8.0.1",
+        "contentHash": "HFDnhYLccngrzyGgHkjEDU5FMLn4MpOsr5ElgsBMC4yx6lJh4jeWO7fHS8+TXPq+dgxCmUa/Trl8svObmwW4QA==",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "8.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.2",
+          "Microsoft.Extensions.Options": "8.0.2",
+          "Microsoft.Extensions.Primitives": "8.0.0"
+        }
+      },
       "Microsoft.Extensions.Configuration.Abstractions": {
         "type": "CentralTransitive",
         "requested": "[8.0.0, )",
@@ -1212,9 +1215,9 @@
       },
       "Swashbuckle.AspNetCore.SwaggerUI": {
         "type": "CentralTransitive",
-        "requested": "[6.8.1, )",
-        "resolved": "6.8.1",
-        "contentHash": "lpEszYJ7vZaTTE5Dp8MrsbSHrgDfjhDMjzW1qOA1Xs1Dnj3ZRBJAcPZUTsa5Bva+nLaw91JJ8OI8FkSg8hhIyA=="
+        "requested": "[6.9.0, )",
+        "resolved": "6.9.0",
+        "contentHash": "0OxlWBFLl2gUESZX/K7QCTz9KctKy0VxHTvLIBcyWGD4z/fv5MCMW02qzYGcReLJr4yBnNDRzApKtLh6oBpe9A=="
       },
       "System.Text.Json": {
         "type": "CentralTransitive",

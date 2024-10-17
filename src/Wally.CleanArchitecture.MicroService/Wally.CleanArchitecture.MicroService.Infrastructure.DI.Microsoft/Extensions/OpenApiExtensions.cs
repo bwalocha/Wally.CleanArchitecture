@@ -14,6 +14,8 @@ public static class OpenApiExtensions
 {
 	public static IServiceCollection AddOpenApi(this IServiceCollection services, Assembly assembly)
 	{
+		// services.AddOpenApi(); // TODO: https://www.youtube.com/watch?v=8yI4gD1HruY&ab_channel=NickChapsas
+		
 		// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 		services.AddEndpointsApiExplorer();
 		// services.AddODataApiExplorer();
@@ -56,6 +58,8 @@ public static class OpenApiExtensions
 
 	public static IApplicationBuilder UseOpenApi(this IApplicationBuilder app)
 	{
+		// app.MapOpenApi(); // TODO: https://www.youtube.com/watch?v=8yI4gD1HruY&ab_channel=NickChapsas
+		
 		app.UseSwagger(setupAction: null)
 			.UseSwaggerUI(
 				options =>

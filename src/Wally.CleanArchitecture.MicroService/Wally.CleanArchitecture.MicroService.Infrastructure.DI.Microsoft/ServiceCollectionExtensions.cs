@@ -36,9 +36,11 @@ public static class ServiceCollectionExtensions
 		if (env.IsDevelopment())
 		{
 			app.UseDeveloperExceptionPage();
-			app.UseSwagger();
+			// app.UseSwagger();
 		}
 
+		app.UseOpenApi();
+		
 		// If the App is hosted by Docker, HTTPS is not required inside container
 		// app.UseHttpsRedirection();
 

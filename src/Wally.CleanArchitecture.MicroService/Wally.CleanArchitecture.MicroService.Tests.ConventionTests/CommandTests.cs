@@ -13,6 +13,26 @@ namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 public class CommandTests
 {
 	[Fact]
+	public void Application_Command_ShouldEndsWithCommand()
+	{
+		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
+		var types = applicationTypes
+			.Where(a => a.IsClass)
+			.Where(a => !a.IsAbstract)
+			.Where(a => a.ImplementsGenericInterface(typeof(ICommand<>)));
+
+		using (new AssertionScope(new AssertionStrategy()))
+		{
+			foreach (var type in types)
+			{
+				type.Name
+					.Should()
+					.EndWith("Command", "All Command names should end with 'Command'");
+			}
+		}
+	}
+	
+	[Fact]
 	public void Application_Command_ShouldNotExposeSetter()
 	{
 		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
@@ -54,7 +74,7 @@ public class CommandTests
 	[Fact]
 	public void Application_Command_ShouldHaveCorrespondingHandler()
 	{
-		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var assemblies = Configuration.Assemblies.GetAllAssemblies().ToList();
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{
@@ -105,6 +125,31 @@ public class CommandTests
 		}
 	}
 
+	[Fact]
+	public void Application_Command_ShouldHaveCorrespondingAuthorizationHandler()
+	{
+		var assemblies = Configuration.Assemblies.GetAllAssemblies().ToList();
+
+		using (new AssertionScope(new AssertionStrategy()))
+		{
+			foreach (var assembly in assemblies)
+			{
+				var types = assembly.GetTypes()
+					.Where(a => a.IsClass)
+					.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
+						a.ImplementsGenericInterface(typeof(ICommand<>)));
+
+				foreach (var type in types)
+				{
+					assembly.GetTypes()
+						.SingleOrDefault(a => a.Name == $"{type.Name}AuthorizationHandler")
+						.Should()
+						.NotBeNull("Command '{0}' should have corresponding AuthorizationHandler", type);
+				}
+			}
+		}
+	}
+	
 	[Fact]
 	public void Application_Command_ShouldBeSealed()
 	{
