@@ -1,1 +1,40 @@
-Wally.Common.CodeStyleRules/Directory.Build.props
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="BasePath">
+    <SolutionDir Condition="'$(SolutionDir)'==''">$(MSBuildThisFileDirectory)</SolutionDir>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-options/code-generation#deterministic -->
+    <Deterministic>true</Deterministic>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+
+    <!-- Audit settings -->
+    <NuGetAudit>true</NuGetAudit>
+    <NuGetAuditLevel>critical</NuGetAuditLevel>
+    <NuGetAuditMode>all</NuGetAuditMode>
+
+    <!-- Compatibility validation -->
+    <EnablePackageValidation>true</EnablePackageValidation>
+  </PropertyGroup>
+
+  <!-- StyleCop Analyzer configuration -->
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>$(SolutionDir).stylecop\settings.stylecop</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" />
+    <AdditionalFiles Include="$(SolutionDir).stylecop\stylecop.json"
+                     Link="Properties\stylecop.json" />
+  </ItemGroup>
+
+  <!-- Sonar Analyzer configuration -->
+  <ItemGroup>
+    <PackageReference Include="SonarAnalyzer.CSharp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+    <RazorCompile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+</Project>
