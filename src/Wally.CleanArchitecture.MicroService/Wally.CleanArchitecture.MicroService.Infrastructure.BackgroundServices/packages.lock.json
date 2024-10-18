@@ -2,24 +2,8 @@
   "version": 2,
   "dependencies": {
     "net8.0": {
-      "SonarAnalyzer.CSharp": {
-        "type": "Direct",
-        "requested": "[9.32.0.97167, )",
-        "resolved": "9.32.0.97167",
-        "contentHash": "Yxk86RV+8ynJpUhku1Yw2hITFmnmXKkXJ73cIFSy85ol5SnWREQg9RuTyV8nI7V7+pyLKpCfRmD7P0widsgjkg=="
-      },
-      "StyleCop.Analyzers": {
-        "type": "Direct",
-        "requested": "[1.1.118, )",
-        "resolved": "1.1.118",
-        "contentHash": "Onx6ovGSqXSK07n/0eM3ZusiNdB6cIlJdabQhWGgJp3Vooy9AaLS/tigeybOJAobqbtggTamoWndz72JscZBvw=="
-      },
       "wally.cleanarchitecture.microservice.domain": {
-        "type": "Project",
-        "dependencies": {
-          "SonarAnalyzer.CSharp": "[9.32.0.97167, )",
-          "StyleCop.Analyzers": "[1.1.118, )"
-        }
+        "type": "Project"
       }
     }
   }

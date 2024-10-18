@@ -45,18 +45,6 @@
         "resolved": "4.0.2",
         "contentHash": "Vehq4uNYtURe/OnHEpWGvMgrvr5Vou7oZLdn3BuEH5FSCeHXDpNJtpzWoqywXsSvCTuiv0I65mZDRnJSeUvisA=="
       },
-      "SonarAnalyzer.CSharp": {
-        "type": "Direct",
-        "requested": "[9.32.0.97167, )",
-        "resolved": "9.32.0.97167",
-        "contentHash": "Yxk86RV+8ynJpUhku1Yw2hITFmnmXKkXJ73cIFSy85ol5SnWREQg9RuTyV8nI7V7+pyLKpCfRmD7P0widsgjkg=="
-      },
-      "StyleCop.Analyzers": {
-        "type": "Direct",
-        "requested": "[1.1.118, )",
-        "resolved": "1.1.118",
-        "contentHash": "Onx6ovGSqXSK07n/0eM3ZusiNdB6cIlJdabQhWGgJp3Vooy9AaLS/tigeybOJAobqbtggTamoWndz72JscZBvw=="
-      },
       "Microsoft.Bcl.AsyncInterfaces": {
         "type": "Transitive",
         "resolved": "8.0.0",
@@ -169,8 +157,6 @@
           "MassTransit.Abstractions": "[8.3.0, )",
           "MediatR": "[12.4.1, )",
           "Microsoft.AspNetCore.OData": "[9.0.0, )",
-          "SonarAnalyzer.CSharp": "[9.32.0.97167, )",
-          "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application.Contracts": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Application.Messages": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
@@ -180,25 +166,17 @@
         "type": "Project",
         "dependencies": {
           "FluentValidation": "[11.10.0, )",
-          "Reinforced.Typings": "[1.6.3, )",
-          "SonarAnalyzer.CSharp": "[9.32.0.97167, )",
-          "StyleCop.Analyzers": "[1.1.118, )"
+          "Reinforced.Typings": "[1.6.3, )"
         }
       },
       "wally.cleanarchitecture.microservice.application.messages": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "[11.10.0, )",
-          "SonarAnalyzer.CSharp": "[9.32.0.97167, )",
-          "StyleCop.Analyzers": "[1.1.118, )"
+          "FluentValidation": "[11.10.0, )"
         }
       },
       "wally.cleanarchitecture.microservice.domain": {
-        "type": "Project",
-        "dependencies": {
-          "SonarAnalyzer.CSharp": "[9.32.0.97167, )",
-          "StyleCop.Analyzers": "[1.1.118, )"
-        }
+        "type": "Project"
       },
       "MassTransit.Abstractions": {
         "type": "CentralTransitive",
