@@ -1679,7 +1679,7 @@
       },
       "Npgsql.EntityFrameworkCore.PostgreSQL": {
         "type": "CentralTransitive",
-        "requested": "[8.0.8, )",
+        "requested": "[8.0.10, )",
         "resolved": "8.0.10",
         "contentHash": "gFPl9Dmxih7Yi4tZ3bITzZFzbxFMBx04gqTqcjoL2r5VEW+O2TA5UVw/wm/XW26NAJ7sg59Je0+9QrwiZt6MPQ==",
         "dependencies": {
