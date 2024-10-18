@@ -1,0 +1,66 @@
+﻿{
+  "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
+  "settings": {
+    "indentation": {
+      "indentationSize": 4,
+      "tabSize": 4,
+      "useTabs": true
+    },
+    // "spacingRules": {}
+    "readabilityRules": {
+      "allowBuiltInTypeAliases": false
+    },
+    "orderingRules": {
+      "elementOrder": [
+        // "kind", 
+        // "accessibility", 
+        "constant"
+        // "static", 
+        // "readonly"
+      ],
+      "systemUsingDirectivesFirst": true,
+      "usingDirectivesPlacement": "outsideNamespace",
+      "blankLinesBetweenUsingGroups": "require"
+    },
+    "namingRules": {
+      "allowCommonHungarianPrefixes": false,
+      // "allowedHungarianPrefixes": []
+      // "allowedNamespaceComponents": []
+      "includeInferredTupleElementNames": false,
+      "tupleElementNameCasing": "PascalCase"
+    },
+    "maintainabilityRules": {
+      "topLevelTypes": [
+        "class",
+        "interface",
+        "struct",
+        "delegate",
+        "enum"
+      ]
+    },
+    "layoutRules": {
+      "newlineAtEndOfFile": "require",
+      "allowConsecutiveUsings": false
+    },
+    "documentationRules": {
+      "documentExposedElements": false,
+      "documentInternalElements": false,
+      "documentPrivateElements": false,
+      "documentInterfaces": false,
+      "documentPrivateFields": false,
+      "companyName": "Wally",
+      "copyrightText": "Copyright (c) {companyName}. All rights reserved.\nLicensed under the {licenseName} license. See {licenseFile} file in the project root for full license information.",
+      "variables": {
+        "licenseName": "UNLICENSED",
+        "licenseFile": "LICENSE"
+      },
+      "xmlHeader": true,
+      "headerDecoration": "-----------------------------------------------------------------------",
+      "fileNamingConvention": "metadata",
+      "documentationCulture": "en-US",
+      "excludeFromPunctuationCheck": [
+        "seealso"
+      ]
+    }
+  }
+}

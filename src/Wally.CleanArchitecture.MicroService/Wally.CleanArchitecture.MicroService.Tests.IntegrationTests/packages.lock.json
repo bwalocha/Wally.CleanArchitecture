@@ -345,14 +345,6 @@
           "Newtonsoft.Json": "13.0.3"
         }
       },
-      "Microsoft.AspNetCore.OpenApi": {
-        "type": "Transitive",
-        "resolved": "8.0.10",
-        "contentHash": "kzYiW/IbSN0xittjplA8eN1wrNcRi3DMalYRrEuF2xyf2Y5u7cGCfgN1oNZ+g3aBQzMKTQwYsY1PeNmC+P0WnA==",
-        "dependencies": {
-          "Microsoft.OpenApi": "1.4.3"
-        }
-      },
       "Microsoft.AspNetCore.TestHost": {
         "type": "Transitive",
         "resolved": "8.0.10",
@@ -981,8 +973,8 @@
       },
       "Npgsql": {
         "type": "Transitive",
-        "resolved": "8.0.4",
-        "contentHash": "vaYEUlF/pB9m8bs21wQv3Da0kMHT4A9USe47VfY/L2BO97xz5KfIxhEu22QS9d68ZrLxvtL3wQDfDLPr2OjbjA==",
+        "resolved": "8.0.5",
+        "contentHash": "zRG5V8cyeZLpzJlKzFKjEwkRMYIYnHWJvEor2lWXeccS2E1G2nIWYYhnukB51iz5XsWSVEtqg3AxTWM0QJ6vfg==",
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "8.0.0"
         }
@@ -1603,7 +1595,7 @@
       "wally.cleanarchitecture.microservice.infrastructure.persistence.postgresql": {
         "type": "Project",
         "dependencies": {
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "[8.0.8, )",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "[8.0.10, )",
           "SonarAnalyzer.CSharp": "[9.32.0.97167, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence": "[1.0.0, )"
@@ -1958,6 +1950,15 @@
           "Microsoft.Spatial": "[8.0.1, 9.0.0)"
         }
       },
+      "Microsoft.AspNetCore.OpenApi": {
+        "type": "CentralTransitive",
+        "requested": "[8.0.10, )",
+        "resolved": "8.0.10",
+        "contentHash": "kzYiW/IbSN0xittjplA8eN1wrNcRi3DMalYRrEuF2xyf2Y5u7cGCfgN1oNZ+g3aBQzMKTQwYsY1PeNmC+P0WnA==",
+        "dependencies": {
+          "Microsoft.OpenApi": "1.4.3"
+        }
+      },
       "Microsoft.EntityFrameworkCore": {
         "type": "CentralTransitive",
         "requested": "[8.0.10, )",
@@ -2063,13 +2064,13 @@
       "Npgsql.EntityFrameworkCore.PostgreSQL": {
         "type": "CentralTransitive",
         "requested": "[8.0.8, )",
-        "resolved": "8.0.8",
-        "contentHash": "D5WWJZJTgZYUmGv66BARXbTlinp2a5f5RueJqGYoHuWJw02J0i2va/RA+8N4A5hLORK5YKMRqXhFWtKsZdrksw==",
+        "resolved": "8.0.10",
+        "contentHash": "gFPl9Dmxih7Yi4tZ3bITzZFzbxFMBx04gqTqcjoL2r5VEW+O2TA5UVw/wm/XW26NAJ7sg59Je0+9QrwiZt6MPQ==",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "8.0.8",
-          "Microsoft.EntityFrameworkCore.Abstractions": "8.0.8",
-          "Microsoft.EntityFrameworkCore.Relational": "8.0.8",
-          "Npgsql": "8.0.4"
+          "Microsoft.EntityFrameworkCore": "8.0.10",
+          "Microsoft.EntityFrameworkCore.Abstractions": "8.0.10",
+          "Microsoft.EntityFrameworkCore.Relational": "8.0.10",
+          "Npgsql": "8.0.5"
         }
       },
       "Pomelo.EntityFrameworkCore.MySql": {
