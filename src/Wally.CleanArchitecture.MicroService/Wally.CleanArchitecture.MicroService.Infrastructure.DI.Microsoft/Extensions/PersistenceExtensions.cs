@@ -52,6 +52,7 @@ public static class PersistenceExtensions
 			options.ConfigureWarnings(builder =>
 			{
 				builder.Default(WarningBehavior.Throw);
+				builder.Ignore(InMemoryEventId.TransactionIgnoredWarning);
 				builder.Ignore(RelationalEventId.MultipleCollectionIncludeWarning);
 				builder.Ignore(SqlServerEventId.SavepointsDisabledBecauseOfMARS);
 				builder.Log(CoreEventId.SensitiveDataLoggingEnabledWarning);
