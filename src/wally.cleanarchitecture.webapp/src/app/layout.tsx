@@ -2,11 +2,20 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import {SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import {Navbar} from "@/components/Navbar";
 
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import {AppSidebar} from "@/components/AppSidebar";
-import Sidebar from "@/components/Sidebar_001";
+
+import Navbar from "@/components/Navbar_003";
+import Sidebar from "@/components/Sidebar_000";
+import {Separator} from "@/components/ui/separator";
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList, BreadcrumbPage,
+    BreadcrumbSeparator
+} from "@/components/ui/breadcrumb";
+import * as React from "react";
 
 export const metadata: Metadata = {
     metadataBase: new URL(
@@ -60,16 +69,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <SidebarProvider className="flex flex-col h-screen">
-              {/*<div >*/}
-                  {/*<Navbar/>*/}
-                  <div className="flex flex-1">
-                      <Sidebar/>
-                        {/*  <main className="w-full h-full bg-neutral-400">
-                              {children}
-                          </main>*/}
-                  </div>
-              {/*</div>*/}
+          <SidebarProvider>
+              <Sidebar/>
+              <SidebarInset>
+                  <Navbar />
+                  {children}
+              </SidebarInset>
           </SidebarProvider>
       </ThemeProvider>
       </body>

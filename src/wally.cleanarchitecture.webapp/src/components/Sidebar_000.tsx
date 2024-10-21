@@ -1,4 +1,7 @@
-﻿import {Calendar, ChevronDown, ChevronUp, Home, Inbox, Plus, Search, Settings, User2} from "lucide-react"
+﻿"use client"
+
+import {Calendar, ChevronDown, ChevronUp, Home, Inbox, Plus, Search, Settings, User2} from "lucide-react"
+import {ChevronsLeft} from "lucide-react";
 import {
     Sidebar,
     SidebarContent,
@@ -14,10 +17,12 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
     SidebarRail,
-    SidebarSeparator,
+    SidebarSeparator, SidebarTrigger, useSidebar,
 } from "@/components/ui/sidebar"
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible";
+import * as React from "react";
+import {Button} from "@/components/ui/button";
 
 // Menu items.
 const items = [
@@ -48,7 +53,10 @@ const items = [
     },
 ]
 
-export function AppSidebar() {
+function AppSidebar() {
+
+    const { toggleSidebar } = useSidebar();
+    
     return (
         <Sidebar collapsible={"icon"}>
             <SidebarHeader className="group-data-[collapsible=icon]:hidden">
@@ -137,34 +145,20 @@ export function AppSidebar() {
 
             <SidebarFooter>
                 <SidebarMenu>
-                    <SidebarMenuItem>
-                        <SidebarMenuButton />
-                        <SidebarMenuAction className="peer-data-[active=true]/menu-button:opacity-100" />
-                    </SidebarMenuItem>
-                    <SidebarMenuItem>
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <SidebarMenuButton>
-                                    <User2 /> Username
-                                    <ChevronUp className="ml-auto" />
+                    <SidebarMenu>
+                            <SidebarMenuItem>
+                                <SidebarMenuButton asChild>
+                                    <a href={"settings"}>
+                                        <Settings />
+                                        <span>Settings</span>
+                                    </a>
                                 </SidebarMenuButton>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent
-                                side="top"
-                                className="w-[--radix-popper-anchor-width]"
-                            >
-                                <DropdownMenuItem>
-                                    <span>Account</span>
-                                </DropdownMenuItem>
-                                <DropdownMenuItem>
-                                    <span>Billing</span>
-                                </DropdownMenuItem>
-                                <DropdownMenuItem>
-                                    <span>Sign out</span>
-                                </DropdownMenuItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
-                    </SidebarMenuItem>
+                                <SidebarMenuAction onClick={() => toggleSidebar()}>
+                                    <ChevronsLeft />
+                                    {/*<SidebarTrigger className="-ml-1"/>*/}
+                                </SidebarMenuAction>
+                            </SidebarMenuItem>
+                    </SidebarMenu>
                 </SidebarMenu>
             </SidebarFooter>
 
@@ -172,3 +166,5 @@ export function AppSidebar() {
         </Sidebar>
     )
 }
+
+export default AppSidebar

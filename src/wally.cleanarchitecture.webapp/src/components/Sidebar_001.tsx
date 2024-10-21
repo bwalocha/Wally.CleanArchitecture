@@ -176,7 +176,8 @@ export default function Component() {
     const [selectedVersion, setSelectedVersion] = React.useState(data.versions[0])
 
     return (
-        <SidebarProvider>
+        <>
+        {/*<SidebarProvider>*/}
             <Sidebar>
                 <SidebarHeader>
                     <SidebarMenu>
@@ -280,6 +281,7 @@ export default function Component() {
                     <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
                 </div>
             </SidebarInset>
-        </SidebarProvider>
+        {/*</SidebarProvider>*/}
+        </>
     )
 }
