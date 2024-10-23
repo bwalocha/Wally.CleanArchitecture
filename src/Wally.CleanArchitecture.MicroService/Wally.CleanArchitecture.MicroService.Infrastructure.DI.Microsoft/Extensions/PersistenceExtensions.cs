@@ -28,7 +28,7 @@ public static class PersistenceExtensions
 			switch (settings.Database.ProviderType)
 			{
 				case DatabaseProviderType.None:
-					break;
+					return;
 				case DatabaseProviderType.InMemory:
 					WithInMemory(options);
 					break;
