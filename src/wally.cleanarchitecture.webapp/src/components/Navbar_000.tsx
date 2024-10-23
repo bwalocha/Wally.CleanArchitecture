@@ -29,14 +29,12 @@ function Navbar() {
                     <ThemeSwitch />
                     <Avatar className="mr-2">
                         <AvatarImage src="https://github.com/shadcn.png"/>
-                        <AvatarFallback>CN</AvatarFallback>
+                        <AvatarFallback>BMW</AvatarFallback>
                     </Avatar>
                     <Button onClick={toggleSidebar}>
                         {/*<SidebarTrigger className="ml-auto rotate-180" />*/}
                         <Menu/>
                     </Button>
-
-
                 </div>
             </nav>
         </header>

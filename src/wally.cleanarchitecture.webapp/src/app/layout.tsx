@@ -7,14 +7,6 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 
 import Navbar from "@/components/Navbar_003";
 import Sidebar from "@/components/Sidebar_000";
-import {Separator} from "@/components/ui/separator";
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbList, BreadcrumbPage,
-    BreadcrumbSeparator
-} from "@/components/ui/breadcrumb";
 import * as React from "react";
 
 export const metadata: Metadata = {
@@ -68,15 +60,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <SidebarProvider>
-              <Sidebar/>
-              <SidebarInset>
-                  <Navbar />
-                  {children}
-              </SidebarInset>
-          </SidebarProvider>
-      </ThemeProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              <SidebarProvider>
+                  <Sidebar />
+                  {/*<Sidebar collapsible="none" className="sticky hidden lg:flex top-0 h-svh border-l" />*/}
+                  {/*<Sidebar collapsible="none" className="sticky hidden lg:flex top-0 h-svh border-l" />*/}
+                  <SidebarInset>
+                      <Navbar />
+                      {children}
+                  </SidebarInset>
+              </SidebarProvider>
+          </ThemeProvider>
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 ﻿"use client"
 
-import {Calendar, ChevronDown, ChevronUp, Home, Inbox, Plus, Search, Settings, User2} from "lucide-react"
+import {Blocks, Database, Calendar, ChevronDown, ChevronUp, Home, Inbox, Plus, Search, Settings, User2} from "lucide-react"
 import {ChevronsLeft} from "lucide-react";
 import {
     Sidebar,
@@ -28,12 +28,12 @@ import {Button} from "@/components/ui/button";
 const items = [
     {
         title: "Home",
-        url: "#",
+        url: "/home",
         icon: Home,
     },
     {
         title: "Inbox",
-        url: "#",
+        url: "/",
         icon: Inbox,
     },
     {
@@ -42,23 +42,28 @@ const items = [
         icon: Calendar,
     },
     {
-        title: "Search",
-        url: "#",
-        icon: Search,
+        title: "Storage",
+        url: "/storage",
+        icon: Database,
     },
     {
-        title: "Settings",
-        url: "#",
-        icon: Settings,
+        title: "Plugins",
+        url: "/plugins",
+        icon: Blocks
+    },
+    {
+        title: "Search",
+        url: "/search",
+        icon: Search,
     },
 ]
 
-function AppSidebar() {
+function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
     const { toggleSidebar } = useSidebar();
     
     return (
-        <Sidebar collapsible={"icon"}>
+        <Sidebar collapsible={"icon"} {...props}>
             <SidebarHeader className="group-data-[collapsible=icon]:hidden">
                 <SidebarMenu>
                     <SidebarMenuItem>
@@ -139,9 +144,10 @@ function AppSidebar() {
                         </SidebarMenu>
                     </SidebarGroupContent>
                 </SidebarGroup>
-
                 
             </SidebarContent>
+
+            <SidebarSeparator />
 
             <SidebarFooter>
                 <SidebarMenu>

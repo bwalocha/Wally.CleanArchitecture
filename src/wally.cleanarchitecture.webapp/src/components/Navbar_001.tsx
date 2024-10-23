@@ -17,6 +17,7 @@ import {
 // import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { buttonVariants } from "./ui/button";
 import { Menu } from "lucide-react";
+import Link from "next/link";
 // import { ModeToggle } from "./mode-toggle";
 // import { LogoIcon } from "./Icons";
 
@@ -51,14 +52,14 @@ export const Navbar = () => {
             <NavigationMenu className="mx-auto">
                 <NavigationMenuList className="container h-14 px-4 w-screen flex justify-between ">
                     <NavigationMenuItem className="font-bold flex">
-                        <a
+                        <Link
                             rel="noreferrer noopener"
                             href="/"
                             className="ml-2 font-bold text-xl flex"
                         >
                             {/*<LogoIcon />*/}
                             ShadcnUI/React
-                        </a>
+                        </Link>
                     </NavigationMenuItem>
 
                     {/* mobile */}

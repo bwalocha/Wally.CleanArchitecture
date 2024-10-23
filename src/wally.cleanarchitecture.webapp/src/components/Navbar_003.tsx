@@ -1,4 +1,4 @@
-﻿import {SidebarMenuButton, SidebarMenuItem, SidebarTrigger} from "@/components/ui/sidebar";
+﻿import {SidebarTrigger} from "@/components/ui/sidebar";
 import {Separator} from "@/components/ui/separator";
 import {
     Breadcrumb,
@@ -10,8 +10,11 @@ import {
 import * as React from "react";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
-import {ChevronLeft, User2, Bell} from "lucide-react";
 import {Input} from "@/components/ui/input";
+
+import {Bell} from "lucide-react";
+
+import {ThemeSwitch} from "@/components/ThemeSwitch";
 
 function Navbar() {
     return (
@@ -45,7 +48,7 @@ function Navbar() {
                         <DropdownMenuTrigger asChild>
                                 <Avatar>
                                     <AvatarImage src="https://gravatar.com/avatar/04ef6a0bd30e5ce6b2100506bc5e8c74?size=64"/>
-                                    <AvatarFallback>CN</AvatarFallback>
+                                    <AvatarFallback>W</AvatarFallback>
                                 </Avatar>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent
@@ -56,7 +59,7 @@ function Navbar() {
                                 <span>Account</span>
                             </DropdownMenuItem>
                             <DropdownMenuItem>
-                                <span>Billing</span>
+                                <ThemeSwitch />
                             </DropdownMenuItem>
                             
                             <Separator className="my-2" />
