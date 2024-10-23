@@ -150,7 +150,8 @@
           "exclude": [
             "Wally.CleanArchitecture.ApiGateway/**/*",
             "Wally.CleanArchitecture.ApiGateway.sln",
-            "Wally.CleanArchitecture.ApiGateway-update.cmd"
+            "Wally.CleanArchitecture.ApiGateway-update.cmd",
+            "Wally.CleanArchitecture.ApiGateway-vulnerable-check.cmd"
           ]
         },
         {
@@ -158,7 +159,8 @@
           "exclude": [
             "Wally.CleanArchitecture.MicroService/**/*",
             "Wally.CleanArchitecture.MicroService.sln",
-            "Wally.CleanArchitecture.MicroService-update.cmd"
+            "Wally.CleanArchitecture.MicroService-update.cmd",
+            "Wally.CleanArchitecture.MicroService-vulnerable-check.cmd"
           ]
         },
         {
