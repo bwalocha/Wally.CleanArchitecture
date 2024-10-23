@@ -141,8 +141,7 @@
         {
           "exclude": [
             ".idea/**",
-            "Wally.Common.CodeStyleRules/**",
-            "Directory.Build.props"
+            "Wally.Common.CodeStyleRules/**"
           ]
         },
         {
@@ -180,6 +179,9 @@
           "exclude": [
             ".config/**/*",
             "AssemblyInfo.cs",
+            "Directory.Build.props",
+            "Directory.BuildTests.props",
+            "Directory.Packages.props",
             "global.json",
             "NuGet.config"
           ]

@@ -21,7 +21,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 {
 	private readonly MsSqlContainer _dbContainer = new MsSqlBuilder()
 		.WithImage("mcr.microsoft.com/mssql/server:2022-latest")
-		.WithReuse(true)
+		// .WithReuse(true)
 		.Build();
 	
 	/*private readonly KafkaContainer _kafkaContainer = new KafkaBuilder()
@@ -31,7 +31,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 	
 	public Task InitializeAsync() => Task.WhenAll(_dbContainer.StartAsync() /*, _kafkaContainer.StartAsync()*/);
 	
-	public new Task DisposeAsync() => Task.WhenAll(/*_dbContainer.DisposeAsync().AsTask()*/ /*, _kafkaContainer.StopAsync()*/);
+	public new Task DisposeAsync() => Task.WhenAll(_dbContainer.DisposeAsync().AsTask() /*, _kafkaContainer.StopAsync()*/);
 
 	public TService GetRequiredService<TService>()
 		where TService : notnull
@@ -99,169 +99,4 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 				services.AddSingleton<TimeProvider, Microsoft.Extensions.Time.Testing.FakeTimeProvider>();
 			});
 	}
-
-	/*private AppSettings GetAppSettings(IServiceCollection services)
-	{
-		// Create a scope to obtain a reference to the AppConfiguration
-		using var scope = services.BuildServiceProvider()
-			.CreateScope();
-		var scopedServices = scope.ServiceProvider;
-
-		return scopedServices.GetRequiredService<IOptions<AppSettings>>()
-			.Value;
-	}*/
-
-	/*private void ConfigureDbContext(IServiceCollection services)
-	{
-		services.RemoveAll<DbContextOptions<ApplicationDbContext>>();
-		services.RemoveAll<ApplicationDbContext>();
-
-		var settings = GetAppSettings(services);
-
-		Action<DbContextOptionsBuilder> options;
-
-		switch (settings.Database.ProviderType)
-		{
-			case DatabaseProviderType.InMemory:
-				// Add ApplicationDbContext using an in-memory database for testing.
-				var databaseName = $"InMemoryDbForTesting_{Guid.NewGuid()}";
-				options = optionsAction =>
-				{
-					optionsAction.UseInMemoryDatabase(databaseName);
-					optionsAction.ConfigureWarnings(a => { a.Ignore(InMemoryEventId.TransactionIgnoredWarning); });
-					optionsAction.EnableSensitiveDataLogging();
-				};
-				break;
-			case DatabaseProviderType.MariaDb:
-				_dbContainer = new MariaDbBuilder()
-					.WithUsername(Guid.NewGuid()
-						.ToString())
-					.WithPassword(Guid.NewGuid()
-						.ToString())
-					.WithDatabase(Guid.NewGuid()
-						.ToString())
-					.Build();
-				_dbContainer
-					.StartAsync()
-					.ConfigureAwait(false)
-					.GetAwaiter()
-					.GetResult();
-				options = optionsAction =>
-				{
-					optionsAction.UseMySql(
-						((IDatabaseContainer)_dbContainer).GetConnectionString(),
-						MySqlServerVersion.LatestSupportedServerVersion,
-						opt =>
-						{
-							opt.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-							opt.MigrationsAssembly(
-								typeof(IInfrastructureSqlServerAssemblyMarker).Assembly.GetName()
-									.Name);
-						});
-					optionsAction.ConfigureWarnings(a => { a.Ignore(InMemoryEventId.TransactionIgnoredWarning); });
-					optionsAction.EnableSensitiveDataLogging();
-				};
-				break;
-			case DatabaseProviderType.MySql:
-				_dbContainer = new MySqlBuilder()
-					.WithUsername(Guid.NewGuid()
-						.ToString())
-					.WithPassword(Guid.NewGuid()
-						.ToString())
-					.WithDatabase(Guid.NewGuid()
-						.ToString())
-					.Build();
-				_dbContainer
-					.StartAsync()
-					.ConfigureAwait(false)
-					.GetAwaiter()
-					.GetResult();
-				options = optionsAction =>
-				{
-					optionsAction.UseMySql(
-						((IDatabaseContainer)_dbContainer).GetConnectionString(),
-						MySqlServerVersion.LatestSupportedServerVersion,
-						opt =>
-						{
-							opt.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-							opt.MigrationsAssembly(
-								typeof(IInfrastructureSqlServerAssemblyMarker).Assembly.GetName()
-									.Name);
-						});
-					optionsAction.ConfigureWarnings(a => { a.Ignore(InMemoryEventId.TransactionIgnoredWarning); });
-					optionsAction.EnableSensitiveDataLogging();
-				};
-				break;
-			case DatabaseProviderType.PostgreSQL:
-				// Add ApplicationDbContext using a PostgreSQL database for testing.
-				_dbContainer = new PostgreSqlBuilder()
-					.WithUsername(Guid.NewGuid()
-						.ToString())
-					.WithPassword(Guid.NewGuid()
-						.ToString())
-					.WithDatabase(Guid.NewGuid()
-						.ToString())
-					.Build();
-				_dbContainer
-					.StartAsync()
-					.ConfigureAwait(false)
-					.GetAwaiter()
-					.GetResult();
-				options = optionsAction =>
-				{
-					optionsAction.UseNpgsql(
-						((IDatabaseContainer)_dbContainer).GetConnectionString(),
-						opt =>
-						{
-							opt.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-							opt.MigrationsAssembly(
-								typeof(IInfrastructureSqlServerAssemblyMarker).Assembly.GetName()
-									.Name);
-						});
-					optionsAction.ConfigureWarnings(a => { a.Ignore(InMemoryEventId.TransactionIgnoredWarning); });
-					optionsAction.EnableSensitiveDataLogging();
-				};
-				break;
-			case DatabaseProviderType.SqlServer:
-				// Add ApplicationDbContext using a SqlServer database for testing.
-				_dbContainer = new MsSqlBuilder()
-					.WithImage("mcr.microsoft.com/mssql/server:2022-latest")
-					.WithPassword(Guid.NewGuid()
-						.ToString())
-					.WithCleanUp(true)
-					.Build();
-				_dbContainer
-					.StartAsync()
-					.ConfigureAwait(false)
-					.GetAwaiter()
-					.GetResult();
-				options = optionsAction =>
-				{
-					optionsAction.UseSqlServer(
-						((IDatabaseContainer)_dbContainer).GetConnectionString(),
-						opt =>
-						{
-							opt.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-							opt.MigrationsAssembly(
-								typeof(IInfrastructureSqlServerAssemblyMarker).Assembly.GetName()
-									.Name);
-						});
-					optionsAction.ConfigureWarnings(a => { a.Ignore(InMemoryEventId.TransactionIgnoredWarning); });
-					optionsAction.EnableSensitiveDataLogging();
-				};
-				break;
-			default:
-				throw new NotSupportedException();
-		}
-
-		services.AddDbContext<DbContext, ApplicationDbContext>(options);
-
-		// Create a scope to obtain a reference to the AppConfiguration
-		using var scope = services.BuildServiceProvider()
-			.CreateScope();
-
-		// Ensure the database is created.
-		var database = scope.ServiceProvider.GetRequiredService<DbContext>();
-		database.Database.EnsureCreated();
-	}*/
 }
