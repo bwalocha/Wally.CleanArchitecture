@@ -1773,7 +1773,7 @@
       },
       "Microsoft.Identity.Client": {
         "type": "CentralTransitive",
-        "requested": "[4.65.0, )",
+        "requested": "[4.66.1, )",
         "resolved": "4.66.1",
         "contentHash": "mE+m3pZ7zSKocSubKXxwZcUrCzLflC86IdLxrVjS8tialy0b1L+aECBqRBC/ykcPlB4y7skg49TaTiA+O2UfDw==",
         "dependencies": {
@@ -1821,7 +1821,7 @@
       },
       "Serilog": {
         "type": "CentralTransitive",
-        "requested": "[4.0.2, )",
+        "requested": "[4.1.0, )",
         "resolved": "4.1.0",
         "contentHash": "u1aZI8HZ62LWlq5dZLFwm6jMax/sUwnWZSw5lkPsCt518cJBxFKoNmc7oSxe5aA5BgSkzy9rzwFGR/i/acnSPw=="
       },

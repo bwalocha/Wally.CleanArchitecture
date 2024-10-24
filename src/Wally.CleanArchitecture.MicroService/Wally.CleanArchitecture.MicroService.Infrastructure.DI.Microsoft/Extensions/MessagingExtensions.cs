@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper.Internal;
 using Confluent.Kafka;
 using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Wally.CleanArchitecture.MicroService.Application.Messages;
 using Wally.CleanArchitecture.MicroService.Application.Messages.Users;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Messaging;
@@ -41,11 +45,7 @@ public static class MessagingExtensions
 							rider =>
 							{
 								rider.AddConsumersFromNamespaceContaining<IInfrastructureMessagingAssemblyMarker>();
-
-								// TODO: auto-register
-								rider.AddProducer<UserCreatedMessage>(typeof(UserCreatedMessage).FullName);
-
-								// rider.AddProducer<UserUpdatedMessage>(typeof(FileModifiedMessage).FullName);
+								rider.AddProducersFromNamespaceContaining<IApplicationMessagesAssemblyMarker>();
 
 								rider.UsingKafka(
 									(context, k) =>
@@ -53,15 +53,7 @@ public static class MessagingExtensions
 										k.ClientId = typeof(IInfrastructureMessagingAssemblyMarker).Namespace;
 										k.Host(settings.ConnectionStrings.ServiceBus);
 
-										// TODO: auto-register
-										k.TopicEndpoint<Identity.Messages.Users.UserCreatedMessage>(
-											typeof(Identity.Messages.Users.UserCreatedMessage).FullName,
-											typeof(IInfrastructureMessagingAssemblyMarker).Namespace,
-											e =>
-											{
-												e.AutoOffsetReset = AutoOffsetReset.Earliest;
-												e.ConfigureConsumer<UserCreatedMessageConsumer>(context);
-											});
+										k.AddConsumersFromNamespaceContaining<IInfrastructureMessagingAssemblyMarker>(context);
 									});
 
 								services.AddScoped<IBus, KafkaBus>();
@@ -84,6 +76,80 @@ public static class MessagingExtensions
 		return services;
 	}
 
+	private static IRiderRegistrationConfigurator AddProducersFromNamespaceContaining<TMessagesAssembly>(this IRiderRegistrationConfigurator configurator)
+	{
+		foreach (var type in typeof(TMessagesAssembly).Assembly.GetTypes().Where(a => a.Name.EndsWith("Message")))
+		{
+			var methodInfo = typeof(KafkaProducerRegistrationExtensions)
+				.GetMethods()
+				.Where(a => a
+					.Name == nameof(KafkaProducerRegistrationExtensions.AddProducer))
+				.Where(a => a.GetGenericArguments()
+					.Length == 1)
+				.Single(a => a.GetParameters()
+					.Length == 3);
+			var genericMethodInfo = methodInfo.MakeGenericMethod(type);
+
+			genericMethodInfo.Invoke(null, [configurator, type.FullName, null,]);
+		}
+		
+		return configurator;
+	}
+
+	private static IKafkaFactoryConfigurator AddConsumersFromNamespaceContaining<TConsumersAssembly>(
+		this IKafkaFactoryConfigurator configurator, IRiderRegistrationContext context)
+	{
+		foreach (var type in typeof(TConsumersAssembly).Assembly.GetTypes().Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>))))
+		{
+			var messageType = type.GetInterfaces()
+				.Single(a => a.IsGenericType)
+				.GenericTypeArguments.Single();
+			var methodInfo = typeof(MessagingExtensions).GetMethod(nameof(AddConsumer), BindingFlags.Static | BindingFlags.NonPublic) !;
+			var genericMethodInfo = methodInfo.MakeGenericMethod(messageType, type);
+
+			genericMethodInfo.Invoke(null, [configurator, context]);
+		}
+		
+		return configurator;
+	}
+	
+	private static IKafkaFactoryConfigurator AddConsumer<TMessage, TConsumer>(this IKafkaFactoryConfigurator configurator, IRiderRegistrationContext context)
+		where TMessage : class
+		where TConsumer : class, IConsumer
+	{
+		configurator.TopicEndpoint<TMessage>(typeof(TMessage).FullName, typeof(IInfrastructureMessagingAssemblyMarker).Namespace,
+			a =>
+			{
+				a.AutoOffsetReset = AutoOffsetReset.Earliest;
+				a.ConfigureConsumer<TConsumer>(context);
+			});
+	
+		return configurator;
+	}
+	
+	private static bool ImplementsGenericInterface(this Type type, Type interfaceType)
+	{
+		if (!interfaceType.IsInterface)
+		{
+			throw new ArgumentException($"Parameter '{nameof(interfaceType)}' is not an Interface");
+		}
+
+		if (type.IsGenericType(interfaceType))
+		{
+			return true;
+		}
+
+		foreach (var @interface in type.GetTypeInfo().ImplementedInterfaces)
+		{
+			if (@interface.IsGenericType(interfaceType))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+	
 	[SuppressMessage("Major Code Smell", "S4017:Method signatures should not contain nested generic types")]
 	private sealed class BusStub : IBus
 	{
