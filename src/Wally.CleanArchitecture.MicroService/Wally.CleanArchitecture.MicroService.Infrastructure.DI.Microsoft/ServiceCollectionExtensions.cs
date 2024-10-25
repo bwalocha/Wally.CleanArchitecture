@@ -40,7 +40,7 @@ public static class ServiceCollectionExtensions
 		}
 
 		app.UseOpenApi();
-		
+
 		// If the App is hosted by Docker, HTTPS is not required inside container
 		// app.UseHttpsRedirection();
 

@@ -25,7 +25,7 @@ public static class ModelBuilderExtensions
 		foreach (var entityType in GetEntityTypes<IEntity>(modelBuilder))
 		{
 			var entityBuilder = modelBuilder.Entity(entityType);
-			
+
 			entityBuilder.UseStronglyTypedId();
 		}
 
@@ -37,11 +37,12 @@ public static class ModelBuilderExtensions
 		foreach (var entityType in GetEntityTypes<IAggregateRoot>(modelBuilder))
 		{
 			var entityBuilder = modelBuilder.Entity(entityType);
-			
+
 			// https://learn.microsoft.com/en-us/ef/core/saving/concurrency?tabs=fluent-api
-			entityBuilder.Property(nameof(IAggregateRoot.ModifiedAt)).IsConcurrencyToken();
+			entityBuilder.Property(nameof(IAggregateRoot.ModifiedAt))
+				.IsConcurrencyToken();
 		}
-		
+
 		return modelBuilder;
 	}
 

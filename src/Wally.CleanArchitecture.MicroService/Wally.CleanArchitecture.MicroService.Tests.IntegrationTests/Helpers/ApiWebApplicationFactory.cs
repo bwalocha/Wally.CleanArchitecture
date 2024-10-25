@@ -23,21 +23,28 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 		.WithImage("mcr.microsoft.com/mssql/server:2022-latest")
 		// .WithReuse(true)
 		.Build();
-	
+
 	/*private readonly KafkaContainer _kafkaContainer = new KafkaBuilder()
 		.WithImage("confluentinc/cp-kafka:6.2.10")
 		.WithReuse(true)
 		.Build();*/
-	
-	public Task InitializeAsync() => Task.WhenAll(_dbContainer.StartAsync() /*, _kafkaContainer.StartAsync()*/);
-	
-	public new Task DisposeAsync() => Task.WhenAll(_dbContainer.DisposeAsync().AsTask() /*, _kafkaContainer.StopAsync()*/);
+
+	public Task InitializeAsync()
+	{
+		return Task.WhenAll(_dbContainer.StartAsync() /*, _kafkaContainer.StartAsync()*/);
+	}
+
+	public new Task DisposeAsync()
+	{
+		return Task.WhenAll(_dbContainer.DisposeAsync()
+			.AsTask() /*, _kafkaContainer.StopAsync()*/);
+	}
 
 	public TService GetRequiredService<TService>()
 		where TService : notnull
 	{
 		var scopeFactory = Services.GetRequiredService<IServiceScopeFactory>();
-		
+
 		return scopeFactory
 			.CreateScope()
 			.ServiceProvider
@@ -48,15 +55,16 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 	{
 		var dbContext = GetRequiredService<DbContext>();
 		await dbContext.AddRangeAsync(entities);
-		
+
 		return await dbContext.SaveChangesAsync();
 	}
-	
+
 	public ApiWebApplicationFactory<TStartup> RemoveAll<TEntity>()
 		where TEntity : class
 	{
 		var dbContext = GetRequiredService<DbContext>();
-		dbContext.RemoveRange(dbContext.Set<TEntity>().IgnoreQueryFilters());
+		dbContext.RemoveRange(dbContext.Set<TEntity>()
+			.IgnoreQueryFilters());
 		dbContext.SaveChanges();
 
 		return this;

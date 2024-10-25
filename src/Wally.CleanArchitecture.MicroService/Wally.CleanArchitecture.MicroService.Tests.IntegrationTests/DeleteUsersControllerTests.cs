@@ -33,14 +33,14 @@ public partial class UsersControllerTests
 		response.StatusCode.Should()
 			.Be(HttpStatusCode.Forbidden);
 	}
-	
+
 	[Fact]
 	public async Task Delete_ForExistingResource_SoftDeletesResourceData()
 	{
 		// Arrange
 		var timeProvider = (FakeTimeProvider)_factory.GetRequiredService<TimeProvider>();
 		timeProvider.SetUtcNow(new DateTime(2024, 12, 31, 16, 20, 00, DateTimeKind.Utc).ToDateTimeOffset());
-		
+
 		var resource1 = UserCreate(1);
 		var resource2 = UserCreate(2);
 		await _factory.SeedAsync(resource1, resource2);

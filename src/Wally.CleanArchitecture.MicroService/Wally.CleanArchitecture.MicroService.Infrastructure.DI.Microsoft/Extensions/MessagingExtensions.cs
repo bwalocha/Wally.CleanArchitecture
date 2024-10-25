@@ -104,6 +104,11 @@ public static class MessagingExtensions
 			var messageType = type.GetInterfaces()
 				.Single(a => a.IsGenericType)
 				.GenericTypeArguments.Single();
+			if (messageType.IsGenericType)
+			{
+				continue;
+			}
+
 			var methodInfo = typeof(MessagingExtensions).GetMethod(nameof(AddConsumer), BindingFlags.Static | BindingFlags.NonPublic) !;
 			var genericMethodInfo = methodInfo.MakeGenericMethod(messageType, type);
 

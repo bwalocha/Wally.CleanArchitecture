@@ -64,7 +64,7 @@ public class ConsumerTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Infrastructure_AllClassesEndsWithConsumer_ShouldHaveFaultConsumer()
 	{
@@ -86,7 +86,7 @@ public class ConsumerTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Infrastructure_AllClassesEndsWithConsumer_ShouldHaveConsumerDefinition()
 	{

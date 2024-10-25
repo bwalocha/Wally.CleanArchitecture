@@ -12,7 +12,6 @@ public class GetUsersResponse : IResponse // TODO: consider to hide public ctor
 	public string? Name { get; private set; }
 }
 */
-
 /*
 [ExcludeFromCodeCoverage]
 public readonly record struct GetUsersResponse(Guid Id, string? Name) : IResponse; // ctor(Guid, string?), 2 public setters
@@ -24,7 +23,7 @@ public class GetUsersResponse : IResponse // TODO: consider to hide public ctor 
 	/*private GetUsersResponse()
 	{
 	}*/
-	
+
 	public required Guid Id { get; init; }
 
 	public required string? Name { get; init; }

@@ -105,7 +105,7 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 			StatusCode = problemDetails.Status,
 		};
 	}
-	
+
 	private static void HandleUnauthorizedAccessException(ExceptionContext context)
 	{
 		var problemDetails = new ProblemDetails

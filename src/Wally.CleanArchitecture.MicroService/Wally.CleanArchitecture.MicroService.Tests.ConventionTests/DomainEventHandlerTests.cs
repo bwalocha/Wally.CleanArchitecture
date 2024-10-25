@@ -16,7 +16,8 @@ public class DomainEventHandlerTests
 	public void Domain_ClassesWhichInheritsDomainEventHandler_ShouldBeInApplicationProject()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllTypes().Where(a => a.ImplementsGenericInterface(typeof(IDomainEventHandler<>)));
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.ImplementsGenericInterface(typeof(IDomainEventHandler<>)));
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{

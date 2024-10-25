@@ -22,7 +22,7 @@ public class UserCreatedDomainEventHandler : IDomainEventHandler<UserCreatedDoma
 	public async Task HandleAsync(UserCreatedDomainEvent domainEvent, CancellationToken cancellationToken)
 	{
 		var model = await _userRepository.GetAsync<GetUserResponse>(domainEvent.Id, cancellationToken);
-		
+
 		var message = new UserCreatedMessage(domainEvent.Id.Value, model.Name);
 
 		await _bus.Publish(message, cancellationToken);

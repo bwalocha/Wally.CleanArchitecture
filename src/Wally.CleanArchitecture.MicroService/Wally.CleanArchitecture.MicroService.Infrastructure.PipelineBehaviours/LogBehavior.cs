@@ -41,12 +41,14 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 
 			if (stopWatch.ElapsedMilliseconds > 500)
 			{
-				_logger.LogWarning("[{CorrelationId}] Executed in {StopWatchElapsedMilliseconds} ms", _requestContext.CorrelationId,
+				_logger.LogWarning("[{CorrelationId}] Executed in {StopWatchElapsedMilliseconds} ms",
+					_requestContext.CorrelationId,
 					stopWatch.ElapsedMilliseconds);
 			}
 			else
 			{
-				_logger.LogInformation("[{CorrelationId}] Executed in {StopWatchElapsedMilliseconds} ms", _requestContext.CorrelationId,
+				_logger.LogInformation("[{CorrelationId}] Executed in {StopWatchElapsedMilliseconds} ms",
+					_requestContext.CorrelationId,
 					stopWatch.ElapsedMilliseconds);
 			}
 		}

@@ -116,7 +116,7 @@ public class RequestTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Application_AllClassesImplementsIRequest_ShouldHaveSingleCorrespondingValidator()
 	{

@@ -15,5 +15,7 @@ public class UpdateUserCommandAuthorizationHandler : ICommandAuthorizationHandle
 	}
 
 	public Task<AuthorizationHandlerResult> HandleAsync(UpdateUserCommand command, CancellationToken cancellationToken)
-		=> Task.FromResult(AuthorizationHandlerResult.Succeeded);
+	{
+		return Task.FromResult(AuthorizationHandlerResult.Succeeded);
+	}
 }

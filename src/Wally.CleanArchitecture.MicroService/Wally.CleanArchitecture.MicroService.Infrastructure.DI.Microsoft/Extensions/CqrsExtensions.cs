@@ -12,10 +12,7 @@ public static class CqrsExtensions
 {
 	public static IServiceCollection AddCqrs(this IServiceCollection services)
 	{
-		services.AddMediatR(a =>
-		{
-			a.RegisterServicesFromAssemblyContaining<IApplicationAssemblyMarker>();
-		});
+		services.AddMediatR(a => { a.RegisterServicesFromAssemblyContaining<IApplicationAssemblyMarker>(); });
 
 		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LogBehavior<,>));
 		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(TransactionBehavior<,>));
@@ -30,14 +27,14 @@ public static class CqrsExtensions
 
 		services.AddValidatorsFromAssemblyContaining<IApplicationAssemblyMarker>(ServiceLifetime.Scoped,
 			a => a.InterfaceType.GenericTypeArguments.Single() == typeof(ICommand<>),
-			includeInternalTypes: true);
-		
+			true);
+
 		services.Scan(
 			a => a.FromAssemblyOf<IApplicationAssemblyMarker>()
 				.AddClasses(c => c.AssignableTo(typeof(ICommandAuthorizationHandler<,>)))
 				.AsImplementedInterfaces()
 				.WithTransientLifetime());
-		
+
 		services.Scan(
 			a => a.FromAssemblyOf<IApplicationAssemblyMarker>()
 				.AddClasses(c => c.AssignableTo(typeof(IDomainEventHandler<>)))

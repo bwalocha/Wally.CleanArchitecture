@@ -16,7 +16,9 @@ public class DeleteUserCommandAuthorizationHandler : ICommandAuthorizationHandle
 	}
 
 	public Task<AuthorizationHandlerResult> HandleAsync(DeleteUserCommand command, CancellationToken cancellationToken)
-		=> Task.FromResult(_requestContext.UserId.Equals(command.UserId)
+	{
+		return Task.FromResult(_requestContext.UserId.Equals(command.UserId)
 			? AuthorizationHandlerResult.Unauthorized
 			: AuthorizationHandlerResult.Succeeded);
+	}
 }

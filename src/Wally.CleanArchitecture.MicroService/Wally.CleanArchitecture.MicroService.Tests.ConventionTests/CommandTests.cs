@@ -31,7 +31,7 @@ public class CommandTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Application_Command_ShouldNotExposeSetter()
 	{
@@ -74,7 +74,8 @@ public class CommandTests
 	[Fact]
 	public void Application_Command_ShouldHaveCorrespondingHandler()
 	{
-		var assemblies = Configuration.Assemblies.GetAllAssemblies().ToList();
+		var assemblies = Configuration.Assemblies.GetAllAssemblies()
+			.ToList();
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{
@@ -128,7 +129,8 @@ public class CommandTests
 	[Fact]
 	public void Application_Command_ShouldHaveCorrespondingAuthorizationHandler()
 	{
-		var assemblies = Configuration.Assemblies.GetAllAssemblies().ToList();
+		var assemblies = Configuration.Assemblies.GetAllAssemblies()
+			.ToList();
 
 		using (new AssertionScope(new AssertionStrategy()))
 		{
@@ -149,7 +151,7 @@ public class CommandTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Application_Command_ShouldBeSealed()
 	{

@@ -14,7 +14,7 @@ public class HttpRequestContext : IRequestContext
 	public HttpRequestContext(IHttpContextAccessor httpContextAccessor)
 	{
 		CorrelationId = new CorrelationId(Guid.NewGuid());
-		
+
 		/*httpContextAccessor.HttpContext.User.Identity.*/
 		UserId = new UserId(Guid.Parse("FFFFFFFF-0000-0000-0000-ADD702D3016B"));
 	}

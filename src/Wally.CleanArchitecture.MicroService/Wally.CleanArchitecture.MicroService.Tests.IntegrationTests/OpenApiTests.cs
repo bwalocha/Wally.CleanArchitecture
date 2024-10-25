@@ -25,13 +25,13 @@ public class OpenApiTests : IClassFixture<ApiWebApplicationFactory<Startup>>, ID
 				AllowAutoRedirect = false,
 			});
 	}
-	
+
 	public void Dispose()
 	{
 		Dispose(true);
 		GC.SuppressFinalize(this);
 	}
-	
+
 	protected virtual void Dispose(bool disposing)
 	{
 		if (disposing)
@@ -46,7 +46,7 @@ public class OpenApiTests : IClassFixture<ApiWebApplicationFactory<Startup>>, ID
 		// Arrange
 		var expectedJson = await System.IO.File.ReadAllTextAsync("Resources/openapi.json");
 		var expectedResponseObject = JsonConvert.DeserializeObject<dynamic>(expectedJson);
-		
+
 		// Act
 		var response = await _httpClient.GetAsync(new Uri("swagger/v1/swagger.json", UriKind.Relative));
 
@@ -55,7 +55,7 @@ public class OpenApiTests : IClassFixture<ApiWebApplicationFactory<Startup>>, ID
 			.BeTrue();
 		response.StatusCode.Should()
 			.Be(HttpStatusCode.OK);
-		
+
 		var data = await response.Content.ReadAsStringAsync(CancellationToken.None);
 		data.Should()
 			.NotBeNull();

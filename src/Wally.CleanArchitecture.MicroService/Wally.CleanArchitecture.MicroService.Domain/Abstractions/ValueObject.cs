@@ -25,11 +25,17 @@ public abstract class ValueObject<TValueObject> : IEquatable<TValueObject>
 				.SequenceEqual(other.GetEqualityComponents());
 	}
 
-	public override bool Equals(object? obj) => Equals(obj as TValueObject);
+	public override bool Equals(object? obj)
+	{
+		return Equals(obj as TValueObject);
+	}
 
-	public override int GetHashCode() => GetEqualityComponents()
-		.Select(a => a?.GetHashCode() ?? 0)
-		.Aggregate((a, b) => a ^ b);
+	public override int GetHashCode()
+	{
+		return GetEqualityComponents()
+			.Select(a => a?.GetHashCode() ?? 0)
+			.Aggregate((a, b) => a ^ b);
+	}
 
 	protected virtual void Validate()
 	{

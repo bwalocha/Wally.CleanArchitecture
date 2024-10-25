@@ -15,5 +15,7 @@ public class CreateUserCommandAuthorizationHandler : ICommandAuthorizationHandle
 	}
 
 	public Task<AuthorizationHandlerResult> HandleAsync(CreateUserCommand command, CancellationToken cancellationToken)
-		=> Task.FromResult(AuthorizationHandlerResult.Succeeded);
+	{
+		return Task.FromResult(AuthorizationHandlerResult.Succeeded);
+	}
 }

@@ -28,17 +28,17 @@ public partial class UsersControllerTests
 			.BeFalse();
 		response.StatusCode.Should()
 			.Be(HttpStatusCode.NotFound);
-		
+
 		/* ValidationProblemDetails:
-		 *{
-  "errors": {},
-  "title": "One or more validation errors occurred.",
-  "status": 404,
-  "detail": "The \u0027GetUserResponse\u0027 with Id\u003d\u00279bab9bd7-5cb0-48ea-b7cd-f3d99eb820a1\u0027 could not be found",
-  "instance": "/Users/9bab9bd7-5cb0-48ea-b7cd-f3d99eb820a1"
+		*{
+"errors": {},
+"title": "One or more validation errors occurred.",
+"status": 404,
+"detail": "The \u0027GetUserResponse\u0027 with Id\u003d\u00279bab9bd7-5cb0-48ea-b7cd-f3d99eb820a1\u0027 could not be found",
+"instance": "/Users/9bab9bd7-5cb0-48ea-b7cd-f3d99eb820a1"
 }
-		 * 
-		 */
+		*
+		*/
 		var data = await response.ReadAsync<ProblemDetails>(CancellationToken.None);
 		data.Should()
 			.BeEquivalentTo(new
@@ -67,7 +67,7 @@ public partial class UsersControllerTests
 		data.Items.Length.Should()
 			.Be(0);
 	}
-	
+
 	[Fact]
 	public async Task Get_ExistingResource_ReturnsData()
 	{
@@ -83,7 +83,7 @@ public partial class UsersControllerTests
 			.BeTrue();
 		response.StatusCode.Should()
 			.Be(HttpStatusCode.OK);
-		
+
 		var data = await response.ReadAsync<GetUserResponse>(CancellationToken.None);
 		data.Should()
 			.BeEquivalentTo(new

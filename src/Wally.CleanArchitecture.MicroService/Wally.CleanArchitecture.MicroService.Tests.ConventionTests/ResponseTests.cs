@@ -35,12 +35,12 @@ public class ResponseTests
 
 				foreach (var property in type.Properties())
 				{
-					bool isInitOnly = (property.GetSetMethod()
+					var isInitOnly = (property.GetSetMethod()
 						?.ReturnParameter.GetRequiredCustomModifiers()
 						.Length ?? 0) > 0;
 					if (isInitOnly)
 					{
-						bool isRequired = property.GetCustomAttribute(typeof(RequiredMemberAttribute)) != null;
+						var isRequired = property.GetCustomAttribute(typeof(RequiredMemberAttribute)) != null;
 
 						if (isRequired)
 						{
@@ -49,7 +49,8 @@ public class ResponseTests
 
 						property.Should()
 							.BeDecoratedWith<RequiredMemberAttribute>(
-								"Response class '{0}' with Init setter should have Required modifier '{1}'", type, property);
+								"Response class '{0}' with Init setter should have Required modifier '{1}'", type,
+								property);
 					}
 
 					property.Should()
@@ -74,7 +75,8 @@ public class ResponseTests
 		{
 			foreach (var type in types)
 			{
-				if (type.GetConstructor(Type.EmptyTypes) != null && type.GetConstructors().Length == 1)
+				if (type.GetConstructor(Type.EmptyTypes) != null && type.GetConstructors()
+						.Length == 1)
 				{
 					// Check only classes with parametrized ctors 
 					continue;
