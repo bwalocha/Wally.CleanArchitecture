@@ -1,3 +1,26 @@
+# TODO
+
+- [x] [Next.js](https://nextjs.org/) (/src, AppRoute, TS, ESLint)
+- [x] CSS framework
+  - [TailwindCSS](https://tailwindcss.com/)
+- [x] Component Library
+  - [shadcn/ui](https://ui.shadcn.com/)
+- [ ] [Project Folder Structure](https://github.com/WebDevSimplified/parity-deals-clone/tree/feature-folder-structure)
+  - [eslint-plugin-project-structure](https://github.com/Igorkowalski94/eslint-plugin-project-structure)
+- [ ] [React ToolKit](https://redux-toolkit.js.org/)
+- [ ] [React Hook Form](https://www.react-hook-form.com/)
+- [ ] [Zod](https://zod.dev/)
+  - or Yup
+- [ ] OAuth
+  - [NextAuth.js](https://next-auth.js.org/)
+  - or [Clerk](https://clerk.com/)
+  - or [Auth.js](https://authjs.dev/reference/nextjs)
+- [ ] [Husky](https://typicode.github.io/husky/)
+- [ ] Bundler
+  - [Turbopack](https://turbo.build/pack/docs) 
+    * https://nextjs.org/docs/architecture/turbopack
+- [ ] [Jest](https://jestjs.io/)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
