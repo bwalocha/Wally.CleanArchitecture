@@ -49,6 +49,7 @@ public static class PersistenceExtensions
 						$"Not supported Database Provider type: '{settings.Database.ProviderType}'");
 			}
 
+			options.EnableSensitiveDataLogging(true); // TODO: Use env.IsDevelopment
 			options.ConfigureWarnings(builder =>
 			{
 				builder.Default(WarningBehavior.Throw);

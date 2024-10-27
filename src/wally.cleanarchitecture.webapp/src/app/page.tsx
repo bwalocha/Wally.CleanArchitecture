@@ -10,7 +10,8 @@ export default function Page() {
             </div>
             <p>HOME</p>
             <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min">
-
+                <p>VER: v.{process.env.NEXT_PUBLIC_VERSION}</p>
+                <p>URL: {process.env.NEXT_PUBLIC_API_BASE_URL}</p>                
             </div>
         </main>
     );
