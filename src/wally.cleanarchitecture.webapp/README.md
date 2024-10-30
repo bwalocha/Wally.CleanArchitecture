@@ -5,8 +5,12 @@
   - [TailwindCSS](https://tailwindcss.com/)
 - [x] Component Library
   - [shadcn/ui](https://ui.shadcn.com/)
+- [x] Icons
+  - [Lucide](https://lucide.dev/)
 - [ ] [Project Folder Structure](https://github.com/WebDevSimplified/parity-deals-clone/tree/feature-folder-structure)
   - [eslint-plugin-project-structure](https://github.com/Igorkowalski94/eslint-plugin-project-structure)
+  - [feature-folder-structure](https://github.com/WebDevSimplified/parity-deals-clone/tree/feature-folder-structure)
+  - [eslint-plugin-boundaries](https://github.com/javierbrea/eslint-plugin-boundaries)
 - [ ] [React ToolKit](https://redux-toolkit.js.org/)
 - [ ] [React Hook Form](https://www.react-hook-form.com/)
 - [ ] [Zod](https://zod.dev/)
@@ -21,6 +25,7 @@
     * https://nextjs.org/docs/architecture/turbopack
 - [ ] [Jest](https://jestjs.io/)
 - [ ] SignalR `npm install @microsoft/signalr`
+- [ ] `ncu -i` [NCU](https://www.npmjs.com/package/npm-check-updates)
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 

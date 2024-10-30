@@ -22,7 +22,6 @@
         <PackageReference Include="MassTransit.Azure.ServiceBus.Core" />
         <PackageReference Include="MassTransit.Kafka" />
         <PackageReference Include="MassTransit.RabbitMQ" />
-        <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
