@@ -56,7 +56,7 @@ function Navbar() {
                                 <Avatar>
                                     {/*<AvatarImage src="https://gravatar.com/avatar/04ef6a0bd30e5ce6b2100506bc5e8c74?size=64"/>*/}
                                     <AvatarImage src={session?.user?.image ?? ""} alt="Profile" />
-                                    <AvatarFallback>{session?.user?.name ?? "?"}</AvatarFallback>
+                                    <AvatarFallback><SignIn /></AvatarFallback>
                                 </Avatar>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent

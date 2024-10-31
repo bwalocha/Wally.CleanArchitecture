@@ -19,13 +19,17 @@ const authOptions: NextAuthConfig = {
     // secret: process.env.AUTH_SECRET,
     callbacks: {
         async jwt({ token, user, account, profile, isNewUser, trigger, session }) {
-            console.log(token, user, account, profile, isNewUser, trigger, session)
-            
-            if (user) {
-                // token.id = user.id;
-            }
+                // console.log('token:', token)
+                // console.log('user:', user)
+                // console.log('account:', account)
+                // console.log('profile:', profile) 
+                // console.log('isNewUser:', isNewUser) 
+                // console.log('trigger:', trigger) 
+                // console.log('session:', session)
+                
             if (account) {
-                token.accessToken = account.access_token;
+                token.sub = account.providerAccountId
+                token.accessToken = account.access_token
             }
             
             return token;
@@ -36,7 +40,7 @@ const authOptions: NextAuthConfig = {
             return { ...session, accessToken: token.accessToken, user: { ...session.user, id: token.sub } }
         },
         async signIn({ account, profile }): Promise<string | false | true> {
-            console.log(account, profile)
+            // console.log(account, profile)
             
             if (account?.provider === "google") {
                 return profile?.email_verified === true // && profile?.email.endsWith("@example.com")
