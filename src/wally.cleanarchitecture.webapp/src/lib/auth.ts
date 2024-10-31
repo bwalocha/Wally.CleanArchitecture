@@ -2,7 +2,6 @@
 import Google from "next-auth/providers/google"
 
 // const BASE_PATH = "/api/auth";
-
 const authOptions: NextAuthConfig = {
     providers: [
         Google({
@@ -18,12 +17,11 @@ const authOptions: NextAuthConfig = {
     // basePath: BASE_PATH,
     // secret: process.env.AUTH_SECRET,
     callbacks: {
-        async jwt({ token, user, account, profile, isNewUser, trigger, session }) {
+        async jwt({ token, user, account, profile, trigger, session }) {
                 // console.log('token:', token)
                 // console.log('user:', user)
                 // console.log('account:', account)
                 // console.log('profile:', profile) 
-                // console.log('isNewUser:', isNewUser) 
                 // console.log('trigger:', trigger) 
                 // console.log('session:', session)
                 
@@ -51,4 +49,4 @@ const authOptions: NextAuthConfig = {
     },
 };
 
-export const { handlers, auth, signIn, signOut } = NextAuth(authOptions);
+export const { handlers, auth } = NextAuth(authOptions);
