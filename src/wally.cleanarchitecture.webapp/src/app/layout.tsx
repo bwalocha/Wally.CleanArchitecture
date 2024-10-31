@@ -1,3 +1,5 @@
+import { SessionProvider } from "next-auth/react"
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -61,15 +63,17 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <SidebarProvider>
-                  <Sidebar />
-                  {/*<Sidebar collapsible="none" className="sticky hidden lg:flex top-0 h-svh border-l" />*/}
-                  {/*<Sidebar collapsible="none" className="sticky hidden lg:flex top-0 h-svh border-l" />*/}
-                  <SidebarInset>
-                      <Navbar />
-                      {children}
-                  </SidebarInset>
-              </SidebarProvider>
+              <SessionProvider>
+                  <SidebarProvider>
+                      <Sidebar />
+                      {/*<Sidebar collapsible="none" className="sticky hidden lg:flex top-0 h-svh border-l" />*/}
+                      {/*<Sidebar collapsible="none" className="sticky hidden lg:flex top-0 h-svh border-l" />*/}
+                      <SidebarInset>
+                          <Navbar />
+                          {children}
+                      </SidebarInset>
+                  </SidebarProvider>
+              </SessionProvider>
           </ThemeProvider>
       </body>
     </html>

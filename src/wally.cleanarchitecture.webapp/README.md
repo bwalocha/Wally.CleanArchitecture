@@ -11,14 +11,14 @@
   - [eslint-plugin-project-structure](https://github.com/Igorkowalski94/eslint-plugin-project-structure)
   - [feature-folder-structure](https://github.com/WebDevSimplified/parity-deals-clone/tree/feature-folder-structure)
   - [eslint-plugin-boundaries](https://github.com/javierbrea/eslint-plugin-boundaries)
-- [ ] [React ToolKit](https://redux-toolkit.js.org/)
-- [ ] [React Hook Form](https://www.react-hook-form.com/)
-- [ ] [Zod](https://zod.dev/)
+- [ ] [React ToolKit](https://redux-toolkit.js.org/) `npm install @reduxjs/toolkit`
+- [ ] [React Hook Form](https://www.react-hook-form.com/) `npm install react-hook-form`
+- [ ] [Zod](https://zod.dev/) `npm install zod`
   - or Yup
 - [ ] OAuth
-  - [NextAuth.js](https://next-auth.js.org/)
+  - [Auth.js](https://authjs.dev/) `npm install next-auth@beta`
+  - old [NextAuth.js](https://next-auth.js.org/)
   - or [Clerk](https://clerk.com/)
-  - or [Auth.js](https://authjs.dev/reference/nextjs)
 - [ ] [Husky](https://typicode.github.io/husky/)
 - [ ] Bundler
   - [Turbopack](https://turbo.build/pack/docs) 

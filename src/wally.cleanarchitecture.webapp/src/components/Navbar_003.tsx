@@ -1,4 +1,7 @@
-﻿import {SidebarTrigger} from "@/components/ui/sidebar";
+﻿"use client"
+import { useSession } from "next-auth/react"
+
+import {SidebarTrigger} from "@/components/ui/sidebar";
 import {Separator} from "@/components/ui/separator";
 import {
     Breadcrumb,
@@ -15,8 +18,12 @@ import {Input} from "@/components/ui/input";
 import {Bell} from "lucide-react";
 
 import {ThemeSwitch} from "@/components/ThemeSwitch";
+import {SignIn} from "@/components/SignIn";
+import {SignOut} from "@/components/SignOut";
 
 function Navbar() {
+    const { data: session, status } = useSession()
+    
     return (
         <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
             <div className="flex flex-1 items-center gap-2 px-3">
@@ -43,12 +50,13 @@ function Navbar() {
                 <Input type="search" placeholder="Search..." />
 
                 <Bell size={32} />
-                
+
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                                 <Avatar>
-                                    <AvatarImage src="https://gravatar.com/avatar/04ef6a0bd30e5ce6b2100506bc5e8c74?size=64"/>
-                                    <AvatarFallback>W</AvatarFallback>
+                                    {/*<AvatarImage src="https://gravatar.com/avatar/04ef6a0bd30e5ce6b2100506bc5e8c74?size=64"/>*/}
+                                    <AvatarImage src={session?.user?.image ?? ""} alt="Profile" />
+                                    <AvatarFallback>{session?.user?.name ?? "?"}</AvatarFallback>
                                 </Avatar>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent
@@ -65,7 +73,7 @@ function Navbar() {
                             <Separator className="my-2" />
                             
                             <DropdownMenuItem>
-                                <span>Sign out</span>
+                                {status === "authenticated" ? <SignOut /> : <SignIn />}                                
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
