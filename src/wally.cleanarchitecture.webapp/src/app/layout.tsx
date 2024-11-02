@@ -10,6 +10,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import Navbar from "@/components/Navbar_003";
 import Sidebar from "@/components/Sidebar_000";
 import * as React from "react";
+import StoreProvider from "@/app/StoreProvider";
 
 export const metadata: Metadata = {
     metadataBase: new URL(
@@ -63,17 +64,19 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <SessionProvider>
-                  <SidebarProvider>
-                      <Sidebar />
-                      {/*<Sidebar collapsible="none" className="sticky hidden lg:flex top-0 h-svh border-l" />*/}
-                      {/*<Sidebar collapsible="none" className="sticky hidden lg:flex top-0 h-svh border-l" />*/}
-                      <SidebarInset>
-                          <Navbar />
-                          {children}
-                      </SidebarInset>
-                  </SidebarProvider>
-              </SessionProvider>
+              <StoreProvider>
+                  <SessionProvider>
+                      <SidebarProvider>
+                          <Sidebar />
+                          {/*<Sidebar collapsible="none" className="sticky hidden lg:flex top-0 h-svh border-l" />*/}
+                          {/*<Sidebar collapsible="none" className="sticky hidden lg:flex top-0 h-svh border-l" />*/}
+                          <SidebarInset>
+                              <Navbar />
+                              {children}
+                          </SidebarInset>
+                      </SidebarProvider>
+                  </SessionProvider>
+              </StoreProvider>
           </ThemeProvider>
       </body>
     </html>

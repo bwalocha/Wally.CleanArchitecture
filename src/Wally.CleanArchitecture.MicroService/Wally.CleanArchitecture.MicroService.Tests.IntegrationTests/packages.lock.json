@@ -104,38 +104,38 @@
       },
       "Testcontainers.MariaDb": {
         "type": "Direct",
-        "requested": "[3.10.0, )",
-        "resolved": "3.10.0",
-        "contentHash": "u0k/FxH0rUI8RMZnW3ioULxA/bE4dBQapDpDZqo1vvx6ReXju53erUNt5jtn0YVM7PvsRatPkOZQrrZMPUH1Ww==",
+        "requested": "[4.0.0, )",
+        "resolved": "4.0.0",
+        "contentHash": "TROmpsiF5lQdntSacrGMn+IM6t7f58kwTCktsT5WnsqJJXQUbJMc9Un3HrLmEZSjWHKOtRSUBrkXGNlmfzvkkQ==",
         "dependencies": {
-          "Testcontainers": "3.10.0"
+          "Testcontainers": "4.0.0"
         }
       },
       "Testcontainers.MsSql": {
         "type": "Direct",
-        "requested": "[3.10.0, )",
-        "resolved": "3.10.0",
-        "contentHash": "8FDr/j1RUN7sCDJnInXT19llmuDUXy4zB7uY9sjYXnBX6LduIamFimOkrwFY2BhzxTwvnVjiDw9acDBPQjQqvQ==",
+        "requested": "[4.0.0, )",
+        "resolved": "4.0.0",
+        "contentHash": "HausfOB3+UDDujygP2laXCUiNtrKrWJMeKnpTvP4F9JP0GswSsYlJS/mKEWw8ZXSpUd31K8enGZ7wW0HHeyg0w==",
         "dependencies": {
-          "Testcontainers": "3.10.0"
+          "Testcontainers": "4.0.0"
         }
       },
       "Testcontainers.MySql": {
         "type": "Direct",
-        "requested": "[3.10.0, )",
-        "resolved": "3.10.0",
-        "contentHash": "+rHLud8xkJyHH9FIBpXXGRSoSEbnsY/uYhGwlr7J9LVLdDA9uHxzAG6SarCJPCc1Vn+f6zSfx26SVIhMT1chuQ==",
+        "requested": "[4.0.0, )",
+        "resolved": "4.0.0",
+        "contentHash": "QACAWnM8/rlEzOzO+RDEXNAvAwlz7XtpwPD7+Gp33GUcxfrhSDas8ljd9boEcA1yxpQkG5URv+ugeFBNdZVsHg==",
         "dependencies": {
-          "Testcontainers": "3.10.0"
+          "Testcontainers": "4.0.0"
         }
       },
       "Testcontainers.PostgreSql": {
         "type": "Direct",
-        "requested": "[3.10.0, )",
-        "resolved": "3.10.0",
-        "contentHash": "fPF8NaG8Dzd4nVnXiytyHZ6SfEowdcZBA99liJB0kSqYkM1OPIcwnJYxCCC+fuvdle+gXEVr2obq8k4fGS8w5w==",
+        "requested": "[4.0.0, )",
+        "resolved": "4.0.0",
+        "contentHash": "LjyH54SGtR14ouoK926DyEUGVQ8fHX1Z7SumoEDR68aufci8+qS6b+geouKC4fnHZ/ZD1hU6Di18wtQZXCeTsA==",
         "dependencies": {
-          "Testcontainers": "3.10.0"
+          "Testcontainers": "4.0.0"
         }
       },
       "xunit": {
@@ -1385,8 +1385,8 @@
       },
       "Testcontainers": {
         "type": "Transitive",
-        "resolved": "3.10.0",
-        "contentHash": "4oFyiUPCOM3s/sKDnIcOJZIn664d/8+fPvODDlfbb0QAfQqHlqjc2kIoFOLAt3oJRZP9/FJtTvcNvp9j7h4UBA==",
+        "resolved": "4.0.0",
+        "contentHash": "wLG4Ls/A4jNB7b2ZrhtCUCHFBinDXohgvZ54fJB+kLVkxrqSuyQHdKwlIwPLgLSVGfPaMIAkZOEFVDSoEa1VxA==",
         "dependencies": {
           "Docker.DotNet": "3.125.15",
           "Docker.DotNet.X509": "3.125.15",
