@@ -1,20 +1,10 @@
 ﻿"use client"
 
 import {
-    Blocks,
     Database,
-    Calendar,
-    ChevronDown,
-    ChevronUp,
-    Home,
-    Inbox,
     Plus,
-    Search,
-    Settings,
-    User2,
     LucideProps
 } from "lucide-react"
-import {ChevronsLeft} from "lucide-react";
 import {
     Sidebar,
     SidebarContent,
@@ -46,62 +36,22 @@ import {useEffect, useState} from "react";
 import * as react from "react";
 import {useParams, usePathname, useRouter, useSearchParams} from "next/navigation";
 
-// Menu items.
-const items = [
-    {
-        title: "Arcade",
-        count: 9876,
-        url: "/storage/1001",
-        icon: Database,
-    },
-    {
-        title: "Audio",
-        count: 1001,
-        url: "/storage/1002",
-        icon: Database,
-    },
-    {
-        title: "Book",
-        count: 420,
-        url: "/storage/1003",
-        icon: Database,
-    },
-    {
-        title: "Photo",
-        count: 1200,
-        url: "/storage/1004",
-        icon: Database,
-    },
-    {
-        title: "Stuff",
-        count: 2100,
-        url: "/storage/1005",
-        icon: Database,
-    },
-    {
-        title: "Video",
-        count: 6100,
-        url: "/storage/1006",
-        icon: Database
-    },
-]
-
 type Item = {title: string, count: number, url: string, icon: react.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & react.RefAttributes<SVGSVGElement>>}
 
 function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
-    const router = useRouter();
-    const pathname = usePathname()
-    const searchParams = useSearchParams()
-    const params = useParams<{ id: string }>()
+    // const router = useRouter();
+    // const pathname = usePathname()
+    // const searchParams = useSearchParams()
+    const params = useParams<{ slug?: string[] }>()
 
 
     // const {id} = React.use(params)
-    const { toggleSidebar } = useSidebar()
+    // const { toggleSidebar } = useSidebar()
 
     const [ items, setItems ] = useState<Item[]>([]);
 
-    const {data, error, isLoading} = useGetQuery({ id: params.id === "00000000-0000-0000-0000-000000000000" ? "" : params.id, odata: undefined});
+    const {data, error, isLoading} = useGetQuery({ id: params.slug?.[0] ?? "", odata: undefined});
     // const {data, error, isLoading} = useGetQuery({ id: "", odata: undefined});
     
     // const {data, error, isLoading} = useGetListQuery();

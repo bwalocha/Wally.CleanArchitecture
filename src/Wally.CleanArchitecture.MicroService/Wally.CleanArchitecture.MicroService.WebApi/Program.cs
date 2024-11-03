@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Context;
+using Wally.CleanArchitecture.MicroService.Application;
 
 // using Azure.Identity;
 
@@ -29,7 +30,7 @@ public static class Program
 
 		try
 		{
-			using (LogContext.PushProperty("CorrelationId", Guid.NewGuid()))
+			using (LogContext.PushProperty(nameof(IRequestContext.CorrelationId), Guid.NewGuid()))
 			{
 				Log.Information("Starting host...");
 				CreateHostBuilder(args)

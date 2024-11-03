@@ -43,7 +43,8 @@ const items = [
     },
     {
         title: "Storage",
-        url: "/storage/00000000-0000-0000-0000-000000000000",
+        // url: "/storage/00000000-0000-0000-0000-000000000000",
+        url: "/storage",
         icon: Database,
     },
     {

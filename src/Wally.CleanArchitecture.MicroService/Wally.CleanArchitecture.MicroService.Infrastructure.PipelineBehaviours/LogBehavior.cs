@@ -25,12 +25,13 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 		RequestHandlerDelegate<TResponse> next,
 		CancellationToken cancellationToken)
 	{
-		using var logContext = LogContext.PushProperty("CorrelationId", _requestContext.CorrelationId);
+		using var logContext = LogContext.PushProperty(nameof(IRequestContext.CorrelationId), _requestContext.CorrelationId);
 
-		_logger.LogInformation(
-			"[{CorrelationId}] Executing request handler for request type: '{TypeofTRequestName}' and response type: '{TypeofTResponseName}'",
-			_requestContext.CorrelationId, typeof(TRequest).Name, typeof(TResponse).Name);
+		_logger.LogDebug(
+			"Executing Request '{Request}' with Response '{Response}'",
+			typeof(TRequest).Name, typeof(TResponse).Name);
 		var stopWatch = Stopwatch.StartNew();
+		
 		try
 		{
 			return await next();
@@ -41,15 +42,13 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 
 			if (stopWatch.ElapsedMilliseconds > 500)
 			{
-				_logger.LogWarning("[{CorrelationId}] Executed in {StopWatchElapsedMilliseconds} ms",
-					_requestContext.CorrelationId,
-					stopWatch.ElapsedMilliseconds);
+				_logger.LogWarning(
+					"Request '{Request}' with Response '{Response}' executed in {ElapsedMilliseconds} ms",
+					typeof(TRequest).Name, typeof(TResponse).Name, stopWatch.ElapsedMilliseconds);
 			}
 			else
 			{
-				_logger.LogInformation("[{CorrelationId}] Executed in {StopWatchElapsedMilliseconds} ms",
-					_requestContext.CorrelationId,
-					stopWatch.ElapsedMilliseconds);
+				_logger.LogDebug("Executed in {StopWatchElapsedMilliseconds} ms", stopWatch.ElapsedMilliseconds);
 			}
 		}
 	}

@@ -45,46 +45,6 @@ import {useGetListQuery} from "@/features/files/store/filesApi";
 import * as react from "react";
 import {Database, LucideProps} from "lucide-react";
 
-/*const data: Payment[] = [
-    {
-        id: "m5gr84i9",
-        amount: 316,
-        status: "success",
-        email: "ken99@yahoo.com",
-    },
-    {
-        id: "3u1reuv4",
-        amount: 242,
-        status: "success",
-        email: "Abe45@gmail.com",
-    },
-    {
-        id: "derv1ws0",
-        amount: 837,
-        status: "processing",
-        email: "Monserrat44@gmail.com",
-    },
-    {
-        id: "5kma53ae",
-        amount: 874,
-        status: "success",
-        email: "Silas22@gmail.com",
-    },
-    {
-        id: "bhqecj4p",
-        amount: 721,
-        status: "failed",
-        email: "carmella@hotmail.com",
-    },
-]
-
-type Payment = {
-    id: string
-    amount: number
-    status: "pending" | "processing" | "success" | "failed"
-    email: string
-}*/
-
 const columns: ColumnDef<Item>[] = [
     {
         id: "select",
@@ -320,20 +280,20 @@ function DataTable({data }: { data: Item[]}) {
     )
 }
 
-type Params = Promise<{ id: string }>
+type Params = Promise<{ slug?: string[] }>
 type Item = {title: string, count: number, url: string, icon: react.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & react.RefAttributes<SVGSVGElement>>}
 
 export default function Page({ params }: { params: Params }) {
-    const {id} = React.use(params)
+    const {slug} = React.use(params)
 
     const [ items, setItems ] = useState<Item[]>([]);
-    const {data, error, isLoading} = useGetListQuery({pathId: id, odata: undefined});
+    const {data, error, isLoading} = useGetListQuery({pathId: slug?.[0] ?? "", odata: undefined});
 
     useEffect(() => {
         if (data) {
             const items = data?.items.map((item) => {
                 return {
-                    title: item.location,
+                    title: item.location.replace(/^.*\//, ""),
                     count: -123,
                     url: `/storage/${item.id}`,
                     icon: Database,
@@ -359,7 +319,7 @@ export default function Page({ params }: { params: Params }) {
                 <div className="aspect-video rounded-xl bg-muted/50"/>
                 <div className="aspect-video rounded-xl bg-muted/50"/>
             </div>
-            <a>STORAGE: {id}</a>
+            <a>STORAGE: {slug?.[0]}</a>
             <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min px-4">
                 <DataTable data={items}/>
             </div>

@@ -1,13 +1,13 @@
 {
   "Serilog": {
     "Using": [
-      "Serilog.Sinks.Console",
-      "Serilog.Sinks.ApplicationInsights"
+      "Serilog.Sinks.Console"
     ],
     "MinimumLevel": {
-      "Default": "Debug",
+      "Default": "Information",
       "Override": {
-        "Microsoft": "Information"
+        "Microsoft": "Warning",
+        "Microsoft.EntityFrameworkCore.Database.Command": "Warning"
       }
     },
     "WriteTo": [
@@ -21,14 +21,6 @@
           "outputTemplate": "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Properties:j}{NewLine}{Exception}{NewLine}"
         }
       },
-      //      {
-      //        "Name": "ApplicationInsights",
-      //        "Args": {
-      //          "connectionString": "---",
-      //          "restrictedToMinimumLevel": "Information",
-      //          "telemetryConverter": "Serilog.Sinks.ApplicationInsights.TelemetryConverters.TraceTelemetryConverter, Serilog.Sinks.ApplicationInsights"
-      //        }
-      //      },
       {
         "Name": "MSSqlServer",
         "Args": {
