@@ -55,8 +55,8 @@ function Navbar() {
                         <DropdownMenuTrigger asChild>
                                 <Avatar>
                                     {/*<AvatarImage src="https://gravatar.com/avatar/04ef6a0bd30e5ce6b2100506bc5e8c74?size=64"/>*/}
-                                    <AvatarImage src={session?.user?.image ?? ""} alt="Profile" />
-                                    <AvatarFallback><SignIn /></AvatarFallback>
+                                    <AvatarImage src={session?.user?.image ?? ""} alt="Profile" referrerPolicy={'no-referrer'} />
+                                    <AvatarFallback>??</AvatarFallback>
                                 </Avatar>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent

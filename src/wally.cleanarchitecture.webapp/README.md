@@ -11,7 +11,8 @@
   - [eslint-plugin-project-structure](https://github.com/Igorkowalski94/eslint-plugin-project-structure)
   - [feature-folder-structure](https://github.com/WebDevSimplified/parity-deals-clone/tree/feature-folder-structure)
   - [eslint-plugin-boundaries](https://github.com/javierbrea/eslint-plugin-boundaries)
-- [ ] [React ToolKit](https://redux-toolkit.js.org/) `npm install @reduxjs/toolkit`
+- [ ] [React ToolKit](https://redux-toolkit.js.org/) `npm install @reduxjs/toolkit` `npm install react-redux`
+- [ ] [odata-query]() `npm install odata-query`
 - [ ] [React Hook Form](https://www.react-hook-form.com/) `npm install react-hook-form`
 - [ ] [Zod](https://zod.dev/) `npm install zod`
   - or Yup

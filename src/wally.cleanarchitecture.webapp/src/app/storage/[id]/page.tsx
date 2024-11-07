@@ -41,7 +41,11 @@ import {
 } from "@/components/ui/table"
 import {useEffect, useState} from "react";
 
-const data: Payment[] = [
+import {useGetListQuery} from "@/features/files/store/filesApi";
+import * as react from "react";
+import {Database, LucideProps} from "lucide-react";
+
+/*const data: Payment[] = [
     {
         id: "m5gr84i9",
         amount: 316,
@@ -79,9 +83,9 @@ type Payment = {
     amount: number
     status: "pending" | "processing" | "success" | "failed"
     email: string
-}
+}*/
 
-const columns: ColumnDef<Payment>[] = [
+const columns: ColumnDef<Item>[] = [
     {
         id: "select",
         header: ({ table }) => (
@@ -105,14 +109,14 @@ const columns: ColumnDef<Payment>[] = [
         enableHiding: false,
     },
     {
-        accessorKey: "status",
-        header: "Status",
+        accessorKey: "title",
+        header: "Title",
         cell: ({ row }) => (
-            <div className="capitalize">{row.getValue("status")}</div>
+            <div className="capitalize">{row.getValue("title")}</div>
         ),
     },
     {
-        accessorKey: "email",
+        accessorKey: "url",
         header: ({ column }) => {
             return (
                 <Button
@@ -124,13 +128,13 @@ const columns: ColumnDef<Payment>[] = [
                 </Button>
             )
         },
-        cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+        cell: ({ row }) => <div className="lowercase">{row.getValue("url")}</div>,
     },
     {
-        accessorKey: "amount",
+        accessorKey: "count",
         header: () => <div className="text-right">Amount</div>,
         cell: ({ row }) => {
-            const amount = parseFloat(row.getValue("amount"))
+            const amount = parseFloat(row.getValue("count"))
 
             // Format the amount as a dollar amount
             const formatted = new Intl.NumberFormat("en-US", {
@@ -158,7 +162,7 @@ const columns: ColumnDef<Payment>[] = [
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
                         <DropdownMenuItem
-                            onClick={() => navigator.clipboard.writeText(payment.id)}
+                            onClick={() => navigator.clipboard.writeText(payment.url)}
                         >
                             Copy payment ID
                         </DropdownMenuItem>
@@ -172,7 +176,7 @@ const columns: ColumnDef<Payment>[] = [
     },
 ]
 
-function DataTable() {
+function DataTable({data }: { data: Item[]}) {
     const [sorting, setSorting] = React.useState<SortingState>([])
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
         []
@@ -204,10 +208,10 @@ function DataTable() {
         <div className="w-full">
             <div className="flex items-center py-4">
                 <Input
-                    placeholder="Filter emails..."
-                    value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+                    placeholder="Filter titles..."
+                    value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
                     onChange={(event) =>
-                        table.getColumn("email")?.setFilterValue(event.target.value)
+                        table.getColumn("title")?.setFilterValue(event.target.value)
                     }
                     className="max-w-sm"
                 />
@@ -317,9 +321,36 @@ function DataTable() {
 }
 
 type Params = Promise<{ id: string }>
+type Item = {title: string, count: number, url: string, icon: react.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & react.RefAttributes<SVGSVGElement>>}
 
 export default function Page({ params }: { params: Params }) {
     const {id} = React.use(params)
+
+    const [ items, setItems ] = useState<Item[]>([]);
+    const {data, error, isLoading} = useGetListQuery({pathId: id, odata: undefined});
+
+    useEffect(() => {
+        if (data) {
+            const items = data?.items.map((item) => {
+                return {
+                    title: item.location,
+                    count: -123,
+                    url: `/storage/${item.id}`,
+                    icon: Database,
+                }
+            })
+
+            setItems(items)
+        }
+    }, [data])
+
+    /*return (
+        <div>
+            <pre>DATA: {JSON.stringify(data, null, 2)}</pre>
+            <code>ERROR: {JSON.stringify(error, null, 2)}</code>
+            <code>LOADING: {JSON.stringify(isLoading, null, 2)}</code>
+        </div>
+    )*/
     
     return (
         <main className="flex flex-1 flex-col gap-4 p-4">
@@ -330,7 +361,7 @@ export default function Page({ params }: { params: Params }) {
             </div>
             <a>STORAGE: {id}</a>
             <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min px-4">
-                <DataTable/>
+                <DataTable data={items}/>
             </div>
         </main>
     );

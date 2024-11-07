@@ -17,7 +17,7 @@ const authOptions: NextAuthConfig = {
     // basePath: BASE_PATH,
     // secret: process.env.AUTH_SECRET,
     callbacks: {
-        async jwt({ token, user, account, profile, trigger, session }) {
+        async jwt({ token, account/*, user, profile, trigger, session*/ }) {
                 // console.log('token:', token)
                 // console.log('user:', user)
                 // console.log('account:', account)
@@ -45,6 +45,10 @@ const authOptions: NextAuthConfig = {
             }
 
             return true // Do different verification for other providers that don't have `email_verified`
+        },
+        authorized: async ({ auth }) => {
+            // Logged in users are authenticated, otherwise redirect to login page
+            return !!auth
         },
     },
 };
