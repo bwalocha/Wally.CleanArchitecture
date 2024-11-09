@@ -10,10 +10,8 @@ using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Wally.CleanArchitecture.MicroService.Application.Messages;
-using Wally.CleanArchitecture.MicroService.Application.Messages.Users;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Messaging;
-using Wally.CleanArchitecture.MicroService.Infrastructure.Messaging.Consumers;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 

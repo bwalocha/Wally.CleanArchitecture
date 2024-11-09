@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using MediatR;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
-using Wally.CleanArchitecture.MicroService.Domain.Users;
 
 namespace Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 

@@ -181,11 +181,11 @@
       },
       "MassTransit": {
         "type": "Direct",
-        "requested": "[8.3.0, )",
-        "resolved": "8.3.0",
-        "contentHash": "LZbHqGeP+enkeidjyLeAFQjOFyc5eCJmc5Wru/9Xv1dtcfI2wT+Ga5OQqUCJsqIQzcV1yfumRtbMnAVxwxB/4g==",
+        "requested": "[8.3.1, )",
+        "resolved": "8.3.1",
+        "contentHash": "FIwFSv3KbPCCtJ/lmLrjvOXViWHNIozewwtF3pknMPLczFdd2AgNxWMH/BXhO1HQhdStmiu72qEs/jxLIPXBKQ==",
         "dependencies": {
-          "MassTransit.Abstractions": "8.3.0",
+          "MassTransit.Abstractions": "8.3.1",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
           "Microsoft.Extensions.Diagnostics.HealthChecks": "8.0.0",
           "Microsoft.Extensions.Hosting.Abstractions": "8.0.0",
@@ -195,32 +195,32 @@
       },
       "MassTransit.Azure.ServiceBus.Core": {
         "type": "Direct",
-        "requested": "[8.3.0, )",
-        "resolved": "8.3.0",
-        "contentHash": "JEaUEPRKkamwD197xyigYKxL8EX7IQiRAPsR2YLs+jrznvug7ADoFytImdgPNH08K41EK8D4LyUnjI8+UDT+OQ==",
+        "requested": "[8.3.1, )",
+        "resolved": "8.3.1",
+        "contentHash": "ZLuZbO7ioPL0tmgO79+85/yp31ZdHSWCsVDm/BHInUC3VqzHxIn8vwfnXG9s2rATYmDIBWid/pveXJyhfcvPKQ==",
         "dependencies": {
-          "Azure.Identity": "1.13.0",
+          "Azure.Identity": "1.13.1",
           "Azure.Messaging.ServiceBus": "7.18.2",
-          "MassTransit": "8.3.0"
+          "MassTransit": "8.3.1"
         }
       },
       "MassTransit.Kafka": {
         "type": "Direct",
-        "requested": "[8.3.0, )",
-        "resolved": "8.3.0",
-        "contentHash": "iqCBkN3VmKTlkWcOZ89wEZJkLI57wVFXW6AaSfO86+mWP2QRh+umwseHgsYLBBcP1RH5Mrow+rJARaN7Ck0AYg==",
+        "requested": "[8.3.1, )",
+        "resolved": "8.3.1",
+        "contentHash": "81jwKRcph2CJ2wO1y8pu7Tq26jrD+naIh4SYVL6xkRzmwtByI8wYvCuwoBdVaFu9Ptilwmjc5XmR5JhZ9M6QGw==",
         "dependencies": {
           "Confluent.Kafka": "2.6.0",
-          "MassTransit": "8.3.0"
+          "MassTransit": "8.3.1"
         }
       },
       "MassTransit.RabbitMQ": {
         "type": "Direct",
-        "requested": "[8.3.0, )",
-        "resolved": "8.3.0",
-        "contentHash": "P8bUlGKWFS+7VNPGlanVK44/I8sDVARvpyfk3lDOI9vAIDytLNIgi8evMT2YmXxeyjFDIzLEM/VSJO4L+jIddw==",
+        "requested": "[8.3.1, )",
+        "resolved": "8.3.1",
+        "contentHash": "L9TUHFQVN1sXMJBMBy02CDBlWzz14c8qWQ4nSSb5C3pb+w6E+9AzVi+tu0NoiJ8R6YyAUJU/gA7ZeyPbX/ch3Q==",
         "dependencies": {
-          "MassTransit": "8.3.0",
+          "MassTransit": "8.3.1",
           "RabbitMQ.Client": "6.8.1"
         }
       },
@@ -283,12 +283,12 @@
       },
       "Scrutor": {
         "type": "Direct",
-        "requested": "[5.0.1, )",
-        "resolved": "5.0.1",
-        "contentHash": "lODLSduex32544jZZom2bN73mg4DfyGCNdywismPv2D2Hslv4jaq1Y+apV24xTW65tDMXskZHwVFSg2xIs3jtQ==",
+        "requested": "[5.0.2, )",
+        "resolved": "5.0.2",
+        "contentHash": "GkmAfKlp9//FJmssFoF8u5+LEiKsrvKKitYuWgKKq0AILK4l2hASqv09WyKyiNJ3BKRlh/ZwoEV+8yi77AkAgg==",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.1",
-          "Microsoft.Extensions.DependencyModel": "8.0.1"
+          "Microsoft.Extensions.DependencyModel": "8.0.2"
         }
       },
       "SonarAnalyzer.CSharp": {
@@ -1282,7 +1282,7 @@
       "wally.cleanarchitecture.microservice.application": {
         "type": "Project",
         "dependencies": {
-          "MassTransit.Abstractions": "[8.3.0, )",
+          "MassTransit.Abstractions": "[8.3.1, )",
           "MediatR": "[12.4.1, )",
           "Microsoft.AspNetCore.OData": "[9.0.0, )",
           "SonarAnalyzer.CSharp": "[9.32.0.97167, )",
@@ -1337,7 +1337,7 @@
       "wally.cleanarchitecture.microservice.infrastructure.messaging": {
         "type": "Project",
         "dependencies": {
-          "MassTransit": "[8.3.0, )",
+          "MassTransit": "[8.3.1, )",
           "MediatR": "[12.4.1, )",
           "Microsoft.Extensions.Logging.Abstractions": "[8.0.2, )",
           "SonarAnalyzer.CSharp": "[9.32.0.97167, )",
@@ -1443,9 +1443,9 @@
       },
       "MassTransit.Abstractions": {
         "type": "CentralTransitive",
-        "requested": "[8.3.0, )",
-        "resolved": "8.3.0",
-        "contentHash": "smYAGbCnHXl927Xvr2nzxtQAhfJfRSnVZAcIHGMI3QQq/aK3KvsCqgail1bw7acw0NkEhw8yv7cnKBGYKKFXPQ=="
+        "requested": "[8.3.1, )",
+        "resolved": "8.3.1",
+        "contentHash": "gNZAYPaWOBnok6VGZEha3MJfhAhyDZ3LDE4RoYzAlNVEofygk8l5Ri8e1tncf46pNPfn4/pFJiwSkzBMaGkUiA=="
       },
       "MediatR.Contracts": {
         "type": "CentralTransitive",

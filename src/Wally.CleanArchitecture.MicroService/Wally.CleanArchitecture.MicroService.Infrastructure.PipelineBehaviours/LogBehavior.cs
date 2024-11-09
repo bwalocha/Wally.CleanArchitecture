@@ -25,13 +25,14 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 		RequestHandlerDelegate<TResponse> next,
 		CancellationToken cancellationToken)
 	{
-		using var logContext = LogContext.PushProperty(nameof(IRequestContext.CorrelationId), _requestContext.CorrelationId);
+		using var logContext =
+			LogContext.PushProperty(nameof(IRequestContext.CorrelationId), _requestContext.CorrelationId);
 
 		_logger.LogDebug(
 			"Executing Request '{Request}' with Response '{Response}'",
 			typeof(TRequest).Name, typeof(TResponse).Name);
 		var stopWatch = Stopwatch.StartNew();
-		
+
 		try
 		{
 			return await next();

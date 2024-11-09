@@ -13,8 +13,8 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours
 public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
 	where TRequest : ICommand<TResponse>
 {
-	private readonly TimeProvider _timeProvider;
 	private readonly DbContext _dbContext;
+	private readonly TimeProvider _timeProvider;
 	private readonly IUserProvider _userProvider;
 
 	public UpdateMetadataHandlerBehavior(

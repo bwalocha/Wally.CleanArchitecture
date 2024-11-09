@@ -28,6 +28,12 @@ public partial class UsersControllerTests : IClassFixture<ApiWebApplicationFacto
 		_factory.RemoveAll<User>();
 	}
 
+	public void Dispose()
+	{
+		Dispose(true);
+		GC.SuppressFinalize(this);
+	}
+
 	private static User UserCreate(int index)
 	{
 		var userId = new UserId();
@@ -36,12 +42,6 @@ public partial class UsersControllerTests : IClassFixture<ApiWebApplicationFacto
 			.SetCreatedById(userId);
 
 		return resource;
-	}
-
-	public void Dispose()
-	{
-		Dispose(true);
-		GC.SuppressFinalize(this);
 	}
 
 	protected virtual void Dispose(bool disposing)

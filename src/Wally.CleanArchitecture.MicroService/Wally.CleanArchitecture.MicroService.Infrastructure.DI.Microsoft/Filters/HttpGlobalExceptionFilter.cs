@@ -17,8 +17,8 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Filte
 
 public class HttpGlobalExceptionFilter : IExceptionFilter
 {
-	private readonly IRequestContext _requestContext;
 	private readonly ILogger<HttpGlobalExceptionFilter> _logger;
+	private readonly IRequestContext _requestContext;
 
 	public HttpGlobalExceptionFilter(IRequestContext requestContext, ILogger<HttpGlobalExceptionFilter> logger)
 	{

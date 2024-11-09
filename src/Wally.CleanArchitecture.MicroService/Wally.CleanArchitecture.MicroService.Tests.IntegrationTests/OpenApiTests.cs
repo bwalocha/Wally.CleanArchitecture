@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -6,7 +7,6 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
-using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Extensions;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Helpers;
 using Wally.CleanArchitecture.MicroService.WebApi;
 using Xunit;
@@ -44,7 +44,7 @@ public class OpenApiTests : IClassFixture<ApiWebApplicationFactory<Startup>>, ID
 	public async Task Get_OpenApi_ReturnsApiSpecification()
 	{
 		// Arrange
-		var expectedJson = await System.IO.File.ReadAllTextAsync("Resources/openapi.json");
+		var expectedJson = await File.ReadAllTextAsync("Resources/openapi.json");
 		var expectedResponseObject = JsonConvert.DeserializeObject<dynamic>(expectedJson);
 
 		// Act

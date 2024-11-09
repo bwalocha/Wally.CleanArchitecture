@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Time.Testing;
 using Testcontainers.MsSql;
 using Xunit;
 
@@ -104,7 +105,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 				services.AddTransient<IBus, BusStub>();
 
 				services.RemoveAll<TimeProvider>();
-				services.AddSingleton<TimeProvider, Microsoft.Extensions.Time.Testing.FakeTimeProvider>();
+				services.AddSingleton<TimeProvider, FakeTimeProvider>();
 			});
 	}
 }
