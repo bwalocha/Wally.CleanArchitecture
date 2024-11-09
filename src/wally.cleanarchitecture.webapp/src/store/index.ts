@@ -1,6 +1,7 @@
 ﻿import {configureStore} from "@reduxjs/toolkit";
 import {api as filesApi} from "@/features/files/store/filesApi";
 import {api as pathsApi} from "@/features/files/store/pathsApi";
+import {errorHandlerMiddleware} from "@/store/errorHandlerMiddleware";
 // import {api as categoriesApi} from "@/store/categoriesApi";
 // import {api as measuresApi} from "@/store/measuresApi";
 // import {api as unitsApi} from "@/store/unitsApi";
@@ -17,6 +18,7 @@ export const store = configureStore({
     },
     middleware(getDefaultMiddleware) {
         return getDefaultMiddleware()
+            .concat(errorHandlerMiddleware)
             .concat(filesApi.middleware)
             .concat(pathsApi.middleware)
             // .concat(categoriesApi.middleware)

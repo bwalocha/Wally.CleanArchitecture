@@ -11,6 +11,7 @@ import Navbar from "@/components/Navbar_003";
 import Sidebar from "@/components/Sidebar_000";
 import * as React from "react";
 import StoreProvider from "@/app/StoreProvider";
+import {Toaster} from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
     metadataBase: new URL(
@@ -63,6 +64,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          <Toaster />
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               <StoreProvider>
                   <SessionProvider>
