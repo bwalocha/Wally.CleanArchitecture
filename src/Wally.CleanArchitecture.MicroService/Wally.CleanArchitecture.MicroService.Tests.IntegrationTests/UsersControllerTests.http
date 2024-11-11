@@ -16,6 +16,12 @@ Accept: application/json
 
 ###
 
+# @name getUser
+GET {{host}}/Users?$filter=Id eq ({{$random.uuid}})
+Accept: application/json
+
+###
+
 #### Tests
 #
 #curl -X GET "https://localhost:7197/Users/3fa85f64-5717-4562-b3fc-2c963f66afa6" -H "accept:

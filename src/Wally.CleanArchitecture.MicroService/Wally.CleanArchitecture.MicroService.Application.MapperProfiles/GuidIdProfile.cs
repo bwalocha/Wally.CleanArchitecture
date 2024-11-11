@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 using AutoMapper;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
@@ -15,3 +16,4 @@ public class GuidIdProfile : Profile
 			.ConvertUsing(a => a == null ? null : a.Value);
 	}
 }
+*/

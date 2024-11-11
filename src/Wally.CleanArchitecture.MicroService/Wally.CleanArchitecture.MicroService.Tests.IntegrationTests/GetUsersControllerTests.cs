@@ -382,4 +382,30 @@ public partial class UsersControllerTests
 			.Name.Should()
 			.Be("testUser2");
 	}
+	
+	[Fact]
+	public async Task Get_3ResourcesOrderedSkipped1Top2FilteredById_Returns1Resource()
+	{
+		// Arrange
+		await _factory.SeedAsync(
+			UserCreate(1),
+			UserCreate(3),
+			UserCreate(2));
+
+		// Act
+		var response =
+			await _httpClient.GetAsync(new Uri($"Users?$orderby=Name&$skip=1&$top=2&$filter=Id ne ({Guid.NewGuid()})",
+				UriKind.Relative)); // x1
+
+		// Assert
+		response.IsSuccessStatusCode.Should()
+			.BeTrue();
+		response.StatusCode.Should()
+			.Be(HttpStatusCode.OK);
+		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
+		data.Should()
+			.NotBeNull();
+		data.Items.Length.Should()
+			.Be(2);
+	}
 }

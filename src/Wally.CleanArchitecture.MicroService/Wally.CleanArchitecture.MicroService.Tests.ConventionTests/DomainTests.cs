@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using FluentAssertions;
 using FluentAssertions.Common;
 using FluentAssertions.Execution;
@@ -114,6 +115,33 @@ public class DomainTests
 							type,
 							property);
 				}
+			}
+		}
+	}
+	
+	[Fact]
+	public void Domain_StronglyTypedId_ShouldHaveExplicitOperator()
+	{
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.ImplementsGenericInterface(typeof(IStronglyTypedId<,>)))
+			.Where(a => !a.IsGenericType)
+			.Types();
+
+		using (new AssertionScope(new AssertionStrategy(1)))
+		{
+			foreach (var type in types)
+			{
+				var explicitOperator = type.GetMethod(
+					"op_Explicit",
+					BindingFlags.Public | BindingFlags.Static,
+					null,
+					new[] { type, },
+					null);
+
+				explicitOperator.Should()
+					.NotBeNull("StronglyTypedId '{0}' should have explicit operator",
+						type);
 			}
 		}
 	}

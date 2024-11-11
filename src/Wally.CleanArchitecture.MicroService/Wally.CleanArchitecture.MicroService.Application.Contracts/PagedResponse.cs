@@ -4,6 +4,7 @@ namespace Wally.CleanArchitecture.MicroService.Application.Contracts;
 
 [ExcludeFromCodeCoverage]
 public class PagedResponse<TResponse> : IResponse
+	where TResponse : IResponse
 {
 	public PagedResponse(TResponse[] items, PageInfoResponse pageInfo)
 	{

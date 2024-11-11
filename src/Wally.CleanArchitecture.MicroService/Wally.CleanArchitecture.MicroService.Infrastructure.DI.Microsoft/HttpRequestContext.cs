@@ -8,9 +8,6 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft;
 
 public class HttpRequestContext : IRequestContext
 {
-	public CorrelationId CorrelationId { get; }
-	public UserId UserId { get; }
-
 	public HttpRequestContext(IHttpContextAccessor httpContextAccessor)
 	{
 		CorrelationId = new CorrelationId(Guid.NewGuid());
@@ -18,4 +15,7 @@ public class HttpRequestContext : IRequestContext
 		/*httpContextAccessor.HttpContext.User.Identity.*/
 		UserId = new UserId(Guid.Parse("FFFFFFFF-0000-0000-0000-ADD702D3016B"));
 	}
+
+	public CorrelationId CorrelationId { get; }
+	public UserId UserId { get; }
 }
