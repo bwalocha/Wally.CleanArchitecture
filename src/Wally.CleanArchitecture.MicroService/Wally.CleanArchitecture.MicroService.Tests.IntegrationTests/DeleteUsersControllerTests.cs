@@ -1,11 +1,11 @@
 using System;
-using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using FluentAssertions.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Time.Testing;
+using VerifyXunit;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Extensions;
 using Xunit;
@@ -28,10 +28,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.DeleteAsync($"Users/{resource1.Id.Value}", CancellationToken.None);
 
 		// Assert
-		response.IsSuccessStatusCode.Should()
-			.BeFalse();
-		response.StatusCode.Should()
-			.Be(HttpStatusCode.Forbidden);
+		await Verifier.Verify(response);
 	}
 
 	[Fact]
@@ -49,10 +46,8 @@ public partial class UsersControllerTests
 		var response = await _httpClient.DeleteAsync($"Users/{resource2.Id.Value}", CancellationToken.None);
 
 		// Assert
-		response.IsSuccessStatusCode.Should()
-			.BeTrue();
-		response.StatusCode.Should()
-			.Be(HttpStatusCode.Accepted);
+		await Verifier.Verify(response);
+
 		(await _factory.GetRequiredService<DbContext>()
 				.Set<User>()
 				.SingleAsync(a => a.Id == resource1.Id))

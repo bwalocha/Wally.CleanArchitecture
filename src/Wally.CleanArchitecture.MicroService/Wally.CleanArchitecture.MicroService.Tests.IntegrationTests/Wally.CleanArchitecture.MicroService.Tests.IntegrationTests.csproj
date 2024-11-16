@@ -18,6 +18,8 @@
         <PackageReference Include="Testcontainers.MsSql" />
         <PackageReference Include="Testcontainers.MySql" />
         <PackageReference Include="Testcontainers.PostgreSql" />
+        <PackageReference Include="Verify.Http" />
+        <PackageReference Include="Verify.Xunit" />
     </ItemGroup>
 
     <!-- Updates for vulnerable packages -->

@@ -1,0 +1,17 @@
+﻿{
+  Version: 1.1,
+  Status: 200 OK,
+  RequestMessage: {
+    Method: POST,
+    Uri: http://localhost/Users,
+    Content: {
+      Headers: {
+        Content-Length: 19,
+        Content-Type: application/json; charset=utf-8
+      },
+      Value: {
+        Name: newName3
+      }
+    }
+  }
+}

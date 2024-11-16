@@ -1,0 +1,30 @@
+﻿{
+  Status: 200 OK,
+  Content: {
+    Headers: {
+      Content-Length: 248,
+      Content-Type: application/json; charset=utf-8
+    },
+    Value: {
+      items: [
+        {
+          id: Guid_1,
+          name: testUser3
+        },
+        {
+          id: Guid_2,
+          name: testUser2
+        },
+        {
+          id: Guid_3,
+          name: testUser1
+        }
+      ],
+      pageInfo: {
+        index: 0,
+        size: 3,
+        total: 3
+      }
+    }
+  }
+}

@@ -1,10 +1,9 @@
 using System;
-using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Microsoft.AspNetCore.Mvc;
+using VerifyXunit;
 using Wally.CleanArchitecture.MicroService.Application.Contracts;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Responses;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Extensions;
@@ -24,28 +23,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.GetAsync(new Uri($"Users/{resourceId}", UriKind.Relative));
 
 		// Assert
-		response.IsSuccessStatusCode.Should()
-			.BeFalse();
-		response.StatusCode.Should()
-			.Be(HttpStatusCode.NotFound);
-
-		/* ValidationProblemDetails:
-		*{
-"errors": {},
-"title": "One or more validation errors occurred.",
-"status": 404,
-"detail": "The \u0027GetUserResponse\u0027 with Id\u003d\u00279bab9bd7-5cb0-48ea-b7cd-f3d99eb820a1\u0027 could not be found",
-"instance": "/Users/9bab9bd7-5cb0-48ea-b7cd-f3d99eb820a1"
-}
-		*
-		*/
-		var data = await response.ReadAsync<ProblemDetails>(CancellationToken.None);
-		data.Should()
-			.BeEquivalentTo(new
-			{
-				Title = "Resource not found",
-				Status = (int)HttpStatusCode.NotFound,
-			});
+		await Verifier.Verify(response);
 	}
 
 	[Fact]
@@ -57,6 +35,8 @@ public partial class UsersControllerTests
 		var response = await _httpClient.GetAsync(new Uri("Users", UriKind.Relative));
 
 		// Assert
+		await Verifier.Verify(response);
+
 		response.IsSuccessStatusCode.Should()
 			.BeTrue();
 		response.StatusCode.Should()
@@ -79,6 +59,8 @@ public partial class UsersControllerTests
 		var response = await _httpClient.GetAsync(new Uri($"Users/{resource.Id}", UriKind.Relative));
 
 		// Assert
+		await Verifier.Verify(response);
+
 		response.IsSuccessStatusCode.Should()
 			.BeTrue();
 		response.StatusCode.Should()
@@ -102,6 +84,8 @@ public partial class UsersControllerTests
 		var response = await _httpClient.GetAsync(new Uri("Users?$top=1", UriKind.Relative));
 
 		// Assert
+		await Verifier.Verify(response);
+
 		response.IsSuccessStatusCode.Should()
 			.BeTrue();
 		response.StatusCode.Should()
@@ -126,6 +110,8 @@ public partial class UsersControllerTests
 		var response = await _httpClient.GetAsync(new Uri("Users?$select=name", UriKind.Relative));
 
 		// Assert
+		await Verifier.Verify(response);
+
 		response.IsSuccessStatusCode.Should()
 			.BeTrue();
 		response.StatusCode.Should()
@@ -150,15 +136,8 @@ public partial class UsersControllerTests
 		var response = await _httpClient.GetAsync(new Uri("Users", UriKind.Relative)); // x3
 
 		// Assert
-		response.IsSuccessStatusCode.Should()
-			.BeTrue();
-		response.StatusCode.Should()
-			.Be(HttpStatusCode.OK);
-		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
-		data.Should()
-			.NotBeNull();
-		data.Items.Length.Should()
-			.Be(3);
+		await Verifier.Verify(response)
+			.IgnoreMembers("name");
 	}
 
 	[Fact]
@@ -174,24 +153,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.GetAsync(new Uri("Users?$orderby=Name", UriKind.Relative)); // x3
 
 		// Assert
-		response.IsSuccessStatusCode.Should()
-			.BeTrue();
-		response.StatusCode.Should()
-			.Be(HttpStatusCode.OK);
-		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
-		data.Should()
-			.NotBeNull();
-		data.Items.Length.Should()
-			.Be(3);
-		data.Items[0]
-			.Name.Should()
-			.Be("testUser1");
-		data.Items[1]
-			.Name.Should()
-			.Be("testUser2");
-		data.Items[2]
-			.Name.Should()
-			.Be("testUser3");
+		await Verifier.Verify(response);
 	}
 
 	[Fact]
@@ -207,24 +169,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.GetAsync(new Uri("Users?$orderby=Name desc", UriKind.Relative)); // x3
 
 		// Assert
-		response.IsSuccessStatusCode.Should()
-			.BeTrue();
-		response.StatusCode.Should()
-			.Be(HttpStatusCode.OK);
-		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
-		data.Should()
-			.NotBeNull();
-		data.Items.Length.Should()
-			.Be(3);
-		data.Items[0]
-			.Name.Should()
-			.Be("testUser3");
-		data.Items[1]
-			.Name.Should()
-			.Be("testUser2");
-		data.Items[2]
-			.Name.Should()
-			.Be("testUser1");
+		await Verifier.Verify(response);
 	}
 
 	[Fact(Skip = "The User Name is Unique and the test cannot be performed")]
@@ -240,28 +185,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.GetAsync(new Uri("Users?$orderby=Name asc, Id desc", UriKind.Relative)); // x3
 
 		// Assert
-		response.IsSuccessStatusCode.Should()
-			.BeTrue();
-		response.StatusCode.Should()
-			.Be(HttpStatusCode.OK);
-		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
-		data.Should()
-			.NotBeNull();
-		data.Items.Length.Should()
-			.Be(3);
-		data.Items[0]
-			.Name.Should()
-			.Be("testUser2");
-		data.Items[1]
-			.Name.Should()
-			.Be("testUser3");
-		data.Items[2]
-			.Name.Should()
-			.Be("testUser3");
-		data.Items[1]
-			.Id.CompareTo(data.Items[2].Id)
-			.Should()
-			.Be(1);
+		await Verifier.Verify(response);
 	}
 
 	[Fact]
@@ -277,21 +201,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.GetAsync(new Uri("Users?$orderby=Name&$skip=1", UriKind.Relative)); // x2
 
 		// Assert
-		response.IsSuccessStatusCode.Should()
-			.BeTrue();
-		response.StatusCode.Should()
-			.Be(HttpStatusCode.OK);
-		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
-		data.Should()
-			.NotBeNull();
-		data.Items.Length.Should()
-			.Be(2);
-		data.Items[0]
-			.Name.Should()
-			.Be("testUser2");
-		data.Items[1]
-			.Name.Should()
-			.Be("testUser3");
+		await Verifier.Verify(response);
 	}
 
 	[Fact]
@@ -307,21 +217,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.GetAsync(new Uri("Users?$orderby=Name&$top=2", UriKind.Relative)); // x2
 
 		// Assert
-		response.IsSuccessStatusCode.Should()
-			.BeTrue();
-		response.StatusCode.Should()
-			.Be(HttpStatusCode.OK);
-		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
-		data.Should()
-			.NotBeNull();
-		data.Items.Length.Should()
-			.Be(2);
-		data.Items[0]
-			.Name.Should()
-			.Be("testUser1");
-		data.Items[1]
-			.Name.Should()
-			.Be("testUser2");
+		await Verifier.Verify(response);
 	}
 
 	[Fact]
@@ -337,21 +233,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.GetAsync(new Uri("Users?$orderby=Name&$skip=1&$top=2", UriKind.Relative)); // 1
 
 		// Assert
-		response.IsSuccessStatusCode.Should()
-			.BeTrue();
-		response.StatusCode.Should()
-			.Be(HttpStatusCode.OK);
-		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
-		data.Should()
-			.NotBeNull();
-		data.Items.Length.Should()
-			.Be(2);
-		data.Items[0]
-			.Name.Should()
-			.Be("testUser2");
-		data.Items[1]
-			.Name.Should()
-			.Be("testUser3");
+		await Verifier.Verify(response);
 	}
 
 	[Fact]
@@ -369,20 +251,9 @@ public partial class UsersControllerTests
 				UriKind.Relative)); // x1
 
 		// Assert
-		response.IsSuccessStatusCode.Should()
-			.BeTrue();
-		response.StatusCode.Should()
-			.Be(HttpStatusCode.OK);
-		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
-		data.Should()
-			.NotBeNull();
-		data.Items.Length.Should()
-			.Be(1);
-		data.Items.Single()
-			.Name.Should()
-			.Be("testUser2");
+		await Verifier.Verify(response);
 	}
-	
+
 	[Fact]
 	public async Task Get_3ResourcesOrderedSkipped1Top2FilteredById_Returns1Resource()
 	{
@@ -398,14 +269,6 @@ public partial class UsersControllerTests
 				UriKind.Relative)); // x1
 
 		// Assert
-		response.IsSuccessStatusCode.Should()
-			.BeTrue();
-		response.StatusCode.Should()
-			.Be(HttpStatusCode.OK);
-		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
-		data.Should()
-			.NotBeNull();
-		data.Items.Length.Should()
-			.Be(2);
+		await Verifier.Verify(response);
 	}
 }

@@ -1,0 +1,15 @@
+﻿{
+  Status: 404 Not Found,
+  Content: {
+    Headers: {
+      Content-Length: 199,
+      Content-Type: application/problem+json; charset=utf-8
+    },
+    Value: {
+      title: Resource not found,
+      status: 404,
+      detail: The 'GetUserResponse' with Id='Guid_1' could not be found,
+      instance: /Users/Guid_1
+    }
+  }
+}

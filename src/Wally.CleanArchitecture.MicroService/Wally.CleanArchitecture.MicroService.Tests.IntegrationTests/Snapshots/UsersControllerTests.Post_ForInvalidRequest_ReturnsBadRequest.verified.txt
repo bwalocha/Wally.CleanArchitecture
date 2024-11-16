@@ -1,0 +1,19 @@
+﻿{
+  Status: 400 Bad Request,
+  Content: {
+    Headers: {
+      Content-Length: 198,
+      Content-Type: application/json; charset=utf-8
+    },
+    Value: {
+      errors: {
+        Name: [
+          'Name' must not be empty.
+        ]
+      },
+      type: https://tools.ietf.org/html/rfc9110#section-15.5.1,
+      title: One or more validation errors occurred.,
+      status: 400
+    }
+  }
+}

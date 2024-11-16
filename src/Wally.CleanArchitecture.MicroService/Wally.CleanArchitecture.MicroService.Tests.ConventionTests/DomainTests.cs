@@ -118,7 +118,7 @@ public class DomainTests
 			}
 		}
 	}
-	
+
 	[Fact]
 	public void Domain_StronglyTypedId_ShouldHaveExplicitOperator()
 	{

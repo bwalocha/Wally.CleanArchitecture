@@ -1,12 +1,8 @@
 ﻿using System;
-using System.IO;
-using System.Net;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
-using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Newtonsoft.Json;
+using VerifyXunit;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Helpers;
 using Wally.CleanArchitecture.MicroService.WebApi;
 using Xunit;
@@ -44,23 +40,11 @@ public class OpenApiTests : IClassFixture<ApiWebApplicationFactory<Startup>>, ID
 	public async Task Get_OpenApi_ReturnsApiSpecification()
 	{
 		// Arrange
-		var expectedJson = await File.ReadAllTextAsync("Resources/openapi.json");
-		var expectedResponseObject = JsonConvert.DeserializeObject<dynamic>(expectedJson);
 
 		// Act
 		var response = await _httpClient.GetAsync(new Uri("swagger/v1/swagger.json", UriKind.Relative));
 
 		// Assert
-		response.IsSuccessStatusCode.Should()
-			.BeTrue();
-		response.StatusCode.Should()
-			.Be(HttpStatusCode.OK);
-
-		var data = await response.Content.ReadAsStringAsync(CancellationToken.None);
-		data.Should()
-			.NotBeNull();
-
-		var actualResponseObject = JsonConvert.DeserializeObject<dynamic>(data);
-		Assert.Equal(expectedResponseObject, actualResponseObject);
+		await Verifier.Verify(response);
 	}
 }

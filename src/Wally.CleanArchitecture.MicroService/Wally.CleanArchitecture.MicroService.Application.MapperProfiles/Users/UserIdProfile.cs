@@ -11,25 +11,7 @@ public class UserIdProfile : Profile
 		CreateMap<UserId, Guid>()
 			.ConvertUsing(a => a.Value);
 
-		// CreateMap<UserId, Guid?>()
-		// 	.ConvertUsing(a => a.Value);
-		
-		// CreateMap<UserId?, Guid>()
-		// 	.ConvertUsing(a => a == null ? Guid.NewGuid() : a.Value);
-
-		/*CreateMap<UserId?, Guid?>()
-			.ConvertUsing(a => a == null ? null : a.Value);*/
-		
 		CreateMap<Guid, UserId>()
 			.ConvertUsing(a => new UserId(a));
-
-		// CreateMap<Guid, UserId?>()
-		// 	.ConvertUsing(a => new UserId(a));
-		
-		/*CreateMap<Guid?, UserId>()
-			.ConvertUsing(a => a == null ? new UserId() : new UserId(a.Value));
-		
-		CreateMap<Guid?, UserId?>()
-			.ConvertUsing(a => a == null ? null : new UserId(a.Value));*/
 	}
 }

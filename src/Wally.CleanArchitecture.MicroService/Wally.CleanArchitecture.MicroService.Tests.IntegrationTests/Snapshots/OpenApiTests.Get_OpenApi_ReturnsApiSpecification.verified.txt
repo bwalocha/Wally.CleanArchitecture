@@ -1,0 +1,682 @@
+﻿{
+  Status: 200 OK,
+  Content: {
+    Headers: {
+      Content-Type: application/json; charset=utf-8
+    },
+    Value: {
+      openapi: 3.0.1,
+      info: {
+        title: Wally.CleanArchitecture API,
+        description: An ASP.NET Core Web API for managing 'Wally.CleanArchitecture' items,
+        contact: {
+          name: Wally,
+          url: https://wally.best,
+          email: b.walocha@gmail.com
+        },
+        license: {
+          name: MIT,
+          url: https://opensource.org/licenses/MIT
+        },
+        version: v1
+      },
+      paths: {
+        /Users: {
+          get: {
+            tags: [
+              Users
+            ],
+            summary: Gets Users.,
+            description:
+Sample request:
+GET /Users,
+            parameters: [
+              {
+                name: $filter,
+                in: query,
+                description: Filter the results,
+                schema: {
+                  type: string
+                }
+              },
+              {
+                name: $search,
+                in: query,
+                description: Search term,
+                schema: {
+                  type: string
+                }
+              },
+              {
+                name: $orderby,
+                in: query,
+                description: Order the results,
+                schema: {
+                  type: string
+                }
+              },
+              {
+                name: $select,
+                in: query,
+                description: Select the properties to be returned in the response,
+                schema: {
+                  type: string,
+                  deprecated: true
+                }
+              },
+              {
+                name: $top,
+                in: query,
+                description: Limit the number of results returned,
+                schema: {
+                  minimum: 0,
+                  type: integer,
+                  format: int32
+                }
+              },
+              {
+                name: $skip,
+                in: query,
+                description: Skip the specified number of results,
+                schema: {
+                  minimum: 0,
+                  type: integer,
+                  format: int32
+                }
+              }
+            ],
+            responses: {
+              200: {
+                description: OK,
+                content: {
+                  application/json: {
+                    schema: {
+                      type: integer,
+                      format: int32
+                    }
+                  }
+                }
+              }
+            }
+          },
+          post: {
+            tags: [
+              Users
+            ],
+            summary: Creates User.,
+            description:
+Sample request:
+POST /Users
+{
+"name": "sampleName"
+},
+            requestBody: {
+              description: The Request.,
+              content: {
+                application/json;odata.metadata=minimal;odata.streaming=true: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=minimal;odata.streaming=false: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=minimal: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=full;odata.streaming=true: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=full;odata.streaming=false: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=full: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=none;odata.streaming=true: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=none;odata.streaming=false: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=none: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.streaming=true: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.streaming=false: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=minimal;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=minimal;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=full;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=full;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=none;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.metadata=none;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.streaming=true;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.streaming=true;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.streaming=false;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;odata.streaming=false;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/xml: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                text/plain: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/json-patch+json: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                text/json: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                },
+                application/*+json: {
+                  schema: {
+                    $ref: #/components/schemas/CreateUserRequest
+                  }
+                }
+              }
+            },
+            responses: {
+              200: {
+                description: OK,
+                content: {
+                  application/json: {
+                    schema: {
+                      type: integer,
+                      format: int32
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        /Users/{id}: {
+          get: {
+            tags: [
+              Users
+            ],
+            summary: Gets User by Id.,
+            description:
+Sample request:
+GET /Users/Guid_1,
+            parameters: [
+              {
+                name: id,
+                in: path,
+                description: Unique identifier of User.,
+                required: true,
+                schema: {
+                  type: string,
+                  format: uuid
+                }
+              }
+            ],
+            responses: {
+              200: {
+                description: OK,
+                content: {
+                  application/json: {
+                    schema: {
+                      type: integer,
+                      format: int32
+                    }
+                  }
+                }
+              }
+            }
+          },
+          put: {
+            tags: [
+              Users
+            ],
+            summary: Updates User by Id.,
+            description:
+Sample request:
+PUT /Users/Guid_1
+{
+"name": "sampleName"
+},
+            parameters: [
+              {
+                name: id,
+                in: path,
+                description: Unique identifier of User.,
+                required: true,
+                schema: {
+                  type: string,
+                  format: uuid
+                }
+              }
+            ],
+            requestBody: {
+              description: The Request.,
+              content: {
+                application/json;odata.metadata=minimal;odata.streaming=true: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=minimal;odata.streaming=false: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=minimal: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=full;odata.streaming=true: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=full;odata.streaming=false: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=full: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=none;odata.streaming=true: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=none;odata.streaming=false: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=none: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.streaming=true: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.streaming=false: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=minimal;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=minimal;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=full;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=full;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=none;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.metadata=none;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.streaming=true;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.streaming=true;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.streaming=false;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;odata.streaming=false;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;IEEE754Compatible=false: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json;IEEE754Compatible=true: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/xml: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                text/plain: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/json-patch+json: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                text/json: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                },
+                application/*+json: {
+                  schema: {
+                    $ref: #/components/schemas/UpdateUserRequest
+                  }
+                }
+              }
+            },
+            responses: {
+              200: {
+                description: OK,
+                content: {
+                  application/json: {
+                    schema: {
+                      type: integer,
+                      format: int32
+                    }
+                  }
+                }
+              }
+            }
+          },
+          delete: {
+            tags: [
+              Users
+            ],
+            summary: Deletes User by Id.,
+            description:
+Sample request:
+DELETE /Users/Guid_1,
+            parameters: [
+              {
+                name: id,
+                in: path,
+                description: Unique identifier of User.,
+                required: true,
+                schema: {
+                  type: string,
+                  format: uuid
+                }
+              }
+            ],
+            responses: {
+              200: {
+                description: OK,
+                content: {
+                  application/json: {
+                    schema: {
+                      type: integer,
+                      format: int32
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      components: {
+        schemas: {
+          CreateUserRequest: {
+            type: object,
+            properties: {
+              name: {
+                type: string,
+                nullable: true
+              }
+            },
+            additionalProperties: false
+          },
+          UpdateUserRequest: {
+            type: object,
+            properties: {
+              name: {
+                type: string,
+                nullable: true
+              }
+            },
+            additionalProperties: false
+          }
+        }
+      }
+    }
+  }
+}
