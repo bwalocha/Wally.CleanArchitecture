@@ -140,8 +140,7 @@
       "modifiers": [
         {
           "exclude": [
-            ".idea/**",
-            "Wally.Common.CodeStyleRules/**"
+            ".idea/**"
           ]
         },
         {
@@ -165,6 +164,7 @@
         {
           "condition": "(!enableFrontend)",
           "exclude": [
+            "wally.cleanarchitecture.webapp*.*",
             "wally.cleanarchitecture.webapp*/**/*"
           ]
         },

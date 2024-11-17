@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Wally.CleanArchitecture.MicroService.Domain.Users;
 
 namespace Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Requests;
 
@@ -8,6 +9,6 @@ public class CreateUserRequestValidator : AbstractValidator<CreateUserRequest>
 	{
 		RuleFor(a => a.Name)
 			.NotEmpty()
-			.MaximumLength(256);
+			.MaximumLength(User.MaxNameLength);
 	}
 }

@@ -13,7 +13,7 @@ internal class UserMapping : IEntityTypeConfiguration<User>
 			.HasFilter($"{nameof(User.IsDeleted)} != 1");
 
 		builder.Property(a => a.Name)
-			.HasMaxLength(256);
+			.HasMaxLength(User.MaxNameLength);
 
 		// TODO: add example of ValueObject using Complex
 	}

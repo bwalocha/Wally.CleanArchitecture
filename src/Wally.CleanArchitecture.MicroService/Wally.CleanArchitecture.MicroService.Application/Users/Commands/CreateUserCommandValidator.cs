@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Wally.CleanArchitecture.MicroService.Domain.Users;
 
 namespace Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 
@@ -11,6 +12,6 @@ public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
 
 		RuleFor(a => a.Name)
 			.NotEmpty()
-			.MaximumLength(256);
+			.MaximumLength(User.MaxNameLength);
 	}
 }

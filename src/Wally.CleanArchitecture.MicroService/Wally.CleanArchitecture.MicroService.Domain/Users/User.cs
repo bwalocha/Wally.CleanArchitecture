@@ -5,6 +5,8 @@ namespace Wally.CleanArchitecture.MicroService.Domain.Users;
 
 public class User : AggregateRoot<User, UserId>, ISoftDeletable
 {
+	public const int MaxNameLength = 256;
+	
 	// Hide public .ctor
 #pragma warning disable CS8618
 	private User()

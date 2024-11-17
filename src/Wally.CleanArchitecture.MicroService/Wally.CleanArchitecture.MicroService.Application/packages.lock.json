@@ -104,7 +104,8 @@
           "FluentValidation": "[11.10.0, )",
           "Reinforced.Typings": "[1.6.5, )",
           "SonarAnalyzer.CSharp": "[9.32.0.97167, )",
-          "StyleCop.Analyzers": "[1.1.118, )"
+          "StyleCop.Analyzers": "[1.1.118, )",
+          "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
       },
       "wally.cleanarchitecture.microservice.application.messages": {
@@ -112,7 +113,8 @@
         "dependencies": {
           "FluentValidation": "[11.10.0, )",
           "SonarAnalyzer.CSharp": "[9.32.0.97167, )",
-          "StyleCop.Analyzers": "[1.1.118, )"
+          "StyleCop.Analyzers": "[1.1.118, )",
+          "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
       },
       "wally.cleanarchitecture.microservice.domain": {

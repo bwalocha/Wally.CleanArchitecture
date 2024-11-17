@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Wally.CleanArchitecture.MicroService.Domain.Users;
 
 namespace Wally.CleanArchitecture.MicroService.Application.Messages.Users;
 
@@ -10,6 +11,6 @@ public class UserCreatedMessageValidator : AbstractValidator<UserCreatedMessage>
 			.NotEmpty();
 		RuleFor(a => a.Name)
 			.NotEmpty()
-			.MaximumLength(256);
+			.MaximumLength(User.MaxNameLength);
 	}
 }
