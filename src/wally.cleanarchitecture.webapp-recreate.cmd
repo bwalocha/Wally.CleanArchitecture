@@ -11,7 +11,7 @@ call node -v
 echo NPM ver:
 call npm -v
 
-rmdir .\%WEBAPP% /S /Q || echo ERROR: Cannot clean the directory && goto error
+(if exist .\%WEBAPP% rmdir .\%WEBAPP% /S /Q) || echo ERROR: Cannot clean the directory && goto error
 call npx create-next-app@latest %WEBAPP% --typescript --tailwind --eslint --app --src-dir --turbopack --no-import-alias --use-npm --disable-git
 cd ./%WEBAPP% || echo ERROR: unknown && goto error
 REM call npm install

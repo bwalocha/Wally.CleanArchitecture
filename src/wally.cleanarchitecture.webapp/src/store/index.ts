@@ -1,6 +1,7 @@
 ﻿import {configureStore} from "@reduxjs/toolkit";
 import {api as filesApi} from "@/features/files/store/filesApi";
 import {api as pathsApi} from "@/features/files/store/pathsApi";
+import {api as storagesApi} from "@/features/files/store/storagesApi";
 import {errorHandlerMiddleware} from "@/store/errorHandlerMiddleware";
 // import {api as categoriesApi} from "@/store/categoriesApi";
 // import {api as measuresApi} from "@/store/measuresApi";
@@ -11,6 +12,7 @@ export const store = configureStore({
     reducer: {
         [filesApi.reducerPath]: filesApi.reducer,
         [pathsApi.reducerPath]: pathsApi.reducer,
+        [storagesApi.reducerPath]: storagesApi.reducer,
         // [categoriesApi.reducerPath]: categoriesApi.reducer,
         // [measuresApi.reducerPath]: measuresApi.reducer,
         // [unitsApi.reducerPath]: unitsApi.reducer,
@@ -21,6 +23,7 @@ export const store = configureStore({
             .concat(errorHandlerMiddleware)
             .concat(filesApi.middleware)
             .concat(pathsApi.middleware)
+            .concat(storagesApi.middleware)
             // .concat(categoriesApi.middleware)
             // .concat(measuresApi.middleware)
             // .concat(unitsApi.middleware)

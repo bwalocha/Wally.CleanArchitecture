@@ -91,7 +91,7 @@
         "source": "name",
         "toLower": true
       },
-      "fileRename": "wally.cleanarchitecture.webapp*",
+      "fileRename": "wally.cleanarchitecture.webapp",
       "replaces": "wally.cleanarchitecture"
     },
     "storybookName": {
@@ -164,7 +164,6 @@
         {
           "condition": "(!enableFrontend)",
           "exclude": [
-            "wally.cleanarchitecture.webapp*.*",
             "wally.cleanarchitecture.webapp*/**/*"
           ]
         },

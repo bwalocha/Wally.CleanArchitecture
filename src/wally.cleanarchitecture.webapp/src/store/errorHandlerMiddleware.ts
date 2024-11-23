@@ -12,7 +12,8 @@ export const errorHandlerMiddleware: Middleware =
                 description: 'data' in action.error
                     ? (action.error.data as { message: string }).message
                     : action.error.message,
-                // action: <ToastAction altText="Try again">Try again</ToastAction>,                
+                // action: <ToastAction altText="Try again">Try again</ToastAction>,
+                duration: 24 * 60 * 60 * 1000,
             })
         }
 

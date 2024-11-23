@@ -4,9 +4,9 @@
     "net8.0": {
       "MassTransit.Abstractions": {
         "type": "Direct",
-        "requested": "[8.3.1, )",
-        "resolved": "8.3.1",
-        "contentHash": "gNZAYPaWOBnok6VGZEha3MJfhAhyDZ3LDE4RoYzAlNVEofygk8l5Ri8e1tncf46pNPfn4/pFJiwSkzBMaGkUiA=="
+        "requested": "[8.3.2, )",
+        "resolved": "8.3.2",
+        "contentHash": "26Ip8xJiu21DABFCFQkU5Lf6uoFkBzKW2PlHclxY/ATUbiZ6F89mf8QlCbdutngv5yoxWJPjFvnDaoSW3orpnA=="
       },
       "MediatR": {
         "type": "Direct",
@@ -20,14 +20,14 @@
       },
       "Microsoft.AspNetCore.OData": {
         "type": "Direct",
-        "requested": "[9.1.0, )",
-        "resolved": "9.1.0",
-        "contentHash": "0dmyBWFOHgWKmTPF2otVA6BxtnBHKZlkMxoMCinHIl2TWVijn/zDuJDehZX1X1JlkuUP/fl1fNHRHCghdiPYSw==",
+        "requested": "[9.1.1, )",
+        "resolved": "9.1.1",
+        "contentHash": "if1N+q3dTgUbUZ4KjLXCHYDQLKEEv0gpx8dLaSRp2StrYuWcRVCKjncI7fPcndFkt/nEJcIYzNKxtws4L5OO8Q==",
         "dependencies": {
-          "Microsoft.OData.Core": "[8.2.0, 9.0.0)",
-          "Microsoft.OData.Edm": "[8.2.0, 9.0.0)",
+          "Microsoft.OData.Core": "[8.2.2, 9.0.0)",
+          "Microsoft.OData.Edm": "[8.2.2, 9.0.0)",
           "Microsoft.OData.ModelBuilder": "[2.0.0, 3.0.0)",
-          "Microsoft.Spatial": "[8.2.0, 9.0.0)"
+          "Microsoft.Spatial": "[8.2.2, 9.0.0)"
         }
       },
       "SonarAnalyzer.CSharp": {
@@ -54,19 +54,19 @@
       },
       "Microsoft.OData.Core": {
         "type": "Transitive",
-        "resolved": "8.2.0",
-        "contentHash": "dyFwqEP/7MD46Fs5WkPdq9lT0q8l9Y0xn/rkPNxhAp2buWaveTEcZv3DPmBlxFjDb31HbWoZuIPoczISO/EQXg==",
+        "resolved": "8.2.2",
+        "contentHash": "VY3sZzBOxePvRuCeBlEiJ2LNxjr8ReOKj6YWXi5i8vG3TLWo+CmIc9fiE8WDoe90NcCaBnwK6Ub2fWnpNEbLxA==",
         "dependencies": {
           "Microsoft.Bcl.AsyncInterfaces": "8.0.0",
           "Microsoft.Extensions.ObjectPool": "6.0.3",
-          "Microsoft.OData.Edm": "[8.2.0]",
-          "Microsoft.Spatial": "[8.2.0]"
+          "Microsoft.OData.Edm": "[8.2.2]",
+          "Microsoft.Spatial": "[8.2.2]"
         }
       },
       "Microsoft.OData.Edm": {
         "type": "Transitive",
-        "resolved": "8.2.0",
-        "contentHash": "pY1AAxBbIbouJWXL59b5qizRDJWq29TmPUUgXxcKisMluw5NljUz6jfD2KbgqA4vtHDtQDG9Vxbt2qKkEBT+uA==",
+        "resolved": "8.2.2",
+        "contentHash": "cHMsoV059EPNLD+SJFxIM8rKLUA3kKifflfUQy+7hWKZpmw+YhLi7qeWSSA9UDRVd0sqApFU8gdqHjordJoTIg==",
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "4.6.0",
           "System.Text.Encodings.Web": "4.7.2",
@@ -85,8 +85,8 @@
       },
       "Microsoft.Spatial": {
         "type": "Transitive",
-        "resolved": "8.2.0",
-        "contentHash": "W7AOMTiqb5nOUO7oDGCDKlcutt4OxFBoz0j5w5dIomoRn2ixmkgsYZsikabL7BznYBsycwTVHcjcZK9mnMH9ug=="
+        "resolved": "8.2.2",
+        "contentHash": "iG0pF7o7bR9/J+WcSNGEW0DzewO8Te/T+5FJ9EIuXcPkVE96cqc6Cf57ygqlQZj5jmf+D/gOtBJjPc4iyeI0Aw=="
       },
       "System.ComponentModel.Annotations": {
         "type": "Transitive",
@@ -101,7 +101,7 @@
       "wally.cleanarchitecture.microservice.application.contracts": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "[11.10.0, )",
+          "FluentValidation": "[11.11.0, )",
           "Reinforced.Typings": "[1.6.5, )",
           "SonarAnalyzer.CSharp": "[9.32.0.97167, )",
           "StyleCop.Analyzers": "[1.1.118, )",
@@ -111,7 +111,7 @@
       "wally.cleanarchitecture.microservice.application.messages": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "[11.10.0, )",
+          "FluentValidation": "[11.11.0, )",
           "SonarAnalyzer.CSharp": "[9.32.0.97167, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
@@ -126,9 +126,9 @@
       },
       "FluentValidation": {
         "type": "CentralTransitive",
-        "requested": "[11.10.0, )",
-        "resolved": "11.10.0",
-        "contentHash": "qsJGSJDdZ8qiG+lVJ70PZfJHcEdq8UQZ/tZDXoj78/iHKG6lVKtMJsD11zyyv/IPc7rwqGqnFoFLTNzpo3IPYg=="
+        "requested": "[11.11.0, )",
+        "resolved": "11.11.0",
+        "contentHash": "cyIVdQBwSipxWG8MA3Rqox7iNbUNUTK5bfJi9tIdm4CAfH71Oo5ABLP4/QyrUwuakqpUEPGtE43BDddvEehuYw=="
       },
       "MediatR.Contracts": {
         "type": "CentralTransitive",
