@@ -1677,7 +1677,7 @@
       },
       "Microsoft.AspNetCore.OpenApi": {
         "type": "CentralTransitive",
-        "requested": "[8.0.10, )",
+        "requested": "[8.0.11, )",
         "resolved": "8.0.11",
         "contentHash": "1WCvCZpqvOAyul6upSJ8Rkb/QHdr4PLrDny26vFexya/nTkG3x2zt8j9qlJ5T3J+/yJD9KwlGKhho9ZDD/YiFA==",
         "dependencies": {
