@@ -1664,7 +1664,7 @@
           "MediatR": "[12.4.1, )",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "[8.0.11, )",
           "Microsoft.AspNetCore.OData": "[9.1.1, )",
-          "Microsoft.AspNetCore.OpenApi": "[8.0.10, )",
+          "Microsoft.AspNetCore.OpenApi": "[8.0.11, )",
           "Microsoft.Extensions.Configuration.Abstractions": "[9.0.0, )",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[9.0.0, )",
           "Scrutor": "[5.0.2, )",
@@ -2070,8 +2070,8 @@
       "Microsoft.AspNetCore.OpenApi": {
         "type": "CentralTransitive",
         "requested": "[8.0.10, )",
-        "resolved": "8.0.10",
-        "contentHash": "kzYiW/IbSN0xittjplA8eN1wrNcRi3DMalYRrEuF2xyf2Y5u7cGCfgN1oNZ+g3aBQzMKTQwYsY1PeNmC+P0WnA==",
+        "resolved": "8.0.11",
+        "contentHash": "1WCvCZpqvOAyul6upSJ8Rkb/QHdr4PLrDny26vFexya/nTkG3x2zt8j9qlJ5T3J+/yJD9KwlGKhho9ZDD/YiFA==",
         "dependencies": {
           "Microsoft.OpenApi": "1.4.3"
         }
