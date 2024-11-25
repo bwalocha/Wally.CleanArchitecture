@@ -18,6 +18,7 @@ public sealed class ApplicationDbContext : DbContext
 		modelBuilder
 			.HasDefaultSchema(SchemaName)
 			.ApplyMappings<IInfrastructurePersistenceAssemblyMarker>()
+			.ApplyEnumConvention()
 			.ApplyStronglyTypedId()
 			.ApplyOptimisticConcurrency()
 			.ApplySoftDelete();

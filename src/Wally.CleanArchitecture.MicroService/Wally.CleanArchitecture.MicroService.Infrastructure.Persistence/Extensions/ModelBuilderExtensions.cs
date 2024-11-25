@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Extensions;
@@ -15,6 +16,23 @@ public static class ModelBuilderExtensions
 		return modelBuilder.ApplyConfigurationsFromAssembly(typeof(TInfrastructurePersistenceAssemblyMarker).Assembly);
 	}
 
+	public static ModelBuilder ApplyEnumConvention(this ModelBuilder modelBuilder)
+	{
+		var allEntities = modelBuilder.Model.GetEntityTypes();
+
+		foreach (var property in allEntities
+					.SelectMany(a => a.GetProperties())
+					.Where(a => a.ClrType.IsEnum)
+					.Where(a => !a.ClrType.IsDefined(typeof(FlagsAttribute), false)))
+		{
+			var converterType = typeof(EnumToStringConverter<>).MakeGenericType(property.ClrType);
+			var converter = (ValueConverter)Activator.CreateInstance(converterType) !;
+			property.SetValueConverter(converter);
+		}
+
+		return modelBuilder;
+	}
+	
 	/// <summary>
 	///     Configure the <see cref="ModelBuilder" /> to use the
 	///     <see cref="StronglyTypedIdConverter{TStronglyTypedId,TValue}" />.

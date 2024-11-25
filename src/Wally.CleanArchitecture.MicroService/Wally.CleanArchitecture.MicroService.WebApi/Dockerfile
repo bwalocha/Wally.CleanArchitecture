@@ -1,7 +1,6 @@
 # https://mcr.microsoft.com/product/dotnet/nightly/aspnet/tags
 # https://hub.docker.com/_/microsoft-dotnet-aspnet
-#FROM mcr.microsoft.com/dotnet/aspnet:7.0.11-alpine3.18-amd64
-#FROM mcr.microsoft.com/dotnet/aspnet:8.0.3-alpine3.18-amd64
+# https://github.com/dotnet/dotnet-docker/blob/main/README.runtime.md#linux-amd64-tags
 FROM mcr.microsoft.com/dotnet/aspnet:8.0.11-alpine3.20-amd64
 LABEL maintainer="wally"
 ARG PROJECT_NAME
