@@ -4,20 +4,20 @@ import {
     PagedResponse
 } from "wally.rommaster.fileservice.application.contracts/PagedResponse";
 import {
-    GetPathsResponse as GetListResponse
-} from "wally.rommaster.fileservice.application.contracts/Responses/Paths/GetPathsResponse";
+    GetStoragesResponse as GetListResponse
+} from "wally.rommaster.fileservice.application.contracts/Responses/Storages/GetStoragesResponse";
 import {
-    GetPathsRequest as GetListRequest
-} from "wally.rommaster.fileservice.application.contracts/Requests/Paths/GetPathsRequest";
-// import {
-//     GetPathResponse as GetResponse
-// } from "wally.rommaster.fileservice.application.contracts/Responses/Paths/GetPathsResponse";
-// import {
-//     CreateFileRequest as CreateRequest
-// } from "wally.rommaster.fileservice.application.contracts/Subjects/Requests/CreateSubjectRequest";
-// import {
-//     UpdateFileRequest as UpdateRequest
-// } from "wally.rommaster.fileservice.application.contracts/Subjects/Requests/UpdateSubjectRequest";
+    GetStoragesRequest as GetListRequest
+} from "wally.rommaster.fileservice.application.contracts/Requests/Storages/GetStoragesRequest";
+import {
+    GetStorageResponse as GetResponse
+} from "wally.rommaster.fileservice.application.contracts/Responses/Storages/GetStorageResponse";
+import {
+    CreateStorageRequest as CreateRequest
+} from "wally.rommaster.fileservice.application.contracts/Requests/Storages/CreateStorageRequest";
+import {
+    UpdateStorageRequest as UpdateRequest
+} from "wally.rommaster.fileservice.application.contracts/Requests/Storages/UpdateStorageRequest";
 
 const tagName = "Storages"
 const apiName = "FileService-api"

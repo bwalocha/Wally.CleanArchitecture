@@ -41,7 +41,7 @@ import {
 } from "@/components/ui/table"
 import {useEffect, useState} from "react";
 
-import {useGetListQuery} from "@/features/files/store/filesApi";
+    import {useGetListQuery} from "@/features/files/store/filesApi";
 import * as react from "react";
 import {Database, LucideProps} from "lucide-react";
 

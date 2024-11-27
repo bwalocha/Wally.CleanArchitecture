@@ -42,9 +42,15 @@ const items = [
         icon: Calendar,
     },
     {
-        title: "Storage",
+        title: "Paths",
         // url: "/storage/00000000-0000-0000-0000-000000000000",
-        url: "/storage",
+        url: "/paths",
+        icon: Database,
+    },
+    {
+        title: "Storages",
+        // url: "/storage/00000000-0000-0000-0000-000000000000",
+        url: "/storages",
         icon: Database,
     },
     {
