@@ -49,6 +49,13 @@ import {Badge} from "@/components/ui/badge";
 import {HoverCard, HoverCardContent, HoverCardTrigger} from "@/components/ui/hover-card";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import {Progress} from "@/components/ui/progress";
+import {
+    Pagination,
+    PaginationContent, PaginationEllipsis,
+    PaginationItem,
+    PaginationLink, PaginationNext,
+    PaginationPrevious
+} from "@/components/ui/pagination";
 
 const columns: ColumnDef<Item>[] = [
     {
@@ -321,6 +328,32 @@ function DataTable({data }: { data: Item[]}) {
                     {table.getFilteredRowModel().rows.length} row(s) selected.
                 </div>
                 <div className="space-x-2">
+                <Pagination>
+                    <PaginationContent>
+                        <PaginationItem>
+                            <PaginationPrevious href="#" />
+                        </PaginationItem>
+                        <PaginationItem>
+                            <PaginationLink href="#">1</PaginationLink>
+                        </PaginationItem>
+                        <PaginationItem>
+                            <PaginationLink href="#" isActive>
+                                2
+                            </PaginationLink>
+                        </PaginationItem>
+                        <PaginationItem>
+                            <PaginationLink href="#">3</PaginationLink>
+                        </PaginationItem>
+                        <PaginationItem>
+                            <PaginationEllipsis />
+                        </PaginationItem>
+                        <PaginationItem>
+                            <PaginationNext href="#" />
+                        </PaginationItem>
+                    </PaginationContent>
+                </Pagination>
+                </div>
+                {/*<div className="space-x-2">
                     <Button
                         variant="outline"
                         size="sm"
@@ -337,7 +370,7 @@ function DataTable({data }: { data: Item[]}) {
                     >
                         Next
                     </Button>
-                </div>
+                </div>*/}
             </div>
         </div>
     )
