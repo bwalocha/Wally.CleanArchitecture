@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Application.Contracts;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Abstractions;
@@ -86,14 +87,14 @@ public class ReadOnlyRepository<TEntity, TStronglyTypedId> : IReadOnlyRepository
 		query = query.ApplyFilter(queryOptions, _mapper)
 			.ApplySearch(queryOptions, ApplySearch);
 
-		var totalItems = await query.CountAsync(cancellationToken);
+		var totalItems = query.Provider is IAsyncQueryProvider ? await query.CountAsync(cancellationToken) : query.Count();
 
 		query = query.ApplyOrderBy(queryOptions, ApplyDefaultOrderBy, _mapper)
 			.ApplySkip(queryOptions)
 			.ApplyTop(queryOptions);
 
-		var items = await _mapper.ProjectTo<TResponse>(query)
-			.ToArrayAsync(cancellationToken);
+		var items = query.Provider is IAsyncQueryProvider ? await _mapper.ProjectTo<TResponse>(query)
+			.ToArrayAsync(cancellationToken) : _mapper.ProjectTo<TResponse>(query).ToArray();
 
 		var pageSize = queryOptions.Top?.Value ?? items.Length;
 

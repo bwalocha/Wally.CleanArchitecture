@@ -17,7 +17,7 @@
     <PackageVersion Include="System.Text.Json" Version="9.0.0" />
     <PackageVersion Include="System.Text.RegularExpressions" Version="4.3.1" />
     <PackageVersion Include="Verify.Http" Version="6.4.1" />
-    <PackageVersion Include="Verify.Xunit" Version="28.3.2" />
+    <PackageVersion Include="Verify.Xunit" Version="28.4.0" />
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="AutoMapper" Version="13.0.1" />
@@ -65,7 +65,7 @@
     <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.10.0" />
     <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.10.0" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.9.0" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.9.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.10.0" />
     <PackageVersion Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
     <PackageVersion Include="Reinforced.Typings" Version="1.6.5" />
     <PackageVersion Include="Serilog" Version="4.1.0" />
@@ -73,7 +73,7 @@
     <PackageVersion Include="Serilog.Sinks.ApplicationInsights" Version="4.0.0" />
     <PackageVersion Include="Scrutor" Version="5.0.2" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="7.1.0" />
-    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="7.0.0" />
+    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="7.1.0" />
     <PackageVersion Include="Testcontainers.MariaDb" Version="4.0.0" />
     <PackageVersion Include="Testcontainers.MySql" Version="4.0.0" />
     <PackageVersion Include="Testcontainers.MsSql" Version="4.0.0" />
@@ -92,7 +92,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="9.32.0.97167">
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.3.0.106239">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
