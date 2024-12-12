@@ -13,17 +13,24 @@ using Wally.CleanArchitecture.MicroService.Domain.Users;
 
 namespace Wally.CleanArchitecture.MicroService.WebApi.Controllers;
 
+/// <summary>
+/// The Controller
+/// </summary>
 [ApiController]
 [Route("[controller]")]
 [Produces("application/json")]
 [ProducesResponseType(typeof(int), 200, "application/json")]
 public class UsersController : ControllerBase
 {
-	private readonly ISender _mediator;
+	private readonly ISender _sender;
 
-	public UsersController(ISender mediator)
+	/// <summary>
+	/// Initializes a new instance of the <see cref="UsersController"/> class.
+	/// </summary>
+	/// <param name="sender">The Sender.</param>
+	public UsersController(ISender sender)
 	{
-		_mediator = mediator;
+		_sender = sender;
 	}
 
 	/// <summary>
@@ -41,7 +48,7 @@ public class UsersController : ControllerBase
 		ODataQueryOptions<GetUsersRequest> queryOptions, CancellationToken cancellationToken)
 	{
 		var query = new GetUsersQuery(queryOptions);
-		var response = await _mediator.Send(query, cancellationToken);
+		var response = await _sender.Send(query, cancellationToken);
 
 		return Ok(response);
 	}
@@ -60,7 +67,7 @@ public class UsersController : ControllerBase
 	public async Task<ActionResult<GetUserResponse>> GetAsync(Guid id, CancellationToken cancellationToken)
 	{
 		var query = new GetUserQuery(new UserId(id));
-		var result = await _mediator.Send(query, cancellationToken);
+		var result = await _sender.Send(query, cancellationToken);
 
 		return Ok(result);
 	}
@@ -82,7 +89,7 @@ public class UsersController : ControllerBase
 	public async Task<ActionResult<object>> CreateAsync(CreateUserRequest request, CancellationToken cancellationToken)
 	{
 		var command = new CreateUserCommand(request.Name);
-		await _mediator.Send(command, cancellationToken);
+		await _sender.Send(command, cancellationToken);
 
 		return Ok();
 	}
@@ -106,7 +113,7 @@ public class UsersController : ControllerBase
 		CancellationToken cancellationToken)
 	{
 		var command = new UpdateUserCommand(new UserId(id), request.Name);
-		await _mediator.Send(command, cancellationToken);
+		await _sender.Send(command, cancellationToken);
 
 		return Ok();
 	}
@@ -127,7 +134,7 @@ public class UsersController : ControllerBase
 	public async Task<ActionResult<object>> DeleteAsync(Guid id, CancellationToken cancellationToken)
 	{
 		var command = new DeleteUserCommand(new UserId(id));
-		await _mediator.Send(command, cancellationToken);
+		await _sender.Send(command, cancellationToken);
 
 		return Accepted();
 	}
