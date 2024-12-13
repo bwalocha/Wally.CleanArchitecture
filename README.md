@@ -70,14 +70,6 @@ dotnet new wally.cleanarchitecture --output . --name MyCompanyName.MyAppName --s
 
 [doc](https://docs.microsoft.com/en-us/dotnet/core/tools/custom-templates)
 
-### Storybook
-
-```
-npm create vite@latest wally.cleanarchitecture.storybook.webapp -- --template vue-ts
-cd ./wally.cleanarchitecture.storybook.webapp
-npx storybook@next init --package-manager npm --parser ts --builder vite --disable-telemetry
-```
-
 ## TODO
 
 - [ ] Fix `[CS1591] Missing XML comment` warnings
