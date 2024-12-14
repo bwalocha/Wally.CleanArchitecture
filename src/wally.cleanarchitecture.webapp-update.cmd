@@ -1,5 +1,5 @@
 SET "NAME=wally.cleanarchitecture"
-SET "SERVICE_NAME=webapp"
+SET "SERVICE_NAME=microservice"
 
 SET "AUTHOR_NAME=Wally"
 SET "AUTHOR_SHORT_NAME=wally"

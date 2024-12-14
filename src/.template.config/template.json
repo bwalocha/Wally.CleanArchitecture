@@ -92,17 +92,7 @@
         "toLower": true
       },
       "fileRename": "wally.cleanarchitecture.webapp",
-      "replaces": "wally.cleanarchitecture"
-    },
-    "storybookName": {
-      "type": "generated",
-      "generator": "casing",
-      "parameters": {
-        "source": "name",
-        "toLower": true
-      },
-      "fileRename": "wally.cleanarchitecture.storybook",
-      "replaces": "wally.cleanarchitecture"
+      "replaces": "wally.cleanarchitecture.microservice"
     },
     "enableReverseProxy": {
       "type": "parameter",
@@ -120,12 +110,6 @@
       "type": "parameter",
       "dataType": "bool",
       "description": "If specified, generates Frontend project.",
-      "defaultValue": "false"
-    },
-    "enableStorybook": {
-      "type": "parameter",
-      "dataType": "bool",
-      "description": "If specified, generates Storybook project.",
       "defaultValue": "false"
     },
     "skipRestore": {
@@ -168,12 +152,6 @@
           ]
         },
         {
-          "condition": "(!enableStorybook)",
-          "exclude": [
-            "wally.cleanarchitecture.storybook*/**/*"
-          ]
-        },
-        {
           "condition": "(!enableReverseProxy && !enableMicroService)",
           "exclude": [
             ".config/**/*",
@@ -207,38 +185,6 @@
       ],
       "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
       "continueOnError": true
-    },
-    {
-      "condition": "(!skipRestore && enableFrontend)",
-      "description ": "Install Node packages requred by this project",
-      "manualInstructions": [
-        { "text": "Run 'npm i'" }
-      ],
-      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-      "continueOnError": true,
-      "args": 
-      {
-        "executable": "cd",
-        "args": "*.webapp* && npm i",
-        "redirectStandardOutput": false,
-        "redirectStandardError": false
-      }
-    },
-    {
-      "condition": "(!skipRestore && enableStorybook)",
-      "description ": "Install Node packages requred by this project",
-      "manualInstructions": [
-        { "text": "Run 'npm i'" }
-      ],
-      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-      "continueOnError": true,
-      "args": 
-      {
-        "executable": "cd",
-        "args": "*.storybook && npm i",
-        "redirectStandardOutput": false,
-        "redirectStandardError": false
-      }
     }
   ]
 }
