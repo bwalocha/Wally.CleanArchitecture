@@ -48,9 +48,9 @@
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
-        "requested": "[10.3.0.106239, )",
-        "resolved": "10.3.0.106239",
-        "contentHash": "Ne5QHx0nUULk7PF+3GIQIC2EnFI93SPRilyqVY6US4JolZOCc9XyUKzvOVsufp7cyrqbOTL07U5mb6poYzllNQ=="
+        "requested": "[10.5.0.109200, )",
+        "resolved": "10.5.0.109200",
+        "contentHash": "yS8uepqf+HwSEZtkJR7O4siqfyGKX4Lu7mIB6TTppy59czq7qkFjZ+fB7NTRZg8a/Pu7tvwVhpEMcxUTiQZmSw=="
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
@@ -175,7 +175,7 @@
           "MassTransit.Abstractions": "[8.3.3, )",
           "MediatR": "[12.4.1, )",
           "Microsoft.AspNetCore.OData": "[9.1.1, )",
-          "SonarAnalyzer.CSharp": "[10.3.0.106239, )",
+          "SonarAnalyzer.CSharp": "[10.5.0.109200, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application.Contracts": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Application.Messages": "[1.0.0, )",
@@ -187,7 +187,7 @@
         "dependencies": {
           "FluentValidation": "[11.11.0, )",
           "Reinforced.Typings": "[1.6.5, )",
-          "SonarAnalyzer.CSharp": "[10.3.0.106239, )",
+          "SonarAnalyzer.CSharp": "[10.5.0.109200, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
@@ -196,7 +196,7 @@
         "type": "Project",
         "dependencies": {
           "FluentValidation": "[11.11.0, )",
-          "SonarAnalyzer.CSharp": "[10.3.0.106239, )",
+          "SonarAnalyzer.CSharp": "[10.5.0.109200, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
@@ -204,7 +204,7 @@
       "wally.cleanarchitecture.microservice.domain": {
         "type": "Project",
         "dependencies": {
-          "SonarAnalyzer.CSharp": "[10.3.0.106239, )",
+          "SonarAnalyzer.CSharp": "[10.5.0.109200, )",
           "StyleCop.Analyzers": "[1.1.118, )"
         }
       },
