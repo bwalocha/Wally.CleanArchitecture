@@ -95,7 +95,7 @@ deploy:baget:tpl:
 
 deploy:node:npm:
   extends:
-    - .deploy:node
+    - .deploy:npm
   needs:
     - test:npm
   variables:
