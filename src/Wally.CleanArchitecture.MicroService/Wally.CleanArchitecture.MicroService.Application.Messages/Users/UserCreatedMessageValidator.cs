@@ -11,6 +11,6 @@ public class UserCreatedMessageValidator : AbstractValidator<UserCreatedMessage>
 			.NotEmpty();
 		RuleFor(a => a.Name)
 			.NotEmpty()
-			.MaximumLength(User.MaxNameLength);
+			.MaximumLength(User.NameMaxLength);
 	}
 }

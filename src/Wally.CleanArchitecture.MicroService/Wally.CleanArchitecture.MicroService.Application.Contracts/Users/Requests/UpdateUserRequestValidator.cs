@@ -9,6 +9,6 @@ public class UpdateUserRequestValidator : AbstractValidator<UpdateUserRequest>
 	{
 		RuleFor(a => a.Name)
 			.NotEmpty()
-			.MaximumLength(User.MaxNameLength);
+			.MaximumLength(User.NameMaxLength);
 	}
 }

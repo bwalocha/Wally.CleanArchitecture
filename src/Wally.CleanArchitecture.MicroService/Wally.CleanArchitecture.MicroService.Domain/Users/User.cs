@@ -5,7 +5,7 @@ namespace Wally.CleanArchitecture.MicroService.Domain.Users;
 
 public class User : AggregateRoot<User, UserId>, ISoftDeletable
 {
-	public const int MaxNameLength = 256;
+	public const int NameMaxLength = 256;
 	
 	// Hide public .ctor
 #pragma warning disable CS8618
@@ -14,18 +14,12 @@ public class User : AggregateRoot<User, UserId>, ISoftDeletable
 	{
 	}
 
-	private User(UserId id, string name)
+	private User(UserId id)
 		: base(id)
 	{
-		Name = name;
 	}
 
-	private User(string name)
-	{
-		Name = name;
-	}
-
-	public string Name { get; private set; }
+	public string Name { get; private set; } = null!;
 
 	public bool IsDeleted { get; private set; } = false;
 	public DateTimeOffset? DeletedAt { get; private set; } = null;
@@ -34,7 +28,10 @@ public class User : AggregateRoot<User, UserId>, ISoftDeletable
 
 	public static User Create(string name)
 	{
-		var model = new User(name);
+		var model = new User
+		{
+			Name = name, 
+		};
 		model.AddDomainEvent(new UserCreatedDomainEvent(model.Id));
 
 		return model;
@@ -42,7 +39,10 @@ public class User : AggregateRoot<User, UserId>, ISoftDeletable
 
 	public static User Create(UserId id, string name)
 	{
-		var model = new User(id, name);
+		var model = new User(id)
+		{
+			Name = name, 
+		};
 		model.AddDomainEvent(new UserCreatedDomainEvent(model.Id));
 
 		return model;

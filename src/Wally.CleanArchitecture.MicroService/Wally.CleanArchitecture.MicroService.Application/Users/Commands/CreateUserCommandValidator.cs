@@ -12,6 +12,6 @@ public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
 
 		RuleFor(a => a.Name)
 			.NotEmpty()
-			.MaximumLength(User.MaxNameLength);
+			.MaximumLength(User.NameMaxLength);
 	}
 }

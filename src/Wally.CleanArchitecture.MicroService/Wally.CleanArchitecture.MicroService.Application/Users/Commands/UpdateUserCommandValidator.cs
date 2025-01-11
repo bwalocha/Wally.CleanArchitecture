@@ -12,6 +12,6 @@ public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommand>
 
 		RuleFor(a => a.Name)
 			.NotEmpty()
-			.MaximumLength(User.MaxNameLength);
+			.MaximumLength(User.NameMaxLength);
 	}
 }
