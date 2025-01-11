@@ -85,7 +85,7 @@ deploy:nuget:tpl:
 
 deploy:baget:tpl:
   extends:
-    - .deploy:baget
+    - .deploy:nuget-baget
   needs:
     #- publish:tpl
     - test:gate_sln
