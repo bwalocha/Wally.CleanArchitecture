@@ -77,7 +77,7 @@ public partial class UsersControllerTests
 				.IgnoreQueryFilters()
 				.SingleAsync(a => a.Id == resource2.Id))
 			.DeletedById.Should()
-			.Be(new UserId(Guid.Parse("aaaaaaaa-0000-0000-0000-add702d3016b")));
+			.Be(new UserId(Guid.Parse("ffffffff-0000-0000-0000-add702d3016b")));
 		(await _factory.GetRequiredService<DbContext>()
 				.Set<User>()
 				.IgnoreQueryFilters()

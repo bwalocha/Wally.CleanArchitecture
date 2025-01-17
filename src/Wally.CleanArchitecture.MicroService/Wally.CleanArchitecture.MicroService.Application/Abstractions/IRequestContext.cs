@@ -1,7 +1,7 @@
 ﻿using Wally.CleanArchitecture.MicroService.Domain;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 
-namespace Wally.CleanArchitecture.MicroService.Application;
+namespace Wally.CleanArchitecture.MicroService.Application.Abstractions;
 
 public interface IRequestContext
 {

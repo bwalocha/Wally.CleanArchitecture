@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Http;
 using Wally.CleanArchitecture.MicroService.Application;
+using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Domain;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 
@@ -12,6 +13,7 @@ public class HttpRequestContext : IRequestContext
 	{
 		CorrelationId = new CorrelationId(Guid.NewGuid());
 
+		// TODO:
 		/*httpContextAccessor.HttpContext.User.Identity.*/
 		UserId = new UserId(Guid.Parse("FFFFFFFF-0000-0000-0000-ADD702D3016B"));
 	}

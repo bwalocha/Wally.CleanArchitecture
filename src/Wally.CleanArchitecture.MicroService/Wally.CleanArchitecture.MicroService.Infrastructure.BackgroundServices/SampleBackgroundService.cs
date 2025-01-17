@@ -39,7 +39,7 @@ public class SampleBackgroundService : BackgroundService
 
 	protected override async Task ExecuteAsync(CancellationToken stoppingToken)
 	{
-		await SendCommandAsync(stoppingToken);
+		// await SendCommandAsync(stoppingToken);
 	}
 
 	private async Task SendCommandAsync(CancellationToken cancellationToken)

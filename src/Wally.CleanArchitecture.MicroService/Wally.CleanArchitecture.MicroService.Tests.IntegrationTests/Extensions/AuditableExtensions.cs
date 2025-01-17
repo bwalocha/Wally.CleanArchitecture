@@ -9,42 +9,32 @@ public static class AuditableExtensions
 	public static TAuditable SetCreatedAt<TAuditable>(this TAuditable auditable, DateTimeOffset createdAt)
 		where TAuditable : IAuditable
 	{
-		var type = auditable.GetType();
-
-		do
-		{
-			var propertyInfo = type.GetProperty(nameof(IAuditable.CreatedAt));
-			if (propertyInfo?.CanWrite == true)
-			{
-				propertyInfo.SetValue(auditable, createdAt);
-				return auditable;
-			}
-
-			type = type.BaseType;
-		}
-		while (type != null);
-
-		throw new ArgumentException(nameof(auditable));
+		return auditable.Set(nameof(IAuditable.CreatedAt), createdAt);
 	}
 
 	public static TAuditable SetCreatedById<TAuditable>(this TAuditable auditable, UserId createdByUserId)
 		where TAuditable : IAuditable
 	{
-		var type = auditable.GetType();
+		return auditable.Set(nameof(IAuditable.CreatedById), createdByUserId);
+	}
 
+	private static T Set<T>(this T @object, string propertyName, object value)
+	{
+		var type = typeof(T);
+		
 		do
 		{
-			var propertyInfo = type.GetProperty(nameof(IAuditable.CreatedById));
+			var propertyInfo = type.GetProperty(propertyName);
 			if (propertyInfo?.CanWrite == true)
 			{
-				propertyInfo.SetValue(auditable, createdByUserId);
-				return auditable;
+				propertyInfo.SetValue(@object, value);
+				return @object;
 			}
 
 			type = type.BaseType;
 		}
 		while (type != null);
 
-		throw new ArgumentException(nameof(auditable));
+		throw new ArgumentException(nameof(@object));
 	}
 }
