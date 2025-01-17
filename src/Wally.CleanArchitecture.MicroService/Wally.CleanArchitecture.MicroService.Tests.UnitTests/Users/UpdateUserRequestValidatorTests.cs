@@ -8,11 +8,11 @@ namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests.Users;
 // https://docs.fluentvalidation.net/en/latest/testing.html
 public class UpdateUserRequestValidatorTests
 {
-	private readonly AbstractValidator<UpdateUserRequest> _validator;
+	private readonly AbstractValidator<UpdateUserRequest> _sut;
 
 	public UpdateUserRequestValidatorTests()
 	{
-		_validator = new UpdateUserRequestValidator();
+		_sut = new UpdateUserRequestValidator();
 	}
 
 	[Theory]
@@ -31,7 +31,7 @@ public class UpdateUserRequestValidatorTests
 		var instance = new UpdateUserRequest(name);
 
 		// Act
-		var result = _validator.Validate(instance);
+		var result = _sut.Validate(instance);
 
 		// Assert
 		result.IsValid.Should()
@@ -54,7 +54,7 @@ public class UpdateUserRequestValidatorTests
 		var instance = new UpdateUserRequest(name!);
 
 		// Act
-		var result = _validator.Validate(instance);
+		var result = _sut.Validate(instance);
 
 		// Assert
 		result.IsValid.Should()

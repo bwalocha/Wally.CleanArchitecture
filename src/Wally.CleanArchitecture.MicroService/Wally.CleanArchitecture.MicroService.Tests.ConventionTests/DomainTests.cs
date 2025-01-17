@@ -22,11 +22,9 @@ public class DomainTests
 			.Where(a => a.InheritsGenericClass(typeof(Entity<,>)))
 			.Types();
 
-		using (new AssertionScope(new AssertionStrategy()))
-		{
-			types.Should()
-				.HaveOnlyPrivateParameterlessConstructor();
-		}
+		using var scope = new AssertionScope(new AssertionStrategy());
+		types.Should()
+			.HaveOnlyPrivateParameterlessConstructor();
 	}
 
 	[Fact]
@@ -37,27 +35,25 @@ public class DomainTests
 			.Where(a => a.InheritsGenericClass(typeof(Entity<,>)))
 			.Types();
 
-		using (new AssertionScope())
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types)
 		{
-			foreach (var type in types)
+			foreach (var property in type.Properties())
 			{
-				foreach (var property in type.Properties())
+				if (typeof(IEnumerable).IsAssignableFrom(property.PropertyType) &&
+					property.PropertyType != typeof(string))
 				{
-					if (typeof(IEnumerable).IsAssignableFrom(property.PropertyType) &&
-						property.PropertyType != typeof(string))
-					{
-						property.Should()
-							.NotBeWritable("Entity '{0}' should not expose setter '{1}'", type, property);
-					}
-					else if (property.CanWrite)
-					{
-						property.Should()
-							.BeWritable(
-								CSharpAccessModifier.Private,
-								"Entity '{0}' should not expose writable setter '{1}'",
-								type,
-								property);
-					}
+					property.Should()
+						.NotBeWritable("Entity '{0}' should not expose setter '{1}'", type, property);
+				}
+				else if (property.CanWrite)
+				{
+					property.Should()
+						.BeWritable(
+							CSharpAccessModifier.Private,
+							"Entity '{0}' should not expose writable setter '{1}'",
+							type,
+							property);
 				}
 			}
 		}
@@ -71,23 +67,21 @@ public class DomainTests
 			.Where(a => a.InheritsGenericClass(typeof(Entity<,>)))
 			.Types();
 
-		using (new AssertionScope())
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types)
 		{
-			foreach (var type in types)
+			foreach (var property in type.Properties())
 			{
-				foreach (var property in type.Properties())
+				if (typeof(IEnumerable).IsAssignableFrom(property.PropertyType) &&
+					property.PropertyType != typeof(string))
 				{
-					if (typeof(IEnumerable).IsAssignableFrom(property.PropertyType) &&
-						property.PropertyType != typeof(string))
-					{
-						property.PropertyType.GetGenericTypeDefinition()
-							.Should()
-							.Be(
-								typeof(IReadOnlyCollection<>),
-								"Entity '{0}' should not expose writable collection '{1}'",
-								type,
-								property);
-					}
+					property.PropertyType.GetGenericTypeDefinition()
+						.Should()
+						.Be(
+							typeof(IReadOnlyCollection<>),
+							"Entity '{0}' should not expose writable collection '{1}'",
+							type,
+							property);
 				}
 			}
 		}
@@ -101,20 +95,18 @@ public class DomainTests
 			.Where(a => a.InheritsGenericClass(typeof(ValueObject<>)))
 			.Types();
 
-		using (new AssertionScope())
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types)
 		{
-			foreach (var type in types)
+			foreach (var property in type.Properties()
+						.Where(a => a.CanWrite))
 			{
-				foreach (var property in type.Properties()
-							.Where(a => a.CanWrite))
-				{
-					property.Should()
-						.BeWritable(
-							CSharpAccessModifier.Private,
-							"ValueObject '{0}' should not expose setter '{1}'",
-							type,
-							property);
-				}
+				property.Should()
+					.BeWritable(
+						CSharpAccessModifier.Private,
+						"ValueObject '{0}' should not expose setter '{1}'",
+						type,
+						property);
 			}
 		}
 	}
@@ -128,21 +120,19 @@ public class DomainTests
 			.Where(a => !a.IsGenericType)
 			.Types();
 
-		using (new AssertionScope(new AssertionStrategy(1)))
+		using var scope = new AssertionScope(new AssertionStrategy(1));
+		foreach (var type in types)
 		{
-			foreach (var type in types)
-			{
-				var explicitOperator = type.GetMethod(
-					"op_Explicit",
-					BindingFlags.Public | BindingFlags.Static,
-					null,
-					new[] { type, },
-					null);
+			var explicitOperator = type.GetMethod(
+				"op_Explicit",
+				BindingFlags.Public | BindingFlags.Static,
+				null,
+				new[] { type, },
+				null);
 
-				explicitOperator.Should()
-					.NotBeNull("StronglyTypedId '{0}' should have explicit operator",
-						type);
-			}
+			explicitOperator.Should()
+				.NotBeNull("StronglyTypedId '{0}' should have explicit operator",
+					type);
 		}
 	}
 }

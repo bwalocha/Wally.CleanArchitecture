@@ -3,6 +3,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using VerifyXunit;
 using Wally.CleanArchitecture.MicroService.Application.Contracts;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Responses;
@@ -35,6 +36,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.GetAsync(new Uri("Users", UriKind.Relative));
 
 		// Assert
+		using var scope = new AssertionScope();
 		await Verifier.Verify(response);
 
 		response.IsSuccessStatusCode.Should()
@@ -59,6 +61,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.GetAsync(new Uri($"Users/{resource.Id}", UriKind.Relative));
 
 		// Assert
+		using var scope = new AssertionScope();
 		await Verifier.Verify(response);
 
 		response.IsSuccessStatusCode.Should()
@@ -84,6 +87,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.GetAsync(new Uri("Users?$top=1", UriKind.Relative));
 
 		// Assert
+		using var scope = new AssertionScope();
 		await Verifier.Verify(response);
 
 		response.IsSuccessStatusCode.Should()
@@ -110,6 +114,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.GetAsync(new Uri("Users?$select=name", UriKind.Relative));
 
 		// Assert
+		using var scope = new AssertionScope();
 		await Verifier.Verify(response);
 
 		response.IsSuccessStatusCode.Should()

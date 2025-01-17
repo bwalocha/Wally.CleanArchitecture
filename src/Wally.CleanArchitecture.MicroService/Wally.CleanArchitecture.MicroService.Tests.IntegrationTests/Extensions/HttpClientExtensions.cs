@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net.Http;
 using System.Text;
@@ -22,24 +23,42 @@ public static class HttpClientExtensions
 
 	public static Task<HttpResponseMessage> PutAsync<TPayload>(
 		this HttpClient client,
-		string url,
+		[StringSyntax(StringSyntaxAttribute.Uri)]string requestUri,
+		TPayload payload,
+		CancellationToken cancellationToken)
+	{
+		return PutAsync(client, CreateUri(requestUri), payload, cancellationToken);
+	}
+	
+	public static Task<HttpResponseMessage> PutAsync<TPayload>(
+		this HttpClient client,
+		Uri? requestUri,
 		TPayload payload,
 		CancellationToken cancellationToken)
 	{
 		var content = CreateContent(payload);
 
-		return client.PutAsync(url, content, cancellationToken);
+		return client.PutAsync(requestUri, content, cancellationToken);
 	}
 
 	public static Task<HttpResponseMessage> PostAsync<TPayload>(
 		this HttpClient client,
-		string url,
+		[StringSyntax(StringSyntaxAttribute.Uri)]string? requestUri,
+		TPayload payload,
+		CancellationToken cancellationToken)
+	{
+		return PostAsync(client, CreateUri(requestUri), payload, cancellationToken);
+	}
+	
+	public static Task<HttpResponseMessage> PostAsync<TPayload>(
+		this HttpClient client,
+		Uri? requestUri,
 		TPayload payload,
 		CancellationToken cancellationToken)
 	{
 		var content = CreateContent(payload);
 
-		return client.PostAsync(url, content, cancellationToken);
+		return client.PostAsync(requestUri, content, cancellationToken);
 	}
 
 	public static async Task<TResponse> ReadAsync<TResponse>(this HttpResponseMessage response,
@@ -53,6 +72,9 @@ public static class HttpClientExtensions
 		return JsonSerializer.Create(JsonSettings)
 			.Deserialize<TResponse>(jsonReader) !;
 	}
+	
+	private static Uri? CreateUri(string? uri) =>
+		string.IsNullOrEmpty(uri) ? null : new Uri(uri, UriKind.RelativeOrAbsolute);
 
 	private static StringContent CreateContent<TPayload>(TPayload payload)
 	{

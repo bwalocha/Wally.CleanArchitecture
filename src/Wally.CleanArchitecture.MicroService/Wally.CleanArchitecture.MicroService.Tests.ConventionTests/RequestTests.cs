@@ -18,29 +18,27 @@ public class RequestTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var assembly in assemblies)
 		{
-			foreach (var assembly in assemblies)
+			var types = AllTypes.From(assembly)
+				.ThatImplement<IRequest>();
+
+			foreach (var type in types)
 			{
-				var types = AllTypes.From(assembly)
-					.ThatImplement<IRequest>();
-
-				foreach (var type in types)
+				foreach (var property in type.Properties())
 				{
-					foreach (var property in type.Properties())
+					if (property.SetMethod?.IsPublic != true)
 					{
-						if (property.SetMethod?.IsPublic != true)
-						{
-							continue;
-						}
-
-						property.Should()
-							.BeWritable(
-								CSharpAccessModifier.Private,
-								"Response class '{0}' should not expose setter '{1}'",
-								type,
-								property);
+						continue;
 					}
+
+					property.Should()
+						.BeWritable(
+							CSharpAccessModifier.Private,
+							"Response class '{0}' should not expose setter '{1}'",
+							type,
+							property);
 				}
 			}
 		}
@@ -52,16 +50,14 @@ public class RequestTests
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var applicationNamespace = typeof(IApplicationContractsAssemblyMarker).Namespace;
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var assembly in assemblies)
 		{
-			foreach (var assembly in assemblies)
-			{
-				var types = AllTypes.From(assembly);
+			var types = AllTypes.From(assembly);
 
-				types.ThatImplement<IRequest>()
-					.Should()
-					.BeUnderNamespace(applicationNamespace);
-			}
+			types.ThatImplement<IRequest>()
+				.Should()
+				.BeUnderNamespace(applicationNamespace);
 		}
 	}
 
@@ -71,13 +67,11 @@ public class RequestTests
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
 
-		using (new AssertionScope())
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types.Where(a => a.Name.EndsWith("Request") && a.Name != nameof(IRequest)))
 		{
-			foreach (var type in types.Where(a => a.Name.EndsWith("Request") && a.Name != nameof(IRequest)))
-			{
-				type.Should()
-					.Implement<IRequest>();
-			}
+			type.Should()
+				.Implement<IRequest>();
 		}
 	}
 
@@ -87,13 +81,11 @@ public class RequestTests
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
 
-		using (new AssertionScope())
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types.ThatImplement<IRequest>())
 		{
-			foreach (var type in types.ThatImplement<IRequest>())
-			{
-				type.Name.Should()
-					.EndWith("Request");
-			}
+			type.Name.Should()
+				.EndWith("Request");
 		}
 	}
 
@@ -105,15 +97,13 @@ public class RequestTests
 			.GetAllTypes()
 			.ThatImplement<IRequest>();
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types)
 		{
-			foreach (var type in types)
-			{
-				assemblies.SelectMany(a => a.GetTypes())
-					.Where(a => a.Name == $"{type.Name}Validator")
-					.Should()
-					.NotBeNull("every Request '{0}' should have corresponding Validator", type);
-			}
+			assemblies.SelectMany(a => a.GetTypes())
+				.Where(a => a.Name == $"{type.Name}Validator")
+				.Should()
+				.NotBeNull("every Request '{0}' should have corresponding Validator", type);
 		}
 	}
 
@@ -125,15 +115,13 @@ public class RequestTests
 			.GetAllTypes()
 			.ThatImplement<IRequest>();
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types)
 		{
-			foreach (var type in types)
-			{
-				assemblies.SelectMany(a => a.GetTypes())
-					.Count(a => a.Name == $"{type.Name}Validator")
-					.Should()
-					.Be(1, "every Request '{0}' should have single corresponding Validator", type);
-			}
+			assemblies.SelectMany(a => a.GetTypes())
+				.Count(a => a.Name == $"{type.Name}Validator")
+				.Should()
+				.Be(1, "every Request '{0}' should have single corresponding Validator", type);
 		}
 	}
 }

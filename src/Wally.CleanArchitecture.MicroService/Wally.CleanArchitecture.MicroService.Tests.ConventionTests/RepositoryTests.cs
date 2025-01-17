@@ -29,20 +29,18 @@ public class RepositoryTests
 			typeof(IQueryable<>),
 		};
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types)
 		{
-			foreach (var type in types)
-			{
-				type.Methods()
-					.ThatArePublicOrInternal.ReturnTypes()
-					.ThatSatisfy(
-						a => notAllowedTypes.Contains(a) || notAllowedTypes.Exists(
-							n =>
-								Array.Exists(a.GenericTypeArguments, g => g.GetTypeDefinitionIfGeneric() == n)))
-					.ToArray()
-					.Should()
-					.BeEmpty("do not return not materialized collections from Repository '{0}'", type);
-			}
+			type.Methods()
+				.ThatArePublicOrInternal.ReturnTypes()
+				.ThatSatisfy(
+					a => notAllowedTypes.Contains(a) || notAllowedTypes.Exists(
+						n =>
+							Array.Exists(a.GenericTypeArguments, g => g.GetTypeDefinitionIfGeneric() == n)))
+				.ToArray()
+				.Should()
+				.BeEmpty("do not return not materialized collections from Repository '{0}'", type);
 		}
 	}
 
@@ -53,26 +51,24 @@ public class RepositoryTests
 		var types = assemblies.GetAllTypes()
 			.ThatSatisfy(a => a.IsInterface && a.ImplementsGenericInterface(typeof(IReadOnlyRepository<,>)));
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types)
 		{
-			foreach (var type in types)
+			if (type == typeof(IReadOnlyRepository<,>))
 			{
-				if (type == typeof(IReadOnlyRepository<,>))
-				{
-					continue;
-				}
-
-				if (type == typeof(IRepository<,>))
-				{
-					continue;
-				}
-
-				Configuration.Assemblies.Application.Should()
-					.Contain(
-						type.Assembly,
-						$"type '{type}' should be located in Application Layer, not in '{0}'",
-						type.Assembly);
+				continue;
 			}
+
+			if (type == typeof(IRepository<,>))
+			{
+				continue;
+			}
+
+			Configuration.Assemblies.Application.Should()
+				.Contain(
+					type.Assembly,
+					$"type '{type}' should be located in Application Layer, not in '{0}'",
+					type.Assembly);
 		}
 	}
 
@@ -87,24 +83,22 @@ public class RepositoryTests
 			.ThatSatisfy(a => a.ImplementsGenericInterface(typeof(IReadOnlyRepository<,>)))
 			.ToList();
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types)
 		{
-			foreach (var type in types)
+			if (type == typeof(IReadOnlyRepository<,>))
 			{
-				if (type == typeof(IReadOnlyRepository<,>))
-				{
-					continue;
-				}
-
-				if (type == typeof(IRepository<,>))
-				{
-					continue;
-				}
-
-				repositories.ThatSatisfy(a => a.ImplementsInterface(type))
-					.Should()
-					.NotBeEmpty("all Repository Interfaces should be implemented, and '{0}' is not", type);
+				continue;
 			}
+
+			if (type == typeof(IRepository<,>))
+			{
+				continue;
+			}
+
+			repositories.ThatSatisfy(a => a.ImplementsInterface(type))
+				.Should()
+				.NotBeEmpty("all Repository Interfaces should be implemented, and '{0}' is not", type);
 		}
 	}
 }

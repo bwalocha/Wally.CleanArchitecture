@@ -8,11 +8,11 @@ namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests.Users;
 // https://docs.fluentvalidation.net/en/latest/testing.html
 public class GetUsersRequestValidatorTests
 {
-	private readonly AbstractValidator<GetUsersRequest> _validator;
+	private readonly AbstractValidator<GetUsersRequest> _sut;
 
 	public GetUsersRequestValidatorTests()
 	{
-		_validator = new GetUsersRequestValidator();
+		_sut = new GetUsersRequestValidator();
 	}
 
 	[Fact]
@@ -22,7 +22,7 @@ public class GetUsersRequestValidatorTests
 		var instance = new GetUsersRequest();
 
 		// Act
-		var result = _validator.Validate(instance);
+		var result = _sut.Validate(instance);
 
 		// Assert
 		result.IsValid.Should()

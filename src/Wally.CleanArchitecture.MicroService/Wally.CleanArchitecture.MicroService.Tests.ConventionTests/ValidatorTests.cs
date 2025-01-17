@@ -3,6 +3,7 @@ using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentValidation;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
+using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -14,22 +15,20 @@ public class ValidatorTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 
-		using (new AssertionScope())
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var assembly in assemblies)
 		{
-			foreach (var assembly in assemblies)
+			foreach (var type in assembly.GetTypes()
+						.ThatImplement<IValidator>())
 			{
-				foreach (var type in assembly.GetTypes()
-							.ThatImplement<IValidator>())
-				{
-					var genericInterface = type.GetGenericInterface(typeof(IValidator<>));
-					var genericArgument = genericInterface?.GenericTypeArguments.SingleOrDefault();
+				var genericInterface = type.GetGenericInterface(typeof(IValidator<>));
+				var genericArgument = genericInterface?.GenericTypeArguments.SingleOrDefault();
 
-					type.Name.Should()
-						.Be(
-							$"{genericArgument?.Name}Validator",
-							"every Validator '{0}' should have naming convention",
-							type);
-				}
+				type.Name.Should()
+					.Be(
+						$"{genericArgument?.Name}Validator",
+						"every Validator '{0}' should have naming convention",
+						type);
 			}
 		}
 	}

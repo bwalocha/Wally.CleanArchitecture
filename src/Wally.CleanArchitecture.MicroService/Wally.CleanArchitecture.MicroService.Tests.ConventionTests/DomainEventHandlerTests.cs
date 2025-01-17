@@ -17,12 +17,10 @@ public class DomainEventHandlerTests
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.ImplementsGenericInterface(typeof(IDomainEventHandler<>)));
 
-		using (new AssertionScope(new AssertionStrategy()))
-		{
-			types.Types()
-				.Should()
-				.BeUnderNamespace($"{Configuration.Namespace}.Application");
-		}
+		using var scope = new AssertionScope(new AssertionStrategy());
+		types.Types()
+			.Should()
+			.BeUnderNamespace($"{Configuration.Namespace}.Application");
 	}
 
 	[Fact]
@@ -31,13 +29,11 @@ public class DomainEventHandlerTests
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
 
-		using (new AssertionScope())
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types.Where(a => a.Name.EndsWith("DomainEventHandler")))
 		{
-			foreach (var type in types.Where(a => a.Name.EndsWith("DomainEventHandler")))
-			{
-				type.Should()
-					.BeAssignableTo(typeof(IDomainEventHandler<>));
-			}
+			type.Should()
+				.BeAssignableTo(typeof(IDomainEventHandler<>));
 		}
 	}
 
@@ -47,15 +43,13 @@ public class DomainEventHandlerTests
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types
+					.Where(a => a.IsClass)
+					.Where(a => a.ImplementsGenericInterface(typeof(IDomainEventHandler<>))))
 		{
-			foreach (var type in types
-						.Where(a => a.IsClass)
-						.Where(a => a.ImplementsGenericInterface(typeof(IDomainEventHandler<>))))
-			{
-				type.Name.Should()
-					.EndWith("DomainEventHandler");
-			}
+			type.Name.Should()
+				.EndWith("DomainEventHandler");
 		}
 	}
 }

@@ -15,17 +15,15 @@ public class CommandHandlerTests
 	{
 		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in applicationTypes.Where(a => a.Name.EndsWith("CommandHandler")))
 		{
-			foreach (var type in applicationTypes.Where(a => a.Name.EndsWith("CommandHandler")))
-			{
-				type.Should()
-					.BeAssignableTo(
-						type.ImplementsGenericInterface(typeof(ICommandHandler<>))
-							? typeof(ICommandHandler<>)
-							: typeof(ICommandHandler<,>),
-						"All command handlers should implement ICommandHandler interface");
-			}
+			type.Should()
+				.BeAssignableTo(
+					type.ImplementsGenericInterface(typeof(ICommandHandler<>))
+						? typeof(ICommandHandler<>)
+						: typeof(ICommandHandler<,>),
+					"All command handlers should implement ICommandHandler interface");
 		}
 	}
 
@@ -40,14 +38,12 @@ public class CommandHandlerTests
 				a => a.ImplementsGenericInterface(typeof(ICommandHandler<>)) ||
 					a.ImplementsGenericInterface(typeof(ICommandHandler<,>)));
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in commandHandlerTypes)
 		{
-			foreach (var type in commandHandlerTypes)
-			{
-				type.Name
-					.Should()
-					.EndWith("CommandHandler", "All CommandHandler names should end with 'CommandHandler'");
-			}
+			type.Name
+				.Should()
+				.EndWith("CommandHandler", "All CommandHandler names should end with 'CommandHandler'");
 		}
 	}
 }

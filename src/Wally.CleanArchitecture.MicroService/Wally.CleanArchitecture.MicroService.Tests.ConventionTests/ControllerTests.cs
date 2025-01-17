@@ -19,29 +19,27 @@ public class ControllerTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 
-		using (new AssertionScope())
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var assembly in assemblies)
 		{
-			foreach (var assembly in assemblies)
-			{
-				var types = AllTypes.From(assembly)
-					.Where(a => a.BaseType == typeof(ControllerBase))
-					.ToList();
+			var types = AllTypes.From(assembly)
+				.Where(a => a.BaseType == typeof(ControllerBase))
+				.ToList();
 
-				foreach (var type in types)
+			foreach (var type in types)
+			{
+				foreach (var constructor in type.GetConstructors())
 				{
-					foreach (var constructor in type.GetConstructors())
+					foreach (var parameterInfo in constructor.GetParameters()
+								.Select(parameterInfo => parameterInfo.ParameterType)
+								.Where(parameterType => parameterType.IsGenericType))
 					{
-						foreach (var parameterInfo in constructor.GetParameters()
-									.Select(parameterInfo => parameterInfo.ParameterType)
-									.Where(parameterType => parameterType.IsGenericType))
-						{
-							parameterInfo.Should()
-								.Match(
-									a => a.GetGenericTypeDefinition() != typeof(ICommandHandler<>) &&
-										a.GetGenericTypeDefinition() != typeof(ICommandHandler<,>),
-									"Constructor of '{0}' should not take ICommandHandler as a parameter",
-									type);
-						}
+						parameterInfo.Should()
+							.Match(
+								a => a.GetGenericTypeDefinition() != typeof(ICommandHandler<>) &&
+									a.GetGenericTypeDefinition() != typeof(ICommandHandler<,>),
+								"Constructor of '{0}' should not take ICommandHandler as a parameter",
+								type);
 					}
 				}
 			}
@@ -53,28 +51,26 @@ public class ControllerTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 
-		using (new AssertionScope())
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var assembly in assemblies)
 		{
-			foreach (var assembly in assemblies)
-			{
-				var types = AllTypes.From(assembly)
-					.Where(a => a.BaseType == typeof(ControllerBase))
-					.ToList();
+			var types = AllTypes.From(assembly)
+				.Where(a => a.BaseType == typeof(ControllerBase))
+				.ToList();
 
-				foreach (var type in types)
+			foreach (var type in types)
+			{
+				foreach (var constructor in type.GetConstructors())
 				{
-					foreach (var constructor in type.GetConstructors())
+					foreach (var parameterInfo in constructor.GetParameters()
+								.Select(parameterInfo => parameterInfo.ParameterType)
+								.Where(parameterType => parameterType.IsGenericType))
 					{
-						foreach (var parameterInfo in constructor.GetParameters()
-									.Select(parameterInfo => parameterInfo.ParameterType)
-									.Where(parameterType => parameterType.IsGenericType))
-						{
-							parameterInfo.Should()
-								.NotBeAssignableTo(
-									typeof(IQueryHandler<,>),
-									"Constructor of '{0}' should not take IQueryHandler as a parameter",
-									type);
-						}
+						parameterInfo.Should()
+							.NotBeAssignableTo(
+								typeof(IQueryHandler<,>),
+								"Constructor of '{0}' should not take IQueryHandler as a parameter",
+								type);
 					}
 				}
 			}
@@ -89,34 +85,32 @@ public class ControllerTests
 			.ThatDeriveFrom<ControllerBase>()
 			.ToList();
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types)
 		{
-			foreach (var type in types)
+			foreach (var method in type.GetMethods(
+						BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly))
 			{
-				foreach (var method in type.GetMethods(
-							BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly))
+				method.ReturnType.Should()
+					.BeDerivedFrom(typeof(Task<>), "controller '{0}', '{1}' should return Task", type, method);
+
+				if (method.ReturnType.GenericTypeArguments.SingleOrDefault() == typeof(CreatedAtActionResult))
 				{
-					method.ReturnType.Should()
-						.BeDerivedFrom(typeof(Task<>), "controller '{0}', '{1}' should return Task", type, method);
-
-					if (method.ReturnType.GenericTypeArguments.SingleOrDefault() == typeof(CreatedAtActionResult))
-					{
-						continue;
-					}
-
-					if (method.ReturnType.GenericTypeArguments.SingleOrDefault() == typeof(FileStreamResult))
-					{
-						continue;
-					}
-
-					method.ReturnType.GenericTypeArguments.SingleOrDefault()
-						.Should()
-						.BeDerivedFrom(
-							typeof(ActionResult<>),
-							"controller '{0}', '{1}' should return async ActionResult<>",
-							type,
-							method);
+					continue;
 				}
+
+				if (method.ReturnType.GenericTypeArguments.SingleOrDefault() == typeof(FileStreamResult))
+				{
+					continue;
+				}
+
+				method.ReturnType.GenericTypeArguments.SingleOrDefault()
+					.Should()
+					.BeDerivedFrom(
+						typeof(ActionResult<>),
+						"controller '{0}', '{1}' should return async ActionResult<>",
+						type,
+						method);
 			}
 		}
 	}

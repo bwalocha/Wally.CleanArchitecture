@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using FluentAssertions.Common;
+using FluentAssertions.Execution;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Time.Testing;
 using VerifyXunit;
@@ -46,6 +47,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.DeleteAsync($"Users/{resource2.Id.Value}", CancellationToken.None);
 
 		// Assert
+		using var scope = new AssertionScope();
 		await Verifier.Verify(response);
 
 		(await _factory.GetRequiredService<DbContext>()

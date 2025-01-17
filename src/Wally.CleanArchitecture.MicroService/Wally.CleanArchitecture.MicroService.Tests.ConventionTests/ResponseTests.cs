@@ -23,43 +23,41 @@ public class ResponseTests
 		var types = assemblies.GetAllTypes()
 			.ThatImplement<IResponse>();
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types)
 		{
-			foreach (var type in types)
+			if (type.GetConstructor(Type.EmptyTypes) == null)
 			{
-				if (type.GetConstructor(Type.EmptyTypes) == null)
-				{
-					// Check only classes with non parametrized ctors
-					continue;
-				}
+				// Check only classes with non parametrized ctors
+				continue;
+			}
 
-				foreach (var property in type.Properties())
+			foreach (var property in type.Properties())
+			{
+				var isInitOnly = (property.GetSetMethod()
+					?.ReturnParameter.GetRequiredCustomModifiers()
+					.Length ?? 0) > 0;
+				if (isInitOnly)
 				{
-					var isInitOnly = (property.GetSetMethod()
-						?.ReturnParameter.GetRequiredCustomModifiers()
-						.Length ?? 0) > 0;
-					if (isInitOnly)
+					var isRequired = property.GetCustomAttribute(typeof(RequiredMemberAttribute)) != null;
+
+					if (isRequired)
 					{
-						var isRequired = property.GetCustomAttribute(typeof(RequiredMemberAttribute)) != null;
-
-						if (isRequired)
-						{
-							continue;
-						}
-
-						property.Should()
-							.BeDecoratedWith<RequiredMemberAttribute>(
-								"Response class '{0}' with Init setter should have Required modifier '{1}'", type,
-								property);
+						continue;
 					}
 
 					property.Should()
-						.BeWritable(
-							CSharpAccessModifier.Private,
-							"Response class '{0}' should not expose setter '{1}'",
-							type,
+						.BeDecoratedWith<RequiredMemberAttribute>(
+							"Response class '{0}' with Init setter should have Required modifier '{1}'", type,
 							property);
 				}
+
+				property.Should()
+					.BeWritable(
+						CSharpAccessModifier.Private,
+						"Response class '{0}' should not expose setter '{1}'",
+						type,
+						property);
 			}
 		}
 	}
@@ -71,23 +69,21 @@ public class ResponseTests
 		var types = assemblies.GetAllTypes()
 			.ThatImplement<IResponse>();
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types)
 		{
-			foreach (var type in types)
+			if (type.GetConstructor(Type.EmptyTypes) != null && type.GetConstructors()
+					.Length == 1)
 			{
-				if (type.GetConstructor(Type.EmptyTypes) != null && type.GetConstructors()
-						.Length == 1)
-				{
-					// Check only classes with parametrized ctors 
-					continue;
-				}
+				// Check only classes with parametrized ctors 
+				continue;
+			}
 
-				foreach (var property in type.Properties())
-				{
-					property.Should()
-						.NotBeWritable(
-							"Response class '{0}' should not have setter '{1}'", type, property);
-				}
+			foreach (var property in type.Properties())
+			{
+				property.Should()
+					.NotBeWritable(
+						"Response class '{0}' should not have setter '{1}'", type, property);
 			}
 		}
 	}
@@ -99,12 +95,10 @@ public class ResponseTests
 		var applicationNamespace = typeof(IApplicationContractsAssemblyMarker).Namespace;
 		var types = assemblies.GetAllTypes();
 
-		using (new AssertionScope(new AssertionStrategy()))
-		{
-			types.ThatImplement<IResponse>()
-				.Should()
-				.BeUnderNamespace(applicationNamespace);
-		}
+		using var scope = new AssertionScope(new AssertionStrategy());
+		types.ThatImplement<IResponse>()
+			.Should()
+			.BeUnderNamespace(applicationNamespace);
 	}
 
 	[Fact]
@@ -115,13 +109,11 @@ public class ResponseTests
 			.Where(a => a.IsClass)
 			.Where(a => a.Name.EndsWith("Response"));
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types)
 		{
-			foreach (var type in types)
-			{
-				type.Should()
-					.Implement<IResponse>();
-			}
+			type.Should()
+				.Implement<IResponse>();
 		}
 	}
 
@@ -132,14 +124,12 @@ public class ResponseTests
 		var types = assemblies.GetAllTypes()
 			.ThatImplement<IResponse>();
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types)
 		{
-			foreach (var type in types)
-			{
-				type.Name.Split('`')[0]
-					.Should()
-					.EndWith("Response", "Type '{0}' should ends with 'Response'", type);
-			}
+			type.Name.Split('`')[0]
+				.Should()
+				.EndWith("Response", "Type '{0}' should ends with 'Response'", type);
 		}
 	}
 
@@ -150,13 +140,11 @@ public class ResponseTests
 		var types = assemblies.GetAllTypes()
 			.ThatImplement<IResponse>();
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types)
 		{
-			foreach (var type in types)
-			{
-				type.Should()
-					.BeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
-			}
+			type.Should()
+				.BeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
 		}
 	}
 }

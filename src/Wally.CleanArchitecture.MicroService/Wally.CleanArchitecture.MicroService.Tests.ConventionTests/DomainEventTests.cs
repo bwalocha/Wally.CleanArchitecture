@@ -16,16 +16,14 @@ public class DomainEventTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var assembly in assemblies)
 		{
-			foreach (var assembly in assemblies)
-			{
-				var types = assembly.Types()
-					.ThatImplement<DomainEvent>();
+			var types = assembly.Types()
+				.ThatImplement<DomainEvent>();
 
-				types.Should()
-					.BeUnderNamespace($"{Configuration.Namespace}.Domain");
-			}
+			types.Should()
+				.BeUnderNamespace($"{Configuration.Namespace}.Domain");
 		}
 	}
 
@@ -35,14 +33,12 @@ public class DomainEventTests
 		var assemblies = Configuration.Assemblies.Domain;
 		var types = assemblies.GetAllTypes();
 
-		using (new AssertionScope())
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types.Where(a => a.Name.EndsWith("DomainEvent"))
+					.Where(a => a != typeof(DomainEvent)))
 		{
-			foreach (var type in types.Where(a => a.Name.EndsWith("DomainEvent"))
-						.Where(a => a != typeof(DomainEvent)))
-			{
-				type.Should()
-					.BeAssignableTo<DomainEvent>();
-			}
+			type.Should()
+				.BeAssignableTo<DomainEvent>();
 		}
 	}
 
@@ -52,13 +48,11 @@ public class DomainEventTests
 		var assemblies = Configuration.Assemblies.Domain;
 		var types = assemblies.GetAllTypes();
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types.ThatImplement<DomainEvent>())
 		{
-			foreach (var type in types.ThatImplement<DomainEvent>())
-			{
-				type.Name.Should()
-					.EndWith("DomainEvent");
-			}
+			type.Name.Should()
+				.EndWith("DomainEvent");
 		}
 	}
 
@@ -67,17 +61,15 @@ public class DomainEventTests
 	{
 		var assemblies = Configuration.Assemblies.Domain;
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var assembly in assemblies)
 		{
-			foreach (var assembly in assemblies)
-			{
-				var types = assembly.Types()
-					.ThatImplement<DomainEvent>();
+			var types = assembly.Types()
+				.ThatImplement<DomainEvent>();
 
-				types.Properties()
-					.Should()
-					.NotBeWritable("Request should be immutable");
-			}
+			types.Properties()
+				.Should()
+				.NotBeWritable("Request should be immutable");
 		}
 	}
 
@@ -86,18 +78,16 @@ public class DomainEventTests
 	{
 		var assemblies = Configuration.Assemblies.Domain;
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var assembly in assemblies)
 		{
-			foreach (var assembly in assemblies)
-			{
-				var types = assembly.Types()
-					.ThatImplement<DomainEvent>();
+			var types = assembly.Types()
+				.ThatImplement<DomainEvent>();
 
-				foreach (var type in types)
-				{
-					type.Should()
-						.BeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
-				}
+			foreach (var type in types)
+			{
+				type.Should()
+					.BeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
 			}
 		}
 	}
