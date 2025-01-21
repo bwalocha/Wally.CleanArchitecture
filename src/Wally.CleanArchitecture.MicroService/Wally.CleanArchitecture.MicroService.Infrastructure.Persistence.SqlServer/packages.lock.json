@@ -412,6 +412,11 @@
           "System.Drawing.Common": "6.0.0"
         }
       },
+      "Ulid": {
+        "type": "Transitive",
+        "resolved": "1.3.4",
+        "contentHash": "6IaGquwjjfW+BoHSV844y12Uy2kxbboYNmsibxr2lotcSPAA3LKy1CKcAQ8JOdAdL4xMoDNXA1oxG41w7fbr6Q=="
+      },
       "wally.cleanarchitecture.microservice.application": {
         "type": "Project",
         "dependencies": {
@@ -448,7 +453,8 @@
         "type": "Project",
         "dependencies": {
           "SonarAnalyzer.CSharp": "[10.5.0.109200, )",
-          "StyleCop.Analyzers": "[1.1.118, )"
+          "StyleCop.Analyzers": "[1.1.118, )",
+          "Ulid": "[1.3.4, )"
         }
       },
       "wally.cleanarchitecture.microservice.infrastructure.persistence": {

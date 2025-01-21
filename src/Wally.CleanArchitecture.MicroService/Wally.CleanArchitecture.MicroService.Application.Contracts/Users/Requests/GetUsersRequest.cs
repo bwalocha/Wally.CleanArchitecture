@@ -6,7 +6,7 @@ namespace Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Reque
 [ExcludeFromCodeCoverage]
 public class GetUsersRequest : IRequest
 {
-	public Guid? Id { get; private set; }
+	public Guid? Id { get; private set; } = null;
 
-	public string? Name { get; private set; }
+	public string? Name { get; private set; } = null;
 }

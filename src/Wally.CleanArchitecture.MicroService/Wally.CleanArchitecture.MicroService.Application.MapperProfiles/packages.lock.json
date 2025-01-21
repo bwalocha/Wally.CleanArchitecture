@@ -45,6 +45,11 @@
         "resolved": "6.0.0",
         "contentHash": "/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg=="
       },
+      "Ulid": {
+        "type": "Transitive",
+        "resolved": "1.3.4",
+        "contentHash": "6IaGquwjjfW+BoHSV844y12Uy2kxbboYNmsibxr2lotcSPAA3LKy1CKcAQ8JOdAdL4xMoDNXA1oxG41w7fbr6Q=="
+      },
       "wally.cleanarchitecture.microservice.application.contracts": {
         "type": "Project",
         "dependencies": {
@@ -59,7 +64,8 @@
         "type": "Project",
         "dependencies": {
           "SonarAnalyzer.CSharp": "[10.5.0.109200, )",
-          "StyleCop.Analyzers": "[1.1.118, )"
+          "StyleCop.Analyzers": "[1.1.118, )",
+          "Ulid": "[1.3.4, )"
         }
       },
       "FluentValidation": {

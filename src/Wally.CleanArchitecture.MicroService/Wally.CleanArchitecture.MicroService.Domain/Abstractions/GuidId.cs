@@ -49,6 +49,9 @@ public class GuidId<TStronglyTypedId> : StronglyTypedId<TStronglyTypedId, Guid>
 
 	private static Guid NewSequentialId()
 	{
+		return Ulid.NewUlid()
+			.ToGuid();
+		
 		var guidBytes = Guid
 			.NewGuid()
 			.ToByteArray();

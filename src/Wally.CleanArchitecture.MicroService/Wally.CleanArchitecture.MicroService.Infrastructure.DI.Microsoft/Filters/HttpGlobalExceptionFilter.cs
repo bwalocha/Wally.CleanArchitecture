@@ -81,10 +81,9 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 		{
 			problemDetails.Errors.Add(
 				"Database",
-				new[]
-				{
+				[
 					exception.ErrorCode.ToString(), exception.Message,
-				});
+				]);
 		}
 
 		context.Result = new ConflictObjectResult(problemDetails);
@@ -141,7 +140,7 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 			Detail = "Please refer to the errors property for additional details.",
 		};
 
-		problemDetails.Errors.Add("DomainValidations", new[] { context.Exception.Message, });
+		problemDetails.Errors.Add("DomainValidations", [context.Exception.Message,]);
 
 		context.Result = new BadRequestObjectResult(problemDetails);
 	}
