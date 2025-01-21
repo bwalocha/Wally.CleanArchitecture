@@ -59,21 +59,19 @@ public class QueryTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var assembly in assemblies)
 		{
-			foreach (var assembly in assemblies)
+			foreach (var type in assembly.GetTypes()
+						.Where(a => a.IsClass)
+						.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)))
+						.Where(a => a != typeof(PagedQuery<,>))
+						.Types())
 			{
-				foreach (var type in assembly.GetTypes()
-							.Where(a => a.IsClass)
-							.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)))
-							.Where(a => a != typeof(PagedQuery<,>))
-							.Types())
-				{
-					assemblies.SelectMany(a => a.GetTypes())
-						.SingleOrDefault(a => a.Name == $"{type.Name}Handler")
-						.Should()
-						.NotBeNull("Query '{0}' should have corresponding Handler", type);
-				}
+				assemblies.SelectMany(a => a.GetTypes())
+					.SingleOrDefault(a => a.Name == $"{type.Name}Handler")
+					.Should()
+					.NotBeNull("Query '{0}' should have corresponding Handler", type);
 			}
 		}
 	}

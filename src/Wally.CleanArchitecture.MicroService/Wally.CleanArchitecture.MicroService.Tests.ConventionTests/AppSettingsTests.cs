@@ -19,23 +19,21 @@ public class AppSettingsTests
 		// Act
 
 		// Assert
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var appSettingsType in appSettingsTypes)
 		{
-			foreach (var appSettingsType in appSettingsTypes)
+			foreach (var property in appSettingsType.Properties())
 			{
-				foreach (var property in appSettingsType.Properties())
+				if (property.CanBeSet())
 				{
-					if (property.CanBeSet())
-					{
-						property.IsInitOnly()
-							.Should()
-							.BeTrue("AppSettings type '{0}' should not expose setter '{1}'", appSettingsType, property);
-					}
-					else
-					{
-						property.DeclaringType!.IsClass.Should()
-							.BeTrue();
-					}
+					property.IsInitOnly()
+						.Should()
+						.BeTrue("AppSettings type '{0}' should not expose setter '{1}'", appSettingsType, property);
+				}
+				else
+				{
+					property.DeclaringType!.IsClass.Should()
+						.BeTrue();
 				}
 			}
 		}

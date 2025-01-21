@@ -3,6 +3,7 @@ using FluentAssertions;
 using FluentAssertions.Execution;
 using MassTransit;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
+using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -15,13 +16,11 @@ public class ConsumerTests
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
 
-		using (new AssertionScope())
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types.Where(a => a.Name.EndsWith("Consumer")))
 		{
-			foreach (var type in types.Where(a => a.Name.EndsWith("Consumer")))
-			{
-				type.Should()
-					.BeAssignableTo(typeof(IConsumer<>));
-			}
+			type.Should()
+				.BeAssignableTo(typeof(IConsumer<>));
 		}
 	}
 
@@ -31,14 +30,12 @@ public class ConsumerTests
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
 
-		using (new AssertionScope())
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types.Where(a => !a.Name.EndsWith("FaultConsumer"))
+					.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>))))
 		{
-			foreach (var type in types.Where(a => !a.Name.EndsWith("FaultConsumer"))
-						.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>))))
-			{
-				type.Name.Should()
-					.EndWith("MessageConsumer");
-			}
+			type.Name.Should()
+				.EndWith("MessageConsumer");
 		}
 	}
 
@@ -48,20 +45,18 @@ public class ConsumerTests
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
 
-		using (new AssertionScope())
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types.Where(a => !a.Name.EndsWith("FaultConsumer"))
+					.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>))))
 		{
-			foreach (var type in types.Where(a => !a.Name.EndsWith("FaultConsumer"))
-						.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>))))
-			{
-				var genericType = type.GetGenericInterface(typeof(IConsumer<>)) !.GenericTypeArguments.Single();
+			var genericType = type.GetGenericInterface(typeof(IConsumer<>)) !.GenericTypeArguments.Single();
 
-				type.Name.Should()
-					.Be(
-						$"{genericType.Name}Consumer",
-						"Type '{0}' should have name '{1}'",
-						type,
-						$"{genericType.Name}Consumer");
-			}
+			type.Name.Should()
+				.Be(
+					$"{genericType.Name}Consumer",
+					"Type '{0}' should have name '{1}'",
+					type,
+					$"{genericType.Name}Consumer");
 		}
 	}
 
@@ -71,19 +66,17 @@ public class ConsumerTests
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
 
-		using (new AssertionScope())
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types.Where(a => !a.Name.EndsWith("FaultConsumer"))
+					.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>))))
 		{
-			foreach (var type in types.Where(a => !a.Name.EndsWith("FaultConsumer"))
-						.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>))))
-			{
-				var genericType = type.GetGenericInterface(typeof(IConsumer<>)) !.GenericTypeArguments.Single();
+			var genericType = type.GetGenericInterface(typeof(IConsumer<>)) !.GenericTypeArguments.Single();
 
-				types.SingleOrDefault(a => a.Name == $"{genericType.Name}FaultConsumer")
-					.Should()
-					.NotBeNull("Type '{0}' should have corresponding FaultConsumer '{1}'",
-						type,
-						$"{genericType.Name}FaultConsumer");
-			}
+			types.SingleOrDefault(a => a.Name == $"{genericType.Name}FaultConsumer")
+				.Should()
+				.NotBeNull("Type '{0}' should have corresponding FaultConsumer '{1}'",
+					type,
+					$"{genericType.Name}FaultConsumer");
 		}
 	}
 
@@ -93,19 +86,17 @@ public class ConsumerTests
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
 
-		using (new AssertionScope())
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types.Where(a => !a.Name.EndsWith("FaultConsumer"))
+					.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>))))
 		{
-			foreach (var type in types.Where(a => !a.Name.EndsWith("FaultConsumer"))
-						.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>))))
-			{
-				var genericType = type.GetGenericInterface(typeof(IConsumer<>)) !.GenericTypeArguments.Single();
+			var genericType = type.GetGenericInterface(typeof(IConsumer<>)) !.GenericTypeArguments.Single();
 
-				types.SingleOrDefault(a => a.Name == $"{genericType.Name}ConsumerDefinition")
-					.Should()
-					.NotBeNull("Type '{0}' should have corresponding ConsumerDefinition '{1}'",
-						type,
-						$"{genericType.Name}ConsumerDefinition");
-			}
+			types.SingleOrDefault(a => a.Name == $"{genericType.Name}ConsumerDefinition")
+				.Should()
+				.NotBeNull("Type '{0}' should have corresponding ConsumerDefinition '{1}'",
+					type,
+					$"{genericType.Name}ConsumerDefinition");
 		}
 	}
 }

@@ -1,5 +1,6 @@
 using System.Linq;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Xunit;
 
@@ -17,6 +18,7 @@ public class UserTests
 		user = User.Create("testUserName");
 
 		// Assert
+		using var scope = new AssertionScope();
 		user.Id.Should()
 			.NotBeNull();
 		user.Id.Value.Should()
@@ -36,6 +38,7 @@ public class UserTests
 		user.Update("newTestName");
 
 		// Assert
+		using var scope = new AssertionScope();
 		user.Id.Should()
 			.Be(id);
 		user.Name.Should()

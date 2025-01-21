@@ -13,13 +13,13 @@ namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests.Users;
 
 public class UserCreatedConsumerTests
 {
-	private readonly UserCreatedMessageConsumer _consumer;
+	private readonly UserCreatedMessageConsumer _sut;
 	private readonly Mock<ISender> _mediatorMock;
 
 	public UserCreatedConsumerTests()
 	{
 		_mediatorMock = new Mock<ISender>();
-		_consumer = new UserCreatedMessageConsumer(_mediatorMock.Object);
+		_sut = new UserCreatedMessageConsumer(_mediatorMock.Object);
 	}
 
 	[Fact]
@@ -32,7 +32,7 @@ public class UserCreatedConsumerTests
 			.Returns(message);
 
 		// Act
-		await _consumer.Consume(context.Object);
+		await _sut.Consume(context.Object);
 
 		// Assert
 		_mediatorMock.Verify(

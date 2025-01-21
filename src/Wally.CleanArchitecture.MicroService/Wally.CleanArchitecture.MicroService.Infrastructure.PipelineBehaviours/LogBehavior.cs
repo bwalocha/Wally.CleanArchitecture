@@ -5,6 +5,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
 using Wally.CleanArchitecture.MicroService.Application;
+using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 

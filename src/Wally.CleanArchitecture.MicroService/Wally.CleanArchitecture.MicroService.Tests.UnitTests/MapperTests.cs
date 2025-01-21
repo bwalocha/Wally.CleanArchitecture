@@ -12,21 +12,25 @@ namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests;
 public class MapperTests
 {
 	private readonly IConfigurationProvider _configuration;
-	private readonly IMapper _mapper;
+	private readonly IMapper _sut;
 
 	public MapperTests()
 	{
 		_configuration = new MapperConfiguration(
 			config => config.AddMaps(typeof(IApplicationMapperProfilesAssemblyMarker).Assembly));
 
-		_mapper = _configuration.CreateMapper();
+		_sut = _configuration.CreateMapper();
 	}
 
 	[Fact]
 	public void ShouldHaveValidConfiguration()
 	{
+		// Arrange
+		
+		// Act
 		var act = () => _configuration.AssertConfigurationIsValid();
 
+		// Assert
 		act.Should()
 			.NotThrow();
 	}
@@ -37,12 +41,15 @@ public class MapperTests
 	[InlineData(typeof(User), typeof(GetUserResponse))]
 	public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
 	{
+		// Arrange
 		var instance = GetInstanceOf(source);
 		var idProperty = source.GetProperty(nameof(User.Id)) !;
 		idProperty.DeclaringType!.GetProperty(nameof(User.Id)) !.SetValue(instance, new UserId());
 
-		var act = () => _mapper.Map(instance, source, destination);
+		// Act
+		var act = () => _sut.Map(instance, source, destination);
 
+		// Assert
 		act.Should()
 			.NotThrow();
 	}
@@ -52,10 +59,13 @@ public class MapperTests
 	[InlineData(typeof(GetUsersResponse), typeof(GetUsersRequest))]
 	public void ShouldNotSupportMappingFromSourceToDestination(Type source, Type destination)
 	{
+		// Arrange
 		var instance = GetInstanceOf(source);
 
-		var act = () => _mapper.Map(instance, source, destination);
+		// Act
+		var act = () => _sut.Map(instance, source, destination);
 
+		// Assert
 		act.Should()
 			.ThrowExactly<AutoMapperMappingException>();
 	}

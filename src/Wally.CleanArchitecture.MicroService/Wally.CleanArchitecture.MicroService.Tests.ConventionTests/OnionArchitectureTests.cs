@@ -1,6 +1,7 @@
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
+using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -13,19 +14,17 @@ public class OnionArchitectureTests
 		var domainAssemblies = Configuration.Assemblies.Domain;
 		var applicationTypes = Configuration.Assemblies.Application.GetAllExportedTypes();
 
-		using (new AssertionScope())
-		{
-			domainAssemblies.Should()
-				.SatisfyRespectively(
-					a =>
+		using var scope = new AssertionScope(new AssertionStrategy());
+		domainAssemblies.Should()
+			.SatisfyRespectively(
+				a =>
+				{
+					foreach (var type in applicationTypes)
 					{
-						foreach (var type in applicationTypes)
-						{
-							a.Should()
-								.NotReference(type.Assembly);
-						}
-					});
-		}
+						a.Should()
+							.NotReference(type.Assembly);
+					}
+				});
 	}
 
 	[Fact]
@@ -34,19 +33,17 @@ public class OnionArchitectureTests
 		var domainAssemblies = Configuration.Assemblies.Domain;
 		var infrastructureTypes = Configuration.Assemblies.Infrastructure.GetAllExportedTypes();
 
-		using (new AssertionScope())
-		{
-			domainAssemblies.Should()
-				.SatisfyRespectively(
-					a =>
+		using var scope = new AssertionScope(new AssertionStrategy());
+		domainAssemblies.Should()
+			.SatisfyRespectively(
+				a =>
+				{
+					foreach (var type in infrastructureTypes)
 					{
-						foreach (var type in infrastructureTypes)
-						{
-							a.Should()
-								.NotReference(type.Assembly);
-						}
-					});
-		}
+						a.Should()
+							.NotReference(type.Assembly);
+					}
+				});
 	}
 
 	[Fact]
@@ -55,19 +52,17 @@ public class OnionArchitectureTests
 		var domainAssemblies = Configuration.Assemblies.Domain;
 		var infrastructureTypes = Configuration.Assemblies.Presentation.GetAllExportedTypes();
 
-		using (new AssertionScope())
-		{
-			domainAssemblies.Should()
-				.SatisfyRespectively(
-					a =>
+		using var scope = new AssertionScope(new AssertionStrategy());
+		domainAssemblies.Should()
+			.SatisfyRespectively(
+				a =>
+				{
+					foreach (var type in infrastructureTypes)
 					{
-						foreach (var type in infrastructureTypes)
-						{
-							a.Should()
-								.NotReference(type.Assembly);
-						}
-					});
-		}
+						a.Should()
+							.NotReference(type.Assembly);
+					}
+				});
 	}
 
 	[Fact]
@@ -76,10 +71,8 @@ public class OnionArchitectureTests
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllExportedTypes();
 
-		using (new AssertionScope())
-		{
-			types.Should()
-				.BeUnderNamespace(Configuration.Namespace);
-		}
+		using var scope = new AssertionScope(new AssertionStrategy());
+		types.Should()
+			.BeUnderNamespace(Configuration.Namespace);
 	}
 }

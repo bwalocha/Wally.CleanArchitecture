@@ -15,15 +15,15 @@ public class SoftDeleteBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
 {
 	private readonly DbContext _dbContext;
 	private readonly TimeProvider _timeProvider;
-	private readonly IUserProvider _userProvider;
+	private readonly IRequestContext _requestContext;
 
 	public SoftDeleteBehavior(
 		DbContext dbContext,
-		IUserProvider userProvider,
+		IRequestContext requestContext,
 		TimeProvider timeProvider)
 	{
 		_dbContext = dbContext;
-		_userProvider = userProvider;
+		_requestContext = requestContext;
 		_timeProvider = timeProvider;
 	}
 
@@ -42,7 +42,7 @@ public class SoftDeleteBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
 	private void UpdateSoftDeleteMetadata(IEnumerable<EntityEntry> entries)
 	{
 		var now = _timeProvider.GetUtcNow();
-		var userId = _userProvider.GetCurrentUserId();
+		var userId = _requestContext.UserId;
 
 		foreach (var entry in entries)
 		{

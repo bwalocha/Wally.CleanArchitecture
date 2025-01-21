@@ -7,9 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
-using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
-using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Providers;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL;
@@ -72,7 +70,6 @@ public static class PersistenceExtensions
 				.WithScopedLifetime());
 
 		services.AddSingleton(TimeProvider.System);
-		services.AddScoped<IUserProvider, HttpUserProvider>();
 
 		return services;
 	}

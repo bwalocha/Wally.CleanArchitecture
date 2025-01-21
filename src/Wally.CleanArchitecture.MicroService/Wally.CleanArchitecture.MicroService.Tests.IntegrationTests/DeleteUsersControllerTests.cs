@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using FluentAssertions.Common;
+using FluentAssertions.Execution;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Time.Testing;
 using VerifyXunit;
@@ -46,6 +47,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.DeleteAsync($"Users/{resource2.Id.Value}", CancellationToken.None);
 
 		// Assert
+		using var scope = new AssertionScope();
 		await Verifier.Verify(response);
 
 		(await _factory.GetRequiredService<DbContext>()
@@ -75,7 +77,7 @@ public partial class UsersControllerTests
 				.IgnoreQueryFilters()
 				.SingleAsync(a => a.Id == resource2.Id))
 			.DeletedById.Should()
-			.Be(new UserId(Guid.Parse("aaaaaaaa-0000-0000-0000-add702d3016b")));
+			.Be(new UserId(Guid.Parse("ffffffff-0000-0000-0000-add702d3016b")));
 		(await _factory.GetRequiredService<DbContext>()
 				.Set<User>()
 				.IgnoreQueryFilters()

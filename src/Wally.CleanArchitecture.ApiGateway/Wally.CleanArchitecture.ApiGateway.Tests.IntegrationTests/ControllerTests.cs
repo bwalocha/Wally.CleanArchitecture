@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Wally.CleanArchitecture.ApiGateway.Tests.IntegrationTests.Helpers;
 using Wally.CleanArchitecture.ApiGateway.WebApi;
@@ -34,6 +35,7 @@ public class ControllerTests : IClassFixture<ApiWebApplicationFactory<Startup>>
 		var response = await _httpClient.GetAsync("/");
 
 		// Assert
+		using var scope = new AssertionScope();
 		response.IsSuccessStatusCode.Should()
 			.BeTrue();
 		response.StatusCode.Should()
@@ -53,6 +55,7 @@ public class ControllerTests : IClassFixture<ApiWebApplicationFactory<Startup>>
 		var response = await _httpClient.GetAsync($"/{resourceId}");
 
 		// Assert
+		using var scope = new AssertionScope();
 		response.IsSuccessStatusCode.Should()
 			.BeFalse();
 		response.StatusCode.Should()

@@ -1,6 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Microsoft.EntityFrameworkCore;
 using VerifyXunit;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Requests;
@@ -22,6 +23,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.PostAsync("Users", request, CancellationToken.None);
 
 		// Assert
+		using var scope = new AssertionScope();
 		await Verifier.Verify(response);
 
 		(await _factory.GetRequiredService<DbContext>()
@@ -41,6 +43,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.PostAsync("Users", request, CancellationToken.None);
 
 		// Assert
+		using var scope = new AssertionScope();
 		await Verifier.Verify(response);
 
 		_factory.GetRequiredService<DbContext>()

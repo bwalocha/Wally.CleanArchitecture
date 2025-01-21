@@ -15,15 +15,13 @@ public class QueryHandlerTests
 	{
 		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in applicationTypes.Where(a => a.Name.EndsWith("QueryHandler")))
 		{
-			foreach (var type in applicationTypes.Where(a => a.Name.EndsWith("QueryHandler")))
-			{
-				type.Should()
-					.BeAssignableTo(
-						typeof(IQueryHandler<,>),
-						"All query handlers should implement IQueryHandler interface");
-			}
+			type.Should()
+				.BeAssignableTo(
+					typeof(IQueryHandler<,>),
+					"All query handlers should implement IQueryHandler interface");
 		}
 	}
 
@@ -37,14 +35,12 @@ public class QueryHandlerTests
 			.Where(
 				a => a.ImplementsGenericInterface(typeof(IQueryHandler<,>)));
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in handlerTypes)
 		{
-			foreach (var type in handlerTypes)
-			{
-				type.Name
-					.Should()
-					.EndWith("QueryHandler", "All query handlers name should ends with 'QueryHandler'");
-			}
+			type.Name
+				.Should()
+				.EndWith("QueryHandler", "All query handlers name should ends with 'QueryHandler'");
 		}
 	}
 }

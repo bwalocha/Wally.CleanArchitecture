@@ -18,14 +18,12 @@ public class ExceptionTests
 		var types = applicationTypes
 			.Where(a => a == typeof(Exception));
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types)
 		{
-			foreach (var type in types)
-			{
-				type
-					.Should()
-					.BeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
-			}
+			type
+				.Should()
+				.BeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
 		}
 	}
 }

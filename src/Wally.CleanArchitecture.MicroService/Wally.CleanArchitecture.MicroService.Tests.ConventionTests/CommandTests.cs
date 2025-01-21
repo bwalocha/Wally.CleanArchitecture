@@ -21,14 +21,12 @@ public class CommandTests
 			.Where(a => !a.IsAbstract)
 			.Where(a => a.ImplementsGenericInterface(typeof(ICommand<>)));
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types)
 		{
-			foreach (var type in types)
-			{
-				type.Name
-					.Should()
-					.EndWith("Command", "All Command names should end with 'Command'");
-			}
+			type.Name
+				.Should()
+				.EndWith("Command", "All Command names should end with 'Command'");
 		}
 	}
 
@@ -39,15 +37,13 @@ public class CommandTests
 		var types = applicationTypes
 			.Where(a => a.ImplementsInterface(typeof(ICommand)) || a.ImplementsGenericInterface(typeof(ICommand<>)));
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types)
 		{
-			foreach (var type in types)
-			{
-				type
-					.Properties()
-					.Should()
-					.NotBeWritable("commands should be immutable");
-			}
+			type
+				.Properties()
+				.Should()
+				.NotBeWritable("commands should be immutable");
 		}
 	}
 
@@ -60,14 +56,12 @@ public class CommandTests
 			.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
 				a.ImplementsGenericInterface(typeof(ICommand<>)));
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types)
 		{
-			foreach (var type in types)
-			{
-				type
-					.Should()
-					.BeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
-			}
+			type
+				.Should()
+				.BeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
 		}
 	}
 
@@ -77,22 +71,20 @@ public class CommandTests
 		var assemblies = Configuration.Assemblies.GetAllAssemblies()
 			.ToList();
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var assembly in assemblies)
 		{
-			foreach (var assembly in assemblies)
-			{
-				var types = assembly.GetTypes()
-					.Where(a => a.IsClass)
-					.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
-						a.ImplementsGenericInterface(typeof(ICommand<>)));
+			var types = assembly.GetTypes()
+				.Where(a => a.IsClass)
+				.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
+					a.ImplementsGenericInterface(typeof(ICommand<>)));
 
-				foreach (var type in types)
-				{
-					assemblies.SelectMany(a => a.GetTypes())
-						.SingleOrDefault(a => a.Name == $"{type.Name}Handler")
-						.Should()
-						.NotBeNull("Command '{0}' should have corresponding Handler", type);
-				}
+			foreach (var type in types)
+			{
+				assemblies.SelectMany(a => a.GetTypes())
+					.SingleOrDefault(a => a.Name == $"{type.Name}Handler")
+					.Should()
+					.NotBeNull("Command '{0}' should have corresponding Handler", type);
 			}
 		}
 	}
@@ -107,22 +99,20 @@ public class CommandTests
 			.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
 				a.ImplementsGenericInterface(typeof(ICommand<>)));
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types)
 		{
-			foreach (var type in types)
-			{
-				var expectedBaseType = typeof(AbstractValidator<>).MakeGenericType(type);
+			var expectedBaseType = typeof(AbstractValidator<>).MakeGenericType(type);
 
-				var subject = assemblies.SelectMany(a => a.GetTypes())
-					.SingleOrDefault(a => a.Name == $"{type.Name}Validator");
+			var subject = assemblies.SelectMany(a => a.GetTypes())
+				.SingleOrDefault(a => a.Name == $"{type.Name}Validator");
 
-				subject.Should()
-					.NotBeNull("Command '{0}' should have corresponding Validator", type);
+			subject.Should()
+				.NotBeNull("Command '{0}' should have corresponding Validator", type);
 
-				subject!.InheritsClass(expectedBaseType)
-					.Should()
-					.BeTrue("Command '{0}' should inherits {1} base class", type, expectedBaseType);
-			}
+			subject!.InheritsClass(expectedBaseType)
+				.Should()
+				.BeTrue("Command '{0}' should inherits {1} base class", type, expectedBaseType);
 		}
 	}
 
@@ -132,22 +122,20 @@ public class CommandTests
 		var assemblies = Configuration.Assemblies.GetAllAssemblies()
 			.ToList();
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var assembly in assemblies)
 		{
-			foreach (var assembly in assemblies)
-			{
-				var types = assembly.GetTypes()
-					.Where(a => a.IsClass)
-					.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
-						a.ImplementsGenericInterface(typeof(ICommand<>)));
+			var types = assembly.GetTypes()
+				.Where(a => a.IsClass)
+				.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
+					a.ImplementsGenericInterface(typeof(ICommand<>)));
 
-				foreach (var type in types)
-				{
-					assembly.GetTypes()
-						.SingleOrDefault(a => a.Name == $"{type.Name}AuthorizationHandler")
-						.Should()
-						.NotBeNull("Command '{0}' should have corresponding AuthorizationHandler", type);
-				}
+			foreach (var type in types)
+			{
+				assembly.GetTypes()
+					.SingleOrDefault(a => a.Name == $"{type.Name}AuthorizationHandler")
+					.Should()
+					.NotBeNull("Command '{0}' should have corresponding AuthorizationHandler", type);
 			}
 		}
 	}
@@ -161,14 +149,12 @@ public class CommandTests
 			.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
 				a.ImplementsGenericInterface(typeof(ICommand<>)));
 
-		using (new AssertionScope(new AssertionStrategy()))
+		using var scope = new AssertionScope(new AssertionStrategy());
+		foreach (var type in types)
 		{
-			foreach (var type in types)
-			{
-				type
-					.Should()
-					.BeSealed("commands should be sealed");
-			}
+			type
+				.Should()
+				.BeSealed("commands should be sealed");
 		}
 	}
 }

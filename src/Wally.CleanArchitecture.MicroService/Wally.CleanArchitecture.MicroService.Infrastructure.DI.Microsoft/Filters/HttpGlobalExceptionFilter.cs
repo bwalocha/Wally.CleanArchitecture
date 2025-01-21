@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Wally.CleanArchitecture.MicroService.Application;
+using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Domain.Exceptions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions;
