@@ -1,6 +1,6 @@
+using System;
 using System.Linq;
-using FluentAssertions;
-using FluentAssertions.Execution;
+using Shouldly;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Xunit;
 
@@ -12,37 +12,17 @@ public class UserTests
 	public void Create_WithSpecifiedUserName_SetsIdAndName()
 	{
 		// Arrange
-		User user;
+		User sut;
 
 		// Act
-		user = User.Create("testUserName");
+		sut = User.Create("testUserName");
 
 		// Assert
-		using var scope = new AssertionScope();
-		user.Id.Should()
-			.NotBeNull();
-		user.Id.Value.Should()
-			.NotBeEmpty();
-		user.Name.Should()
-			.NotBeNullOrWhiteSpace();
-	}
-
-	[Fact]
-	public void Update_ForSpecifiedUser_UpdatesName()
-	{
-		// Arrange
-		var id = new UserId();
-		var user = User.Create(id, "testUserName");
-
-		// Act
-		user.Update("newTestName");
-
-		// Assert
-		using var scope = new AssertionScope();
-		user.Id.Should()
-			.Be(id);
-		user.Name.Should()
-			.Be("newTestName");
+		sut.ShouldSatisfyAllConditions(
+			() => sut.Id.ShouldNotBeNull(),
+			// () => user.Id.Value.ShouldNotBeNullOrEmpty(), // TODO: Guid does not have isEmpty/notEmpty assertion
+			() => sut.Id.Value.ShouldNotBe(Guid.Empty),
+			() => sut.Name.ShouldNotBeNullOrWhiteSpace());
 	}
 
 	[Fact]
@@ -52,14 +32,29 @@ public class UserTests
 		var id = new UserId();
 
 		// Act
-		var model = User.Create(id, "testUserName");
+		var sut = User.Create(id, "testUserName");
 
 		// Assert
-		model.GetDomainEvents()
-			.Single()
-			.Should()
-			.BeOfType<UserCreatedDomainEvent>()
-			.Subject.Id.Should()
-			.Be(id);
+		sut.ShouldSatisfyAllConditions(
+			() => sut.Id.ShouldBe(id),
+			() => sut.GetDomainEvents()
+				.Single()
+				.ShouldBeOfType<UserCreatedDomainEvent>());
+	}
+	
+	[Fact]
+	public void Update_ForSpecifiedUser_UpdatesName()
+	{
+		// Arrange
+		var id = new UserId();
+		var sut = User.Create(id, "testUserName");
+
+		// Act
+		sut.Update("newTestName");
+
+		// Assert
+		sut.ShouldSatisfyAllConditions(
+			() => sut.Id.ShouldBe(id),
+			() => sut.Name.ShouldBe("newTestName"));
 	}
 }

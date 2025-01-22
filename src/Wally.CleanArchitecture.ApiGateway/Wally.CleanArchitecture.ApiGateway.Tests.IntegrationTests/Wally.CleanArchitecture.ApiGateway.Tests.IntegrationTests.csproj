@@ -11,6 +11,8 @@
     <ItemGroup>
         <PackageReference Include="JsonNet.ContractResolvers" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+        <PackageReference Include="Verify.Http" />
+        <PackageReference Include="Verify.Xunit" />
     </ItemGroup>
 
     <!-- Updates for vulnerable packages -->
@@ -26,6 +28,12 @@
         <None Update="appsettings.IntegrationTests.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="GetControllerTests.cs">
+        <DependentUpon>ControllerTests.cs</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>

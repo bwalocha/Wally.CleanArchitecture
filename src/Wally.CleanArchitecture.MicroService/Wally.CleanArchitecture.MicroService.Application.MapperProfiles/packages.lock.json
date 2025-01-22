@@ -45,11 +45,6 @@
         "resolved": "6.0.0",
         "contentHash": "/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg=="
       },
-      "Ulid": {
-        "type": "Transitive",
-        "resolved": "1.3.4",
-        "contentHash": "6IaGquwjjfW+BoHSV844y12Uy2kxbboYNmsibxr2lotcSPAA3LKy1CKcAQ8JOdAdL4xMoDNXA1oxG41w7fbr6Q=="
-      },
       "wally.cleanarchitecture.microservice.application.contracts": {
         "type": "Project",
         "dependencies": {
@@ -85,6 +80,12 @@
         "requested": "[1.6.5, )",
         "resolved": "1.6.5",
         "contentHash": "IUoJBwl8NsbcWELUY3WaIlfPFzceShjiTeNq/a5ymzw0UsiKx+sKwD9HdWWQBwx+l+iVVBi7i5tAcmFw4eKG2A=="
+      },
+      "Ulid": {
+        "type": "CentralTransitive",
+        "requested": "[1.3.4, )",
+        "resolved": "1.3.4",
+        "contentHash": "6IaGquwjjfW+BoHSV844y12Uy2kxbboYNmsibxr2lotcSPAA3LKy1CKcAQ8JOdAdL4xMoDNXA1oxG41w7fbr6Q=="
       }
     }
   }

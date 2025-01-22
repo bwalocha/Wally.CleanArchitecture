@@ -1,5 +1,5 @@
-using FluentAssertions;
 using FluentValidation;
+using Shouldly;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Requests;
 using Xunit;
 
@@ -25,7 +25,6 @@ public class GetUsersRequestValidatorTests
 		var result = _sut.Validate(instance);
 
 		// Assert
-		result.IsValid.Should()
-			.BeTrue();
+		result.IsValid.ShouldBeTrue();
 	}
 }

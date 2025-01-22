@@ -1,6 +1,6 @@
 ﻿using System;
 using AutoMapper;
-using FluentAssertions;
+using Shouldly;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Requests;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Responses;
 using Wally.CleanArchitecture.MicroService.Application.MapperProfiles;
@@ -31,8 +31,7 @@ public class MapperTests
 		var act = () => _configuration.AssertConfigurationIsValid();
 
 		// Assert
-		act.Should()
-			.NotThrow();
+		act.ShouldNotThrow();
 	}
 
 	[Theory]
@@ -50,8 +49,7 @@ public class MapperTests
 		var act = () => _sut.Map(instance, source, destination);
 
 		// Assert
-		act.Should()
-			.NotThrow();
+		act.ShouldNotThrow();
 	}
 
 	[Theory]
@@ -66,8 +64,7 @@ public class MapperTests
 		var act = () => _sut.Map(instance, source, destination);
 
 		// Assert
-		act.Should()
-			.ThrowExactly<AutoMapperMappingException>();
+		act.ShouldThrow<AutoMapperMappingException>();
 	}
 
 	private static object GetInstanceOf(Type type)

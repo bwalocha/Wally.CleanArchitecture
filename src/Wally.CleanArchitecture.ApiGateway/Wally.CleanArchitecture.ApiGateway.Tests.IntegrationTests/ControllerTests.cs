@@ -1,10 +1,5 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
-using FluentAssertions;
-using FluentAssertions.Execution;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Wally.CleanArchitecture.ApiGateway.Tests.IntegrationTests.Helpers;
 using Wally.CleanArchitecture.ApiGateway.WebApi;
@@ -12,8 +7,7 @@ using Xunit;
 
 namespace Wally.CleanArchitecture.ApiGateway.Tests.IntegrationTests;
 
-[SuppressMessage("Major Code Smell", "S4005:\"System.Uri\" arguments should be used instead of strings")]
-public class ControllerTests : IClassFixture<ApiWebApplicationFactory<Startup>>
+public partial class ControllerTests : IClassFixture<ApiWebApplicationFactory<Startup>>, IDisposable
 {
 	private readonly HttpClient _httpClient;
 
@@ -25,40 +19,18 @@ public class ControllerTests : IClassFixture<ApiWebApplicationFactory<Startup>>
 				AllowAutoRedirect = false,
 			});
 	}
-
-	[Fact]
-	public async Task Get_RootPath_ReturnsAppVersion()
+	
+	public void Dispose()
 	{
-		// Arrange
-
-		// Act
-		var response = await _httpClient.GetAsync("/");
-
-		// Assert
-		using var scope = new AssertionScope();
-		response.IsSuccessStatusCode.Should()
-			.BeTrue();
-		response.StatusCode.Should()
-			.Be(HttpStatusCode.OK);
-		var content = await response.Content.ReadAsStringAsync();
-		content.Should()
-			.MatchRegex(@"v\d+\.\d+\.\d+\.\d+");
+		Dispose(true);
+		GC.SuppressFinalize(this);
 	}
 
-	[Fact]
-	public async Task Get_NoExistingResource_Returns404()
+	protected virtual void Dispose(bool disposing)
 	{
-		// Arrange
-		var resourceId = Guid.NewGuid();
-
-		// Act
-		var response = await _httpClient.GetAsync($"/{resourceId}");
-
-		// Assert
-		using var scope = new AssertionScope();
-		response.IsSuccessStatusCode.Should()
-			.BeFalse();
-		response.StatusCode.Should()
-			.Be(HttpStatusCode.NotFound);
+		if (disposing)
+		{
+			_httpClient.Dispose();
+		}
 	}
 }

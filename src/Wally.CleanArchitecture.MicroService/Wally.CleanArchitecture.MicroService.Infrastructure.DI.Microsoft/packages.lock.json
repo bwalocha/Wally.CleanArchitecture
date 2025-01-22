@@ -1265,11 +1265,6 @@
           "System.Drawing.Common": "4.7.0"
         }
       },
-      "Ulid": {
-        "type": "Transitive",
-        "resolved": "1.3.4",
-        "contentHash": "6IaGquwjjfW+BoHSV844y12Uy2kxbboYNmsibxr2lotcSPAA3LKy1CKcAQ8JOdAdL4xMoDNXA1oxG41w7fbr6Q=="
-      },
       "YamlDotNet": {
         "type": "Transitive",
         "resolved": "15.1.0",
@@ -1622,6 +1617,12 @@
         "requested": "[9.0.0, )",
         "resolved": "9.0.0",
         "contentHash": "e2hMgAErLbKyUUwt18qSBf9T5Y+SFAL3ZedM8fLupkVj8Rj2PZ9oxQ37XX2LF8fTO1wNIxvKpihD7Of7D/NxZw=="
+      },
+      "Ulid": {
+        "type": "CentralTransitive",
+        "requested": "[1.3.4, )",
+        "resolved": "1.3.4",
+        "contentHash": "6IaGquwjjfW+BoHSV844y12Uy2kxbboYNmsibxr2lotcSPAA3LKy1CKcAQ8JOdAdL4xMoDNXA1oxG41w7fbr6Q=="
       },
       "Wally.Identity.Messages": {
         "type": "CentralTransitive",
