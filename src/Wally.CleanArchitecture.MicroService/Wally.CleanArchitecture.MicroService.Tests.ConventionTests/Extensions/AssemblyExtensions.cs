@@ -1,24 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using FluentAssertions;
-using FluentAssertions.Types;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 
 public static class AssemblyExtensions
 {
-	public static TypeSelector GetAllTypes(this IEnumerable<Assembly> assemblies)
+	public static IEnumerable<Type> GetAllTypes(this IEnumerable<Assembly> assemblies)
 	{
 		return assemblies
-			.SelectMany(a => a.GetTypes())
-			.Types();
+			.SelectMany(a => a.GetTypes());
 	}
 
-	public static TypeSelector GetAllExportedTypes(this IEnumerable<Assembly> assemblies)
+	public static IEnumerable<Type> GetAllExportedTypes(this IEnumerable<Assembly> assemblies)
 	{
 		return assemblies
-			.SelectMany(a => a.GetExportedTypes())
-			.Types();
+			.SelectMany(a => a.GetExportedTypes());
 	}
 }

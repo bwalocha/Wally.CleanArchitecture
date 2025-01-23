@@ -39,6 +39,7 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 		switch (context.Exception)
 		{
 			case DomainException _:
+			case FluentValidation.ValidationException _:
 				HandleDomainValidationException(context);
 				break;
 			case PermissionDeniedException _:

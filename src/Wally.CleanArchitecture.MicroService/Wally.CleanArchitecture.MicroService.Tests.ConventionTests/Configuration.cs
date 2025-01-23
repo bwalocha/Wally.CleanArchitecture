@@ -23,28 +23,28 @@ public static class Configuration
 	public static Types Types
 		=> new()
 		{
-			AppSettings = new[]
-			{
+			AppSettings =
+			[
 				typeof(AppSettings),
-			},
+			],
 		};
 
 	public static Assemblies Assemblies
 		=> new()
 		{
-			Application = new[]
-			{
+			Application =
+			[
 				typeof(IApplicationAssemblyMarker).Assembly,
 				typeof(IApplicationContractsAssemblyMarker).Assembly,
 				typeof(IApplicationMapperProfilesAssemblyMarker).Assembly,
 				typeof(IApplicationMessagesAssemblyMarker).Assembly,
-			},
-			Domain = new[]
-			{
+			],
+			Domain =
+			[
 				typeof(IDomainAssemblyMarker).Assembly,
-			},
-			Infrastructure = new[]
-			{
+			],
+			Infrastructure =
+			[
 				typeof(IInfrastructureDIMicrosoftAssemblyMarker).Assembly,
 				typeof(IInfrastructureMessagingAssemblyMarker).Assembly,
 				typeof(IInfrastructurePersistenceAssemblyMarker).Assembly,
@@ -52,10 +52,10 @@ public static class Configuration
 				typeof(IInfrastructurePostgreSqlAssemblyMarker).Assembly,
 				typeof(IInfrastructureMySqlAssemblyMarker).Assembly,
 				typeof(IInfrastructurePipelineBehavioursAssemblyMarker).Assembly,
-			},
-			Presentation = new[]
-			{
+			],
+			Presentation =
+			[
 				typeof(IPresentationAssemblyMarker).Assembly,
-			},
+			],
 		};
 }

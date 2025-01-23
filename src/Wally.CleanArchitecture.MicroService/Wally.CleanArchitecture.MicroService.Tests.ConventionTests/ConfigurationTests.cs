@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using FluentAssertions;
+using Shouldly;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Xunit;
 
@@ -19,8 +19,7 @@ public class ConfigurationTests
 		// Act
 
 		// Assert
-		fromConfig.Should()
-			.AllSatisfy(a => fromInternal.Should()
-				.Contain(a));
+		fromConfig.ShouldSatisfyAllConditions(
+			() => fromConfig.ForEach(a => fromInternal.ShouldContain(a)));
 	}
 }

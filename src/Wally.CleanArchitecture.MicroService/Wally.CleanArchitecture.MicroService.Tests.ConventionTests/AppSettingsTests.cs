@@ -1,9 +1,6 @@
-﻿using System.Linq;
-using AutoMapper.Internal;
-using FluentAssertions;
-using FluentAssertions.Execution;
+﻿using AutoMapper.Internal;
+using Shouldly;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
-using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -14,28 +11,31 @@ public class AppSettingsTests
 	public void AppSettings_ShouldHaveOnlyInitialSetters()
 	{
 		// Arrange
-		var appSettingsTypes = Configuration.Types.AppSettings.ToList();
+		var appSettingsTypes = Configuration.Types.AppSettings;
 
 		// Act
 
 		// Assert
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var appSettingsType in appSettingsTypes)
-		{
-			foreach (var property in appSettingsType.Properties())
+		appSettingsTypes.ShouldSatisfyAllConditions(
+			() =>
 			{
-				if (property.CanBeSet())
+				foreach (var appSettingsType in appSettingsTypes)
 				{
-					property.IsInitOnly()
-						.Should()
-						.BeTrue("AppSettings type '{0}' should not expose setter '{1}'", appSettingsType, property);
+					foreach (var property in appSettingsType.GetProperties())
+					{
+						if (property.CanBeSet())
+						{
+							property.IsInitOnly()
+								.ShouldBeTrue(
+									$"AppSettings type '{appSettingsType}' should not expose setter '{property}'");
+						}
+						else
+						{
+							property.DeclaringType!.IsClass
+								.ShouldBeTrue();
+						}
+					}
 				}
-				else
-				{
-					property.DeclaringType!.IsClass.Should()
-						.BeTrue();
-				}
-			}
-		}
+			});
 	}
 }

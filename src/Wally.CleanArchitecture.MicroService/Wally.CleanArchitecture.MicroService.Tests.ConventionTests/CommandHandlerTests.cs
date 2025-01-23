@@ -1,9 +1,7 @@
 using System.Linq;
-using FluentAssertions;
-using FluentAssertions.Execution;
+using Shouldly;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
-using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -14,17 +12,20 @@ public class CommandHandlerTests
 	public void Application_AllClassesEndsWithCommandHandler_ShouldImplementICommandHandler()
 	{
 		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
+		var commandHandlerTypes = applicationTypes.Where(a => a.Name.EndsWith("CommandHandler"));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in applicationTypes.Where(a => a.Name.EndsWith("CommandHandler")))
-		{
-			type.Should()
-				.BeAssignableTo(
-					type.ImplementsGenericInterface(typeof(ICommandHandler<>))
-						? typeof(ICommandHandler<>)
-						: typeof(ICommandHandler<,>),
-					"All command handlers should implement ICommandHandler interface");
-		}
+		commandHandlerTypes.ShouldSatisfyAllConditions(
+			() =>
+			{
+				foreach (var type in commandHandlerTypes)
+				{
+					type.ShouldBeAssignableTo(
+						type.ImplementsGenericInterface(typeof(ICommandHandler<>))
+							? typeof(ICommandHandler<>)
+							: typeof(ICommandHandler<,>),
+						"All command handlers should implement ICommandHandler interface");
+				}
+			});
 	}
 
 	[Fact]
@@ -38,12 +39,15 @@ public class CommandHandlerTests
 				a => a.ImplementsGenericInterface(typeof(ICommandHandler<>)) ||
 					a.ImplementsGenericInterface(typeof(ICommandHandler<,>)));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in commandHandlerTypes)
-		{
-			type.Name
-				.Should()
-				.EndWith("CommandHandler", "All CommandHandler names should end with 'CommandHandler'");
-		}
+		commandHandlerTypes.ShouldSatisfyAllConditions(
+			() =>
+			{
+				foreach (var type in commandHandlerTypes)
+				{
+					type.Name
+						.ShouldEndWith("CommandHandler", Case.Sensitive,
+							"All CommandHandler names should end with 'CommandHandler'");
+				}
+			});
 	}
 }

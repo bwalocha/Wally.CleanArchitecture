@@ -1,9 +1,7 @@
 ﻿using System.Linq;
-using FluentAssertions;
-using FluentAssertions.Execution;
 using MassTransit;
+using Shouldly;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
-using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -15,13 +13,15 @@ public class ConsumerDefinitionTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
+		var consumerDefinitionTypes = types.Where(a => a.Name.EndsWith("ConsumerDefinition"));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in types.Where(a => a.Name.EndsWith("ConsumerDefinition")))
+		consumerDefinitionTypes.ShouldSatisfyAllConditions(() =>
 		{
-			type.Should()
-				.BeAssignableTo(typeof(ConsumerDefinition<>));
-		}
+			foreach (var type in consumerDefinitionTypes)
+			{
+				type.ShouldBeAssignableTo(typeof(ConsumerDefinition<>));
+			}
+		});
 	}
 
 	[Fact]
@@ -29,14 +29,15 @@ public class ConsumerDefinitionTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
+		var consumerDefinitionTypes = types.Where(a => a.ImplementsGenericInterface(typeof(IConsumerDefinition<>)));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in types.Where(a => a.Name.EndsWith("ConsumerDefinition"))
-					.Where(a => a.ImplementsGenericInterface(typeof(IConsumerDefinition<>))))
+		consumerDefinitionTypes.ShouldSatisfyAllConditions(() =>
 		{
-			type.Name.Should()
-				.EndWith("MessageConsumerDefinition");
-		}
+			foreach (var type in consumerDefinitionTypes)
+			{
+				type.Name.ShouldEndWith("MessageConsumerDefinition");
+			}
+		});
 	}
 
 	[Fact]
@@ -44,19 +45,18 @@ public class ConsumerDefinitionTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes();
+		var consumerDefinitionTypes = types.Where(a => a.ImplementsGenericInterface(typeof(IConsumerDefinition<>)));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in types.Where(a => a.Name.EndsWith("ConsumerDefinition"))
-					.Where(a => a.ImplementsGenericInterface(typeof(IConsumerDefinition<>))))
+		consumerDefinitionTypes.ShouldSatisfyAllConditions(() =>
 		{
-			var genericType = type.BaseType!.GenericTypeArguments.Single();
+			foreach (var type in consumerDefinitionTypes)
+			{
+				var genericType = type.BaseType!.GenericTypeArguments.Single();
 
-			type.Name.Should()
-				.Be(
+				type.Name.ShouldBe(
 					$"{genericType.Name}Definition",
-					"Type '{0}' should have name '{1}'",
-					type,
-					$"{genericType.Name}Definition");
-		}
+					$"Type '{type}' should have name '{genericType.Name}Definition'");
+			}
+		});
 	}
 }

@@ -1,13 +1,6 @@
 using System;
-using System.Net;
-using System.Threading;
 using System.Threading.Tasks;
-using FluentAssertions;
-using FluentAssertions.Execution;
 using VerifyXunit;
-using Wally.CleanArchitecture.MicroService.Application.Contracts;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Responses;
-using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Extensions;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
@@ -36,18 +29,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.GetAsync(new Uri("Users", UriKind.Relative));
 
 		// Assert
-		using var scope = new AssertionScope();
 		await Verifier.Verify(response);
-
-		response.IsSuccessStatusCode.Should()
-			.BeTrue();
-		response.StatusCode.Should()
-			.Be(HttpStatusCode.OK);
-		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
-		data.Should()
-			.NotBeNull();
-		data.Items.Length.Should()
-			.Be(0);
 	}
 
 	[Fact]
@@ -61,21 +43,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.GetAsync(new Uri($"Users/{resource.Id}", UriKind.Relative));
 
 		// Assert
-		using var scope = new AssertionScope();
 		await Verifier.Verify(response);
-
-		response.IsSuccessStatusCode.Should()
-			.BeTrue();
-		response.StatusCode.Should()
-			.Be(HttpStatusCode.OK);
-
-		var data = await response.ReadAsync<GetUserResponse>(CancellationToken.None);
-		data.Should()
-			.BeEquivalentTo(new
-			{
-				Id = resource.Id.Value,
-				resource.Name,
-			});
 	}
 
 	[Fact]
@@ -87,18 +55,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.GetAsync(new Uri("Users?$top=1", UriKind.Relative));
 
 		// Assert
-		using var scope = new AssertionScope();
 		await Verifier.Verify(response);
-
-		response.IsSuccessStatusCode.Should()
-			.BeTrue();
-		response.StatusCode.Should()
-			.Be(HttpStatusCode.OK);
-		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
-		data.Should()
-			.NotBeNull();
-		data.Items.Length.Should()
-			.Be(0);
 	}
 
 	[Fact(Skip = "OData Select should not be supported - use Mapping")]
@@ -114,18 +71,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.GetAsync(new Uri("Users?$select=name", UriKind.Relative));
 
 		// Assert
-		using var scope = new AssertionScope();
 		await Verifier.Verify(response);
-
-		response.IsSuccessStatusCode.Should()
-			.BeTrue();
-		response.StatusCode.Should()
-			.Be(HttpStatusCode.OK);
-		var data = await response.ReadAsync<PagedResponse<GetUsersResponse>>(CancellationToken.None);
-		data.Should()
-			.NotBeNull();
-		data.Items.Should()
-			.BeEmpty();
 	}
 
 	[Fact]
