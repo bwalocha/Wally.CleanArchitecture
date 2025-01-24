@@ -12,9 +12,9 @@ public class OnionArchitectureTests
 	public void Domain_ShouldNotUseReferenceToApplication()
 	{
 		var domainAssemblies = Configuration.Assemblies.Domain;
-		var applicationTypes = Configuration.Assemblies.Application.GetAllExportedTypes();
+		var types = Configuration.Assemblies.Application.GetAllExportedTypes();
 
-		using var scope = new AssertionScope(new AssertionStrategy());
+		types.ShouldSatisfyAllConditions(() => {
 		domainAssemblies.Should()
 			.SatisfyRespectively(
 				a =>
@@ -25,6 +25,7 @@ public class OnionArchitectureTests
 							.NotReference(type.Assembly);
 					}
 				});
+		});
 	}*/
 
 	/*[Fact]
@@ -71,8 +72,7 @@ public class OnionArchitectureTests
 	public void OnionArchitecture_AllNamespaces_ShouldBeConsistent()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllTypes()
-			.Where(a => !a.IsAnonymousType());
+		var types = assemblies.GetAllExportedTypes();
 
 		types.ShouldSatisfyAllConditions(() =>
 		{
