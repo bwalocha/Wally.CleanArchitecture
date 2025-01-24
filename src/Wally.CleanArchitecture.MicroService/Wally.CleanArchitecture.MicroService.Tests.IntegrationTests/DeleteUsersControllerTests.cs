@@ -35,7 +35,7 @@ public partial class UsersControllerTests
 	{
 		// Arrange
 		var timeProvider = (FakeTimeProvider)_factory.GetRequiredService<TimeProvider>();
-		timeProvider.SetUtcNow(new DateTime(2024, 12, 31, 16, 20, 00, DateTimeKind.Utc)/*.ToDateTimeOffset()*/);
+		timeProvider.SetUtcNow(new DateTime(2024, 12, 31, 16, 20, 00, DateTimeKind.Utc));
 
 		var resource1 = UserCreate(1);
 		var resource2 = UserCreate(2);

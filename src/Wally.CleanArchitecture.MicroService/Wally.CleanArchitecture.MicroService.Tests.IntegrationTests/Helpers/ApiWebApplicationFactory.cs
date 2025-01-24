@@ -23,7 +23,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 	private readonly MsSqlContainer _dbContainer = new MsSqlBuilder()
 		.WithImage("mcr.microsoft.com/mssql/server:2022-latest")
 		// .WithImage("mcr.microsoft.com/mssql/server:2022-CU13-ubuntu-22.04") // rollback from server:2022-latest due to issue with health check
-		.WithReuse(true)
+		// .WithReuse(true)
 		.Build();
 
 	/*private readonly KafkaContainer _kafkaContainer = new KafkaBuilder()
