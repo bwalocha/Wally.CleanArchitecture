@@ -9,4 +9,9 @@ public class CorrelationId : GuidId<CorrelationId>
 		: base(value)
 	{
 	}
+	
+	public static explicit operator Guid(CorrelationId id)
+	{
+		return id.Value;
+	}
 }

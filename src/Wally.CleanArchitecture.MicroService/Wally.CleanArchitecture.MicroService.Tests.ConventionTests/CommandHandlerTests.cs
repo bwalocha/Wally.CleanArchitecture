@@ -11,43 +11,44 @@ public class CommandHandlerTests
 	[Fact]
 	public void Application_AllClassesEndsWithCommandHandler_ShouldImplementICommandHandler()
 	{
-		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
-		var commandHandlerTypes = applicationTypes.Where(a => a.Name.EndsWith("CommandHandler"));
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.Name.EndsWith("CommandHandler"));
 
-		commandHandlerTypes.ShouldSatisfyAllConditions(
-			() =>
+		types.ShouldSatisfyAllConditions(() =>
+		{
+			foreach (var type in types)
 			{
-				foreach (var type in commandHandlerTypes)
+				if (type.ImplementsGenericInterface(typeof(ICommandHandler<>)))
 				{
-					type.ShouldBeAssignableTo(
-						type.ImplementsGenericInterface(typeof(ICommandHandler<>))
-							? typeof(ICommandHandler<>)
-							: typeof(ICommandHandler<,>),
-						"All command handlers should implement ICommandHandler interface");
+					continue;
 				}
-			});
+
+				type.ImplementsGenericInterface(typeof(ICommandHandler<,>))
+					.ShouldBeTrue($"Command Handler '{type}' should implement 'ICommandHandler' interface");
+			}
+		});
 	}
 
 	[Fact]
-	public void Application_AllClassesImplementedICommandHandler_ShouldEndsWithCommandHandler()
+	public void Application_AllClassesImplementedICommandHandler_ShouldHaveNameSuffix()
 	{
-		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
-		var commandHandlerTypes = applicationTypes
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes()
 			.Where(a => a.IsClass)
 			.Where(a => !a.IsAbstract)
 			.Where(
 				a => a.ImplementsGenericInterface(typeof(ICommandHandler<>)) ||
 					a.ImplementsGenericInterface(typeof(ICommandHandler<,>)));
 
-		commandHandlerTypes.ShouldSatisfyAllConditions(
-			() =>
+		types.ShouldSatisfyAllConditions(() =>
+		{
+			foreach (var type in types)
 			{
-				foreach (var type in commandHandlerTypes)
-				{
-					type.Name
-						.ShouldEndWith("CommandHandler", Case.Sensitive,
-							"All CommandHandler names should end with 'CommandHandler'");
-				}
-			});
+				type.Name
+					.ShouldEndWith("CommandHandler", Case.Sensitive,
+						$"Command Handler '{type}' name should end with 'CommandHandler'");
+			}
+		});
 	}
 }

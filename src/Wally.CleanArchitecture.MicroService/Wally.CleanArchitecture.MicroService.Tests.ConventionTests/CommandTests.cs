@@ -11,7 +11,7 @@ namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 public class CommandTests
 {
 	[Fact]
-	public void Application_Command_ShouldEndsWithCommand()
+	public void Application_Command_ShouldHaveNameSuffix()
 	{
 		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
 		var types = applicationTypes
@@ -25,7 +25,7 @@ public class CommandTests
 				foreach (var type in types)
 				{
 					type.Name
-						.ShouldEndWith("Command", Case.Sensitive, "All Command names should end with 'Command'");
+						.ShouldEndWith("Command", Case.Sensitive, $"Command '{type}' name should end with 'Command'");
 				}
 			});
 	}
@@ -33,8 +33,8 @@ public class CommandTests
 	[Fact]
 	public void Application_Command_ShouldNotExposeSetter()
 	{
-		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
-		var types = applicationTypes
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes()
 			.Where(a => a.ImplementsInterface(typeof(ICommand)) || a.ImplementsGenericInterface(typeof(ICommand<>)));
 
 		types.ShouldSatisfyAllConditions(() =>
@@ -44,7 +44,7 @@ public class CommandTests
 				foreach (var property in type.GetProperties())
 				{
 					property.GetSetMethod()
-						.ShouldBeNull($"command '{type}' and property '{property}' should be immutable");
+						.ShouldBeNull($"Command '{type}' and property '{property}' should be immutable");
 				}
 			}
 		});
@@ -53,21 +53,38 @@ public class CommandTests
 	[Fact]
 	public void Application_Command_ShouldBeExcludedFromCodeCoverage()
 	{
-		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
-		var types = applicationTypes
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes()
 			.Where(a => a.IsClass)
 			.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
 				a.ImplementsGenericInterface(typeof(ICommand<>)));
 
-		types.ShouldSatisfyAllConditions(
-			() =>
+		types.ShouldSatisfyAllConditions(() =>
+		{
+			foreach (var type in types)
 			{
-				foreach (var type in types)
-				{
-					type
-						.ShouldBeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
-				}
-			});
+				type.ShouldBeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
+			}
+		});
+	}
+	
+	[Fact]
+	public void Application_Command_ShouldBeSealed()
+	{
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.IsClass)
+			.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
+				a.ImplementsGenericInterface(typeof(ICommand<>)));
+
+		types.ShouldSatisfyAllConditions(() =>
+		{
+			foreach (var type in types)
+			{
+				type.IsSealed
+					.ShouldBeTrue($"command '{type}' should be sealed");
+			}
+		});
 	}
 
 	[Fact]
@@ -75,25 +92,20 @@ public class CommandTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies()
 			.ToList();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.IsClass)
+			.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
+				a.ImplementsGenericInterface(typeof(ICommand<>)));
 
-		assemblies.ShouldSatisfyAllConditions(
-			() =>
+		assemblies.ShouldSatisfyAllConditions(() =>
+		{
+			foreach (var type in types)
 			{
-				foreach (var assembly in assemblies)
-				{
-					var types = assembly.GetTypes()
-						.Where(a => a.IsClass)
-						.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
-							a.ImplementsGenericInterface(typeof(ICommand<>)));
-
-					foreach (var type in types)
-					{
-						assemblies.SelectMany(a => a.GetTypes())
-							.SingleOrDefault(a => a.Name == $"{type.Name}Handler")
-							.ShouldNotBeNull($"Command '{type}' should have corresponding Handler");
-					}
-				}
-			});
+				assemblies.GetAllTypes()
+					.SingleOrDefault(a => a.Name == $"{type.Name}Handler")
+					.ShouldNotBeNull($"Command '{type}' should have corresponding Handler");
+			}
+		});
 	}
 
 	[Fact]
@@ -128,43 +140,20 @@ public class CommandTests
 	public void Application_Command_ShouldHaveCorrespondingAuthorizationHandler()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies()
-			.ToList();
-
-		assemblies.ShouldSatisfyAllConditions(() =>
-		{
-			foreach (var assembly in assemblies)
-			{
-				var types = assembly.GetTypes()
-					.Where(a => a.IsClass)
-					.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
-						a.ImplementsGenericInterface(typeof(ICommand<>)));
-
-				foreach (var type in types)
-				{
-					assembly.GetTypes()
-						.SingleOrDefault(a => a.Name == $"{type.Name}AuthorizationHandler")
-						.ShouldNotBeNull($"Command '{type}' should have corresponding AuthorizationHandler");
-				}
-			}
-		});
-	}
-
-	[Fact]
-	public void Application_Command_ShouldBeSealed()
-	{
-		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
-		var types = applicationTypes
+			.ToArray();
+		var types = assemblies.GetAllTypes()
 			.Where(a => a.IsClass)
 			.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
 				a.ImplementsGenericInterface(typeof(ICommand<>)));
-
+		
 		types.ShouldSatisfyAllConditions(() =>
 		{
-			foreach (var type in types)
-			{
-				type.IsSealed
-					.ShouldBeTrue("commands should be sealed");
-			}
+				foreach (var type in types)
+				{
+					assemblies.GetAllTypes()
+						.SingleOrDefault(a => a.Name == $"{type.Name}AuthorizationHandler")
+						.ShouldNotBeNull($"Command '{type}' should have corresponding AuthorizationHandler");
+				}
 		});
 	}
 }

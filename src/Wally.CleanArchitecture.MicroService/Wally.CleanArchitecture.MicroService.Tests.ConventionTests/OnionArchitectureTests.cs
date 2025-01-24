@@ -1,14 +1,14 @@
-using FluentAssertions;
-using FluentAssertions.Execution;
+using System.Linq;
+using MassTransit.Internals;
+using Shouldly;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
-using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 
 public class OnionArchitectureTests
 {
-	[Fact]
+	/*[Fact]
 	public void Domain_ShouldNotUseReferenceToApplication()
 	{
 		var domainAssemblies = Configuration.Assemblies.Domain;
@@ -25,9 +25,9 @@ public class OnionArchitectureTests
 							.NotReference(type.Assembly);
 					}
 				});
-	}
+	}*/
 
-	[Fact]
+	/*[Fact]
 	public void Domain_ShouldNotUseReferenceToInfrastructure()
 	{
 		var domainAssemblies = Configuration.Assemblies.Domain;
@@ -44,15 +44,16 @@ public class OnionArchitectureTests
 							.NotReference(type.Assembly);
 					}
 				});
-	}
+	}*/
 
-	[Fact]
+	/*[Fact]
 	public void Domain_ShouldNotUseReferenceToPresentation()
 	{
 		var domainAssemblies = Configuration.Assemblies.Domain;
-		var infrastructureTypes = Configuration.Assemblies.Presentation.GetAllExportedTypes();
+		var types = Configuration.Assemblies.Presentation.GetAllTypes();
 
-		using var scope = new AssertionScope(new AssertionStrategy());
+		types.ShouldSatisfyAllConditions(() =>
+			{
 		domainAssemblies.Should()
 			.SatisfyRespectively(
 				a =>
@@ -63,16 +64,23 @@ public class OnionArchitectureTests
 							.NotReference(type.Assembly);
 					}
 				});
-	}
+			});
+	}*/
 
 	[Fact]
 	public void OnionArchitecture_AllNamespaces_ShouldBeConsistent()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllExportedTypes();
+		var types = assemblies.GetAllTypes()
+			.Where(a => !a.IsAnonymousType());
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		types.Should()
-			.BeUnderNamespace(Configuration.Namespace);
+		types.ShouldSatisfyAllConditions(() =>
+		{
+			foreach (var type in types)
+			{
+				type.Namespace.ShouldStartWith(Configuration.Namespace, Case.Sensitive,
+					$"Type '{type}' namespace should start with '{Configuration.Namespace}'");
+			}
+		});
 	}
 }

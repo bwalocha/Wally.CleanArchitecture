@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using FluentAssertions;
-using FluentAssertions.Execution;
+using Shouldly;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
-using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -18,12 +16,12 @@ public class ExceptionTests
 		var types = applicationTypes
 			.Where(a => a == typeof(Exception));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in types)
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			type
-				.Should()
-				.BeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
-		}
+			foreach (var type in types)
+			{
+				type.ShouldBeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
+			}
+		});
 	}
 }

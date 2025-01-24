@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using FluentAssertions;
-using FluentAssertions.Common;
-using FluentAssertions.Execution;
+using Shouldly;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
-using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -19,12 +16,19 @@ public class DomainTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
-			.Where(a => a.InheritsGenericClass(typeof(Entity<,>)))
-			.Types();
+			.Where(a => a.InheritsGenericClass(typeof(Entity<,>)));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		types.Should()
-			.HaveOnlyPrivateParameterlessConstructor();
+		types.ShouldSatisfyAllConditions(() =>
+		{
+			foreach (var type in types)
+			{
+				foreach (var constructor in type.GetConstructors())
+				{
+					constructor.GetParameters()
+						.ShouldBeEmpty();
+				}
+			}
+		});
 	}
 
 	[Fact]
@@ -32,31 +36,28 @@ public class DomainTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
-			.Where(a => a.InheritsGenericClass(typeof(Entity<,>)))
-			.Types();
+			.Where(a => a.InheritsGenericClass(typeof(Entity<,>)));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in types)
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			foreach (var property in type.Properties())
+			foreach (var type in types)
 			{
-				if (typeof(IEnumerable).IsAssignableFrom(property.PropertyType) &&
-					property.PropertyType != typeof(string))
+				foreach (var property in type.GetProperties())
 				{
-					property.Should()
-						.NotBeWritable("Entity '{0}' should not expose setter '{1}'", type, property);
-				}
-				else if (property.CanWrite)
-				{
-					property.Should()
-						.BeWritable(
-							CSharpAccessModifier.Private,
-							"Entity '{0}' should not expose writable setter '{1}'",
-							type,
-							property);
+					if (typeof(IEnumerable).IsAssignableFrom(property.PropertyType) &&
+						property.PropertyType != typeof(string))
+					{
+						property.GetSetMethod()
+							.ShouldBeNull($"Entity '{type}' and property '{property}' should be immutable");
+					}
+					else if (property.CanWrite)
+					{
+						property.IsPrivateWritable()
+							.ShouldBeTrue($"Entity '{type}' and property '{property}' should be immutable");
+					}
 				}
 			}
-		}
+		});
 	}
 
 	[Fact]
@@ -64,27 +65,24 @@ public class DomainTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
-			.Where(a => a.InheritsGenericClass(typeof(Entity<,>)))
-			.Types();
+			.Where(a => a.InheritsGenericClass(typeof(Entity<,>)));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in types)
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			foreach (var property in type.Properties())
+			foreach (var type in types)
 			{
-				if (typeof(IEnumerable).IsAssignableFrom(property.PropertyType) &&
-					property.PropertyType != typeof(string))
+				foreach (var property in type.GetProperties())
 				{
-					property.PropertyType.GetGenericTypeDefinition()
-						.Should()
-						.Be(
-							typeof(IReadOnlyCollection<>),
-							"Entity '{0}' should not expose writable collection '{1}'",
-							type,
-							property);
+					if (typeof(IEnumerable).IsAssignableFrom(property.PropertyType) &&
+						property.PropertyType != typeof(string))
+					{
+						property.PropertyType.GetGenericTypeDefinition()
+							.ShouldBeOfType(typeof(IReadOnlyCollection<>),
+								$"Entity '{type}' should not expose writable collection '{property}'");
+					}
 				}
 			}
-		}
+		});
 	}
 
 	[Fact]
@@ -92,23 +90,20 @@ public class DomainTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
-			.Where(a => a.InheritsGenericClass(typeof(ValueObject<>)))
-			.Types();
+			.Where(a => a.InheritsGenericClass(typeof(ValueObject<>)));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in types)
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			foreach (var property in type.Properties()
-						.Where(a => a.CanWrite))
+			foreach (var type in types)
 			{
-				property.Should()
-					.BeWritable(
-						CSharpAccessModifier.Private,
-						"ValueObject '{0}' should not expose setter '{1}'",
-						type,
-						property);
+				foreach (var property in type.GetProperties()
+							.Where(a => a.CanWrite))
+				{
+					property.IsPrivateWritable()
+						.ShouldBeTrue($"ValueObject '{type}' should not expose setter '{property}'");
+				}
 			}
-		}
+		});
 	}
 
 	[Fact]
@@ -117,22 +112,21 @@ public class DomainTests
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.ImplementsGenericInterface(typeof(IStronglyTypedId<,>)))
-			.Where(a => !a.IsGenericType)
-			.Types();
+			.Where(a => !a.IsGenericType);
 
-		using var scope = new AssertionScope(new AssertionStrategy(1));
-		foreach (var type in types)
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			var explicitOperator = type.GetMethod(
-				"op_Explicit",
-				BindingFlags.Public | BindingFlags.Static,
-				null,
-				new[] { type, },
-				null);
+			foreach (var type in types)
+			{
+				var explicitOperator = type.GetMethod(
+					"op_Explicit",
+					BindingFlags.Public | BindingFlags.Static,
+					null,
+					[type,],
+					null);
 
-			explicitOperator.Should()
-				.NotBeNull("StronglyTypedId '{0}' should have explicit operator",
-					type);
-		}
+				explicitOperator.ShouldNotBeNull($"StronglyTypedId '{type}' should have explicit operator");
+			}
+		});
 	}
 }

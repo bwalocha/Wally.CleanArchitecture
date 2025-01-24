@@ -1,12 +1,8 @@
 ﻿using System.Linq;
-using FluentAssertions;
-using FluentAssertions.Common;
-using FluentAssertions.Execution;
-using FluentAssertions.Types;
+using Shouldly;
 using Wally.CleanArchitecture.MicroService.Application.Contracts;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
-using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -17,111 +13,112 @@ public class RequestTests
 	public void Application_Request_ShouldNotExposeSetter()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.ImplementsInterface(typeof(IRequest)));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var assembly in assemblies)
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			var types = AllTypes.From(assembly)
-				.ThatImplement<IRequest>();
-
 			foreach (var type in types)
 			{
-				foreach (var property in type.Properties())
+				foreach (var property in type.GetProperties())
 				{
 					if (property.SetMethod?.IsPublic != true)
 					{
 						continue;
 					}
 
-					property.Should()
-						.BeWritable(
-							CSharpAccessModifier.Private,
-							"Response class '{0}' should not expose setter '{1}'",
-							type,
-							property);
+					property.IsPrivateWritable()
+						.ShouldBeTrue($"Response class '{type}' should not expose setter for '{property.Name}'");
 				}
 			}
-		}
+		});
 	}
 
 	[Fact]
 	public void Application_ClassesWhichImplementsIRequest_ShouldBeInTheSameProject()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var applicationNamespace = typeof(IApplicationContractsAssemblyMarker).Namespace;
-
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var assembly in assemblies)
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.ImplementsInterface(typeof(IRequest)));
+		
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			var types = AllTypes.From(assembly);
-
-			types.ThatImplement<IRequest>()
-				.Should()
-				.BeUnderNamespace(applicationNamespace);
-		}
+			foreach (var type in types)
+			{
+				type.Namespace.ShouldStartWith(typeof(IApplicationContractsAssemblyMarker).Namespace!);
+			}
+		});
 	}
 
 	[Fact]
 	public void Application_AllClassesEndsWithRequest_ShouldImplementIRequest()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllTypes();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.Name.EndsWith("Request") && a.Name != nameof(IRequest));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in types.Where(a => a.Name.EndsWith("Request") && a.Name != nameof(IRequest)))
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			type.Should()
-				.Implement<IRequest>();
-		}
+			foreach (var type in types)
+			{
+				type.ImplementsInterface(typeof(IRequest))
+					.ShouldBeTrue();
+			}
+		});
 	}
 
 	[Fact]
 	public void Application_AllClassesImplementsIRequest_ShouldHaveRequestSuffix()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllTypes();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.ImplementsInterface(typeof(IRequest)));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in types.ThatImplement<IRequest>())
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			type.Name.Should()
-				.EndWith("Request");
-		}
+			foreach (var type in types)
+			{
+				type.Name.ShouldEndWith("Request");
+			}
+		});
 	}
 
 	[Fact]
 	public void Application_AllClassesImplementsIRequest_ShouldHaveCorrespondingValidator()
 	{
-		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var assemblies = Configuration.Assemblies.GetAllAssemblies().ToArray();
 		var types = assemblies
 			.GetAllTypes()
-			.ThatImplement<IRequest>();
+			.Where(a => a.ImplementsInterface(typeof(IRequest)));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in types)
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			assemblies.SelectMany(a => a.GetTypes())
-				.Where(a => a.Name == $"{type.Name}Validator")
-				.Should()
-				.NotBeNull("every Request '{0}' should have corresponding Validator", type);
-		}
+			foreach (var type in types)
+			{
+				assemblies.SelectMany(a => a.GetTypes())
+					.Where(a => a.Name == $"{type.Name}Validator")
+					.ShouldNotBeNull($"Request '{type}' should have corresponding RequestValidator");
+			}
+		});
 	}
 
 	[Fact]
 	public void Application_AllClassesImplementsIRequest_ShouldHaveSingleCorrespondingValidator()
 	{
-		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var assemblies = Configuration.Assemblies.GetAllAssemblies()
+			.ToArray();
 		var types = assemblies
 			.GetAllTypes()
-			.ThatImplement<IRequest>();
+			.Where(a => a.ImplementsInterface(typeof(IRequest)));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in types)
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			assemblies.SelectMany(a => a.GetTypes())
-				.Count(a => a.Name == $"{type.Name}Validator")
-				.Should()
-				.Be(1, "every Request '{0}' should have single corresponding Validator", type);
-		}
+			foreach (var type in types)
+			{
+				assemblies.SelectMany(a => a.GetTypes())
+					.Count(a => a.Name == $"{type.Name}Validator")
+					.ShouldBe(1, $"Request '{type}' should have single corresponding RequestValidator");
+			}
+		});
 	}
 }

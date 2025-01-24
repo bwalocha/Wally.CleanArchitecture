@@ -12,14 +12,15 @@ public class ConsumerTests
 	public void Infrastructure_AllClassesEndsWithConsumer_ShouldInheritConsumer()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllTypes();
-		var customerTypes = types.Where(a => a.Name.EndsWith("Consumer"));
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.Name.EndsWith("Consumer"));
 
-		customerTypes.ShouldSatisfyAllConditions(() =>
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			foreach (var type in customerTypes)
+			foreach (var type in types)
 			{
-				type.ShouldBeAssignableTo(typeof(IConsumer<>));
+				type.ImplementsGenericInterface(typeof(IConsumer<>))
+					.ShouldBeTrue($"Type '{type}' should implement '{typeof(IConsumer<>).Name}'");
 			}
 		});
 	}
@@ -28,13 +29,13 @@ public class ConsumerTests
 	public void Infrastructure_AllClassesInheritsConsumer_ShouldHaveConsumerSuffix()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllTypes();
-		var customerTypes = types.Where(a => !a.Name.EndsWith("FaultConsumer"))
+		var types = assemblies.GetAllTypes()
+			.Where(a => !a.Name.EndsWith("FaultConsumer"))
 			.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>)));
 
-		customerTypes.ShouldSatisfyAllConditions(() =>
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			foreach (var type in customerTypes)
+			foreach (var type in types)
 			{
 				type.Name.ShouldEndWith("MessageConsumer");
 			}
@@ -45,19 +46,19 @@ public class ConsumerTests
 	public void Infrastructure_AllClassesInheritsConsumer_ShouldHaveMessagePrefix()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllTypes();
-		var customerTypes = types.Where(a => !a.Name.EndsWith("FaultConsumer"))
+		var types = assemblies.GetAllTypes()
+			.Where(a => !a.Name.EndsWith("FaultConsumer"))
 			.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>)));
 
-		customerTypes.ShouldSatisfyAllConditions(() =>
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			foreach (var type in customerTypes)
+			foreach (var type in types)
 			{
 				var genericType = type.GetGenericInterface(typeof(IConsumer<>)) !.GenericTypeArguments.Single();
 
 				type.Name.ShouldBe(
 					$"{genericType.Name}Consumer",
-					$"Type '{type}' should have name '{genericType.Name}Consumer'");
+					$"Consumer '{type}' name should be '{genericType.Name}Consumer'");
 			}
 		});
 	}
@@ -78,7 +79,7 @@ public class ConsumerTests
 
 				types.SingleOrDefault(a => a.Name == $"{genericType.Name}FaultConsumer")
 					.ShouldNotBeNull(
-						$"Type '{type}' should have corresponding FaultConsumer '{genericType.Name}FaultConsumer'");
+						$"Consumer '{type}' should have corresponding Fault Consumer '{genericType.Name}FaultConsumer'");
 			}
 		});
 	}
@@ -98,7 +99,7 @@ public class ConsumerTests
 				var genericType = type.GetGenericInterface(typeof(IConsumer<>)) !.GenericTypeArguments.Single();
 
 				types.SingleOrDefault(a => a.Name == $"{genericType.Name}ConsumerDefinition")
-					.ShouldNotBeNull($"Type '{type}' should have corresponding ConsumerDefinition '{genericType.Name}ConsumerDefinition'");
+					.ShouldNotBeNull($"Consumer '{type}' should have corresponding Consumer Definition '{genericType.Name}ConsumerDefinition'");
 			}
 		});
 	}

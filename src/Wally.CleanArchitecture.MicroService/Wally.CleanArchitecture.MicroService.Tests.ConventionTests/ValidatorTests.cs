@@ -1,9 +1,7 @@
 ﻿using System.Linq;
-using FluentAssertions;
-using FluentAssertions.Execution;
 using FluentValidation;
+using Shouldly;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
-using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -14,22 +12,20 @@ public class ValidatorTests
 	public void Application_Validator_ShouldHaveNamingConvention()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.SelectMany(a => a.GetTypes())
+			.Where(a => a.ImplementsInterface(typeof(IValidator)));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var assembly in assemblies)
+		types.ShouldSatisfyAllConditions(() => 
 		{
-			foreach (var type in assembly.GetTypes()
-						.ThatImplement<IValidator>())
+			foreach (var type in types)
 			{
 				var genericInterface = type.GetGenericInterface(typeof(IValidator<>));
 				var genericArgument = genericInterface?.GenericTypeArguments.SingleOrDefault();
 
-				type.Name.Should()
-					.Be(
+				type.Name.ShouldBe(
 						$"{genericArgument?.Name}Validator",
-						"every Validator '{0}' should have naming convention",
-						type);
+						$"every Validator '{type}' should have naming convention");
 			}
-		}
+		});
 	}
 }

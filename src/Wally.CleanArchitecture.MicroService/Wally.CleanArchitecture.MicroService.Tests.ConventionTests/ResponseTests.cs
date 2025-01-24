@@ -3,13 +3,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using FluentAssertions;
-using FluentAssertions.Common;
-using FluentAssertions.Execution;
+using Shouldly;
 using Wally.CleanArchitecture.MicroService.Application.Contracts;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
-using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -21,45 +18,41 @@ public class ResponseTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
-			.ThatImplement<IResponse>();
+			.Where(a => a.ImplementsInterface(typeof(IResponse)));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in types)
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			if (type.GetConstructor(Type.EmptyTypes) == null)
+			foreach (var type in types)
 			{
-				// Check only classes with non parametrized ctors
-				continue;
-			}
-
-			foreach (var property in type.Properties())
-			{
-				var isInitOnly = (property.GetSetMethod()
-					?.ReturnParameter.GetRequiredCustomModifiers()
-					.Length ?? 0) > 0;
-				if (isInitOnly)
+				if (type.GetConstructor(Type.EmptyTypes) == null)
 				{
-					var isRequired = property.GetCustomAttribute(typeof(RequiredMemberAttribute)) != null;
-
-					if (isRequired)
-					{
-						continue;
-					}
-
-					property.Should()
-						.BeDecoratedWith<RequiredMemberAttribute>(
-							"Response class '{0}' with Init setter should have Required modifier '{1}'", type,
-							property);
+					// Check only classes with non parametrized ctors
+					continue;
 				}
 
-				property.Should()
-					.BeWritable(
-						CSharpAccessModifier.Private,
-						"Response class '{0}' should not expose setter '{1}'",
-						type,
-						property);
+				foreach (var property in type.GetProperties())
+				{
+					var isInitOnly = (property.GetSetMethod()
+						?.ReturnParameter.GetRequiredCustomModifiers()
+						.Length ?? 0) > 0;
+					if (isInitOnly)
+					{
+						var isRequired = property.GetCustomAttribute(typeof(RequiredMemberAttribute)) != null;
+
+						if (isRequired)
+						{
+							continue;
+						}
+
+						property.PropertyType.ShouldBeDecoratedWith<RequiredMemberAttribute>(
+							$"Response class '{type}' with Init setter should have Required modifier '{property}'");
+					}
+
+					property.IsPrivateWritable()
+						.ShouldBeTrue($"Response class '{type}' should not expose setter '{property}'");
+				}
 			}
-		}
+		});
 	}
 
 	[Fact]
@@ -67,38 +60,42 @@ public class ResponseTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
-			.ThatImplement<IResponse>();
+			.Where(a => a.ImplementsInterface(typeof(IResponse)));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in types)
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			if (type.GetConstructor(Type.EmptyTypes) != null && type.GetConstructors()
-					.Length == 1)
+			foreach (var type in types)
 			{
-				// Check only classes with parametrized ctors 
-				continue;
-			}
+				if (type.GetConstructor(Type.EmptyTypes) != null && type.GetConstructors()
+						.Length == 1)
+				{
+					// Check only classes with parametrized ctors 
+					continue;
+				}
 
-			foreach (var property in type.Properties())
-			{
-				property.Should()
-					.NotBeWritable(
-						"Response class '{0}' should not have setter '{1}'", type, property);
+				foreach (var property in type.GetProperties())
+				{
+					property.GetSetMethod()
+						.ShouldBeNull($"Response class '{type}' should not have setter '{property}'");
+				}
 			}
-		}
+		});
 	}
 
 	[Fact]
 	public void Application_ClassesWhichImplementsIResponse_ShouldBeInApplicationContractsProject()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var applicationNamespace = typeof(IApplicationContractsAssemblyMarker).Namespace;
-		var types = assemblies.GetAllTypes();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.ImplementsInterface(typeof(IResponse)));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		types.ThatImplement<IResponse>()
-			.Should()
-			.BeUnderNamespace(applicationNamespace);
+		types.ShouldSatisfyAllConditions(() =>
+		{
+			foreach (var type in types)
+			{
+				type.Namespace.ShouldStartWith(typeof(IApplicationContractsAssemblyMarker).Namespace!);
+			}
+		});
 	}
 
 	[Fact]
@@ -109,12 +106,13 @@ public class ResponseTests
 			.Where(a => a.IsClass)
 			.Where(a => a.Name.EndsWith("Response"));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in types)
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			type.Should()
-				.Implement<IResponse>();
-		}
+			foreach (var type in types)
+			{
+				type.ImplementsInterface(typeof(IResponse)).ShouldBeTrue();
+			}
+		});
 	}
 
 	[Fact]
@@ -122,15 +120,16 @@ public class ResponseTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
-			.ThatImplement<IResponse>();
+			.Where(a => a.ImplementsInterface(typeof(IResponse)));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in types)
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			type.Name.Split('`')[0]
-				.Should()
-				.EndWith("Response", "Type '{0}' should ends with 'Response'", type);
-		}
+			foreach (var type in types)
+			{
+				type.Name.Split('`')[0]
+					.ShouldEndWith("Response", Case.Sensitive, $"Response '{type}' should end with 'Response'");
+			}
+		});
 	}
 
 	[Fact]
@@ -138,13 +137,14 @@ public class ResponseTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
-			.ThatImplement<IResponse>();
+			.Where(a => a.ImplementsInterface(typeof(IResponse)));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in types)
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			type.Should()
-				.BeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
-		}
+			foreach (var type in types)
+			{
+				type.ShouldBeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
+			}
+		});
 	}
 }

@@ -1,10 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using FluentAssertions;
-using FluentAssertions.Execution;
+using Shouldly;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
-using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -12,17 +10,42 @@ namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 public class QueryTests
 {
 	[Fact]
+	public void Application_Query_ShouldEndsWithQuery()
+	{
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)))
+			.Where(a => a != typeof(IQuery<>))
+			.Where(a => a != typeof(PagedQuery<,>));
+
+		types.ShouldSatisfyAllConditions(() =>
+		{
+			foreach (var type in types)
+			{
+				type.Name
+					.ShouldEndWith("Query", Case.Sensitive, $"Type '{type}' name should end with 'Query'");
+			}
+		});
+	}
+
+	[Fact]
 	public void Application_Query_ShouldNotExposeSetter()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)));
 
-		types
-			.Types()
-			.Properties()
-			.Should()
-			.NotBeWritable("query should be immutable");
+		types.ShouldSatisfyAllConditions(() =>
+		{
+			foreach (var type in types)
+			{
+				foreach (var property in type.GetProperties())
+				{
+					property.GetSetMethod()
+						.ShouldBeNull($"query '{type}' and property '{property}' should be immutable");
+				}
+			}
+		});
 	}
 
 	[Fact]
@@ -33,10 +56,13 @@ public class QueryTests
 			.Where(a => a.IsClass)
 			.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)));
 
-		types
-			.Types()
-			.Should()
-			.BeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
+		types.ShouldSatisfyAllConditions(() =>
+		{
+			foreach (var type in types)
+			{
+				type.ShouldBeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
+			}
+		});
 	}
 
 	[Fact]
@@ -48,31 +74,34 @@ public class QueryTests
 			.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)))
 			.Where(a => a != typeof(PagedQuery<,>));
 
-		types
-			.Types()
-			.Should()
-			.BeSealed();
+		types.ShouldSatisfyAllConditions(() =>
+		{
+			foreach (var type in types)
+			{
+				type.IsSealed
+					.ShouldBeTrue($"query '{type}' should be sealed");
+			}
+		});
 	}
 
 	[Fact]
 	public void Application_Query_ShouldHaveCorrespondingHandler()
 	{
-		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var assemblies = Configuration.Assemblies.GetAllAssemblies()
+			.ToArray();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.IsClass)
+			.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)))
+			.Where(a => a != typeof(PagedQuery<,>));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var assembly in assemblies)
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			foreach (var type in assembly.GetTypes()
-						.Where(a => a.IsClass)
-						.Where(a => a.ImplementsGenericInterface(typeof(IQuery<>)))
-						.Where(a => a != typeof(PagedQuery<,>))
-						.Types())
+			foreach (var type in types)
 			{
-				assemblies.SelectMany(a => a.GetTypes())
+				assemblies.GetAllTypes()
 					.SingleOrDefault(a => a.Name == $"{type.Name}Handler")
-					.Should()
-					.NotBeNull("Query '{0}' should have corresponding Handler", type);
+					.ShouldNotBeNull($"Query '{type}' should have corresponding QueryHandler");
 			}
-		}
+		});
 	}
 }

@@ -1,9 +1,7 @@
 using System.Linq;
-using FluentAssertions;
-using FluentAssertions.Execution;
+using Shouldly;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
-using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -13,34 +11,38 @@ public class QueryHandlerTests
 	[Fact]
 	public void Application_AllClassesEndsWithQueryHandler_ShouldImplementIQueryHandler()
 	{
-		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.Name.EndsWith("QueryHandler"));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in applicationTypes.Where(a => a.Name.EndsWith("QueryHandler")))
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			type.Should()
-				.BeAssignableTo(
-					typeof(IQueryHandler<,>),
-					"All query handlers should implement IQueryHandler interface");
-		}
+			foreach (var type in types)
+			{
+				type.ImplementsGenericInterface(typeof(IQueryHandler<,>))
+					.ShouldBeTrue($"Query Handler '{type}' should implement 'IQueryHandler' interface");
+			}
+		});
 	}
 
 	[Fact]
-	public void Application_AllClassesImplementedIQueryHandler_ShouldEndsWithQueryHandler()
+	public void Application_AllClassesImplementedIQueryHandler_ShouldHaveNameSuffix()
 	{
-		var applicationTypes = Configuration.Assemblies.Application.GetAllTypes();
-		var handlerTypes = applicationTypes
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes()
 			.Where(a => a.IsClass)
 			.Where(a => !a.IsAbstract)
 			.Where(
 				a => a.ImplementsGenericInterface(typeof(IQueryHandler<,>)));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in handlerTypes)
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			type.Name
-				.Should()
-				.EndWith("QueryHandler", "All query handlers name should ends with 'QueryHandler'");
-		}
+			foreach (var type in types)
+			{
+				type.Name
+					.ShouldEndWith("QueryHandler", Case.Sensitive,
+						$"Query Handler '{type}' name should end with 'QueryHandler'");
+			}
+		});
 	}
 }

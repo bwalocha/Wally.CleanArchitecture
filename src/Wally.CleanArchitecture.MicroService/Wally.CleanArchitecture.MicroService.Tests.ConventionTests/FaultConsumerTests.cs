@@ -1,9 +1,7 @@
 using System.Linq;
-using FluentAssertions;
-using FluentAssertions.Execution;
 using MassTransit;
+using Shouldly;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
-using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -14,54 +12,59 @@ public class FaultConsumerTests
 	public void Infrastructure_AllClassesEndsWithFaultConsumer_ShouldInheritConsumer()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllTypes();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.Name.EndsWith("FaultConsumer"));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in types.Where(a => a.Name.EndsWith("FaultConsumer")))
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			type.Should()
-				.BeAssignableTo(typeof(IConsumer<>));
-		}
+			foreach (var type in types)
+			{
+				type.ImplementsGenericInterface(typeof(IConsumer<>))
+					.ShouldBeTrue();
+			}
+		});
 	}
 
 	[Fact]
 	public void Infrastructure_AllClassesInheritsConsumerWithFaultParameter_ShouldHaveConsumerSuffix()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllTypes();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>)))
+			.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>)))
+			.Where(a => a.GetGenericInterface(typeof(IConsumer<>)) !.GenericTypeArguments.Single()
+				.IsGenericType)
+			.Where(a => a.GetGenericInterface(typeof(IConsumer<>)) !.GenericTypeArguments.Single()
+				.GetGenericTypeDefinition() == typeof(Fault<>));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in types.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>)))
-					.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>)))
-					.Where(a => a.GetGenericInterface(typeof(IConsumer<>)) !.GenericTypeArguments.Single()
-						.IsGenericType)
-					.Where(a => a.GetGenericInterface(typeof(IConsumer<>)) !.GenericTypeArguments.Single()
-						.GetGenericTypeDefinition() == typeof(Fault<>)))
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			type.Name.Should()
-				.EndWith("MessageFaultConsumer");
-		}
+			foreach (var type in types)
+			{
+				type.Name.ShouldEndWith("MessageFaultConsumer");
+			}
+		});
 	}
 
 	[Fact]
 	public void Infrastructure_AllClassesEndsWithFaultConsumer_ShouldHaveMessagePrefix()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllTypes();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.Name.EndsWith("FaultConsumer"))
+			.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>)));
 
-		using var scope = new AssertionScope(new AssertionStrategy());
-		foreach (var type in types.Where(a => a.Name.EndsWith("FaultConsumer"))
-					.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>))))
+		types.ShouldSatisfyAllConditions(() =>
 		{
-			var genericType = type.GetGenericInterface(typeof(IConsumer<>)) !.GenericTypeArguments.Single();
-			genericType = genericType.GenericTypeArguments.Single();
+			foreach (var type in types)
+			{
+				var genericType = type.GetGenericInterface(typeof(IConsumer<>)) !.GenericTypeArguments.Single();
+				genericType = genericType.GenericTypeArguments.Single();
 
-			type.Name.Should()
-				.Be(
-					$"{genericType.Name}FaultConsumer",
-					"Type '{0}' should have name '{1}'",
-					type,
-					$"{genericType.Name}FaultConsumer");
-		}
+				type.Name.ShouldBe(
+						$"{genericType.Name}FaultConsumer",
+						$"Fault Consumer '{type}' name should be '{genericType.Name}FaultConsumer'");
+			}
+		});
 	}
 }
