@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using RabbitMQ.Client;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
@@ -130,7 +131,7 @@ public static class HealthChecksExtensions
 				healthChecksBuilder.WithKafka(settings);
 				break;
 			case MessageBrokerType.RabbitMQ:
-				healthChecksBuilder.WithRabbitMQ(settings);
+				healthChecksBuilder.WithRabbitMq(settings);
 				break;
 			default:
 				throw new NotSupportedException($"Not supported Message Broker type: '{settings.MessageBroker}'");
@@ -148,17 +149,21 @@ public static class HealthChecksExtensions
 		return healthChecksBuilder;
 	}
 
-	private static IHealthChecksBuilder WithRabbitMQ(this IHealthChecksBuilder healthChecksBuilder,
+	private static IHealthChecksBuilder WithRabbitMq(this IHealthChecksBuilder healthChecksBuilder,
 		AppSettings settings)
 	{
 		healthChecksBuilder.AddRabbitMQ(
-			new Uri(settings.ConnectionStrings.ServiceBus),
+			_ => new ConnectionFactory
+			{
+				Uri	= new Uri(settings.ConnectionStrings.ServiceBus),
+			}.CreateConnectionAsync(),
 			name: "MQ",
 			failureStatus: HealthStatus.Degraded,
-			tags: new[]
-			{
+			tags:
+			[
 				"MQ", "Messaging", nameof(MessageBrokerType.RabbitMQ),
-			});
+			],
+			TimeSpan.FromSeconds(600));
 
 		return healthChecksBuilder;
 	}

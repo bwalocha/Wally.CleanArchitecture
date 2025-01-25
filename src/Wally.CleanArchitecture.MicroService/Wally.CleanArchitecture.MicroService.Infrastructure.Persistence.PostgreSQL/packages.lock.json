@@ -88,19 +88,19 @@
       },
       "Microsoft.OData.Core": {
         "type": "Transitive",
-        "resolved": "8.2.2",
-        "contentHash": "VY3sZzBOxePvRuCeBlEiJ2LNxjr8ReOKj6YWXi5i8vG3TLWo+CmIc9fiE8WDoe90NcCaBnwK6Ub2fWnpNEbLxA==",
+        "resolved": "8.2.3",
+        "contentHash": "c6AJxdmNHqTnH2XYQnYz4qttpIqfBpNBO4dZ68xDMxNN/+9Uu/pOKDZRAs7NCy50c+svCImh4v18J4g6Ycxoiw==",
         "dependencies": {
           "Microsoft.Bcl.AsyncInterfaces": "8.0.0",
           "Microsoft.Extensions.ObjectPool": "6.0.3",
-          "Microsoft.OData.Edm": "[8.2.2]",
-          "Microsoft.Spatial": "[8.2.2]"
+          "Microsoft.OData.Edm": "[8.2.3]",
+          "Microsoft.Spatial": "[8.2.3]"
         }
       },
       "Microsoft.OData.Edm": {
         "type": "Transitive",
-        "resolved": "8.2.2",
-        "contentHash": "cHMsoV059EPNLD+SJFxIM8rKLUA3kKifflfUQy+7hWKZpmw+YhLi7qeWSSA9UDRVd0sqApFU8gdqHjordJoTIg==",
+        "resolved": "8.2.3",
+        "contentHash": "zba6EjkjyCT8ofUP7oXz1L5d8XfA20g0gGJMHohAAhCPJm1ChRzNEtoxYoYIB6qB7Ml19JDO6HZalO49/e/DTw==",
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "4.6.0",
           "System.Text.Encodings.Web": "4.7.2",
@@ -119,8 +119,8 @@
       },
       "Microsoft.Spatial": {
         "type": "Transitive",
-        "resolved": "8.2.2",
-        "contentHash": "iG0pF7o7bR9/J+WcSNGEW0DzewO8Te/T+5FJ9EIuXcPkVE96cqc6Cf57ygqlQZj5jmf+D/gOtBJjPc4iyeI0Aw=="
+        "resolved": "8.2.3",
+        "contentHash": "N8rhHhMojEYdH9P+JG208+s6dpR5P1rVyiGaDB5oV2YTVH+zA5utK3V3V4ytAMLb4GaqOyLyzMOgSLEWM0ulgQ=="
       },
       "Npgsql": {
         "type": "Transitive",
@@ -145,7 +145,7 @@
         "dependencies": {
           "MassTransit.Abstractions": "[8.3.4, )",
           "MediatR": "[12.4.1, )",
-          "Microsoft.AspNetCore.OData": "[9.1.1, )",
+          "Microsoft.AspNetCore.OData": "[9.1.3, )",
           "SonarAnalyzer.CSharp": "[10.5.0.109200, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application.Contracts": "[1.0.0, )",
@@ -241,14 +241,14 @@
       },
       "Microsoft.AspNetCore.OData": {
         "type": "CentralTransitive",
-        "requested": "[9.1.1, )",
-        "resolved": "9.1.1",
-        "contentHash": "if1N+q3dTgUbUZ4KjLXCHYDQLKEEv0gpx8dLaSRp2StrYuWcRVCKjncI7fPcndFkt/nEJcIYzNKxtws4L5OO8Q==",
+        "requested": "[9.1.3, )",
+        "resolved": "9.1.3",
+        "contentHash": "4yUDA3ok5eqI08UzguNdsU8nL8wYBZOqTmgoKSatV7EAf0YOlVRqHfgHUp48botNHde/+W7pdYWuti0D1GsqlA==",
         "dependencies": {
-          "Microsoft.OData.Core": "[8.2.2, 9.0.0)",
-          "Microsoft.OData.Edm": "[8.2.2, 9.0.0)",
+          "Microsoft.OData.Core": "[8.2.3, 9.0.0)",
+          "Microsoft.OData.Edm": "[8.2.3, 9.0.0)",
           "Microsoft.OData.ModelBuilder": "[2.0.0, 3.0.0)",
-          "Microsoft.Spatial": "[8.2.2, 9.0.0)"
+          "Microsoft.Spatial": "[8.2.3, 9.0.0)"
         }
       },
       "Microsoft.EntityFrameworkCore": {
