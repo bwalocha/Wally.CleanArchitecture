@@ -40,7 +40,7 @@
     <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.0" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.TimeProvider.Testing" Version="9.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.TimeProvider.Testing" Version="9.1.0" />
     <PackageVersion Include="Microsoft.FeatureManagement.AspNetCore" Version="4.0.0" />
     <PackageVersion Include="Moq" Version="4.20.72" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
@@ -51,9 +51,9 @@
     <PackageVersion Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
     <PackageVersion Include="Reinforced.Typings" Version="1.6.5" />
     <PackageVersion Include="Serilog" Version="4.2.0" />
-    <PackageVersion Include="Serilog.AspNetCore" Version="8.0.3" />
+    <PackageVersion Include="Serilog.AspNetCore" Version="9.0.0" />
     <PackageVersion Include="Serilog.Sinks.ApplicationInsights" Version="4.0.0" />
-    <PackageVersion Include="Scrutor" Version="5.1.1" />
+    <PackageVersion Include="Scrutor" Version="6.0.1" />
     <PackageVersion Include="Shouldly" Version="4.3.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="7.2.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="7.2.0" />
@@ -102,14 +102,14 @@
   </ItemGroup>
   <!-- Updates for vulnerable packages -->
   <ItemGroup>
-    <PackageVersion Include="Azure.Identity" Version="1.13.1" />
+    <PackageVersion Include="Azure.Identity" Version="1.13.2" />
     <PackageVersion Include="BouncyCastle.Cryptography" Version="2.5.0" />
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.11" />
     <PackageVersion Include="Microsoft.Extensions.Caching.Memory" Version="9.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.1" />
-    <PackageVersion Include="Microsoft.Identity.Client" Version="4.67.1" />
+    <PackageVersion Include="Microsoft.Identity.Client" Version="4.67.2" />
     <PackageVersion Include="System.Drawing.Common" Version="8.0.11" />
-    <PackageVersion Include="System.Formats.Asn1" Version="9.0.0" />
+    <PackageVersion Include="System.Formats.Asn1" Version="9.0.1" />
     <!--<PackageVersion Include="System.Net.Http" Version="4.3.4" />-->
     <PackageVersion Include="System.Runtime.Caching" Version="8.0.1" />
     <PackageVersion Include="System.Text.Encodings.Web" Version="9.0.0" />
