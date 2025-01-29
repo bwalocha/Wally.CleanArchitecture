@@ -12,6 +12,17 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Exten
 
 public static class OpenApiExtensions
 {
+	private const string ContactName = "Wally";
+	private const string ContactEmail = "b.walocha@gmail.com";
+	private const string ContactUrl = "https://wally.best";
+	
+	private const string LicenseName = "MIT";
+	private const string LicenseUrl = "https://opensource.org/licenses/MIT";
+
+	private const string OpenApiInfoVersion = "v1";
+	
+	private const string AppName = "Wally.CleanArchitecture";
+
 	public static IServiceCollection AddOpenApi(this IServiceCollection services, Assembly assembly)
 	{
 		// services.AddOpenApi(); // TODO: https://www.youtube.com/watch?v=8yI4gD1HruY&ab_channel=NickChapsas
@@ -23,24 +34,24 @@ public static class OpenApiExtensions
 			options =>
 			{
 				options.SwaggerDoc(
-					"v1",
+					OpenApiInfoVersion,
 					new OpenApiInfo
 					{
-						Version = "v1",
-						Title = "Wally.CleanArchitecture API",
-						Description = "An ASP.NET Core Web API for managing 'Wally.CleanArchitecture' items",
+						Version = OpenApiInfoVersion,
+						Title = $"{AppName} API",
+						Description = $"An ASP.NET Core Web API for managing '{AppName}' items",
 
 						// TermsOfService = new Uri("https://example.com/terms"),
 						Contact = new OpenApiContact
 						{
-							Name = "Wally",
-							Email = "b.walocha@gmail.com",
-							Url = new Uri("https://wally.best"),
+							Name = ContactName,
+							Email = ContactEmail,
+							Url = new Uri(ContactUrl),
 						},
 						License = new OpenApiLicense
 						{
-							Name = "MIT",
-							Url = new Uri("https://opensource.org/licenses/MIT"),
+							Name = LicenseName,
+							Url = new Uri(LicenseUrl),
 						},
 					});
 
@@ -74,7 +85,7 @@ public static class OpenApiExtensions
 					// options.OAuthScopes(string.Join(", ", settings.Value.SwaggerAuthentication.Scopes.Values));
 					options.OAuthUsePkce();
 
-					options.OAuthAppName("Wally.CleanArchitecture");
+					options.OAuthAppName(AppName);
 					options.EnablePersistAuthorization();
 					options.DefaultModelsExpandDepth(0);
 				});

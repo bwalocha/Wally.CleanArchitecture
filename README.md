@@ -47,24 +47,32 @@ dotnet new wally.cleanarchitecture --output . --name MyCompanyName.MyAppName --s
     - [x] MySql
     - [x] MS Sql
     - [x] PostgreSQL
-    - [ ] Concurrency
+    - [x] SQLite
+    - [x] InMemoryDb
+    - [ ] Optimistic Concurrency
+    - [ ] Generic Repository + Specific Repository
 - [ ] xUnit
-	- [ ] ApprovalTests
+	- [x] ApprovalTests
 	- [x] IntegrationTests
 	- [x] UnitTests
-	- [x] ConventionTests
+    - [x] ConventionTests
+    - [x] Verify [github](https://github.com/VerifyTests/Verify)
+    - [-] ~~FluentAssertions [github](https://github.com/fluentassertions/fluentassertions)~~
+    - [x] Shouldly [github](https://github.com/shouldly/shouldly)
 - [ ] AppInsights Metrics
+- [ ] OpenTelemetry
 - [ ] IaC
     - [ ] Terraform
     - [ ] Bicep
 - [ ] Mapper
-    - [-] Mapster [github](https://github.com/MapsterMapper/Mapster)
-    - [x] AutoMapper
+    - [-] ~~Mapster [github](https://github.com/MapsterMapper/Mapster)~~
+    - [x] AutoMapper [github](https://github.com/AutoMapper/AutoMapper)
         - [x] Validation
         - [x] Profiles
 - [x] SignalR
 - [ ] GitHub
     - [ ] Workflow
+- [ ] Docker
 
 ## Info
 

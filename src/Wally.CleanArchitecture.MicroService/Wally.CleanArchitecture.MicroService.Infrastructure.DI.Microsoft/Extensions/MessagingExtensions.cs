@@ -167,10 +167,12 @@ public static class MessagingExtensions
 	{
 		private readonly ILogger<BusStub> _logger;
 
+#pragma warning disable S1144
 		public BusStub(ILogger<BusStub> logger)
 		{
 			_logger = logger;
 		}
+#pragma warning restore S1144
 
 		public ConnectHandle ConnectPublishObserver(IPublishObserver observer)
 		{
