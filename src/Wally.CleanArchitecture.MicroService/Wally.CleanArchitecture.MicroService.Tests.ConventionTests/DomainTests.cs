@@ -76,9 +76,8 @@ public class DomainTests
 					if (typeof(IEnumerable).IsAssignableFrom(property.PropertyType) &&
 						property.PropertyType != typeof(string))
 					{
-						property.PropertyType.GetGenericTypeDefinition()
-							.ShouldBeOfType(typeof(IReadOnlyCollection<>),
-								$"Entity '{type}' should not expose writable collection '{property}'");
+						property.PropertyType.ImplementsGenericInterface(typeof(IReadOnlyCollection<>))
+							.ShouldBeTrue($"Entity '{type}' should not expose writable collection '{property}'");
 					}
 				}
 			}

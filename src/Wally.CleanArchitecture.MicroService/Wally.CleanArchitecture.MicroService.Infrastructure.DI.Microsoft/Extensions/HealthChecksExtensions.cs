@@ -74,40 +74,39 @@ public static class HealthChecksExtensions
 					new MySqlHealthCheckOptions(settings.ConnectionStrings.Database),
 					"DB",
 					HealthStatus.Degraded,
-					new[]
-					{
+					[
 						"DB", "Database", nameof(DatabaseProviderType.MySql),
-					});
+					]);
 				break;
 			case DatabaseProviderType.PostgreSQL:
 				healthChecksBuilder.AddNpgSql(
 					settings.ConnectionStrings.Database,
 					name: "DB",
 					failureStatus: HealthStatus.Degraded,
-					tags: new[]
-					{
+					tags:
+					[
 						"DB", "Database", nameof(DatabaseProviderType.PostgreSQL),
-					});
+					]);
 				break;
 			case DatabaseProviderType.SQLite:
 				healthChecksBuilder.AddSqlite(
 					settings.ConnectionStrings.Database,
 					name: "DB",
 					failureStatus: HealthStatus.Degraded,
-					tags: new[]
-					{
+					tags:
+					[
 						"DB", "Database", nameof(DatabaseProviderType.SQLite),
-					});
+					]);
 				break;
 			case DatabaseProviderType.SqlServer:
 				healthChecksBuilder.AddSqlServer(
 					settings.ConnectionStrings.Database,
 					name: "DB",
 					failureStatus: HealthStatus.Degraded,
-					tags: new[]
-					{
+					tags:
+					[
 						"DB", "Database", nameof(DatabaseProviderType.SqlServer),
-					});
+					]);
 				break;
 			default:
 				throw new NotSupportedException(
@@ -181,17 +180,16 @@ public static class HealthChecksExtensions
 			},
 			"MQ",
 			HealthStatus.Degraded,
-			new[]
-			{
+			[
 				"MQ", "Messaging", nameof(MessageBrokerType.Kafka),
-			});
+			]);
 
 		return healthChecksBuilder;
 	}
 
 	private static IHealthChecksBuilder AddVersionHealthCheck(this IHealthChecksBuilder builder)
 	{
-		builder.AddCheck<VersionHealthCheck>("VER", tags: new[] { "VER", "Version", });
+		builder.AddCheck<VersionHealthCheck>("VER", tags: ["VER", "Version",]);
 
 		return builder;
 	}

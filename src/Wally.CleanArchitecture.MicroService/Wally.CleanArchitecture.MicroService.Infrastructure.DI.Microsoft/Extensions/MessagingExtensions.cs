@@ -42,8 +42,11 @@ public static class MessagingExtensions
 						a.AddRider(
 							rider =>
 							{
-								rider.AddConsumersFromNamespaceContaining<IInfrastructureMessagingAssemblyMarker>();
+								// Kafka is not intended to create topology during startup.
+								// Topics should be created with correct number of partitions and replicas beforehand
+								// https://masstransit.io/documentation/configuration/transports/kafka#configure-topology
 								rider.AddProducersFromNamespaceContaining<IApplicationMessagesAssemblyMarker>();
+								rider.AddConsumersFromNamespaceContaining<IInfrastructureMessagingAssemblyMarker>();
 
 								rider.UsingKafka(
 									(context, k) =>
