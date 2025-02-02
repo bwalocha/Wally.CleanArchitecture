@@ -11,7 +11,7 @@
   "identity": "Wally.CleanArchitecture",
   "groupIdentity": "Wally.CleanArchitecture",
   "name": "Wally.CleanArchitecture",
-  "description": "CleanArchitecture, DDD, CQRS, EF, WebApi, Swagger, OData, HealthCheck, MediatR, MassTransit, AutoMapper, Reinforced.Typings, ...",
+  "description": "CleanArchitecture, DDD, CQRS, EF, WebApi, Swagger, OpenAPI, OData, HealthCheck, MediatR, MassTransit, AutoMapper, Reinforced.Typings, ...",
   "shortName": "wally.cleanarchitecture",
   "sourceName": "Wally.CleanArchitecture",
   "tags": {
@@ -92,7 +92,7 @@
         "toLower": true
       },
       "fileRename": "wally.cleanarchitecture.webapp",
-      "replaces": "wally.cleanarchitecture.microservice"
+      "replaces": "wally.cleanarchitecture.webapp"
     },
     "enableReverseProxy": {
       "type": "parameter",
@@ -148,7 +148,9 @@
         {
           "condition": "(!enableFrontend)",
           "exclude": [
-            "wally.cleanarchitecture.webapp*/**/*"
+            "wally.cleanarchitecture.webapp*/**/*",
+            "wally.cleanarchitecture.webapp-update.cmd",
+            "wally.cleanarchitecture.webapp-recreate.cmd"
           ]
         },
         {
