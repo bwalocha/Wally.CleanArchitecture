@@ -8,7 +8,7 @@ namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 [TypeConverter(typeof(StronglyTypedIdConverter))]
 public class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStronglyTypedId, TValue>
 	where TStronglyTypedId : StronglyTypedId<TStronglyTypedId, TValue>
-	where TValue : struct, IComparable<TValue>, IEquatable<TValue>
+	where TValue : /*struct,*/ IComparable<TValue>, IEquatable<TValue>
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="StronglyTypedId{TStronglyTypedId, TValue}" /> class.
@@ -59,12 +59,12 @@ public class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStron
 
 public interface IStronglyTypedId<TStronglyTypedId, TValue>
 	: IStronglyTypedId<TValue>, IEquatable<TStronglyTypedId>, IComparable<TStronglyTypedId>
-	where TValue : struct, IEquatable<TValue>
+	where TValue : /*struct,*/ IEquatable<TValue>
 {
 }
 
 public interface IStronglyTypedId<TValue>
-	where TValue : struct, IEquatable<TValue>
+	where TValue : /*struct,*/ IEquatable<TValue>
 {
 	/// <summary>
 	///     Gets the underlying value of the strongly-typed ID.

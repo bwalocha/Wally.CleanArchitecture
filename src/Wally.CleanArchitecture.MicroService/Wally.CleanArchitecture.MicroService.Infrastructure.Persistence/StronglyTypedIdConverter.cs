@@ -7,7 +7,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 public sealed class StronglyTypedIdConverter<TStronglyTypedId, TValue>
 	: ValueConverter<TStronglyTypedId, TValue>
 	where TStronglyTypedId : StronglyTypedId<TStronglyTypedId, TValue>
-	where TValue : struct, IComparable<TValue>, IEquatable<TValue>
+	where TValue : /*struct,*/ IComparable<TValue>, IEquatable<TValue>
 {
 	/// <summary>
 	///     Initializes a new instance of the <see cref="StronglyTypedIdConverter{TStronglyTypedId, TValue}" /> class.

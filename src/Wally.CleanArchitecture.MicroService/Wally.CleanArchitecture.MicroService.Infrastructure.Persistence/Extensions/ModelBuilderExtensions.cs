@@ -86,7 +86,7 @@ public static class ModelBuilderExtensions
 
 		return allEntities
 			.Where(a => typeof(TType).IsAssignableFrom(a.ClrType))
-			.Where(a => string.IsNullOrEmpty(a.GetViewName()))
+			// .Where(a => string.IsNullOrEmpty(a.GetViewName())) // TODO: Remove for VW Migrations
 			.Select(a => a.ClrType);
 	}
 }

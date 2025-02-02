@@ -3,6 +3,7 @@ using Wally.CleanArchitecture.MicroService.Application.Contracts;
 using Wally.CleanArchitecture.MicroService.Application.MapperProfiles;
 using Wally.CleanArchitecture.MicroService.Application.Messages;
 using Wally.CleanArchitecture.MicroService.Domain;
+using Wally.CleanArchitecture.MicroService.Infrastructure.BackgroundServices;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Messaging;
@@ -52,6 +53,7 @@ public static class Configuration
 				typeof(IInfrastructurePostgreSqlAssemblyMarker).Assembly,
 				typeof(IInfrastructureMySqlAssemblyMarker).Assembly,
 				typeof(IInfrastructurePipelineBehavioursAssemblyMarker).Assembly,
+				typeof(IInfrastructureBackgroundServicesAssemblyMarker).Assembly,
 			],
 			Presentation =
 			[
