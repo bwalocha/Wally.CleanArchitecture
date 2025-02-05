@@ -34,7 +34,7 @@ public class CommandHandlerValidatorsBehavior<TRequest, TResponse> : IPipelineBe
 			.SelectMany(a => a.Errors)
 			.ToArray();
 
-		if (validationErrors.Any())
+		if (validationErrors.Length != 0)
 		{
 			throw new ValidationException(validationErrors);
 		}

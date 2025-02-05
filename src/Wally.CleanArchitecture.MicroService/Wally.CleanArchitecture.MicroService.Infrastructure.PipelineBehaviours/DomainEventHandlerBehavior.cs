@@ -30,8 +30,7 @@ public class DomainEventHandlerBehavior<TRequest, TResponse> : IPipelineBehavior
 		var response = await next();
 
 		var domainEntities = _dbContext.ChangeTracker.Entries<IEntity>()
-			.Where(a => a.Entity.GetDomainEvents()
-				.Any())
+			.Where(a => a.Entity.GetDomainEvents().Count != 0)
 			.ToList();
 
 		var domainEvents = domainEntities.SelectMany(x => x.Entity.GetDomainEvents())

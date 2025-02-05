@@ -13,7 +13,7 @@ internal class ODataQueryOptionsOperationFilter : IOperationFilter
 			.Where(p => p.ParameterType.IsAssignableTo(typeof(ODataQueryOptions)))
 			.ToList();
 
-		if (!odataQueryParameterTypes.Any())
+		if (odataQueryParameterTypes.Count == 0)
 		{
 			return;
 		}
