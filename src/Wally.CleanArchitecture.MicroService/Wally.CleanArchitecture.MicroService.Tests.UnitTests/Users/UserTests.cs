@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Shouldly;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
+using Wally.CleanArchitecture.MicroService.Tests.UnitTests.Extensions;
 using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests.Users;
@@ -22,7 +23,11 @@ public class UserTests
 			() => sut.Id.ShouldNotBeNull(),
 			// () => user.Id.Value.ShouldNotBeNullOrEmpty(), // TODO: Guid does not have isEmpty/notEmpty assertion
 			() => sut.Id.Value.ShouldNotBe(Guid.Empty),
-			() => sut.Name.ShouldNotBeNullOrWhiteSpace());
+			() => sut.Name.ShouldNotBeNullOrWhiteSpace(),
+			() => sut.ShouldBeLike(new
+			{
+				Name = "testUserName",
+			}));
 	}
 
 	[Fact]
@@ -55,6 +60,11 @@ public class UserTests
 		// Assert
 		sut.ShouldSatisfyAllConditions(
 			() => sut.Id.ShouldBe(id),
-			() => sut.Name.ShouldBe("newTestName"));
+			() => sut.Name.ShouldBe("newTestName"),
+			() => sut.ShouldBeLike(new
+			{
+				Id = id,
+				Name = "newTestName",
+			}));
 	}
 }

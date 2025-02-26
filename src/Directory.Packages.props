@@ -3,8 +3,8 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="AutoMapper" Version="13.0.1" />
-    <PackageVersion Include="AutoMapper.Extensions.ExpressionMapping" Version="7.0.2" />
+    <PackageVersion Include="AutoMapper" Version="14.0.0" />
+    <PackageVersion Include="AutoMapper.Extensions.ExpressionMapping" Version="8.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.AzureServiceBus" Version="9.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.Kafka" Version="9.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.MySql" Version="9.0.0" />
@@ -29,18 +29,18 @@
     <PackageVersion Include="MassTransit.RabbitMQ" Version="8.3.6" />
     <PackageVersion Include="MediatR" Version="12.4.1" />
     <PackageVersion Include="MediatR.Contracts" Version="2.0.1" />
-    <PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.12" />
-    <PackageVersion Include="Microsoft.AspNetCore.OData" Version="9.1.3" />
-    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.12" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.1" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.1" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.1" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.1" />
-    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.1" />
-    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.1" />
-    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.1" />
-    <PackageVersion Include="Microsoft.Extensions.TimeProvider.Testing" Version="9.1.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.13" />
+    <PackageVersion Include="Microsoft.AspNetCore.OData" Version="9.2.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.13" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.2" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.2" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.2" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.2" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.2" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.2" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.2" />
+    <PackageVersion Include="Microsoft.Extensions.TimeProvider.Testing" Version="9.2.0" />
     <PackageVersion Include="Microsoft.FeatureManagement.AspNetCore" Version="4.0.0" />
     <PackageVersion Include="Moq" Version="4.20.72" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
@@ -55,20 +55,20 @@
     <PackageVersion Include="Serilog.Sinks.ApplicationInsights" Version="4.0.0" />
     <PackageVersion Include="Scrutor" Version="6.0.1" />
     <PackageVersion Include="Shouldly" Version="4.3.0" />
-    <PackageVersion Include="Swashbuckle.AspNetCore" Version="7.2.0" />
-    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="7.2.0" />
-    <PackageVersion Include="Testcontainers.MariaDb" Version="4.1.0" />
-    <PackageVersion Include="Testcontainers.MySql" Version="4.1.0" />
-    <PackageVersion Include="Testcontainers.MsSql" Version="4.1.0" />
-    <PackageVersion Include="Testcontainers.PostgreSql" Version="4.1.0" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="7.3.0" />
+    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="7.3.0" />
+    <PackageVersion Include="Testcontainers.MariaDb" Version="4.3.0" />
+    <PackageVersion Include="Testcontainers.MySql" Version="4.3.0" />
+    <PackageVersion Include="Testcontainers.MsSql" Version="4.3.0" />
+    <PackageVersion Include="Testcontainers.PostgreSql" Version="4.3.0" />
     <PackageVersion Include="Ulid" Version="1.3.4" />
     <PackageVersion Include="Verify.Http" Version="6.4.1" />
-    <PackageVersion Include="Verify.Xunit" Version="28.10.1" />
+    <PackageVersion Include="Verify.Xunit" Version="28.13.0" />
     <PackageVersion Include="Yarp.ReverseProxy" Version="2.2.0" />
     <PackageVersion Include="JsonNet.ContractResolvers" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.1">
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
@@ -92,10 +92,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
-    <PackageVersion Include="JunitXml.TestLogger" Version="5.0.0" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageVersion Include="JunitXml.TestLogger" Version="6.0.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
     <PackageVersion Include="xunit" Version="2.9.3" />
-    <PackageVersion Include="xunit.runner.visualstudio" Version="3.0.1">
+    <PackageVersion Include="xunit.runner.visualstudio" Version="3.0.2">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageVersion>
@@ -103,17 +103,17 @@
   <!-- Updates for vulnerable packages -->
   <ItemGroup>
     <PackageVersion Include="Azure.Identity" Version="1.13.2" />
-    <PackageVersion Include="BouncyCastle.Cryptography" Version="2.5.0" />
+    <PackageVersion Include="BouncyCastle.Cryptography" Version="2.5.1" />
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.12" />
-    <PackageVersion Include="Microsoft.Extensions.Caching.Memory" Version="9.0.1" />
-    <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.1" />
-    <PackageVersion Include="Microsoft.Identity.Client" Version="4.67.2" />
-    <PackageVersion Include="System.Drawing.Common" Version="9.0.1" />
-    <PackageVersion Include="System.Formats.Asn1" Version="9.0.1" />
+    <PackageVersion Include="Microsoft.Extensions.Caching.Memory" Version="9.0.2" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.2" />
+    <PackageVersion Include="Microsoft.Identity.Client" Version="4.68.0" />
+    <PackageVersion Include="System.Drawing.Common" Version="9.0.2" />
+    <PackageVersion Include="System.Formats.Asn1" Version="9.0.2" />
     <!--<PackageVersion Include="System.Net.Http" Version="4.3.4" />-->
-    <PackageVersion Include="System.Runtime.Caching" Version="9.0.1" />
-    <PackageVersion Include="System.Text.Encodings.Web" Version="9.0.1" />
-    <PackageVersion Include="System.Text.Json" Version="9.0.1" />
+    <PackageVersion Include="System.Runtime.Caching" Version="9.0.2" />
+    <PackageVersion Include="System.Text.Encodings.Web" Version="9.0.2" />
+    <PackageVersion Include="System.Text.Json" Version="9.0.2" />
     <!--<PackageVersion Include="System.Text.RegularExpressions" Version="4.3.1" />-->
   </ItemGroup>
   <ItemGroup>
