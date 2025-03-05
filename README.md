@@ -30,6 +30,16 @@ graph TB
     linkStyle 2,5 stroke:#fff,stroke-width:0px;
 ```
 
+```mermaid
+graph TD
+  A[ Anyone ] -->|Can help | B( Go to github.com/yuzutech/kroki )
+  B --> C{ How to contribute? }
+  C --> D[ Reporting bugs ]
+  C --> E[ Sharing ideas ]
+  C --> F[ Advocating ]
+
+```
+
 - [x] .Net 8 WebApi ReverseProxy
     - [x] YARP
 - [x] .Net 8 WebApi MicroService
