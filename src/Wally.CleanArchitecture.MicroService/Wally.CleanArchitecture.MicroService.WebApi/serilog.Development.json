@@ -18,13 +18,17 @@
         "Name": "Console",
         "Args": {
           "theme": "Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme::Code, Serilog.Sinks.Console",
-          "outputTemplate": "[{Timestamp:HH:mm:ss} {Level:u3} {CorrelationId}] {Message:lj}{NewLine}{Exception}"
+          "outputTemplate": "[{Timestamp:HH:mm:ss} <{EnvironmentUserName}@{MachineName} [{EnvironmentName}] {ProcessId}:{ThreadId}:{ThreadName}> {Level}] {SourceContext} {Properties:j}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}"
         }
       }
     ],
     "Enrich": [
       "FromLogContext",
       "WithMachineName",
+      "WithEnvironmentUserName",
+      "WithEnvironmentName",
+      "WithProcessId",
+      "WithThreadName",
       "WithThreadId"
     ],
     "Properties": {
