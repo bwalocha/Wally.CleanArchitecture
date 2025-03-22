@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Wally.CleanArchitecture.MicroService.Application.Abstractions;
+﻿using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Responses;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 
