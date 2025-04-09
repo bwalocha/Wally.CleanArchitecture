@@ -30,6 +30,7 @@ public static class PersistenceExtensions
 				case DatabaseProviderType.InMemory:
 					WithInMemory(options);
 					break;
+				case DatabaseProviderType.MariaDb:
 				case DatabaseProviderType.MySql:
 					WithMySql(options, settings);
 					break;
@@ -42,6 +43,7 @@ public static class PersistenceExtensions
 				case DatabaseProviderType.SqlServer:
 					WithSqlServer(options, settings);
 					break;
+				case DatabaseProviderType.Unknown:
 				default:
 					throw new NotSupportedException(
 						$"Not supported Database Provider type: '{settings.Database.ProviderType}'");

@@ -85,7 +85,11 @@ public static class Program
 		return Host.CreateDefaultBuilder(args)
 			.ConfigureAppConfiguration(a => ConfigureAppConfiguration(ConfigureDefaultConfiguration(a)))
 			.UseSerilog()
-			.UseDefaultServiceProvider(opt => { opt.ValidateScopes = true; })
+			.UseDefaultServiceProvider(a =>
+			{
+				a.ValidateOnBuild = true;
+				a.ValidateScopes = true;
+			})
 			.ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
 	}
 }
