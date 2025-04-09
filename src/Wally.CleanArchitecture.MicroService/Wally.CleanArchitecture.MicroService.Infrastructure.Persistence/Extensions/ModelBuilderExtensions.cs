@@ -11,6 +11,10 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Extens
 
 public static class ModelBuilderExtensions
 {
+	private const string TemporalPostfix = "_Temporal";
+	private const string TemporalValidFrom = "ValidFrom";
+	private const string TemporalValidTo = "ValidTo";
+	
 	public static ModelBuilder ApplyMappings<TInfrastructurePersistenceAssemblyMarker>(this ModelBuilder modelBuilder)
 	{
 		return modelBuilder.ApplyConfigurationsFromAssembly(typeof(TInfrastructurePersistenceAssemblyMarker).Assembly);
@@ -75,6 +79,33 @@ public static class ModelBuilderExtensions
 			var newParam = Expression.Parameter(entityType);
 			var newBody = ReplacingExpressionVisitor.Replace(expression.Parameters.Single(), newParam, expression.Body);
 			entityBuilder.HasQueryFilter(Expression.Lambda(newBody, newParam));
+		}
+
+		return modelBuilder;
+	}
+	
+	public static ModelBuilder ApplyTemporal(this ModelBuilder modelBuilder)
+	{
+		var allEntities = modelBuilder.Model.GetEntityTypes();
+		foreach (var entity in allEntities
+					.Where(a => typeof(ITemporal)
+						.IsAssignableFrom(a.ClrType))
+					.Where(a => string.IsNullOrEmpty(a.GetViewName()))
+					.Select(a => a.ClrType)
+					.ToArray())
+		{
+			var entityBuilder = modelBuilder.Entity(entity);
+
+			// https://learn.microsoft.com/en-us/ef/core/providers/sql-server/temporal-tables
+			entityBuilder.ToTable(
+				entity.Name,
+				a => a.IsTemporal(
+					b =>
+					{
+						b.UseHistoryTable($"{entity.Name}{TemporalPostfix}");
+						b.HasPeriodStart(nameof(TemporalValidFrom));
+						b.HasPeriodEnd(nameof(TemporalValidTo));
+					}));
 		}
 
 		return modelBuilder;

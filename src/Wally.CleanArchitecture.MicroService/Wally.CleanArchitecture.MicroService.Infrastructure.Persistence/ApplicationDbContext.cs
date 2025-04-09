@@ -21,6 +21,7 @@ public sealed class ApplicationDbContext : DbContext
 			.ApplyEnumConvention()
 			.ApplyStronglyTypedId()
 			.ApplyOptimisticConcurrency()
-			.ApplySoftDelete();
+			.ApplySoftDelete()
+			.ApplyTemporal();
 	}
 }
