@@ -436,7 +436,7 @@
         "dependencies": {
           "MassTransit.Abstractions": "[8.4.0, )",
           "MediatR": "[12.5.0, )",
-          "Microsoft.AspNetCore.OData": "[9.2.1, )",
+          "Microsoft.AspNetCore.OData": "[9.3.0, )",
           "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application.Contracts": "[1.0.0, )",
@@ -516,9 +516,9 @@
       },
       "Microsoft.AspNetCore.OData": {
         "type": "CentralTransitive",
-        "requested": "[9.2.1, )",
-        "resolved": "9.2.1",
-        "contentHash": "lpeUMgPLAhoruijWilKjw+wI0BcBGekD+W5lr4SdiEShw8e9RiqRIYO7/ogGst0lL+IP4nR1nLWVgSgMSwrDCg==",
+        "requested": "[9.3.0, )",
+        "resolved": "9.3.0",
+        "contentHash": "KcKtcsX0TwP9SeSA5fnZYv6ostnprcv9GYsKK5GADTQVQVmiKAzwMsRq2XhVVs+8xx7T396jXHY6GKg0U1uDvA==",
         "dependencies": {
           "Microsoft.OData.Core": "[8.2.3, 9.0.0)",
           "Microsoft.OData.Edm": "[8.2.3, 9.0.0)",
@@ -566,7 +566,7 @@
       },
       "Microsoft.Identity.Client": {
         "type": "CentralTransitive",
-        "requested": "[4.70.1, )",
+        "requested": "[4.71.0, )",
         "resolved": "4.61.3",
         "contentHash": "naJo/Qm35Caaoxp5utcw+R8eU8ZtLz2ALh8S+gkekOYQ1oazfCQMWVT4NJ/FnHzdIJlm8dMz0oMpMGCabx5odA==",
         "dependencies": {
