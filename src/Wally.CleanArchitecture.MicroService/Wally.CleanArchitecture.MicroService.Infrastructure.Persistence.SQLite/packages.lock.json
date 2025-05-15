@@ -20,9 +20,9 @@
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
-        "requested": "[10.8.0.113526, )",
-        "resolved": "10.8.0.113526",
-        "contentHash": "2+Gk4w467coeL9ozQlAN9y0mwMj3XmlacFYZE0Ptz4LC4EkmMPwY5ygYPkwg9/xJ1SIShmoAC+5Sinb3khHDng=="
+        "requested": "[10.9.0.115408, )",
+        "resolved": "10.9.0.115408",
+        "contentHash": "cLvuPNhLWTnHtbTQzZh64xao0ZNsXKc8oZ0Q4agAmMjnqG7Q54mL8jw55rYnVytv+cXRw9ItRoUsggnvRsKJIA=="
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
@@ -458,7 +458,7 @@
           "MassTransit.Abstractions": "[8.4.0, )",
           "MediatR": "[12.5.0, )",
           "Microsoft.AspNetCore.OData": "[9.3.0, )",
-          "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
+          "SonarAnalyzer.CSharp": "[10.9.0.115408, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application.Contracts": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Application.Messages": "[1.0.0, )",
@@ -470,7 +470,7 @@
         "dependencies": {
           "FluentValidation": "[11.11.0, )",
           "Reinforced.Typings": "[1.6.5, )",
-          "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
+          "SonarAnalyzer.CSharp": "[10.9.0.115408, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
@@ -479,7 +479,7 @@
         "type": "Project",
         "dependencies": {
           "FluentValidation": "[11.11.0, )",
-          "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
+          "SonarAnalyzer.CSharp": "[10.9.0.115408, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
@@ -487,7 +487,7 @@
       "wally.cleanarchitecture.microservice.domain": {
         "type": "Project",
         "dependencies": {
-          "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
+          "SonarAnalyzer.CSharp": "[10.9.0.115408, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Ulid": "[1.3.4, )"
         }
@@ -500,7 +500,7 @@
           "Microsoft.EntityFrameworkCore": "[9.0.4, )",
           "Microsoft.EntityFrameworkCore.Relational": "[9.0.4, )",
           "Microsoft.EntityFrameworkCore.SqlServer": "[9.0.4, )",
-          "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
+          "SonarAnalyzer.CSharp": "[10.9.0.115408, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"

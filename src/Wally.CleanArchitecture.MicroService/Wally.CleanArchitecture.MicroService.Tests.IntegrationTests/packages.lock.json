@@ -86,9 +86,9 @@
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
-        "requested": "[10.8.0.113526, )",
-        "resolved": "10.8.0.113526",
-        "contentHash": "2+Gk4w467coeL9ozQlAN9y0mwMj3XmlacFYZE0Ptz4LC4EkmMPwY5ygYPkwg9/xJ1SIShmoAC+5Sinb3khHDng=="
+        "requested": "[10.9.0.115408, )",
+        "resolved": "10.9.0.115408",
+        "contentHash": "cLvuPNhLWTnHtbTQzZh64xao0ZNsXKc8oZ0Q4agAmMjnqG7Q54mL8jw55rYnVytv+cXRw9ItRoUsggnvRsKJIA=="
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
@@ -157,15 +157,14 @@
       },
       "Verify.Xunit": {
         "type": "Direct",
-        "requested": "[29.3.0, )",
-        "resolved": "29.3.0",
-        "contentHash": "o/NvBDYh6fmybQDCnq27AMhKCzXjUrfe5gQT9B5YKDVR2xLezktmrAB0JXwxbpNAFOKcx0wuEECo9OTsDqYmpA==",
+        "requested": "[30.1.0, )",
+        "resolved": "30.1.0",
+        "contentHash": "NZLS4S6WW3emoCAo0jZ7441/S8/pETX3aj8qLkak+V575ivkoaSyKnoILo6mx0PuNuw7I9J4lpvO0U6p2BHh1A==",
         "dependencies": {
-          "Argon": "0.27.0",
-          "DiffEngine": "16.1.0",
+          "Argon": "0.28.0",
+          "DiffEngine": "16.2.1",
           "SimpleInfoName": "3.1.0",
-          "System.IO.Hashing": "9.0.4",
-          "Verify": "29.3.0",
+          "Verify": "30.1.0",
           "xunit.abstractions": "2.0.3",
           "xunit.extensibility.execution": "2.9.3"
         }
@@ -183,14 +182,14 @@
       },
       "xunit.runner.visualstudio": {
         "type": "Direct",
-        "requested": "[3.0.2, )",
-        "resolved": "3.0.2",
-        "contentHash": "oXbusR6iPq0xlqoikjdLvzh+wQDkMv9If58myz9MEzldS4nIcp442Btgs2sWbYWV+caEluMe2pQCZ0hUZgPiow=="
+        "requested": "[3.1.0, )",
+        "resolved": "3.1.0",
+        "contentHash": "K9O9TOzugqOo4LJ87uuq1VG8RAqGp20Ng85Wx932oT5LNBkIgeeGYubVW5UMnOOTanFNbGavmbuYrJr4INzSwg=="
       },
       "Argon": {
         "type": "Transitive",
-        "resolved": "0.27.0",
-        "contentHash": "LtZKATYeTwDyYq1AXrgVU/ly+nI6GvE0GK1isJYFPQOnb2uHUxvDA+yh40QYaITGTLViXK7rbWhNKpbZ5pb9XA=="
+        "resolved": "0.28.0",
+        "contentHash": "78BmoFm8SK733nq4F/SjqNKkXJHdrg/MslvYfNjJX/nM/mEkltHUzPJRjBE9VI/zghsjFPQxMRPEUaqIgg98zg=="
       },
       "Argon.Xml": {
         "type": "Transitive",
@@ -264,10 +263,10 @@
       },
       "DiffEngine": {
         "type": "Transitive",
-        "resolved": "16.1.0",
-        "contentHash": "ImEFC6BN62paN0N7v8vrLY3x/LpfbJaJy5yDtL+/L2As6FI1npGJcFZwzz1A7pdDjIYPOXE91qv6BpgEUGjDkA==",
+        "resolved": "16.2.1",
+        "contentHash": "UfMgXClqOGkPNfth210upiTY18LPCgjsfNrh0Olo5qI+QTkkCO6wHSuOwknxJdKtsWoaJ+E132Y2nzD0PiLWRw==",
         "dependencies": {
-          "EmptyFiles": "8.8.0",
+          "EmptyFiles": "8.9.1",
           "System.Management": "8.0.0"
         }
       },
@@ -289,8 +288,8 @@
       },
       "EmptyFiles": {
         "type": "Transitive",
-        "resolved": "8.8.0",
-        "contentHash": "d0pgc/vMyKgQ9T3qiiJBn1uYUSZ1/OShh6tySnNSkELRSgM4A4IOrpdQhLqwCkPwYvdJqzKuxQ6wn3MQAd4GNA=="
+        "resolved": "8.9.1",
+        "contentHash": "GbGf+oH/xiI3C5vJ5TnoA4sx7x7LhtOvN00fxihRZJsj40XuXk2TMz/4m26PfNSJj8JMAqo3BUBirjvam+3xkA=="
       },
       "EntityFrameworkCore.Exceptions.Common": {
         "type": "Transitive",
@@ -1313,11 +1312,6 @@
           "System.Threading.Tasks": "4.3.0"
         }
       },
-      "System.IO.Hashing": {
-        "type": "Transitive",
-        "resolved": "9.0.4",
-        "contentHash": "WogPvgAFqQORFD8Iyha6RZ+/1QB3dsWRWxbwi8/HHVgiGQ8z0oMWpwe8Kk3Ti+Roe+P6a3sBg+WwBfEsyziZKg=="
-      },
       "System.IO.Pipelines": {
         "type": "Transitive",
         "resolved": "9.0.4",
@@ -1501,13 +1495,12 @@
       },
       "Verify": {
         "type": "Transitive",
-        "resolved": "29.3.0",
-        "contentHash": "Urc7/If0eLpawVFtZrzYso3YrIWXOVkIY9iFiAhm/XrqUHDIP+wT5P/6uj5GCSGsY2yDT7OZ9xAwiLbxhEGnVw==",
+        "resolved": "30.1.0",
+        "contentHash": "SUEHSRcWPJ44IDfg7/Pc3JEFeDHgJRj6wzouIr+DsVT23jCliXt4GQOmQcz+/KjmW1mDshmTvIrUV23Dm/vHHQ==",
         "dependencies": {
-          "Argon": "0.27.0",
-          "DiffEngine": "16.1.0",
-          "SimpleInfoName": "3.1.0",
-          "System.IO.Hashing": "9.0.4"
+          "Argon": "0.28.0",
+          "DiffEngine": "16.2.1",
+          "SimpleInfoName": "3.1.0"
         }
       },
       "xunit.abstractions": {
@@ -1566,7 +1559,7 @@
           "MassTransit.Abstractions": "[8.4.0, )",
           "MediatR": "[12.5.0, )",
           "Microsoft.AspNetCore.OData": "[9.3.0, )",
-          "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
+          "SonarAnalyzer.CSharp": "[10.9.0.115408, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application.Contracts": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Application.Messages": "[1.0.0, )",
@@ -1578,7 +1571,7 @@
         "dependencies": {
           "FluentValidation": "[11.11.0, )",
           "Reinforced.Typings": "[1.6.5, )",
-          "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
+          "SonarAnalyzer.CSharp": "[10.9.0.115408, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
@@ -1587,7 +1580,7 @@
         "type": "Project",
         "dependencies": {
           "AutoMapper": "[14.0.0, )",
-          "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
+          "SonarAnalyzer.CSharp": "[10.9.0.115408, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application.Contracts": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
@@ -1597,7 +1590,7 @@
         "type": "Project",
         "dependencies": {
           "FluentValidation": "[11.11.0, )",
-          "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
+          "SonarAnalyzer.CSharp": "[10.9.0.115408, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
@@ -1605,7 +1598,7 @@
       "wally.cleanarchitecture.microservice.domain": {
         "type": "Project",
         "dependencies": {
-          "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
+          "SonarAnalyzer.CSharp": "[10.9.0.115408, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Ulid": "[1.3.4, )"
         }
@@ -1615,7 +1608,7 @@
         "dependencies": {
           "MediatR": "[12.5.0, )",
           "Microsoft.Extensions.Hosting.Abstractions": "[9.0.4, )",
-          "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
+          "SonarAnalyzer.CSharp": "[10.9.0.115408, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
@@ -1653,7 +1646,7 @@
           "Microsoft.Extensions.Configuration.Abstractions": "[9.0.4, )",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[9.0.4, )",
           "Scrutor": "[6.0.1, )",
-          "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
+          "SonarAnalyzer.CSharp": "[10.9.0.115408, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Swashbuckle.AspNetCore": "[8.1.1, )",
           "System.Drawing.Common": "[9.0.4, )",
@@ -1676,7 +1669,7 @@
           "MassTransit": "[8.4.0, )",
           "MediatR": "[12.5.0, )",
           "Microsoft.Extensions.Logging.Abstractions": "[9.0.4, )",
-          "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
+          "SonarAnalyzer.CSharp": "[10.9.0.115408, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.Identity.Messages": "[2.1.1842, )"
@@ -1690,7 +1683,7 @@
           "Microsoft.EntityFrameworkCore": "[9.0.4, )",
           "Microsoft.EntityFrameworkCore.Relational": "[9.0.4, )",
           "Microsoft.EntityFrameworkCore.SqlServer": "[9.0.4, )",
-          "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
+          "SonarAnalyzer.CSharp": "[10.9.0.115408, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
@@ -1700,7 +1693,7 @@
         "type": "Project",
         "dependencies": {
           "Pomelo.EntityFrameworkCore.MySql": "[9.0.0-preview.2.efcore.9.0.0, )",
-          "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
+          "SonarAnalyzer.CSharp": "[10.9.0.115408, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence": "[1.0.0, )"
         }
@@ -1709,7 +1702,7 @@
         "type": "Project",
         "dependencies": {
           "Npgsql.EntityFrameworkCore.PostgreSQL": "[9.0.4, )",
-          "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
+          "SonarAnalyzer.CSharp": "[10.9.0.115408, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence": "[1.0.0, )"
         }
@@ -1718,7 +1711,7 @@
         "type": "Project",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Sqlite": "[9.0.4, )",
-          "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
+          "SonarAnalyzer.CSharp": "[10.9.0.115408, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence": "[1.0.0, )"
         }
@@ -1729,7 +1722,7 @@
           "Azure.Identity": "[1.13.2, )",
           "Microsoft.EntityFrameworkCore.SqlServer": "[9.0.4, )",
           "Microsoft.Identity.Client": "[4.71.0, )",
-          "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
+          "SonarAnalyzer.CSharp": "[10.9.0.115408, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "System.Formats.Asn1": "[9.0.4, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence": "[1.0.0, )"
@@ -1743,7 +1736,7 @@
           "Microsoft.EntityFrameworkCore": "[9.0.4, )",
           "Microsoft.Extensions.Logging.Abstractions": "[9.0.4, )",
           "Serilog": "[4.2.0, )",
-          "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
+          "SonarAnalyzer.CSharp": "[10.9.0.115408, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
@@ -1755,7 +1748,7 @@
           "Microsoft.EntityFrameworkCore.Design": "[9.0.4, )",
           "Serilog.AspNetCore": "[9.0.0, )",
           "Serilog.Sinks.ApplicationInsights": "[4.0.0, )",
-          "SonarAnalyzer.CSharp": "[10.8.0.113526, )",
+          "SonarAnalyzer.CSharp": "[10.9.0.115408, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "System.Drawing.Common": "[9.0.4, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",

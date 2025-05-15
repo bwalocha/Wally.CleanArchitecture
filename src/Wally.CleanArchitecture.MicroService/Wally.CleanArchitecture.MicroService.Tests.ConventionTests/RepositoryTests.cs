@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Shouldly;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
+using Wally.CleanArchitecture.MicroService.Application.Contracts;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 using Xunit;
@@ -96,6 +98,39 @@ public class RepositoryTests
 
 				repositories.SingleOrDefault(a => a.ImplementsInterface(type))
 					.ShouldNotBeNull($"Repository for '{type}' interface should be implemented, and '{0}' is not");
+			}
+		});
+	}
+	
+	[Fact]
+	public void Repository_CollectionReturnTypes_ShouldBePaged()
+	{
+		var assemblies = Configuration.Assemblies.GetAllAssemblies();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.ImplementsGenericInterface(typeof(IReadOnlyRepository<,>)));
+
+		types.ShouldSatisfyAllConditions(() =>
+		{
+			foreach (var type in types)
+			{
+				var methods = type.GetMethods()
+					.Where(a => a.IsPublic)
+					.Where(a => a.ReturnType.IsGenericType)
+					.Where(a => a.ReturnType.GetGenericTypeDefinition() == typeof(Task<>))
+					.Where(a => a.ReturnType.GetGenericArguments()[0].IsGenericType)
+					.Where(a => a.ReturnType.GetGenericArguments()[0]
+						.GetGenericTypeDefinition() != typeof(PagedResponse<>));
+
+				foreach (var method in methods)
+				{
+					// TODO:
+					// var returnsCollection = typeof(IEnumerable).IsAssignableFrom(taskResultType)
+					// || (taskResultType.IsGenericType && taskResultType.GetInterfaces()
+					// 		.Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>)));
+
+					false.ShouldBeTrue(
+							$"Method '{method.Name}' in repository '{type.Name}' return type should be Task<PagedResponse<>> for collections.");
+				}
 			}
 		});
 	}

@@ -13,8 +13,10 @@ namespace Wally.CleanArchitecture.ApiGateway.WebApi;
 [ExcludeFromCodeCoverage]
 public static class Program
 {
-	/*private const string _azureADManagedIdentityClientIdConfigName = "AzureADManagedIdentityClientId";
-	private const string _keyVaultNameConfigName = "KeyVaultName";*/
+	/*
+	private const string _azureADManagedIdentityClientIdConfigName = "AzureADManagedIdentityClientId";
+	private const string _keyVaultNameConfigName = "KeyVaultName";
+	*/
 	private const bool _reloadOnChange = false;
 
 	public static int Main(string[] args)
@@ -68,7 +70,8 @@ public static class Program
 	/// <returns></returns>
 	private static IConfigurationBuilder ConfigureAppConfiguration(IConfigurationBuilder configurationBuilder)
 	{
-		/*var configuration = configurationBuilder.Build();
+		/*
+		var configuration = configurationBuilder.Build();
 		var keyVaultName = configuration[_keyVaultNameConfigName];
 		var keyVaultUrl = new Uri($"https://{keyVaultName}.vault.azure.net/");
 		var credential = new DefaultAzureCredential(new DefaultAzureCredentialOptions
@@ -76,7 +79,8 @@ public static class Program
 			ManagedIdentityClientId = configuration[_azureADManagedIdentityClientIdConfigName]
 		});
 
-		return configurationBuilder.AddAzureKeyVault(keyVaultUrl, credential);*/
+		return configurationBuilder.AddAzureKeyVault(keyVaultUrl, credential);
+		*/
 		return configurationBuilder;
 	}
 
