@@ -1,5 +1,5 @@
 @ECHO OFF
-SET "WEBAPP=wally.cleanarchitecture.microservice"
+SET "WEBAPP=wally.cleanarchitecture.webapp"
 
 cls
 color 02
