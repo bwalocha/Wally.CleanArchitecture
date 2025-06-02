@@ -15,7 +15,7 @@ call npm -v
 call npx create-next-app@latest %WEBAPP% --typescript --tailwind --eslint --app --src-dir --turbopack --no-import-alias --use-npm --disable-git
 cd ./%WEBAPP% || echo ERROR: unknown && goto error
 REM call npm install
-call npx shadcn@latest init --defaults --force || echo ERROR: unknown && goto error
+call npx shadcn@latest init --base-color Neutral --force || echo ERROR: unknown && goto error
 call npx shadcn@latest add --all || echo ERROR: unknown && goto error
 
 call npm install @reduxjs/toolkit --legacy-peer-deps || echo ERROR: unknown && goto error
