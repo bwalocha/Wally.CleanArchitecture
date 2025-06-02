@@ -16,8 +16,8 @@ call npx create-next-app@latest %WEBAPP% --typescript --tailwind --eslint --app 
 cd ./%WEBAPP% || echo ERROR: unknown && goto error
 
 REM base-color: neutral
-call npx shadcn@latest init --force --base-color neutral || echo ERROR: unknown && goto error
-call npx shadcn@latest add --all || echo ERROR: unknown && goto error
+call npx shadcn@latest init --base-color neutral --legacy-peer-deps || echo ERROR: unknown && goto error
+call npx shadcn@latest add --all --legacy-peer-deps || echo ERROR: unknown && goto error
 
 call npm install @reduxjs/toolkit --legacy-peer-deps || echo ERROR: unknown && goto error
 call npm install react-redux --legacy-peer-deps || echo ERROR: unknown && goto error
@@ -34,6 +34,7 @@ call npm install @microsoft/signalr --legacy-peer-deps || echo ERROR: unknown &&
 call npm install @radix-ui/react-icons --legacy-peer-deps || echo ERROR: unknown && goto error
 
 call npm install @tanstack/react-table --legacy-peer-deps || echo ERROR: unknown && goto error
+call npm install @radix-ui/react-toast || echo ERROR: unknown && goto error
 
 call npm install -g npm-check-updates || echo ERROR: unknown && goto error
 call ncu --interactive --peer || echo ERROR: unknown && goto error
