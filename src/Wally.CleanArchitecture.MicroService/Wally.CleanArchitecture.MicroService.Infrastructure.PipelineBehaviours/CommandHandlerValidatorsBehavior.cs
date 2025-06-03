@@ -25,7 +25,7 @@ public class CommandHandlerValidatorsBehavior<TRequest, TResponse> : IPipelineBe
 	{
 		if (!_validators.Any())
 		{
-			return await next();
+			return await next(cancellationToken);
 		}
 
 		var validationResults =
@@ -39,6 +39,6 @@ public class CommandHandlerValidatorsBehavior<TRequest, TResponse> : IPipelineBe
 			throw new ValidationException(validationErrors);
 		}
 
-		return await next();
+		return await next(cancellationToken);
 	}
 }

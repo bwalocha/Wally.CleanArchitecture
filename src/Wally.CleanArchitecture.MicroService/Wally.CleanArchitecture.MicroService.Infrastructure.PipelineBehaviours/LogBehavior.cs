@@ -36,7 +36,7 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 
 		try
 		{
-			return await next();
+			return await next(cancellationToken);
 		}
 		finally
 		{

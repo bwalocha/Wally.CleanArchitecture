@@ -27,7 +27,7 @@ public class DomainEventHandlerBehavior<TRequest, TResponse> : IPipelineBehavior
 		RequestHandlerDelegate<TResponse> next,
 		CancellationToken cancellationToken)
 	{
-		var response = await next();
+		var response = await next(cancellationToken);
 
 		var domainEntities = _dbContext.ChangeTracker.Entries<IEntity>()
 			.Where(a => a.Entity.GetDomainEvents().Count != 0)
@@ -40,6 +40,7 @@ public class DomainEventHandlerBehavior<TRequest, TResponse> : IPipelineBehavior
 
 		foreach (var domainEvent in domainEvents)
 		{
+			// TODO: consider using cache: dictionary
 			var domainEvenHandlerType = typeof(IDomainEventHandler<>);
 			var domainEvenHandlerTypeWithGenericType = domainEvenHandlerType.MakeGenericType(domainEvent.GetType());
 

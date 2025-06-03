@@ -33,6 +33,6 @@ public class QueryHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBehav
 			}
 		}
 
-		return await next();
+		return await next(cancellationToken);
 	}
 }

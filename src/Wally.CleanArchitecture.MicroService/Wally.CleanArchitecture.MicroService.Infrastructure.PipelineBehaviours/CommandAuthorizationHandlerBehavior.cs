@@ -34,6 +34,6 @@ public class CommandAuthorizationHandlerBehavior<TRequest, TResponse> : IPipelin
 			throw new PermissionDeniedException();
 		}
 
-		return await next();
+		return await next(cancellationToken);
 	}
 }
