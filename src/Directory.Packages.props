@@ -1,6 +1,8 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <!--<CentralPackageTransitivePinningEnabled>false</CentralPackageTransitivePinningEnabled>-->
+    <CentralPackageVersionOverrideEnabled>false</CentralPackageVersionOverrideEnabled>
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="AutoMapper" Version="14.0.0" />
