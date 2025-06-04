@@ -64,10 +64,10 @@
       },
       "FluentValidation.DependencyInjectionExtensions": {
         "type": "Transitive",
-        "resolved": "11.5.1",
-        "contentHash": "iWM0LS1MDYX06pcjMEQKqHirl2zkjHlNV23mEJSoR1IZI7KQmTa0RcTtGEJpj5+iHvBCfrzP2mYKM4FtRKVb+A==",
+        "resolved": "11.11.0",
+        "contentHash": "viTKWaMbL3yJYgGI0DiCeavNbE9UPMWFVK2XS9nYXGbm3NDMd0/L5ER4wBzmTtW3BYh3SrlSXm9RACiKZ6stlA==",
         "dependencies": {
-          "FluentValidation": "11.5.1",
+          "FluentValidation": "11.11.0",
           "Microsoft.Extensions.Dependencyinjection.Abstractions": "2.1.0"
         }
       },
@@ -621,7 +621,7 @@
           "AspNetCore.HealthChecks.UI": "[9.0.0, )",
           "AspNetCore.HealthChecks.UI.Client": "[9.0.0, )",
           "AspNetCore.HealthChecks.UI.InMemory.Storage": "[9.0.0, )",
-          "FluentValidation.AspNetCore": "[11.3.0, )",
+          "FluentValidation.AspNetCore": "[11.3.1, )",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "[8.0.16, )",
           "Microsoft.Extensions.Caching.Memory": "[9.0.5, )",
           "Microsoft.Extensions.Configuration.Abstractions": "[9.0.5, )",
@@ -633,7 +633,7 @@
           "OpenTelemetry.Instrumentation.Http": "[1.12.0, )",
           "SonarAnalyzer.CSharp": "[10.10.0.116381, )",
           "StyleCop.Analyzers": "[1.1.118, )",
-          "Swashbuckle.AspNetCore.SwaggerUI": "[8.1.2, )",
+          "Swashbuckle.AspNetCore.SwaggerUI": "[8.1.3, )",
           "System.Text.Json": "[9.0.5, )",
           "Yarp.ReverseProxy": "[2.3.0, )"
         }
@@ -672,17 +672,17 @@
       "FluentValidation": {
         "type": "CentralTransitive",
         "requested": "[12.0.0, )",
-        "resolved": "11.5.1",
-        "contentHash": "0h1Q5lNOLLyYTWMJmyNoMqhY4CBRvvUWvJP1R4F2CnmmzuWwvB0A8aVmw5+lOuwYnwUwCRrdeMLbc81F38ahNQ=="
+        "resolved": "11.11.0",
+        "contentHash": "cyIVdQBwSipxWG8MA3Rqox7iNbUNUTK5bfJi9tIdm4CAfH71Oo5ABLP4/QyrUwuakqpUEPGtE43BDddvEehuYw=="
       },
       "FluentValidation.AspNetCore": {
         "type": "CentralTransitive",
-        "requested": "[11.3.0, )",
-        "resolved": "11.3.0",
-        "contentHash": "jtFVgKnDFySyBlPS8bZbTKEEwJZnn11rXXJ2SQnjDhZ56rQqybBg9Joq4crRLz3y0QR8WoOq4iE4piV81w/Djg==",
+        "requested": "[11.3.1, )",
+        "resolved": "11.3.1",
+        "contentHash": "FjkfrGGwC+25oH8QpX1ti3gxkFjDDtotkAQWyQz2CkwQwEfRKTANjhh77I79kY8dov2ydK1SY+e4jiOWsbbDdQ==",
         "dependencies": {
-          "FluentValidation": "11.5.1",
-          "FluentValidation.DependencyInjectionExtensions": "11.5.1"
+          "FluentValidation": "11.11.0",
+          "FluentValidation.DependencyInjectionExtensions": "11.11.0"
         }
       },
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
@@ -848,8 +848,8 @@
       "Swashbuckle.AspNetCore.SwaggerUI": {
         "type": "CentralTransitive",
         "requested": "[8.1.2, )",
-        "resolved": "8.1.2",
-        "contentHash": "qsGf333N+sa2XmxqU287HZEP/W1OrPwk2DpXHb0fL2PhXj5fatUv50ExePJb7yiA6kpKLVpGReJD0tj2Kai1CA=="
+        "resolved": "8.1.3",
+        "contentHash": "MYHiti47WBQ8Xx12/mBNGsQjbOt3ADtI5mxeRSYhQXC0GeFadUh053hBb/AlrzKt+I/5aeuW7oqsWev7XMMGUg=="
       },
       "System.Text.Json": {
         "type": "CentralTransitive",

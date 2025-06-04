@@ -32,7 +32,7 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 		RequestHandlerDelegate<TResponse> next,
 		CancellationToken cancellationToken)
 	{
-		var response = await next();
+		var response = await next(cancellationToken);
 
 		UpdateAggregateMetadata(_dbContext.ChangeTracker.Entries<IAuditable>());
 

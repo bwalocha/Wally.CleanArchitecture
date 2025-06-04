@@ -25,7 +25,7 @@ public class TransactionBehavior<TRequest, TResponse> : IPipelineBehavior<TReque
 
 		try
 		{
-			var response = await next();
+			var response = await next(cancellationToken);
 			await _dbContext.SaveChangesAsync(cancellationToken);
 			await transaction.CommitAsync(cancellationToken);
 
@@ -35,9 +35,12 @@ public class TransactionBehavior<TRequest, TResponse> : IPipelineBehavior<TReque
 		{
 			System.Diagnostics.Debugger.Break();
 			await transaction.RollbackAsync(cancellationToken);
-			_dbContext.ChangeTracker.Clear();
 
 			throw;
+		}
+		finally
+		{
+			_dbContext.ChangeTracker.Clear();
 		}
 	}
 }

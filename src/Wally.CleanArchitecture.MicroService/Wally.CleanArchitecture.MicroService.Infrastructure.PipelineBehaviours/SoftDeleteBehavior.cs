@@ -32,7 +32,7 @@ public class SoftDeleteBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
 		RequestHandlerDelegate<TResponse> next,
 		CancellationToken cancellationToken)
 	{
-		var response = await next();
+		var response = await next(cancellationToken);
 
 		UpdateSoftDeleteMetadata(_dbContext.ChangeTracker.Entries<ISoftDeletable>());
 

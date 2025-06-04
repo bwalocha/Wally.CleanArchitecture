@@ -28,6 +28,6 @@ public class CommandHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBeh
 			throw new ValidationException(validationResult.Errors);
 		}
 
-		return await next();
+		return await next(cancellationToken);
 	}
 }

@@ -1,5 +1,5 @@
 @ECHO OFF
-SET "WEBAPP=wally.cleanarchitecture.microservice"
+SET "WEBAPP=wally.cleanarchitecture.webapp"
 
 cls
 color 02
@@ -14,9 +14,10 @@ call npm -v
 (if exist .\%WEBAPP% rmdir .\%WEBAPP% /S /Q) || echo ERROR: Cannot clean the directory && goto error
 call npx create-next-app@latest %WEBAPP% --typescript --tailwind --eslint --app --src-dir --turbopack --no-import-alias --use-npm --disable-git
 cd ./%WEBAPP% || echo ERROR: unknown && goto error
-REM call npm install
-call npx shadcn@latest init --defaults --force || echo ERROR: unknown && goto error
-call npx shadcn@latest add --all || echo ERROR: unknown && goto error
+
+REM base-color: neutral
+call npx shadcn@latest init --base-color neutral --legacy-peer-deps || echo ERROR: unknown && goto error
+call npx shadcn@latest add --all --legacy-peer-deps || echo ERROR: unknown && goto error
 
 call npm install @reduxjs/toolkit --legacy-peer-deps || echo ERROR: unknown && goto error
 call npm install react-redux --legacy-peer-deps || echo ERROR: unknown && goto error
@@ -30,11 +31,12 @@ call npm install next-auth@beta --legacy-peer-deps || echo ERROR: unknown && got
 
 call npm install @microsoft/signalr --legacy-peer-deps || echo ERROR: unknown && goto error
 
-call npm i @radix-ui/react-icons --legacy-peer-deps || echo ERROR: unknown && goto error
+call npm install @radix-ui/react-icons --legacy-peer-deps || echo ERROR: unknown && goto error
 
-call npm i @tanstack/react-table --legacy-peer-deps || echo ERROR: unknown && goto error
+call npm install @tanstack/react-table --legacy-peer-deps || echo ERROR: unknown && goto error
+call npm install @radix-ui/react-toast || echo ERROR: unknown && goto error
 
-call npm i -g npm-check-updates || echo ERROR: unknown && goto error
+call npm install -g npm-check-updates || echo ERROR: unknown && goto error
 call ncu --interactive --peer || echo ERROR: unknown && goto error
 
 call npm run build || echo ERROR: unknown && goto error
