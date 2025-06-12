@@ -1,11 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <ImplicitUsings>disable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
-
     <Import Project="..\..\Directory.BuildTests.props" />
 
     <ItemGroup>
@@ -13,11 +6,6 @@
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
         <PackageReference Include="Verify.Http" />
         <PackageReference Include="Verify.Xunit" />
-    </ItemGroup>
-
-    <!-- Updates for vulnerable packages -->
-    <ItemGroup>
-        <PackageReference Include="System.Text.Encodings.Web" />
     </ItemGroup>
 
     <ItemGroup>
@@ -35,5 +23,4 @@
         <DependentUpon>ControllerTests.cs</DependentUpon>
       </Compile>
     </ItemGroup>
-
 </Project>

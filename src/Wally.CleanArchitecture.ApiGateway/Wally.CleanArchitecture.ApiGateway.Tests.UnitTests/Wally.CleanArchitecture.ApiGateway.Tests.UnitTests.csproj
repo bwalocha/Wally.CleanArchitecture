@@ -1,15 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <ImplicitUsings>disable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
-
     <Import Project="..\..\Directory.BuildTests.props" />
 
     <ItemGroup>
         <PackageReference Include="Moq" />
     </ItemGroup>
-
 </Project>

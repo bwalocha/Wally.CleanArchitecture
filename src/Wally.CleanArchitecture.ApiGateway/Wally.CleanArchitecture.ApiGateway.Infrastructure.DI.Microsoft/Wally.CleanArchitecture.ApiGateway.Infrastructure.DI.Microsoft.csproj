@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>disable</ImplicitUsings>
@@ -22,11 +21,4 @@
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" />
         <PackageReference Include="Yarp.ReverseProxy" />
     </ItemGroup>
-
-    <!-- Updates for vulnerable packages -->
-    <ItemGroup>
-        <PackageReference Include="System.Text.Json" />
-        <PackageReference Include="Microsoft.Extensions.Caching.Memory" />
-    </ItemGroup>
-
 </Project>

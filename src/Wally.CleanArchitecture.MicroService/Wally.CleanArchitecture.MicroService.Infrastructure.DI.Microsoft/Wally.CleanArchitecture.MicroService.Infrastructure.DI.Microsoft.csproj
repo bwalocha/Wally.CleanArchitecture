@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>disable</ImplicitUsings>
@@ -42,8 +41,6 @@
     <ItemGroup>
         <PackageReference Include="BouncyCastle.Cryptography" />
         <PackageReference Include="System.Drawing.Common" />
-        <PackageReference Include="System.Runtime.Caching" />
-        <PackageReference Include="System.Text.Json" />
     </ItemGroup>
 
     <ItemGroup>
@@ -57,5 +54,4 @@
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours\Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours.csproj" />
     </ItemGroup>
-
 </Project>

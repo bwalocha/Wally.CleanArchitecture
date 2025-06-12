@@ -26,10 +26,23 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 		// .WithReuse(true)
 		.Build();
 
-	/*private readonly KafkaContainer _kafkaContainer = new KafkaBuilder()
+	/*
+	 private readonly KafkaContainer _kafkaContainer = new KafkaBuilder()
 		.WithImage("confluentinc/cp-kafka:6.2.10")
 		.WithReuse(true)
-		.Build();*/
+		.Build();
+	*/
+	
+	/*
+	 private static readonly AzuriteContainer AzuriteContainer = new AzuriteBuilder()
+		.WithImage("mcr.microsoft.com/azure-storage/azurite:3.34.0")
+		// .WithName($"azurite-integration-tests")
+		// .WithPortBinding(10000, 10000)
+		// .WithPortBinding(10001, 10001)
+		// .WithPortBinding(10002, 10002)
+		.WithCleanUp(true)
+		.Build();
+	*/
 
 	public Task InitializeAsync()
 	{
@@ -76,7 +89,8 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 		where TEntity : class
 	{
 		var dbContext = GetRequiredService<DbContext>();
-		dbContext.RemoveRange(dbContext.Set<TEntity>());
+		dbContext.RemoveRange(dbContext.Set<TEntity>()
+			.IgnoreQueryFilters());
 
 		return dbContext.SaveChangesAsync();
 	}

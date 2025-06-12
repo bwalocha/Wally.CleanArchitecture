@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>disable</ImplicitUsings>
@@ -13,5 +12,4 @@
     <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.csproj" />
     </ItemGroup>
-
 </Project>
