@@ -41,7 +41,7 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 
 	private void UpdateAggregateMetadata(IEnumerable<EntityEntry> entries)
 	{
-		var now = _timeProvider.GetUtcNow();
+		var utcNow = _timeProvider.GetUtcNow();
 		var userId = _requestContext.UserId;
 
 		foreach (var entry in entries)
@@ -53,7 +53,7 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 						new Dictionary<string, object>
 						{
 							{
-								nameof(IAggregateRoot.ModifiedAt), now
+								nameof(IAggregateRoot.ModifiedAt), utcNow
 							},
 							{
 								nameof(IAggregateRoot.ModifiedById), userId
@@ -65,7 +65,7 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 						new Dictionary<string, object>
 						{
 							{
-								nameof(IAggregateRoot.CreatedAt), now
+								nameof(IAggregateRoot.CreatedAt), utcNow
 							},
 							{
 								nameof(IAggregateRoot.CreatedById), userId

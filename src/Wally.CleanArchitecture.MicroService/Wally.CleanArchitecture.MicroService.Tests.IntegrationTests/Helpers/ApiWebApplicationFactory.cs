@@ -21,9 +21,11 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 	where TStartup : class
 {
 	private readonly MsSqlContainer _dbContainer = new MsSqlBuilder()
-		.WithImage("mcr.microsoft.com/mssql/server:2022-latest")
+		// .WithImage("mcr.microsoft.com/mssql/server:2022-latest")
+		.WithImage("mcr.microsoft.com/mssql/server:2022-CU13-ubuntu-22.04")
 		// .WithImage("mcr.microsoft.com/mssql/server:2022-CU13-ubuntu-22.04") // rollback from server:2022-latest due to issue with health check
-		// .WithReuse(true)
+		.WithCleanUp(true)
+		.WithReuse(true)
 		.Build();
 
 	/*
@@ -51,8 +53,11 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 
 	public new Task DisposeAsync()
 	{
-		return Task.WhenAll(_dbContainer.DisposeAsync()
-			.AsTask() /*, _kafkaContainer.StopAsync()*/);
+		return Task.CompletedTask;
+		return Task.WhenAll(
+			_dbContainer.StopAsync()
+			// _dbContainer.DisposeAsync().AsTask()
+			/*, _kafkaContainer.StopAsync()*/);
 	}
 
 	public TService GetRequiredService<TService>()

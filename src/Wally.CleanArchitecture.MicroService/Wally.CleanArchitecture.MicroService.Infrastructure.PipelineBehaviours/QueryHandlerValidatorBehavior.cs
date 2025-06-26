@@ -23,14 +23,16 @@ public class QueryHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBehav
 		RequestHandlerDelegate<TResponse> next,
 		CancellationToken cancellationToken)
 	{
-		if (_validator != null)
+		if (_validator == null)
 		{
-			var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+			return await next(cancellationToken);
+		}
 
-			if (!validationResult.IsValid)
-			{
-				throw new ValidationException(validationResult.Errors);
-			}
+		var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+
+		if (!validationResult.IsValid)
+		{
+			throw new ValidationException(validationResult.Errors);
 		}
 
 		return await next(cancellationToken);

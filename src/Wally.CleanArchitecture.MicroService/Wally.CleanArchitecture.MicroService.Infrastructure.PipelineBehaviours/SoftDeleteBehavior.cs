@@ -41,7 +41,7 @@ public class SoftDeleteBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
 
 	private void UpdateSoftDeleteMetadata(IEnumerable<EntityEntry> entries)
 	{
-		var now = _timeProvider.GetUtcNow();
+		var utcNow = _timeProvider.GetUtcNow();
 		var userId = _requestContext.UserId;
 
 		foreach (var entry in entries)
@@ -57,7 +57,7 @@ public class SoftDeleteBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
 								nameof(ISoftDeletable.IsDeleted), true
 							},
 							{
-								nameof(ISoftDeletable.DeletedAt), now
+								nameof(ISoftDeletable.DeletedAt), utcNow
 							},
 							{
 								nameof(ISoftDeletable.DeletedById), userId

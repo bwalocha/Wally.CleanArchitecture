@@ -17,6 +17,7 @@ using Wally.CleanArchitecture.MicroService.WebApi;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 
+// TODO: use TngTech.ArchUnitNET NuGet: ArchUnitNET, ArchUnitNET.Fluent.ArchRuleDefinition
 public static class Configuration
 {
 	public const string Namespace = "Wally.CleanArchitecture.MicroService";

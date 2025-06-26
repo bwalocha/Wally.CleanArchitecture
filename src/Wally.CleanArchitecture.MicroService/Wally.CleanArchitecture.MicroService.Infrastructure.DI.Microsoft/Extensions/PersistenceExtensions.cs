@@ -19,6 +19,9 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Exten
 
 public static class PersistenceExtensions
 {
+	private const int MaxRetryCount = 0; // 3;
+	private static readonly TimeSpan MaxRetryDelay = TimeSpan.FromSeconds(5);
+
 	public static IServiceCollection AddPersistence(this IServiceCollection services, AppSettings settings)
 	{
 		void DbContextOptions(DbContextOptionsBuilder options)
@@ -88,11 +91,10 @@ public static class PersistenceExtensions
 				MySqlServerVersion.LatestSupportedServerVersion,
 				builder =>
 				{
+					builder.MigrationsAssembly(typeof(IInfrastructureMySqlAssemblyMarker).Assembly.GetName().Name);
 					builder.MigrationsHistoryTable(HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
 					builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-					builder.MigrationsAssembly(
-						typeof(IInfrastructureMySqlAssemblyMarker).Assembly.GetName()
-							.Name);
+					builder.EnableRetryOnFailure(MaxRetryCount, MaxRetryDelay, null);
 				})
 			.UseExceptionProcessor();
 	}
@@ -103,11 +105,10 @@ public static class PersistenceExtensions
 			settings.ConnectionStrings.Database,
 			builder =>
 			{
+				builder.MigrationsAssembly(typeof(IInfrastructurePostgreSqlAssemblyMarker).Assembly.GetName().Name);
 				builder.MigrationsHistoryTable(HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
 				builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-				builder.MigrationsAssembly(
-					typeof(IInfrastructurePostgreSqlAssemblyMarker).Assembly.GetName()
-						.Name);
+				builder.EnableRetryOnFailure(MaxRetryCount, MaxRetryDelay, null);
 			});
 		ExceptionProcessorExtensions.UseExceptionProcessor(options);
 	}
@@ -125,11 +126,10 @@ public static class PersistenceExtensions
 					This configuration will be ignored by the SQLite provider.
 					This exception can be suppressed or logged by passing event ID 'SqliteEventId.SchemaConfiguredWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.' was thrown while attempting to create an instance. For the different patterns supported at design time, see https://go.microsoft.com/fwlink/?linkid=851728
 					*/
+					builder.MigrationsAssembly(typeof(IInfrastructureSQLiteAssemblyMarker).Assembly.GetName().Name);
 					builder.MigrationsHistoryTable(HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
 					builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-					builder.MigrationsAssembly(
-						typeof(IInfrastructureSQLiteAssemblyMarker).Assembly.GetName()
-							.Name);
+					// builder.EnableRetryOnFailure(MaxRetryCount, MaxRetryDelay, null);
 				})
 			.ConfigureWarnings(
 				builder => { builder.Ignore(SqliteEventId.SchemaConfiguredWarning); });
@@ -142,13 +142,10 @@ public static class PersistenceExtensions
 			settings.ConnectionStrings.Database,
 			builder =>
 			{
-				builder.MigrationsHistoryTable(
-					HistoryRepository.DefaultTableName,
-					ApplicationDbContext.SchemaName);
+				builder.MigrationsAssembly(typeof(IInfrastructureSqlServerAssemblyMarker).Assembly.GetName().Name);
+				builder.MigrationsHistoryTable(HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
 				builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-				builder.MigrationsAssembly(
-					typeof(IInfrastructureSqlServerAssemblyMarker).Assembly.GetName()
-						.Name);
+				builder.EnableRetryOnFailure(MaxRetryCount, MaxRetryDelay, null);
 			});
 		EntityFramework.Exceptions.SqlServer.ExceptionProcessorExtensions.UseExceptionProcessor(options);
 	}

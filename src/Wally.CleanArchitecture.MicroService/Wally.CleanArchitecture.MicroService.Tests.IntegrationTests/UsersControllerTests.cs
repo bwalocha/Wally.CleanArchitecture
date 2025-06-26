@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Extensions;
@@ -9,7 +10,7 @@ using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
 
-public partial class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Startup>>, IDisposable
+public partial class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Startup>>, IAsyncLifetime, IDisposable
 {
 	private readonly ApiWebApplicationFactory<Startup> _factory;
 
@@ -23,15 +24,31 @@ public partial class UsersControllerTests : IClassFixture<ApiWebApplicationFacto
 			{
 				AllowAutoRedirect = false,
 			});
-
+	}
+	
+	public Task InitializeAsync()
+	{
 		// Clean the Database
-		_factory.RemoveAll<User>();
+		return _factory.RemoveAllAsync<User>();
+	}
+
+	public Task DisposeAsync()
+	{
+		return Task.CompletedTask;
 	}
 
 	public void Dispose()
 	{
 		Dispose(true);
 		GC.SuppressFinalize(this);
+	}
+	
+	protected virtual void Dispose(bool disposing)
+	{
+		if (disposing)
+		{
+			_httpClient.Dispose();
+		}
 	}
 
 	private static User UserCreate(int index)
@@ -42,13 +59,5 @@ public partial class UsersControllerTests : IClassFixture<ApiWebApplicationFacto
 			.SetCreatedById(userId);
 
 		return resource;
-	}
-
-	protected virtual void Dispose(bool disposing)
-	{
-		if (disposing)
-		{
-			_httpClient.Dispose();
-		}
 	}
 }

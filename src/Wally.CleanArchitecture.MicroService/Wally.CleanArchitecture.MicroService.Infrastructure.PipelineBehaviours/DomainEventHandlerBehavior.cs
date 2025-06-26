@@ -55,6 +55,8 @@ public class DomainEventHandlerBehavior<TRequest, TResponse> : IPipelineBehavior
 				.Entity
 				.RemoveDomainEvent(domainEvent);
 		}
+		
+		// TODO: consider throw an Exception if any DomainEventHandler produced another DomainEvent
 
 		return response;
 	}
