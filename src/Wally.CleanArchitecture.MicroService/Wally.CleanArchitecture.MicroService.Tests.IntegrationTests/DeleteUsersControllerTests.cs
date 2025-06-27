@@ -3,11 +3,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Time.Testing;
-using Shouldly;
-using VerifyXunit;
+using Shouldly; // TODO: replace with Verify
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Extensions;
-using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
 

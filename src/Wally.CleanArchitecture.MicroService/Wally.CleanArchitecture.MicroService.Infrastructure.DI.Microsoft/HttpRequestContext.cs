@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.AspNetCore.Http;
-using Wally.CleanArchitecture.MicroService.Application;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Domain;
 using Wally.CleanArchitecture.MicroService.Domain.Users;

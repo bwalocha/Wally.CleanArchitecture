@@ -1,5 +1,3 @@
 ﻿namespace Wally.CleanArchitecture.MicroService.WebApi;
 
-public interface IPresentationAssemblyMarker
-{
-}
+public interface IPresentationAssemblyMarker;

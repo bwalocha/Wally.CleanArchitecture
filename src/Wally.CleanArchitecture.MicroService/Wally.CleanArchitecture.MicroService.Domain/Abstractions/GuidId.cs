@@ -49,6 +49,7 @@ public class GuidId<TStronglyTypedId> : StronglyTypedId<TStronglyTypedId, Guid>
 
 	private static Guid NewSequentialId()
 	{
+		// TODO: use .Net 9 Guid.CreateVersion7();
 		return Ulid.NewUlid()
 			.ToGuid();
 		

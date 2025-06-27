@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Context;
-using Wally.CleanArchitecture.MicroService.Application;
+// using Wally.CleanArchitecture.MicroService.Application;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 
 // using Azure.Identity;

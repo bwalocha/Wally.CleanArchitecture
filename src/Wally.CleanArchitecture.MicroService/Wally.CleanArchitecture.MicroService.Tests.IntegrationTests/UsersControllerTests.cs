@@ -6,7 +6,6 @@ using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Extensions;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Helpers;
 using Wally.CleanArchitecture.MicroService.WebApi;
-using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
 

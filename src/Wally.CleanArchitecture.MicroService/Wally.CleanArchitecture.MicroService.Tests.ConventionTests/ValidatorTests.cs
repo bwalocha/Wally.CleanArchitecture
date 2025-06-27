@@ -1,8 +1,6 @@
 ﻿using System.Linq;
 using FluentValidation;
-using Shouldly;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
-using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 

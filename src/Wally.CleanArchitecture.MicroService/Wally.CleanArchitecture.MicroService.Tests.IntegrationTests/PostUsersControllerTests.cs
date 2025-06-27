@@ -1,9 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
-using VerifyXunit;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Requests;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Extensions;
-using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
 

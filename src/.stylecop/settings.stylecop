@@ -92,6 +92,7 @@
     <Rule Id="SA1025" Action="Error" />
     <Rule Id="SA1028" Action="None" />
     <Rule Id="SA1101" Action="None" />
+    <Rule Id="SA1106" Action="None" /> <!-- Code should not contain empty statements -->
     <Rule Id="SA1108" Action="None" />
     <Rule Id="SA1116" Action="None" />
     <Rule Id="SA1117" Action="None" />
@@ -108,6 +109,7 @@
     <Rule Id="SA1202" Action="Error" /> <!-- SA1202ElementsMustBeOrderedByAccess -->
     <Rule Id="SA1203" Action="Error" /> <!-- SA1203ConstantsMustAppearBeforeFields -->
     <Rule Id="SA1204" Action="Error" /> <!-- SA1204StaticElementsMustAppearBeforeInstanceElements -->
+    <Rule Id="SA1206" Action="None" /> <!-- The 'required' modifier should appear before 'public' -->
     <Rule Id="SA1210" Action="Warning" /> <!-- SA1210UsingDirectivesMustBeOrderedAlphabeticallyByNamespace -->
     <Rule Id="SA1212" Action="Error" /> <!-- SA1212PropertyAccessorsMustFollowOrder -->
     <Rule Id="SA1214" Action="Warning" /> <!-- SA1214ReadonlyElementsMustAppearBeforeNonReadonlyElements -->

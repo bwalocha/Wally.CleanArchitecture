@@ -3,11 +3,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using Shouldly;
 using Wally.CleanArchitecture.MicroService.Application.Contracts;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
-using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 

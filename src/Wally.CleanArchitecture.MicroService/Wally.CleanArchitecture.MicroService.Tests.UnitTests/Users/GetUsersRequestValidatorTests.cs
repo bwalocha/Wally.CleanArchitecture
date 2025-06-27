@@ -1,7 +1,5 @@
 using FluentValidation;
-using Shouldly;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Requests;
-using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests.Users;
 

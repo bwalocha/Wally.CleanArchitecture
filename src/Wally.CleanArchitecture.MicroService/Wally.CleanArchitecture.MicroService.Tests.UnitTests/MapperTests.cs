@@ -1,11 +1,9 @@
 ﻿using System;
 using AutoMapper;
-using Shouldly;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Requests;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Responses;
 using Wally.CleanArchitecture.MicroService.Application.MapperProfiles;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
-using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests;
 

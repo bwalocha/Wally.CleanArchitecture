@@ -1,7 +1,5 @@
 ﻿using System.Linq;
-using Shouldly;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
-using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 

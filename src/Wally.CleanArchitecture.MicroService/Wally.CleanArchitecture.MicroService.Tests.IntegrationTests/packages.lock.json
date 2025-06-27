@@ -38,7 +38,7 @@
       },
       "Microsoft.AspNetCore.Mvc.Testing": {
         "type": "Direct",
-        "requested": "[8.0.17, )",
+        "requested": "[8.0.17, 8.0.17]",
         "resolved": "8.0.17",
         "contentHash": "hVHxsQQHbhLqv71DXTjFjNsELXcJp/KiP79RyNQ3tqV3jUVvgoCxkacy4k5undGdlAgchisIG+hsX0flGSuP2g==",
         "dependencies": {
@@ -134,7 +134,7 @@
       },
       "Verify.Http": {
         "type": "Direct",
-        "requested": "[6.6.0, )",
+        "requested": "[6.6.0, 6.6.0]",
         "resolved": "6.6.0",
         "contentHash": "H1ye4WPdwUdB6TrHJnYea+hybvJpwPWBi/gwt7iDDGHDZQ6eOlx/0jS7a0xz6HwzsEkM5TxJ04VTHSFAuT9Qeg==",
         "dependencies": {
@@ -1676,9 +1676,9 @@
           "MassTransit.Kafka": "[8.5.0, )",
           "MassTransit.RabbitMQ": "[8.5.0, )",
           "MediatR": "[12.5.0, )",
-          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "[8.0.17, )",
+          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "[8.0.17, 8.0.17]",
           "Microsoft.AspNetCore.OData": "[9.3.2, )",
-          "Microsoft.AspNetCore.OpenApi": "[8.0.17, )",
+          "Microsoft.AspNetCore.OpenApi": "[8.0.17, 8.0.17]",
           "Microsoft.Extensions.Configuration.Abstractions": "[9.0.6, )",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[9.0.6, )",
           "Scrutor": "[6.1.0, )",
@@ -2042,7 +2042,7 @@
       },
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
         "type": "CentralTransitive",
-        "requested": "[8.0.17, )",
+        "requested": "[8.0.17, 8.0.17]",
         "resolved": "8.0.17",
         "contentHash": "eg8TB2jqlMbSywcCDSl46VMT8H/DJyLl/88C2wd5u/KuHvCOivVV/lJQRs6l6auVt8IRcMduqX8V4lWGI3c0Yg==",
         "dependencies": {
@@ -2065,7 +2065,7 @@
       },
       "Microsoft.AspNetCore.OpenApi": {
         "type": "CentralTransitive",
-        "requested": "[8.0.17, )",
+        "requested": "[8.0.17, 8.0.17]",
         "resolved": "8.0.17",
         "contentHash": "sGed2RDkJYAoi7N4gUTota56Mix/Vu6UrzCWdwqH1jZwnLnZb+eP2zdABYCaVlBEHBwzuL1zchUFtJXW4lO5LA==",
         "dependencies": {

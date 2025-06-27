@@ -13,7 +13,6 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Time.Testing;
 using Testcontainers.MsSql;
-using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Helpers;
 

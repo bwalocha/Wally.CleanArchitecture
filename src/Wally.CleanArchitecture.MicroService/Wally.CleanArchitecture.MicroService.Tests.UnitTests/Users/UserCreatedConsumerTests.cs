@@ -7,7 +7,6 @@ using Moq;
 using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Messaging.Consumers;
 using Wally.Identity.Messages.Users;
-using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests.Users;
 

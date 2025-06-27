@@ -235,7 +235,7 @@
       },
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
         "type": "Direct",
-        "requested": "[8.0.17, )",
+        "requested": "[8.0.17, 8.0.17]",
         "resolved": "8.0.17",
         "contentHash": "eg8TB2jqlMbSywcCDSl46VMT8H/DJyLl/88C2wd5u/KuHvCOivVV/lJQRs6l6auVt8IRcMduqX8V4lWGI3c0Yg==",
         "dependencies": {
@@ -258,7 +258,7 @@
       },
       "Microsoft.AspNetCore.OpenApi": {
         "type": "Direct",
-        "requested": "[8.0.17, )",
+        "requested": "[8.0.17, 8.0.17]",
         "resolved": "8.0.17",
         "contentHash": "sGed2RDkJYAoi7N4gUTota56Mix/Vu6UrzCWdwqH1jZwnLnZb+eP2zdABYCaVlBEHBwzuL1zchUFtJXW4lO5LA==",
         "dependencies": {

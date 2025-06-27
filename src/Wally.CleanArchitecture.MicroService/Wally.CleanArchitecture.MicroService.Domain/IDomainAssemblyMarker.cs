@@ -1,5 +1,3 @@
 ﻿namespace Wally.CleanArchitecture.MicroService.Domain;
 
-public interface IDomainAssemblyMarker
-{
-}
+public interface IDomainAssemblyMarker;

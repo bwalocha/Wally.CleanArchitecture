@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
-using Wally.CleanArchitecture.MicroService.Application;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
@@ -12,6 +11,8 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours
 public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
 	where TRequest : IRequest<TResponse>
 {
+	private const int TimeoutMilliseconds = 500;
+	
 	private readonly ILogger<LogBehavior<TRequest, TResponse>> _logger;
 	private readonly IRequestContext _requestContext;
 
@@ -42,7 +43,7 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 		{
 			stopWatch.Stop();
 
-			if (stopWatch.ElapsedMilliseconds > 500)
+			if (stopWatch.ElapsedMilliseconds > TimeoutMilliseconds)
 			{
 				_logger.LogWarning(
 					"Request '{Request}' with Response '{Response}' executed in {ElapsedMilliseconds} ms",

@@ -1,9 +1,7 @@
 using System;
 using System.Linq;
-using Shouldly;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.CleanArchitecture.MicroService.Tests.UnitTests.Extensions;
-using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests.Users;
 

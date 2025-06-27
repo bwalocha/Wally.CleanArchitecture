@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Shouldly;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
-using Xunit;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 
