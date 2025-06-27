@@ -6,7 +6,7 @@
       Content-Type: application/problem+json; charset=utf-8
     },
     Value: {
-      title: Permission denied,
+      title: Permission Denied,
       status: 403,
       detail: Exception of type 'Wally.CleanArchitecture.MicroService.Domain.Exceptions.PermissionDeniedException' was thrown.,
       instance: /Users/Guid_1

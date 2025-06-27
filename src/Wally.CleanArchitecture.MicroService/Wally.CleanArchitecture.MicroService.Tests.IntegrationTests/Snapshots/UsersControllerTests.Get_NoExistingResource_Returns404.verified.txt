@@ -6,7 +6,7 @@
       Content-Type: application/problem+json; charset=utf-8
     },
     Value: {
-      title: Resource not found,
+      title: Resource Not Found,
       status: 404,
       detail: The 'GetUserResponse' with Id='Guid_1' could not be found,
       instance: /Users/Guid_1

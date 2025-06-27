@@ -36,7 +36,7 @@ public static class WebApiExtensions
 		// services.AddFluentValidationClientsideAdapters(); // TODO: consider config => config.ClientValidatorFactories
 
 		services.AddHttpContextAccessor();
-		services.AddScoped<IRequestContext, HttpRequestContext>();
+		services.AddScoped<IRequestContext, RequestContext>();
 
 		return services;
 	}

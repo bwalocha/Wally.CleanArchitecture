@@ -73,6 +73,7 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 	{
 		var problemDetails = new ValidationProblemDetails
 		{
+			// Title = "Validation Error",
 			Instance = context.HttpContext.Request.Path,
 			Status = StatusCodes.Status409Conflict,
 			Detail = "Please refer to the errors property for additional details.",
@@ -94,7 +95,7 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 	{
 		var problemDetails = new ProblemDetails
 		{
-			Title = "Permission denied",
+			Title = "Permission Denied",
 			Instance = context.HttpContext.Request.Path,
 			Status = StatusCodes.Status403Forbidden,
 			Detail = context.Exception.Message,
@@ -110,6 +111,7 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 	{
 		var problemDetails = new ProblemDetails
 		{
+			Title = "Access Denied",
 			Instance = context.HttpContext.Request.Path,
 			Status = StatusCodes.Status401Unauthorized,
 			Detail = context.Exception.Message,
@@ -122,7 +124,7 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 	{
 		var problemDetails = new ProblemDetails
 		{
-			Title = "Resource not found",
+			Title = "Resource Not Found",
 			Instance = context.HttpContext.Request.Path,
 			Status = StatusCodes.Status404NotFound,
 			Detail = context.Exception.Message,
@@ -135,7 +137,7 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
 	{
 		var problemDetails = new ValidationProblemDetails
 		{
-			Title = "Validation error",
+			// Title = "Validation Error",
 			Instance = context.HttpContext.Request.Path,
 			Status = StatusCodes.Status400BadRequest,
 			Detail = "Please refer to the errors property for additional details.",

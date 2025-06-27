@@ -7,6 +7,7 @@ using Wally.Identity.Messages.Users;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Messaging.Consumers;
 
+// TODO: create abstract base class and set RequestContext properties
 public class UserUpdatedMessageConsumer : IConsumer<UserUpdatedMessage>
 {
 	private readonly ISender _mediator;

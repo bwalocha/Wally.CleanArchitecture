@@ -9,6 +9,6 @@ public class DomainEvent
 	{
 	}
 
-	// TODO: Consider to add th CreatedAt property
+	// TODO: Consider to add a CreatedAt property
 	// public DateTimeOffset CreatedAt { get; private set; } = new(DateTime.UtcNow);
 }
