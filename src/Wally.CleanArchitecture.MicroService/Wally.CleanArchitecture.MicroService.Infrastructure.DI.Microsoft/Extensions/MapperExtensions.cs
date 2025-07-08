@@ -8,8 +8,11 @@ public static class MapperExtensions
 {
 	public static IServiceCollection AddMapper(this IServiceCollection services)
 	{
-		services.AddAutoMapper(cfg => { cfg.AddExpressionMapping(); },
-			typeof(IApplicationMapperProfilesAssemblyMarker).Assembly);
+		services.AddAutoMapper(a =>
+		{
+			a.AddExpressionMapping();
+			a.AddMaps(typeof(IApplicationMapperProfilesAssemblyMarker).Assembly);
+		});
 
 		return services;
 	}

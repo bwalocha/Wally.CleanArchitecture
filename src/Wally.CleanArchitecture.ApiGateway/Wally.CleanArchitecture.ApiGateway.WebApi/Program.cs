@@ -6,7 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 
-// using Azure.Identity;
+/*
+using Azure.Identity;
+*/
 
 namespace Wally.CleanArchitecture.ApiGateway.WebApi;
 
@@ -17,7 +19,7 @@ public static class Program
 	private const string _azureADManagedIdentityClientIdConfigName = "AzureADManagedIdentityClientId";
 	private const string _keyVaultNameConfigName = "KeyVaultName";
 	*/
-	private const bool _reloadOnChange = false;
+	private const bool ReloadOnChange = false;
 
 	public static int Main(string[] args)
 	{
@@ -56,10 +58,10 @@ public static class Program
 		configurationBuilder.Sources.Clear();
 
 		return configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
-			.AddJsonFile("appsettings.json", false, _reloadOnChange)
-			.AddJsonFile($"appsettings.{env}.json", true, _reloadOnChange)
-			.AddJsonFile("serilog.json", false, _reloadOnChange)
-			.AddJsonFile($"serilog.{env}.json", true, _reloadOnChange)
+			.AddJsonFile("appsettings.json", false, ReloadOnChange)
+			.AddJsonFile($"appsettings.{env}.json", true, ReloadOnChange)
+			.AddJsonFile("serilog.json", false, ReloadOnChange)
+			.AddJsonFile($"serilog.{env}.json", true, ReloadOnChange)
 			.AddEnvironmentVariables();
 	}
 

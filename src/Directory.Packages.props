@@ -29,7 +29,7 @@
     <PackageVersion Include="MassTransit.Azure.ServiceBus.Core" Version="8.5.0" />
     <PackageVersion Include="MassTransit.Kafka" Version="8.5.0" />
     <PackageVersion Include="MassTransit.RabbitMQ" Version="8.5.0" />
-    <PackageVersion Include="MediatR" Version="12.5.0" />
+    <PackageVersion Include="MediatR" Version="13.0.0" />
     <PackageVersion Include="MediatR.Contracts" Version="2.0.1" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="[8.0.17]" />
     <PackageVersion Include="Microsoft.AspNetCore.OData" Version="9.3.2" />
@@ -60,7 +60,7 @@
     <PackageVersion Include="Scrutor" Version="6.1.0" />
     <PackageVersion Include="Shouldly" Version="4.3.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="9.0.1" />
-    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="8.1.4" />
+    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.1" />
     <PackageVersion Include="Testcontainers.MariaDb" Version="4.6.0" />
     <PackageVersion Include="Testcontainers.MySql" Version="4.6.0" />
     <PackageVersion Include="Testcontainers.MsSql" Version="4.6.0" />
