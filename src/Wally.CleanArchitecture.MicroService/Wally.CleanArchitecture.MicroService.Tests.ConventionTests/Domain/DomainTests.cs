@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
@@ -9,43 +10,78 @@ namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Domain;
 
 public class DomainTests
 {
-	[Fact(Skip = "Not implemented yet")]
-	public void Domain_Constructor_ShouldBePrivate()
+	[Fact]
+	public void Domain_Constructor_ShouldBePrivateOrProtected()
 	{
 		// Arrange
-		// IArchRule rule =
-		// 	Classes().That().Are(Configuration.Assemblies.Domain.GetAllTypes())
-		// 		.And()
-		// 		.AreNotAbstract()
-		// 		.As("Domain classes")
-		// 		.Should()
-		// 		.HaveOnlyPrivateConstructors();
+		IArchRule rule =
+			Classes()
+				.That()
+				.Are(Configuration.Assemblies.Domain.GetAllTypes())
+				.And()
+				.AreNotAbstract()
+				.And()
+				.AreNotAssignableTo(typeof(IStronglyTypedId<>))
+				.And()
+				.AreNotAssignableTo(typeof(TypeConverter))
+				.And()
+				.AreNotAssignableTo(typeof(DomainEvent))
+				.And()
+				.AreNotAssignableTo(typeof(DomainException))
+				.As("Domain classes")
+				.Should()
+				.HaveOnlyPrivateOrProtectedConstructors();
 		
 		// Act
 		
 		// Assert
-		// rule.Check(Configuration.Architecture);
+		rule.Check(Configuration.Architecture);
+	}
+	
+	[Fact]
+	public void Domain_StronglyTypedId_ShouldBeSealed()
+	{
+		// Arrange
+		IArchRule rule =
+			Classes()
+				.That()
+				.Are(Configuration.Assemblies.Domain.GetAllTypes())
+				.And()
+				.AreNotAbstract()
+				.And()
+				.AreAssignableTo(typeof(IStronglyTypedId<>))
+				.As("StronglyTypedId classes")
+				.Should()
+				.BeSealed();
 		
-		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllTypes()
-			.Where(a => a.InheritsGenericClass(typeof(Entity<,>)));
-
-		types.ShouldSatisfyAllConditions(() =>
-		{
-			foreach (var type in types)
-			{
-				foreach (var constructor in type.GetConstructors())
-				{
-					constructor.GetParameters()
-						.ShouldBeEmpty();
-				}
-			}
-		});
+		// Act
+		
+		// Assert
+		rule.Check(Configuration.Architecture);
 	}
 
-	[Fact(Skip = "Not implemented yet")]
-	public void Domain_AggregateRootAndEntity_ShouldNotExposeSetter()
+	[Fact(Skip = "TODO: update")]
+	public void Domain_Property_ShouldNotExposeSetter()
 	{
+		// Arrange
+		IArchRule rule =
+			Classes()
+				.That()
+				.Are(Configuration.Assemblies.Domain.GetAllTypes())
+				// .And()
+				// .AreNotAbstract()
+				// .And()
+				// .AreAssignableTo(typeof(IStronglyTypedId<>))
+				.As("Domain classes")
+				.Should()
+				.BeImmutable();
+		
+		// Act
+		
+		// Assert
+		rule.Check(Configuration.Architecture);
+		
+		
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.InheritsGenericClass(typeof(Entity<,>)));

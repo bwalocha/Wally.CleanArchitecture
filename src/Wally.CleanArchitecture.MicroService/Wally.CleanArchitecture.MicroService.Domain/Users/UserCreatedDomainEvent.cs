@@ -6,7 +6,7 @@ namespace Wally.CleanArchitecture.MicroService.Domain.Users;
 [ExcludeFromCodeCoverage]
 public class UserCreatedDomainEvent : DomainEvent
 {
-	public UserCreatedDomainEvent(UserId id)
+	internal UserCreatedDomainEvent(UserId id)
 	{
 		Id = id;
 	}

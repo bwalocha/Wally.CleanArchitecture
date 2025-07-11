@@ -31,7 +31,7 @@ public class CommandAuthorizationHandlerBehavior<TRequest, TResponse> : IPipelin
 
 		if (authorizationResult != AuthorizationHandlerResult.Succeeded)
 		{
-			throw new PermissionDeniedException();
+			throw new PermissionDeniedException($"Permission to {typeof(TRequest).Name} is denied.");
 		}
 
 		return await next(cancellationToken);

@@ -2,7 +2,7 @@
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
-public class StringId<TStronglyTypedId> : StronglyTypedId<TStronglyTypedId, string>
+public abstract class StringId<TStronglyTypedId> : StronglyTypedId<TStronglyTypedId, string>
 	where TStronglyTypedId : StronglyTypedId<TStronglyTypedId, string>
 {
 	protected StringId()

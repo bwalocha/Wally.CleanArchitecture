@@ -2,7 +2,7 @@
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
-public class LongId<TStronglyTypedId> : StronglyTypedId<TStronglyTypedId, long>
+public abstract class LongId<TStronglyTypedId> : StronglyTypedId<TStronglyTypedId, long>
 	where TStronglyTypedId : StronglyTypedId<TStronglyTypedId, long>
 {
 	protected LongId()

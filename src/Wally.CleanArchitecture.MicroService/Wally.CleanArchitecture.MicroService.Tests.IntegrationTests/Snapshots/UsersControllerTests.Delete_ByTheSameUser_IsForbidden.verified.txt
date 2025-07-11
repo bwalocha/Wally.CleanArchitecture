@@ -2,13 +2,13 @@
   Status: 403 Forbidden,
   Content: {
     Headers: {
-      Content-Length: 223,
+      Content-Length: 153,
       Content-Type: application/problem+json; charset=utf-8
     },
     Value: {
       title: Permission Denied,
       status: 403,
-      detail: Exception of type 'Wally.CleanArchitecture.MicroService.Domain.Exceptions.PermissionDeniedException' was thrown.,
+      detail: Permission to DeleteUserCommand is denied.,
       instance: /Users/Guid_1
     }
   }

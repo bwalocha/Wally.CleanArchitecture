@@ -6,7 +6,7 @@ namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 // https://github.com/dotnet/efcore/blob/release/8.0/src/EFCore/ValueGeneration/SequentialGuidValueGenerator.cs
 // https://andrewlock.net/series/using-strongly-typed-entity-ids-to-avoid-primitive-obsession/
 [TypeConverter(typeof(StronglyTypedIdConverter))]
-public class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStronglyTypedId, TValue>
+public abstract class StronglyTypedId<TStronglyTypedId, TValue> : IStronglyTypedId<TStronglyTypedId, TValue>
 	where TStronglyTypedId : StronglyTypedId<TStronglyTypedId, TValue>
 	where TValue : /*struct,*/ IComparable<TValue>, IEquatable<TValue>
 {

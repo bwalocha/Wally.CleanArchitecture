@@ -2,7 +2,7 @@
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
-public class GuidId<TStronglyTypedId> : StronglyTypedId<TStronglyTypedId, Guid>
+public abstract class GuidId<TStronglyTypedId> : StronglyTypedId<TStronglyTypedId, Guid>
 	where TStronglyTypedId : StronglyTypedId<TStronglyTypedId, Guid>
 {
 	protected GuidId()

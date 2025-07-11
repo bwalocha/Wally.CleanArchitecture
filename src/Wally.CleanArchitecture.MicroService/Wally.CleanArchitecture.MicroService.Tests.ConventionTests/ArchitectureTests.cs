@@ -13,6 +13,7 @@ public class ArchitectureTests
 		// Arrange
 		IArchRule rule =
 			Types().That().Are(Configuration.Assemblies.Domain.GetAllTypes())
+				.As("Domain Layer types")
 				.Should()
 				.NotDependOnAny(Configuration.Assemblies.GetAllAssemblies().Where(a => !Configuration.Assemblies.Domain.Contains(a)).GetAllTypes());
 		
@@ -28,6 +29,7 @@ public class ArchitectureTests
 		// Arrange
 		IArchRule rule =
 			Types().That().Are(Configuration.Assemblies.Application.GetAllTypes())
+				.As("Application Layer types")
 				.Should()
 				.NotDependOnAny(Configuration.Assemblies.GetAllAssemblies().Where(a => !Configuration.Assemblies.Domain.Contains(a)).Where(a => !Configuration.Assemblies.Application.Contains(a)).GetAllTypes());
 		
@@ -53,6 +55,7 @@ public class ArchitectureTests
 			Types().That().Are(Configuration.Assemblies.Infrastructure
 					.Where(a => a != typeof(IInfrastructureBackgroundServicesAssemblyMarker).Assembly)
 					.GetAllTypes())
+				.As("Infrastructure Layer types")
 				.Should()
 				.NotDependOnAny(Configuration.Assemblies.GetAllAssemblies()
 					.Where(a => !Configuration.Assemblies.Domain.Contains(a))
@@ -72,6 +75,7 @@ public class ArchitectureTests
 		// Arrange
 		IArchRule rule =
 			Types().That().Are(Configuration.Assemblies.Infrastructure.GetAllTypes())
+				.As("Infrastructure Layer types")
 				.Should()
 				.NotDependOnAny(Configuration.Assemblies.GetAllAssemblies().Where(a => !Configuration.Assemblies.Domain.Contains(a)).Where(a => !Configuration.Assemblies.Infrastructure.Contains(a)).GetAllTypes());
 		
@@ -91,6 +95,7 @@ public class ArchitectureTests
 		// Arrange
 		IArchRule rule =
 			Types().That().Are(Configuration.Assemblies.Infrastructure.GetAllTypes())
+				.As("Infrastructure Layer types")
 				.Should()
 				.NotDependOnAny(Configuration.Assemblies.GetAllAssemblies().Where(a => !Configuration.Assemblies.Domain.Contains(a)).Where(a => !Configuration.Assemblies.Application.Contains(a)).Where(a => !Configuration.Assemblies.Infrastructure.Contains(a)).GetAllTypes());
 		
@@ -106,6 +111,7 @@ public class ArchitectureTests
 		// Arrange
 		IArchRule rule =
 			Types().That().Are(Configuration.Assemblies.Presentation.GetAllTypes())
+				.As("Presentation Layer types")
 				.Should()
 				.DependOnAny(Configuration.Assemblies.GetAllAssemblies().GetAllTypes());
 		
@@ -123,24 +129,28 @@ public class ArchitectureTests
 			Types()
 				.That()
 				.Are(Configuration.Assemblies.Domain.GetAllTypes())
+				.As("Domain Layer types")
 				.Should()
 				.ResideInNamespace($"{Configuration.Namespace}.Domain.*", true)
 				.And()
 				.Types()
 				.That()
 				.Are(Configuration.Assemblies.Application.GetAllTypes())
+				.As("Application Layer types")
 				.Should()
 				.ResideInNamespace($"{Configuration.Namespace}.Application.*", true)
 				.And()
 				.Types()
 				.That()
 				.Are(Configuration.Assemblies.Infrastructure.GetAllTypes())
+				.As("Infrastructure Layer types")
 				.Should()
 				.ResideInNamespace($"{Configuration.Namespace}.Infrastructure.*", true)
 				.And()
 				.Types()
 				.That()
 				.Are(Configuration.Assemblies.Presentation.GetAllTypes())
+				.As("Presentation Layer types")
 				.Should()
 				.ResideInNamespace($"{Configuration.Namespace}.WebApi.*", true);
 		

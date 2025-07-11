@@ -3,7 +3,7 @@ using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Users;
 
-public class UserId : GuidId<UserId>
+public sealed class UserId : GuidId<UserId>
 {
 	public UserId()
 	{
