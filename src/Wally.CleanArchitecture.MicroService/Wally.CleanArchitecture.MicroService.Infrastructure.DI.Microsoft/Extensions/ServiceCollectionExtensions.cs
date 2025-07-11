@@ -4,11 +4,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Hubs;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 
-namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft;
+namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 
 public static class ServiceCollectionExtensions
 {
@@ -23,7 +22,6 @@ public static class ServiceCollectionExtensions
 		services.AddOpenApi(Assembly.GetCallingAssembly());
 		services.AddHealthChecks(settings);
 		services.AddPersistence(settings);
-		services.AddMapper();
 		services.AddMessaging(settings);
 		services.AddEventHub();
 		services.AddBackgroundServices(settings);

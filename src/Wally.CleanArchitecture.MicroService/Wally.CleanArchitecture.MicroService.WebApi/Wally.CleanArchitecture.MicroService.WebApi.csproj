@@ -21,6 +21,7 @@
     <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application\Wally.CleanArchitecture.MicroService.Application.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.Contracts\Wally.CleanArchitecture.MicroService.Application.Contracts.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.DI.Microsoft\Wally.CleanArchitecture.MicroService.Application.DI.Microsoft.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft\Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.csproj" />
     </ItemGroup>
 

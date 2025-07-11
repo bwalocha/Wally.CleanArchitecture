@@ -34,9 +34,9 @@
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
-        "requested": "[10.12.0.118525, )",
-        "resolved": "10.12.0.118525",
-        "contentHash": "uP38bsYegQBk8WOM6LYIAht6hrA7tcJgep/WuifPJjhjtjysPUP/iM/c1+P2+llNIDmm1s8Xh86+WG3K71eycw=="
+        "requested": "[10.13.0.120203, )",
+        "resolved": "10.13.0.120203",
+        "contentHash": "HQ8swVDz88R7UMT7uBXjr4AwZp1+z31ovmdM9UYu3fQSc+C7jv7/5hBBKABpLFag88am6HaG3k9yEn3/tXc1Vw=="
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
@@ -176,7 +176,7 @@
         "dependencies": {
           "FluentValidation": "[12.0.0, )",
           "Reinforced.Typings": "[1.6.5, )",
-          "SonarAnalyzer.CSharp": "[10.12.0.118525, )",
+          "SonarAnalyzer.CSharp": "[10.13.0.120203, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
@@ -185,7 +185,7 @@
         "type": "Project",
         "dependencies": {
           "FluentValidation": "[12.0.0, )",
-          "SonarAnalyzer.CSharp": "[10.12.0.118525, )",
+          "SonarAnalyzer.CSharp": "[10.13.0.120203, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
@@ -193,7 +193,7 @@
       "wally.cleanarchitecture.microservice.domain": {
         "type": "Project",
         "dependencies": {
-          "SonarAnalyzer.CSharp": "[10.12.0.118525, )",
+          "SonarAnalyzer.CSharp": "[10.13.0.120203, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Ulid": "[1.3.4, )"
         }
@@ -212,13 +212,13 @@
       },
       "Microsoft.Extensions.DependencyInjection.Abstractions": {
         "type": "CentralTransitive",
-        "requested": "[9.0.6, )",
+        "requested": "[9.0.7, )",
         "resolved": "8.0.0",
         "contentHash": "cjWrLkJXK0rs4zofsK4bSdg+jhDLTaxrkXu4gS6Y7MAlCvRyNNgwY/lJi5RDlQOnSZweHqoyvgvbdvQsRIW+hg=="
       },
       "Microsoft.Extensions.Logging.Abstractions": {
         "type": "CentralTransitive",
-        "requested": "[9.0.6, )",
+        "requested": "[9.0.7, )",
         "resolved": "8.0.0",
         "contentHash": "arDBqTgFCyS0EvRV7O3MZturChstm50OJ0y9bDJvAcmEPJm0FFpFyjU/JLYyStNGGey081DvnQYlncNX5SJJGA==",
         "dependencies": {

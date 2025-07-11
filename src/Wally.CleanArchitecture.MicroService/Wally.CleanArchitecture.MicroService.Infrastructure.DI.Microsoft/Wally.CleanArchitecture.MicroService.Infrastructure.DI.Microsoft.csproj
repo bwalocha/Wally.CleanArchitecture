@@ -11,7 +11,6 @@
         <PackageReference Include="AspNetCore.HealthChecks.MySql" />
         <PackageReference Include="AspNetCore.HealthChecks.NpgSql" />
         <PackageReference Include="AspNetCore.HealthChecks.Sqlite" />
-        <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" />
         <PackageReference Include="EntityFrameworkCore.Exceptions.MySQL" />
         <PackageReference Include="EntityFrameworkCore.Exceptions.MySQL.Pomelo" />
         <PackageReference Include="EntityFrameworkCore.Exceptions.PostgreSQL" />
@@ -45,7 +44,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj" />
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.MapperProfiles\Wally.CleanArchitecture.MicroService.Application.MapperProfiles.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.BackgroundServices\Wally.CleanArchitecture.MicroService.Infrastructure.BackgroundServices.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Messaging\Wally.CleanArchitecture.MicroService.Infrastructure.Messaging.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql.csproj" />

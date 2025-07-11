@@ -2,14 +2,20 @@
   "version": 2,
   "dependencies": {
     "net8.0": {
-      "AutoMapper": {
+      "AutoMapper.Extensions.ExpressionMapping": {
         "type": "Direct",
-        "requested": "[14.0.0, )",
-        "resolved": "14.0.0",
-        "contentHash": "OC+1neAPM4oCCqQj3g2GJ2shziNNhOkxmNB9cVS8jtx4JbgmRzLcUOxB9Tsz6cVPHugdkHgCaCrTjjSI0Z5sCQ==",
+        "requested": "[8.0.0, )",
+        "resolved": "8.0.0",
+        "contentHash": "fR55QEOt8GiaVQPuEpyWJAzZxFSInCIYg6E1EoqQByWnjzQnQ5zHwQvMMF3E+AdtvAzbG7Intm08/8pK8eUTvQ==",
         "dependencies": {
-          "Microsoft.Extensions.Options": "8.0.0"
+          "AutoMapper": "[14.0.0, 15.0.0)"
         }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions": {
+        "type": "Direct",
+        "requested": "[9.0.7, )",
+        "resolved": "9.0.7",
+        "contentHash": "iPK1FxbGFr2Xb+4Y+dTYI8Gupu9pOi8I3JPuPsrogUmEhe2hzZ9LpCmolMEBhVDo2ikcSr7G5zYiwaapHSQTew=="
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
@@ -47,6 +53,16 @@
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
       },
+      "wally.cleanarchitecture.microservice.application.mapperprofiles": {
+        "type": "Project",
+        "dependencies": {
+          "AutoMapper": "[14.0.0, )",
+          "SonarAnalyzer.CSharp": "[10.13.0.120203, )",
+          "StyleCop.Analyzers": "[1.1.118, )",
+          "Wally.CleanArchitecture.MicroService.Application.Contracts": "[1.0.0, )",
+          "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
+        }
+      },
       "wally.cleanarchitecture.microservice.domain": {
         "type": "Project",
         "dependencies": {
@@ -55,17 +71,20 @@
           "Ulid": "[1.3.4, )"
         }
       },
+      "AutoMapper": {
+        "type": "CentralTransitive",
+        "requested": "[14.0.0, )",
+        "resolved": "14.0.0",
+        "contentHash": "OC+1neAPM4oCCqQj3g2GJ2shziNNhOkxmNB9cVS8jtx4JbgmRzLcUOxB9Tsz6cVPHugdkHgCaCrTjjSI0Z5sCQ==",
+        "dependencies": {
+          "Microsoft.Extensions.Options": "8.0.0"
+        }
+      },
       "FluentValidation": {
         "type": "CentralTransitive",
         "requested": "[12.0.0, )",
         "resolved": "12.0.0",
         "contentHash": "8NVLxtMUXynRHJIX3Hn1ACovaqZIJASufXIIFkD0EUbcd5PmMsL1xUD5h548gCezJ5BzlITaR9CAMrGe29aWpA=="
-      },
-      "Microsoft.Extensions.DependencyInjection.Abstractions": {
-        "type": "CentralTransitive",
-        "requested": "[9.0.7, )",
-        "resolved": "8.0.0",
-        "contentHash": "cjWrLkJXK0rs4zofsK4bSdg+jhDLTaxrkXu4gS6Y7MAlCvRyNNgwY/lJi5RDlQOnSZweHqoyvgvbdvQsRIW+hg=="
       },
       "Reinforced.Typings": {
         "type": "CentralTransitive",

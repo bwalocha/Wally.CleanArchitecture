@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Wally.CleanArchitecture.MicroService.Application.MapperProfiles;
 
-namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
+namespace Wally.CleanArchitecture.MicroService.Application.DI.Microsoft.Extensions;
 
 public static class MapperExtensions
 {

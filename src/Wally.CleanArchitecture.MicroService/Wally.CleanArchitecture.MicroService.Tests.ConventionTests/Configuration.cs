@@ -1,5 +1,9 @@
-﻿using Wally.CleanArchitecture.MicroService.Application;
+﻿using System.Linq;
+using ArchUnitNET.Domain;
+using ArchUnitNET.Loader;
+using Wally.CleanArchitecture.MicroService.Application;
 using Wally.CleanArchitecture.MicroService.Application.Contracts;
+using Wally.CleanArchitecture.MicroService.Application.DI.Microsoft;
 using Wally.CleanArchitecture.MicroService.Application.MapperProfiles;
 using Wally.CleanArchitecture.MicroService.Application.Messages;
 using Wally.CleanArchitecture.MicroService.Domain;
@@ -10,6 +14,7 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.Messaging;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer;
 using Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
@@ -21,6 +26,10 @@ namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 public static class Configuration
 {
 	public const string Namespace = "Wally.CleanArchitecture.MicroService";
+	
+	internal static readonly Architecture Architecture = new ArchLoader()
+		.LoadAssemblies(Assemblies.GetAllAssemblies().ToArray())
+		.Build();
 
 	public static Types Types
 		=> new()
@@ -38,6 +47,7 @@ public static class Configuration
 			[
 				typeof(IApplicationAssemblyMarker).Assembly,
 				typeof(IApplicationContractsAssemblyMarker).Assembly,
+				typeof(IApplicationDIMicrosoftAssemblyMarker).Assembly,
 				typeof(IApplicationMapperProfilesAssemblyMarker).Assembly,
 				typeof(IApplicationMessagesAssemblyMarker).Assembly,
 			],
@@ -47,14 +57,15 @@ public static class Configuration
 			],
 			Infrastructure =
 			[
+				typeof(IInfrastructureBackgroundServicesAssemblyMarker).Assembly,
 				typeof(IInfrastructureDIMicrosoftAssemblyMarker).Assembly,
 				typeof(IInfrastructureMessagingAssemblyMarker).Assembly,
 				typeof(IInfrastructurePersistenceAssemblyMarker).Assembly,
-				typeof(IInfrastructureSqlServerAssemblyMarker).Assembly,
-				typeof(IInfrastructurePostgreSqlAssemblyMarker).Assembly,
 				typeof(IInfrastructureMySqlAssemblyMarker).Assembly,
+				typeof(IInfrastructurePostgreSqlAssemblyMarker).Assembly,
+				typeof(IInfrastructureSQLiteAssemblyMarker).Assembly,
+				typeof(IInfrastructureSqlServerAssemblyMarker).Assembly,
 				typeof(IInfrastructurePipelineBehavioursAssemblyMarker).Assembly,
-				typeof(IInfrastructureBackgroundServicesAssemblyMarker).Assembly,
 			],
 			Presentation =
 			[
