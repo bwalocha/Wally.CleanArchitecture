@@ -5,8 +5,8 @@
     <CentralPackageVersionOverrideEnabled>false</CentralPackageVersionOverrideEnabled>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="AutoMapper" Version="14.0.0" />
-    <PackageVersion Include="AutoMapper.Extensions.ExpressionMapping" Version="8.0.0" />
+    <PackageVersion Include="AutoMapper" Version="15.0.1" />
+    <PackageVersion Include="AutoMapper.Extensions.ExpressionMapping" Version="9.0.1" />
     <PackageVersion Include="AspNetCore.HealthChecks.AzureServiceBus" Version="9.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.Kafka" Version="9.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.MySql" Version="9.0.0" />
@@ -24,11 +24,11 @@
     <PackageVersion Include="EntityFrameworkCore.Exceptions.SqlServer" Version="8.1.3" />
     <PackageVersion Include="FluentValidation" Version="12.0.0" />
     <PackageVersion Include="FluentValidation.AspNetCore" Version="11.3.1" />
-    <PackageVersion Include="MassTransit" Version="8.5.0" />
-    <PackageVersion Include="MassTransit.Abstractions" Version="8.5.0" />
-    <PackageVersion Include="MassTransit.Azure.ServiceBus.Core" Version="8.5.0" />
-    <PackageVersion Include="MassTransit.Kafka" Version="8.5.0" />
-    <PackageVersion Include="MassTransit.RabbitMQ" Version="8.5.0" />
+    <PackageVersion Include="MassTransit" Version="8.5.1" />
+    <PackageVersion Include="MassTransit.Abstractions" Version="8.5.1" />
+    <PackageVersion Include="MassTransit.Azure.ServiceBus.Core" Version="8.5.1" />
+    <PackageVersion Include="MassTransit.Kafka" Version="8.5.1" />
+    <PackageVersion Include="MassTransit.RabbitMQ" Version="8.5.1" />
     <PackageVersion Include="MediatR" Version="13.0.0" />
     <PackageVersion Include="MediatR.Contracts" Version="2.0.1" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.18" />
@@ -45,7 +45,7 @@
     <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.7" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.7" />
     <PackageVersion Include="Microsoft.Extensions.TimeProvider.Testing" Version="9.7.0" />
-    <PackageVersion Include="Microsoft.FeatureManagement.AspNetCore" Version="4.1.0" />
+    <PackageVersion Include="Microsoft.FeatureManagement.AspNetCore" Version="4.2.1" />
     <PackageVersion Include="Moq" Version="4.20.72" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
     <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.12.0" />
@@ -60,12 +60,12 @@
     <PackageVersion Include="Scrutor" Version="6.1.0" />
     <PackageVersion Include="Shouldly" Version="4.3.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="9.0.3" />
-    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.1" />
+    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.3" />
     <PackageVersion Include="Testcontainers.MariaDb" Version="4.6.0" />
     <PackageVersion Include="Testcontainers.MySql" Version="4.6.0" />
     <PackageVersion Include="Testcontainers.MsSql" Version="4.6.0" />
     <PackageVersion Include="Testcontainers.PostgreSql" Version="4.6.0" />
-    <PackageVersion Include="TngTech.ArchUnitNET.xUnit" Version="0.11.4" />
+    <PackageVersion Include="TngTech.ArchUnitNET.xUnit" Version="0.12.1" />
     <PackageVersion Include="Ulid" Version="1.3.4" />
     <PackageVersion Include="Verify.Http" Version="[6.6.0]" />
     <PackageVersion Include="Verify.Xunit" Version="30.4.0" />
@@ -83,7 +83,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.13.0.120203">
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.14.0.120626">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
@@ -100,7 +100,7 @@
     <PackageVersion Include="JunitXml.TestLogger" Version="6.1.0" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageVersion Include="xunit" Version="2.9.3" />
-    <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.1">
+    <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageVersion>

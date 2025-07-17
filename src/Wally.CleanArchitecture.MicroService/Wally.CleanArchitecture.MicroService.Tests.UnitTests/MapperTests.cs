@@ -1,5 +1,6 @@
 ﻿using System;
 using AutoMapper;
+using Microsoft.Extensions.Logging.Abstractions;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Requests;
 using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Responses;
 using Wally.CleanArchitecture.MicroService.Application.MapperProfiles;
@@ -15,7 +16,8 @@ public class MapperTests
 	public MapperTests()
 	{
 		_configuration = new MapperConfiguration(
-			config => config.AddMaps(typeof(IApplicationMapperProfilesAssemblyMarker).Assembly));
+			config => config.AddMaps(typeof(IApplicationMapperProfilesAssemblyMarker).Assembly),
+			new NullLoggerFactory());
 
 		_sut = _configuration.CreateMapper();
 	}
