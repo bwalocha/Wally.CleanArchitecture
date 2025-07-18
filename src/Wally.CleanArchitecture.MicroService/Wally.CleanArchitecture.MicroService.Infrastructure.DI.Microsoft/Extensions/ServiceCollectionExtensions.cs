@@ -31,10 +31,12 @@ public static class ServiceCollectionExtensions
 
 	public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app, IWebHostEnvironment env)
 	{
+		app.UseExceptionHandler();
+
 		// Configure the HTTP request pipeline.
 		if (env.IsDevelopment())
 		{
-			app.UseDeveloperExceptionPage();
+//			app.UseDeveloperExceptionPage();
 			// app.UseSwagger();
 		}
 
@@ -44,7 +46,7 @@ public static class ServiceCollectionExtensions
 		// app.UseHttpsRedirection();
 
 		app.UseRouting();
-
+		
 		// app.UseAuthentication(); // TODO: Consider only for ApiGateway
 		app.UseAuthorization();
 		app.UseHealthChecks();

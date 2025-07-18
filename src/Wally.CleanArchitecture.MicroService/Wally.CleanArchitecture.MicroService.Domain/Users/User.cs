@@ -3,7 +3,7 @@ using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Users;
 
-public class User : AggregateRoot<User, UserId>, ISoftDeletable
+public class User : AggregateRoot<User, UserId>, ISoftDeletable/*, ITemporal*/
 {
 	public const int NameMaxLength = 256;
 	
@@ -54,4 +54,8 @@ public class User : AggregateRoot<User, UserId>, ISoftDeletable
 
 		return this;
 	}
+
+	/*public DateTime ValidFrom { get; private set; } = DateTime.MinValue;
+	public DateTime ValidTo { get; private set; } = DateTime.MaxValue;
+	public bool IsActiveAt(DateTimeOffset date) => date >= ValidFrom && date < ValidTo;*/
 }

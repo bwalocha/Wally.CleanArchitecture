@@ -31,7 +31,7 @@ public static class Configuration
 		.LoadAssemblies(Assemblies.GetAllAssemblies().ToArray())
 		.Build();
 
-	public static Types Types
+	public static Types OtherTypes
 		=> new()
 		{
 			AppSettings =

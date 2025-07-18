@@ -16,7 +16,8 @@ public class Assemblies
 
 	public IEnumerable<Assembly> GetAllAssemblies()
 	{
-		return Application.Concat(Domain)
+		return Domain
+			.Concat(Application)
 			.Concat(Infrastructure)
 			.Concat(Presentation);
 	}

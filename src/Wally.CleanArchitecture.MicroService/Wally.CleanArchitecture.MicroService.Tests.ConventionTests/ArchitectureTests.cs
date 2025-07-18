@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.BackgroundServices;
@@ -7,15 +8,15 @@ namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 
 public class ArchitectureTests
 {
-	[Fact(Skip = "TODO: fix")]
+	[Fact]
 	public void Architecture_Domain_ShouldNotReferenceAnyLayer()
 	{
 		// Arrange
 		IArchRule rule =
-			Types().That().Are(Configuration.Assemblies.Domain.GetAllTypes())
+			Types().That().ResideInAssembly(Configuration.Assemblies.Domain)
 				.As("Domain Layer types")
 				.Should()
-				.NotDependOnAny(Configuration.Assemblies.GetAllAssemblies().Where(a => !Configuration.Assemblies.Domain.Contains(a)).GetAllTypes());
+				.NotDependOnAny(Types().That().DoNotResideInAssembly(Configuration.Assemblies.Domain));
 		
 		// Act
 		
@@ -23,15 +24,21 @@ public class ArchitectureTests
 		rule.Check(Configuration.Architecture);
 	}
 	
-	[Fact(Skip = "TODO: fix")]
+	[Fact]
 	public void Architecture_Application_ShouldNotReferenceAnyLayerExceptDomain()
 	{
 		// Arrange
 		IArchRule rule =
-			Types().That().Are(Configuration.Assemblies.Application.GetAllTypes())
+			Types()
+				.That()
+				.ResideInAssembly(Configuration.Assemblies.Application)
 				.As("Application Layer types")
 				.Should()
-				.NotDependOnAny(Configuration.Assemblies.GetAllAssemblies().Where(a => !Configuration.Assemblies.Domain.Contains(a)).Where(a => !Configuration.Assemblies.Application.Contains(a)).GetAllTypes());
+				.NotDependOnAny(Types()
+					.That()
+					.DoNotResideInAssembly(Configuration.Assemblies.Domain)
+					.And()
+					.DoNotResideInAssembly(Configuration.Assemblies.Application));
 		
 		// Act
 		
@@ -128,31 +135,55 @@ public class ArchitectureTests
 		IArchRule rule =
 			Types()
 				.That()
-				.Are(Configuration.Assemblies.Domain.GetAllTypes())
+				.ResideInAssembly(Configuration.Assemblies.Domain)
 				.As("Domain Layer types")
 				.Should()
-				.ResideInNamespace($"{Configuration.Namespace}.Domain.*", true)
+				.ResideInNamespaceMatching($"^{Configuration.Namespace.Replace(".", "\\.")}\\.Domain(\\..+)?$")
 				.And()
 				.Types()
 				.That()
-				.Are(Configuration.Assemblies.Application.GetAllTypes())
+				.ResideInAssembly(Configuration.Assemblies.Application)
 				.As("Application Layer types")
 				.Should()
-				.ResideInNamespace($"{Configuration.Namespace}.Application.*", true)
+				.ResideInNamespaceMatching($"^{Configuration.Namespace.Replace(".", "\\.")}\\.Application(\\..+)?$")
 				.And()
 				.Types()
 				.That()
-				.Are(Configuration.Assemblies.Infrastructure.GetAllTypes())
+				.ResideInAssembly(Configuration.Assemblies.Infrastructure)
 				.As("Infrastructure Layer types")
 				.Should()
-				.ResideInNamespace($"{Configuration.Namespace}.Infrastructure.*", true)
+				.ResideInNamespaceMatching($"^{Configuration.Namespace.Replace(".", "\\.")}\\.Infrastructure(\\..+)?$")
 				.And()
 				.Types()
 				.That()
-				.Are(Configuration.Assemblies.Presentation.GetAllTypes())
+				.ResideInAssembly(Configuration.Assemblies.Presentation)
 				.As("Presentation Layer types")
 				.Should()
-				.ResideInNamespace($"{Configuration.Namespace}.WebApi.*", true);
+				.ResideInNamespaceMatching($"^{Configuration.Namespace.Replace(".", "\\.")}\\.WebApi(\\..+)?$");
+		
+		// Act
+		
+		// Assert
+		rule.Check(Configuration.Architecture);
+	}
+	
+	[Fact]
+	public void Architecture_DomainAndApplication_ShouldNotUseDateTimeNow()
+	{
+		// Arrange
+		var types = Types()
+			.That()
+			.ResideInAssembly([..Configuration.Assemblies.Domain, ..Configuration.Assemblies.Application]);
+		IArchRule rule = types
+			.Should()
+			.NotAccessGetter<DateTime>(DateTime.Now)
+			.And(types
+				.Should()
+				.NotAccessGetter<DateTime>(DateTime.UtcNow)
+				.And(types.Should()
+					.NotAccessGetter<DateTimeOffset>(DateTimeOffset.Now)
+					.And(types.Should()
+						.NotAccessGetter<DateTimeOffset>(DateTimeOffset.UtcNow))));
 		
 		// Act
 		

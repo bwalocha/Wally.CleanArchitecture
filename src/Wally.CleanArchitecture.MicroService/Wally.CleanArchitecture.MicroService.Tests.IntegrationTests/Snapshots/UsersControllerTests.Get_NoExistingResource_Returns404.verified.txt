@@ -1,12 +1,17 @@
 ﻿{
   Status: 404 Not Found,
+  Headers: {
+    Cache-Control: no-store, no-cache,
+    Pragma: no-cache
+  },
   Content: {
     Headers: {
-      Content-Length: 199,
-      Content-Type: application/problem+json; charset=utf-8
+      Content-Type: application/problem+json,
+      Expires: -1
     },
     Value: {
-      title: Resource Not Found,
+      type: ResourceNotFoundException`1,
+      title: Resource Not Found Exception,
       status: 404,
       detail: The 'GetUserResponse' with Id='Guid_1' could not be found,
       instance: /Users/Guid_1

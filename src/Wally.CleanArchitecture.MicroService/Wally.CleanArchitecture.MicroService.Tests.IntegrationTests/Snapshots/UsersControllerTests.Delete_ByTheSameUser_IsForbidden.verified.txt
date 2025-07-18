@@ -1,12 +1,17 @@
 ﻿{
   Status: 403 Forbidden,
+  Headers: {
+    Cache-Control: no-store, no-cache,
+    Pragma: no-cache
+  },
   Content: {
     Headers: {
-      Content-Length: 153,
-      Content-Type: application/problem+json; charset=utf-8
+      Content-Type: application/problem+json,
+      Expires: -1
     },
     Value: {
-      title: Permission Denied,
+      type: PermissionDeniedException,
+      title: Authorization Exception,
       status: 403,
       detail: Permission to DeleteUserCommand is denied.,
       instance: /Users/Guid_1

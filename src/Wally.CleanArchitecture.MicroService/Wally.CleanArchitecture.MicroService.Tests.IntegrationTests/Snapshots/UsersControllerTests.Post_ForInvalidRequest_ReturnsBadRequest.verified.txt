@@ -1,19 +1,22 @@
 ﻿{
   Status: 400 Bad Request,
+  Headers: {
+    Cache-Control: no-store, no-cache,
+    Pragma: no-cache
+  },
   Content: {
     Headers: {
-      Content-Length: 198,
-      Content-Type: application/json; charset=utf-8
+      Content-Type: application/problem+json,
+      Expires: -1
     },
     Value: {
-      errors: {
-        Name: [
-          'Name' must not be empty.
-        ]
-      },
-      type: https://tools.ietf.org/html/rfc9110#section-15.5.1,
-      title: One or more validation errors occurred.,
-      status: 400
+      type: ValidationException,
+      title: Validation Exception,
+      status: 400,
+      detail:
+Validation failed: 
+ -- Name: 'Name' must not be empty. Severity: Error,
+      instance: /Users
     }
   }
 }
