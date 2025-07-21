@@ -14,7 +14,6 @@ using Newtonsoft.Json;
 using Wally.CleanArchitecture.MicroService.Application;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Application.Contracts;
-// using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Filters;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Handlers;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
@@ -31,40 +30,38 @@ public static class WebApiExtensions
 				// a.ProblemDetails.Extensions.TryAdd("correlationId", options.);
 			};
 		});
-		
-		services.AddExceptionHandler<AuthenticationExceptionHandler>();
-		services.AddExceptionHandler<AuthorizationExceptionHandler>();
-		services.AddExceptionHandler<ValidationExceptionHandler>();
-		services.AddExceptionHandler<NotFoundExceptionHandler>();
-		services.AddExceptionHandler<DatabaseExceptionHandler>();
-		services.AddExceptionHandler<HttpGlobalExceptionHandler>();
-		
-		services.AddControllers(/*settings => { settings.Filters.Add(typeof(HttpGlobalExceptionFilter)); }*/)
-			.AddOData(
-				options =>
-				{
-					options.Filter()
-						.OrderBy()
-						.Count()
-						.SetMaxTop(1000);
-				})
+		services.AddExceptionHandler<AuthenticationExceptionHandler>()
+			.AddExceptionHandler<AuthorizationExceptionHandler>()
+			.AddExceptionHandler<ValidationExceptionHandler>()
+			.AddExceptionHandler<NotFoundExceptionHandler>()
+			.AddExceptionHandler<DatabaseExceptionHandler>()
+			.AddExceptionHandler<HttpGlobalExceptionHandler>();
+
+		services.AddControllers()
+			.AddOData(options =>
+			{
+				options.Filter()
+					.OrderBy()
+					.Count()
+					.SetMaxTop(1000);
+			})
 			.AddNewtonsoftJson(options =>
 			{
 				options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 			});
 
-		services.AddValidatorsFromAssemblyContaining<IApplicationAssemblyMarker>();
-		services.AddValidatorsFromAssemblyContaining<IApplicationContractsAssemblyMarker>();
-		services.AddFluentValidationAutoValidation(config => config.DisableDataAnnotationsValidation = true);
-		services.Configure<ApiBehaviorOptions>(options =>
-		{
-			options.InvalidModelStateResponseFactory = context => throw new ValidationException(context
-				.ModelState
-				.Where(a => a.Value?.ValidationState == ModelValidationState.Invalid)
-				.Select(a => new ValidationFailure(a.Key,
-					string.Join(", ", a.Value!.Errors.Select(b => b.ErrorMessage)), a.Value.AttemptedValue)));
-		});
-		
+		services.AddValidatorsFromAssemblyContaining<IApplicationAssemblyMarker>(includeInternalTypes: true)
+			.AddValidatorsFromAssemblyContaining<IApplicationContractsAssemblyMarker>(includeInternalTypes: true)
+			.AddFluentValidationAutoValidation(config => config.DisableDataAnnotationsValidation = true)
+			.Configure<ApiBehaviorOptions>(options =>
+			{
+				options.InvalidModelStateResponseFactory = context => throw new ValidationException(context
+					.ModelState
+					.Where(a => a.Value?.ValidationState == ModelValidationState.Invalid)
+					.Select(a => new ValidationFailure(a.Key,
+						string.Join(", ", a.Value!.Errors.Select(b => b.ErrorMessage)), a.Value.AttemptedValue)));
+			});
+
 		services.AddHttpContextAccessor();
 		services.AddScoped<IRequestContext, RequestContext>();
 
