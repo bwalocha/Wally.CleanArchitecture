@@ -30,6 +30,7 @@ public class Startup
 	/// <param name="services">The Service Collection.</param>
 	public void ConfigureServices(IServiceCollection services)
 	{
+		// services.AddPresentation();
 		services.AddApplication();
 		services.AddInfrastructure(Configuration);
 	}
@@ -44,6 +45,7 @@ public class Startup
 		appLifetime.ApplicationStopped.Register(() =>
 			logger.LogInformation("The 'Wally.CleanArchitecture.MicroService' is stopped"));
 
+		// app.UsePresentation();
 		// app.UseApplication(env);
 		app.UseInfrastructure(env);
 	}
