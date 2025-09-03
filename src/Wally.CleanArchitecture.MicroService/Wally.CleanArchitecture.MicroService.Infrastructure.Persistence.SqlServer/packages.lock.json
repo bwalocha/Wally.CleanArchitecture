@@ -417,7 +417,7 @@
         "dependencies": {
           "MassTransit.Abstractions": "[8.5.2, )",
           "MediatR": "[13.0.0, )",
-          "Microsoft.AspNetCore.OData": "[9.3.2, )",
+          "Microsoft.AspNetCore.OData": "[9.4.0, )",
           "SonarAnalyzer.CSharp": "[10.15.0.120848, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application.Contracts": "[1.0.0, )",
@@ -519,8 +519,8 @@
       "Microsoft.AspNetCore.OData": {
         "type": "CentralTransitive",
         "requested": "[9.3.2, )",
-        "resolved": "9.3.2",
-        "contentHash": "kbAz28Pex9+NBPvgXKHnCyyI5i5W099HsTWPuleyzeyjH4uY9dL89JgbAYaXx768Os9YJqt66+A66xAIjhMoTQ==",
+        "resolved": "9.4.0",
+        "contentHash": "Gqy7DYws7qn3UZNPk+F71hYUknZ4F81MQDBKWctveY7JrPBlFw5lVHKPLbZP+fcOS9GM7vKu3FkK1r3Cp/McQA==",
         "dependencies": {
           "Microsoft.OData.Core": "[8.2.3, 9.0.0)",
           "Microsoft.OData.Edm": "[8.2.3, 9.0.0)",

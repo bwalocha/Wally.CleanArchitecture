@@ -2,6 +2,34 @@
 
 [[_TOC_]]
 
+## Sequence Diagram
+
+```mermaid
+---
+config:
+  theme: neo-dark
+  look: neo
+---
+sequenceDiagram
+    actor Client
+    box transparent Gateway
+        participant Gateway as Gateway
+    end
+    box transparent MicroService
+        participant Controller as API Controller
+        participant QueryHandler as Query Handler
+        participant ReadOnlyRepository as ReadOnly Repository
+    end
+    Client->>Gateway: GET
+    Gateway->>Controller: GET
+    Controller->>QueryHandler: Query
+    QueryHandler->>ReadOnlyRepository: GetAsync
+    ReadOnlyRepository->>QueryHandler: Result
+    QueryHandler->>Controller: Response
+    Controller->>Gateway: Response
+    Gateway->>Client: Response
+```
+
 ## Components
 
 ### Swagger

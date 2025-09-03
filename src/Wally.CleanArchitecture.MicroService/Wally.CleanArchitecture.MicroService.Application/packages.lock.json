@@ -22,9 +22,9 @@
       },
       "Microsoft.AspNetCore.OData": {
         "type": "Direct",
-        "requested": "[9.3.2, )",
-        "resolved": "9.3.2",
-        "contentHash": "kbAz28Pex9+NBPvgXKHnCyyI5i5W099HsTWPuleyzeyjH4uY9dL89JgbAYaXx768Os9YJqt66+A66xAIjhMoTQ==",
+        "requested": "[9.4.0, )",
+        "resolved": "9.4.0",
+        "contentHash": "Gqy7DYws7qn3UZNPk+F71hYUknZ4F81MQDBKWctveY7JrPBlFw5lVHKPLbZP+fcOS9GM7vKu3FkK1r3Cp/McQA==",
         "dependencies": {
           "Microsoft.OData.Core": "[8.2.3, 9.0.0)",
           "Microsoft.OData.Edm": "[8.2.3, 9.0.0)",
