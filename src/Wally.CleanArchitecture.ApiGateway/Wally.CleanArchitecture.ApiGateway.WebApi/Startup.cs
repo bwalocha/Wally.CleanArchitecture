@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.FeatureManagement;
-using Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft;
+using Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Extensions;
 using Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Models;
 
 namespace Wally.CleanArchitecture.ApiGateway.WebApi;

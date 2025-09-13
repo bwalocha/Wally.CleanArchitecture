@@ -25,6 +25,8 @@ public class DomainTests
 				.And()
 				.AreNotAssignableTo(typeof(TypeConverter))
 				.And()
+				.AreNotAssignableTo(typeof(ValueObject<>))
+				.And()
 				.AreNotAssignableTo(typeof(DomainEvent))
 				.And()
 				.AreNotAssignableTo(typeof(DomainException))

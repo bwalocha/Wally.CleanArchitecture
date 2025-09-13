@@ -12,8 +12,8 @@ config:
 ---
 sequenceDiagram
     actor Client
-    box transparent Gateway
-        participant Gateway as Gateway
+    box transparent ApiGateway
+        participant ApiGateway as ApiGateway
     end
     box transparent MicroService
         participant Controller as API Controller
