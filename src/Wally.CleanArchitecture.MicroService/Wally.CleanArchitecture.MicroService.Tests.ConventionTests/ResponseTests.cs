@@ -46,6 +46,11 @@ public class ResponseTests
 							$"Response class '{type}' with Init setter should have Required modifier '{property}'");
 					}
 
+					if (!property.CanWrite)
+					{
+						continue;
+					}
+					
 					property.IsPrivateWritable()
 						.ShouldBeTrue($"Response class '{type}' should not expose setter '{property}'");
 				}
