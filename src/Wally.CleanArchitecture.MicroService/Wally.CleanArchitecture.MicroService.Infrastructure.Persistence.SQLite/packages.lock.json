@@ -617,7 +617,7 @@
       },
       "Microsoft.EntityFrameworkCore.SqlServer": {
         "type": "CentralTransitive",
-        "requested": "[9.0.8, )",
+        "requested": "[9.0.9, )",
         "resolved": "9.0.9",
         "contentHash": "t+6Zo92F5CgKyFncPSWRB3DFNwBrGug9F6rlrUFlJEr4Bf0t4ZFhZLg0qfuA3ouT7AQKuLTrvXLxuov8DWcuPQ==",
         "dependencies": {
