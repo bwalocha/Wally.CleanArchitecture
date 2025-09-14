@@ -85,14 +85,18 @@
       "replaces": "microservice"
     },
     "frontendName": {
+      "type": "computed",
+      "value": "(frontendNameLower).webapp",
+      "fileRename": "wally.cleanarchitecture.webapp",
+      "replaces": "wally.cleanarchitecture.webapp"
+    },
+    "frontendNameLower": {
       "type": "generated",
       "generator": "casing",
       "parameters": {
         "source": "name",
         "toLower": true
-      },
-      "fileRename": "wally.cleanarchitecture.webapp",
-      "replaces": "wally.cleanarchitecture.webapp"
+      }
     },
     "enableReverseProxy": {
       "type": "parameter",
