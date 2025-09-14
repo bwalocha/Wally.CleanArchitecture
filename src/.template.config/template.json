@@ -84,19 +84,15 @@
       },
       "replaces": "microservice"
     },
-    "frontendName": {
-      "type": "computed",
-      "value": "(frontendNameLower).webapp",
-      "replaces": "wally.cleanarchitecture.webapp",
-      "fileRename": "wally.cleanarchitecture.webapp"
-    },
     "frontendNameLower": {
       "type": "generated",
       "generator": "casing",
       "parameters": {
         "source": "name",
         "toLower": true
-      }
+      },
+      "replaces": "wally.cleanarchitecture",
+      "fileRename": "wally.cleanarchitecture"
     },
     "enableReverseProxy": {
       "type": "parameter",
@@ -156,12 +152,6 @@
             "wally.cleanarchitecture.webapp-update.cmd",
             "wally.cleanarchitecture.webapp-recreate.cmd"
           ]
-        },
-        {
-          "condition": "(!enableFrontend)",
-          "rename": {
-            "wally.cleanarchitecture.webapp": "<frontendName>"
-          }
         },
         {
           "condition": "(!enableReverseProxy && !enableMicroService)",
