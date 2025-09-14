@@ -60,7 +60,7 @@ function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     
     useEffect(() => {
         if (data) {
-            const items = data?.items.map((item) => {
+            const items = data?.items.map((item: any) => {
                 return {
                     title: item.name,
                     count: -123,

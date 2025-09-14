@@ -291,7 +291,7 @@ export default function Page({ params }: { params: Params }) {
 
     useEffect(() => {
         if (data) {
-            const items = data?.items.map((item) => {
+            const items = data?.items.map((item: any) => {
                 return {
                     title: item.location.replace(/^.*\//, ""),
                     count: -123,

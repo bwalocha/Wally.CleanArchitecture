@@ -1,4 +1,4 @@
-@ECHO OFF
+REM @ECHO OFF
 SET "WEBAPP=wally.cleanarchitecture.webapp"
 
 cls
@@ -16,10 +16,10 @@ call npx create-next-app@latest %WEBAPP% --typescript --tailwind --eslint --app 
 cd ./%WEBAPP% || echo ERROR: unknown && goto error
 
 REM base-color: neutral
-call npx shadcn@latest init --base-color neutral --legacy-peer-deps || echo ERROR: unknown && goto error
-call npx shadcn@latest add --all --legacy-peer-deps || echo ERROR: unknown && goto error
+call npx shadcn@latest init --base-color neutral || echo ERROR: unknown && goto error
+call npx shadcn@latest add --all || echo ERROR: unknown && goto error
 
-call npm install @reduxjs/toolkit --legacy-peer-deps || echo ERROR: unknown && goto error
+call npm install @reduxjs/toolkit || echo ERROR: unknown && goto error
 call npm install react-redux --legacy-peer-deps || echo ERROR: unknown && goto error
 
 call npm install odata-query --legacy-peer-deps || echo ERROR: unknown && goto error

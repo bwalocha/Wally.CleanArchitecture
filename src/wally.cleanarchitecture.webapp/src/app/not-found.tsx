@@ -3,7 +3,7 @@ import * as React from "react";
 import {useSession} from "next-auth/react";
 
 export default function Page() {
-    const { data: session, status } = useSession()
+    const { data: session, status } = useSession() ?? {}
 
     return (
         <main className="flex flex-1 flex-col gap-4 p-4">

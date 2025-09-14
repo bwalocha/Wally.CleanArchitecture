@@ -1,4 +1,6 @@
-﻿import * as React from "react"
+﻿/* eslint-enable @typescript-eslint/no-explicit-any */
+
+import * as React from "react"
 import { ChevronRight, File, Folder } from "lucide-react"
 
 import {
