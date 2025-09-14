@@ -87,7 +87,6 @@
     "frontendName": {
       "type": "computed",
       "value": "(frontendNameLower).webapp",
-      "fileRename": "wally.cleanarchitecture.webapp",
       "replaces": "wally.cleanarchitecture.webapp"
     },
     "frontendNameLower": {
