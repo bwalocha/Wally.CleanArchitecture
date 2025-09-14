@@ -157,6 +157,12 @@
           ]
         },
         {
+          "condition": "(!enableFrontend)",
+          "rename": {
+            "wally.cleanarchitecture.webapp": "<frontendName>"
+          }
+        },
+        {
           "condition": "(!enableReverseProxy && !enableMicroService)",
           "exclude": [
             ".config/**/*",
