@@ -53,7 +53,6 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 
 	public new Task DisposeAsync()
 	{
-		return Task.CompletedTask;
 		return Task.WhenAll(
 			_dbContainer.StopAsync()
 			// _dbContainer.DisposeAsync().AsTask()

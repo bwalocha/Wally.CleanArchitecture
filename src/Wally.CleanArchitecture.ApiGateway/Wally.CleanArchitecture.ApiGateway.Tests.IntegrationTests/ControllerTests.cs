@@ -3,11 +3,11 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Wally.CleanArchitecture.ApiGateway.Tests.IntegrationTests.Helpers;
 using Wally.CleanArchitecture.ApiGateway.WebApi;
-using Xunit;
 
 namespace Wally.CleanArchitecture.ApiGateway.Tests.IntegrationTests;
 
-public partial class ControllerTests : IClassFixture<ApiWebApplicationFactory<Startup>>, IDisposable
+[Collection(nameof(IntegrationTests))]
+public partial class ControllerTests : IDisposable
 {
 	private readonly HttpClient _httpClient;
 

@@ -1,4 +1,4 @@
-REM @ECHO OFF
+@ECHO OFF
 SET "WEBAPP=wally.cleanarchitecture.webapp"
 
 cls

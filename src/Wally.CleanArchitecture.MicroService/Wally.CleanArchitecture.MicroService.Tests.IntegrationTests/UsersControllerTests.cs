@@ -9,7 +9,8 @@ using Wally.CleanArchitecture.MicroService.WebApi;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
 
-public partial class UsersControllerTests : IClassFixture<ApiWebApplicationFactory<Startup>>, IAsyncLifetime, IDisposable
+[Collection(nameof(IntegrationTests))]
+public partial class UsersControllerTests : IAsyncLifetime, IDisposable
 {
 	private readonly ApiWebApplicationFactory<Startup> _factory;
 

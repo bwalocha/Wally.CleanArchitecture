@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Runtime.CompilerServices;
 using VerifyTests;
-using VerifyXunit;
 
 namespace Wally.CleanArchitecture.ApiGateway.Tests.IntegrationTests.Helpers;
 

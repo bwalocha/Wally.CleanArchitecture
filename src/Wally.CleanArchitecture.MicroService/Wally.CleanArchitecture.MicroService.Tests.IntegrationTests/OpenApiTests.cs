@@ -7,7 +7,8 @@ using Wally.CleanArchitecture.MicroService.WebApi;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
 
-public class OpenApiTests : IClassFixture<ApiWebApplicationFactory<Startup>>, IDisposable
+[Collection(nameof(IntegrationTests))]
+public class OpenApiTests : IDisposable
 {
 	private readonly HttpClient _httpClient;
 
