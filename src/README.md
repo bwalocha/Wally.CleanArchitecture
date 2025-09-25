@@ -20,14 +20,14 @@ sequenceDiagram
         participant QueryHandler as Query Handler
         participant ReadOnlyRepository as ReadOnly Repository
     end
-    Client->>Gateway: GET
-    Gateway->>Controller: GET
+    Client->>ApiGateway: GET
+    ApiGateway->>Controller: GET
     Controller->>QueryHandler: Query
     QueryHandler->>ReadOnlyRepository: GetAsync
     ReadOnlyRepository->>QueryHandler: Result
     QueryHandler->>Controller: Response
-    Controller->>Gateway: Response
-    Gateway->>Client: Response
+    Controller->>ApiGateway: Response
+    ApiGateway->>Client: Response
 ```
 
 ## Components

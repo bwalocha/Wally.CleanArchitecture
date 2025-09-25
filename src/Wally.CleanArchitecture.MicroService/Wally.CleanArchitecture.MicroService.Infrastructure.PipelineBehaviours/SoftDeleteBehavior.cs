@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -33,40 +34,66 @@ public class SoftDeleteBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
 		CancellationToken cancellationToken)
 	{
 		var response = await next(cancellationToken);
-
-		UpdateSoftDeleteMetadata(_dbContext.ChangeTracker.Entries<ISoftDeletable>());
+		var entries = _dbContext.ChangeTracker
+			.Entries<ISoftDeletable>()
+			.Where(e => e.State == EntityState.Deleted);
+		UpdateSoftDeleteMetadata(_dbContext, entries, _requestContext, _timeProvider);
 
 		return response;
 	}
 
-	private void UpdateSoftDeleteMetadata(IEnumerable<EntityEntry> entries)
+	private static void UpdateSoftDeleteMetadata(
+		DbContext dbContext,
+		IEnumerable<EntityEntry> entries,
+		IRequestContext requestContext,
+		TimeProvider timeProvider)
 	{
-		var utcNow = _timeProvider.GetUtcNow();
-		var userId = _requestContext.UserId;
+		var utcNow = timeProvider.GetUtcNow();
+		var userId = requestContext.UserId;
 
 		foreach (var entry in entries)
 		{
-			switch (entry.State)
-			{
-				case EntityState.Deleted:
-					entry.State = EntityState.Modified;
-					entry.CurrentValues.SetValues(
-						new Dictionary<string, object>
-						{
-							{
-								nameof(ISoftDeletable.IsDeleted), true
-							},
-							{
-								nameof(ISoftDeletable.DeletedAt), utcNow
-							},
-							{
-								nameof(ISoftDeletable.DeletedById), userId
-							},
-						});
-					break;
-				default:
-					continue;
-			}
+			entry.State = EntityState.Modified;
+			entry.CurrentValues.SetValues(
+				new Dictionary<string, object>
+				{
+					{
+						nameof(ISoftDeletable.IsDeleted), true
+					},
+					{
+						nameof(ISoftDeletable.DeletedAt), utcNow
+					},
+					{
+						nameof(ISoftDeletable.DeletedById), userId
+					},
+				});
+			HandleDependencies(dbContext, entry);
+		}
+	}
+	
+	private static void HandleDependencies(DbContext context, EntityEntry entry)
+	{
+		// https://www.youtube.com/watch?v=7teQpp5V4Vs
+		var ownedReferencedEntries = entry.References
+			.Where(x => x.TargetEntry != null)
+			.Select(x => x.TargetEntry!)
+			.Where(x => x.State == EntityState.Deleted && x.Metadata.IsOwned());
+
+		foreach (var ownedEntry in ownedReferencedEntries)
+		{
+			ownedEntry.State = EntityState.Unchanged;
+			HandleDependencies(context, ownedEntry);
+		}
+
+		var ownedCollectionEntries = entry.Collections
+			.Where(x => x is { IsLoaded: true, CurrentValue: not null, })
+			.SelectMany(x => x.CurrentValue!.Cast<object>().Select(context.Entry))
+			.Where(x => x.State == EntityState.Deleted && x.Metadata.IsOwned());
+
+		foreach (var ownedEntry in ownedCollectionEntries)
+		{
+			ownedEntry.State = EntityState.Unchanged;
+			HandleDependencies(context, ownedEntry);
 		}
 	}
 }

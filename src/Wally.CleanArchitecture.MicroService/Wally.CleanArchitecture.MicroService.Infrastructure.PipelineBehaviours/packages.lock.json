@@ -225,7 +225,7 @@
       "wally.cleanarchitecture.microservice.application": {
         "type": "Project",
         "dependencies": {
-          "MassTransit.Abstractions": "[8.5.2, )",
+          "MassTransit.Abstractions": "[8.5.3, )",
           "MediatR": "[13.0.0, )",
           "Microsoft.AspNetCore.OData": "[9.4.0, )",
           "SonarAnalyzer.CSharp": "[10.15.0.120848, )",
@@ -264,9 +264,9 @@
       },
       "MassTransit.Abstractions": {
         "type": "CentralTransitive",
-        "requested": "[8.5.2, )",
-        "resolved": "8.5.2",
-        "contentHash": "5rgaFoJXGpfOeUDegkS2h08NvGwW6Qdkj5gou9kBfMb39tlWWyM/S3c/HWrpaXUrlE+MQlK3o6xHM85hJtP2aA=="
+        "requested": "[8.5.3, )",
+        "resolved": "8.5.3",
+        "contentHash": "YXtqlrgVdynjUDgPZrihYN8rdaw+gWvYMgPAUJAsi22qA1xPzwpU7GCiJJODXWZHMz2TSufF92vTr4ljYx9OIQ=="
       },
       "MediatR.Contracts": {
         "type": "CentralTransitive",
