@@ -1,3 +1,4 @@
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Extensions;
 
@@ -23,5 +24,9 @@ public sealed class ApplicationDbContext : DbContext
 			.ApplyOptimisticConcurrency()
 			.ApplySoftDelete()
 			.ApplyTemporal();
+
+		modelBuilder.AddInboxStateEntity();
+		modelBuilder.AddOutboxMessageEntity();
+		modelBuilder.AddOutboxStateEntity();
 	}
 }

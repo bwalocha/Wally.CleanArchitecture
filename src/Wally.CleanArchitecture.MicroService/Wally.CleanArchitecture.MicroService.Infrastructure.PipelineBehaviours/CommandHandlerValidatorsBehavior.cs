@@ -3,13 +3,12 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
-using MediatR;
-using Wally.CleanArchitecture.MicroService.Application.Abstractions;
+using Mediator;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 
 public class CommandHandlerValidatorsBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-	where TRequest : ICommand<TResponse>
+	where TRequest : Application.Abstractions.ICommand<TResponse>
 {
 	private readonly IEnumerable<IValidator<TRequest>> _validators;
 
@@ -18,18 +17,15 @@ public class CommandHandlerValidatorsBehavior<TRequest, TResponse> : IPipelineBe
 		_validators = validators;
 	}
 
-	public async Task<TResponse> Handle(
-		TRequest request,
-		RequestHandlerDelegate<TResponse> next,
-		CancellationToken cancellationToken)
+	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next, CancellationToken cancellationToken)
 	{
 		if (!_validators.Any())
 		{
-			return await next(cancellationToken);
+			return await next(message, cancellationToken);
 		}
 
 		var validationResults =
-			await Task.WhenAll(_validators.Select(a => a.ValidateAsync(request, cancellationToken)));
+			await Task.WhenAll(_validators.Select(a => a.ValidateAsync(message, cancellationToken)));
 		var validationErrors = validationResults.Where(a => !a.IsValid)
 			.SelectMany(a => a.Errors)
 			.ToArray();
@@ -39,6 +35,6 @@ public class CommandHandlerValidatorsBehavior<TRequest, TResponse> : IPipelineBe
 			throw new ValidationException(validationErrors);
 		}
 
-		return await next(cancellationToken);
+		return await next(message, cancellationToken);
 	}
 }

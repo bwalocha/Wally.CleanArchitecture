@@ -3,9 +3,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using Wally.CleanArchitecture.MicroService.Application.Contracts;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Abstractions;
+using Wally.CleanArchitecture.MicroService.Application;
+using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
+using Wally.CleanArchitecture.MicroService.WebApi;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 
@@ -16,7 +17,7 @@ public class ResponseTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
-			.Where(a => a.ImplementsInterface(typeof(IResponse)));
+			.Where(a => a.ImplementsInterface(typeof(IResult)));
 
 		types.ShouldSatisfyAllConditions(() =>
 		{
@@ -63,7 +64,7 @@ public class ResponseTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
-			.Where(a => a.ImplementsInterface(typeof(IResponse)));
+			.Where(a => a.ImplementsInterface(typeof(IResult)));
 
 		types.ShouldSatisfyAllConditions(() =>
 		{
@@ -90,15 +91,9 @@ public class ResponseTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
-			.Where(a => a.ImplementsInterface(typeof(IResponse)));
+			.Where(a => a.ImplementsInterface(typeof(IResult)));
 
-		types.ShouldSatisfyAllConditions(() =>
-		{
-			foreach (var type in types)
-			{
-				type.Namespace.ShouldStartWith(typeof(IApplicationContractsAssemblyMarker).Namespace!);
-			}
-		});
+		types.ShouldSatisfyAllConditions(types.Select(a => (Action)(() => a.Namespace.ShouldStartWith(typeof(IApplicationAssemblyMarker).Namespace!))).ToArray());
 	}
 
 	[Fact]
@@ -107,15 +102,10 @@ public class ResponseTests
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.IsClass)
-			.Where(a => a.Name.EndsWith("Response"));
+			.Where(a => a.Name.EndsWith("Response"))
+			.Where(a => a.Assembly != typeof(IPresentationAssemblyMarker).Assembly);
 
-		types.ShouldSatisfyAllConditions(() =>
-		{
-			foreach (var type in types)
-			{
-				type.ImplementsInterface(typeof(IResponse)).ShouldBeTrue();
-			}
-		});
+		types.ShouldSatisfyAllConditions(types.Select(a => (Action)(() => a.ImplementsInterface(typeof(IResult)).ShouldBeTrue($"{a.Name} should implement {nameof(IResult)}"))).ToArray());
 	}
 
 	[Fact]
@@ -123,14 +113,14 @@ public class ResponseTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
-			.Where(a => a.ImplementsInterface(typeof(IResponse)));
+			.Where(a => a.ImplementsInterface(typeof(IResult)));
 
 		types.ShouldSatisfyAllConditions(() =>
 		{
 			foreach (var type in types)
 			{
 				type.Name.Split('`')[0]
-					.ShouldEndWith("Response", Case.Sensitive, $"Response '{type}' should end with 'Response'");
+					.ShouldEndWith("Result", Case.Sensitive, $"Result '{type}' should end with 'Result'");
 			}
 		});
 	}
@@ -140,7 +130,7 @@ public class ResponseTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
-			.Where(a => a.ImplementsInterface(typeof(IResponse)));
+			.Where(a => a.ImplementsInterface(typeof(IResult)));
 
 		types.ShouldSatisfyAllConditions(() =>
 		{

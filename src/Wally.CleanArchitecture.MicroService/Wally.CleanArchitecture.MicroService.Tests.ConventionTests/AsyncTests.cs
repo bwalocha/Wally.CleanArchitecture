@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using MassTransit;
-using MediatR;
+using Mediator;
 using Microsoft.AspNetCore.SignalR;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
@@ -17,7 +17,7 @@ public class AsyncTests
 	public void AsyncMethods_ShouldHaveCancellationTokenAsLastParam()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllExportedTypes();
+		var types = assemblies.GetAllTypes();
 
 		types.ShouldSatisfyAllConditions(
 			() =>
@@ -73,7 +73,8 @@ public class AsyncTests
 	public void AsyncMethods_ShouldHaveNameSuffix()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllExportedTypes();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.Namespace?.StartsWith(nameof(Mediator)) == false);
 
 		types.ShouldSatisfyAllConditions(() =>
 			{

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.OData.Extensions;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.OData.ModelBuilder;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Abstractions;
+using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Application;
 

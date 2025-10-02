@@ -1,5 +1,7 @@
 // using System.Linq;
 // using MassTransit.Internals;
+
+using System.Linq;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -70,7 +72,9 @@ public class OnionArchitectureTests
 	public void OnionArchitecture_AllNamespaces_ShouldBeConsistent()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllExportedTypes();
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.Namespace?.StartsWith(typeof(Microsoft.Extensions.DependencyInjection.MediatorDependencyInjectionExtensions).Namespace!) == false)
+			.Where(a => a.Namespace?.StartsWith(typeof(Mediator.Mediator).Namespace!) == false);
 
 		types.ShouldSatisfyAllConditions(() =>
 		{

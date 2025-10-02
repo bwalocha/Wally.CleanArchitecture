@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
+using Mediator;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
@@ -11,7 +11,7 @@ using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 
 public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-	where TRequest : ICommand<TResponse>
+	where TRequest : Application.Abstractions.ICommand<TResponse>
 {
 	private readonly DbContext _dbContext;
 	private readonly TimeProvider _timeProvider;
@@ -27,18 +27,15 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 		_timeProvider = timeProvider;
 	}
 
-	public async Task<TResponse> Handle(
-		TRequest request,
-		RequestHandlerDelegate<TResponse> next,
-		CancellationToken cancellationToken)
+	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next, CancellationToken cancellationToken)
 	{
-		var response = await next(cancellationToken);
+		var response = await next(message, cancellationToken);
 
 		UpdateAggregateMetadata(_dbContext.ChangeTracker.Entries<IAuditable>());
 
 		return response;
 	}
-
+	
 	private void UpdateAggregateMetadata(IEnumerable<EntityEntry> entries)
 	{
 		var utcNow = _timeProvider.GetUtcNow();

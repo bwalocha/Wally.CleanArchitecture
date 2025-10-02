@@ -11,12 +11,11 @@
 
     <ItemGroup>
         <PackageReference Include="MassTransit.Abstractions" />
-        <PackageReference Include="MediatR" />
+        <PackageReference Include="Mediator.Abstractions" />
         <PackageReference Include="Microsoft.AspNetCore.OData" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.Contracts\Wally.CleanArchitecture.MicroService.Application.Contracts.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.Messages\Wally.CleanArchitecture.MicroService.Application.Messages.csproj" />
     </ItemGroup>

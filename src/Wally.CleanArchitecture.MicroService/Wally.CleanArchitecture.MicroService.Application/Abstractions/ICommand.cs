@@ -1,4 +1,4 @@
-﻿using MediatR;
+﻿using Mediator;
 
 namespace Wally.CleanArchitecture.MicroService.Application.Abstractions;
 

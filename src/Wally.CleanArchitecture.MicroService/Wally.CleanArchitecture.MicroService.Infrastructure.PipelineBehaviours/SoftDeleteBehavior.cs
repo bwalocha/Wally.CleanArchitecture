@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
+using Mediator;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
@@ -12,7 +12,7 @@ using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 
 public class SoftDeleteBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-	where TRequest : ICommand<TResponse>
+	where TRequest : Application.Abstractions.ICommand<TResponse>
 {
 	private readonly DbContext _dbContext;
 	private readonly TimeProvider _timeProvider;
@@ -27,13 +27,10 @@ public class SoftDeleteBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
 		_requestContext = requestContext;
 		_timeProvider = timeProvider;
 	}
-
-	public async Task<TResponse> Handle(
-		TRequest request,
-		RequestHandlerDelegate<TResponse> next,
-		CancellationToken cancellationToken)
+	
+	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next, CancellationToken cancellationToken)
 	{
-		var response = await next(cancellationToken);
+		var response = await next(message, cancellationToken);
 		var entries = _dbContext.ChangeTracker
 			.Entries<ISoftDeletable>()
 			.Where(e => e.State == EntityState.Deleted);

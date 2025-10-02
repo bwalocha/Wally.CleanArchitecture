@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
+using Mediator;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
@@ -22,10 +22,7 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 		_requestContext = requestContext;
 	}
 
-	public async Task<TResponse> Handle(
-		TRequest request,
-		RequestHandlerDelegate<TResponse> next,
-		CancellationToken cancellationToken)
+	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next, CancellationToken cancellationToken)
 	{
 		using var logContext =
 			LogContext.PushProperty(nameof(IRequestContext.CorrelationId), _requestContext.CorrelationId);
@@ -37,7 +34,7 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 
 		try
 		{
-			return await next(cancellationToken);
+			return await next(message, cancellationToken);
 		}
 		finally
 		{

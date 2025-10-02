@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+using Mediator;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
-using Wally.CleanArchitecture.MicroService.Application.Contracts;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Requests;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Responses;
 using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 using Wally.CleanArchitecture.MicroService.Application.Users.Queries;
+using Wally.CleanArchitecture.MicroService.Application.Users.Results;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
+using Wally.CleanArchitecture.MicroService.WebApi.Requests;
 
 namespace Wally.CleanArchitecture.MicroService.WebApi.Controllers;
 
@@ -43,13 +40,25 @@ public class UsersController : ControllerBase
 	///     Sample request:
 	///     GET /Users
 	/// </remarks>
+	// [HttpGet]
+	// public async Task<ActionResult<PagedResponse<GetUsersResponse>>> GetAsync(
+	// 	ODataQueryOptions<GetUsersRequest> queryOptions, CancellationToken cancellationToken)
+	// {
+	// 	throw new NotImplementedException();
+	// 	
+	// 	// var query = new GetUsersQuery(queryOptions); // TODO: Map
+	// 	// var response = await _sender.Send(query, cancellationToken);
+	// 	//
+	// 	// return Ok(response);
+	// }
+	
 	[HttpGet]
-	public async Task<ActionResult<PagedResponse<GetUsersResponse>>> GetAsync(
-		ODataQueryOptions<GetUsersRequest> queryOptions, CancellationToken cancellationToken)
+	public async Task<ActionResult<Application.Abstractions.PagedResult<Application.Users.Results.GetUsersResult>>> GetAsync(
+		ODataQueryOptions<Application.Users.Requests.GetUsersRequest> queryOptions, CancellationToken cancellationToken)
 	{
-		var query = new GetUsersQuery(queryOptions);
+		var query = new GetUsersQuery(queryOptions); // TODO: Map
 		var response = await _sender.Send(query, cancellationToken);
-
+		
 		return Ok(response);
 	}
 
@@ -64,7 +73,7 @@ public class UsersController : ControllerBase
 	///     GET /Users/6ff34249-ef96-432a-9822-d3aca639a986
 	/// </remarks>
 	[HttpGet("{id:guid}")]
-	public async Task<ActionResult<GetUserResponse>> GetAsync(Guid id, CancellationToken cancellationToken)
+	public async Task<ActionResult<GetUserResult>> GetAsync(Guid id, CancellationToken cancellationToken)
 	{
 		var query = new GetUserQuery(new UserId(id));
 		var result = await _sender.Send(query, cancellationToken);

@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using FluentValidation;
-using MediatR;
+using Mediator;
 using Microsoft.Extensions.DependencyInjection;
 using Wally.CleanArchitecture.MicroService.Application;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
@@ -12,7 +12,13 @@ public static class CqrsExtensions
 {
 	public static IServiceCollection AddCqrs(this IServiceCollection services)
 	{
-		services.AddMediatR(a => { a.RegisterServicesFromAssemblyContaining<IApplicationAssemblyMarker>(); });
+		services.AddMediator(a =>
+		{
+			a.Assemblies = [
+				typeof(IApplicationAssemblyMarker).Assembly
+			];
+			a.ServiceLifetime = ServiceLifetime.Scoped;
+		});
 
 		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LogBehavior<,>));
 		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(TransactionBehavior<,>));
@@ -26,7 +32,7 @@ public static class CqrsExtensions
 		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(QueryHandlerValidatorBehavior<,>));
 
 		services.AddValidatorsFromAssemblyContaining<IApplicationAssemblyMarker>(ServiceLifetime.Scoped,
-			a => a.InterfaceType.GenericTypeArguments.Single() == typeof(ICommand<>),
+			a => a.InterfaceType.GenericTypeArguments.Single() == typeof(Application.Abstractions.ICommand<>),
 			true);
 
 		services.Scan(

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
-using Wally.CleanArchitecture.MicroService.Application.Contracts;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 
@@ -117,7 +116,7 @@ public class RepositoryTests
 					.Where(a => a.ReturnType.GetGenericTypeDefinition() == typeof(Task<>))
 					.Where(a => a.ReturnType.GetGenericArguments()[0].IsGenericType)
 					.Where(a => a.ReturnType.GetGenericArguments()[0]
-						.GetGenericTypeDefinition() != typeof(PagedResponse<>));
+						.GetGenericTypeDefinition() != typeof(PagedResult<>));
 
 				foreach (var method in methods)
 				{

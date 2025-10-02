@@ -6,7 +6,7 @@ using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.OData.UriParser;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Abstractions;
+using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Extensions;
 

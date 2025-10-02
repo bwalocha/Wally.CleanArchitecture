@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Wally.CleanArchitecture.MicroService.Application.Abstractions;
+﻿using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 
@@ -13,7 +11,7 @@ public class DeleteUserCommandHandler : CommandHandler<DeleteUserCommand>
 		_userRepository = userRepository;
 	}
 
-	public override async Task HandleAsync(DeleteUserCommand command, CancellationToken cancellationToken)
+	public override async ValueTask HandleAsync(DeleteUserCommand command, CancellationToken cancellationToken)
 	{
 		var model = await _userRepository.GetAsync(command.UserId, cancellationToken);
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Reinforced.Typings.Ast.TypeNames;
 using Reinforced.Typings.Fluent;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Abstractions;
+using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Application.Contracts;
 
@@ -14,7 +14,7 @@ public static class ReinforcedTypingsConfiguration
 	{
 		var assemblies = new[]
 		{
-			Assembly.GetAssembly(typeof(IResponse)), Assembly.GetAssembly(typeof(ReinforcedTypingsConfiguration)),
+			Assembly.GetAssembly(typeof(IApplicationAssemblyMarker)), Assembly.GetAssembly(typeof(ReinforcedTypingsConfiguration)),
 		};
 
 		var types = assemblies.SelectMany(a => a!.GetTypes())
@@ -22,8 +22,8 @@ public static class ReinforcedTypingsConfiguration
 			.Where(x => x.IsClass)
 			.Where(
 				x => x.GetInterfaces()
-					.Contains(typeof(IResponse)) || x.GetInterfaces()
-					.Contains(typeof(IRequest)))
+					.Contains(typeof(IRequest)) || x.GetInterfaces()
+					.Contains(typeof(IResult)))
 			.ToArray();
 
 		builder.Global(
@@ -52,19 +52,21 @@ public static class ReinforcedTypingsConfiguration
 				exportBuilder.WithAllProperties();
 
 				exportBuilder.OverrideName(name);
-				if (exportBuilder.Type.Namespace != null)
+				if (exportBuilder.Type.Namespace == null)
 				{
-					if (exportBuilder.Type.Namespace == typeof(ReinforcedTypingsConfiguration).Namespace)
-					{
-						exportBuilder.ExportTo($"{name}.ts");
-					}
-					else
-					{
-						var segments = exportBuilder.Type.Namespace.Split('.')
-							.Reverse()
-							.ToArray();
-						exportBuilder.ExportTo($"{segments[0]}/{segments[1]}/{name}.ts");
-					}
+					return;
+				}
+
+				if (exportBuilder.Type.Namespace == typeof(ReinforcedTypingsConfiguration).Namespace)
+				{
+					exportBuilder.ExportTo($"{name}.ts");
+				}
+				else
+				{
+					var segments = exportBuilder.Type.Namespace.Split('.')
+						.Reverse()
+						.ToArray();
+					exportBuilder.ExportTo($"{segments[1]}/{segments[0]}/{name}.ts");
 				}
 			});
 	}

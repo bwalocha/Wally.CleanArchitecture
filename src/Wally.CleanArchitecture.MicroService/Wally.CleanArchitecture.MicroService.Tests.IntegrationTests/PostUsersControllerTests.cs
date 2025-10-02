@@ -1,7 +1,5 @@
-using System.Threading;
-using System.Threading.Tasks;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Requests;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Extensions;
+using Wally.CleanArchitecture.MicroService.WebApi.Requests;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
 

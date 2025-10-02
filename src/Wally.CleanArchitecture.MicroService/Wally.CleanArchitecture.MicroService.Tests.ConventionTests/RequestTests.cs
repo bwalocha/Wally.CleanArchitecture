@@ -1,7 +1,10 @@
-﻿using System.Linq;
-using Wally.CleanArchitecture.MicroService.Application.Contracts;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Abstractions;
+﻿using System;
+using System.Linq;
+using FluentValidation;
+using Wally.CleanArchitecture.MicroService.Application;
+using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
+using Wally.CleanArchitecture.MicroService.WebApi;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 
@@ -37,15 +40,10 @@ public class RequestTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
-			.Where(a => a.ImplementsInterface(typeof(IRequest)));
+			.Where(a => a.ImplementsInterface(typeof(IRequest)))
+			.Where(a => a.Assembly != typeof(IPresentationAssemblyMarker).Assembly);
 		
-		types.ShouldSatisfyAllConditions(() =>
-		{
-			foreach (var type in types)
-			{
-				type.Namespace.ShouldStartWith(typeof(IApplicationContractsAssemblyMarker).Namespace!);
-			}
-		});
+		types.ShouldSatisfyAllConditions(types.Select(a => (Action)(() => a.Namespace.ShouldStartWith(typeof(IApplicationAssemblyMarker).Namespace!))).ToArray());
 	}
 
 	[Fact]
@@ -53,16 +51,11 @@ public class RequestTests
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
-			.Where(a => a.Name.EndsWith("Request") && a.Name != nameof(IRequest));
+			.Where(a => a.Name.EndsWith("Request"))
+			.Where(a => a.Name != nameof(IRequest))
+			.Where(a => a.Assembly != typeof(IPresentationAssemblyMarker).Assembly);
 
-		types.ShouldSatisfyAllConditions(() =>
-		{
-			foreach (var type in types)
-			{
-				type.ImplementsInterface(typeof(IRequest))
-					.ShouldBeTrue();
-			}
-		});
+		types.ShouldSatisfyAllConditions(types.Select(a => (Action)(() => a.ImplementsInterface(typeof(IRequest)).ShouldBeTrue($"{a.Name} should implement {nameof(IRequest)}"))).ToArray());
 	}
 
 	[Fact]
@@ -114,6 +107,8 @@ public class RequestTests
 			foreach (var type in types)
 			{
 				assemblies.SelectMany(a => a.GetTypes())
+					.Where(a => a.InheritsGenericClass(typeof(AbstractValidator<>)))
+					.Where(a => a.BaseType?.GetGenericArguments().Single() == type)
 					.Count(a => a.Name == $"{type.Name}Validator")
 					.ShouldBe(1, $"Request '{type}' should have single corresponding RequestValidator");
 			}

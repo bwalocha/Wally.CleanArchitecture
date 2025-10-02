@@ -7,7 +7,6 @@
 
     <ItemGroup>
         <PackageReference Include="FluentValidation" />
-        <PackageReference Include="MediatR" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
         <PackageReference Include="Serilog" />

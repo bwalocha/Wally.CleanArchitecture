@@ -1,13 +1,12 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
-using MediatR;
-using Wally.CleanArchitecture.MicroService.Application.Abstractions;
+using Mediator;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 
 public class CommandHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-	where TRequest : ICommand<TResponse>
+	where TRequest : Application.Abstractions.ICommand<TResponse>
 {
 	private readonly IValidator<TRequest> _validator;
 
@@ -16,18 +15,15 @@ public class CommandHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBeh
 		_validator = validator;
 	}
 
-	public async Task<TResponse> Handle(
-		TRequest request,
-		RequestHandlerDelegate<TResponse> next,
-		CancellationToken cancellationToken)
+	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next, CancellationToken cancellationToken)
 	{
-		var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+		var validationResult = await _validator.ValidateAsync(message, cancellationToken);
 
 		if (!validationResult.IsValid)
 		{
 			throw new ValidationException(validationResult.Errors);
 		}
 
-		return await next(cancellationToken);
+		return await next(message, cancellationToken);
 	}
 }

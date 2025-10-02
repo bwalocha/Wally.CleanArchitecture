@@ -13,9 +13,9 @@ public static class AssemblyExtensions
 			.SelectMany(a => a.GetTypes());
 	}
 
-	public static IEnumerable<Type> GetAllExportedTypes(this IEnumerable<Assembly> assemblies)
-	{
-		return assemblies
-			.SelectMany(a => a.GetExportedTypes());
-	}
+	// public static IEnumerable<Type> GetAllExportedTypes(this IEnumerable<Assembly> assemblies)
+	// {
+	// 	return assemblies
+	// 		.SelectMany(a => a.GetExportedTypes());
+	// }
 }

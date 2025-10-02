@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using Mediator;
 
 namespace Wally.CleanArchitecture.MicroService.Application.Abstractions;
 

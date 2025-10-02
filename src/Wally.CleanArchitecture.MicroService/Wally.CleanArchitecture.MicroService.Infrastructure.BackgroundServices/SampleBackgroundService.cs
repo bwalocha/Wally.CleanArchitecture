@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
+using Mediator;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -39,7 +39,7 @@ public class SampleBackgroundService : BackgroundService
 
 	protected override async Task ExecuteAsync(CancellationToken stoppingToken)
 	{
-		// await SendCommandAsync(stoppingToken);
+		// await SendCommandAsync(stoppingToken); // TODO:
 	}
 
 	private async Task SendCommandAsync(CancellationToken cancellationToken)

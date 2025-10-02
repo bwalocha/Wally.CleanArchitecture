@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
+﻿namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
 
 public class VerifyChecksTests
 {

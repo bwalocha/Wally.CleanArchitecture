@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using MassTransit;
-using MediatR;
+using Mediator;
 using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.Identity.Messages.Users;
@@ -17,11 +17,11 @@ public class UserCreatedMessageConsumer : IConsumer<UserCreatedMessage>
 		_mediator = mediator;
 	}
 
-	public Task Consume(ConsumeContext<UserCreatedMessage> context)
+	public async Task Consume(ConsumeContext<UserCreatedMessage> context)
 	{
 		var message = context.Message;
 		var command = new CreateUserCommand(new UserId(message.UserId), message.UserName);
 
-		return _mediator.Send(command);
+		await _mediator.Send(command);
 	}
 }

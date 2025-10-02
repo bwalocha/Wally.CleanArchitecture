@@ -1,9 +1,9 @@
 ﻿using System;
 using AutoMapper;
 using Microsoft.Extensions.Logging.Abstractions;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Requests;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Responses;
 using Wally.CleanArchitecture.MicroService.Application.MapperProfiles;
+using Wally.CleanArchitecture.MicroService.Application.Users.Requests;
+using Wally.CleanArchitecture.MicroService.Application.Users.Results;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests;
@@ -36,8 +36,8 @@ public class MapperTests
 
 	[Theory]
 	[InlineData(typeof(User), typeof(GetUsersRequest))]
-	[InlineData(typeof(User), typeof(GetUsersResponse))]
-	[InlineData(typeof(User), typeof(GetUserResponse))]
+	[InlineData(typeof(User), typeof(GetUsersResult))]
+	[InlineData(typeof(User), typeof(GetUserResult))]
 	public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
 	{
 		// Arrange
@@ -53,8 +53,8 @@ public class MapperTests
 	}
 
 	[Theory]
-	[InlineData(typeof(GetUsersRequest), typeof(GetUsersResponse))]
-	[InlineData(typeof(GetUsersResponse), typeof(GetUsersRequest))]
+	[InlineData(typeof(GetUsersRequest), typeof(GetUsersResult))]
+	[InlineData(typeof(GetUsersResult), typeof(GetUsersRequest))]
 	public void ShouldNotSupportMappingFromSourceToDestination(Type source, Type destination)
 	{
 		// Arrange

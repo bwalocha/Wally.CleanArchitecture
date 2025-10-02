@@ -1,2 +1,4 @@
-﻿global using VerifyXunit;
+﻿global using System.Threading;
+global using System.Threading.Tasks;
+global using VerifyXunit;
 global using Xunit;

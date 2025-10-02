@@ -1,9 +1,6 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MassTransit;
-using Wally.CleanArchitecture.MicroService.Application.Abstractions;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Users.Responses;
+﻿using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Application.Messages.Users;
+using Wally.CleanArchitecture.MicroService.Application.Users.Results;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 
 namespace Wally.CleanArchitecture.MicroService.Application.Users.DomainEventHandlers;
@@ -21,10 +18,10 @@ public class UserCreatedDomainEventHandler : IDomainEventHandler<UserCreatedDoma
 
 	public async Task HandleAsync(UserCreatedDomainEvent domainEvent, CancellationToken cancellationToken)
 	{
-		var model = await _userRepository.GetAsync<GetUserResponse>(domainEvent.Id, cancellationToken);
+		var model = await _userRepository.GetAsync<GetUserResult>(domainEvent.Id, cancellationToken);
 
 		var message = new UserCreatedMessage(domainEvent.Id.Value, model.Name);
 
-		await _bus.Publish(message, cancellationToken);
+		await _bus.PublishAsync(message, cancellationToken);
 	}
 }

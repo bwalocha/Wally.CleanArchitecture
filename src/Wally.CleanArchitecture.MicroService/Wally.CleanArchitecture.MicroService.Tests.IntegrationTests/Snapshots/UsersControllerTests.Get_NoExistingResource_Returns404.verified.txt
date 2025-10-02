@@ -13,7 +13,7 @@
       type: ResourceNotFoundException`1,
       title: Resource Not Found Exception,
       status: 404,
-      detail: The 'GetUserResponse' with Id='Guid_1' could not be found,
+      detail: The 'GetUserResult' with Id='Guid_1' could not be found,
       instance: /Users/Guid_1
     }
   }

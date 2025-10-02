@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.OData.Query;
-using Wally.CleanArchitecture.MicroService.Application.Contracts;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Application.Abstractions;
 
 [ExcludeFromCodeCoverage]
-public class PagedQuery<TRequest, TResponse> : IQuery<PagedResponse<TResponse>>
+public class PagedQuery<TRequest, TResult> : IQuery<PagedResult<TResult>>
 	where TRequest : IRequest
-	where TResponse : IResponse
+	where TResult : IResult
 {
 	protected PagedQuery(ODataQueryOptions<TRequest> queryOptions)
 	{

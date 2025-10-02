@@ -7,8 +7,6 @@ using Microsoft.AspNetCore.OData.Query;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
-using Wally.CleanArchitecture.MicroService.Application.Contracts;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Abstractions;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Exceptions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Extensions;
@@ -34,55 +32,55 @@ public class ReadOnlyRepository<TEntity, TStronglyTypedId> : IReadOnlyRepository
 			.AnyAsync(a => a.Id.Equals(id), cancellationToken);
 	}
 
-	public async Task<TResponse> GetAsync<TResponse>(TStronglyTypedId id, CancellationToken cancellationToken)
-		where TResponse : IResponse
+	public async Task<TResult> GetAsync<TResult>(TStronglyTypedId id, CancellationToken cancellationToken)
+		where TResult : IResult
 	{
 		var query = GetReadOnlyEntitySet()
 			.Where(a => a.Id.Equals(id));
 
-		return await _mapper.ProjectTo<TResponse>(query)
+		return await _mapper.ProjectTo<TResult>(query)
 				.SingleOrDefaultAsync(cancellationToken)
-		?? throw new ResourceNotFoundException<TResponse>(id);
+		?? throw new ResourceNotFoundException<TResult>(id);
 	}
 
-	public Task<PagedResponse<TResponse>> GetAsync<TRequest, TResponse>(
+	public Task<PagedResult<TResult>> GetAsync<TRequest, TResult>(
 		ODataQueryOptions<TRequest> queryOptions,
 		CancellationToken cancellationToken)
 		where TRequest : class, IRequest
-		where TResponse : class, IResponse // TODO: struct?
+		where TResult : class, IResult // TODO: struct?
 	{
 		var query = GetReadOnlyEntitySet();
 
-		return GetAsync<TRequest, TResponse>(query, queryOptions, cancellationToken);
+		return GetAsync<TRequest, TResult>(query, queryOptions, cancellationToken);
 	}
 
 	protected async Task<TResponse> GetAsync<TResponse>(IQueryable<TEntity> query, CancellationToken cancellationToken)
-		where TResponse : IResponse
+		where TResponse : IResult
 	{
 		return await _mapper.ProjectTo<TResponse>(query)
 				.FirstOrDefaultAsync(cancellationToken)
 		?? throw new ResourceNotFoundException<TResponse>();
 	}
 
-	protected async Task<PagedResponse<TResponse>> GetAsync<TRequest, TResponse>(
+	protected async Task<PagedResult<TResult>> GetAsync<TRequest, TResult>(
 		IQueryable<TEntity> query,
 		CancellationToken cancellationToken)
 		where TRequest : class, IRequest
-		where TResponse : class, IResponse
+		where TResult : class, IResult
 	{
 		var totalItems = await query.CountAsync(cancellationToken);
-		var items = await _mapper.ProjectTo<TResponse>(query)
+		var items = await _mapper.ProjectTo<TResult>(query)
 			.ToArrayAsync(cancellationToken);
 
-		return new PagedResponse<TResponse>(items, new PageInfoResponse(0, items.Length, totalItems));
+		return new PagedResult<TResult>(items, new PageInfoResult(0, items.Length, totalItems));
 	}
 
-	protected async Task<PagedResponse<TResponse>> GetAsync<TRequest, TResponse>(
+	protected async Task<PagedResult<TResult>> GetAsync<TRequest, TResult>(
 		IQueryable<TEntity> query,
 		ODataQueryOptions<TRequest> queryOptions,
 		CancellationToken cancellationToken)
 		where TRequest : class, IRequest
-		where TResponse : class, IResponse // TODO: struct?
+		where TResult : class, IResult // TODO: struct?
 	{
 		query = query.ApplyFilter(queryOptions, _mapper)
 			.ApplySearch(queryOptions, ApplySearch);
@@ -93,27 +91,27 @@ public class ReadOnlyRepository<TEntity, TStronglyTypedId> : IReadOnlyRepository
 			.ApplySkip(queryOptions)
 			.ApplyTop(queryOptions);
 
-		var items = query.Provider is IAsyncQueryProvider ? await _mapper.ProjectTo<TResponse>(query)
-			.ToArrayAsync(cancellationToken) : _mapper.ProjectTo<TResponse>(query).ToArray();
+		var items = query.Provider is IAsyncQueryProvider ? await _mapper.ProjectTo<TResult>(query)
+			.ToArrayAsync(cancellationToken) : _mapper.ProjectTo<TResult>(query).ToArray();
 
 		var pageSize = queryOptions.Top?.Value ?? items.Length;
 
-		return new PagedResponse<TResponse>(
+		return new PagedResult<TResult>(
 			items,
-			new PageInfoResponse(
+			new PageInfoResult(
 				queryOptions.Skip?.Value > 0 && pageSize != 0 ? queryOptions.Skip.Value / pageSize : 0,
 				pageSize,
 				totalItems));
 	}
 
-	protected async Task<TResponse?> GetOrDefaultAsync<TResponse>(
+	protected async Task<TResult?> GetOrDefaultAsync<TResult>(
 		IQueryable<TEntity> query,
 		CancellationToken cancellationToken)
-		where TResponse : IResponse
+		where TResult : IResult
 	{
-		return await _mapper.ProjectTo<TResponse>(query)
+		return await _mapper.ProjectTo<TResult>(query)
 				.SingleOrDefaultAsync(cancellationToken)
-		?? throw new ResourceNotFoundException<TResponse>();
+		?? throw new ResourceNotFoundException<TResult>();
 	}
 
 	protected virtual IQueryable<TEntity> GetReadOnlyEntitySet()

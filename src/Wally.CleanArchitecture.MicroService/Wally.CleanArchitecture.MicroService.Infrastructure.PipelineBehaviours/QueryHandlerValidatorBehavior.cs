@@ -1,15 +1,14 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
-using MediatR;
+using Mediator;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
-using Wally.CleanArchitecture.MicroService.Application.Contracts.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 
 public class QueryHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-	where TRequest : IQuery<TResponse>
-	where TResponse : IResponse
+	where TRequest : Application.Abstractions.IQuery<TResponse>
+	where TResponse : IResult
 {
 	private readonly IValidator<TRequest>? _validator;
 
@@ -18,23 +17,20 @@ public class QueryHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBehav
 		_validator = validator;
 	}
 
-	public async Task<TResponse> Handle(
-		TRequest request,
-		RequestHandlerDelegate<TResponse> next,
-		CancellationToken cancellationToken)
+	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next, CancellationToken cancellationToken)
 	{
 		if (_validator == null)
 		{
-			return await next(cancellationToken);
+			return await next(message, cancellationToken);
 		}
 
-		var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+		var validationResult = await _validator.ValidateAsync(message, cancellationToken);
 
 		if (!validationResult.IsValid)
 		{
 			throw new ValidationException(validationResult.Errors);
 		}
 
-		return await next(cancellationToken);
+		return await next(message, cancellationToken);
 	}
 }

@@ -1,13 +1,12 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
+using Mediator;
 using Microsoft.EntityFrameworkCore;
-using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 
 public class TransactionBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-	where TRequest : ICommand<TResponse>
+	where TRequest : Application.Abstractions.ICommand<TResponse>
 {
 	private readonly DbContext _dbContext;
 
@@ -16,16 +15,13 @@ public class TransactionBehavior<TRequest, TResponse> : IPipelineBehavior<TReque
 		_dbContext = dbContext;
 	}
 
-	public async Task<TResponse> Handle(
-		TRequest request,
-		RequestHandlerDelegate<TResponse> next,
-		CancellationToken cancellationToken)
+	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next, CancellationToken cancellationToken)
 	{
 		await using var transaction = await _dbContext.Database.BeginTransactionAsync(cancellationToken);
 
 		try
 		{
-			var response = await next(cancellationToken);
+			var response = await next(message, cancellationToken);
 			await _dbContext.SaveChangesAsync(cancellationToken);
 			await transaction.CommitAsync(cancellationToken);
 

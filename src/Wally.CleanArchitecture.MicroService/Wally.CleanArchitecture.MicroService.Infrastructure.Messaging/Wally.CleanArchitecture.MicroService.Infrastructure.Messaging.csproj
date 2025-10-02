@@ -7,7 +7,6 @@
 
     <ItemGroup>
         <PackageReference Include="MassTransit" />
-        <PackageReference Include="MediatR" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
         <PackageReference Include="Wally.Identity.Messages" />
     </ItemGroup>

@@ -3,8 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net.Http;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using JsonNet.ContractResolvers;
 using Newtonsoft.Json;
 
@@ -67,7 +65,7 @@ public static class HttpClientExtensions
 		var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
 
 		using TextReader textReader = new StreamReader(stream);
-		using JsonReader jsonReader = new JsonTextReader(textReader);
+		await using JsonReader jsonReader = new JsonTextReader(textReader);
 
 		return JsonSerializer.Create(JsonSettings)
 			.Deserialize<TResponse>(jsonReader) !;

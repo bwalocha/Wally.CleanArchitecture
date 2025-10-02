@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
+using Mediator;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
@@ -11,7 +11,7 @@ using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 
 public class DomainEventHandlerBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-	where TRequest : ICommand<TResponse>
+	where TRequest : Application.Abstractions.ICommand<TResponse>
 {
 	private readonly DbContext _dbContext;
 	private readonly IServiceProvider _serviceProvider;
@@ -22,12 +22,9 @@ public class DomainEventHandlerBehavior<TRequest, TResponse> : IPipelineBehavior
 		_serviceProvider = serviceProvider;
 	}
 
-	public async Task<TResponse> Handle(
-		TRequest request,
-		RequestHandlerDelegate<TResponse> next,
-		CancellationToken cancellationToken)
+	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next, CancellationToken cancellationToken)
 	{
-		var response = await next(cancellationToken);
+		var response = await next(message, cancellationToken);
 
 		var domainEntities = _dbContext.ChangeTracker.Entries<IEntity>()
 			.Where(a => a.Entity.GetDomainEvents().Count != 0)
