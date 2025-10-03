@@ -32,6 +32,7 @@ public static class ModelBuilderExtensions
 			var converterType = typeof(EnumToStringConverter<>).MakeGenericType(property.ClrType);
 			var converter = (ValueConverter)Activator.CreateInstance(converterType) !;
 			property.SetValueConverter(converter);
+			// property.SetMaxLength(); // TODO: Enum Get Value Max Length +/- 2^x
 		}
 
 		return modelBuilder;
