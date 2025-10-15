@@ -56,8 +56,8 @@
       },
       "Microsoft.Bcl.AsyncInterfaces": {
         "type": "Transitive",
-        "resolved": "8.0.0",
-        "contentHash": "3WA9q9yVqJp222P3x1wYIGDAkpjAku0TMUaaQV22g6L67AI0LdOIrVS7Ht2vJfLHGSPVuqN94vIr15qn+HEkHw=="
+        "resolved": "1.1.1",
+        "contentHash": "yuvf07qFWFqtK3P/MRkEKLhn5r2UbSpVueRziSqj0yJQIKFwG1pq9mOayK3zE5qZCTs0CbrwL9M6R8VwqyGy2w=="
       },
       "Microsoft.Data.SqlClient": {
         "type": "Transitive",
@@ -166,11 +166,6 @@
           "Microsoft.Extensions.Options": "9.0.9"
         }
       },
-      "Microsoft.Extensions.ObjectPool": {
-        "type": "Transitive",
-        "resolved": "6.0.3",
-        "contentHash": "IbQUEZr/LxxpPxkXDmKaemMeQNPjdHfk87HtTsI18a3RVgad0NOJSRaJ20hcesqL45PLcpQHR8xrPP7wZKbFQQ=="
-      },
       "Microsoft.Extensions.Options": {
         "type": "Transitive",
         "resolved": "9.0.9",
@@ -250,42 +245,6 @@
           "Microsoft.IdentityModel.Logging": "8.0.1"
         }
       },
-      "Microsoft.OData.Core": {
-        "type": "Transitive",
-        "resolved": "8.2.3",
-        "contentHash": "c6AJxdmNHqTnH2XYQnYz4qttpIqfBpNBO4dZ68xDMxNN/+9Uu/pOKDZRAs7NCy50c+svCImh4v18J4g6Ycxoiw==",
-        "dependencies": {
-          "Microsoft.Bcl.AsyncInterfaces": "8.0.0",
-          "Microsoft.Extensions.ObjectPool": "6.0.3",
-          "Microsoft.OData.Edm": "[8.2.3]",
-          "Microsoft.Spatial": "[8.2.3]"
-        }
-      },
-      "Microsoft.OData.Edm": {
-        "type": "Transitive",
-        "resolved": "8.2.3",
-        "contentHash": "zba6EjkjyCT8ofUP7oXz1L5d8XfA20g0gGJMHohAAhCPJm1ChRzNEtoxYoYIB6qB7Ml19JDO6HZalO49/e/DTw==",
-        "dependencies": {
-          "System.Runtime.CompilerServices.Unsafe": "4.6.0",
-          "System.Text.Encodings.Web": "4.7.2",
-          "System.Text.Json": "4.6.0"
-        }
-      },
-      "Microsoft.OData.ModelBuilder": {
-        "type": "Transitive",
-        "resolved": "2.0.0",
-        "contentHash": "QzySAMGhLCMyLNHSTIYKFjJXetoDeGkRS/7JEjm7eMJlyu1Qv4MfL1CXQFg2uijizNu2jQojT0mdCpawXbyv8Q==",
-        "dependencies": {
-          "Microsoft.OData.Edm": "[8.0.0, 9.0.0)",
-          "Microsoft.Spatial": "[8.0.0, 9.0.0)",
-          "System.ComponentModel.Annotations": "4.6.0"
-        }
-      },
-      "Microsoft.Spatial": {
-        "type": "Transitive",
-        "resolved": "8.2.3",
-        "contentHash": "N8rhHhMojEYdH9P+JG208+s6dpR5P1rVyiGaDB5oV2YTVH+zA5utK3V3V4ytAMLb4GaqOyLyzMOgSLEWM0ulgQ=="
-      },
       "Microsoft.SqlServer.Server": {
         "type": "Transitive",
         "resolved": "1.0.0",
@@ -312,11 +271,6 @@
           "System.Memory.Data": "1.0.2",
           "System.Text.Json": "4.7.2"
         }
-      },
-      "System.ComponentModel.Annotations": {
-        "type": "Transitive",
-        "resolved": "4.6.0",
-        "contentHash": "pOd+UhZ3X8xfwKDlgAzowUJNjp8VYVmOHZm++vCd0kq1HZ0zK3mNo2yRXjYgv7Ik/Xi43fmJfND2PLEsQSALCg=="
       },
       "System.Configuration.ConfigurationManager": {
         "type": "Transitive",
@@ -453,9 +407,7 @@
       "wally.cleanarchitecture.microservice.application": {
         "type": "Project",
         "dependencies": {
-          "MassTransit.Abstractions": "[8.5.3, )",
           "Mediator.Abstractions": "[3.0.1, )",
-          "Microsoft.AspNetCore.OData": "[9.4.0, )",
           "SonarAnalyzer.CSharp": "[10.15.0.120848, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application.Messages": "[1.0.0, )",
@@ -484,7 +436,7 @@
         "dependencies": {
           "AutoMapper": "[15.0.1, )",
           "AutoMapper.Extensions.ExpressionMapping": "[9.0.1, )",
-          "MassTransit.EntityFrameworkCore": "[8.5.3, )",
+          "MassTransit.EntityFrameworkCore": "[8.5.4, )",
           "Microsoft.EntityFrameworkCore": "[9.0.9, )",
           "Microsoft.EntityFrameworkCore.Relational": "[9.0.9, )",
           "Microsoft.EntityFrameworkCore.SqlServer": "[9.0.9, )",
@@ -522,11 +474,11 @@
       },
       "MassTransit": {
         "type": "CentralTransitive",
-        "requested": "[8.5.3, )",
-        "resolved": "8.5.3",
-        "contentHash": "t4e/anRrUTOhI+LMgPBWWcCMlQdNMUYdxErfRkyyk39kgxlJP2rd6rhdE28Lt/kuytI95rJdBVZPiRaGihdimg==",
+        "requested": "[8.5.4, )",
+        "resolved": "8.5.4",
+        "contentHash": "uNmFkIICpCZ6AWSJfWfQJc4jjVhQygdPY4/yFEiOZkIVbwEbpFrJTjThzSSinbZFCtyYQMBN6RqHghVMwQy7pA==",
         "dependencies": {
-          "MassTransit.Abstractions": "8.5.3",
+          "MassTransit.Abstractions": "8.5.4",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
           "Microsoft.Extensions.Diagnostics.HealthChecks": "8.0.0",
           "Microsoft.Extensions.Hosting.Abstractions": "8.0.0",
@@ -536,17 +488,17 @@
       },
       "MassTransit.Abstractions": {
         "type": "CentralTransitive",
-        "requested": "[8.5.3, )",
-        "resolved": "8.5.3",
-        "contentHash": "YXtqlrgVdynjUDgPZrihYN8rdaw+gWvYMgPAUJAsi22qA1xPzwpU7GCiJJODXWZHMz2TSufF92vTr4ljYx9OIQ=="
+        "requested": "[8.5.4, )",
+        "resolved": "8.5.4",
+        "contentHash": "6rIDZNr+mldYiIyiFXY4l4p3BsUDVQDtHpRwoZOQY7/T6TboAqCV4fbLM4tDwZqV8OOWbJHs1a4wQyyAOYwHGA=="
       },
       "MassTransit.EntityFrameworkCore": {
         "type": "CentralTransitive",
-        "requested": "[8.5.3, )",
-        "resolved": "8.5.3",
-        "contentHash": "CxwbFxl9lXfBkMGlxLFavWl/rE3LrDF6gCpAQUXwOQ40WJrMVJXpX3dknmuX0vs7QEia70ZlQDwr7wleqtw0qw==",
+        "requested": "[8.5.4, )",
+        "resolved": "8.5.4",
+        "contentHash": "W1+qwvjR/dJe0xmIfOrgQjJxCyR0ztp70zyuOtpMzVvtC2AcAeSR6KmD6i/tP/wlyeFRC3Oapk+rviIFedUDbg==",
         "dependencies": {
-          "MassTransit": "8.5.3",
+          "MassTransit": "8.5.4",
           "Microsoft.EntityFrameworkCore.Relational": "9.0.1",
           "Microsoft.Extensions.Caching.Memory": "9.0.1"
         }
@@ -558,18 +510,6 @@
         "contentHash": "WLWp7S7pt818wsK2IiFwGwvUhwq0E/7F0LkglDQKx+4rSzRWVKD3CHtaCi1fpeURH+v44ZPxaRVBCNV7uWOBYQ==",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
-        }
-      },
-      "Microsoft.AspNetCore.OData": {
-        "type": "CentralTransitive",
-        "requested": "[9.4.0, )",
-        "resolved": "9.4.0",
-        "contentHash": "Gqy7DYws7qn3UZNPk+F71hYUknZ4F81MQDBKWctveY7JrPBlFw5lVHKPLbZP+fcOS9GM7vKu3FkK1r3Cp/McQA==",
-        "dependencies": {
-          "Microsoft.OData.Core": "[8.2.3, 9.0.0)",
-          "Microsoft.OData.Edm": "[8.2.3, 9.0.0)",
-          "Microsoft.OData.ModelBuilder": "[2.0.0, 3.0.0)",
-          "Microsoft.Spatial": "[8.2.3, 9.0.0)"
         }
       },
       "Microsoft.EntityFrameworkCore": {

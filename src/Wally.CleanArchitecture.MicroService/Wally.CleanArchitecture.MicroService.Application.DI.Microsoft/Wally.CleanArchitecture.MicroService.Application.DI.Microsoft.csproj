@@ -8,10 +8,6 @@
     <ItemGroup>
         <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" />
         <PackageReference Include="MassTransit.EntityFrameworkCore" />
-        <PackageReference Include="Mediator.SourceGenerator">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
     </ItemGroup>
 

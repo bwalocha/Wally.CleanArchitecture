@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Wally.CleanArchitecture.MicroService.Application.DI.Microsoft.Extensions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
+using Wally.CleanArchitecture.MicroService.WebApi.Extensions;
 
 namespace Wally.CleanArchitecture.MicroService.WebApi;
 
@@ -30,7 +31,7 @@ public class Startup
 	/// <param name="services">The Service Collection.</param>
 	public void ConfigureServices(IServiceCollection services)
 	{
-		// services.AddPresentation();
+		services.AddPresentation();
 		services.AddApplication();
 		services.AddInfrastructure(Configuration);
 	}
@@ -45,7 +46,7 @@ public class Startup
 		appLifetime.ApplicationStopped.Register(() =>
 			logger.LogInformation("The 'Wally.CleanArchitecture.MicroService' is stopped"));
 
-		// app.UsePresentation();
+		app.UsePresentation();
 		// app.UseApplication(env);
 		app.UseInfrastructure(env);
 	}

@@ -1,4 +1,5 @@
 ﻿using System;
+using AutoMapper;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
@@ -6,7 +7,9 @@ using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 using Wally.CleanArchitecture.MicroService.Application.Users.Queries;
 using Wally.CleanArchitecture.MicroService.Application.Users.Results;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
-using Wally.CleanArchitecture.MicroService.WebApi.Requests;
+using Wally.CleanArchitecture.MicroService.WebApi.Abstractions;
+using Wally.CleanArchitecture.MicroService.WebApi.Contracts.Users.Requests;
+using Wally.CleanArchitecture.MicroService.WebApi.Contracts.Users.Responses;
 
 namespace Wally.CleanArchitecture.MicroService.WebApi.Controllers;
 
@@ -20,14 +23,17 @@ namespace Wally.CleanArchitecture.MicroService.WebApi.Controllers;
 public class UsersController : ControllerBase
 {
 	private readonly ISender _sender;
+	private readonly IMapper _mapper;
 
 	/// <summary>
 	/// Initializes a new instance of the <see cref="UsersController"/> class.
 	/// </summary>
 	/// <param name="sender">The Sender.</param>
-	public UsersController(ISender sender)
+	/// <param name="mapper">The Mapper.</param>
+	public UsersController(ISender sender, IMapper mapper)
 	{
 		_sender = sender;
+		_mapper = mapper;
 	}
 
 	/// <summary>
@@ -40,28 +46,17 @@ public class UsersController : ControllerBase
 	///     Sample request:
 	///     GET /Users
 	/// </remarks>
-	// [HttpGet]
-	// public async Task<ActionResult<PagedResponse<GetUsersResponse>>> GetAsync(
-	// 	ODataQueryOptions<GetUsersRequest> queryOptions, CancellationToken cancellationToken)
-	// {
-	// 	throw new NotImplementedException();
-	// 	
-	// 	// var query = new GetUsersQuery(queryOptions); // TODO: Map
-	// 	// var response = await _sender.Send(query, cancellationToken);
-	// 	//
-	// 	// return Ok(response);
-	// }
-	
 	[HttpGet]
-	public async Task<ActionResult<Application.Abstractions.PagedResult<Application.Users.Results.GetUsersResult>>> GetAsync(
-		ODataQueryOptions<Application.Users.Requests.GetUsersRequest> queryOptions, CancellationToken cancellationToken)
+	public async Task<ActionResult<PagedResponse<GetUsersResponse>>> GetAsync(
+		ODataQueryOptions<GetUsersRequest> queryOptions, CancellationToken cancellationToken)
 	{
-		var query = new GetUsersQuery(queryOptions); // TODO: Map
+		var options = new QueryOption<GetUsersRequest, Wally.CleanArchitecture.MicroService.Application.Users.Requests.GetUsersRequest>(queryOptions, _mapper);
+		var query = new GetUsersQuery(options);
 		var response = await _sender.Send(query, cancellationToken);
 		
 		return Ok(response);
 	}
-
+	
 	/// <summary>
 	///     Gets User by Id.
 	/// </summary>
@@ -95,7 +90,7 @@ public class UsersController : ControllerBase
 	///     }
 	/// </remarks>
 	[HttpPost]
-	public async Task<ActionResult<object>> CreateAsync(CreateUserRequest request, CancellationToken cancellationToken)
+	public async Task<ActionResult> CreateAsync(CreateUserRequest request, CancellationToken cancellationToken)
 	{
 		var command = new CreateUserCommand(request.Name);
 		await _sender.Send(command, cancellationToken);
@@ -118,7 +113,7 @@ public class UsersController : ControllerBase
 	///     }
 	/// </remarks>
 	[HttpPut("{id:guid}")]
-	public async Task<ActionResult<object>> UpdateAsync(Guid id, UpdateUserRequest request,
+	public async Task<ActionResult> UpdateAsync(Guid id, UpdateUserRequest request,
 		CancellationToken cancellationToken)
 	{
 		var command = new UpdateUserCommand(new UserId(id), request.Name);
@@ -140,7 +135,7 @@ public class UsersController : ControllerBase
 	[HttpDelete("{id:guid}")]
 	// [Authorize("Users.Write")]
 	// [Authorize]
-	public async Task<ActionResult<object>> DeleteAsync(Guid id, CancellationToken cancellationToken)
+	public async Task<ActionResult> DeleteAsync(Guid id, CancellationToken cancellationToken)
 	{
 		var command = new DeleteUserCommand(new UserId(id));
 		await _sender.Send(command, cancellationToken);

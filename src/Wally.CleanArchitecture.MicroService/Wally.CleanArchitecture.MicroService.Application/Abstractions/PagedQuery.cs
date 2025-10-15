@@ -1,16 +1,14 @@
-﻿using Microsoft.AspNetCore.OData.Query;
-
-namespace Wally.CleanArchitecture.MicroService.Application.Abstractions;
+﻿namespace Wally.CleanArchitecture.MicroService.Application.Abstractions;
 
 [ExcludeFromCodeCoverage]
 public class PagedQuery<TRequest, TResult> : IQuery<PagedResult<TResult>>
 	where TRequest : IRequest
 	where TResult : IResult
 {
-	protected PagedQuery(ODataQueryOptions<TRequest> queryOptions)
+	protected PagedQuery(IQueryOptions<TRequest> queryOptions)
 	{
 		QueryOptions = queryOptions;
 	}
 
-	public ODataQueryOptions<TRequest> QueryOptions { get; }
+	public IQueryOptions<TRequest> QueryOptions { get; }
 }

@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.OData.Query;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
@@ -44,7 +43,7 @@ public class ReadOnlyRepository<TEntity, TStronglyTypedId> : IReadOnlyRepository
 	}
 
 	public Task<PagedResult<TResult>> GetAsync<TRequest, TResult>(
-		ODataQueryOptions<TRequest> queryOptions,
+		IQueryOptions<TRequest> queryOptions,
 		CancellationToken cancellationToken)
 		where TRequest : class, IRequest
 		where TResult : class, IResult // TODO: struct?
@@ -77,29 +76,31 @@ public class ReadOnlyRepository<TEntity, TStronglyTypedId> : IReadOnlyRepository
 
 	protected async Task<PagedResult<TResult>> GetAsync<TRequest, TResult>(
 		IQueryable<TEntity> query,
-		ODataQueryOptions<TRequest> queryOptions,
+		IQueryOptions<TRequest> queryOptions,
 		CancellationToken cancellationToken)
 		where TRequest : class, IRequest
 		where TResult : class, IResult // TODO: struct?
 	{
-		query = query.ApplyFilter(queryOptions, _mapper)
+		query = query
+			.ApplyFilter(queryOptions)
 			.ApplySearch(queryOptions, ApplySearch);
 
 		var totalItems = query.Provider is IAsyncQueryProvider ? await query.CountAsync(cancellationToken) : query.Count();
 
-		query = query.ApplyOrderBy(queryOptions, ApplyDefaultOrderBy, _mapper)
+		query = query
+			.ApplyOrderBy(queryOptions, ApplyDefaultOrderBy)
 			.ApplySkip(queryOptions)
 			.ApplyTop(queryOptions);
-
+		
 		var items = query.Provider is IAsyncQueryProvider ? await _mapper.ProjectTo<TResult>(query)
 			.ToArrayAsync(cancellationToken) : _mapper.ProjectTo<TResult>(query).ToArray();
 
-		var pageSize = queryOptions.Top?.Value ?? items.Length;
+		var pageSize = queryOptions.Top ?? items.Length;
 
 		return new PagedResult<TResult>(
 			items,
 			new PageInfoResult(
-				queryOptions.Skip?.Value > 0 && pageSize != 0 ? queryOptions.Skip.Value / pageSize : 0,
+				queryOptions.Skip > 0 && pageSize != 0 ? queryOptions.Skip.Value / pageSize : 0,
 				pageSize,
 				totalItems));
 	}

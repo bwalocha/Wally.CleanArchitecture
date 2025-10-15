@@ -213,7 +213,8 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql.
 
                     b.Property<DateTimeOffset?>("ModifiedAt")
                         .IsConcurrencyToken()
-                        .HasColumnType("datetime(6)");
+                        .HasPrecision(7)
+                        .HasColumnType("datetime(7)");
 
                     b.Property<Guid?>("ModifiedById")
                         .HasColumnType("char(36)");

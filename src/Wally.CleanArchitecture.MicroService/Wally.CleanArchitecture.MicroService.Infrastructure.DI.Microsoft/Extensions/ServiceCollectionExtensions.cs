@@ -9,6 +9,7 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 
+// TODO: move to Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Extensions
 public static class ServiceCollectionExtensions
 {
 	public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
@@ -31,7 +32,7 @@ public static class ServiceCollectionExtensions
 
 	public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app, IWebHostEnvironment env)
 	{
-		app.UseExceptionHandler();
+		// app.UseExceptionHandler();
 
 		// Configure the HTTP request pipeline.
 		if (env.IsDevelopment())
@@ -45,7 +46,7 @@ public static class ServiceCollectionExtensions
 		// If the App is hosted by Docker, HTTPS is not required inside container
 		// app.UseHttpsRedirection();
 
-		app.UseRouting();
+		// app.UseRouting();
 		
 		// app.UseAuthentication(); // TODO: Consider only for ApiGateway
 		app.UseAuthorization();

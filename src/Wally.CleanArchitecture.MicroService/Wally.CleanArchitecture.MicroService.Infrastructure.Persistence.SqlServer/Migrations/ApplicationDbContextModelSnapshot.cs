@@ -215,7 +215,8 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
 
                     b.Property<DateTimeOffset?>("ModifiedAt")
                         .IsConcurrencyToken()
-                        .HasColumnType("datetimeoffset");
+                        .HasPrecision(7)
+                        .HasColumnType("datetimeoffset(7)");
 
                     b.Property<Guid?>("ModifiedById")
                         .HasColumnType("uniqueidentifier");

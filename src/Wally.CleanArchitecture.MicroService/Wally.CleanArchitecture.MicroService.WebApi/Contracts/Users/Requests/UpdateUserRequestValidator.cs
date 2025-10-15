@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 
-namespace Wally.CleanArchitecture.MicroService.WebApi.Requests;
+namespace Wally.CleanArchitecture.MicroService.WebApi.Contracts.Users.Requests;
 
 public class UpdateUserRequestValidator : AbstractValidator<UpdateUserRequest>
 {

@@ -205,6 +205,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite
 
                     b.Property<DateTimeOffset?>("ModifiedAt")
                         .IsConcurrencyToken()
+                        .HasPrecision(7)
                         .HasColumnType("TEXT");
 
                     b.Property<Guid?>("ModifiedById")

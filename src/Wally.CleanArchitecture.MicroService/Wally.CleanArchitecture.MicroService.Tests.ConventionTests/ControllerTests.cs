@@ -92,7 +92,7 @@ public class ControllerTests
 					}
 
 					method.ReturnType.GenericTypeArguments
-						.SingleOrDefault(a => a.InheritsGenericClass(typeof(ActionResult<>)))
+						.SingleOrDefault(a => a.InheritsGenericClass(typeof(ActionResult)) || a.InheritsGenericClass(typeof(ActionResult<>)))
 						.ShouldNotBeNull(
 							$"Controller '{type}' and '{method}' method return type should be 'async ActionResult<>'");
 				}

@@ -1,5 +1,5 @@
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Extensions;
-using Wally.CleanArchitecture.MicroService.WebApi.Requests;
+using Wally.CleanArchitecture.MicroService.WebApi.Contracts.Users.Requests;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
 

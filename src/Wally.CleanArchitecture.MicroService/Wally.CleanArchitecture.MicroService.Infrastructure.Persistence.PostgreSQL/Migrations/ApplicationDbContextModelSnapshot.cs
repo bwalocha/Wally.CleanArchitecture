@@ -213,7 +213,8 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Postgr
 
                     b.Property<DateTimeOffset?>("ModifiedAt")
                         .IsConcurrencyToken()
-                        .HasColumnType("timestamp with time zone");
+                        .HasPrecision(7)
+                        .HasColumnType("timestamp(7) with time zone");
 
                     b.Property<Guid?>("ModifiedById")
                         .HasColumnType("uuid");

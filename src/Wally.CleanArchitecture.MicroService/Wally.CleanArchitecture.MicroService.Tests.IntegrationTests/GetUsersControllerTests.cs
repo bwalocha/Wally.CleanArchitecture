@@ -183,6 +183,43 @@ public partial class UsersControllerTests
 		// Assert
 		await Verifier.Verify(response);
 	}
+	
+	[Fact]
+	public async Task Get_3ResourcesFiltered_Returns1Resource()
+	{
+		// Arrange
+		await _factory.SeedAsync(
+			UserCreate(1),
+			UserCreate(3),
+			UserCreate(2));
+
+		// Act
+		var response =
+			await _httpClient.GetAsync(new Uri("Users?$filter=Name eq 'testUser3'",
+				UriKind.Relative)); // x1
+
+		// Assert
+		await Verifier.Verify(response);
+	}
+	
+	[Fact]
+	public async Task Get_3ResourcesFilteredById_Returns1Resource()
+	{
+		// Arrange
+		var user = UserCreate(3);
+		await _factory.SeedAsync(
+			UserCreate(1),
+			user,
+			UserCreate(2));
+
+		// Act
+		var response =
+			await _httpClient.GetAsync(new Uri($"Users?$filter=Id eq {user.Id}",
+				UriKind.Relative)); // x1
+
+		// Assert
+		await Verifier.Verify(response);
+	}
 
 	[Fact]
 	public async Task Get_3ResourcesOrderedSkipped1Top2Filtered_Returns1Resource()

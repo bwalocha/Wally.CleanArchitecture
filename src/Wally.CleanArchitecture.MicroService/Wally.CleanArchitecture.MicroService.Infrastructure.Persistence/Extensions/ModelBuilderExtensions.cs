@@ -63,6 +63,7 @@ public static class ModelBuilderExtensions
 
 			// https://learn.microsoft.com/en-us/ef/core/saving/concurrency?tabs=fluent-api
 			entityBuilder.Property(nameof(IAggregateRoot.ModifiedAt))
+				.HasPrecision(7)
 				.IsConcurrencyToken();
 		}
 

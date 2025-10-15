@@ -10,9 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="MassTransit.Abstractions" />
         <PackageReference Include="Mediator.Abstractions" />
-        <PackageReference Include="Microsoft.AspNetCore.OData" />
     </ItemGroup>
 
     <ItemGroup>

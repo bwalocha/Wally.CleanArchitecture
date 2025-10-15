@@ -1,6 +1,6 @@
 ﻿using Wally.CleanArchitecture.MicroService.WebApi.Abstractions;
 
-namespace Wally.CleanArchitecture.MicroService.WebApi.Requests;
+namespace Wally.CleanArchitecture.MicroService.WebApi.Contracts.Users.Requests;
 
 [ExcludeFromCodeCoverage]
 public class CreateUserRequest : IRequest
