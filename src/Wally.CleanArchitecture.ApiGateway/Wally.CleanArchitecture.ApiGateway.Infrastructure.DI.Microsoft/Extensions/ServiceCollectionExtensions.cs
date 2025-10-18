@@ -19,6 +19,7 @@ public static class ServiceCollectionExtensions
 
 		services.AddFeatureManagement();
 		services.AddOptions(settings);
+		services.AddAuthenticationAndAuthorization(settings);
 		services.AddReverseProxy(configuration);
 		services.AddHealthChecks(settings);
 		services.AddApiCors(settings.Cors);
@@ -51,7 +52,7 @@ public static class ServiceCollectionExtensions
 		app.UseRouting();
 		app.UseApiCors();
 
-		// app.UseAuthentication(); // TODO: configure Auth2
+		app.UseAuthenticationAndAuthorization();
 
 		app.UseHealthChecks();
 		app.UseReverseProxy();
