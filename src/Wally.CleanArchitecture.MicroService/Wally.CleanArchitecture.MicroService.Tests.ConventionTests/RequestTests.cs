@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using FluentValidation;
 using Wally.CleanArchitecture.MicroService.Application;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
@@ -13,26 +15,52 @@ public class RequestTests
 	[Fact]
 	public void Application_Request_ShouldNotExposeSetter()
 	{
+		// Arrange
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.ImplementsInterface(typeof(IRequest)));
 
-		types.ShouldSatisfyAllConditions(() =>
+		// Act
+		void Act(Type type, PropertyInfo property)
 		{
-			foreach (var type in types)
+			if (property.SetMethod?.IsPublic != true)
 			{
-				foreach (var property in type.GetProperties())
-				{
-					if (property.SetMethod?.IsPublic != true)
-					{
-						continue;
-					}
-
-					property.IsPrivateWritable()
-						.ShouldBeTrue($"Response class '{type}' should not expose setter for '{property.Name}'");
-				}
+				return;
 			}
-		});
+
+			var isInitOnly = (property.GetSetMethod()
+				?.ReturnParameter.GetRequiredCustomModifiers()
+				.Length ?? 0) > 0;
+			if (isInitOnly)
+			{
+				var isRequired = property.GetCustomAttribute(typeof(RequiredMemberAttribute)) != null;
+
+				if (isRequired)
+				{
+					return;
+				}
+
+				property.PropertyType.ShouldBeDecoratedWith<RequiredMemberAttribute>(
+					$"Request class '{type}' with Init setter should have Required modifier for '{property}'");
+			}
+
+			if (!property.CanWrite)
+			{
+				return;
+			}
+					
+			property.IsPrivateWritable()
+				.ShouldBeTrue($"Request class '{type}' should not expose setter for '{property}'");
+		}
+
+		// Assert
+		types.ShouldSatisfyAllConditions(types.SelectMany(a => a.GetProperties().Select(b => new
+			{
+				Type = a,
+				Property = b,
+			}))
+			.Select(a => (Action)(() => Act(a.Type, a.Property)))
+			.ToArray());
 	}
 
 	[Fact]

@@ -1,3 +1,4 @@
+using System;
 using FluentValidation;
 using Wally.CleanArchitecture.MicroService.Application.Users.Requests;
 
@@ -17,7 +18,11 @@ public class GetUsersRequestValidatorTests
 	public void Validate_ForValidData_IsValid()
 	{
 		// Arrange
-		var instance = new GetUsersRequest();
+		var instance = new GetUsersRequest
+		{
+			Id = Guid.Empty,
+			Name = null!,
+		};
 
 		// Act
 		var result = _sut.Validate(instance);

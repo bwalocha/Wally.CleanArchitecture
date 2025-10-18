@@ -9,6 +9,7 @@ namespace Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Extensi
 public static class AuthenticationAndAuthorizationExtensions
 {
 	private const string ReverseProxy = nameof(ReverseProxy);
+	private const string AuthenticatedUsersPolicyName = "AuthenticatedUsers";
 
 	public static IServiceCollection AddAuthenticationAndAuthorization(this IServiceCollection services, AppSettings settings)
 	{
@@ -27,7 +28,7 @@ public static class AuthenticationAndAuthorizationExtensions
 			});
 		services.AddAuthorization(options =>
 		{
-			options.AddPolicy("AuthenticatedUsers", policy =>
+			options.AddPolicy(AuthenticatedUsersPolicyName, policy =>
 			{
 				policy.RequireAuthenticatedUser();
 			});

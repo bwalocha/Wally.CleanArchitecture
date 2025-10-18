@@ -12,9 +12,9 @@ public class DeleteUserCommandAuthorizationHandler : ICommandAuthorizationHandle
 		_requestContext = requestContext;
 	}
 
-	public Task<AuthorizationHandlerResult> HandleAsync(DeleteUserCommand command, CancellationToken cancellationToken)
+	public ValueTask<AuthorizationHandlerResult> HandleAsync(DeleteUserCommand command, CancellationToken cancellationToken)
 	{
-		return Task.FromResult(_requestContext.UserId.Equals(command.UserId)
+		return ValueTask.FromResult(_requestContext.UserId.Equals(command.UserId)
 			? AuthorizationHandlerResult.Unauthorized
 			: AuthorizationHandlerResult.Succeeded);
 	}

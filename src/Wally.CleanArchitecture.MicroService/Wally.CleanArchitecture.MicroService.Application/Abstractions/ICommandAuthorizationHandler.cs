@@ -10,7 +10,7 @@ public interface ICommandAuthorizationHandler<in TCommand> : ICommandAuthorizati
 public interface ICommandAuthorizationHandler<in TCommand, TResult>
 	where TCommand : ICommand<TResult>
 {
-	Task<AuthorizationHandlerResult> HandleAsync(TCommand command, CancellationToken cancellationToken);
+	ValueTask<AuthorizationHandlerResult> HandleAsync(TCommand command, CancellationToken cancellationToken);
 }
 
 public enum AuthorizationHandlerResult

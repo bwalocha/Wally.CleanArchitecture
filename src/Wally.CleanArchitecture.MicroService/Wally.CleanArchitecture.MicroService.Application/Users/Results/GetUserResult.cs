@@ -6,7 +6,7 @@ namespace Wally.CleanArchitecture.MicroService.Application.Users.Results;
 [ExcludeFromCodeCoverage]
 public class GetUserResult : IResult
 {
-	public Guid Id { get; private set; } = Guid.Empty;
+	public required Guid Id { get; init; }
 
-	public string Name { get; private set; } = null!;
+	public required string Name { get; init; }
 }
