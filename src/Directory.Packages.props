@@ -64,10 +64,10 @@
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="9.0.6" />
     <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.6" />
     <PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
-    <PackageVersion Include="Testcontainers.MariaDb" Version="4.7.0" />
-    <PackageVersion Include="Testcontainers.MySql" Version="4.7.0" />
-    <PackageVersion Include="Testcontainers.MsSql" Version="4.7.0" />
-    <PackageVersion Include="Testcontainers.PostgreSql" Version="4.7.0" />
+    <PackageVersion Include="Testcontainers.MariaDb" Version="4.8.0" />
+    <PackageVersion Include="Testcontainers.MySql" Version="4.8.0" />
+    <PackageVersion Include="Testcontainers.MsSql" Version="4.8.0" />
+    <PackageVersion Include="Testcontainers.PostgreSql" Version="4.8.0" />
     <PackageVersion Include="TngTech.ArchUnitNET.xUnit" Version="0.12.3" />
     <PackageVersion Include="Ulid" Version="1.4.1" />
     <PackageVersion Include="Verify.Http" Version="[6.6.0]" />
