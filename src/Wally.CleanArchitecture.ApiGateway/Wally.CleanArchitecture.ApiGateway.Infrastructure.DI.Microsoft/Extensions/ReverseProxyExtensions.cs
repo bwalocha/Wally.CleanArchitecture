@@ -18,7 +18,11 @@ public static class ReverseProxyExtensions
 
 	public static IApplicationBuilder UseReverseProxy(this IApplicationBuilder app)
 	{
-		app.UseEndpoints(endpoints => { endpoints.MapReverseProxy(); });
+		app.UseEndpoints(endpoints =>
+		{
+			endpoints.MapReverseProxy()
+				.RequireAuthorization();
+		});
 
 		return app;
 	}

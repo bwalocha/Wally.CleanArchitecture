@@ -1,7 +1,7 @@
 using FluentValidation;
 using Wally.CleanArchitecture.MicroService.WebApi.Contracts.Users.Requests;
 
-namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests.Presentation;
+namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests.Presentation.Contracts.Users.Requests;
 
 // https://docs.fluentvalidation.net/en/latest/testing.html
 public class UpdateUserRequestValidatorTests
