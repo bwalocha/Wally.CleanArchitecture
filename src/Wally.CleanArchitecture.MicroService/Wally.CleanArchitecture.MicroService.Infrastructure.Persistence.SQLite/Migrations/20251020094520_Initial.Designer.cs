@@ -11,8 +11,8 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251003091959_TransactionalOutbox")]
-    partial class TransactionalOutbox
+    [Migration("20251020094520_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -208,6 +208,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite
 
                     b.Property<DateTimeOffset?>("ModifiedAt")
                         .IsConcurrencyToken()
+                        .HasPrecision(7)
                         .HasColumnType("TEXT");
 
                     b.Property<Guid?>("ModifiedById")

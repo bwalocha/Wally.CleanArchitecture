@@ -12,8 +12,8 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251003091708_TransactionalOutbox")]
-    partial class TransactionalOutbox
+    [Migration("20251020094638_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -216,7 +216,8 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql.
 
                     b.Property<DateTimeOffset?>("ModifiedAt")
                         .IsConcurrencyToken()
-                        .HasColumnType("datetime(6)");
+                        .HasPrecision(7)
+                        .HasColumnType("datetime(7)");
 
                     b.Property<Guid?>("ModifiedById")
                         .HasColumnType("char(36)");
