@@ -15,6 +15,9 @@ public class RequestContext : IRequestContext
 	{
 		if (httpContextAccessor.HttpContext == null)
 		{
+			// BackgroundService or Consumer
+			UserId = new UserId(Guid.Parse("FFFFFFFF-0000-0000-0000-FFFFFFFFFFFF"));
+			
 			return;
 		}
 
