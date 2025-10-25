@@ -31,7 +31,7 @@ public class Startup
 	/// <param name="services">The Service Collection.</param>
 	public void ConfigureServices(IServiceCollection services)
 	{
-		services.AddPresentation();
+		services.AddPresentation(Configuration);
 		services.AddApplication();
 		services.AddInfrastructure(Configuration);
 	}

@@ -14,4 +14,6 @@ public class AppSettings
 	public MessageBrokerType MessageBroker { get; init; }
 
 	public ConnectionStrings ConnectionStrings { get; } = new();
+
+	public MapperSettings MapperSettings { get; } = new();
 }

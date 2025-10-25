@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -111,9 +112,9 @@ public class DomainTests
 			.Where(a => a.ImplementsGenericInterface(typeof(IStronglyTypedId<,>)))
 			.Where(a => !a.IsGenericType);
 
-		types.ShouldSatisfyAllConditions(() =>
-		{
-			foreach (var type in types)
+		// Act
+		Action Act(Type type) =>
+			() =>
 			{
 				var explicitOperator = type.GetMethod(
 					"op_Explicit",
@@ -123,7 +124,9 @@ public class DomainTests
 					null);
 
 				explicitOperator.ShouldNotBeNull($"StronglyTypedId '{type}' should have explicit operator");
-			}
-		});
+			};
+
+		// Assert
+		types.ShouldSatisfyAllConditions(types.Select((Func<Type, Action>)Act).ToArray());
 	}
 }

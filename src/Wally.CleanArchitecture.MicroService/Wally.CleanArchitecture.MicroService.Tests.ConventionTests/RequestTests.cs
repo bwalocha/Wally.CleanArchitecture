@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using FluentValidation;
 using Wally.CleanArchitecture.MicroService.Application;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
@@ -122,24 +121,23 @@ public class RequestTests
 	}
 
 	[Fact]
-	public void Application_AllClassesImplementsIRequest_ShouldHaveSingleCorrespondingValidator()
+	public void Application_Command_ShouldHaveCorrespondingAuthorizationHandler()
 	{
+		// Arrange
 		var assemblies = Configuration.Assemblies.GetAllAssemblies()
 			.ToArray();
-		var types = assemblies
-			.GetAllTypes()
-			.Where(a => a.ImplementsInterface(typeof(IRequest)));
+		var types = assemblies.GetAllTypes()
+			.Where(a => a.IsClass)
+			.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
+				a.ImplementsGenericInterface(typeof(ICommand<>)));
+		
+		// Act
+		Action Act(Type type) =>
+			() => assemblies.GetAllTypes()
+				.SingleOrDefault(a => a.Name == $"{type.Name}AuthorizationHandler")
+				.ShouldNotBeNull($"Command '{type}' should have corresponding AuthorizationHandler: {type.Name}AuthorizationHandler");
 
-		types.ShouldSatisfyAllConditions(() =>
-		{
-			foreach (var type in types)
-			{
-				assemblies.SelectMany(a => a.GetTypes())
-					.Where(a => a.InheritsGenericClass(typeof(AbstractValidator<>)))
-					.Where(a => a.BaseType?.GetGenericArguments().Single() == type)
-					.Count(a => a.Name == $"{type.Name}Validator")
-					.ShouldBe(1, $"Request '{type}' should have single corresponding RequestValidator");
-			}
-		});
+		// Assert
+		types.ShouldSatisfyAllConditions(types.Select((Func<Type, Action>)Act).ToArray());
 	}
 }
