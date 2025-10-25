@@ -12,6 +12,6 @@
   "author": "Wally",
   "license": "ISC",
   "dependencies": {
-    "dayjs": "1.11.13"
+    "dayjs": "1.11.18"
   }
 }
