@@ -437,7 +437,7 @@
       },
       "AutoMapper": {
         "type": "CentralTransitive",
-        "requested": "[15.0.1, )",
+        "requested": "[15.1.0, )",
         "resolved": "15.1.0",
         "contentHash": "uJXRC0ysO+i3fuW1onh0cUmaLbEwfMWwAZ5nw2eKhYccHwDgRhSC4Qj3rNdBy4vdhnC3r4NinhhldANKNWpH1Q==",
         "dependencies": {
