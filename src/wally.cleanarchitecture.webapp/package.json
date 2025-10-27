@@ -57,7 +57,7 @@
     "odata-query": "^8.0.4",
     "react": "19.1.1",
     "react-day-picker": "^9.9.0",
-    "react-dom": "19.1.1",
+    "react-dom": "19.2.0",
     "react-hook-form": "^7.62.0",
     "react-redux": "^9.2.0",
     "react-resizable-panels": "^3.0.6",
