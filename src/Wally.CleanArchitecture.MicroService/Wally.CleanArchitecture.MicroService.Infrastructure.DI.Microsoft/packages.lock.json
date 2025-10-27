@@ -1324,17 +1324,6 @@
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
       },
-      "wally.cleanarchitecture.microservice.application.contracts": {
-        "type": "Project",
-        "dependencies": {
-          "FluentValidation": "[12.0.0, )",
-          "Reinforced.Typings": "[1.6.5, )",
-          "SonarAnalyzer.CSharp": "[10.15.0.120848, )",
-          "StyleCop.Analyzers": "[1.1.118, )",
-          "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
-          "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
-        }
-      },
       "wally.cleanarchitecture.microservice.application.messages": {
         "type": "Project",
         "dependencies": {
@@ -1439,7 +1428,7 @@
       },
       "AutoMapper": {
         "type": "CentralTransitive",
-        "requested": "[15.0.1, )",
+        "requested": "[15.1.0, )",
         "resolved": "15.1.0",
         "contentHash": "uJXRC0ysO+i3fuW1onh0cUmaLbEwfMWwAZ5nw2eKhYccHwDgRhSC4Qj3rNdBy4vdhnC3r4NinhhldANKNWpH1Q==",
         "dependencies": {
@@ -1589,12 +1578,6 @@
           "Microsoft.EntityFrameworkCore.Relational": "[9.0.0, 9.0.999]",
           "MySqlConnector": "2.4.0"
         }
-      },
-      "Reinforced.Typings": {
-        "type": "CentralTransitive",
-        "requested": "[1.6.5, )",
-        "resolved": "1.6.5",
-        "contentHash": "IUoJBwl8NsbcWELUY3WaIlfPFzceShjiTeNq/a5ymzw0UsiKx+sKwD9HdWWQBwx+l+iVVBi7i5tAcmFw4eKG2A=="
       },
       "Serilog": {
         "type": "CentralTransitive",

@@ -1,7 +1,10 @@
 using System;
-using System.Linq;
-using Wally.CleanArchitecture.MicroService.Application.Abstractions;
+using Wally.CleanArchitecture.MicroService.Application.Messages;
 using Wally.CleanArchitecture.MicroService.Infrastructure.BackgroundServices;
+using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Messaging;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
+using Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -9,14 +12,20 @@ namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 public class ArchitectureTests
 {
 	[Fact]
-	public void Architecture_Domain_ShouldNotReferenceAnyLayer()
+	public void Architecture_Domain_ShouldNotReferenceAnyOtherLayer()
 	{
 		// Arrange
 		IArchRule rule =
-			Types().That().ResideInAssembly(Configuration.Assemblies.Domain)
-				.As("Domain Layer types")
+			Types()
+				.That()
+				.Are(Configuration.DomainProvider)
 				.Should()
-				.NotDependOnAny(Types().That().DoNotResideInAssembly(Configuration.Assemblies.Domain));
+				.NotDependOnAny(Configuration.ApplicationProvider)
+				.AndShould()
+				.NotDependOnAny(Configuration.InfrastructureProvider)
+				.AndShould()
+				.NotDependOnAny(Configuration.PresentationProvider)
+				.Because("Domain Layer types should not reference any layer");
 		
 		// Act
 		
@@ -24,21 +33,19 @@ public class ArchitectureTests
 		rule.Check(Configuration.Architecture);
 	}
 	
-	[Fact(Skip = "TODO")]
+	[Fact]
 	public void Architecture_Application_ShouldNotReferenceAnyLayerExceptDomain()
 	{
 		// Arrange
 		IArchRule rule =
 			Types()
 				.That()
-				.ResideInAssembly(Configuration.Assemblies.Application)
-				.As("Application Layer types")
+				.Are(Configuration.ApplicationProvider)
 				.Should()
-				.NotDependOnAny(Types()
-					.That()
-					.DoNotResideInAssembly(Configuration.Assemblies.Domain)
-					.And()
-					.DoNotResideInAssembly(Configuration.Assemblies.Application));
+				.NotDependOnAny(Configuration.InfrastructureProvider)
+				.AndShould()
+				.NotDependOnAny(Configuration.PresentationProvider)
+				.Because("Application Layer types should not reference Infrastructure or Presentation layer");
 		
 		// Act
 		
@@ -46,29 +53,43 @@ public class ArchitectureTests
 		rule.Check(Configuration.Architecture);
 	}
 	
-	[Fact(Skip = "TODO: fix, extract Abstractions")]
+	[Fact]
+	public void Architecture_ApplicationMessages_ShouldNotReferenceDomainLayer()
+	{
+		// Arrange
+		IArchRule rule =
+			Types().That().ResideInAssembly(typeof(IApplicationMessagesAssemblyMarker).Assembly)
+				.As("Application.Messages Layer types")
+				.Should()
+				.NotDependOnAny(Configuration.DomainProvider);
+		
+		// Act
+		
+		// Assert
+		rule.Check(Configuration.Architecture);
+	}
+	
+	[Fact(Skip = "TODO: exclude Mediator types")]
 	public void Architecture_InfrastructureExceptBackgroundService_ShouldNotReferenceAnyLayerExceptDomain()
 	{
 		// Arrange
-		var allowedTypes = new[]
-		{
-			typeof(IRequestContext), typeof(IRequest),
-			typeof(IResult),
-			typeof(ICommandAuthorizationHandler<,>), typeof(ICommand<>), typeof(IDomainEventHandler<>),
-			typeof(IRepository<,>),
-			typeof(IReadOnlyRepository<,>)
-		};
 		IArchRule rule =
-			Types().That().Are(Configuration.Assemblies.Infrastructure
-					.Where(a => a != typeof(IInfrastructureBackgroundServicesAssemblyMarker).Assembly)
-					.GetAllTypes())
+			Types()
+				.That()
+				.Are(Configuration.InfrastructureProvider)
+				.And()
+				.DoNotResideInAssembly(typeof(IInfrastructureBackgroundServicesAssemblyMarker).Assembly)
+				.And()
+				.DoNotResideInAssembly(typeof(IInfrastructureMessagingAssemblyMarker).Assembly)
+				.And()
+				.DoNotResideInAssembly(typeof(IInfrastructurePersistenceAssemblyMarker).Assembly)
+				.And()
+				.DoNotResideInAssembly(typeof(IInfrastructurePipelineBehavioursAssemblyMarker).Assembly)
 				.As("Infrastructure Layer types")
 				.Should()
-				.NotDependOnAny(Configuration.Assemblies.GetAllAssemblies()
-					.Where(a => !Configuration.Assemblies.Domain.Contains(a))
-					.Where(a => !Configuration.Assemblies.Infrastructure.Contains(a))
-					// .Where(a => !Configuration.Assemblies.Application.Where(b => b == typeof(IApplicationContractsAssemblyMarker).Assembly).Contains(a))
-					.GetAllTypes().Where(a => !allowedTypes.Contains(a)));
+				.NotDependOnAny(Configuration.ApplicationProvider)
+				.AndShould()
+				.NotDependOnAny(Configuration.PresentationProvider);
 		
 		// Act
 		
@@ -76,15 +97,28 @@ public class ArchitectureTests
 		rule.Check(Configuration.Architecture);
 	}
 	
-	[Fact(Skip = "TODO: Infrastructure (BackgroundService) references Application")]
+	[Fact]
 	public void Architecture_Infrastructure_ShouldNotReferenceAnyLayerExceptDomain()
 	{
 		// Arrange
 		IArchRule rule =
-			Types().That().Are(Configuration.Assemblies.Infrastructure.GetAllTypes())
-				.As("Infrastructure Layer types")
+			Types()
+				.That()
+				.Are(Configuration.InfrastructureProvider)
+				.And()
+				.DoNotResideInAssembly(typeof(IInfrastructureDIMicrosoftAssemblyMarker).Assembly)
+				.And()
+				.DoNotResideInAssembly(typeof(IInfrastructureBackgroundServicesAssemblyMarker).Assembly)
+				.And()
+				.DoNotResideInAssembly(typeof(IInfrastructureMessagingAssemblyMarker).Assembly)
+				.And()
+				.DoNotResideInAssembly(typeof(IInfrastructurePersistenceAssemblyMarker).Assembly)
+				.And()
+				.DoNotResideInAssembly(typeof(IInfrastructurePipelineBehavioursAssemblyMarker).Assembly)
 				.Should()
-				.NotDependOnAny(Configuration.Assemblies.GetAllAssemblies().Where(a => !Configuration.Assemblies.Domain.Contains(a)).Where(a => !Configuration.Assemblies.Infrastructure.Contains(a)).GetAllTypes());
+				.NotDependOnAny(Configuration.ApplicationProvider)
+				.AndShould()
+				.NotDependOnAny(Configuration.PresentationProvider);
 		
 		// Act
 		
@@ -92,19 +126,14 @@ public class ArchitectureTests
 		rule.Check(Configuration.Architecture);
 	}
 	
-	[Fact(Skip = "TODO: fix")]
+	[Fact]
 	public void Architecture_Infrastructure_ShouldNotReferenceAnyLayerExceptDomainAndApplication()
 	{
-		// TODO: Consider to remove dependency to Application
-		// - pros: all interfaces in Domain - Clean Arhitecture 
-		// - cons: too big Domain, interfaces like ICommandDispatcher, IMediator, INotificationBus in Domain
-		
 		// Arrange
 		IArchRule rule =
-			Types().That().Are(Configuration.Assemblies.Infrastructure.GetAllTypes())
-				.As("Infrastructure Layer types")
+			Types().That().Are(Configuration.InfrastructureProvider)
 				.Should()
-				.NotDependOnAny(Configuration.Assemblies.GetAllAssemblies().Where(a => !Configuration.Assemblies.Domain.Contains(a)).Where(a => !Configuration.Assemblies.Application.Contains(a)).Where(a => !Configuration.Assemblies.Infrastructure.Contains(a)).GetAllTypes());
+				.NotDependOnAny(Configuration.PresentationProvider);
 		
 		// Act
 		
@@ -117,10 +146,13 @@ public class ArchitectureTests
 	{
 		// Arrange
 		IArchRule rule =
-			Types().That().Are(Configuration.Assemblies.Presentation.GetAllTypes())
-				.As("Presentation Layer types")
+			Types().That().Are(Configuration.PresentationProvider)
 				.Should()
-				.DependOnAny(Configuration.Assemblies.GetAllAssemblies().GetAllTypes());
+				.DependOnAny(Configuration.DomainProvider)
+				.AndShould()
+				.DependOnAny(Configuration.ApplicationProvider)
+				.AndShould()
+				.DependOnAny(Configuration.InfrastructureProvider);
 		
 		// Act
 		
@@ -128,46 +160,34 @@ public class ArchitectureTests
 		rule.Check(Configuration.Architecture);
 	}
 	
-	[Fact(Skip = "TODO")]
+	[Fact]
 	public void Architecture_AllNamespaces_ShouldBeConsistent()
 	{
 		// Arrange
 		IArchRule rule =
 			Types()
 				.That()
-				.ResideInAssembly(Configuration.Assemblies.Domain)
-				.As("Domain Layer types")
+				.Are(Configuration.DomainProvider)
 				.Should()
-				.ResideInNamespaceMatching($"^{Configuration.Namespace.Replace(".", "\\.")}\\.Domain(\\..+)?$")
+				.ResideInNamespaceMatching(@$"^{Configuration.Namespace.Replace(".", @"\.")}\.Domain(\..+)?$")
 				.And()
 				.Types()
 				.That()
-				.ResideInAssembly(Configuration.Assemblies.Application)
-				// .And()
-				// .DoNotHaveNameStartingWith(typeof(Microsoft.Extensions.DependencyInjection.MediatorDependencyInjectionExtensions).Namespace)
-				// .And()
-				// .DoNotHaveNameStartingWith(typeof(Mediator.Mediator).Namespace)
-				.As("Application Layer types")
+				.Are(Configuration.ApplicationProvider)
 				.Should()
-				.ResideInNamespaceMatching($"^{Configuration.Namespace.Replace(".", "\\.")}\\.Application(\\..+)?$")
+				.ResideInNamespaceMatching(@$"^{Configuration.Namespace.Replace(".", @"\.")}\.Application(\..+)?$")
 				.And()
 				.Types()
 				.That()
-				.ResideInAssembly(Configuration.Assemblies.Infrastructure)
-				// .And()
-				// .DoNotHaveNameStartingWith(typeof(Microsoft.Extensions.DependencyInjection.MediatorDependencyInjectionExtensions).Namespace)
-				// .And()
-				// .DoNotHaveNameStartingWith(typeof(Mediator.Mediator).Namespace)
-				.As("Infrastructure Layer types")
+				.Are(Configuration.InfrastructureProvider)
 				.Should()
-				.ResideInNamespaceMatching($"^{Configuration.Namespace.Replace(".", "\\.")}\\.Infrastructure(\\..+)?$")
+				.ResideInNamespaceMatching(@$"^{Configuration.Namespace.Replace(".", @"\.")}\.Infrastructure(\..+)?$")
 				.And()
 				.Types()
 				.That()
-				.ResideInAssembly(Configuration.Assemblies.Presentation)
-				.As("Presentation Layer types")
+				.Are(Configuration.PresentationProvider)
 				.Should()
-				.ResideInNamespaceMatching($"^{Configuration.Namespace.Replace(".", "\\.")}\\.WebApi(\\..+)?$");
+				.ResideInNamespaceMatching(@$"^{Configuration.Namespace.Replace(".", @"\.")}\.WebApi(\..+)?$");
 		
 		// Act
 		
@@ -179,19 +199,24 @@ public class ArchitectureTests
 	public void Architecture_DomainAndApplication_ShouldNotUseDateTimeNow()
 	{
 		// Arrange
-		var types = Types()
-			.That()
-			.ResideInAssembly([..Configuration.Assemblies.Domain, ..Configuration.Assemblies.Application]);
-		IArchRule rule = types
-			.Should()
-			.NotAccessGetter<DateTime>(DateTime.Now)
-			.And(types
+		IArchRule rule =
+			Types()
+				.That()
+				.Are(Configuration.DomainProvider)
+				.Or()
+				.Are(Configuration.ApplicationProvider)
+				.Or()
+				.Are(Configuration.InfrastructureProvider)
+				.Or()
+				.Are(Configuration.PresentationProvider)
 				.Should()
+				.NotAccessGetter<DateTime>(DateTime.Now)
+				.AndShould()
 				.NotAccessGetter<DateTime>(DateTime.UtcNow)
-				.And(types.Should()
-					.NotAccessGetter<DateTimeOffset>(DateTimeOffset.Now)
-					.And(types.Should()
-						.NotAccessGetter<DateTimeOffset>(DateTimeOffset.UtcNow))));
+				.AndShould()
+				.NotAccessGetter<DateTimeOffset>(DateTimeOffset.Now)
+				.AndShould()
+				.NotAccessGetter<DateTimeOffset>(DateTimeOffset.UtcNow);
 		
 		// Act
 		

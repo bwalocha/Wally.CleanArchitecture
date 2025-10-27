@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.CodeDom.Compiler;
+using System.Linq;
 using ArchUnitNET.Domain;
 using ArchUnitNET.Loader;
 using Wally.CleanArchitecture.MicroService.Application;
@@ -17,19 +18,58 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer;
 using Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
+using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Wally.CleanArchitecture.MicroService.WebApi;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 
-// TODO: use TngTech.ArchUnitNET NuGet: ArchUnitNET, ArchUnitNET.Fluent.ArchRuleDefinition
 public static class Configuration
 {
 	public const string Namespace = "Wally.CleanArchitecture.MicroService";
-	
+
 	internal static readonly Architecture Architecture = new ArchLoader()
 		.LoadAssemblies(Assemblies.GetAllAssemblies().ToArray())
+		.LoadAssemblies(typeof(System.DateTime).Assembly)
 		.Build();
+
+	internal static readonly IObjectProvider<IType> DomainProvider =
+		Types()
+			.That()
+			.ResideInAssembly(Assemblies.Domain)
+			.And()
+			.DoNotHaveAnyAttributes(typeof(GeneratedCodeAttribute))
+			.As("Domain Layer");
+
+	internal static readonly IObjectProvider<IType> ApplicationProvider =
+		Types()
+			.That()
+			.ResideInAssembly(Assemblies.Application)
+			.And()
+			.DoNotHaveAnyAttributes(typeof(GeneratedCodeAttribute))
+			.As("Application Layer");
+
+	internal static readonly IObjectProvider<IType> InfrastructureProvider =
+		Types()
+			.That()
+			.ResideInAssembly(Assemblies.Infrastructure)
+			.And()
+			.DoNotHaveAnyAttributes(typeof(GeneratedCodeAttribute))
+			.And()
+			.DoNotResideInNamespaceMatching(@$"^.+\.{nameof(Mediator.Internals)}$")
+			.As("Infrastructure Layer");
+
+	internal static readonly IObjectProvider<IType> PresentationProvider =
+		Types()
+			.That()
+			.ResideInAssembly(Assemblies.Presentation)
+			.And()
+			.DoNotHaveAnyAttributes(typeof(GeneratedCodeAttribute))
+			.And()
+			.DoNotResideInNamespace(nameof(Mediator))
+			.And()
+			.DoNotResideInNamespaceMatching(@$"^.+\.{nameof(Mediator.Internals)}$")
+			.As("Presentation Layer");
 
 	public static Types OtherTypes
 		=> new()
@@ -43,6 +83,10 @@ public static class Configuration
 	public static Assemblies Assemblies
 		=> new()
 		{
+			Domain =
+			[
+				typeof(IDomainAssemblyMarker).Assembly,
+			],
 			Application =
 			[
 				typeof(IApplicationAssemblyMarker).Assembly,
@@ -50,10 +94,6 @@ public static class Configuration
 				typeof(IApplicationDIMicrosoftAssemblyMarker).Assembly,
 				typeof(IApplicationMapperProfilesAssemblyMarker).Assembly,
 				typeof(IApplicationMessagesAssemblyMarker).Assembly,
-			],
-			Domain =
-			[
-				typeof(IDomainAssemblyMarker).Assembly,
 			],
 			Infrastructure =
 			[

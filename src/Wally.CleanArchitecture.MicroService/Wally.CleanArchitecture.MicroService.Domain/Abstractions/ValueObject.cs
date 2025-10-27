@@ -45,7 +45,7 @@ public abstract class ValueObject<TValueObject> : IEquatable<TValueObject>
 }
 
 [DebuggerDisplay("{Value}")]
-public class ValueObject<TValueObject, TValue> : ValueObject<TValueObject>
+public abstract class ValueObject<TValueObject, TValue> : ValueObject<TValueObject>
 	where TValueObject : ValueObject<TValueObject>
 {
 	protected ValueObject(TValue value)

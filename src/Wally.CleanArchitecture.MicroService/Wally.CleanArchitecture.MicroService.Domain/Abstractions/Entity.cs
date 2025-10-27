@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
-public class Entity<TEntity, TStronglyTypedId> : IEntity
+public abstract class Entity<TEntity, TStronglyTypedId> : IEntity
 	where TEntity : Entity<TEntity, TStronglyTypedId>
 	where TStronglyTypedId : new()
 {

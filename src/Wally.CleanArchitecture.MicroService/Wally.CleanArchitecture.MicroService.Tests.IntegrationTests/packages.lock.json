@@ -1565,7 +1565,6 @@
           "StyleCop.Analyzers": "[1.1.118, )",
           "Swashbuckle.AspNetCore": "[9.0.6, )",
           "System.Drawing.Common": "[9.0.10, )",
-          "Wally.CleanArchitecture.MicroService.Application.Contracts": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.BackgroundServices": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.Messaging": "[1.0.0, )",
@@ -1769,7 +1768,7 @@
       },
       "AutoMapper": {
         "type": "CentralTransitive",
-        "requested": "[15.0.1, )",
+        "requested": "[15.1.0, )",
         "resolved": "15.1.0",
         "contentHash": "uJXRC0ysO+i3fuW1onh0cUmaLbEwfMWwAZ5nw2eKhYccHwDgRhSC4Qj3rNdBy4vdhnC3r4NinhhldANKNWpH1Q==",
         "dependencies": {

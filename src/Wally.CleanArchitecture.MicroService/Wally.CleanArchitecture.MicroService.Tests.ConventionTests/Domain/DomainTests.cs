@@ -17,7 +17,7 @@ public class DomainTests
 		IArchRule rule =
 			Classes()
 				.That()
-				.Are(Configuration.Assemblies.Domain.GetAllTypes())
+				.Are(Configuration.DomainProvider)
 				.And()
 				.AreNotAbstract()
 				.And()
@@ -30,7 +30,6 @@ public class DomainTests
 				.AreNotAssignableTo(typeof(DomainEvent))
 				.And()
 				.AreNotAssignableTo(typeof(DomainException))
-				.As("Domain classes")
 				.Should()
 				.HaveOnlyPrivateOrProtectedConstructors();
 		
@@ -47,12 +46,11 @@ public class DomainTests
 		IArchRule rule =
 			Classes()
 				.That()
-				.Are(Configuration.Assemblies.Domain.GetAllTypes())
+				.Are(Configuration.DomainProvider)
 				.And()
 				.AreNotAbstract()
 				.And()
 				.AreAssignableTo(typeof(IStronglyTypedId<>))
-				.As("StronglyTypedId classes")
 				.Should()
 				.BeSealed();
 		
@@ -62,52 +60,23 @@ public class DomainTests
 		rule.Check(Configuration.Architecture);
 	}
 
-	[Fact(Skip = "TODO: update")]
+	[Fact]
 	public void Domain_Property_ShouldNotExposeSetter()
 	{
 		// Arrange
 		IArchRule rule =
-			Classes()
+			Members()
 				.That()
-				.Are(Configuration.Assemblies.Domain.GetAllTypes())
-				// .And()
-				// .AreNotAbstract()
-				// .And()
-				// .AreAssignableTo(typeof(IStronglyTypedId<>))
-				.As("Domain classes")
+				.AreDeclaredIn(Configuration.DomainProvider)
 				.Should()
-				.BeImmutable();
+				.HaveOnlyPrivateOrProtectedSetters()
+				.Because("Domain entities should be immutable from outside the aggregate.")
+			;
 		
 		// Act
 		
 		// Assert
 		rule.Check(Configuration.Architecture);
-		
-		
-		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllTypes()
-			.Where(a => a.InheritsGenericClass(typeof(Entity<,>)));
-
-		types.ShouldSatisfyAllConditions(() =>
-		{
-			foreach (var type in types)
-			{
-				foreach (var property in type.GetProperties())
-				{
-					if (typeof(IEnumerable).IsAssignableFrom(property.PropertyType) &&
-						property.PropertyType != typeof(string))
-					{
-						property.GetSetMethod()
-							.ShouldBeNull($"Entity '{type}' and property '{property}' should be immutable");
-					}
-					else if (property.CanWrite)
-					{
-						property.IsPrivateWritable()
-							.ShouldBeTrue($"Entity '{type}' and property '{property}' should be immutable");
-					}
-				}
-			}
-		});
 	}
 
 	[Fact(Skip = "Not implemented yet")]

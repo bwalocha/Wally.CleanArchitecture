@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -10,12 +11,7 @@ public static class AssemblyExtensions
 	public static IEnumerable<Type> GetAllTypes(this IEnumerable<Assembly> assemblies)
 	{
 		return assemblies
-			.SelectMany(a => a.GetTypes());
+			.SelectMany(a => a.GetTypes())
+			.Where(a => !a.GetCustomAttributes<GeneratedCodeAttribute>().Any());
 	}
-
-	// public static IEnumerable<Type> GetAllExportedTypes(this IEnumerable<Assembly> assemblies)
-	// {
-	// 	return assemblies
-	// 		.SelectMany(a => a.GetExportedTypes());
-	// }
 }

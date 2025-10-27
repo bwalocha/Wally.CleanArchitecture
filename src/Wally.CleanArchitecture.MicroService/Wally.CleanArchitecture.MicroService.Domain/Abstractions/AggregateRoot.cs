@@ -3,7 +3,7 @@ using Wally.CleanArchitecture.MicroService.Domain.Users;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
-public class AggregateRoot<TAggregateRoot, TStronglyTypedId>
+public abstract class AggregateRoot<TAggregateRoot, TStronglyTypedId>
 	: Entity<TAggregateRoot, TStronglyTypedId>, IAggregateRoot
 	where TAggregateRoot : AggregateRoot<TAggregateRoot, TStronglyTypedId>
 	where TStronglyTypedId : new()
