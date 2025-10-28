@@ -1,5 +1,5 @@
 # https://hub.docker.com/_/node/tags
-FROM node:20.5.0-alpine3.18
+FROM node:20.13.1-alpine3.18
 LABEL maintainer="wally"
 ARG PROJECT_NAME
 
