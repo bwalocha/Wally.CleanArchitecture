@@ -69,6 +69,7 @@ public static class HealthChecksExtensions
 				break;
 			case DatabaseProviderType.InMemory:
 				break;
+			case DatabaseProviderType.MariaDb:
 			case DatabaseProviderType.MySql:
 				healthChecksBuilder.AddMySql(
 					new MySqlHealthCheckOptions(settings.ConnectionStrings.Database),
@@ -108,6 +109,7 @@ public static class HealthChecksExtensions
 						"DB", "Database", nameof(DatabaseProviderType.SqlServer),
 					]);
 				break;
+			case DatabaseProviderType.Unknown:
 			default:
 				throw new NotSupportedException(
 					$"Not supported Database Provider type: '{settings.Database.ProviderType}'");
@@ -132,6 +134,7 @@ public static class HealthChecksExtensions
 			case MessageBrokerType.RabbitMQ:
 				healthChecksBuilder.WithRabbitMq(settings);
 				break;
+			case MessageBrokerType.Unknown:
 			default:
 				throw new NotSupportedException($"Not supported Message Broker type: '{settings.MessageBroker}'");
 		}

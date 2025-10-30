@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Reflection;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +11,7 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Swagger;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 
+[SuppressMessage("Minor Code Smell", "S1075:URIs should not be hardcoded")]
 public static class OpenApiExtensions
 {
 	private const string ContactName = "Wally";

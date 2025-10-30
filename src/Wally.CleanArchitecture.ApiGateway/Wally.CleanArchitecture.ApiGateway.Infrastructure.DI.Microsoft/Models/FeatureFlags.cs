@@ -2,5 +2,5 @@
 
 public static class FeatureFlags
 {
-	public const string SwaggerDisabled = "SwaggerDisabled";
+	public const string SwaggerEnabled = "SwaggerEnabled";
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
@@ -45,6 +46,8 @@ public abstract class ValueObject<TValueObject> : IEquatable<TValueObject>
 }
 
 [DebuggerDisplay("{Value}")]
+[SuppressMessage("ReSharper", "VirtualMemberCallInConstructor")]
+[SuppressMessage("Critical Code Smell", "S1699:Constructors should only call non-overridable methods")]
 public abstract class ValueObject<TValueObject, TValue> : ValueObject<TValueObject>
 	where TValueObject : ValueObject<TValueObject>
 {

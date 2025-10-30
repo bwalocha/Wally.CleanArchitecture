@@ -10,6 +10,19 @@ namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
 public partial class UsersControllerTests
 {
 	[Fact]
+	public async Task Delete_ForNonExistingResource_ReturnsResourceNotFound()
+	{
+		// Arrange
+		var resource = UserCreate(3);
+
+		// Act
+		var response = await _httpClient.DeleteAsync($"Users/{resource.Id.Value}", CancellationToken.None);
+
+		// Assert
+		await Verifier.Verify(response);
+	}
+	
+	[Fact]
 	public async Task Delete_ByTheSameUser_IsForbidden()
 	{
 		// Arrange

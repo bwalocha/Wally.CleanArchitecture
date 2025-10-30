@@ -16,6 +16,7 @@ public class RequestContext : IRequestContext
 		if (httpContextAccessor.HttpContext == null)
 		{
 			// BackgroundService or Consumer
+			CorrelationId = new CorrelationId(Guid.NewGuid());
 			UserId = new UserId(Guid.Parse("FFFFFFFF-0000-0000-0000-FFFFFFFFFFFF"));
 			
 			return;

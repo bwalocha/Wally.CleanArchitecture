@@ -37,7 +37,7 @@ public static class ServiceCollectionExtensions
 		// Configure the HTTP request pipeline.
 		if (env.IsDevelopment())
 		{
-//			app.UseDeveloperExceptionPage();
+			// app.UseDeveloperExceptionPage();
 			// app.UseSwagger();
 		}
 

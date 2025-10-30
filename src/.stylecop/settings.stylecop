@@ -88,6 +88,7 @@
   <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
     <Rule Id="SA0001" Action="None" />
     <Rule Id="SA1000" Action="None" /> <!-- The keyword 'new' should be followed by a space. -->
+    <Rule Id="SA1010" Action="None" /> <!--  -->
     <Rule Id="SA1027" Action="None" /> <!-- SA1027UseTabsCorrectly -->
     <Rule Id="SA1025" Action="Error" />
     <Rule Id="SA1028" Action="None" />

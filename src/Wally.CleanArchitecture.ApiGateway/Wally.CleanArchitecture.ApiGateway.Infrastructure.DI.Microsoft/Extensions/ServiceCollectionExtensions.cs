@@ -41,7 +41,7 @@ public static class ServiceCollectionExtensions
 			app.UseDeveloperExceptionPage();
 		}
 
-		if (!featureManager.IsEnabled(FeatureFlags.SwaggerDisabled))
+		if (featureManager.IsEnabled(FeatureFlags.SwaggerEnabled))
 		{
 			app.UseOpenApi(options.Value.SwaggerAuthentication,
 				options.Value.ReverseProxy);

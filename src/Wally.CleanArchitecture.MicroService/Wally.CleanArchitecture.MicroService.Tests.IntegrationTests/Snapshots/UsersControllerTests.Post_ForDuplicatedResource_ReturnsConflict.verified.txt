@@ -1,0 +1,24 @@
+﻿{
+  Status: 409 Conflict,
+  Headers: {
+    Cache-Control: no-store, no-cache,
+    Pragma: no-cache
+  },
+  Content: {
+    Headers: {
+      Content-Type: application/problem+json,
+      Expires: -1
+    },
+    Value: {
+      type: UniqueConstraintException,
+      title: Database Exception,
+      status: 409,
+      detail: Please refer to the errors property for additional details.,
+      instance: /Users,
+      errorCode: -2146232060,
+      message:
+Cannot insert duplicate key row in object 'MicroService.User' with unique index 'IX_User_Name'. The duplicate key value is (testUser3).
+The statement has been terminated.
+    }
+  }
+}

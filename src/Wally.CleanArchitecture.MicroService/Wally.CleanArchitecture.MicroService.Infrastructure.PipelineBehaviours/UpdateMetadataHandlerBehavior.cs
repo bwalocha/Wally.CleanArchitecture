@@ -69,6 +69,9 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 							},
 						});
 					break;
+				case EntityState.Detached:
+				case EntityState.Unchanged:
+				case EntityState.Deleted:
 				default:
 					continue;
 			}

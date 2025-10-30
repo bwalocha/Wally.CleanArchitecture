@@ -1,0 +1,20 @@
+﻿{
+  Status: 404 Not Found,
+  Headers: {
+    Cache-Control: no-store, no-cache,
+    Pragma: no-cache
+  },
+  Content: {
+    Headers: {
+      Content-Type: application/problem+json,
+      Expires: -1
+    },
+    Value: {
+      type: ResourceNotFoundException`1,
+      title: Resource Not Found Exception,
+      status: 404,
+      detail: The 'User' with Id='Guid_1' could not be found,
+      instance: /Users/Guid_1
+    }
+  }
+}

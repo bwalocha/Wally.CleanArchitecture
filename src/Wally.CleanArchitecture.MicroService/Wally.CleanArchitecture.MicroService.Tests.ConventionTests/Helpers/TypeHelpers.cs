@@ -8,17 +8,17 @@ namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 
 public static class TypeHelpers
 {
-	private static readonly List<string> _prefixes = new()
-	{
+	private static readonly List<string> Prefixes =
+	[
 		"Wally.CleanArchitecture.MicroService",
-	};
+	];
 
 	public static IEnumerable<Assembly> GetAllInternalAssemblies()
 	{
 		var assemblies = typeof(IInfrastructureDIMicrosoftAssemblyMarker).Assembly.GetReferencedAssemblies()
 			.Concat(
 				typeof(Startup).Assembly.GetReferencedAssemblies())
-			.Where(a => _prefixes.Exists(b => a.FullName.StartsWith(b)));
+			.Where(a => Prefixes.Exists(b => a.FullName.StartsWith(b)));
 
 		foreach (var assembly in assemblies)
 		{

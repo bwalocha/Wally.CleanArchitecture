@@ -1,0 +1,22 @@
+﻿{
+  Status: 400 Bad Request,
+  Headers: {
+    Cache-Control: no-store, no-cache,
+    Pragma: no-cache
+  },
+  Content: {
+    Headers: {
+      Content-Type: application/problem+json,
+      Expires: -1
+    },
+    Value: {
+      type: ValidationException,
+      title: Validation Exception,
+      status: 400,
+      detail:
+Validation failed: 
+ -- Name: 'Name' must not be empty. Severity: Error,
+      instance: /Users/Guid_1
+    }
+  }
+}

@@ -6,6 +6,19 @@ namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
 public partial class UsersControllerTests
 {
 	[Fact]
+	public async Task Post_ForInvalidRequest_ReturnsBadRequest()
+	{
+		// Arrange
+		var request = new CreateUserRequest(string.Empty);
+
+		// Act
+		var response = await _httpClient.PostAsync("Users", request, CancellationToken.None);
+
+		// Assert
+		await Verifier.Verify(response);
+	}
+	
+	[Fact]
 	public async Task Post_ForNewResource_CreatesNewResource()
 	{
 		// Arrange
@@ -17,12 +30,13 @@ public partial class UsersControllerTests
 		// Assert
 		await Verifier.Verify(response);
 	}
-
+	
 	[Fact]
-	public async Task Post_ForInvalidRequest_ReturnsBadRequest()
+	public async Task Post_ForDuplicatedResource_ReturnsConflict()
 	{
 		// Arrange
-		var request = new CreateUserRequest(string.Empty);
+		await _factory.SeedAsync(UserCreate(3));
+		var request = new CreateUserRequest("testUser3");
 
 		// Act
 		var response = await _httpClient.PostAsync("Users", request, CancellationToken.None);

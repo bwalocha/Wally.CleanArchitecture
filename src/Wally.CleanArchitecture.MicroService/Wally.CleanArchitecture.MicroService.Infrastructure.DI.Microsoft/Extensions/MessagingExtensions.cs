@@ -41,7 +41,7 @@ public static class MessagingExtensions
 					case MessageBrokerType.Kafka:
 						a.UsingInMemory((context, config) => config.ConfigureEndpoints(context));
 						a.AddEntityFrameworkOutbox<ApplicationDbContext>(o => o.UseBusOutbox());
-						a.AddConfigureEndpointsCallback((context, name, cfg) =>
+						a.AddConfigureEndpointsCallback((context, _, cfg) =>
 						{
 							cfg.UseEntityFrameworkOutbox<ApplicationDbContext>(context);
 						});
@@ -75,6 +75,7 @@ public static class MessagingExtensions
 								cfg.ConfigureEndpoints(host, new DefaultEndpointNameFormatter(".", "", true));
 							});
 						break;
+					case MessageBrokerType.Unknown:
 					default:
 						throw new NotSupportedException(
 							$"Not supported Message Broker type: '{settings.MessageBroker}'");
@@ -107,7 +108,7 @@ public static class MessagingExtensions
 	}
 
 	private static IKafkaFactoryConfigurator AddConsumersFromNamespaceContaining<TConsumersAssembly>(
-		this IKafkaFactoryConfigurator configurator, IRiderRegistrationContext context)
+		this IKafkaFactoryConfigurator configurator, IRegistrationContext context)
 	{
 		foreach (var type in typeof(TConsumersAssembly).Assembly.GetTypes()
 					.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>))))
@@ -132,7 +133,7 @@ public static class MessagingExtensions
 	}
 
 	private static IKafkaFactoryConfigurator AddConsumer<TMessage, TConsumer>(
-		this IKafkaFactoryConfigurator configurator, IRiderRegistrationContext context)
+		this IKafkaFactoryConfigurator configurator, IRegistrationContext context)
 		where TMessage : class
 		where TConsumer : class, IConsumer
 	{
@@ -163,29 +164,26 @@ public static class MessagingExtensions
 			.ImplementedInterfaces.Any(@interface => @interface.IsGenericType(interfaceType));
 	}
 
-	[SuppressMessage("Major Code Smell", "S4017:Method signatures should not contain nested generic types")]
+	[SuppressMessage("Major Code Smell", "S1144:Unused private types or members should be removed")]
 	private sealed class BusStub : Application.Abstractions.IBus
 	{
 		private readonly ILogger<BusStub> _logger;
 
-#pragma warning disable S1144
 		public BusStub(ILogger<BusStub> logger)
 		{
 			_logger = logger;
 		}
-#pragma warning restore S1144
 
 		public Task PublishAsync<TMessage>(TMessage message, CancellationToken cancellationToken)
 			where TMessage : class
 		{
-			_logger.LogWarning("Message Bus is not enabled. The message '{TypeofTName}' has not been sent.",
+			_logger.LogWarning("Message Bus is not enabled. The message '{TypeofTName}' has not been sent",
 				typeof(TMessage).Name);
 
 			return Task.CompletedTask;
 		}
 	}
-
-	[SuppressMessage("Major Code Smell", "S4017:Method signatures should not contain nested generic types")]
+	
 	[SuppressMessage("Major Code Smell", "S1144:Unused private types or members should be removed")]
 	private sealed class KafkaBus : Application.Abstractions.IBus
 	{

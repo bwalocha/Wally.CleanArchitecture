@@ -11,7 +11,7 @@ public class AppSettingsValidator : AbstractValidator<AppSettings>
 		RuleFor(a => a.Authentication)
 			.NotEmpty()
 			.SetValidator(new AuthenticationSettingsValidator());
-		if (!featureManager.IsEnabled(FeatureFlags.SwaggerDisabled))
+		if (featureManager.IsEnabled(FeatureFlags.SwaggerEnabled))
 		{
 			RuleFor(a => a.SwaggerAuthentication)
 				.NotEmpty()

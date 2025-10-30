@@ -8,9 +8,7 @@ public class User : AggregateRoot<User, UserId>, ISoftDeletable/*, ITemporal*/
 	public const int NameMaxLength = 256;
 	
 	// Hide public .ctor
-#pragma warning disable CS8618
 	private User()
-#pragma warning restore CS8618
 	{
 	}
 

@@ -56,10 +56,10 @@ public static class HealthChecksExtensions
 	{
 		builder.AddCheck<VersionHealthCheck>(
 			"VER",
-			tags: new[]
-			{
+			tags:
+			[
 				"VER", "Version",
-			});
+			]);
 
 		return builder;
 	}
