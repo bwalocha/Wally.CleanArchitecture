@@ -12,6 +12,28 @@ namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Presentatio
 public class ResponseTests
 {
 	[Fact]
+	public void Presentation_Response_ShouldBeSealed()
+	{
+		// Arrange
+		IArchRule rule =
+			Classes()
+				.That()
+				.Are(Configuration.PresentationProvider)
+				.And()
+				.ImplementInterface(typeof(IResponse))
+				.And()
+				.AreNot(typeof(PagedResponse<>))
+				.Should()
+				.BeSealed()
+				.Because("Presentation Responses should be Sealed.");
+
+		// Act
+
+		// Assert
+		rule.Check(Configuration.Architecture);
+	}
+	
+	[Fact]
 	public void Presentation_Response_ShouldNotExposeSetter()
 	{
 		// Arrange
@@ -20,13 +42,34 @@ public class ResponseTests
 			.Are(Configuration.PresentationProvider)
 			.And()
 			.ImplementInterface(typeof(IResponse));
+		IArchRule rule = Members()
+			.That()
+			.AreDeclaredIn(responses)
+			.Should()
+			.HaveOnlyInitSetters()
+			.Because("Presentation Responses should be immutable.");
+
+		// Act
+
+		// Assert
+		rule.Check(Configuration.Architecture);
+	}
+	
+	[Fact]
+	public void Presentation_Response_ShouldHaveNameConvention()
+	{
+		// Arrange
 		IArchRule rule =
-			Members()
-				.That()
-				.AreDeclaredIn(responses)
+				Classes()
+					.That()
+					.Are(Configuration.PresentationProvider)
+					.And()
+					.ImplementInterface(typeof(IResponse))
+					.And()
+					.AreNot(typeof(PagedResponse<>))
 				.Should()
-				.HaveOnlyInitSetters()
-				.Because("Presentation Responses should be immutable.");
+				.HaveNameEndingWith("Response")
+				.Because("Presentation Responses should have name convention.");
 
 		// Act
 

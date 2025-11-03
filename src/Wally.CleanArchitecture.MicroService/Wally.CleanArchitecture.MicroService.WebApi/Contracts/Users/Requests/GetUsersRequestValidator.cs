@@ -3,7 +3,7 @@ using Wally.CleanArchitecture.MicroService.Domain.Users;
 
 namespace Wally.CleanArchitecture.MicroService.WebApi.Contracts.Users.Requests;
 
-public class GetUsersRequestValidator : AbstractValidator<GetUsersRequest>
+internal class GetUsersRequestValidator : AbstractValidator<GetUsersRequest>
 {
 	public GetUsersRequestValidator()
 	{

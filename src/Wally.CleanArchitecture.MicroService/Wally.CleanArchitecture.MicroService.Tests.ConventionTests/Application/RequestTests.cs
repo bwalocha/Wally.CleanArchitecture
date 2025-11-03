@@ -12,6 +12,25 @@ namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Application
 public class RequestTests
 {
 	[Fact]
+	public void Application_Request_ShouldBePublic()
+	{
+		// Arrange
+		IArchRule rule = Classes()
+			.That()
+			.Are(Configuration.ApplicationProvider)
+			.And()
+			.ImplementInterface(typeof(IRequest))
+			.Should()
+			.BePublic()
+			.Because("Application Requests should be public.");
+
+		// Act
+
+		// Assert
+		rule.Check(Configuration.Architecture);
+	}
+	
+	[Fact]
 	public void Application_Request_ShouldNotExposeSetter()
 	{
 		// Arrange

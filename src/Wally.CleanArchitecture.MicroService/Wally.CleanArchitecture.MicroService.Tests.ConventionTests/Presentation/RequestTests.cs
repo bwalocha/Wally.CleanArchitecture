@@ -12,6 +12,45 @@ namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Presentatio
 public class RequestTests
 {
 	[Fact]
+	public void Presentation_Request_ShouldBePublic()
+	{
+		// Arrange
+		IArchRule rule = Classes()
+			.That()
+			.Are(Configuration.PresentationProvider)
+			.And()
+			.ImplementInterface(typeof(IRequest))
+			.Should()
+			.BePublic()
+			.Because("Presentation Requests should be public.");
+
+		// Act
+
+		// Assert
+		rule.Check(Configuration.Architecture);
+	}
+	
+	[Fact]
+	public void Presentation_Request_ShouldBeSealed()
+	{
+		// Arrange
+		IArchRule rule =
+			Classes()
+				.That()
+				.Are(Configuration.PresentationProvider)
+				.And()
+				.ImplementInterface(typeof(IRequest))
+				.Should()
+				.BeSealed()
+				.Because("Presentation Requests should be Sealed.");
+
+		// Act
+
+		// Assert
+		rule.Check(Configuration.Architecture);
+	}
+	
+	[Fact]
 	public void Presentation_Request_ShouldNotExposeSetter()
 	{
 		// Arrange
@@ -20,13 +59,12 @@ public class RequestTests
 			.Are(Configuration.PresentationProvider)
 			.And()
 			.ImplementInterface(typeof(IRequest));
-		IArchRule rule =
-				Members()
-					.That()
-					.AreDeclaredIn(requests)
-					.Should()
-					.HaveOnlyInitSetters()
-					.Because("Presentation Requests should be immutable.");
+		IArchRule rule = Members()
+			.That()
+			.AreDeclaredIn(requests)
+			.Should()
+			.HaveOnlyInitSetters()
+			.Because("Presentation Requests should be immutable.");
 		
 		// Act
 		
@@ -81,6 +119,26 @@ public class RequestTests
 			.ToArray());
 	}
 
+	[Fact]
+	public void Presentation_Request_ShouldHaveNameConvention()
+	{
+		// Arrange
+		IArchRule rule =
+			Classes()
+				.That()
+				.Are(Configuration.PresentationProvider)
+				.And()
+				.ImplementInterface(typeof(IRequest))
+				.Should()
+				.HaveNameEndingWith("Request")
+				.Because("Presentation Requests should have name convention.");
+
+		// Act
+
+		// Assert
+		rule.Check(Configuration.Architecture);
+	}
+	
 	[Fact]
 	public void Presentation_ClassesWhichImplementsIRequest_ShouldBeInTheSameProject()
 	{

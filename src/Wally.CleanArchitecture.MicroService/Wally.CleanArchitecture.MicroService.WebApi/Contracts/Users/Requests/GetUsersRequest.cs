@@ -4,9 +4,9 @@ using Wally.CleanArchitecture.MicroService.WebApi.Abstractions;
 namespace Wally.CleanArchitecture.MicroService.WebApi.Contracts.Users.Requests;
 
 [ExcludeFromCodeCoverage]
-public class GetUsersRequest : IRequest
+public sealed class GetUsersRequest : IRequest
 {
-	public Guid? Id { get; private set; } = null;
+	public required Guid? Id { get; init; }
 	
-	public string? Name { get; private set; } = null;
+	public required string? Name { get; init; }
 }

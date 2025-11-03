@@ -86,7 +86,7 @@ public static class QueryableExtensions
 			var mi = methodInfo[0]
 				.MakeGenericMethod(typeof(TEntity), mappedQueryFunc.ReturnType);
 
-			query = (IOrderedQueryable<TEntity>)mi.Invoke(null, new object[] { query, mappedQueryFunc, }) !;
+			query = (IOrderedQueryable<TEntity>)mi.Invoke(null, [query, mappedQueryFunc,]) !;
 		}
 
 		return query;

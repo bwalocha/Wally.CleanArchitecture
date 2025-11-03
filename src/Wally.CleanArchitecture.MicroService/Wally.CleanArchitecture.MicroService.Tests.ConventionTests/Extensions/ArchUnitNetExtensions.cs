@@ -20,12 +20,6 @@ public static class ArchUnitNetExtensions
 		return givenTypesThat.ResideInAssembly(assemblies.FirstOrDefault(), assemblies.Skip(1).ToArray());
 	}
 	
-	// public static TGivenRuleTypeConjunction DoNotResideInAssembly<TGivenRuleTypeConjunction, TRuleType>(this GivenTypesThat<TGivenRuleTypeConjunction, TRuleType> givenTypesThat, params System.Reflection.Assembly[] assemblies)
-	// 	where TRuleType : IType
-	// {
-	// 	return givenTypesThat.DoNotResideInAssembly(assemblies.FirstOrDefault(), assemblies.Skip(1).ToArray());
-	// }
-	
 	public static TypesShouldConjunction NotAccessGetter<TType>(this ObjectsShould<TypesShouldConjunction, IType> builder, object? property, [CallerArgumentExpression("property")] string typeAndPropertyName = null!)
 	{
 		var names = typeAndPropertyName.Split('.');
@@ -80,37 +74,6 @@ public static class ArchUnitNetExtensions
 		
 		return builder.FollowCustomCondition(condition);
 	}
-	
-	// public static IArchRule HaveOnlyPrivateOrProtectedSetters<TRuleTypeShouldConjunction, TRuleType>(this MembersShould<TRuleTypeShouldConjunction, TRuleType> conjunction)
-	// 	where TRuleType : PropertyMember
-	// 	where TRuleTypeShouldConjunction : SyntaxElement<TRuleType>
-	// {
-	// 	var condition = new MemberVisibilityShouldBeCondition(Visibility.Private, Visibility.Protected);
-	//
-	// 	return conjunction
-	// 		.FollowCustomCondition(condition);
-	// }
-
-	// public static GivenClassesConjunction HaveOnlyPrivateOrProtectedSetters(this GivenClassesConjunction should)
-	// {
-	// 	return should.MeetCustomCondition(
-	// 		"not have public setters",
-	// 		type =>
-	// 		{
-	// 			var publicSetters = type
-	// 				.GetProperties()
-	// 				.Where(p => p.Setter != null && p.Setter.Visibility == Visibility.Public)
-	// 				.ToList();
-	//
-	// 			if (publicSetters.Any())
-	// 			{
-	// 				var message = $"{type.FullName} has public setters: {string.Join(", ", publicSetters.Select(p => p.Name))}";
-	// 				return new ConditionResult(false, message);
-	// 			}
-	//
-	// 			return ConditionResult.Satisfied;
-	// 		});
-	// }
 	
 	private class ConstructorVisibilityShouldBeCondition : ICondition<Class>
 	{
@@ -206,45 +169,20 @@ public static class ArchUnitNetExtensions
 				{
 					yield return new ConditionResult(property, true, $"{property.FullName} is {property.Visibility}.");
 				}
-
-				// if (property.SetterVisibility != true)
-				// {
-				// 	return;
-				// }
-				//
-				// var isInitOnly = (property.GetSetMethod()
-				// 	?.ReturnParameter.GetRequiredCustomModifiers()
-				// 	.Length ?? 0) > 0;
-				// if (isInitOnly)
-				// {
-				// 	var isRequired = property.GetCustomAttribute(typeof(RequiredMemberAttribute)) != null;
-				//
-				// 	if (isRequired)
-				// 	{
-				// 		return;
-				// 	}
-				//
-				// 	property.PropertyType.ShouldBeDecoratedWith<RequiredMemberAttribute>(
-				// 		$"Request class '{type}' with Init setter should have Required modifier for '{property}'");
-				// }
-				//
-				// if (!property.CanWrite)
-				// {
-				// 	return;
-				// }
-				// 	
-				// property.IsPrivateWritable()
-				// 	.ShouldBeTrue($"Request class '{type}' should not expose setter for '{property}'");
-				//
-				// var pass = _visibilities.Contains(property.SetterVisibility);
-				// yield return new ConditionResult(
-				// 	property,
-				// 	pass,
-				// 	pass
-				// 		? $"{property.FullName} is {property.SetterVisibility}."
-				// 		: $"{property.FullName} is NOT {string.Join(" or ", _visibilities)}.");
 				
-				yield return new ConditionResult(property, true, $"{property.FullName} is {property.Visibility}.");
+				if (property.Writability == Writability.InitOnly)
+				{
+					if (property.Attributes.Any(a => a.FullName == typeof(RequiredMemberAttribute).FullName))
+					{
+						yield return new ConditionResult(property, true, $"{property.FullName} has required and init-only setter.");	
+					}
+					
+					yield return new ConditionResult(property, false, $"{property.FullName} must have required setter.");
+				}
+				else
+				{
+					yield return new ConditionResult(property, false, $"{property.FullName} must have init-only setter.");
+				}
 			}
 		}
 

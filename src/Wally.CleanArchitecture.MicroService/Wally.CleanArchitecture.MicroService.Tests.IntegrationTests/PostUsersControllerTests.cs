@@ -9,7 +9,10 @@ public partial class UsersControllerTests
 	public async Task Post_ForInvalidRequest_ReturnsBadRequest()
 	{
 		// Arrange
-		var request = new CreateUserRequest(string.Empty);
+		var request = new CreateUserRequest
+		{
+			Name = string.Empty,
+		};
 
 		// Act
 		var response = await _httpClient.PostAsync("Users", request, CancellationToken.None);
@@ -22,7 +25,10 @@ public partial class UsersControllerTests
 	public async Task Post_ForNewResource_CreatesNewResource()
 	{
 		// Arrange
-		var request = new CreateUserRequest("newName3");
+		var request = new CreateUserRequest
+		{
+			Name = "newName3",
+		};
 
 		// Act
 		var response = await _httpClient.PostAsync("Users", request, CancellationToken.None);
@@ -36,7 +42,10 @@ public partial class UsersControllerTests
 	{
 		// Arrange
 		await _factory.SeedAsync(UserCreate(3));
-		var request = new CreateUserRequest("testUser3");
+		var request = new CreateUserRequest
+		{
+			Name = "testUser3", 
+		};
 
 		// Act
 		var response = await _httpClient.PostAsync("Users", request, CancellationToken.None);

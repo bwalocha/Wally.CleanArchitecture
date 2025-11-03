@@ -13,6 +13,25 @@ namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Application
 public class ResultTests
 {
 	[Fact]
+	public void Application_Result_ShouldBePublic()
+	{
+		// Arrange
+		IArchRule rule = Classes()
+			.That()
+			.Are(Configuration.ApplicationProvider)
+			.And()
+			.ImplementInterface(typeof(IResult))
+				.Should()
+				.BePublic()
+				.Because("Application Results should be public.");
+
+		// Act
+
+		// Assert
+		rule.Check(Configuration.Architecture);
+	}
+	
+	[Fact]
 	public void Application_Result_ShouldNotExposeSetter()
 	{
 		// Arrange

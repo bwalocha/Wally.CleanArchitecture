@@ -2,13 +2,14 @@
 
 namespace Wally.CleanArchitecture.MicroService.WebApi.Contracts.Users.Requests;
 
+/// <summary>
+/// Create User Request
+/// </summary>
 [ExcludeFromCodeCoverage]
-public class CreateUserRequest : IRequest
+public sealed class CreateUserRequest : IRequest
 {
-	public CreateUserRequest(string name)
-	{
-		Name = name;
-	}
-
-	public string Name { get; }
+	/// <summary>
+	/// Gets the Name of the User
+	/// </summary>
+	public required string Name { get; init; }
 }

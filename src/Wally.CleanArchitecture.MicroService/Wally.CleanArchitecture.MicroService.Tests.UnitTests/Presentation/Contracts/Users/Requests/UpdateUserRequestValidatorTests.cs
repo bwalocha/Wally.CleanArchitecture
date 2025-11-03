@@ -26,7 +26,10 @@ public class UpdateUserRequestValidatorTests
 	public void Validate_ForValidData_IsValid(string name)
 	{
 		// Arrange
-		var instance = new UpdateUserRequest(name);
+		var instance = new UpdateUserRequest
+		{
+				Name = name,
+		};
 
 		// Act
 		var result = _sut.Validate(instance);
@@ -48,7 +51,10 @@ public class UpdateUserRequestValidatorTests
 	public void Validate_ForInvalidData_IsNotValid(string? name)
 	{
 		// Arrange
-		var instance = new UpdateUserRequest(name!);
+		var instance = new UpdateUserRequest
+		{
+			Name = name!,
+		};
 
 		// Act
 		var result = _sut.Validate(instance);

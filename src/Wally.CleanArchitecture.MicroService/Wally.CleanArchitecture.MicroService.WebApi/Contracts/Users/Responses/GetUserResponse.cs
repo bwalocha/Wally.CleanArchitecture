@@ -3,10 +3,19 @@ using Wally.CleanArchitecture.MicroService.WebApi.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.WebApi.Contracts.Users.Responses;
 
+/// <summary>
+/// Get User Response
+/// </summary>
 [ExcludeFromCodeCoverage]
-public class GetUserResponse : IResponse
+public sealed class GetUserResponse : IResponse
 {
-	public Guid Id { get; private set; } = Guid.Empty;
+	/// <summary>
+	/// Gets the User Id
+	/// </summary>
+	public required Guid Id { get; init; }
 
-	public string Name { get; private set; } = null!;
+	/// <summary>
+	/// Gets the Name of the User
+	/// </summary>
+	public required string Name { get; init; }
 }
