@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Http;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Swagger;
@@ -8,7 +8,12 @@ internal class SchemasFilter : IDocumentFilter
 {
 	public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
 	{
-		var schemas = swaggerDoc.Components.Schemas;
+		var schemas = swaggerDoc.Components?.Schemas;
+		if (schemas is null)
+		{
+			return;
+		}
+		
 		foreach (var schema in schemas)
 		{
 			if (schema.Key.EndsWith("Request") && schema.Key != nameof(HttpRequest))
@@ -21,7 +26,7 @@ internal class SchemasFilter : IDocumentFilter
 				continue;
 			}
 
-			swaggerDoc.Components.Schemas.Remove(schema);
+			swaggerDoc.Components!.Schemas!.Remove(schema);
 		}
 	}
 }

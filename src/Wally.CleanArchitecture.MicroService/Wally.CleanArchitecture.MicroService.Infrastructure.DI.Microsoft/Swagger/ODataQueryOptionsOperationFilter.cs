@@ -1,6 +1,6 @@
 using System.Linq;
 using Microsoft.AspNetCore.OData.Query;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Swagger;
@@ -38,7 +38,7 @@ internal class ODataQueryOptionsOperationFilter : IOperationFilter
 				Required = false,
 				Schema = new OpenApiSchema
 				{
-					Type = "string",
+					Type = JsonSchemaType.String,
 				},
 			});
 
@@ -51,7 +51,7 @@ internal class ODataQueryOptionsOperationFilter : IOperationFilter
 				Required = false,
 				Schema = new OpenApiSchema
 				{
-					Type = "string",
+					Type = JsonSchemaType.String,
 				},
 			});
 
@@ -64,7 +64,7 @@ internal class ODataQueryOptionsOperationFilter : IOperationFilter
 				Required = false,
 				Schema = new OpenApiSchema
 				{
-					Type = "string",
+					Type = JsonSchemaType.String,
 				},
 			});
 
@@ -77,7 +77,7 @@ internal class ODataQueryOptionsOperationFilter : IOperationFilter
 				Required = false,
 				Schema = new OpenApiSchema
 				{
-					Type = "string",
+					Type = JsonSchemaType.String,
 					Deprecated = true,
 				},
 			});
@@ -91,9 +91,9 @@ internal class ODataQueryOptionsOperationFilter : IOperationFilter
 				Required = false,
 				Schema = new OpenApiSchema
 				{
-					Type = "integer",
+					Type = JsonSchemaType.Integer,
 					Format = "int32",
-					Minimum = 0,
+					Minimum = "0",
 				},
 			});
 
@@ -106,9 +106,9 @@ internal class ODataQueryOptionsOperationFilter : IOperationFilter
 				Required = false,
 				Schema = new OpenApiSchema
 				{
-					Type = "integer",
+					Type = JsonSchemaType.Integer,
 					Format = "int32",
-					Minimum = 0,
+					Minimum = "0",
 				},
 			});
 	}

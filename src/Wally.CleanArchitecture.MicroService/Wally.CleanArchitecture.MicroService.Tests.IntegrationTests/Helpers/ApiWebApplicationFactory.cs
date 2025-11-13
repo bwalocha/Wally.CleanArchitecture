@@ -18,11 +18,14 @@ namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Helpers;
 public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup>, IAsyncLifetime
 	where TStartup : class
 {
+	private const string MsSqlContainerName = "Wally.CleanArchitecture.MicroService.Tests";
+	private const string MsSqlContainerImageName = "mcr.microsoft.com/mssql/server:2022-CU13-ubuntu-22.04";
+	private const long MsSqlContainerMemoryLimit = 2L * 1024 * 1024 * 1024; // 2GB
+	
 	private readonly MsSqlContainer _dbContainer = new MsSqlBuilder()
-		// .WithImage("mcr.microsoft.com/mssql/server:2022-CU13-ubuntu-22.04") // rollback from server:2022-latest due to issue with health check
-		.WithImage("mcr.microsoft.com/mssql/server:2022-CU13-ubuntu-22.04")
-		// .WithImage("mcr.microsoft.com/mssql/server:2022-latest")
-		.WithName("Wally.CleanArchitecture.MicroService.Tests")
+		.WithImage(MsSqlContainerImageName)
+		.WithName(MsSqlContainerName)
+		.WithCreateParameterModifier(a => a.HostConfig.Memory = MsSqlContainerMemoryLimit)
 		.WithCleanUp(true)
 		.WithReuse(true)
 		.Build();
@@ -45,17 +48,22 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 		.Build();
 	*/
 
-	public Task InitializeAsync()
+	public async Task InitializeAsync()
 	{
-		return Task.WhenAll(_dbContainer.StartAsync() /*, _kafkaContainer.StartAsync()*/);
+		await Task.WhenAll(
+			_dbContainer.StartAsync()
+			/*, _kafkaContainer.StartAsync()*/
+		);
 	}
 
-	public new Task DisposeAsync()
+	public new async Task DisposeAsync()
 	{
-		return Task.WhenAll(
+		await Task.WhenAll(
 			_dbContainer.StopAsync()
-			// _dbContainer.DisposeAsync().AsTask()
-			/*, _kafkaContainer.StopAsync()*/);
+			/*, _kafkaContainer.StopAsync()*/
+		);
+
+		await _dbContainer.DisposeAsync();
 	}
 
 	public TService GetRequiredService<TService>()

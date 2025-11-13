@@ -686,7 +686,12 @@ DELETE /Users/Guid_1,
             description: Update User Request
           }
         }
-      }
+      },
+      tags: [
+        {
+          name: Users
+        }
+      ]
     }
   }
 }
