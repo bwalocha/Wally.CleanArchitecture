@@ -104,6 +104,30 @@ classDiagram
 	- [x] ApprovalTests
 	- [x] IntegrationTests
 	- [x] UnitTests
+        - [ ] NetArchTest
+
+            Issue |	Description | Status
+            --- | --- | ---
+            License | https://raw.githubusercontent.com/BenMorris/NetArchTest/refs/heads/master/LICENSE | MIT
+            Popularity | https://github.com/BenMorris/NetArchTest/stargazers | >1.5k stars
+            . | https://github.com/BenMorris/NetArchTest/forks | >85 forks
+            Activity | https://github.com/BenMorris/NetArchTest/activity | last commit 7 months ago
+            Issues | https://github.com/BenMorris/NetArchTest/issues | 21 Open, 52 Closed
+            Frameworks | https://www.nuget.org/packages/NetArchTest.Rules/#supportedframeworks-body-tab | net8.0, net9.0
+            Vulnerabilities | https://secure.software/nuget/packages/NetArchTest.Rules/vulnerabilities | 0
+
+        - [ ] ArchUnitNET
+
+            Issue |	Description | Status
+            --- | --- | ---
+            License | https://github.com/TNG/ArchUnitNET/tree/main#Apache-2.0-1-ov-file | Apache-2.0
+            Popularity | https://github.com/TNG/ArchUnitNET/stargazers | >990 stars
+            . | https://github.com/TNG/ArchUnitNET/forks | >61 forks
+            Activity | https://github.com/TNG/ArchUnitNET/activity | last commit 12 min ago
+            Issues | https://github.com/TNG/ArchUnitNET/issues | 30 Open, 69 Closed
+            Frameworks | https://www.nuget.org/packages/TngTech.ArchUnitNET/#supportedframeworks-body-tab | netstandard2.0, netstandard2.1, net8.0, net9.0
+            Vulnerabilities | https://secure.software/nuget/packages/TngTech.ArchUnitNET/vulnerabilities | 0
+
     - [x] ConventionTests
     - [x] Verify [github](https://github.com/VerifyTests/Verify)
     - [-] ~~FluentAssertions [github](https://github.com/fluentassertions/fluentassertions)~~
