@@ -1,5 +1,5 @@
 ﻿using System;
-using EntityFramework.Exceptions.MySQL.Pomelo;
+// using EntityFramework.Exceptions.MySQL.Pomelo;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -9,11 +9,11 @@ using Microsoft.Extensions.Options;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
-using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql;
-using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL;
+// using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql;
+// using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer;
-using ExceptionProcessorExtensions = EntityFramework.Exceptions.PostgreSQL.ExceptionProcessorExtensions;
+// using ExceptionProcessorExtensions = EntityFramework.Exceptions.PostgreSQL.ExceptionProcessorExtensions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 
@@ -86,31 +86,31 @@ public static class PersistenceExtensions
 
 	private static void WithMySql(DbContextOptionsBuilder options, AppSettings settings)
 	{
-		options.UseMySql(
-				settings.ConnectionStrings.Database,
-				MySqlServerVersion.LatestSupportedServerVersion,
-				builder =>
-				{
-					builder.MigrationsAssembly(typeof(IInfrastructureMySqlAssemblyMarker).Assembly.GetName().Name);
-					builder.MigrationsHistoryTable(HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
-					builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-					builder.EnableRetryOnFailure(MaxRetryCount, MaxRetryDelay, null);
-				})
-			.UseExceptionProcessor();
+		// options.UseMySql(
+		// 		settings.ConnectionStrings.Database,
+		// 		MySqlServerVersion.LatestSupportedServerVersion,
+		// 		builder =>
+		// 		{
+		// 			builder.MigrationsAssembly(typeof(IInfrastructureMySqlAssemblyMarker).Assembly.GetName().Name);
+		// 			builder.MigrationsHistoryTable(HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
+		// 			builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
+		// 			builder.EnableRetryOnFailure(MaxRetryCount, MaxRetryDelay, null);
+		// 		})
+		// 	.UseExceptionProcessor();
 	}
 
 	private static void WithNpgsql(DbContextOptionsBuilder options, AppSettings settings)
 	{
-		options.UseNpgsql(
-			settings.ConnectionStrings.Database,
-			builder =>
-			{
-				builder.MigrationsAssembly(typeof(IInfrastructurePostgreSqlAssemblyMarker).Assembly.GetName().Name);
-				builder.MigrationsHistoryTable(HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
-				builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-				builder.EnableRetryOnFailure(MaxRetryCount, MaxRetryDelay, null);
-			});
-		ExceptionProcessorExtensions.UseExceptionProcessor(options);
+		// options.UseNpgsql(
+		// 	settings.ConnectionStrings.Database,
+		// 	builder =>
+		// 	{
+		// 		builder.MigrationsAssembly(typeof(IInfrastructurePostgreSqlAssemblyMarker).Assembly.GetName().Name);
+		// 		builder.MigrationsHistoryTable(HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
+		// 		builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
+		// 		builder.EnableRetryOnFailure(MaxRetryCount, MaxRetryDelay, null);
+		// 	});
+		// ExceptionProcessorExtensions.UseExceptionProcessor(options);
 	}
 
 	private static void WithSqlite(DbContextOptionsBuilder options, AppSettings settings)

@@ -1,7 +1,7 @@
 {
   "version": 2,
   "dependencies": {
-    "net8.0": {
+    "net10.0": {
       "AutoMapper": {
         "type": "Direct",
         "requested": "[15.1.0, )",
@@ -69,11 +69,6 @@
           "Microsoft.IdentityModel.Logging": "8.14.0"
         }
       },
-      "System.Diagnostics.DiagnosticSource": {
-        "type": "Transitive",
-        "resolved": "10.0.0",
-        "contentHash": "0KdBK+h7G13PuOSC2R/DalAoFMvdYMznvGRuICtkdcUMXgl/gYXsG6z4yUvTxHSMACorWgHCU1Faq0KUHU6yAQ=="
-      },
       "wally.cleanarchitecture.microservice.application": {
         "type": "Project",
         "dependencies": {
@@ -82,17 +77,6 @@
           "SonarAnalyzer.CSharp": "[10.15.0.120848, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application.Messages": "[1.0.0, )",
-          "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
-        }
-      },
-      "wally.cleanarchitecture.microservice.application.contracts": {
-        "type": "Project",
-        "dependencies": {
-          "FluentValidation": "[12.1.0, )",
-          "Reinforced.Typings": "[1.6.5, )",
-          "SonarAnalyzer.CSharp": "[10.15.0.120848, )",
-          "StyleCop.Analyzers": "[1.1.118, )",
-          "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
       },
@@ -140,8 +124,7 @@
         "resolved": "10.0.0",
         "contentHash": "FU/IfjDfwaMuKr414SSQNTIti/69bHEMb+QKrskRb26oVqpx3lNFXMjs/RC9ZUuhBhcwDM2BwOgoMw+PZ+beqQ==",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.0",
-          "System.Diagnostics.DiagnosticSource": "10.0.0"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.0"
         }
       },
       "Reinforced.Typings": {

@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Hubs;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
+using Wally.CleanArchitecture.MicroService.Infrastructure.SchedulerService.Extensions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 
@@ -26,6 +27,7 @@ public static class ServiceCollectionExtensions
 		services.AddMessaging(settings);
 		services.AddEventHub();
 		services.AddBackgroundServices(settings);
+		services.AddScheduler();
 
 		return services;
 	}
@@ -56,6 +58,8 @@ public static class ServiceCollectionExtensions
 
 		app.UsePersistence();
 		app.UseEventHub<EventHub>();
+
+		app.UseScheduler();
 
 		return app;
 	}

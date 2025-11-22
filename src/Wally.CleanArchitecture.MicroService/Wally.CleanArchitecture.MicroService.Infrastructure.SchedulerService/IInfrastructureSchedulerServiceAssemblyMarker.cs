@@ -1,0 +1,3 @@
+﻿namespace Wally.CleanArchitecture.MicroService.Infrastructure.SchedulerService;
+
+public interface IInfrastructureSchedulerServiceAssemblyMarker;
