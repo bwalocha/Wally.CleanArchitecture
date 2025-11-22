@@ -963,6 +963,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "[10.0.0, )",
           "SonarAnalyzer.CSharp": "[10.15.0.120848, )",
           "StyleCop.Analyzers": "[1.1.118, )",
+          "TickerQ.EntityFrameworkCore": "[10.0.0-beta.18, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
@@ -1001,12 +1002,15 @@
         "type": "Project",
         "dependencies": {
           "Mediator.Abstractions": "[3.0.1, )",
+          "Microsoft.EntityFrameworkCore.InMemory": "[10.0.0, )",
+          "Microsoft.EntityFrameworkCore.Sqlite": "[10.0.0, )",
           "SonarAnalyzer.CSharp": "[10.15.0.120848, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "TickerQ": "[10.0.0-beta.18, )",
           "TickerQ.Dashboard": "[10.0.0-beta.18, )",
           "TickerQ.EntityFrameworkCore": "[10.0.0-beta.18, )",
-          "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )"
+          "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
+          "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence": "[1.0.0, )"
         }
       },
       "AspNetCore.HealthChecks.AzureServiceBus": {
@@ -1302,10 +1306,10 @@
       "Microsoft.EntityFrameworkCore.InMemory": {
         "type": "CentralTransitive",
         "requested": "[10.0.0, )",
-        "resolved": "8.0.11",
-        "contentHash": "gFFdubZlRfudSw94OxO7s8OvLQZncnR0S1ll//wRtZP3mMYVeq8DrMnEILK6hBJwbTBB1SNm3apg9SdvdE/ySg==",
+        "resolved": "10.0.0",
+        "contentHash": "06yN/NR9bOM7GjUR1hnucciiK8nrr0bs7MP6RKCdHQp5BCcR4P9zemtlz6aznJms1xvybPzKwESTtoC6XMAPQQ==",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "8.0.11"
+          "Microsoft.EntityFrameworkCore": "10.0.0"
         }
       },
       "Microsoft.EntityFrameworkCore.Relational": {

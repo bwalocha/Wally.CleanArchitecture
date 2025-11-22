@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using MassTransit;
 using Mediator;
 using Microsoft.AspNetCore.SignalR;
+using TickerQ.Utilities.Interfaces;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 
@@ -57,6 +58,18 @@ public class AsyncTests
 
 						if (type.InheritsGenericClass(typeof(Hub<>)) &&
 							method.Name == nameof(Hub<object>.OnDisconnectedAsync))
+						{
+							continue;
+						}
+						
+						if (type.ImplementsInterface(typeof(ITickerExceptionHandler)) &&
+							method.Name == nameof(ITickerExceptionHandler.HandleExceptionAsync))
+						{
+							continue;
+						}
+						
+						if (type.ImplementsInterface(typeof(ITickerExceptionHandler)) &&
+							method.Name == nameof(ITickerExceptionHandler.HandleCanceledExceptionAsync))
 						{
 							continue;
 						}

@@ -6,6 +6,7 @@
   },
   Content: {
     Headers: {
+      Content-Length: 405,
       Content-Type: application/problem+json,
       Expires: -1
     },

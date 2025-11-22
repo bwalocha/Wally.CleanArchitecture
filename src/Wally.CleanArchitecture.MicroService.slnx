@@ -1,0 +1,44 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Application/">
+    <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.Application.MapperProfiles/Wally.CleanArchitecture.MicroService.Application.MapperProfiles.csproj" />
+    <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.Application.Messages/Wally.CleanArchitecture.MicroService.Application.Messages.csproj" />
+    <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.Application/Wally.CleanArchitecture.MicroService.Application.csproj" />
+  </Folder>
+  <Folder Name="/Domain/">
+    <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.Domain/Wally.CleanArchitecture.MicroService.Domain.csproj" />
+  </Folder>
+  <Folder Name="/Infrastructure/">
+    <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft/Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.csproj" />
+    <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.Infrastructure.Messaging/Wally.CleanArchitecture.MicroService.Infrastructure.Messaging.csproj" />
+    <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer/Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer.csproj" />
+    <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.Infrastructure.Persistence/Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.csproj" />
+    <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours/Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours.csproj" />
+  </Folder>
+  <Folder Name="/Presentation/">
+    <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.WebApi/Wally.CleanArchitecture.MicroService.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".config/dotnet-tools.json" />
+    <File Path="AssemblyInfo.cs" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.BuildTests.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="global.json" />
+    <File Path="NuGet.config" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.Tests.ConventionTests/Wally.CleanArchitecture.MicroService.Tests.ConventionTests.csproj" />
+    <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.Tests.IntegrationTests/Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.csproj" />
+    <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.Tests.UnitTests/Wally.CleanArchitecture.MicroService.Tests.UnitTests.csproj" />
+  </Folder>
+  <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.Application.DI.Microsoft/Wally.CleanArchitecture.MicroService.Application.DI.Microsoft.csproj" />
+  <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.Infrastructure.BackgroundServices/Wally.CleanArchitecture.MicroService.Infrastructure.BackgroundServices.csproj" />
+  <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite/Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite.csproj" />
+  <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.Infrastructure.SchedulerService/Wally.CleanArchitecture.MicroService.Infrastructure.SchedulerService.csproj" />
+</Solution>

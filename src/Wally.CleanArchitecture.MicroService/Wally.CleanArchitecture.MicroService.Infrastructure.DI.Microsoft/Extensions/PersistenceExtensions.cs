@@ -67,6 +67,12 @@ public static class PersistenceExtensions
 		}
 
 		services.AddDbContext<DbContext, ApplicationDbContext>((Action<DbContextOptionsBuilder>)DbContextOptions);
+		// services.AddDbContextFactory<ApplicationDbContext>(DbContextOptions);
+		// services.AddScoped<IDbContextFactory<DbContext>>(sp =>
+		// {
+		// 	var implFactory = sp.GetRequiredService<IDbContextFactory<ApplicationDbContext>>();
+		// 	return new DelegatingDbContextFactory(implFactory);
+		// });
 
 		services.Scan(
 			a => a.FromAssemblyOf<IInfrastructurePersistenceAssemblyMarker>()
@@ -167,4 +173,16 @@ public static class PersistenceExtensions
 
 		return app;
 	}
+	
+	// public class DelegatingDbContextFactory : IDbContextFactory<DbContext>
+	// {
+	// 	private readonly IDbContextFactory<ApplicationDbContext> _factory;
+	//
+	// 	public DelegatingDbContextFactory(IDbContextFactory<ApplicationDbContext> factory)
+	// 	{
+	// 		_factory = factory;
+	// 	}
+	//
+	// 	public DbContext CreateDbContext() => _factory.CreateDbContext();
+	// }
 }

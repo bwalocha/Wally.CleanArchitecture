@@ -5,6 +5,7 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Messaging;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 using Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
+using Wally.CleanArchitecture.MicroService.Infrastructure.SchedulerService;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -115,6 +116,8 @@ public class ArchitectureTests
 				.DoNotResideInAssembly(typeof(IInfrastructurePersistenceAssemblyMarker).Assembly)
 				.And()
 				.DoNotResideInAssembly(typeof(IInfrastructurePipelineBehavioursAssemblyMarker).Assembly)
+				.And()
+				.DoNotResideInAssembly(typeof(IInfrastructureSchedulerServiceAssemblyMarker).Assembly)
 				.Should()
 				.NotDependOnAny(Configuration.ApplicationProvider)
 				.AndShould()

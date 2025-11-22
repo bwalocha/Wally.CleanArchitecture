@@ -18,6 +18,7 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer;
 using Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
+using Wally.CleanArchitecture.MicroService.Infrastructure.SchedulerService;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Wally.CleanArchitecture.MicroService.WebApi;
@@ -106,6 +107,7 @@ public static class Configuration
 				typeof(IInfrastructureSQLiteAssemblyMarker).Assembly,
 				typeof(IInfrastructureSqlServerAssemblyMarker).Assembly,
 				typeof(IInfrastructurePipelineBehavioursAssemblyMarker).Assembly,
+				typeof(IInfrastructureSchedulerServiceAssemblyMarker).Assembly,
 			],
 			Presentation =
 			[

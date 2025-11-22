@@ -1,7 +1,8 @@
 ﻿{
-  Version: 1.1,
-  Status: 202 Accepted,
-  RequestMessage: {
+  Response: {
+    Status: 202 Accepted
+  },
+  Request: {
     Method: DELETE,
     Uri: http://localhost/Users/Guid_1
   }

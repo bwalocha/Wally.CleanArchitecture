@@ -1,11 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <ItemGroup>
         <PackageReference Include="Mediator.Abstractions" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
         <PackageReference Include="TickerQ" />
         <PackageReference Include="TickerQ.Dashboard" />
         <PackageReference Include="TickerQ.EntityFrameworkCore" />
     </ItemGroup>
+    
     <ItemGroup>
       <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application\Wally.CleanArchitecture.MicroService.Application.csproj" />
     </ItemGroup>

@@ -1,7 +1,8 @@
 ﻿{
-  Version: 1.1,
-  Status: 200 OK,
-  RequestMessage: {
+  Response: {
+    Status: 200 OK
+  },
+  Request: {
     Method: POST,
     Uri: http://localhost/Users,
     Content: {

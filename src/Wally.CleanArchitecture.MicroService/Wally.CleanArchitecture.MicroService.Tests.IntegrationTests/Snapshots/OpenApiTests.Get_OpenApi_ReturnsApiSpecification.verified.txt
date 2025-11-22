@@ -2,6 +2,7 @@
   Status: 200 OK,
   Content: {
     Headers: {
+      Content-Length: 39611,
       Content-Type: application/json; charset=utf-8
     },
     Value: {
@@ -21,6 +22,754 @@
         version: v1
       },
       paths: {
+        /api/auth/info: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get authentication configuration,
+            operationId: GetAuthInfo,
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/auth/validate: {
+          post: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Validate authentication credentials,
+            operationId: ValidateAuth,
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/options: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get dashboard options and status,
+            operationId: GetOptions,
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/time-tickers: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get all time tickers,
+            operationId: GetTimeTickers,
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/time-tickers/paginated: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get paginated time tickers,
+            operationId: GetTimeTickersPaginated,
+            parameters: [
+              {
+                name: pageNumber,
+                in: query,
+                schema: {
+                  type: integer,
+                  format: int32,
+                  default: 1
+                }
+              },
+              {
+                name: pageSize,
+                in: query,
+                schema: {
+                  type: integer,
+                  format: int32,
+                  default: 20
+                }
+              }
+            ],
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/time-tickers/graph-data-range: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get time tickers graph data for specific date range,
+            operationId: GetTimeTickersGraphDataRange,
+            parameters: [
+              {
+                name: pastDays,
+                in: query,
+                schema: {
+                  type: integer,
+                  format: int32,
+                  default: 3
+                }
+              },
+              {
+                name: futureDays,
+                in: query,
+                schema: {
+                  type: integer,
+                  format: int32,
+                  default: 3
+                }
+              }
+            ],
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/time-tickers/graph-data: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get time tickers graph data,
+            operationId: GetTimeTickersGraphData,
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/time-ticker/add: {
+          post: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Create chain jobs,
+            operationId: CreateChainJobs,
+            parameters: [
+              {
+                name: timeZoneId,
+                in: query,
+                schema: {
+                  type: string
+                }
+              }
+            ],
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/time-ticker/update: {
+          put: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Update time ticker,
+            operationId: UpdateTimeTicker,
+            parameters: [
+              {
+                name: id,
+                in: query,
+                required: true,
+                schema: {
+                  type: string,
+                  format: uuid
+                }
+              },
+              {
+                name: timeZoneId,
+                in: query,
+                schema: {
+                  type: string
+                }
+              }
+            ],
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/time-ticker/delete: {
+          delete: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Delete time ticker,
+            operationId: DeleteTimeTicker,
+            parameters: [
+              {
+                name: id,
+                in: query,
+                required: true,
+                schema: {
+                  type: string,
+                  format: uuid
+                }
+              }
+            ],
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/cron-tickers: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get all cron tickers,
+            operationId: GetCronTickers,
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/cron-tickers/paginated: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get paginated cron tickers,
+            operationId: GetCronTickersPaginated,
+            parameters: [
+              {
+                name: pageNumber,
+                in: query,
+                schema: {
+                  type: integer,
+                  format: int32,
+                  default: 1
+                }
+              },
+              {
+                name: pageSize,
+                in: query,
+                schema: {
+                  type: integer,
+                  format: int32,
+                  default: 20
+                }
+              }
+            ],
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/cron-tickers/graph-data-range: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get cron tickers graph data for specific date range,
+            operationId: GetCronTickersGraphDataRange,
+            parameters: [
+              {
+                name: pastDays,
+                in: query,
+                schema: {
+                  type: integer,
+                  format: int32,
+                  default: 3
+                }
+              },
+              {
+                name: futureDays,
+                in: query,
+                schema: {
+                  type: integer,
+                  format: int32,
+                  default: 3
+                }
+              }
+            ],
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/cron-tickers/graph-data-range-id: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get cron ticker graph data by ID for specific date range,
+            operationId: GetCronTickersByIdGraphDataRange,
+            parameters: [
+              {
+                name: id,
+                in: query,
+                required: true,
+                schema: {
+                  type: string,
+                  format: uuid
+                }
+              },
+              {
+                name: pastDays,
+                in: query,
+                schema: {
+                  type: integer,
+                  format: int32,
+                  default: 3
+                }
+              },
+              {
+                name: futureDays,
+                in: query,
+                schema: {
+                  type: integer,
+                  format: int32,
+                  default: 3
+                }
+              }
+            ],
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/cron-tickers/graph-data: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get cron tickers graph data,
+            operationId: GetCronTickersGraphData,
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/cron-ticker-occurrences/{cronTickerId}: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get cron ticker occurrences,
+            operationId: GetCronTickerOccurrences,
+            parameters: [
+              {
+                name: cronTickerId,
+                in: path,
+                required: true,
+                schema: {
+                  type: string,
+                  format: uuid
+                }
+              }
+            ],
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/cron-ticker-occurrences/{cronTickerId}/paginated: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get paginated cron ticker occurrences,
+            operationId: GetCronTickerOccurrencesPaginated,
+            parameters: [
+              {
+                name: cronTickerId,
+                in: path,
+                required: true,
+                schema: {
+                  type: string,
+                  format: uuid
+                }
+              },
+              {
+                name: pageNumber,
+                in: query,
+                schema: {
+                  type: integer,
+                  format: int32,
+                  default: 1
+                }
+              },
+              {
+                name: pageSize,
+                in: query,
+                schema: {
+                  type: integer,
+                  format: int32,
+                  default: 20
+                }
+              }
+            ],
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/cron-ticker-occurrences/{cronTickerId}/graph-data: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get cron ticker occurrences graph data,
+            operationId: GetCronTickerOccurrencesGraphData,
+            parameters: [
+              {
+                name: cronTickerId,
+                in: path,
+                required: true,
+                schema: {
+                  type: string,
+                  format: uuid
+                }
+              }
+            ],
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/cron-ticker/add: {
+          post: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Add cron ticker,
+            operationId: AddCronTicker,
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/cron-ticker/update: {
+          put: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Update cron ticker,
+            operationId: UpdateCronTicker,
+            parameters: [
+              {
+                name: id,
+                in: query,
+                required: true,
+                schema: {
+                  type: string,
+                  format: uuid
+                }
+              }
+            ],
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/cron-ticker/run: {
+          post: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Run cron ticker on demand,
+            operationId: RunCronTickerOnDemand,
+            parameters: [
+              {
+                name: id,
+                in: query,
+                required: true,
+                schema: {
+                  type: string,
+                  format: uuid
+                }
+              }
+            ],
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/cron-ticker/delete: {
+          delete: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Delete cron ticker,
+            operationId: DeleteCronTicker,
+            parameters: [
+              {
+                name: id,
+                in: query,
+                required: true,
+                schema: {
+                  type: string,
+                  format: uuid
+                }
+              }
+            ],
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/cron-ticker-occurrence/delete: {
+          delete: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Delete cron ticker occurrence,
+            operationId: DeleteCronTickerOccurrence,
+            parameters: [
+              {
+                name: id,
+                in: query,
+                required: true,
+                schema: {
+                  type: string,
+                  format: uuid
+                }
+              }
+            ],
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/ticker/cancel: {
+          post: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Cancel ticker by ID,
+            operationId: CancelTicker,
+            parameters: [
+              {
+                name: id,
+                in: query,
+                required: true,
+                schema: {
+                  type: string,
+                  format: uuid
+                }
+              }
+            ],
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/ticker-request/{id}: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get ticker request by ID,
+            operationId: GetTickerRequest,
+            parameters: [
+              {
+                name: tickerId,
+                in: query,
+                required: true,
+                schema: {
+                  type: string,
+                  format: uuid
+                }
+              },
+              {
+                name: tickerType,
+                in: query,
+                required: true,
+                schema: {
+                  $ref: #/components/schemas/TickerType
+                }
+              }
+            ],
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/ticker-functions: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get available ticker functions,
+            operationId: GetTickerFunctions,
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/ticker-host/next-ticker: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get next planned ticker,
+            operationId: GetNextTicker,
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/ticker-host/stop: {
+          post: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Stop ticker host,
+            operationId: StopTickerHost,
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/ticker-host/start: {
+          post: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Start ticker host,
+            operationId: StartTickerHost,
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/ticker-host/restart: {
+          post: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Restart ticker host,
+            operationId: RestartTickerHost,
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/ticker-host/status: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get ticker host status,
+            operationId: GetTickerHostStatus,
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/ticker/statuses/get-last-week: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get last week job statuses,
+            operationId: GetLastWeekJobStatus,
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/ticker/statuses/get: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get overall job statuses,
+            operationId: GetJobStatuses,
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/ticker/machine/jobs: {
+          get: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Get machine jobs,
+            operationId: GetMachineJobs,
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
         /Users: {
           get: {
             tags: [
@@ -688,6 +1437,9 @@ DELETE /Users/Guid_1,
         }
       },
       tags: [
+        {
+          name: TickerQ Dashboard
+        },
         {
           name: Users
         }
