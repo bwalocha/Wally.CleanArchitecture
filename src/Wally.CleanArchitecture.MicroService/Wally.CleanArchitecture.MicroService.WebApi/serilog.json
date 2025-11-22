@@ -18,7 +18,7 @@
         "Name": "Console",
         "Args": {
           "theme": "Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme::Code, Serilog.Sinks.Console",
-          "outputTemplate": "[{Timestamp:HH:mm:ss} <{EnvironmentUserName}@{MachineName} [{EnvironmentName}] {ProcessId}:{ThreadId}:{ThreadName}> {Level}] {SourceContext} {Properties:j}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}"
+          "outputTemplate": "[{Timestamp:HH:mm:ss} <{EnvironmentUserName}@{MachineName} [{EnvironmentName}] {CorrelationId} {ProcessId}:{ThreadId}:{ThreadName}> {Level:u3}] {SourceContext} {Properties:j}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}"
         }
       },
       {
