@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 
@@ -19,7 +20,7 @@ public class SoftDeleteBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
 	private readonly IRequestContext _requestContext;
 
 	public SoftDeleteBehavior(
-		DbContext dbContext,
+		ApplicationDbContext dbContext,
 		IRequestContext requestContext,
 		TimeProvider timeProvider)
 	{

@@ -82,6 +82,17 @@
         "resolved": "1.1.118",
         "contentHash": "Onx6ovGSqXSK07n/0eM3ZusiNdB6cIlJdabQhWGgJp3Vooy9AaLS/tigeybOJAobqbtggTamoWndz72JscZBvw=="
       },
+      "TickerQ.EntityFrameworkCore": {
+        "type": "Direct",
+        "requested": "[10.0.0-beta.18, )",
+        "resolved": "10.0.0-beta.18",
+        "contentHash": "F/rtymGQkI1UCLhvrakg/Xy84R/dj91HkHoS0qvixDxJ8o9kWBi3Hi+RGsLw6lC/JS8GdQzz45g7N8KCeb4Llw==",
+        "dependencies": {
+          "FlexLabs.EntityFrameworkCore.Upsert": "[10.0.0-beta1, 11.0.0)",
+          "Microsoft.EntityFrameworkCore.Relational": "[10.0.0, 11.0.0)",
+          "TickerQ.Utilities": "10.0.0-beta.18"
+        }
+      },
       "Azure.Core": {
         "type": "Transitive",
         "resolved": "1.47.1",
@@ -100,6 +111,14 @@
           "Azure.Core": "1.46.1",
           "Microsoft.Identity.Client": "4.73.1",
           "Microsoft.Identity.Client.Extensions.Msal": "4.73.1"
+        }
+      },
+      "FlexLabs.EntityFrameworkCore.Upsert": {
+        "type": "Transitive",
+        "resolved": "10.0.0-beta1",
+        "contentHash": "gSzy/Cg04pG7y6+VOXJRsLuy+JlLDcwFYFb/Y5vsZ9qHNNBk69VjeiIyx8SMeg88Q8v02cc9btEVfxBOBfN6Kw==",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.0-rc.2.25502.107"
         }
       },
       "Microsoft.Bcl.AsyncInterfaces": {
@@ -298,6 +317,11 @@
         "resolved": "1.0.0",
         "contentHash": "N4KeF3cpcm1PUHym1RmakkzfkEv3GRMyofVv40uXsQhCQeglr2OHNcUk2WOG51AKpGO8ynGpo9M/kFXSzghwug=="
       },
+      "ncrontab": {
+        "type": "Transitive",
+        "resolved": "3.3.0",
+        "contentHash": "oNHphZD7YiqHJoqX5Myw+lfDDTnnI2i+mCuil8MW2gyHaEejhLOdsS9pqVUGAEIJsu4+OL+m3UmkBcw2gkdtsg=="
+      },
       "System.ClientModel": {
         "type": "Transitive",
         "resolved": "1.5.1",
@@ -335,6 +359,14 @@
         "type": "Transitive",
         "resolved": "9.0.4",
         "contentHash": "o94k2RKuAce3GeDMlUvIXlhVa1kWpJw95E6C9LwW0KlG0nj5+SgCiIxJ2Eroqb9sLtG1mEMbFttZIBZ13EJPvQ=="
+      },
+      "TickerQ.Utilities": {
+        "type": "Transitive",
+        "resolved": "10.0.0-beta.18",
+        "contentHash": "LDUkob1ixjFgQ1VEaPftJXoh/viLrYp2caUYlcsThnRLNgWtpxfRibQKRouvDBX+B5X4oClCkAKjz185mJYYdg==",
+        "dependencies": {
+          "NCrontab": "3.3.0"
+        }
       },
       "wally.cleanarchitecture.microservice.application": {
         "type": "Project",

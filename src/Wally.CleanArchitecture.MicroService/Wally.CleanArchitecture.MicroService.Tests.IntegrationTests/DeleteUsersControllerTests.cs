@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Time.Testing;
 using Shouldly; // TODO: replace with Verify
 using Wally.CleanArchitecture.MicroService.Domain.Users;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Extensions;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
@@ -56,30 +57,30 @@ public partial class UsersControllerTests
 		// Assert
 		// TODO: use ShouldSatisfyAllConditions
 		await Verifier.Verify(response);
-		(await _factory.GetRequiredService<DbContext>()
+		(await _factory.GetRequiredService<ApplicationDbContext>()
 				.Set<User>()
 				.SingleAsync(a => a.Id == resource1.Id))
 			.IsDeleted.ShouldBe(false);
-		(await _factory.GetRequiredService<DbContext>()
+		(await _factory.GetRequiredService<ApplicationDbContext>()
 				.Set<User>()
 				.FirstOrDefaultAsync(a => a.Id == resource2.Id))
 			.ShouldBeNull();
-		(await _factory.GetRequiredService<DbContext>()
+		(await _factory.GetRequiredService<ApplicationDbContext>()
 				.Set<User>()
 				.IgnoreQueryFilters()
 				.SingleAsync(a => a.Id == resource1.Id))
 			.IsDeleted.ShouldBe(false);
-		(await _factory.GetRequiredService<DbContext>()
+		(await _factory.GetRequiredService<ApplicationDbContext>()
 				.Set<User>()
 				.IgnoreQueryFilters()
 				.SingleAsync(a => a.Id == resource2.Id))
 			.IsDeleted.ShouldBe(true);
-		(await _factory.GetRequiredService<DbContext>()
+		(await _factory.GetRequiredService<ApplicationDbContext>()
 				.Set<User>()
 				.IgnoreQueryFilters()
 				.SingleAsync(a => a.Id == resource2.Id))
 			.DeletedById.ShouldBe(new UserId(Guid.Parse("ffffffff-0000-0000-0000-add702d3016b")));
-		(await _factory.GetRequiredService<DbContext>()
+		(await _factory.GetRequiredService<ApplicationDbContext>()
 				.Set<User>()
 				.IgnoreQueryFilters()
 				.SingleAsync(a => a.Id == resource2.Id))

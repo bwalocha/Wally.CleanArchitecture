@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TickerQ.Dashboard.DependencyInjection;
 using TickerQ.DependencyInjection;
-using TickerQ.EntityFrameworkCore.DbContextFactory;
+using TickerQ.EntityFrameworkCore.Customizer;
 using TickerQ.EntityFrameworkCore.DependencyInjection;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 using Wally.CleanArchitecture.MicroService.Infrastructure.SchedulerService.Handlers;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.SchedulerService.Extensions;
@@ -27,12 +27,13 @@ public static class SchedulerExtensions
 
 			options.AddOperationalStore(efOptions =>
 			{
-				efOptions.UseTickerQDbContext<TickerQDbContext>(optionsBuilder =>
-				{
-					// optionsBuilder.UseSqlite("Data Source=Wally.CleanArchitecture.MicroService.Scheduler.db;Cache=Shared");
-					optionsBuilder.UseInMemoryDatabase("Wally.CleanArchitecture.MicroService.Scheduler", builder => builder.EnableNullChecks());
-				});
+				// efOptions.UseTickerQDbContext<TickerQDbContext>(optionsBuilder =>
+				// {
+				// 	// optionsBuilder.UseSqlite("Data Source=Wally.CleanArchitecture.MicroService.Scheduler.db;Cache=Shared");
+				// 	optionsBuilder.UseInMemoryDatabase("Wally.CleanArchitecture.MicroService.Scheduler", builder => builder.EnableNullChecks());
+				// });
 
+				efOptions.UseApplicationDbContext<ApplicationDbContext>(ConfigurationType.IgnoreModelCustomizer);
 				// efOptions.UseApplicationDbContext<DbContext>(ConfigurationType.IgnoreModelCustomizer);
 				// efOptions.SetDbContextPoolSize(34);
 			});

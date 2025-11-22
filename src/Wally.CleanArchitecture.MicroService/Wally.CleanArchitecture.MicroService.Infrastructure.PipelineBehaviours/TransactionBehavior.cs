@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Mediator;
 using Microsoft.EntityFrameworkCore;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 
@@ -10,7 +11,7 @@ public class TransactionBehavior<TRequest, TResponse> : IPipelineBehavior<TReque
 {
 	private readonly DbContext _dbContext;
 
-	public TransactionBehavior(DbContext dbContext)
+	public TransactionBehavior(ApplicationDbContext dbContext)
 	{
 		_dbContext = dbContext;
 	}

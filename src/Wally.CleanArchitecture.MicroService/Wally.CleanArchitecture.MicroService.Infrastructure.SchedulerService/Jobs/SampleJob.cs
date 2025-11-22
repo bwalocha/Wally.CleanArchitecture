@@ -18,30 +18,16 @@ public class SampleJob
 
 	public SampleJob(
 		// ITimeTickerManager<TimeTickerEntity> timeTickerManager,
-		// IMediator mediator,
+		IMediator mediator,
 		// TimeProvider timeProvider
 		ILogger<SampleJob> logger
 		)
 	{
 		_logger = logger;
 		// _timeTickerManager = timeTickerManager;
-		// _mediator = mediator;
+		_mediator = mediator;
 		// _timeProvider = timeProvider;
 	}
-
-	// public async Task ScheduleJobAsync(CancellationToken cancellationToken)
-	// {
-	// 	var result = await _timeTickerManager.AddAsync(new TimeTickerEntity
-	// 	{
-	// 		Function = "HelloWorld",
-	// 		ExecutionTime = _timeProvider.GetUtcNow().AddSeconds(10).DateTime, // Run in 10 seconds
-	// 	}, cancellationToken);
-	//
-	// 	if (result.IsSucceeded)
-	// 	{
-	// 		Console.WriteLine($"Job scheduled! ID: {result.Result.Id}");
-	// 	}
-	// }
 
 	[TickerFunction("ExecuteJob", "0/10 * * * * *")]
 	public async Task ExecuteJobAsync(

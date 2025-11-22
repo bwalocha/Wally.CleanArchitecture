@@ -66,8 +66,11 @@ public static class PersistenceExtensions
 #endif
 		}
 
-		services.AddDbContext<DbContext, ApplicationDbContext>((Action<DbContextOptionsBuilder>)DbContextOptions);
+		//services.AddDbContext<DbContext, ApplicationDbContext>((Action<DbContextOptionsBuilder>)DbContextOptions);
+		//services.AddDbContext<ApplicationDbContext>((Action<DbContextOptionsBuilder>)DbContextOptions);
+		// services.AddScoped<DbContextOptionsConfiguration<ApplicationDbContext>>();
 		// services.AddDbContextFactory<ApplicationDbContext>(DbContextOptions);
+		services.AddPooledDbContextFactory<ApplicationDbContext>(DbContextOptions);
 		// services.AddScoped<IDbContextFactory<DbContext>>(sp =>
 		// {
 		// 	var implFactory = sp.GetRequiredService<IDbContextFactory<ApplicationDbContext>>();
@@ -168,21 +171,21 @@ public static class PersistenceExtensions
 		}
 
 		using var scope = app.ApplicationServices.CreateScope();
-		var dbContext = scope.ServiceProvider.GetRequiredService<DbContext>();
+		var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 		dbContext.Database.Migrate();
 
 		return app;
 	}
 	
-	// public class DelegatingDbContextFactory : IDbContextFactory<DbContext>
-	// {
-	// 	private readonly IDbContextFactory<ApplicationDbContext> _factory;
-	//
-	// 	public DelegatingDbContextFactory(IDbContextFactory<ApplicationDbContext> factory)
-	// 	{
-	// 		_factory = factory;
-	// 	}
-	//
-	// 	public DbContext CreateDbContext() => _factory.CreateDbContext();
-	// }
+	public class DelegatingDbContextFactory : IDbContextFactory<DbContext>
+	{
+		private readonly IDbContextFactory<ApplicationDbContext> _factory;
+	
+		public DelegatingDbContextFactory(IDbContextFactory<ApplicationDbContext> factory)
+		{
+			_factory = factory;
+		}
+	
+		public DbContext CreateDbContext() => _factory.CreateDbContext();
+	}
 }

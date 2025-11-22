@@ -1,7 +1,7 @@
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
-// using TickerQ.EntityFrameworkCore.Configurations;
-// using TickerQ.Utilities.Entities;
+using TickerQ.EntityFrameworkCore.Configurations;
+using TickerQ.Utilities.Entities;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Extensions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
@@ -34,8 +34,8 @@ public sealed class ApplicationDbContext : DbContext
 		// modelBuilder.ApplyConfiguration(new TimeTickerConfigurations(schema: SchemaName));
 		// modelBuilder.ApplyConfiguration(new CronTickerConfigurations(schema: SchemaName));
 		// modelBuilder.ApplyConfiguration(new CronTickerOccurrenceConfigurations(schema: SchemaName));
-		// modelBuilder.ApplyConfiguration(new TimeTickerConfigurations<TimeTickerEntity>());
-		// modelBuilder.ApplyConfiguration(new CronTickerConfigurations<CronTickerEntity>());
-		// modelBuilder.ApplyConfiguration(new CronTickerOccurrenceConfigurations<CronTickerEntity>());
+		modelBuilder.ApplyConfiguration(new TimeTickerConfigurations<TimeTickerEntity>());
+		modelBuilder.ApplyConfiguration(new CronTickerConfigurations<CronTickerEntity>());
+		modelBuilder.ApplyConfiguration(new CronTickerOccurrenceConfigurations<CronTickerEntity>());
 	}
 }
