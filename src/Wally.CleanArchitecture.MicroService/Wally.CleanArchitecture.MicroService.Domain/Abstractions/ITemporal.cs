@@ -4,6 +4,6 @@ public interface ITemporal
 {
 	/*DateTime ValidFrom { get; }
 	DateTime ValidTo { get; }
-    
+
 	bool IsActiveAt(DateTimeOffset date);*/
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Confluent.Kafka;
@@ -7,7 +8,6 @@ using HealthChecks.MySql;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using RabbitMQ.Client;
@@ -38,17 +38,17 @@ public static class HealthChecksExtensions
 				ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
 			});
 
-		app.UseEndpoints(
-			endpoints =>
+		app.UseEndpoints(endpoints =>
 			{
 				// Adds Liveness
 				endpoints.MapGet(
 					"/",
-					async context =>
+					() =>
 					{
-						await context.Response.WriteAsync(
-							$"v{typeof(HealthChecksExtensions).Assembly.GetName().Version}",
-							context.RequestAborted);
+						var version = Assembly.GetExecutingAssembly().GetName().Version?.ToString() 
+						?? "unknown";
+
+						return new { version };
 					});
 			});
 

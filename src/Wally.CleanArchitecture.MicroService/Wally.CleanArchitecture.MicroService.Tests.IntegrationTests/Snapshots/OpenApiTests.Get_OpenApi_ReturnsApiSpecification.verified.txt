@@ -2,7 +2,7 @@
   Status: 200 OK,
   Content: {
     Headers: {
-      Content-Length: 39611,
+      Content-Length: 40119,
       Content-Type: application/json; charset=utf-8
     },
     Value: {
@@ -1400,6 +1400,25 @@ DELETE /Users/Guid_1,
               }
             }
           }
+        },
+        /: {
+          get: {
+            tags: [
+              Wally.CleanArchitecture.MicroService.WebApi
+            ],
+            responses: {
+              200: {
+                description: OK,
+                content: {
+                  application/json: {
+                    schema: {
+                      $ref: #/components/schemas/String<>f__AnonymousType0
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       },
       components: {
@@ -1442,6 +1461,9 @@ DELETE /Users/Guid_1,
         },
         {
           name: Users
+        },
+        {
+          name: Wally.CleanArchitecture.MicroService.WebApi
         }
       ]
     }
