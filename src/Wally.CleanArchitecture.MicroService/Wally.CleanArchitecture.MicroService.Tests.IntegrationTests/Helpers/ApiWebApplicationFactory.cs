@@ -25,7 +25,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 	private readonly MsSqlContainer _dbContainer = new MsSqlBuilder()
 		.WithImage(MsSqlContainerImageName)
 		.WithName(MsSqlContainerName)
-		.WithCreateParameterModifier(a => a.HostConfig.Memory = MsSqlContainerMemoryLimit)
+		// .WithCreateParameterModifier(a => a.HostConfig.Memory = MsSqlContainerMemoryLimit) // TODO: Fix CI
 		.WithCleanUp(true)
 		.WithReuse(true)
 		.Build();

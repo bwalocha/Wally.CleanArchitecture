@@ -5,11 +5,17 @@
         <PackageReference Include="AspNetCore.HealthChecks.MySql" />
         <PackageReference Include="AspNetCore.HealthChecks.NpgSql" />
         <PackageReference Include="AspNetCore.HealthChecks.Sqlite" />
+        <PackageReference Include="AspNetCore.HealthChecks.Rabbitmq" />
+        <PackageReference Include="AspNetCore.HealthChecks.SqlServer" />
+        <PackageReference Include="AspNetCore.HealthChecks.UI" />
+        <PackageReference Include="AspNetCore.HealthChecks.UI.Client" />
+        <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" />
         <PackageReference Include="EntityFrameworkCore.Exceptions.MySQL" />
         <PackageReference Include="EntityFrameworkCore.Exceptions.MySQL.Pomelo" />
         <PackageReference Include="EntityFrameworkCore.Exceptions.PostgreSQL" />
         <PackageReference Include="EntityFrameworkCore.Exceptions.Sqlite" />
         <PackageReference Include="EntityFrameworkCore.Exceptions.SqlServer" />
+        <PackageReference Include="FluentValidation.AspNetCore" />
         <PackageReference Include="MassTransit" />
         <PackageReference Include="MassTransit.Azure.ServiceBus.Core" />
         <PackageReference Include="MassTransit.EntityFrameworkCore" />
@@ -17,19 +23,19 @@
         <PackageReference Include="MassTransit.RabbitMQ" />
         <PackageReference Include="Mediator.Abstractions" />
         <PackageReference Include="Mediator.SourceGenerator" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
+        <PackageReference Include="Microsoft.AspNetCore.OData" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+        <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol"/>
+        <PackageReference Include="OpenTelemetry.Exporter.Prometheus.AspNetCore" />
+        <PackageReference Include="OpenTelemetry.Extensions.Hosting"/>
+        <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore"/>
+        <PackageReference Include="OpenTelemetry.Instrumentation.Http"/>
+        <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" />
         <PackageReference Include="Scrutor" />
         <PackageReference Include="Swashbuckle.AspNetCore" />
-        <PackageReference Include="AspNetCore.HealthChecks.Rabbitmq" />
-        <PackageReference Include="AspNetCore.HealthChecks.SqlServer" />
-        <PackageReference Include="AspNetCore.HealthChecks.UI" />
-        <PackageReference Include="AspNetCore.HealthChecks.UI.Client" />
-        <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" />
-        <PackageReference Include="FluentValidation.AspNetCore" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
-        <PackageReference Include="Microsoft.AspNetCore.OData" />
     </ItemGroup>
 
     <!-- Updates for vulnerable packages -->

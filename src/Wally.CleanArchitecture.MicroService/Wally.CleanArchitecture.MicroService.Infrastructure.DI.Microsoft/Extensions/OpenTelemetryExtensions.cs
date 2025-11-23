@@ -4,9 +4,9 @@ using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
-using Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Models;
+using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 
-namespace Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Extensions;
+namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 
 public static class OpenTelemetryExtensions
 {
@@ -14,7 +14,7 @@ public static class OpenTelemetryExtensions
 	public static IServiceCollection AddOpenTelemetry(this IServiceCollection services, OpenTelemetrySettings settings)
 	{
 		services.AddOpenTelemetry()
-			.ConfigureResource(resource => resource.AddService("Wally.CleanArchitecture.ApiGateway", 
+			.ConfigureResource(resource => resource.AddService("Wally.CleanArchitecture.MicroService", 
 				typeof(IInfrastructureDIMicrosoftAssemblyMarker)
 				.Assembly.GetName()
 				.Version?.ToString()))
@@ -37,8 +37,8 @@ public static class OpenTelemetryExtensions
 						"Microsoft.AspNetCore.Hosting",
 						"Microsoft.AspNetCore.Server.Kestrel",
 						"System.Net.Http",
-						"Wally.CleanArchitecture.ApiGateway.WebApi");
-				
+						"Wally.CleanArchitecture.MicroService.WebApi");
+
 				metrics.AddPrometheusExporter();
 			})
 			.WithTracing(tracing =>
