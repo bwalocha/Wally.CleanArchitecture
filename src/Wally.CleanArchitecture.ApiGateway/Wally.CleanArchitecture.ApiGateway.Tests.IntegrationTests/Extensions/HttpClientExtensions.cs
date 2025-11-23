@@ -20,13 +20,14 @@ public static class HttpClientExtensions
 
 	public static Task<HttpResponseMessage> PutAsync<TPayload>(
 		this HttpClient client,
-		[StringSyntax(StringSyntaxAttribute.Uri)]string requestUri,
+		[StringSyntax(StringSyntaxAttribute.Uri)]
+		string requestUri,
 		TPayload payload,
 		CancellationToken cancellationToken)
 	{
 		return PutAsync(client, CreateUri(requestUri), payload, cancellationToken);
 	}
-	
+
 	public static Task<HttpResponseMessage> PutAsync<TPayload>(
 		this HttpClient client,
 		Uri? requestUri,
@@ -40,13 +41,14 @@ public static class HttpClientExtensions
 
 	public static Task<HttpResponseMessage> PostAsync<TPayload>(
 		this HttpClient client,
-		[StringSyntax(StringSyntaxAttribute.Uri)]string? requestUri,
+		[StringSyntax(StringSyntaxAttribute.Uri)]
+		string? requestUri,
 		TPayload payload,
 		CancellationToken cancellationToken)
 	{
 		return PostAsync(client, CreateUri(requestUri), payload, cancellationToken);
 	}
-	
+
 	public static Task<HttpResponseMessage> PostAsync<TPayload>(
 		this HttpClient client,
 		Uri? requestUri,
@@ -69,9 +71,11 @@ public static class HttpClientExtensions
 		return JsonSerializer.Create(JsonSettings)
 			.Deserialize<TResponse>(jsonReader) !;
 	}
-	
-	private static Uri? CreateUri(string? uri) =>
-		string.IsNullOrEmpty(uri) ? null : new Uri(uri, UriKind.RelativeOrAbsolute);
+
+	private static Uri? CreateUri(string? uri)
+	{
+		return string.IsNullOrEmpty(uri) ? null : new Uri(uri, UriKind.RelativeOrAbsolute);
+	}
 
 	private static StringContent CreateContent<TPayload>(TPayload payload)
 	{

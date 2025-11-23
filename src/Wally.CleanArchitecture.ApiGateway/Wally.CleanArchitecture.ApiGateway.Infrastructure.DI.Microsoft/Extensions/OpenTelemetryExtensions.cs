@@ -12,10 +12,10 @@ public static class OpenTelemetryExtensions
 	public static IServiceCollection AddOpenTelemetry(this IServiceCollection services, OpenTelemetrySettings settings)
 	{
 		services.AddOpenTelemetry()
-			.ConfigureResource(resource => resource.AddService("Wally.CleanArchitecture", 
+			.ConfigureResource(resource => resource.AddService("Wally.CleanArchitecture",
 				typeof(IInfrastructureDIMicrosoftAssemblyMarker)
-				.Assembly.GetName()
-				.Version?.ToString()))
+					.Assembly.GetName()
+					.Version?.ToString()))
 			.WithMetrics(metrics =>
 			{
 				metrics.AddAspNetCoreInstrumentation()

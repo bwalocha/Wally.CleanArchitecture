@@ -17,29 +17,28 @@ public static class OpenApiExtensions
 	public static IApplicationBuilder UseOpenApi(this IApplicationBuilder app, AuthenticationSettings settings,
 		ReverseProxySettings reverseProxySettings)
 	{
-		app.UseSwaggerUI(
-			options =>
+		app.UseSwaggerUI(options =>
+		{
+			options.OAuthClientId(settings.ClientId);
+			options.OAuthClientSecret(settings.ClientSecret);
+			options.OAuthUsePkce();
+			options.DefaultModelsExpandDepth(0);
+			options.RoutePrefix = "swagger";
+
+			foreach (var route in reverseProxySettings.Routes)
 			{
-				options.OAuthClientId(settings.ClientId);
-				options.OAuthClientSecret(settings.ClientSecret);
-				options.OAuthUsePkce();
-				options.DefaultModelsExpandDepth(0);
-				options.RoutePrefix = "swagger";
-
-				foreach (var route in reverseProxySettings.Routes)
+				foreach (var prefix in route.Transforms!.SelectMany(a => a.Values)
+							.Distinct())
 				{
-					foreach (var prefix in route.Transforms!.SelectMany(a => a.Values)
-								.Distinct())
-					{
-						var url = $"https://localhost:5001{prefix}/swagger/v1/swagger.json";
-						var name = $"Wally.CleanArchitecture API [{route.ClusterId}]";
+					var url = $"https://localhost:5001{prefix}/swagger/v1/swagger.json";
+					var name = $"Wally.CleanArchitecture API [{route.ClusterId}]";
 
-						options.SwaggerEndpoint(url, name);
-					}
+					options.SwaggerEndpoint(url, name);
 				}
+			}
 
-				options.ConfigObject.Urls = options.ConfigObject.Urls?.DistinctBy(a => a.Url);
-			});
+			options.ConfigObject.Urls = options.ConfigObject.Urls?.DistinctBy(a => a.Url);
+		});
 
 		return app;
 	}

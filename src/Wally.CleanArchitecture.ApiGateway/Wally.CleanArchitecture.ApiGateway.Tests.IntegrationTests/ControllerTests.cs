@@ -18,7 +18,7 @@ public partial class ControllerTests : IDisposable
 				AllowAutoRedirect = false,
 			});
 	}
-	
+
 	public void Dispose()
 	{
 		Dispose(true);

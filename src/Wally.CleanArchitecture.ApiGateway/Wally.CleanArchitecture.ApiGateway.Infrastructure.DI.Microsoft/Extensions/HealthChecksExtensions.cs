@@ -35,19 +35,18 @@ public static class HealthChecksExtensions
 
 		app.UseHealthChecksUI();
 
-		app.UseEndpoints(
-			endpoints =>
-			{
-				// Adds Liveness
-				endpoints.MapGet(
-					"/",
-					async context =>
-					{
-						await context.Response.WriteAsync(
-							$"v{typeof(HealthChecksExtensions).Assembly.GetName().Version}",
-							context.RequestAborted);
-					});
-			});
+		app.UseEndpoints(endpoints =>
+		{
+			// Adds Liveness
+			endpoints.MapGet(
+				"/",
+				async context =>
+				{
+					await context.Response.WriteAsync(
+						$"v{typeof(HealthChecksExtensions).Assembly.GetName().Version}",
+						context.RequestAborted);
+				});
+		});
 
 		return app;
 	}

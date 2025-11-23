@@ -11,15 +11,14 @@ public static class ApiCorsExtensions
 
 	public static IServiceCollection AddApiCors(this IServiceCollection services, CorsSettings settings)
 	{
-		services.AddCors(
-			options => options.AddPolicy(
-				CorsPolicy,
-				builder => builder.WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-					.AllowAnyHeader()
-					.AllowCredentials()
-					.WithOrigins(
-						settings.Origins.Select(a => a.OriginalString)
-							.ToArray())));
+		services.AddCors(options => options.AddPolicy(
+			CorsPolicy,
+			builder => builder.WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+				.AllowAnyHeader()
+				.AllowCredentials()
+				.WithOrigins(
+					settings.Origins.Select(a => a.OriginalString)
+						.ToArray())));
 
 		return services;
 	}

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="..\..\Directory.BuildTests.props" />
+    <Import Project="..\..\Directory.BuildTests.props"/>
 
     <ItemGroup>
-        <PackageReference Include="Moq" />
+        <PackageReference Include="Moq"/>
     </ItemGroup>
 </Project>

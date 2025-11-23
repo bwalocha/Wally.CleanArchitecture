@@ -35,12 +35,12 @@ public class Startup
 		IOptions<AppSettings> options,
 		IFeatureManager featureManager)
 	{
-		appLifetime.ApplicationStarted.Register(
-			() => logger.LogInformation("The 'Wally.CleanArchitecture.ApiGateway.WebApi' is started"));
-		appLifetime.ApplicationStopping.Register(
-			() => logger.LogInformation("The 'Wally.CleanArchitecture.ApiGateway.WebApi' is stopping"));
-		appLifetime.ApplicationStopped.Register(
-			() => logger.LogInformation("The 'Wally.CleanArchitecture.ApiGateway.WebApi' is stopped"));
+		appLifetime.ApplicationStarted.Register(() =>
+			logger.LogInformation("The 'Wally.CleanArchitecture.ApiGateway.WebApi' is started"));
+		appLifetime.ApplicationStopping.Register(() =>
+			logger.LogInformation("The 'Wally.CleanArchitecture.ApiGateway.WebApi' is stopping"));
+		appLifetime.ApplicationStopped.Register(() =>
+			logger.LogInformation("The 'Wally.CleanArchitecture.ApiGateway.WebApi' is stopped"));
 
 		app.UseInfrastructure(env, options, featureManager);
 	}

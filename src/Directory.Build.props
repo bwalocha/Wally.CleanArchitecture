@@ -6,10 +6,10 @@
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <LangVersion>14.0</LangVersion>
-    
+
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    
+
     <!-- https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-options/code-generation#deterministic -->
     <Deterministic>true</Deterministic>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
@@ -29,18 +29,18 @@
     <CodeAnalysisRuleSet>$(SolutionDir).stylecop\settings.stylecop</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" />
+    <PackageReference Include="StyleCop.Analyzers"/>
     <AdditionalFiles Include="$(SolutionDir).stylecop\stylecop.json"
-                     Link="Properties\stylecop.json" />
+                     Link="Properties\stylecop.json"/>
   </ItemGroup>
 
   <!-- Sonar Analyzer configuration -->
   <ItemGroup>
-    <PackageReference Include="SonarAnalyzer.CSharp" />
+    <PackageReference Include="SonarAnalyzer.CSharp"/>
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
-    <RazorCompile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs"/>
+    <RazorCompile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs"/>
   </ItemGroup>
 </Project>

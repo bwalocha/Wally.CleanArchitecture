@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="..\..\Directory.BuildTests.props" />
+    <Import Project="..\..\Directory.BuildTests.props"/>
 
     <ItemGroup>
-        <PackageReference Include="JsonNet.ContractResolvers" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
-        <PackageReference Include="Verify.Http" />
-        <PackageReference Include="Verify.Xunit" />
+        <PackageReference Include="JsonNet.ContractResolvers"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing"/>
+        <PackageReference Include="Verify.Http"/>
+        <PackageReference Include="Verify.Xunit"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Wally.CleanArchitecture.ApiGateway.WebApi\Wally.CleanArchitecture.ApiGateway.WebApi.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.ApiGateway.WebApi\Wally.CleanArchitecture.ApiGateway.WebApi.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -19,8 +19,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="GetControllerTests.cs">
-        <DependentUpon>ControllerTests.cs</DependentUpon>
-      </Compile>
+        <Compile Update="GetControllerTests.cs">
+            <DependentUpon>ControllerTests.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
 </Project>

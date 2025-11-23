@@ -11,7 +11,8 @@ public static class AuthenticationAndAuthorizationExtensions
 	private const string ReverseProxy = nameof(ReverseProxy);
 	private const string AuthenticatedUsersPolicyName = "AuthenticatedUsers";
 
-	public static IServiceCollection AddAuthenticationAndAuthorization(this IServiceCollection services, AppSettings settings)
+	public static IServiceCollection AddAuthenticationAndAuthorization(this IServiceCollection services,
+		AppSettings settings)
 	{
 		services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 			.AddJwtBearer(options =>
@@ -28,12 +29,9 @@ public static class AuthenticationAndAuthorizationExtensions
 			});
 		services.AddAuthorization(options =>
 		{
-			options.AddPolicy(AuthenticatedUsersPolicyName, policy =>
-			{
-				policy.RequireAuthenticatedUser();
-			});
+			options.AddPolicy(AuthenticatedUsersPolicyName, policy => { policy.RequireAuthenticatedUser(); });
 		});
-		
+
 		return services;
 	}
 
@@ -41,7 +39,7 @@ public static class AuthenticationAndAuthorizationExtensions
 	{
 		app.UseAuthentication();
 		app.UseAuthorization();
-		
+
 		return app;
 	}
 }
