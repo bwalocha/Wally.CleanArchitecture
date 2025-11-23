@@ -31,11 +31,8 @@ public sealed class ApplicationDbContext : DbContext
 		modelBuilder.AddOutboxMessageEntity();
 		modelBuilder.AddOutboxStateEntity();
 		
-		// modelBuilder.ApplyConfiguration(new TimeTickerConfigurations(schema: SchemaName));
-		// modelBuilder.ApplyConfiguration(new CronTickerConfigurations(schema: SchemaName));
-		// modelBuilder.ApplyConfiguration(new CronTickerOccurrenceConfigurations(schema: SchemaName));
-		modelBuilder.ApplyConfiguration(new TimeTickerConfigurations<TimeTickerEntity>());
-		modelBuilder.ApplyConfiguration(new CronTickerConfigurations<CronTickerEntity>());
-		modelBuilder.ApplyConfiguration(new CronTickerOccurrenceConfigurations<CronTickerEntity>());
+		modelBuilder.ApplyConfiguration(new TimeTickerConfigurations<TimeTickerEntity>(SchemaName));
+		modelBuilder.ApplyConfiguration(new CronTickerConfigurations<CronTickerEntity>(SchemaName));
+		modelBuilder.ApplyConfiguration(new CronTickerOccurrenceConfigurations<CronTickerEntity>(SchemaName));
 	}
 }

@@ -15,6 +15,27 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                 name: "MicroService");
 
             migrationBuilder.CreateTable(
+                name: "CronTickers",
+                schema: "MicroService",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Expression = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Request = table.Column<byte[]>(type: "varbinary(900)", nullable: true),
+                    Retries = table.Column<int>(type: "int", nullable: false),
+                    RetryIntervals = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Function = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InitIdentifier = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CronTickers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "InboxState",
                 schema: "MicroService",
                 columns: table => new
@@ -56,6 +77,43 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                 });
 
             migrationBuilder.CreateTable(
+                name: "TimeTickers",
+                schema: "MicroService",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Function = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InitIdentifier = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    LockHolder = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Request = table.Column<byte[]>(type: "varbinary(900)", nullable: true),
+                    ExecutionTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LockedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ExecutedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ExceptionMessage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SkippedReason = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ElapsedTime = table.Column<long>(type: "bigint", nullable: false),
+                    Retries = table.Column<int>(type: "int", nullable: false),
+                    RetryCount = table.Column<int>(type: "int", nullable: false),
+                    RetryIntervals = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ParentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    RunCondition = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TimeTickers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TimeTickers_TimeTickers_ParentId",
+                        column: x => x.ParentId,
+                        principalSchema: "MicroService",
+                        principalTable: "TimeTickers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "User",
                 schema: "MicroService",
                 columns: table => new
@@ -73,6 +131,37 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CronTickerOccurrences",
+                schema: "MicroService",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    LockHolder = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExecutionTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CronTickerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LockedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ExecutedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ExceptionMessage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SkippedReason = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ElapsedTime = table.Column<long>(type: "bigint", nullable: false),
+                    RetryCount = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CronTickerOccurrences", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CronTickerOccurrences_CronTickers_CronTickerId",
+                        column: x => x.CronTickerId,
+                        principalSchema: "MicroService",
+                        principalTable: "CronTickers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -121,6 +210,45 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_CronTickerOccurrence_CronTickerId",
+                schema: "MicroService",
+                table: "CronTickerOccurrences",
+                column: "CronTickerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CronTickerOccurrence_ExecutionTime",
+                schema: "MicroService",
+                table: "CronTickerOccurrences",
+                column: "ExecutionTime");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CronTickerOccurrence_Status_ExecutionTime",
+                schema: "MicroService",
+                table: "CronTickerOccurrences",
+                columns: new[] { "Status", "ExecutionTime" });
+
+            migrationBuilder.CreateIndex(
+                name: "UQ_CronTickerId_ExecutionTime",
+                schema: "MicroService",
+                table: "CronTickerOccurrences",
+                columns: new[] { "CronTickerId", "ExecutionTime" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CronTickers_Expression",
+                schema: "MicroService",
+                table: "CronTickers",
+                column: "Expression");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Function_Expression_Request",
+                schema: "MicroService",
+                table: "CronTickers",
+                columns: new[] { "Function", "Expression", "Request" },
+                unique: true,
+                filter: "[Function] IS NOT NULL AND [Expression] IS NOT NULL AND [Request] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_InboxState_Delivered",
                 schema: "MicroService",
                 table: "InboxState",
@@ -161,6 +289,26 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                 column: "Created");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TimeTicker_ExecutionTime",
+                schema: "MicroService",
+                table: "TimeTickers",
+                column: "ExecutionTime");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TimeTicker_Status_ExecutionTime",
+                schema: "MicroService",
+                table: "TimeTickers",
+                columns: new[] { "Status", "ExecutionTime", "Request" },
+                unique: true,
+                filter: "[ExecutionTime] IS NOT NULL AND [Request] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TimeTickers_ParentId",
+                schema: "MicroService",
+                table: "TimeTickers",
+                column: "ParentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_User_Name",
                 schema: "MicroService",
                 table: "User",
@@ -173,11 +321,23 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "CronTickerOccurrences",
+                schema: "MicroService");
+
+            migrationBuilder.DropTable(
                 name: "OutboxMessage",
                 schema: "MicroService");
 
             migrationBuilder.DropTable(
+                name: "TimeTickers",
+                schema: "MicroService");
+
+            migrationBuilder.DropTable(
                 name: "User",
+                schema: "MicroService");
+
+            migrationBuilder.DropTable(
+                name: "CronTickers",
                 schema: "MicroService");
 
             migrationBuilder.DropTable(

@@ -235,7 +235,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                         .HasDatabaseName("IX_Function_Expression_Request")
                         .HasFilter("[Function] IS NOT NULL AND [Expression] IS NOT NULL AND [Request] IS NOT NULL");
 
-                    b.ToTable("CronTickers", "ticker");
+                    b.ToTable("CronTickers", "MicroService");
                 });
 
             modelBuilder.Entity("TickerQ.Utilities.Entities.CronTickerOccurrenceEntity<TickerQ.Utilities.Entities.CronTickerEntity>", b =>
@@ -294,7 +294,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                     b.HasIndex("Status", "ExecutionTime")
                         .HasDatabaseName("IX_CronTickerOccurrence_Status_ExecutionTime");
 
-                    b.ToTable("CronTickerOccurrences", "ticker");
+                    b.ToTable("CronTickerOccurrences", "MicroService");
                 });
 
             modelBuilder.Entity("TickerQ.Utilities.Entities.TimeTickerEntity", b =>
@@ -372,7 +372,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                         .HasDatabaseName("IX_TimeTicker_Status_ExecutionTime")
                         .HasFilter("[ExecutionTime] IS NOT NULL AND [Request] IS NOT NULL");
 
-                    b.ToTable("TimeTickers", "ticker");
+                    b.ToTable("TimeTickers", "MicroService");
                 });
 
             modelBuilder.Entity("Wally.CleanArchitecture.MicroService.Domain.Users.User", b =>

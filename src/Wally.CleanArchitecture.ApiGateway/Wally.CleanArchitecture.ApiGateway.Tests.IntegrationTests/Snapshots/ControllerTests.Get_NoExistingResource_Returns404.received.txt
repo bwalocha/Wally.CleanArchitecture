@@ -1,6 +1,0 @@
-﻿{
-  Response: {
-    Status: 404 Not Found
-  },
-  Request: http://localhost/Guid_1
-}

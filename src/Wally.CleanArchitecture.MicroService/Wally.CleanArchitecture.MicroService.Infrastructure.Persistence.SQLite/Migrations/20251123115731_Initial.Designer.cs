@@ -11,7 +11,7 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251020094520_Initial")]
+    [Migration("20251123115731_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("MicroService")
-                .HasAnnotation("ProductVersion", "9.0.9");
+                .HasAnnotation("ProductVersion", "10.0.0");
 
             modelBuilder.Entity("MassTransit.EntityFrameworkCoreIntegration.InboxState", b =>
                 {
@@ -186,6 +186,186 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite
                     b.ToTable("OutboxState", "MicroService");
                 });
 
+            modelBuilder.Entity("TickerQ.Utilities.Entities.CronTickerEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Expression")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Function")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("InitIdentifier")
+                        .HasColumnType("TEXT");
+
+                    b.Property<byte[]>("Request")
+                        .HasColumnType("BLOB");
+
+                    b.Property<int>("Retries")
+                        .HasColumnType("INTEGER");
+
+                    b.PrimitiveCollection<string>("RetryIntervals")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Expression")
+                        .HasDatabaseName("IX_CronTickers_Expression");
+
+                    b.HasIndex("Function", "Expression", "Request")
+                        .IsUnique()
+                        .HasDatabaseName("IX_Function_Expression_Request");
+
+                    b.ToTable("CronTickers", "MicroService");
+                });
+
+            modelBuilder.Entity("TickerQ.Utilities.Entities.CronTickerOccurrenceEntity<TickerQ.Utilities.Entities.CronTickerEntity>", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("CronTickerId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("ElapsedTime")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ExceptionMessage")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("ExecutedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("ExecutionTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LockHolder")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("LockedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("RetryCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SkippedReason")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CronTickerId")
+                        .HasDatabaseName("IX_CronTickerOccurrence_CronTickerId");
+
+                    b.HasIndex("ExecutionTime")
+                        .HasDatabaseName("IX_CronTickerOccurrence_ExecutionTime");
+
+                    b.HasIndex("CronTickerId", "ExecutionTime")
+                        .IsUnique()
+                        .HasDatabaseName("UQ_CronTickerId_ExecutionTime");
+
+                    b.HasIndex("Status", "ExecutionTime")
+                        .HasDatabaseName("IX_CronTickerOccurrence_Status_ExecutionTime");
+
+                    b.ToTable("CronTickerOccurrences", "MicroService");
+                });
+
+            modelBuilder.Entity("TickerQ.Utilities.Entities.TimeTickerEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("ElapsedTime")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ExceptionMessage")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("ExecutedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("ExecutionTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Function")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("InitIdentifier")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LockHolder")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("LockedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("ParentId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<byte[]>("Request")
+                        .HasColumnType("BLOB");
+
+                    b.Property<int>("Retries")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RetryCount")
+                        .HasColumnType("INTEGER");
+
+                    b.PrimitiveCollection<string>("RetryIntervals")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("RunCondition")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SkippedReason")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExecutionTime")
+                        .HasDatabaseName("IX_TimeTicker_ExecutionTime");
+
+                    b.HasIndex("ParentId");
+
+                    b.HasIndex("Status", "ExecutionTime", "Request")
+                        .IsUnique()
+                        .HasDatabaseName("IX_TimeTicker_Status_ExecutionTime");
+
+                    b.ToTable("TimeTickers", "MicroService");
+                });
+
             modelBuilder.Entity("Wally.CleanArchitecture.MicroService.Domain.Users.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -238,6 +418,32 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite
                         .WithMany()
                         .HasForeignKey("InboxMessageId", "InboxConsumerId")
                         .HasPrincipalKey("MessageId", "ConsumerId");
+                });
+
+            modelBuilder.Entity("TickerQ.Utilities.Entities.CronTickerOccurrenceEntity<TickerQ.Utilities.Entities.CronTickerEntity>", b =>
+                {
+                    b.HasOne("TickerQ.Utilities.Entities.CronTickerEntity", "CronTicker")
+                        .WithMany()
+                        .HasForeignKey("CronTickerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CronTicker");
+                });
+
+            modelBuilder.Entity("TickerQ.Utilities.Entities.TimeTickerEntity", b =>
+                {
+                    b.HasOne("TickerQ.Utilities.Entities.TimeTickerEntity", "Parent")
+                        .WithMany("Children")
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.Navigation("Parent");
+                });
+
+            modelBuilder.Entity("TickerQ.Utilities.Entities.TimeTickerEntity", b =>
+                {
+                    b.Navigation("Children");
                 });
 #pragma warning restore 612, 618
         }
