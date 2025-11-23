@@ -1,6 +1,3 @@
-using System;
-using System.Threading.Tasks;
-
 namespace Wally.CleanArchitecture.ApiGateway.Tests.IntegrationTests;
 
 public partial class ControllerTests

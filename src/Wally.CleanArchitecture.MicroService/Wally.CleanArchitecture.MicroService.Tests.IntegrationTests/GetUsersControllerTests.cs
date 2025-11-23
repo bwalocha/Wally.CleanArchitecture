@@ -1,5 +1,3 @@
-using System;
-
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
 
 public partial class UsersControllerTests
