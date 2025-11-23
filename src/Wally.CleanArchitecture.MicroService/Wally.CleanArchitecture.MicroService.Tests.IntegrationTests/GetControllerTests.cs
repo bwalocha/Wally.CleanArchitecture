@@ -1,4 +1,4 @@
-namespace Wally.CleanArchitecture.ApiGateway.Tests.IntegrationTests;
+namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
 
 public partial class ControllerTests
 {

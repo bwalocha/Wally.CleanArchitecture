@@ -42,5 +42,8 @@
         <Compile Update="DeleteUsersControllerTests.cs">
             <DependentUpon>UsersControllerTests.cs</DependentUpon>
         </Compile>
+        <Compile Update="GetControllerTests.cs">
+          <DependentUpon>ControllerTests.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
 </Project>

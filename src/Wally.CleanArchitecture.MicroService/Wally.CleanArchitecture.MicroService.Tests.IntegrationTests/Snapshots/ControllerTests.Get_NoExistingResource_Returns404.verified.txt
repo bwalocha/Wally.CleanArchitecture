@@ -1,0 +1,10 @@
+﻿{
+  Status: 404 Not Found,
+  Content: {
+    Headers: {
+      Content-Length: 21,
+      Content-Type: text/plain
+    },
+    Value: Status Code Page: 404
+  }
+}
