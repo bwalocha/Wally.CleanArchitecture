@@ -5,78 +5,80 @@
     <CentralPackageVersionOverrideEnabled>false</CentralPackageVersionOverrideEnabled>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="AutoMapper" Version="15.1.0"/>
-    <PackageVersion Include="AutoMapper.Extensions.ExpressionMapping" Version="9.0.1"/>
-    <PackageVersion Include="AspNetCore.HealthChecks.AzureServiceBus" Version="9.0.0"/>
-    <PackageVersion Include="AspNetCore.HealthChecks.Kafka" Version="9.0.0"/>
-    <PackageVersion Include="AspNetCore.HealthChecks.MySql" Version="9.0.0"/>
-    <PackageVersion Include="AspNetCore.HealthChecks.NpgSql" Version="9.0.0"/>
-    <PackageVersion Include="AspNetCore.HealthChecks.Sqlite" Version="9.0.0"/>
-    <PackageVersion Include="AspNetCore.HealthChecks.Rabbitmq" Version="9.0.0"/>
-    <PackageVersion Include="AspNetCore.HealthChecks.SqlServer" Version="9.0.0"/>
-    <PackageVersion Include="AspNetCore.HealthChecks.UI" Version="9.0.0"/>
-    <PackageVersion Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0"/>
-    <PackageVersion Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="9.0.0"/>
-    <PackageVersion Include="EntityFrameworkCore.Exceptions.MySQL" Version="8.1.3"/>
-    <PackageVersion Include="EntityFrameworkCore.Exceptions.MySQL.Pomelo" Version="8.1.3"/>
-    <PackageVersion Include="EntityFrameworkCore.Exceptions.PostgreSQL" Version="8.1.3"/>
-    <PackageVersion Include="EntityFrameworkCore.Exceptions.Sqlite" Version="8.1.3"/>
-    <PackageVersion Include="EntityFrameworkCore.Exceptions.SqlServer" Version="8.1.3"/>
-    <PackageVersion Include="FluentValidation" Version="12.1.0"/>
-    <PackageVersion Include="FluentValidation.AspNetCore" Version="11.3.1"/>
-    <PackageVersion Include="MassTransit" Version="8.5.5"/>
-    <PackageVersion Include="MassTransit.Abstractions" Version="8.5.5"/>
-    <PackageVersion Include="MassTransit.Azure.ServiceBus.Core" Version="8.5.5"/>
-    <PackageVersion Include="MassTransit.EntityFrameworkCore" Version="8.5.5"/>
-    <PackageVersion Include="MassTransit.Kafka" Version="8.5.5"/>
-    <PackageVersion Include="MassTransit.RabbitMQ" Version="8.5.5"/>
-    <PackageVersion Include="Mediator.Abstractions" Version="3.0.1"/>
-    <PackageVersion Include="Mediator.SourceGenerator" Version="3.0.1"/>
-    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.0"/>
-    <PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="10.0.0"/>
-    <PackageVersion Include="Microsoft.AspNetCore.OData" Version="9.4.1"/>
-    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0"/>
-    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.0"/>
-    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.0"/>
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.0.0"/>
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.0"/>
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.0"/>
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.0"/>
-    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.0"/>
-    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.0"/>
-    <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.0"/>
-    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.0"/>
-    <PackageVersion Include="Microsoft.Extensions.TimeProvider.Testing" Version="10.0.0"/>
-    <PackageVersion Include="Microsoft.FeatureManagement.AspNetCore" Version="4.3.0"/>
-    <PackageVersion Include="Moq" Version="4.20.72"/>
-    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0-rc.2"/>
-    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.14.0"/>
-    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.14.0"/>
-    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.14.0"/>
-    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.14.0"/>
-    <PackageVersion Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0"/>
-    <PackageVersion Include="Reinforced.Typings" Version="1.6.5"/>
-    <PackageVersion Include="Serilog" Version="4.3.0"/>
-    <PackageVersion Include="Serilog.AspNetCore" Version="9.0.0"/>
-    <PackageVersion Include="Serilog.Sinks.ApplicationInsights" Version="4.1.0"/>
-    <PackageVersion Include="Scrutor" Version="6.1.0"/>
-    <PackageVersion Include="Shouldly" Version="4.3.0"/>
-    <PackageVersion Include="Swashbuckle.AspNetCore" Version="10.0.1"/>
-    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.0.1"/>
-    <PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="8.15.0"/>
-    <PackageVersion Include="Testcontainers.MariaDb" Version="4.8.1"/>
-    <PackageVersion Include="Testcontainers.MySql" Version="4.8.1"/>
-    <PackageVersion Include="Testcontainers.MsSql" Version="4.8.1"/>
-    <PackageVersion Include="Testcontainers.PostgreSql" Version="4.8.1"/>
-    <PackageVersion Include="TickerQ" Version="10.0.0-beta.18"/>
-    <PackageVersion Include="TickerQ.Dashboard" Version="10.0.0-beta.18"/>
-    <PackageVersion Include="TickerQ.EntityFrameworkCore" Version="10.0.0-beta.18"/>
-    <PackageVersion Include="TngTech.ArchUnitNET.xUnit" Version="0.12.3"/>
-    <PackageVersion Include="Ulid" Version="1.4.1"/>
-    <PackageVersion Include="Verify.Http" Version="7.5.0"/>
-    <PackageVersion Include="Verify.Xunit" Version="31.7.2"/>
-    <PackageVersion Include="Yarp.ReverseProxy" Version="2.3.0"/>
-    <PackageVersion Include="JsonNet.ContractResolvers" Version="2.0.0"/>
+    <PackageVersion Include="AutoMapper" Version="15.1.0" />
+    <PackageVersion Include="AutoMapper.Extensions.ExpressionMapping" Version="9.0.1" />
+    <PackageVersion Include="AspNetCore.HealthChecks.AzureServiceBus" Version="9.0.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.Kafka" Version="9.0.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.MySql" Version="9.0.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.NpgSql" Version="9.0.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.Sqlite" Version="9.0.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.Rabbitmq" Version="9.0.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.SqlServer" Version="9.0.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.UI" Version="9.0.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="9.0.0" />
+    <PackageVersion Include="EntityFrameworkCore.Exceptions.MySQL" Version="8.1.3" />
+    <PackageVersion Include="EntityFrameworkCore.Exceptions.MySQL.Pomelo" Version="8.1.3" />
+    <PackageVersion Include="EntityFrameworkCore.Exceptions.PostgreSQL" Version="8.1.3" />
+    <PackageVersion Include="EntityFrameworkCore.Exceptions.Sqlite" Version="8.1.3" />
+    <PackageVersion Include="EntityFrameworkCore.Exceptions.SqlServer" Version="8.1.3" />
+    <PackageVersion Include="FluentValidation" Version="12.1.0" />
+    <PackageVersion Include="FluentValidation.AspNetCore" Version="11.3.1" />
+    <PackageVersion Include="MassTransit" Version="8.5.5" />
+    <PackageVersion Include="MassTransit.Abstractions" Version="8.5.5" />
+    <PackageVersion Include="MassTransit.Azure.ServiceBus.Core" Version="8.5.5" />
+    <PackageVersion Include="MassTransit.EntityFrameworkCore" Version="8.5.5" />
+    <PackageVersion Include="MassTransit.Kafka" Version="8.5.5" />
+    <PackageVersion Include="MassTransit.RabbitMQ" Version="8.5.5" />
+    <PackageVersion Include="Mediator.Abstractions" Version="3.0.1" />
+    <PackageVersion Include="Mediator.SourceGenerator" Version="3.0.1" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.OData" Version="9.4.1" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.TimeProvider.Testing" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.FeatureManagement.AspNetCore" Version="4.3.0" />
+    <PackageVersion Include="Moq" Version="4.20.72" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0-rc.2" />
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.14.0" />
+    <PackageVersion Include="OpenTelemetry.Exporter.Prometheus.AspNetCore" Version="1.14.0-beta.1" />
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.14.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.14.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.14.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.14.0" />
+    <PackageVersion Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0" />
+    <PackageVersion Include="Reinforced.Typings" Version="1.6.5" />
+    <PackageVersion Include="Serilog" Version="4.3.0" />
+    <PackageVersion Include="Serilog.AspNetCore" Version="9.0.0" />
+    <PackageVersion Include="Serilog.Sinks.ApplicationInsights" Version="4.1.0" />
+    <PackageVersion Include="Scrutor" Version="6.1.0" />
+    <PackageVersion Include="Shouldly" Version="4.3.0" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="10.0.1" />
+    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.0.1" />
+    <PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="8.15.0" />
+    <PackageVersion Include="Testcontainers.MariaDb" Version="4.8.1" />
+    <PackageVersion Include="Testcontainers.MySql" Version="4.8.1" />
+    <PackageVersion Include="Testcontainers.MsSql" Version="4.8.1" />
+    <PackageVersion Include="Testcontainers.PostgreSql" Version="4.8.1" />
+    <PackageVersion Include="TickerQ" Version="10.0.0-beta.18" />
+    <PackageVersion Include="TickerQ.Dashboard" Version="10.0.0-beta.18" />
+    <PackageVersion Include="TickerQ.EntityFrameworkCore" Version="10.0.0-beta.18" />
+    <PackageVersion Include="TngTech.ArchUnitNET.xUnit" Version="0.12.3" />
+    <PackageVersion Include="Ulid" Version="1.4.1" />
+    <PackageVersion Include="Verify.Http" Version="7.5.0" />
+    <PackageVersion Include="Verify.Xunit" Version="31.7.2" />
+    <PackageVersion Include="Yarp.ReverseProxy" Version="2.3.0" />
+    <PackageVersion Include="JsonNet.ContractResolvers" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.0">
@@ -103,9 +105,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
-    <PackageVersion Include="JunitXml.TestLogger" Version="7.0.2"/>
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.1"/>
-    <PackageVersion Include="xunit" Version="2.9.3"/>
+    <PackageVersion Include="JunitXml.TestLogger" Version="7.0.2" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
+    <PackageVersion Include="xunit" Version="2.9.3" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -113,12 +115,12 @@
   </ItemGroup>
   <!-- Updates for vulnerable packages -->
   <ItemGroup>
-    <PackageVersion Include="BouncyCastle.Cryptography" Version="2.6.2"/>
-    <PackageVersion Include="System.Drawing.Common" Version="10.0.0"/>
+    <PackageVersion Include="BouncyCastle.Cryptography" Version="2.6.2" />
+    <PackageVersion Include="System.Drawing.Common" Version="10.0.0" />
   </ItemGroup>
   <!-- Additional packages -->
   <ItemGroup>
-    <PackageVersion Include="Microsoft.AspNetCore.SignalR" Version="1.2.0"/>
-    <PackageVersion Include="Wally.Identity.Messages" Version="2.1.1842"/>
+    <PackageVersion Include="Microsoft.AspNetCore.SignalR" Version="1.2.0" />
+    <PackageVersion Include="Wally.Identity.Messages" Version="2.1.1842" />
   </ItemGroup>
 </Project>
