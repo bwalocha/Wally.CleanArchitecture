@@ -1,10 +1,10 @@
 ﻿using Mediator;
 using Microsoft.Extensions.Logging;
 using TickerQ.Utilities.Base;
-// using TickerQ.Utilities.Entities;
-// using TickerQ.Utilities.Interfaces.Managers;
 using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
+// using TickerQ.Utilities.Entities;
+// using TickerQ.Utilities.Interfaces.Managers;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.SchedulerService.Jobs;
 
@@ -21,7 +21,7 @@ public class SampleJob
 		IMediator mediator,
 		// TimeProvider timeProvider
 		ILogger<SampleJob> logger
-		)
+	)
 	{
 		_logger = logger;
 		// _timeTickerManager = timeTickerManager;
@@ -35,7 +35,7 @@ public class SampleJob
 		CancellationToken cancellationToken)
 	{
 		_logger.LogInformation("ExecuteJobAsync");
-		
+
 		var command = new UpdateUserCommand(new UserId(Guid.NewGuid()), "testUser");
 
 		await _mediator.Send(command, cancellationToken);

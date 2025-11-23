@@ -24,7 +24,7 @@ public class ValidatorTests
 		// Assert
 		rule.Check(Configuration.Architecture);
 	}
-	
+
 	[Fact]
 	public void Presentation_Validator_ShouldHaveNamingConvention()
 	{
@@ -32,7 +32,7 @@ public class ValidatorTests
 		var types = assemblies.SelectMany(a => a.GetTypes())
 			.Where(a => a.ImplementsInterface(typeof(IValidator)));
 
-		types.ShouldSatisfyAllConditions(() => 
+		types.ShouldSatisfyAllConditions(() =>
 		{
 			foreach (var type in types)
 			{
@@ -40,8 +40,8 @@ public class ValidatorTests
 				var genericArgument = genericInterface?.GenericTypeArguments.SingleOrDefault();
 
 				type.Name.ShouldBe(
-						$"{genericArgument?.Name}Validator",
-						$"every Validator '{type}' should have naming convention");
+					$"{genericArgument?.Name}Validator",
+					$"every Validator '{type}' should have naming convention");
 			}
 		});
 	}

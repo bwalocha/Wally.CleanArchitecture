@@ -16,8 +16,8 @@ public class SoftDeleteBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
 	where TRequest : Application.Abstractions.ICommand<TResponse>
 {
 	private readonly DbContext _dbContext;
-	private readonly TimeProvider _timeProvider;
 	private readonly IRequestContext _requestContext;
+	private readonly TimeProvider _timeProvider;
 
 	public SoftDeleteBehavior(
 		ApplicationDbContext dbContext,
@@ -28,8 +28,9 @@ public class SoftDeleteBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
 		_requestContext = requestContext;
 		_timeProvider = timeProvider;
 	}
-	
-	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next, CancellationToken cancellationToken)
+
+	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next,
+		CancellationToken cancellationToken)
 	{
 		var response = await next(message, cancellationToken);
 		var entries = _dbContext.ChangeTracker
@@ -68,7 +69,7 @@ public class SoftDeleteBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
 			HandleDependencies(dbContext, entry);
 		}
 	}
-	
+
 	private static void HandleDependencies(DbContext context, EntityEntry entry)
 	{
 		// https://www.youtube.com/watch?v=7teQpp5V4Vs
@@ -85,7 +86,8 @@ public class SoftDeleteBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
 
 		var ownedCollectionEntries = entry.Collections
 			.Where(x => x is { IsLoaded: true, CurrentValue: not null, })
-			.SelectMany(x => x.CurrentValue!.Cast<object>().Select(context.Entry))
+			.SelectMany(x => x.CurrentValue!.Cast<object>()
+				.Select(context.Entry))
 			.Where(x => x.State == EntityState.Deleted && x.Metadata.IsOwned());
 
 		foreach (var ownedEntry in ownedCollectionEntries)

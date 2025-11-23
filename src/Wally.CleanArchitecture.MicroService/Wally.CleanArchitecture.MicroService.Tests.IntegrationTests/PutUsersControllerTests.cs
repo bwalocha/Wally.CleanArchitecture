@@ -12,7 +12,7 @@ public partial class UsersControllerTests
 		var resource = UserCreate(3);
 		var request = new UpdateUserRequest
 		{
-			Name = "newTestResource1", 
+			Name = "newTestResource1",
 		};
 
 		// Act
@@ -21,7 +21,7 @@ public partial class UsersControllerTests
 		// Assert
 		await Verifier.Verify(response);
 	}
-	
+
 	[Fact]
 	public async Task Put_ForInvalidRequest_ReturnsBadRequest()
 	{
@@ -29,7 +29,7 @@ public partial class UsersControllerTests
 		var resource = UserCreate(3);
 		var request = new UpdateUserRequest
 		{
-			Name = string.Empty, 
+			Name = string.Empty,
 		};
 
 		// Act
@@ -38,7 +38,7 @@ public partial class UsersControllerTests
 		// Assert
 		await Verifier.Verify(response);
 	}
-	
+
 	[Fact]
 	public async Task Put_ForExistingResource_UpdatesResourceData()
 	{
@@ -47,7 +47,7 @@ public partial class UsersControllerTests
 		await _factory.SeedAsync(resource);
 		var request = new UpdateUserRequest
 		{
-			Name = "newTestResource1", 
+			Name = "newTestResource1",
 		};
 
 		// Act

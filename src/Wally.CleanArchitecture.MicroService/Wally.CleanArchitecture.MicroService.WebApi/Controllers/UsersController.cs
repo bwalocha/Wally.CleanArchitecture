@@ -14,7 +14,7 @@ using Wally.CleanArchitecture.MicroService.WebApi.Contracts.Users.Responses;
 namespace Wally.CleanArchitecture.MicroService.WebApi.Controllers;
 
 /// <summary>
-/// The Controller
+///     The Controller
 /// </summary>
 [ApiController]
 [Route("[controller]")]
@@ -22,11 +22,11 @@ namespace Wally.CleanArchitecture.MicroService.WebApi.Controllers;
 [ProducesResponseType(typeof(int), 200, "application/json")]
 public class UsersController : ControllerBase
 {
-	private readonly ISender _sender;
 	private readonly IMapper _mapper;
+	private readonly ISender _sender;
 
 	/// <summary>
-	/// Initializes a new instance of the <see cref="UsersController"/> class.
+	///     Initializes a new instance of the <see cref="UsersController" /> class.
 	/// </summary>
 	/// <param name="sender">The Sender.</param>
 	/// <param name="mapper">The Mapper.</param>
@@ -50,13 +50,14 @@ public class UsersController : ControllerBase
 	public async Task<ActionResult<PagedResponse<GetUsersResponse>>> GetAsync(
 		ODataQueryOptions<GetUsersRequest> queryOptions, CancellationToken cancellationToken)
 	{
-		var options = new QueryOption<GetUsersRequest, Wally.CleanArchitecture.MicroService.Application.Users.Requests.GetUsersRequest>(queryOptions, _mapper);
+		var options =
+			new QueryOption<GetUsersRequest, Application.Users.Requests.GetUsersRequest>(queryOptions, _mapper);
 		var query = new GetUsersQuery(options);
 		var response = await _sender.Send(query, cancellationToken);
-		
+
 		return Ok(response);
 	}
-	
+
 	/// <summary>
 	///     Gets User by Id.
 	/// </summary>

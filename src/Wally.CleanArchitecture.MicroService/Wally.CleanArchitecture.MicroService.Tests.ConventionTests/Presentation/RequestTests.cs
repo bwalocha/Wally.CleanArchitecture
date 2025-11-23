@@ -29,7 +29,7 @@ public class RequestTests
 		// Assert
 		rule.Check(Configuration.Architecture);
 	}
-	
+
 	[Fact]
 	public void Presentation_Request_ShouldBeSealed()
 	{
@@ -49,7 +49,7 @@ public class RequestTests
 		// Assert
 		rule.Check(Configuration.Architecture);
 	}
-	
+
 	[Fact]
 	public void Presentation_Request_ShouldNotExposeSetter()
 	{
@@ -65,12 +65,12 @@ public class RequestTests
 			.Should()
 			.HaveOnlyInitSetters()
 			.Because("Presentation Requests should be immutable.");
-		
+
 		// Act
-		
+
 		// Assert
 		rule.Check(Configuration.Architecture);
-		
+
 		// Arrange
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
@@ -104,17 +104,18 @@ public class RequestTests
 			{
 				return;
 			}
-					
+
 			property.IsPrivateWritable()
 				.ShouldBeTrue($"Request class '{type}' should not expose setter for '{property}'");
 		}
 
 		// Assert
-		types.ShouldSatisfyAllConditions(types.SelectMany(a => a.GetProperties().Select(b => new
-			{
-				Type = a,
-				Property = b,
-			}))
+		types.ShouldSatisfyAllConditions(types.SelectMany(a => a.GetProperties()
+				.Select(b => new
+				{
+					Type = a,
+					Property = b,
+				}))
 			.Select(a => (Action)(() => Act(a.Type, a.Property)))
 			.ToArray());
 	}
@@ -138,7 +139,7 @@ public class RequestTests
 		// Assert
 		rule.Check(Configuration.Architecture);
 	}
-	
+
 	[Fact]
 	public void Presentation_ClassesWhichImplementsIRequest_ShouldBeInTheSameProject()
 	{
@@ -146,8 +147,10 @@ public class RequestTests
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.ImplementsInterface(typeof(IRequest)))
 			.Where(a => a.Assembly != typeof(IPresentationAssemblyMarker).Assembly);
-		
-		types.ShouldSatisfyAllConditions(types.Select(a => (Action)(() => a.Namespace.ShouldStartWith(typeof(IPresentationAssemblyMarker).Namespace!))).ToArray());
+
+		types.ShouldSatisfyAllConditions(types
+			.Select(a => (Action)(() => a.Namespace.ShouldStartWith(typeof(IPresentationAssemblyMarker).Namespace!)))
+			.ToArray());
 	}
 
 	[Fact]
@@ -159,7 +162,9 @@ public class RequestTests
 			.Where(a => a.Name != nameof(IRequest))
 			.Where(a => a.Assembly != typeof(IApplicationAssemblyMarker).Assembly);
 
-		types.ShouldSatisfyAllConditions(types.Select(a => (Action)(() => a.ImplementsInterface(typeof(IRequest)).ShouldBeTrue($"{a.Name} should implement {nameof(IRequest)}"))).ToArray());
+		types.ShouldSatisfyAllConditions(types.Select(a => (Action)(() => a.ImplementsInterface(typeof(IRequest))
+				.ShouldBeTrue($"{a.Name} should implement {nameof(IRequest)}")))
+			.ToArray());
 	}
 
 	[Fact]
@@ -181,7 +186,8 @@ public class RequestTests
 	[Fact]
 	public void Presentation_AllClassesImplementsIRequest_ShouldHaveCorrespondingValidator()
 	{
-		var assemblies = Configuration.Assemblies.GetAllAssemblies().ToArray();
+		var assemblies = Configuration.Assemblies.GetAllAssemblies()
+			.ToArray();
 		var types = assemblies
 			.GetAllTypes()
 			.Where(a => a.ImplementsInterface(typeof(IRequest)));

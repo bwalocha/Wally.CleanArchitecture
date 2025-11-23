@@ -3,13 +3,13 @@
 namespace Wally.CleanArchitecture.MicroService.WebApi.Contracts.Users.Requests;
 
 /// <summary>
-/// Create User Request
+///     Create User Request
 /// </summary>
 [ExcludeFromCodeCoverage]
 public sealed class CreateUserRequest : IRequest
 {
 	/// <summary>
-	/// Gets the Name of the User
+	///     Gets the Name of the User
 	/// </summary>
 	public required string Name { get; init; }
 }

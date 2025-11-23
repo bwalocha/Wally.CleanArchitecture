@@ -11,7 +11,7 @@ public static class ServiceCollectionExtensions
 	{
 		var settings = new AppSettings();
 		configuration.Bind(settings);
-		
+
 		services.AddMapper(settings);
 		services.AddWebApi();
 
@@ -21,7 +21,7 @@ public static class ServiceCollectionExtensions
 	public static IApplicationBuilder UsePresentation(this IApplicationBuilder app)
 	{
 		app.UseWebApi();
-		
+
 		return app;
 	}
 }

@@ -27,13 +27,13 @@ public class ArchitectureTests
 				.AndShould()
 				.NotDependOnAny(Configuration.PresentationProvider)
 				.Because("Domain Layer types should not reference any layer");
-		
+
 		// Act
-		
+
 		// Assert
 		rule.Check(Configuration.Architecture);
 	}
-	
+
 	[Fact]
 	public void Architecture_Application_ShouldNotReferenceAnyLayerExceptDomain()
 	{
@@ -47,29 +47,31 @@ public class ArchitectureTests
 				.AndShould()
 				.NotDependOnAny(Configuration.PresentationProvider)
 				.Because("Application Layer types should not reference Infrastructure or Presentation layer");
-		
+
 		// Act
-		
+
 		// Assert
 		rule.Check(Configuration.Architecture);
 	}
-	
+
 	[Fact]
 	public void Architecture_ApplicationMessages_ShouldNotReferenceDomainLayer()
 	{
 		// Arrange
 		IArchRule rule =
-			Types().That().ResideInAssembly(typeof(IApplicationMessagesAssemblyMarker).Assembly)
+			Types()
+				.That()
+				.ResideInAssembly(typeof(IApplicationMessagesAssemblyMarker).Assembly)
 				.As("Application.Messages Layer types")
 				.Should()
 				.NotDependOnAny(Configuration.DomainProvider);
-		
+
 		// Act
-		
+
 		// Assert
 		rule.Check(Configuration.Architecture);
 	}
-	
+
 	[Fact(Skip = "TODO: exclude Mediator types")]
 	public void Architecture_InfrastructureExceptBackgroundService_ShouldNotReferenceAnyLayerExceptDomain()
 	{
@@ -91,13 +93,13 @@ public class ArchitectureTests
 				.NotDependOnAny(Configuration.ApplicationProvider)
 				.AndShould()
 				.NotDependOnAny(Configuration.PresentationProvider);
-		
+
 		// Act
-		
+
 		// Assert
 		rule.Check(Configuration.Architecture);
 	}
-	
+
 	[Fact]
 	public void Architecture_Infrastructure_ShouldNotReferenceAnyLayerExceptDomain()
 	{
@@ -122,47 +124,51 @@ public class ArchitectureTests
 				.NotDependOnAny(Configuration.ApplicationProvider)
 				.AndShould()
 				.NotDependOnAny(Configuration.PresentationProvider);
-		
+
 		// Act
-		
+
 		// Assert
 		rule.Check(Configuration.Architecture);
 	}
-	
+
 	[Fact]
 	public void Architecture_Infrastructure_ShouldNotReferenceAnyLayerExceptDomainAndApplication()
 	{
 		// Arrange
 		IArchRule rule =
-			Types().That().Are(Configuration.InfrastructureProvider)
+			Types()
+				.That()
+				.Are(Configuration.InfrastructureProvider)
 				.Should()
 				.NotDependOnAny(Configuration.PresentationProvider);
-		
+
 		// Act
-		
+
 		// Assert
 		rule.Check(Configuration.Architecture);
 	}
-	
+
 	[Fact(Skip = "TODO")]
 	public void Architecture_Presentation_ShouldReferenceAnyLayer()
 	{
 		// Arrange
 		IArchRule rule =
-			Types().That().Are(Configuration.PresentationProvider)
+			Types()
+				.That()
+				.Are(Configuration.PresentationProvider)
 				.Should()
 				.DependOnAny(Configuration.DomainProvider)
 				.AndShould()
 				.DependOnAny(Configuration.ApplicationProvider)
 				.AndShould()
 				.DependOnAny(Configuration.InfrastructureProvider);
-		
+
 		// Act
-		
+
 		// Assert
 		rule.Check(Configuration.Architecture);
 	}
-	
+
 	[Fact]
 	public void Architecture_AllNamespaces_ShouldBeConsistent()
 	{
@@ -191,13 +197,13 @@ public class ArchitectureTests
 				.Are(Configuration.PresentationProvider)
 				.Should()
 				.ResideInNamespaceMatching(@$"^{Configuration.Namespace.Replace(".", @"\.")}\.WebApi(\..+)?$");
-		
+
 		// Act
-		
+
 		// Assert
 		rule.Check(Configuration.Architecture);
 	}
-	
+
 	[Fact]
 	public void Architecture_DomainAndApplication_ShouldNotUseDateTimeNow()
 	{
@@ -220,9 +226,9 @@ public class ArchitectureTests
 				.NotAccessGetter<DateTimeOffset>(DateTimeOffset.Now)
 				.AndShould()
 				.NotAccessGetter<DateTimeOffset>(DateTimeOffset.UtcNow);
-		
+
 		// Act
-		
+
 		// Assert
 		rule.Check(Configuration.Architecture);
 	}

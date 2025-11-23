@@ -181,7 +181,7 @@ public partial class UsersControllerTests
 		// Assert
 		await Verifier.Verify(response);
 	}
-	
+
 	[Fact]
 	public async Task Get_3ResourcesFiltered_Returns1Resource()
 	{
@@ -199,7 +199,7 @@ public partial class UsersControllerTests
 		// Assert
 		await Verifier.Verify(response);
 	}
-	
+
 	[Fact]
 	public async Task Get_3ResourcesFilteredById_Returns1Resource()
 	{

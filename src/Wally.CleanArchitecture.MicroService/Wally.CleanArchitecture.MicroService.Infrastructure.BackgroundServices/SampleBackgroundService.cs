@@ -47,7 +47,7 @@ public class SampleBackgroundService : BackgroundService
 		using var scope = _serviceProvider.CreateScope();
 		var sender = scope.ServiceProvider.GetRequiredService<ISender>();
 		var command = new UpdateUserCommand(new UserId(Guid.Empty), string.Empty); // TODO:
-		
+
 		await sender.Send(command, cancellationToken);
 	}
 }

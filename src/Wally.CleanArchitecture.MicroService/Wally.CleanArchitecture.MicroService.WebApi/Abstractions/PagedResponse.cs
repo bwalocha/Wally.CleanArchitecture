@@ -8,7 +8,7 @@ public class PagedResponse<TResponse> : IResponse
 		: this(items, new PageInfoResponse(0, items.Length, items.Length))
 	{
 	}
-	
+
 	public PagedResponse(TResponse[] items, PageInfoResponse pageInfo)
 	{
 		Items = items;

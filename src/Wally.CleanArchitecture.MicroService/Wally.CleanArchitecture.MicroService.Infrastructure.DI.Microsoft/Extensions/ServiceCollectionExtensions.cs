@@ -49,7 +49,7 @@ public static class ServiceCollectionExtensions
 		// app.UseHttpsRedirection();
 
 		// app.UseRouting();
-		
+
 		// app.UseAuthentication(); // TODO: Consider only for ApiGateway
 		app.UseAuthorization();
 		app.UseHealthChecks();

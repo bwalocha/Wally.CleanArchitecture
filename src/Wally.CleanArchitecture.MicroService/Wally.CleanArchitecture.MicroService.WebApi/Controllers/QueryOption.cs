@@ -4,15 +4,16 @@ using AutoMapper;
 using Microsoft.AspNetCore.OData.Query;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.WebApi.Extensions;
+using IRequest = Wally.CleanArchitecture.MicroService.WebApi.Abstractions.IRequest;
 
 namespace Wally.CleanArchitecture.MicroService.WebApi.Controllers;
 
 public class QueryOption<TPresentationRequest, TApplicationRequest> : IQueryOptions<TApplicationRequest>
-	where TPresentationRequest : Wally.CleanArchitecture.MicroService.WebApi.Abstractions.IRequest
-	where TApplicationRequest : IRequest
+	where TPresentationRequest : IRequest
+	where TApplicationRequest : Application.Abstractions.IRequest
 {
-	private readonly ODataQueryOptions<TPresentationRequest> _queryOptions;
 	private readonly IMapper _mapper;
+	private readonly ODataQueryOptions<TPresentationRequest> _queryOptions;
 
 	public QueryOption(ODataQueryOptions<TPresentationRequest> queryOptions, IMapper mapper)
 	{
@@ -24,17 +25,20 @@ public class QueryOption<TPresentationRequest, TApplicationRequest> : IQueryOpti
 
 	public int? Skip { get; }
 	public int? Top { get; }
+
 	public IQueryable<TEntity> ApplyFilter<TEntity, TResult>(IQueryable<TEntity> query)
 	{
 		return query.ApplyFilter(_queryOptions, _mapper);
 	}
 
-	public IQueryable<TEntity> ApplySearch<TEntity>(IQueryable<TEntity> query, Func<IQueryable<TEntity>, string, IQueryable<TEntity>> search)
+	public IQueryable<TEntity> ApplySearch<TEntity>(IQueryable<TEntity> query,
+		Func<IQueryable<TEntity>, string, IQueryable<TEntity>> search)
 	{
 		return query.ApplySearch(_queryOptions, search);
 	}
 
-	public IQueryable<TEntity> ApplyOrderBy<TEntity>(IQueryable<TEntity> query, Func<IQueryable<TEntity>, IQueryable<TEntity>> applyDefaultOrderBy)
+	public IQueryable<TEntity> ApplyOrderBy<TEntity>(IQueryable<TEntity> query,
+		Func<IQueryable<TEntity>, IQueryable<TEntity>> applyDefaultOrderBy)
 	{
 		return query.ApplyOrderBy(_queryOptions, applyDefaultOrderBy, _mapper);
 	}

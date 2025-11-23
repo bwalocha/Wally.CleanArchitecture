@@ -21,16 +21,16 @@ public class ResultTests
 			.Are(Configuration.ApplicationProvider)
 			.And()
 			.ImplementInterface(typeof(IResult))
-				.Should()
-				.BePublic()
-				.Because("Application Results should be public.");
+			.Should()
+			.BePublic()
+			.Because("Application Results should be public.");
 
 		// Act
 
 		// Assert
 		rule.Check(Configuration.Architecture);
 	}
-	
+
 	[Fact]
 	public void Application_Result_ShouldNotExposeSetter()
 	{
@@ -93,7 +93,7 @@ public class ResultTests
 					{
 						continue;
 					}
-					
+
 					property.IsPrivateWritable()
 						.ShouldBeTrue($"Result class '{type}' should not expose setter for '{property}'");
 				}
@@ -135,7 +135,9 @@ public class ResultTests
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.ImplementsInterface(typeof(IResult)));
 
-		types.ShouldSatisfyAllConditions(types.Select(a => (Action)(() => a.Namespace.ShouldStartWith(typeof(IApplicationAssemblyMarker).Namespace!))).ToArray());
+		types.ShouldSatisfyAllConditions(types
+			.Select(a => (Action)(() => a.Namespace.ShouldStartWith(typeof(IApplicationAssemblyMarker).Namespace!)))
+			.ToArray());
 	}
 
 	[Fact]
@@ -147,7 +149,9 @@ public class ResultTests
 			.Where(a => a.Name.EndsWith("Result"))
 			.Where(a => a.Assembly != typeof(IPresentationAssemblyMarker).Assembly);
 
-		types.ShouldSatisfyAllConditions(types.Select(a => (Action)(() => a.ImplementsInterface(typeof(IResult)).ShouldBeTrue($"{a.Name} should implement {nameof(IResult)}"))).ToArray());
+		types.ShouldSatisfyAllConditions(types.Select(a => (Action)(() => a.ImplementsInterface(typeof(IResult))
+				.ShouldBeTrue($"{a.Name} should implement {nameof(IResult)}")))
+			.ToArray());
 	}
 
 	[Fact]

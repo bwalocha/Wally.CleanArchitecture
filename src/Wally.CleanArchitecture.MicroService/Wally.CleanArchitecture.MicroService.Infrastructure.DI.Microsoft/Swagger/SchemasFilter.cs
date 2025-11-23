@@ -13,7 +13,7 @@ internal class SchemasFilter : IDocumentFilter
 		{
 			return;
 		}
-		
+
 		foreach (var schema in schemas)
 		{
 			if (schema.Key.EndsWith("Request") && schema.Key != nameof(HttpRequest))

@@ -17,15 +17,14 @@ public class CommandTests
 			.Where(a => !a.IsAbstract)
 			.Where(a => a.ImplementsGenericInterface(typeof(ICommand<>)));
 
-		types.ShouldSatisfyAllConditions(
-			() =>
+		types.ShouldSatisfyAllConditions(() =>
+		{
+			foreach (var type in types)
 			{
-				foreach (var type in types)
-				{
-					type.Name
-						.ShouldEndWith("Command", Case.Sensitive, $"Command '{type}' name should end with 'Command'");
-				}
-			});
+				type.Name
+					.ShouldEndWith("Command", Case.Sensitive, $"Command '{type}' name should end with 'Command'");
+			}
+		});
 	}
 
 	[Fact]
@@ -65,7 +64,7 @@ public class CommandTests
 			}
 		});
 	}
-	
+
 	[Fact]
 	public void Application_Command_ShouldBeSealed()
 	{
@@ -116,22 +115,21 @@ public class CommandTests
 			.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
 				a.ImplementsGenericInterface(typeof(ICommand<>)));
 
-		types.ShouldSatisfyAllConditions(
-			() =>
+		types.ShouldSatisfyAllConditions(() =>
+		{
+			foreach (var type in types)
 			{
-				foreach (var type in types)
-				{
-					var expectedBaseType = typeof(AbstractValidator<>).MakeGenericType(type);
+				var expectedBaseType = typeof(AbstractValidator<>).MakeGenericType(type);
 
-					var subject = assemblies.SelectMany(a => a.GetTypes())
-						.SingleOrDefault(a => a.Name == $"{type.Name}Validator");
+				var subject = assemblies.SelectMany(a => a.GetTypes())
+					.SingleOrDefault(a => a.Name == $"{type.Name}Validator");
 
-					subject.ShouldNotBeNull($"Command '{type}' should have corresponding Validator");
+				subject.ShouldNotBeNull($"Command '{type}' should have corresponding Validator");
 
-					subject.InheritsClass(expectedBaseType)
-						.ShouldBeTrue($"Command '{type}' should inherits {expectedBaseType} base class");
-				}
-			});
+				subject.InheritsClass(expectedBaseType)
+					.ShouldBeTrue($"Command '{type}' should inherits {expectedBaseType} base class");
+			}
+		});
 	}
 
 	[Fact]
@@ -143,15 +141,15 @@ public class CommandTests
 			.Where(a => a.IsClass)
 			.Where(a => a.ImplementsInterface(typeof(ICommand)) ||
 				a.ImplementsGenericInterface(typeof(ICommand<>)));
-		
+
 		types.ShouldSatisfyAllConditions(() =>
 		{
-				foreach (var type in types)
-				{
-					assemblies.GetAllTypes()
-						.SingleOrDefault(a => a.Name == $"{type.Name}AuthorizationHandler")
-						.ShouldNotBeNull($"Command '{type}' should have corresponding AuthorizationHandler");
-				}
+			foreach (var type in types)
+			{
+				assemblies.GetAllTypes()
+					.SingleOrDefault(a => a.Name == $"{type.Name}AuthorizationHandler")
+					.ShouldNotBeNull($"Command '{type}' should have corresponding AuthorizationHandler");
+			}
 		});
 	}
 }

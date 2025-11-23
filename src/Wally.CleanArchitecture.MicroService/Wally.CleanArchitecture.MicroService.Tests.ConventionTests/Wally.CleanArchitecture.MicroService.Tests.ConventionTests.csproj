@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="..\..\Directory.BuildTests.props" />
+    <Import Project="..\..\Directory.BuildTests.props"/>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" />
-        <PackageReference Include="MassTransit.Abstractions" />
-        <PackageReference Include="TngTech.ArchUnitNET.xUnit" />
+        <PackageReference Include="AutoMapper"/>
+        <PackageReference Include="MassTransit.Abstractions"/>
+        <PackageReference Include="TngTech.ArchUnitNET.xUnit"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.DI.Microsoft\Wally.CleanArchitecture.MicroService.Application.DI.Microsoft.csproj" />
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj" />
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.WebApi\Wally.CleanArchitecture.MicroService.WebApi.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.DI.Microsoft\Wally.CleanArchitecture.MicroService.Application.DI.Microsoft.csproj"/>
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj"/>
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.WebApi\Wally.CleanArchitecture.MicroService.WebApi.csproj"/>
     </ItemGroup>
 </Project>

@@ -9,17 +9,21 @@ namespace Wally.CleanArchitecture.MicroService.WebApi.Handlers;
 internal sealed class AuthenticationExceptionHandler : IExceptionHandler
 {
 	private readonly ILogger<AuthenticationExceptionHandler> _logger;
+
 	private readonly IProblemDetailsService _problemDetailsService;
 	// private readonly IRequestContext _requestContext;
 
-	public AuthenticationExceptionHandler(IProblemDetailsService problemDetailsService, /*IRequestContext requestContext,*/ ILogger<AuthenticationExceptionHandler> logger)
+	public AuthenticationExceptionHandler(
+		IProblemDetailsService problemDetailsService, /*IRequestContext requestContext,*/
+		ILogger<AuthenticationExceptionHandler> logger)
 	{
 		_problemDetailsService = problemDetailsService;
 		// _requestContext = requestContext;
 		_logger = logger;
 	}
 
-	public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
+	public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception,
+		CancellationToken cancellationToken)
 	{
 		_logger.LogError(new EventId(exception.HResult), exception, exception.Message);
 

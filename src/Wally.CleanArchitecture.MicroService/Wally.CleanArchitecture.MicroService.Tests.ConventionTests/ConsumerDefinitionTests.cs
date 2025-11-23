@@ -58,12 +58,13 @@ public class ConsumerDefinitionTests
 			}
 		});
 	}
-	
+
 	[Fact]
 	public void Infrastructure_AllClassesInheritsConsumerDefinition_ShouldHaveConsumer()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllTypes().ToArray();
+		var types = assemblies.GetAllTypes()
+			.ToArray();
 		var customerTypes = types
 			.Where(a => a.ImplementsGenericInterface(typeof(IConsumerDefinition<>)));
 
@@ -71,7 +72,8 @@ public class ConsumerDefinitionTests
 		{
 			foreach (var type in customerTypes)
 			{
-				var genericType = type.GetGenericInterface(typeof(IConsumerDefinition<>)) !.GenericTypeArguments.Single();
+				var genericType =
+					type.GetGenericInterface(typeof(IConsumerDefinition<>)) !.GenericTypeArguments.Single();
 
 				types.SingleOrDefault(a => a.Name == genericType.Name)
 					.ShouldNotBeNull(

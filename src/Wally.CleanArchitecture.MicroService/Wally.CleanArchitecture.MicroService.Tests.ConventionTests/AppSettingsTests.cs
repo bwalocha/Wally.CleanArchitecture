@@ -18,13 +18,13 @@ public class AppSettingsTests
 				.As("AppSettings properties")
 				.Should()
 				.HaveInitOnlySetter();
-		
+
 		// Act
-		
+
 		// Assert
 		rule.Check(Configuration.Architecture);
 	}
-	
+
 	[Fact]
 	public void AppSettings_ShouldHaveOnlyInitialSetters()
 	{
@@ -34,26 +34,25 @@ public class AppSettingsTests
 		// Act
 
 		// Assert
-		appSettingsTypes.ShouldSatisfyAllConditions(
-			() =>
+		appSettingsTypes.ShouldSatisfyAllConditions(() =>
+		{
+			foreach (var appSettingsType in appSettingsTypes)
 			{
-				foreach (var appSettingsType in appSettingsTypes)
+				foreach (var property in appSettingsType.GetProperties())
 				{
-					foreach (var property in appSettingsType.GetProperties())
+					if (property.CanBeSet())
 					{
-						if (property.CanBeSet())
-						{
-							property.IsInitOnly()
-								.ShouldBeTrue(
-									$"AppSettings type '{appSettingsType}' should not expose setter '{property}'");
-						}
-						else
-						{
-							property.DeclaringType!.IsClass
-								.ShouldBeTrue();
-						}
+						property.IsInitOnly()
+							.ShouldBeTrue(
+								$"AppSettings type '{appSettingsType}' should not expose setter '{property}'");
+					}
+					else
+					{
+						property.DeclaringType!.IsClass
+							.ShouldBeTrue();
 					}
 				}
-			});
+			}
+		});
 	}
 }

@@ -16,7 +16,7 @@ public class ControllerTests
 		var controllerTypes = assemblies.SelectMany(a => a.GetTypes())
 			.Where(a => a.InheritsClass(typeof(ControllerBase)));
 
-		assemblies.ShouldSatisfyAllConditions(() => 
+		assemblies.ShouldSatisfyAllConditions(() =>
 		{
 			foreach (var type in controllerTypes)
 			{
@@ -56,8 +56,8 @@ public class ControllerTests
 								.Where(parameterType => parameterType.IsGenericType))
 					{
 						parameterInfo.ShouldNotBeAssignableTo(
-								typeof(IQueryHandler<,>),
-								$"Constructor of '{type}' should not take 'IQueryHandler' as a parameter");
+							typeof(IQueryHandler<,>),
+							$"Constructor of '{type}' should not take 'IQueryHandler' as a parameter");
 					}
 				}
 			}
@@ -92,7 +92,9 @@ public class ControllerTests
 					}
 
 					method.ReturnType.GenericTypeArguments
-						.SingleOrDefault(a => a.InheritsGenericClass(typeof(ActionResult)) || a.InheritsGenericClass(typeof(ActionResult<>)))
+						.SingleOrDefault(a =>
+							a.InheritsGenericClass(typeof(ActionResult)) ||
+							a.InheritsGenericClass(typeof(ActionResult<>)))
 						.ShouldNotBeNull(
 							$"Controller '{type}' and '{method}' method return type should be 'async ActionResult<>'");
 				}

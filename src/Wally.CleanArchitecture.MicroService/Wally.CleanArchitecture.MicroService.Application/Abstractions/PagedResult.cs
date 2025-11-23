@@ -8,7 +8,7 @@ public class PagedResult<TResult> : IResult
 		: this(items, new PageInfoResult(0, items.Length, items.Length))
 	{
 	}
-	
+
 	public PagedResult(TResult[] items, PageInfoResult pageInfo)
 	{
 		Items = items;

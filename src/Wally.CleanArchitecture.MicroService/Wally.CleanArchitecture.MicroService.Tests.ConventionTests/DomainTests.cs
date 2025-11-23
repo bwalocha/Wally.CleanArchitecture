@@ -113,8 +113,9 @@ public class DomainTests
 			.Where(a => !a.IsGenericType);
 
 		// Act
-		Action Act(Type type) =>
-			() =>
+		Action Act(Type type)
+		{
+			return () =>
 			{
 				var explicitOperator = type.GetMethod(
 					"op_Explicit",
@@ -125,8 +126,10 @@ public class DomainTests
 
 				explicitOperator.ShouldNotBeNull($"StronglyTypedId '{type}' should have explicit operator");
 			};
+		}
 
 		// Assert
-		types.ShouldSatisfyAllConditions(types.Select((Func<Type, Action>)Act).ToArray());
+		types.ShouldSatisfyAllConditions(types.Select((Func<Type, Action>)Act)
+			.ToArray());
 	}
 }

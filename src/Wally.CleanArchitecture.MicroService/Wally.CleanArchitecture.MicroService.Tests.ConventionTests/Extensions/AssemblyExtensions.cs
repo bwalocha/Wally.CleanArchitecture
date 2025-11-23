@@ -12,6 +12,7 @@ public static class AssemblyExtensions
 	{
 		return assemblies
 			.SelectMany(a => a.GetTypes())
-			.Where(a => !a.GetCustomAttributes<GeneratedCodeAttribute>().Any());
+			.Where(a => !a.GetCustomAttributes<GeneratedCodeAttribute>()
+				.Any());
 	}
 }

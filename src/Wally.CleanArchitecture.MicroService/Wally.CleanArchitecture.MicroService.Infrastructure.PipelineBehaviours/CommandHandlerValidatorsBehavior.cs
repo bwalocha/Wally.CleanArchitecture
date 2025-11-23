@@ -17,7 +17,8 @@ public class CommandHandlerValidatorsBehavior<TRequest, TResponse> : IPipelineBe
 		_validators = validators;
 	}
 
-	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next, CancellationToken cancellationToken)
+	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next,
+		CancellationToken cancellationToken)
 	{
 		if (!_validators.Any())
 		{

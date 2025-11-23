@@ -88,7 +88,8 @@ public class DomainEventTests
 		{
 			foreach (var type in types)
 			{
-				type.ShouldBeDecoratedWith<ExcludeFromCodeCoverageAttribute>($"Domain Event '{type}' is not excluded from code coverage");
+				type.ShouldBeDecoratedWith<ExcludeFromCodeCoverageAttribute>(
+					$"Domain Event '{type}' is not excluded from code coverage");
 			}
 		});
 	}

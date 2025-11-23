@@ -12,7 +12,7 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 	where TRequest : IRequest<TResponse>
 {
 	private const int TimeoutMilliseconds = 500;
-	
+
 	private readonly ILogger<LogBehavior<TRequest, TResponse>> _logger;
 	private readonly IRequestContext _requestContext;
 
@@ -22,7 +22,8 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 		_requestContext = requestContext;
 	}
 
-	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next, CancellationToken cancellationToken)
+	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next,
+		CancellationToken cancellationToken)
 	{
 		using var logContext =
 			LogContext.PushProperty(nameof(IRequestContext.CorrelationId), _requestContext.CorrelationId);

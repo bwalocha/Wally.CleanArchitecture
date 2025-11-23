@@ -32,10 +32,8 @@ public class RepositoryTests
 				type.GetMethods()
 					.Where(a => a.IsPublic || a.IsAssembly)
 					.Select(a => a.ReturnType)
-					.Where(
-						a => notAllowedTypes.Contains(a) || notAllowedTypes.Exists(
-							n =>
-								Array.Exists(a.GenericTypeArguments, g => g.GetTypeDefinitionIfGeneric() == n)))
+					.Where(a => notAllowedTypes.Contains(a) || notAllowedTypes.Exists(n =>
+						Array.Exists(a.GenericTypeArguments, g => g.GetTypeDefinitionIfGeneric() == n)))
 					.ShouldBeEmpty($"Repository '{type}' should return only materialized responses");
 			}
 		});
@@ -62,7 +60,8 @@ public class RepositoryTests
 					continue;
 				}
 
-				Configuration.Assemblies.Application.GetAllTypes().SingleOrDefault(a => a == type)
+				Configuration.Assemblies.Application.GetAllTypes()
+					.SingleOrDefault(a => a == type)
 					.ShouldNotBeNull($"Repository '{type}' should be located in Application layer");
 			}
 		});
@@ -71,7 +70,8 @@ public class RepositoryTests
 	[Fact]
 	public void Repository_Interfaces_ShouldHaveImplementationInPersistent()
 	{
-		var assemblies = Configuration.Assemblies.GetAllAssemblies().ToArray();
+		var assemblies = Configuration.Assemblies.GetAllAssemblies()
+			.ToArray();
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.IsInterface && a.ImplementsGenericInterface(typeof(IReadOnlyRepository<,>)))
 			.ToList();
@@ -98,7 +98,7 @@ public class RepositoryTests
 			}
 		});
 	}
-	
+
 	[Fact]
 	public void Repository_CollectionReturnTypes_ShouldBePaged()
 	{
@@ -126,7 +126,7 @@ public class RepositoryTests
 					// 		.Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>)));
 
 					false.ShouldBeTrue(
-							$"Method '{method.Name}' in repository '{type.Name}' return type should be Task<PagedResponse<>> for collections.");
+						$"Method '{method.Name}' in repository '{type.Name}' return type should be Task<PagedResponse<>> for collections.");
 				}
 			}
 		});

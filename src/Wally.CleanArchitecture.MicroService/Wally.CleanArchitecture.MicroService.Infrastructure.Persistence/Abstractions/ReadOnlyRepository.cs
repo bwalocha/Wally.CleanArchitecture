@@ -85,15 +85,20 @@ public class ReadOnlyRepository<TEntity, TStronglyTypedId> : IReadOnlyRepository
 			.ApplyFilter(queryOptions)
 			.ApplySearch(queryOptions, ApplySearch);
 
-		var totalItems = query.Provider is IAsyncQueryProvider ? await query.CountAsync(cancellationToken) : query.Count();
+		var totalItems = query.Provider is IAsyncQueryProvider
+			? await query.CountAsync(cancellationToken)
+			: query.Count();
 
 		query = query
 			.ApplyOrderBy(queryOptions, ApplyDefaultOrderBy)
 			.ApplySkip(queryOptions)
 			.ApplyTop(queryOptions);
-		
-		var items = query.Provider is IAsyncQueryProvider ? await _mapper.ProjectTo<TResult>(query)
-			.ToArrayAsync(cancellationToken) : _mapper.ProjectTo<TResult>(query).ToArray();
+
+		var items = query.Provider is IAsyncQueryProvider
+			? await _mapper.ProjectTo<TResult>(query)
+				.ToArrayAsync(cancellationToken)
+			: _mapper.ProjectTo<TResult>(query)
+				.ToArray();
 
 		var pageSize = queryOptions.Top ?? items.Length;
 

@@ -14,8 +14,9 @@ public static class CqrsExtensions
 	{
 		services.AddMediator(a =>
 		{
-			a.Assemblies = [
-				typeof(IApplicationAssemblyMarker).Assembly
+			a.Assemblies =
+			[
+				typeof(IApplicationAssemblyMarker).Assembly,
 			];
 			a.ServiceLifetime = ServiceLifetime.Scoped;
 		});
@@ -35,17 +36,15 @@ public static class CqrsExtensions
 			a => a.InterfaceType.GenericTypeArguments.Single() == typeof(Application.Abstractions.ICommand<>),
 			true);
 
-		services.Scan(
-			a => a.FromAssemblyOf<IApplicationAssemblyMarker>()
-				.AddClasses(c => c.AssignableTo(typeof(ICommandAuthorizationHandler<,>)))
-				.AsImplementedInterfaces()
-				.WithTransientLifetime());
+		services.Scan(a => a.FromAssemblyOf<IApplicationAssemblyMarker>()
+			.AddClasses(c => c.AssignableTo(typeof(ICommandAuthorizationHandler<,>)))
+			.AsImplementedInterfaces()
+			.WithTransientLifetime());
 
-		services.Scan(
-			a => a.FromAssemblyOf<IApplicationAssemblyMarker>()
-				.AddClasses(c => c.AssignableTo(typeof(IDomainEventHandler<>)))
-				.AsImplementedInterfaces()
-				.WithScopedLifetime());
+		services.Scan(a => a.FromAssemblyOf<IApplicationAssemblyMarker>()
+			.AddClasses(c => c.AssignableTo(typeof(IDomainEventHandler<>)))
+			.AsImplementedInterfaces()
+			.WithScopedLifetime());
 
 		return services;
 	}

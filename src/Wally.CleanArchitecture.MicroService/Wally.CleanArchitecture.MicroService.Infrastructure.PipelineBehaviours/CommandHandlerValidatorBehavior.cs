@@ -15,7 +15,8 @@ public class CommandHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBeh
 		_validator = validator;
 	}
 
-	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next, CancellationToken cancellationToken)
+	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next,
+		CancellationToken cancellationToken)
 	{
 		var validationResult = await _validator.ValidateAsync(message, cancellationToken);
 

@@ -17,7 +17,8 @@ public class QueryHandlerValidatorBehavior<TRequest, TResponse> : IPipelineBehav
 		_validator = validator;
 	}
 
-	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next, CancellationToken cancellationToken)
+	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next,
+		CancellationToken cancellationToken)
 	{
 		if (_validator == null)
 		{

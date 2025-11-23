@@ -23,7 +23,7 @@ public partial class UsersControllerTests : IAsyncLifetime, IDisposable
 				AllowAutoRedirect = false,
 			});
 	}
-	
+
 	public Task InitializeAsync()
 	{
 		// Clean the Database
@@ -40,7 +40,7 @@ public partial class UsersControllerTests : IAsyncLifetime, IDisposable
 		Dispose(true);
 		GC.SuppressFinalize(this);
 	}
-	
+
 	protected virtual void Dispose(bool disposing)
 	{
 		if (disposing)

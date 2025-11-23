@@ -12,7 +12,8 @@ public class UpdateUserCommandAuthorizationHandler : ICommandAuthorizationHandle
 		_requestContext = requestContext;
 	}
 
-	public ValueTask<AuthorizationHandlerResult> HandleAsync(UpdateUserCommand command, CancellationToken cancellationToken)
+	public ValueTask<AuthorizationHandlerResult> HandleAsync(UpdateUserCommand command,
+		CancellationToken cancellationToken)
 	{
 		return ValueTask.FromResult(AuthorizationHandlerResult.Succeeded);
 	}

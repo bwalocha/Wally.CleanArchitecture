@@ -60,8 +60,8 @@ public class FaultConsumerTests
 				genericType = genericType.GenericTypeArguments.Single();
 
 				type.Name.ShouldBe(
-						$"{genericType.Name}FaultConsumer",
-						$"Fault Consumer '{type}' name should be '{genericType.Name}FaultConsumer'");
+					$"{genericType.Name}FaultConsumer",
+					$"Fault Consumer '{type}' name should be '{genericType.Name}FaultConsumer'");
 			}
 		});
 	}

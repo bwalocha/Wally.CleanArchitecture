@@ -3,10 +3,10 @@ using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Users;
 
-public class User : AggregateRoot<User, UserId>, ISoftDeletable/*, ITemporal*/
+public class User : AggregateRoot<User, UserId>, ISoftDeletable /*, ITemporal*/
 {
 	public const int NameMaxLength = 256;
-	
+
 	// Hide public .ctor
 	private User()
 	{
@@ -28,7 +28,7 @@ public class User : AggregateRoot<User, UserId>, ISoftDeletable/*, ITemporal*/
 	{
 		var model = new User
 		{
-			Name = name, 
+			Name = name,
 		};
 		model.AddDomainEvent(new UserCreatedDomainEvent(model.Id));
 
@@ -39,7 +39,7 @@ public class User : AggregateRoot<User, UserId>, ISoftDeletable/*, ITemporal*/
 	{
 		var model = new User(id)
 		{
-			Name = name, 
+			Name = name,
 		};
 		model.AddDomainEvent(new UserCreatedDomainEvent(model.Id));
 

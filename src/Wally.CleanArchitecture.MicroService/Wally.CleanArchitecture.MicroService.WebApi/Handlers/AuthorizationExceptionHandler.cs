@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Wally.CleanArchitecture.MicroService.Domain.Exceptions;
+
 // using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 
 namespace Wally.CleanArchitecture.MicroService.WebApi.Handlers;
@@ -11,17 +12,21 @@ namespace Wally.CleanArchitecture.MicroService.WebApi.Handlers;
 internal sealed class AuthorizationExceptionHandler : IExceptionHandler
 {
 	private readonly ILogger<AuthorizationExceptionHandler> _logger;
+
 	private readonly IProblemDetailsService _problemDetailsService;
 	// private readonly IRequestContext _requestContext;
 
-	public AuthorizationExceptionHandler(IProblemDetailsService problemDetailsService, /*IRequestContext requestContext,*/ ILogger<AuthorizationExceptionHandler> logger)
+	public AuthorizationExceptionHandler(
+		IProblemDetailsService problemDetailsService, /*IRequestContext requestContext,*/
+		ILogger<AuthorizationExceptionHandler> logger)
 	{
 		_problemDetailsService = problemDetailsService;
 		// _requestContext = requestContext;
 		_logger = logger;
 	}
 
-	public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
+	public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception,
+		CancellationToken cancellationToken)
 	{
 		_logger.LogError(new EventId(exception.HResult), exception, exception.Message);
 

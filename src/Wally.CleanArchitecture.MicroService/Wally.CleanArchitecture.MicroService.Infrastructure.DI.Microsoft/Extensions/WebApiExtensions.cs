@@ -10,17 +10,17 @@ public static class WebApiExtensions
 	public static IServiceCollection AddWebApi(this IServiceCollection services)
 	{
 		services.AddValidatorsFromAssemblyContaining<IApplicationAssemblyMarker>(includeInternalTypes: true)
-		// 	.AddValidatorsFromAssemblyContaining<IApplicationContractsAssemblyMarker>(includeInternalTypes: true)
-		// 	.AddFluentValidationAutoValidation(config => config.DisableDataAnnotationsValidation = true)
-		// 	.Configure<ApiBehaviorOptions>(options =>
-		// 	{
-		// 		options.InvalidModelStateResponseFactory = context => throw new ValidationException(context
-		// 			.ModelState
-		// 			.Where(a => a.Value?.ValidationState == ModelValidationState.Invalid)
-		// 			.Select(a => new ValidationFailure(a.Key,
-		// 				string.Join(", ", a.Value!.Errors.Select(b => b.ErrorMessage)), a.Value.AttemptedValue)));
-		// 	})
-		;
+			// 	.AddValidatorsFromAssemblyContaining<IApplicationContractsAssemblyMarker>(includeInternalTypes: true)
+			// 	.AddFluentValidationAutoValidation(config => config.DisableDataAnnotationsValidation = true)
+			// 	.Configure<ApiBehaviorOptions>(options =>
+			// 	{
+			// 		options.InvalidModelStateResponseFactory = context => throw new ValidationException(context
+			// 			.ModelState
+			// 			.Where(a => a.Value?.ValidationState == ModelValidationState.Invalid)
+			// 			.Select(a => new ValidationFailure(a.Key,
+			// 				string.Join(", ", a.Value!.Errors.Select(b => b.ErrorMessage)), a.Value.AttemptedValue)));
+			// 	})
+			;
 
 		// services.AddHttpContextAccessor();
 		// services.AddScoped<IRequestContext, RequestContext>();

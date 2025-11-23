@@ -13,6 +13,7 @@ using Wally.CleanArchitecture.MicroService.Application.Messages;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Messaging;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
+using IBus = Wally.CleanArchitecture.MicroService.Application.Abstractions.IBus;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 
@@ -20,67 +21,62 @@ public static class MessagingExtensions
 {
 	public static IServiceCollection AddMessaging(this IServiceCollection services, AppSettings settings)
 	{
-		services.AddMassTransit(
-			a =>
+		services.AddMassTransit(a =>
+		{
+			a.AddConsumers(typeof(IInfrastructureMessagingAssemblyMarker).Assembly);
+
+			switch (settings.MessageBroker)
 			{
-				a.AddConsumers(typeof(IInfrastructureMessagingAssemblyMarker).Assembly);
+				case MessageBrokerType.None:
+					services.AddSingleton<IBus, BusStub>();
+					break;
+				case MessageBrokerType.AzureServiceBus:
+					a.UsingAzureServiceBus((host, cfg) =>
+					{
+						cfg.Host(settings.ConnectionStrings.ServiceBus);
+						cfg.ConfigureEndpoints(host, new DefaultEndpointNameFormatter(".", "", true));
+					});
+					break;
+				case MessageBrokerType.Kafka:
+					a.UsingInMemory((context, config) => config.ConfigureEndpoints(context));
+					a.AddEntityFrameworkOutbox<ApplicationDbContext>(o => o.UseBusOutbox());
+					a.AddConfigureEndpointsCallback((context, _, cfg) =>
+					{
+						cfg.UseEntityFrameworkOutbox<ApplicationDbContext>(context);
+					});
+					a.AddRider(rider =>
+					{
+						// Kafka is not intended to create topology during startup.
+						// Topics should be created with correct number of partitions and replicas beforehand
+						// https://masstransit.io/documentation/configuration/transports/kafka#configure-topology
+						rider.AddProducersFromNamespaceContaining<IApplicationMessagesAssemblyMarker>();
+						rider.AddConsumersFromNamespaceContaining<IInfrastructureMessagingAssemblyMarker>();
 
-				switch (settings.MessageBroker)
-				{
-					case MessageBrokerType.None:
-						services.AddSingleton<Application.Abstractions.IBus, BusStub>();
-						break;
-					case MessageBrokerType.AzureServiceBus:
-						a.UsingAzureServiceBus(
-							(host, cfg) =>
-							{
-								cfg.Host(settings.ConnectionStrings.ServiceBus);
-								cfg.ConfigureEndpoints(host, new DefaultEndpointNameFormatter(".", "", true));
-							});
-						break;
-					case MessageBrokerType.Kafka:
-						a.UsingInMemory((context, config) => config.ConfigureEndpoints(context));
-						a.AddEntityFrameworkOutbox<ApplicationDbContext>(o => o.UseBusOutbox());
-						a.AddConfigureEndpointsCallback((context, _, cfg) =>
+						rider.UsingKafka((context, k) =>
 						{
-							cfg.UseEntityFrameworkOutbox<ApplicationDbContext>(context);
+							k.ClientId = typeof(IInfrastructureMessagingAssemblyMarker).Namespace;
+							k.Host(settings.ConnectionStrings.ServiceBus);
+
+							k.AddConsumersFromNamespaceContaining<IInfrastructureMessagingAssemblyMarker>(
+								context);
 						});
-						a.AddRider(
-							rider =>
-							{
-								// Kafka is not intended to create topology during startup.
-								// Topics should be created with correct number of partitions and replicas beforehand
-								// https://masstransit.io/documentation/configuration/transports/kafka#configure-topology
-								rider.AddProducersFromNamespaceContaining<IApplicationMessagesAssemblyMarker>();
-								rider.AddConsumersFromNamespaceContaining<IInfrastructureMessagingAssemblyMarker>();
 
-								rider.UsingKafka(
-									(context, k) =>
-									{
-										k.ClientId = typeof(IInfrastructureMessagingAssemblyMarker).Namespace;
-										k.Host(settings.ConnectionStrings.ServiceBus);
-
-										k.AddConsumersFromNamespaceContaining<IInfrastructureMessagingAssemblyMarker>(
-											context);
-									});
-
-								services.AddScoped<Application.Abstractions.IBus, KafkaBus>();
-							});
-						break;
-					case MessageBrokerType.RabbitMQ:
-						a.UsingRabbitMq(
-							(host, cfg) =>
-							{
-								cfg.Host(new Uri(settings.ConnectionStrings.ServiceBus));
-								cfg.ConfigureEndpoints(host, new DefaultEndpointNameFormatter(".", "", true));
-							});
-						break;
-					case MessageBrokerType.Unknown:
-					default:
-						throw new NotSupportedException(
-							$"Not supported Message Broker type: '{settings.MessageBroker}'");
-				}
-			});
+						services.AddScoped<IBus, KafkaBus>();
+					});
+					break;
+				case MessageBrokerType.RabbitMQ:
+					a.UsingRabbitMq((host, cfg) =>
+					{
+						cfg.Host(new Uri(settings.ConnectionStrings.ServiceBus));
+						cfg.ConfigureEndpoints(host, new DefaultEndpointNameFormatter(".", "", true));
+					});
+					break;
+				case MessageBrokerType.Unknown:
+				default:
+					throw new NotSupportedException(
+						$"Not supported Message Broker type: '{settings.MessageBroker}'");
+			}
+		});
 
 		return services;
 	}
@@ -165,7 +161,7 @@ public static class MessagingExtensions
 	}
 
 	[SuppressMessage("Major Code Smell", "S1144:Unused private types or members should be removed")]
-	private sealed class BusStub : Application.Abstractions.IBus
+	private sealed class BusStub : IBus
 	{
 		private readonly ILogger<BusStub> _logger;
 
@@ -183,9 +179,9 @@ public static class MessagingExtensions
 			return Task.CompletedTask;
 		}
 	}
-	
+
 	[SuppressMessage("Major Code Smell", "S1144:Unused private types or members should be removed")]
-	private sealed class KafkaBus : Application.Abstractions.IBus
+	private sealed class KafkaBus : IBus
 	{
 		private readonly ILogger<KafkaBus> _logger;
 		private readonly IServiceProvider _serviceProvider;

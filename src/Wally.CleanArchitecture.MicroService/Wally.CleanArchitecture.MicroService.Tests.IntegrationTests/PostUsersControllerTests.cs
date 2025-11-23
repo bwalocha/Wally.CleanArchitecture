@@ -20,7 +20,7 @@ public partial class UsersControllerTests
 		// Assert
 		await Verifier.Verify(response);
 	}
-	
+
 	[Fact]
 	public async Task Post_ForNewResource_CreatesNewResource()
 	{
@@ -36,7 +36,7 @@ public partial class UsersControllerTests
 		// Assert
 		await Verifier.Verify(response);
 	}
-	
+
 	[Fact]
 	public async Task Post_ForDuplicatedResource_ReturnsConflict()
 	{
@@ -44,7 +44,7 @@ public partial class UsersControllerTests
 		await _factory.SeedAsync(UserCreate(3));
 		var request = new CreateUserRequest
 		{
-			Name = "testUser3", 
+			Name = "testUser3",
 		};
 
 		// Act

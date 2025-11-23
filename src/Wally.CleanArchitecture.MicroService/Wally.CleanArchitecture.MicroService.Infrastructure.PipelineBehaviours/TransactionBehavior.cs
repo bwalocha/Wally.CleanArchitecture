@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 using Mediator;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +17,8 @@ public class TransactionBehavior<TRequest, TResponse> : IPipelineBehavior<TReque
 		_dbContext = dbContext;
 	}
 
-	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next, CancellationToken cancellationToken)
+	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next,
+		CancellationToken cancellationToken)
 	{
 		await using var transaction = await _dbContext.Database.BeginTransactionAsync(cancellationToken);
 
@@ -30,7 +32,7 @@ public class TransactionBehavior<TRequest, TResponse> : IPipelineBehavior<TReque
 		}
 		catch
 		{
-			System.Diagnostics.Debugger.Break();
+			Debugger.Break();
 			await transaction.RollbackAsync(cancellationToken);
 
 			throw;

@@ -32,7 +32,7 @@ public class ResponseTests
 		// Assert
 		rule.Check(Configuration.Architecture);
 	}
-	
+
 	[Fact]
 	public void Presentation_Response_ShouldNotExposeSetter()
 	{
@@ -54,19 +54,19 @@ public class ResponseTests
 		// Assert
 		rule.Check(Configuration.Architecture);
 	}
-	
+
 	[Fact]
 	public void Presentation_Response_ShouldHaveNameConvention()
 	{
 		// Arrange
 		IArchRule rule =
-				Classes()
-					.That()
-					.Are(Configuration.PresentationProvider)
-					.And()
-					.ImplementInterface(typeof(IResponse))
-					.And()
-					.AreNot(typeof(PagedResponse<>))
+			Classes()
+				.That()
+				.Are(Configuration.PresentationProvider)
+				.And()
+				.ImplementInterface(typeof(IResponse))
+				.And()
+				.AreNot(typeof(PagedResponse<>))
 				.Should()
 				.HaveNameEndingWith("Response")
 				.Because("Presentation Responses should have name convention.");
@@ -116,7 +116,7 @@ public class ResponseTests
 					{
 						continue;
 					}
-					
+
 					property.IsPrivateWritable()
 						.ShouldBeTrue($"Response class '{type}' should not expose setter for '{property}'");
 				}
@@ -158,7 +158,9 @@ public class ResponseTests
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.ImplementsInterface(typeof(IResponse)));
 
-		types.ShouldSatisfyAllConditions(types.Select(a => (Action)(() => a.Namespace.ShouldStartWith(typeof(IPresentationAssemblyMarker).Namespace!))).ToArray());
+		types.ShouldSatisfyAllConditions(types
+			.Select(a => (Action)(() => a.Namespace.ShouldStartWith(typeof(IPresentationAssemblyMarker).Namespace!)))
+			.ToArray());
 	}
 
 	[Fact]
@@ -170,7 +172,9 @@ public class ResponseTests
 			.Where(a => a.Name.EndsWith("Response"))
 			.Where(a => a.Assembly != typeof(IPresentationAssemblyMarker).Assembly);
 
-		types.ShouldSatisfyAllConditions(types.Select(a => (Action)(() => a.ImplementsInterface(typeof(IResponse)).ShouldBeTrue($"{a.Name} should implement {nameof(IResponse)}"))).ToArray());
+		types.ShouldSatisfyAllConditions(types.Select(a => (Action)(() => a.ImplementsInterface(typeof(IResponse))
+				.ShouldBeTrue($"{a.Name} should implement {nameof(IResponse)}")))
+			.ToArray());
 	}
 
 	[Fact]

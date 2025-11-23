@@ -22,7 +22,7 @@ public static class SchedulerExtensions
 			});
 
 			// options.IgnoreSeedDefinedCronTickers(); // Disable automatic seeding
-			
+
 			options.SetExceptionHandler<JobExceptionHandler>();
 
 			options.AddOperationalStore(efOptions =>

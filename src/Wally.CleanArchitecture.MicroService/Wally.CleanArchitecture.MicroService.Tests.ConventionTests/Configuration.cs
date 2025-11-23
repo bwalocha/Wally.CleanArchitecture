@@ -1,9 +1,9 @@
-﻿using System.CodeDom.Compiler;
+﻿using System;
+using System.CodeDom.Compiler;
 using System.Linq;
 using ArchUnitNET.Domain;
 using ArchUnitNET.Loader;
 using Wally.CleanArchitecture.MicroService.Application;
-// using Wally.CleanArchitecture.MicroService.Application.Contracts;
 using Wally.CleanArchitecture.MicroService.Application.DI.Microsoft;
 using Wally.CleanArchitecture.MicroService.Application.MapperProfiles;
 using Wally.CleanArchitecture.MicroService.Application.Messages;
@@ -13,8 +13,6 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Messaging;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
-// using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql;
-// using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer;
 using Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
@@ -22,6 +20,9 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.SchedulerService;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Wally.CleanArchitecture.MicroService.WebApi;
+// using Wally.CleanArchitecture.MicroService.Application.Contracts;
+// using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql;
+// using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 
@@ -30,8 +31,9 @@ public static class Configuration
 	public const string Namespace = "Wally.CleanArchitecture.MicroService";
 
 	internal static readonly Architecture Architecture = new ArchLoader()
-		.LoadAssemblies(Assemblies.GetAllAssemblies().ToArray())
-		.LoadAssemblies(typeof(System.DateTime).Assembly)
+		.LoadAssemblies(Assemblies.GetAllAssemblies()
+			.ToArray())
+		.LoadAssemblies(typeof(DateTime).Assembly)
 		.Build();
 
 	internal static readonly IObjectProvider<IType> DomainProvider =

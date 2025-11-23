@@ -39,18 +39,20 @@ public static class HealthChecksExtensions
 			});
 
 		app.UseEndpoints(endpoints =>
-			{
-				// Adds Liveness
-				endpoints.MapGet(
-					"/",
-					() =>
-					{
-						var version = Assembly.GetExecutingAssembly().GetName().Version?.ToString() 
-						?? "unknown";
+		{
+			// Adds Liveness
+			endpoints.MapGet(
+				"/",
+				() =>
+				{
+					var version = Assembly.GetExecutingAssembly()
+							.GetName()
+							.Version?.ToString()
+					?? "unknown";
 
-						return new { version };
-					});
-			});
+					return new { version, };
+				});
+		});
 
 		return app;
 	}
@@ -157,11 +159,10 @@ public static class HealthChecksExtensions
 		healthChecksBuilder.AddRabbitMQ(
 			_ => new ConnectionFactory
 			{
-				Uri	= new Uri(settings.ConnectionStrings.ServiceBus),
+				Uri = new Uri(settings.ConnectionStrings.ServiceBus),
 			}.CreateConnectionAsync(),
-			name: "MQ",
-			failureStatus: HealthStatus.Degraded,
-			tags:
+			"MQ",
+			HealthStatus.Degraded,
 			[
 				"MQ", "Messaging", nameof(MessageBrokerType.RabbitMQ),
 			],

@@ -30,8 +30,7 @@ public class QueryHandlerTests
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.IsClass)
 			.Where(a => !a.IsAbstract)
-			.Where(
-				a => a.ImplementsGenericInterface(typeof(IQueryHandler<,>)));
+			.Where(a => a.ImplementsGenericInterface(typeof(IQueryHandler<,>)));
 
 		types.ShouldSatisfyAllConditions(() =>
 		{

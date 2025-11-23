@@ -35,9 +35,8 @@ public class CommandHandlerTests
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.IsClass)
 			.Where(a => !a.IsAbstract)
-			.Where(
-				a => a.ImplementsGenericInterface(typeof(ICommandHandler<>)) ||
-					a.ImplementsGenericInterface(typeof(ICommandHandler<,>)));
+			.Where(a => a.ImplementsGenericInterface(typeof(ICommandHandler<>)) ||
+				a.ImplementsGenericInterface(typeof(ICommandHandler<,>)));
 
 		types.ShouldSatisfyAllConditions(() =>
 		{

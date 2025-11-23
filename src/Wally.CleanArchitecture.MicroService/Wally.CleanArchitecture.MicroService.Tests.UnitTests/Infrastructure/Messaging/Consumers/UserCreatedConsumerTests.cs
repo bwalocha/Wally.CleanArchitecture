@@ -12,8 +12,8 @@ namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests.Infrastructure.Me
 
 public class UserCreatedConsumerTests
 {
-	private readonly UserCreatedMessageConsumer _sut;
 	private readonly Mock<ISender> _mediatorMock;
+	private readonly UserCreatedMessageConsumer _sut;
 
 	public UserCreatedConsumerTests()
 	{

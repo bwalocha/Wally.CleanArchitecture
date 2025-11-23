@@ -2,6 +2,7 @@
 // using MassTransit.Internals;
 
 using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
@@ -68,12 +69,13 @@ public class OnionArchitectureTests
 			});
 	}*/
 
-	[Fact(Skip = "TODO: Type 'Coverlet.Core.Instrumentation.Tracker.Wally.CleanArchitecture.MicroService.Domain_c075db3f-d24f-49b4-941c-7655310ece31' namespace should start with 'Wally.CleanArchitecture.MicroService'")]
+	[Fact(Skip =
+		"TODO: Type 'Coverlet.Core.Instrumentation.Tracker.Wally.CleanArchitecture.MicroService.Domain_c075db3f-d24f-49b4-941c-7655310ece31' namespace should start with 'Wally.CleanArchitecture.MicroService'")]
 	public void OnionArchitecture_AllNamespaces_ShouldBeConsistent()
 	{
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
 		var types = assemblies.GetAllTypes()
-			.Where(a => a.Namespace?.StartsWith(typeof(Microsoft.Extensions.DependencyInjection.MediatorDependencyInjectionExtensions).Namespace!) == false)
+			.Where(a => a.Namespace?.StartsWith(typeof(MediatorDependencyInjectionExtensions).Namespace!) == false)
 			.Where(a => a.Namespace?.StartsWith(typeof(Mediator.Mediator).Namespace!) == false);
 
 		types.ShouldSatisfyAllConditions(() =>

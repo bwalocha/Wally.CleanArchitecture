@@ -13,12 +13,13 @@ public static class ShouldlyExtensions
 			actual.ShouldBeNull();
 			return;
 		}
-		
+
 		if (actual is null)
 		{
-			throw new ShouldAssertException(new ExpectedEquivalenceShouldlyMessage(expected, actual, [], "One is null").ToString());
+			throw new ShouldAssertException(new ExpectedEquivalenceShouldlyMessage(expected, actual, [], "One is null")
+				.ToString());
 		}
-		
+
 		if (IsSimpleType(expected.GetType()))
 		{
 			actual.ShouldBe(expected);
@@ -36,15 +37,17 @@ public static class ShouldlyExtensions
 
 			return;
 		}
-		
-		var expectedProperties = expected.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+		var expectedProperties = expected.GetType()
+			.GetProperties(BindingFlags.Public | BindingFlags.Instance);
 		foreach (var expectedProperty in expectedProperties)
 		{
-			var actualProperty = actual!.GetType().GetProperty(expectedProperty.Name, BindingFlags.Public | BindingFlags.Instance);
+			var actualProperty = actual!.GetType()
+				.GetProperty(expectedProperty.Name, BindingFlags.Public | BindingFlags.Instance);
 			if (actualProperty is null)
 			{
 				throw new ShouldAssertException(
-					new ExpectedEquivalenceShouldlyMessage(expected, actual, [expectedProperty.Name],
+					new ExpectedEquivalenceShouldlyMessage(expected, actual, [expectedProperty.Name,],
 							"Expected property does not exist")
 						.ToString());
 			}
@@ -59,7 +62,7 @@ public static class ShouldlyExtensions
 			catch (ShouldAssertException ex)
 			{
 				throw new ShouldAssertException(
-					new ExpectedEquivalenceShouldlyMessage(expected, actual, [expectedProperty.Name],
+					new ExpectedEquivalenceShouldlyMessage(expected, actual, [expectedProperty.Name,],
 							$"Property '{expectedProperty.Name}' mismatch: {ex.Message}")
 						.ToString());
 			}

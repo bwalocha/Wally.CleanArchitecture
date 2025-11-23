@@ -23,12 +23,14 @@ public class DomainEventHandlerBehavior<TRequest, TResponse> : IPipelineBehavior
 		_serviceProvider = serviceProvider;
 	}
 
-	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next, CancellationToken cancellationToken)
+	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next,
+		CancellationToken cancellationToken)
 	{
 		var response = await next(message, cancellationToken);
 
 		var domainEntities = _dbContext.ChangeTracker.Entries<IEntity>()
-			.Where(a => a.Entity.GetDomainEvents().Count != 0)
+			.Where(a => a.Entity.GetDomainEvents()
+				.Count != 0)
 			.ToList();
 
 		var domainEvents = domainEntities.SelectMany(x => x.Entity.GetDomainEvents())
@@ -53,7 +55,7 @@ public class DomainEventHandlerBehavior<TRequest, TResponse> : IPipelineBehavior
 				.Entity
 				.RemoveDomainEvent(domainEvent);
 		}
-		
+
 		// TODO: consider throw an Exception if any DomainEventHandler produced another DomainEvent
 
 		return response;

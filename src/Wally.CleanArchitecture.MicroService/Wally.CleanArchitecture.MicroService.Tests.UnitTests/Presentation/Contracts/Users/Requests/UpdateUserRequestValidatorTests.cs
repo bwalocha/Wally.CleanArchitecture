@@ -28,7 +28,7 @@ public class UpdateUserRequestValidatorTests
 		// Arrange
 		var instance = new UpdateUserRequest
 		{
-				Name = name,
+			Name = name,
 		};
 
 		// Act

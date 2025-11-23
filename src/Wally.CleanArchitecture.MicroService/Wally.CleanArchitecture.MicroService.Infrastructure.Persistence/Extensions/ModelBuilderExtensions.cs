@@ -14,7 +14,7 @@ public static class ModelBuilderExtensions
 	private const string TemporalPostfix = "_Temporal";
 	private const string TemporalValidFrom = "ValidFrom";
 	private const string TemporalValidTo = "ValidTo";
-	
+
 	public static ModelBuilder ApplyMappings<TInfrastructurePersistenceAssemblyMarker>(this ModelBuilder modelBuilder)
 	{
 		return modelBuilder.ApplyConfigurationsFromAssembly(typeof(TInfrastructurePersistenceAssemblyMarker).Assembly);
@@ -37,7 +37,7 @@ public static class ModelBuilderExtensions
 
 		return modelBuilder;
 	}
-	
+
 	/// <summary>
 	///     Configure the <see cref="ModelBuilder" /> to use the
 	///     <see cref="StronglyTypedIdConverter{TStronglyTypedId,TValue}" />.
@@ -85,7 +85,7 @@ public static class ModelBuilderExtensions
 
 		return modelBuilder;
 	}
-	
+
 	public static ModelBuilder ApplyTemporal(this ModelBuilder modelBuilder)
 	{
 		var allEntities = modelBuilder.Model.GetEntityTypes();
@@ -101,13 +101,12 @@ public static class ModelBuilderExtensions
 			// https://learn.microsoft.com/en-us/ef/core/providers/sql-server/temporal-tables
 			entityBuilder.ToTable(
 				entity.Name,
-				a => a.IsTemporal(
-					b =>
-					{
-						b.UseHistoryTable($"{entity.Name}{TemporalPostfix}");
-						b.HasPeriodStart(nameof(TemporalValidFrom));
-						b.HasPeriodEnd(nameof(TemporalValidTo));
-					}));
+				a => a.IsTemporal(b =>
+				{
+					b.UseHistoryTable($"{entity.Name}{TemporalPostfix}");
+					b.HasPeriodStart(nameof(TemporalValidFrom));
+					b.HasPeriodEnd(nameof(TemporalValidTo));
+				}));
 		}
 
 		return modelBuilder;

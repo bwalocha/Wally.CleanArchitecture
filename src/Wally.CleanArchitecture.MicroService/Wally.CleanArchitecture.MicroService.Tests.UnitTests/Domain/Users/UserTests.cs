@@ -44,7 +44,7 @@ public class UserTests
 				.Single()
 				.ShouldBeOfType<UserCreatedDomainEvent>());
 	}
-	
+
 	[Fact]
 	public void Update_ForSpecifiedUser_UpdatesName()
 	{

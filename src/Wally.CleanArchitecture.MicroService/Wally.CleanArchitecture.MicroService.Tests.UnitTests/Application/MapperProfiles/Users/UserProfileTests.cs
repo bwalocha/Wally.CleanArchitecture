@@ -26,7 +26,7 @@ public class UserProfileTests
 	public void ShouldHaveValidConfiguration()
 	{
 		// Arrange
-		
+
 		// Act
 		var act = () => _configuration.AssertConfigurationIsValid();
 

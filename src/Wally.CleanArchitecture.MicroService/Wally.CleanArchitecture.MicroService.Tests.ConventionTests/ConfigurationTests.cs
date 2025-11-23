@@ -17,7 +17,6 @@ public class ConfigurationTests
 		// Act
 
 		// Assert
-		fromConfig.ShouldSatisfyAllConditions(
-			() => fromConfig.ForEach(a => fromInternal.ShouldContain(a)));
+		fromConfig.ShouldSatisfyAllConditions(() => fromConfig.ForEach(a => fromInternal.ShouldContain(a)));
 	}
 }

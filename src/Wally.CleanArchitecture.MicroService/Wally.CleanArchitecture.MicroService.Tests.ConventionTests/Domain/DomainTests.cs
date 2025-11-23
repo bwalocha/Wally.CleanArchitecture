@@ -14,7 +14,7 @@ public class DomainTests
 	public void Domain_Constructor_ShouldBePrivateOrProtected()
 	{
 		// Arrange
-		IArchRule rule =
+		var rule =
 			Classes()
 				.That()
 				.Are(Configuration.DomainProvider)
@@ -32,13 +32,13 @@ public class DomainTests
 				.AreNotAssignableTo(typeof(DomainException))
 				.Should()
 				.HaveOnlyPrivateOrProtectedConstructors();
-		
+
 		// Act
-		
+
 		// Assert
 		rule.Check(Configuration.Architecture);
 	}
-	
+
 	[Fact]
 	public void Domain_StronglyTypedId_ShouldBeSealed()
 	{
@@ -53,9 +53,9 @@ public class DomainTests
 				.AreAssignableTo(typeof(IStronglyTypedId<>))
 				.Should()
 				.BeSealed();
-		
+
 		// Act
-		
+
 		// Assert
 		rule.Check(Configuration.Architecture);
 	}
@@ -65,16 +65,16 @@ public class DomainTests
 	{
 		// Arrange
 		IArchRule rule =
-			Members()
-				.That()
-				.AreDeclaredIn(Configuration.DomainProvider)
-				.Should()
-				.HaveOnlyPrivateOrProtectedSetters()
-				.Because("Domain entities should be immutable from outside the aggregate.")
+				Members()
+					.That()
+					.AreDeclaredIn(Configuration.DomainProvider)
+					.Should()
+					.HaveOnlyPrivateOrProtectedSetters()
+					.Because("Domain entities should be immutable from outside the aggregate.")
 			;
-		
+
 		// Act
-		
+
 		// Assert
 		rule.Check(Configuration.Architecture);
 	}

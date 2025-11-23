@@ -15,8 +15,8 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 	where TRequest : Application.Abstractions.ICommand<TResponse>
 {
 	private readonly DbContext _dbContext;
-	private readonly TimeProvider _timeProvider;
 	private readonly IRequestContext _requestContext;
+	private readonly TimeProvider _timeProvider;
 
 	public UpdateMetadataHandlerBehavior(
 		ApplicationDbContext dbContext,
@@ -28,7 +28,8 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 		_timeProvider = timeProvider;
 	}
 
-	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next, CancellationToken cancellationToken)
+	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next,
+		CancellationToken cancellationToken)
 	{
 		var response = await next(message, cancellationToken);
 
@@ -36,7 +37,7 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 
 		return response;
 	}
-	
+
 	private void UpdateAggregateMetadata(IEnumerable<EntityEntry> entries)
 	{
 		var utcNow = _timeProvider.GetUtcNow();

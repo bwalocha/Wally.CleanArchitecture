@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Time.Testing;
-using Shouldly; // TODO: replace with Verify
+using Shouldly;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Extensions;
+// TODO: replace with Verify
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
 
@@ -21,7 +22,7 @@ public partial class UsersControllerTests
 		// Assert
 		await Verifier.Verify(response);
 	}
-	
+
 	[Fact]
 	public async Task Delete_ByTheSameUser_IsForbidden()
 	{

@@ -30,10 +30,10 @@ public static class PropertyInfoExtensions
 		// Init-only properties are marked with the IsExternalInit type.
 		return setMethodReturnParameterModifiers.Contains(typeof(IsExternalInit));
 	}
-	
+
 	public static bool IsPrivateWritable(this PropertyInfo property)
 	{
-		var setMethod = property.GetSetMethod(nonPublic: true);
+		var setMethod = property.GetSetMethod(true);
 		return setMethod != null && setMethod.IsPrivate && !property.IsInitOnly();
 	}
 }

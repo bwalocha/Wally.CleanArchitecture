@@ -16,9 +16,11 @@ public class ConsumerTests
 			.Where(a => a.Name.EndsWith("Consumer"));
 
 		// Act
-		void Act(Type type) =>
+		void Act(Type type)
+		{
 			type.ImplementsGenericInterface(typeof(IConsumer<>))
 				.ShouldBeTrue($"Type '{type}' should implement '{typeof(IConsumer<>).Name}'");
+		}
 
 		// Assert
 		types.ShouldSatisfyAllConditions(types.Select(type => (Action)(() => Act(type)))
@@ -35,9 +37,11 @@ public class ConsumerTests
 			.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>)));
 
 		// Act
-		void Act(Type type) =>
+		void Act(Type type)
+		{
 			type.Name.ShouldEndWith("MessageConsumer");
-		
+		}
+
 		// Assert
 		types.ShouldSatisfyAllConditions(types.Select(type => (Action)(() => Act(type)))
 			.ToArray());
@@ -57,7 +61,8 @@ public class ConsumerTests
 		{
 			var genericType = type.GetGenericInterface(typeof(IConsumer<>)) !.GenericTypeArguments.Single();
 
-			type.Name.ShouldBe($"{genericType.Name}Consumer", $"Consumer '{type}' name should be '{genericType.Name}Consumer'");
+			type.Name.ShouldBe($"{genericType.Name}Consumer",
+				$"Consumer '{type}' name should be '{genericType.Name}Consumer'");
 		}
 
 		// Assert
@@ -70,7 +75,8 @@ public class ConsumerTests
 	{
 		// Assign
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllTypes().ToArray();
+		var types = assemblies.GetAllTypes()
+			.ToArray();
 		var customerTypes = types.Where(a => !a.Name.EndsWith("FaultConsumer"))
 			.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>)));
 
@@ -94,7 +100,8 @@ public class ConsumerTests
 	{
 		// Assign
 		var assemblies = Configuration.Assemblies.GetAllAssemblies();
-		var types = assemblies.GetAllTypes().ToArray();
+		var types = assemblies.GetAllTypes()
+			.ToArray();
 		var customerTypes = types.Where(a => !a.Name.EndsWith("FaultConsumer"))
 			.Where(a => a.ImplementsGenericInterface(typeof(IConsumer<>)));
 
@@ -104,7 +111,8 @@ public class ConsumerTests
 			var genericType = type.GetGenericInterface(typeof(IConsumer<>)) !.GenericTypeArguments.Single();
 
 			types.SingleOrDefault(a => a.Name == $"{genericType.Name}ConsumerDefinition")
-				.ShouldNotBeNull($"Consumer '{type}' should have corresponding Consumer Definition '{genericType.Name}ConsumerDefinition'");
+				.ShouldNotBeNull(
+					$"Consumer '{type}' should have corresponding Consumer Definition '{genericType.Name}ConsumerDefinition'");
 		}
 
 		// Assert

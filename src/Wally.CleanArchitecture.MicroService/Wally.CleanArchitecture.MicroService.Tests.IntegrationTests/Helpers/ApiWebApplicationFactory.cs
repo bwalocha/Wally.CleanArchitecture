@@ -21,7 +21,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 	private const string MsSqlContainerName = "Wally.CleanArchitecture.MicroService.Tests";
 	private const string MsSqlContainerImageName = "mcr.microsoft.com/mssql/server:2022-CU13-ubuntu-22.04";
 	private const long MsSqlContainerMemoryLimit = 2L * 1024 * 1024 * 1024; // 2GB
-	
+
 	private readonly MsSqlContainer _dbContainer = new MsSqlBuilder()
 		.WithImage(MsSqlContainerImageName)
 		.WithName(MsSqlContainerName)
@@ -31,14 +31,14 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 		.Build();
 
 	/*
-	 private readonly KafkaContainer _kafkaContainer = new KafkaBuilder()
+	private readonly KafkaContainer _kafkaContainer = new KafkaBuilder()
 		.WithImage("confluentinc/cp-kafka:6.2.10")
 		.WithReuse(true)
 		.Build();
 	*/
-	
+
 	/*
-	 private static readonly AzuriteContainer AzuriteContainer = new AzuriteBuilder()
+	private static readonly AzuriteContainer AzuriteContainer = new AzuriteBuilder()
 		.WithImage("mcr.microsoft.com/azure-storage/azurite:3.34.0")
 		// .WithName($"azurite-integration-tests")
 		// .WithPortBinding(10000, 10000)
@@ -108,30 +108,28 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 
 	protected override IHostBuilder CreateHostBuilder()
 	{
-		return base.CreateHostBuilder() !.ConfigureAppConfiguration(
-				configurationBuilder =>
-				{
-					configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
-						.AddJsonFile("appsettings.json", false)
-						.AddJsonFile("appsettings.IntegrationTests.json", false)
-						.AddInMemoryCollection([
-							new KeyValuePair<string, string?>("ConnectionStrings:Database",
-								_dbContainer.GetConnectionString()),
-							// new KeyValuePair<string, string>("Database:ServiceBus", _kafkaContainer.GetBootstrapAddress())
-						]);
-				})
+		return base.CreateHostBuilder() !.ConfigureAppConfiguration(configurationBuilder =>
+			{
+				configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
+					.AddJsonFile("appsettings.json", false)
+					.AddJsonFile("appsettings.IntegrationTests.json", false)
+					.AddInMemoryCollection([
+						new KeyValuePair<string, string?>("ConnectionStrings:Database",
+							_dbContainer.GetConnectionString()),
+						// new KeyValuePair<string, string>("Database:ServiceBus", _kafkaContainer.GetBootstrapAddress())
+					]);
+			})
 			.UseEnvironment("IntegrationTests");
 	}
 
 	protected override void ConfigureWebHost(IWebHostBuilder builder)
 	{
-		builder.ConfigureTestServices(
-			services =>
-			{
-				services.AddTransient<IBus, BusStub>();
+		builder.ConfigureTestServices(services =>
+		{
+			services.AddTransient<IBus, BusStub>();
 
-				services.RemoveAll<TimeProvider>();
-				services.AddSingleton<TimeProvider, FakeTimeProvider>();
-			});
+			services.RemoveAll<TimeProvider>();
+			services.AddSingleton<TimeProvider, FakeTimeProvider>();
+		});
 	}
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-// using EntityFramework.Exceptions.MySQL.Pomelo;
+using EntityFramework.Exceptions.Sqlite;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -9,10 +9,12 @@ using Microsoft.Extensions.Options;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
-// using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql;
-// using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer;
+// using EntityFramework.Exceptions.MySQL.Pomelo;
+// using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql;
+// using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL;
+
 // using ExceptionProcessorExtensions = EntityFramework.Exceptions.PostgreSQL.ExceptionProcessorExtensions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
@@ -77,11 +79,10 @@ public static class PersistenceExtensions
 		// 	return new DelegatingDbContextFactory(implFactory);
 		// });
 
-		services.Scan(
-			a => a.FromAssemblyOf<IInfrastructurePersistenceAssemblyMarker>()
-				.AddClasses(c => c.AssignableTo(typeof(IReadOnlyRepository<,>)))
-				.AsImplementedInterfaces()
-				.WithScopedLifetime());
+		services.Scan(a => a.FromAssemblyOf<IInfrastructurePersistenceAssemblyMarker>()
+			.AddClasses(c => c.AssignableTo(typeof(IReadOnlyRepository<,>)))
+			.AsImplementedInterfaces()
+			.WithScopedLifetime());
 
 		services.AddSingleton(TimeProvider.System);
 
@@ -135,14 +136,14 @@ public static class PersistenceExtensions
 					This configuration will be ignored by the SQLite provider.
 					This exception can be suppressed or logged by passing event ID 'SqliteEventId.SchemaConfiguredWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.' was thrown while attempting to create an instance. For the different patterns supported at design time, see https://go.microsoft.com/fwlink/?linkid=851728
 					*/
-					builder.MigrationsAssembly(typeof(IInfrastructureSQLiteAssemblyMarker).Assembly.GetName().Name);
+					builder.MigrationsAssembly(typeof(IInfrastructureSQLiteAssemblyMarker).Assembly.GetName()
+						.Name);
 					builder.MigrationsHistoryTable(HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
 					builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
 					// builder.EnableRetryOnFailure(MaxRetryCount, MaxRetryDelay, null);
 				})
-			.ConfigureWarnings(
-				builder => { builder.Ignore(SqliteEventId.SchemaConfiguredWarning); });
-		EntityFramework.Exceptions.Sqlite.ExceptionProcessorExtensions.UseExceptionProcessor(options);
+			.ConfigureWarnings(builder => { builder.Ignore(SqliteEventId.SchemaConfiguredWarning); });
+		ExceptionProcessorExtensions.UseExceptionProcessor(options);
 	}
 
 	private static void WithSqlServer(DbContextOptionsBuilder options, AppSettings settings)
@@ -151,7 +152,8 @@ public static class PersistenceExtensions
 			settings.ConnectionStrings.Database,
 			builder =>
 			{
-				builder.MigrationsAssembly(typeof(IInfrastructureSqlServerAssemblyMarker).Assembly.GetName().Name);
+				builder.MigrationsAssembly(typeof(IInfrastructureSqlServerAssemblyMarker).Assembly.GetName()
+					.Name);
 				builder.MigrationsHistoryTable(HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
 				builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
 				builder.EnableRetryOnFailure(MaxRetryCount, MaxRetryDelay, null);
@@ -176,16 +178,19 @@ public static class PersistenceExtensions
 
 		return app;
 	}
-	
+
 	public class DelegatingDbContextFactory : IDbContextFactory<DbContext>
 	{
 		private readonly IDbContextFactory<ApplicationDbContext> _factory;
-	
+
 		public DelegatingDbContextFactory(IDbContextFactory<ApplicationDbContext> factory)
 		{
 			_factory = factory;
 		}
-	
-		public DbContext CreateDbContext() => _factory.CreateDbContext();
+
+		public DbContext CreateDbContext()
+		{
+			return _factory.CreateDbContext();
+		}
 	}
 }

@@ -17,7 +17,8 @@ public class CommandAuthorizationHandlerBehavior<TRequest, TResponse> : IPipelin
 		_authorizationHandler = authorizationHandler;
 	}
 
-	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next, CancellationToken cancellationToken)
+	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next,
+		CancellationToken cancellationToken)
 	{
 		var authorizationResult = AuthorizationHandlerResult.Unauthorized;
 

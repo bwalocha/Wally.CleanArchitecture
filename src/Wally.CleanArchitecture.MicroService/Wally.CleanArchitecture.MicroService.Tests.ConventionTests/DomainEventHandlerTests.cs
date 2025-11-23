@@ -22,7 +22,7 @@ public class DomainEventHandlerTests
 			}
 		});
 	}
-	
+
 	[Fact]
 	public void Domain_AllClassesWhichInheritsDomainEventHandler_ShouldHaveNameSuffix()
 	{

@@ -18,7 +18,7 @@ public static class DomainExtensions
 	private static T Set<T, TValue>(this T @object, string propertyName, TValue? value)
 	{
 		var type = typeof(T);
-		
+
 		do
 		{
 			var propertyInfo = type.GetProperty(propertyName);

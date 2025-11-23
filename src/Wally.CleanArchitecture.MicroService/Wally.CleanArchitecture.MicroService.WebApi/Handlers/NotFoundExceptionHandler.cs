@@ -10,17 +10,20 @@ namespace Wally.CleanArchitecture.MicroService.WebApi.Handlers;
 internal sealed class NotFoundExceptionHandler : IExceptionHandler
 {
 	private readonly ILogger<NotFoundExceptionHandler> _logger;
+
 	private readonly IProblemDetailsService _problemDetailsService;
 	// private readonly IRequestContext _requestContext;
 
-	public NotFoundExceptionHandler(IProblemDetailsService problemDetailsService, /*IRequestContext requestContext,*/ ILogger<NotFoundExceptionHandler> logger)
+	public NotFoundExceptionHandler(IProblemDetailsService problemDetailsService, /*IRequestContext requestContext,*/
+		ILogger<NotFoundExceptionHandler> logger)
 	{
 		_problemDetailsService = problemDetailsService;
 		// _requestContext = requestContext;
 		_logger = logger;
 	}
 
-	public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
+	public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception,
+		CancellationToken cancellationToken)
 	{
 		if (exception is TaskCanceledException)
 		{

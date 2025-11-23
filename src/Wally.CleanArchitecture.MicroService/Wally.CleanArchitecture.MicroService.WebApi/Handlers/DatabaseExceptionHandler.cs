@@ -15,17 +15,20 @@ namespace Wally.CleanArchitecture.MicroService.WebApi.Handlers;
 internal sealed class DatabaseExceptionHandler : IExceptionHandler
 {
 	private readonly ILogger<DatabaseExceptionHandler> _logger;
+
 	private readonly IProblemDetailsService _problemDetailsService;
 	// private readonly IRequestContext _requestContext;
 
-	public DatabaseExceptionHandler(IProblemDetailsService problemDetailsService, /*IRequestContext requestContext,*/ ILogger<DatabaseExceptionHandler> logger)
+	public DatabaseExceptionHandler(IProblemDetailsService problemDetailsService, /*IRequestContext requestContext,*/
+		ILogger<DatabaseExceptionHandler> logger)
 	{
 		_problemDetailsService = problemDetailsService;
 		// _requestContext = requestContext;
 		_logger = logger;
 	}
 
-	public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
+	public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception,
+		CancellationToken cancellationToken)
 	{
 		_logger.LogError(new EventId(exception.HResult), exception, exception.Message);
 
