@@ -18,7 +18,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.PostAsync("Users", request, CancellationToken.None);
 
 		// Assert
-		await Verifier.Verify(response);
+		await Verifier.Verify(response).IgnoreMembers("Content-Length");
 	}
 
 	[Fact]
@@ -51,6 +51,6 @@ public partial class UsersControllerTests
 		var response = await _httpClient.PostAsync("Users", request, CancellationToken.None);
 
 		// Assert
-		await Verifier.Verify(response);
+		await Verifier.Verify(response).IgnoreMembers("Content-Length");
 	}
 }

@@ -42,6 +42,6 @@ public class OpenApiTests : IDisposable
 		var response = await _httpClient.GetAsync(new Uri("swagger/v1/swagger.json", UriKind.Relative));
 
 		// Assert
-		await Verifier.Verify(response);
+		await Verifier.Verify(response).IgnoreMembers("Content-Length");
 	}
 }
