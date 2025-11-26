@@ -21,7 +21,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Expression = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    Request = table.Column<byte[]>(type: "varbinary(900)", nullable: true),
+                    Request = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     Retries = table.Column<int>(type: "int", nullable: false),
                     RetryIntervals = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Function = table.Column<string>(type: "nvarchar(450)", nullable: true),
@@ -89,7 +89,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     LockHolder = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Request = table.Column<byte[]>(type: "varbinary(900)", nullable: true),
+                    Request = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     ExecutionTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LockedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ExecutedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -241,12 +241,10 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                 column: "Expression");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Function_Expression_Request",
+                name: "IX_Function_Expression",
                 schema: "MicroService",
                 table: "CronTickers",
-                columns: new[] { "Function", "Expression", "Request" },
-                unique: true,
-                filter: "[Function] IS NOT NULL AND [Expression] IS NOT NULL AND [Request] IS NOT NULL");
+                columns: new[] { "Function", "Expression" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_InboxState_Delivered",
@@ -298,9 +296,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                 name: "IX_TimeTicker_Status_ExecutionTime",
                 schema: "MicroService",
                 table: "TimeTickers",
-                columns: new[] { "Status", "ExecutionTime", "Request" },
-                unique: true,
-                filter: "[ExecutionTime] IS NOT NULL AND [Request] IS NOT NULL");
+                columns: new[] { "Status", "ExecutionTime" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_TimeTickers_ParentId",

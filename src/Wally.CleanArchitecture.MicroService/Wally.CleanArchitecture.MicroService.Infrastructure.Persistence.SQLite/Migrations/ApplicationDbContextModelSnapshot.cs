@@ -220,9 +220,8 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite
                     b.HasIndex("Expression")
                         .HasDatabaseName("IX_CronTickers_Expression");
 
-                    b.HasIndex("Function", "Expression", "Request")
-                        .IsUnique()
-                        .HasDatabaseName("IX_Function_Expression_Request");
+                    b.HasIndex("Function", "Expression")
+                        .HasDatabaseName("IX_Function_Expression");
 
                     b.ToTable("CronTickers", "MicroService");
                 });
@@ -356,8 +355,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite
 
                     b.HasIndex("ParentId");
 
-                    b.HasIndex("Status", "ExecutionTime", "Request")
-                        .IsUnique()
+                    b.HasIndex("Status", "ExecutionTime")
                         .HasDatabaseName("IX_TimeTicker_Status_ExecutionTime");
 
                     b.ToTable("TimeTickers", "MicroService");

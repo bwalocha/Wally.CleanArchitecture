@@ -214,7 +214,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Request")
-                        .HasColumnType("varbinary(900)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<int>("Retries")
                         .HasColumnType("int");
@@ -230,10 +230,8 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                     b.HasIndex("Expression")
                         .HasDatabaseName("IX_CronTickers_Expression");
 
-                    b.HasIndex("Function", "Expression", "Request")
-                        .IsUnique()
-                        .HasDatabaseName("IX_Function_Expression_Request")
-                        .HasFilter("[Function] IS NOT NULL AND [Expression] IS NOT NULL AND [Request] IS NOT NULL");
+                    b.HasIndex("Function", "Expression")
+                        .HasDatabaseName("IX_Function_Expression");
 
                     b.ToTable("CronTickers", "MicroService");
                 });
@@ -337,7 +335,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<byte[]>("Request")
-                        .HasColumnType("varbinary(900)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<int>("Retries")
                         .HasColumnType("int");
@@ -367,10 +365,8 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
 
                     b.HasIndex("ParentId");
 
-                    b.HasIndex("Status", "ExecutionTime", "Request")
-                        .IsUnique()
-                        .HasDatabaseName("IX_TimeTicker_Status_ExecutionTime")
-                        .HasFilter("[ExecutionTime] IS NOT NULL AND [Request] IS NOT NULL");
+                    b.HasIndex("Status", "ExecutionTime")
+                        .HasDatabaseName("IX_TimeTicker_Status_ExecutionTime");
 
                     b.ToTable("TimeTickers", "MicroService");
                 });

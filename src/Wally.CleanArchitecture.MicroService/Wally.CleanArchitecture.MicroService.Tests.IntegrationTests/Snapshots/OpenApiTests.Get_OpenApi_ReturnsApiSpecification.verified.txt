@@ -2,7 +2,7 @@
   Status: 200 OK,
   Content: {
     Headers: {
-      Content-Length: 40119,
+      Content-Length: 40756,
       Content-Type: application/json; charset=utf-8
     },
     Value: {
@@ -233,6 +233,33 @@
                 }
               }
             ],
+            responses: {
+              200: {
+                description: OK
+              }
+            }
+          }
+        },
+        /api/time-ticker/delete-batch: {
+          delete: {
+            tags: [
+              TickerQ Dashboard
+            ],
+            summary: Delete multiple time tickers,
+            operationId: DeleteTimeTickersBatch,
+            requestBody: {
+              content: {
+                application/json: {
+                  schema: {
+                    type: array,
+                    items: {
+                      type: string,
+                      format: uuid
+                    }
+                  }
+                }
+              }
+            },
             responses: {
               200: {
                 description: OK
