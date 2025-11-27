@@ -4,7 +4,6 @@ using Shouldly;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Extensions;
-// TODO: replace with Verify
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
 
@@ -55,32 +54,32 @@ public partial class UsersControllerTests
 		var response = await _httpClient.DeleteAsync($"Users/{resource2.Id.Value}", CancellationToken.None);
 
 		// Assert
-		// TODO: use ShouldSatisfyAllConditions
 		await Verifier.Verify(response);
-		(await _factory.GetRequiredService<ApplicationDbContext>()
+		var dbContext = _factory.GetRequiredService<ApplicationDbContext>();
+		(await dbContext
 				.Set<User>()
 				.SingleAsync(a => a.Id == resource1.Id))
 			.IsDeleted.ShouldBe(false);
-		(await _factory.GetRequiredService<ApplicationDbContext>()
+		(await dbContext
 				.Set<User>()
 				.FirstOrDefaultAsync(a => a.Id == resource2.Id))
 			.ShouldBeNull();
-		(await _factory.GetRequiredService<ApplicationDbContext>()
+		(await dbContext
 				.Set<User>()
 				.IgnoreQueryFilters()
 				.SingleAsync(a => a.Id == resource1.Id))
 			.IsDeleted.ShouldBe(false);
-		(await _factory.GetRequiredService<ApplicationDbContext>()
+		(await dbContext
 				.Set<User>()
 				.IgnoreQueryFilters()
 				.SingleAsync(a => a.Id == resource2.Id))
 			.IsDeleted.ShouldBe(true);
-		(await _factory.GetRequiredService<ApplicationDbContext>()
+		(await dbContext
 				.Set<User>()
 				.IgnoreQueryFilters()
 				.SingleAsync(a => a.Id == resource2.Id))
 			.DeletedById.ShouldBe(new UserId(Guid.Parse("ffffffff-0000-0000-0000-add702d3016b")));
-		(await _factory.GetRequiredService<ApplicationDbContext>()
+		(await dbContext
 				.Set<User>()
 				.IgnoreQueryFilters()
 				.SingleAsync(a => a.Id == resource2.Id))
