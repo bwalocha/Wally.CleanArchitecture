@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
-using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 
@@ -19,7 +18,7 @@ public class UpdateMetadataHandlerBehavior<TRequest, TResponse> : IPipelineBehav
 	private readonly TimeProvider _timeProvider;
 
 	public UpdateMetadataHandlerBehavior(
-		ApplicationDbContext dbContext,
+		DbContext dbContext,
 		IRequestContext requestContext,
 		TimeProvider timeProvider)
 	{

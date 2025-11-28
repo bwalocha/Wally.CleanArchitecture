@@ -1,5 +1,6 @@
 using System.Linq;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Wally.CleanArchitecture.MicroService.Application.Users;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions;
@@ -8,7 +9,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 
 public class UserReadOnlyRepository : ReadOnlyRepository<User, UserId>, IUserReadOnlyRepository
 {
-	public UserReadOnlyRepository(ApplicationDbContext context, IMapper mapper)
+	public UserReadOnlyRepository(DbContext context, IMapper mapper)
 		: base(context, mapper)
 	{
 	}

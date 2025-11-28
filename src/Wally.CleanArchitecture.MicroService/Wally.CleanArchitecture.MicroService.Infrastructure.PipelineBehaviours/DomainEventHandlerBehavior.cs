@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
-using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 
@@ -17,7 +16,7 @@ public class DomainEventHandlerBehavior<TRequest, TResponse> : IPipelineBehavior
 	private readonly DbContext _dbContext;
 	private readonly IServiceProvider _serviceProvider;
 
-	public DomainEventHandlerBehavior(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
+	public DomainEventHandlerBehavior(DbContext dbContext, IServiceProvider serviceProvider)
 	{
 		_dbContext = dbContext;
 		_serviceProvider = serviceProvider;

@@ -1,5 +1,6 @@
 ﻿using System;
-using EntityFramework.Exceptions.Sqlite;
+
+// using EntityFramework.Exceptions.Sqlite;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -9,13 +10,13 @@ using Microsoft.Extensions.Options;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
-using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite;
-using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer;
 // using EntityFramework.Exceptions.MySQL.Pomelo;
 // using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql;
-// using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer;
 
-// using ExceptionProcessorExtensions = EntityFramework.Exceptions.PostgreSQL.ExceptionProcessorExtensions;
+using ExceptionProcessorExtensions = EntityFramework.Exceptions.PostgreSQL.ExceptionProcessorExtensions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 
@@ -68,17 +69,9 @@ public static class PersistenceExtensions
 #endif
 		}
 
-		//services.AddDbContext<DbContext, ApplicationDbContext>((Action<DbContextOptionsBuilder>)DbContextOptions);
-		//services.AddDbContext<ApplicationDbContext>((Action<DbContextOptionsBuilder>)DbContextOptions);
-		// services.AddScoped<DbContextOptionsConfiguration<ApplicationDbContext>>();
-		// services.AddDbContextFactory<ApplicationDbContext>(DbContextOptions);
 		services.AddPooledDbContextFactory<ApplicationDbContext>(DbContextOptions);
-		// services.AddScoped<IDbContextFactory<DbContext>>(sp =>
-		// {
-		// 	var implFactory = sp.GetRequiredService<IDbContextFactory<ApplicationDbContext>>();
-		// 	return new DelegatingDbContextFactory(implFactory);
-		// });
-
+		services.AddScoped<DbContext>(sp => sp.GetRequiredService<IDbContextFactory<ApplicationDbContext>>().CreateDbContext());
+		
 		services.Scan(a => a.FromAssemblyOf<IInfrastructurePersistenceAssemblyMarker>()
 			.AddClasses(c => c.AssignableTo(typeof(IReadOnlyRepository<,>)))
 			.AsImplementedInterfaces()
@@ -111,16 +104,16 @@ public static class PersistenceExtensions
 
 	private static void WithNpgsql(DbContextOptionsBuilder options, AppSettings settings)
 	{
-		// options.UseNpgsql(
-		// 	settings.ConnectionStrings.Database,
-		// 	builder =>
-		// 	{
-		// 		builder.MigrationsAssembly(typeof(IInfrastructurePostgreSqlAssemblyMarker).Assembly.GetName().Name);
-		// 		builder.MigrationsHistoryTable(HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
-		// 		builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-		// 		builder.EnableRetryOnFailure(MaxRetryCount, MaxRetryDelay, null);
-		// 	});
-		// ExceptionProcessorExtensions.UseExceptionProcessor(options);
+		options.UseNpgsql(
+			settings.ConnectionStrings.Database,
+			builder =>
+			{
+				builder.MigrationsAssembly(typeof(IInfrastructurePostgreSqlAssemblyMarker).Assembly.GetName().Name);
+				builder.MigrationsHistoryTable(HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
+				builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
+				builder.EnableRetryOnFailure(MaxRetryCount, MaxRetryDelay, null);
+			});
+		ExceptionProcessorExtensions.UseExceptionProcessor(options);
 	}
 
 	private static void WithSqlite(DbContextOptionsBuilder options, AppSettings settings)
@@ -173,24 +166,9 @@ public static class PersistenceExtensions
 		}
 
 		using var scope = app.ApplicationServices.CreateScope();
-		var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+		var dbContext = scope.ServiceProvider.GetRequiredService<DbContext>();
 		dbContext.Database.Migrate();
 
 		return app;
-	}
-
-	public class DelegatingDbContextFactory : IDbContextFactory<DbContext>
-	{
-		private readonly IDbContextFactory<ApplicationDbContext> _factory;
-
-		public DelegatingDbContextFactory(IDbContextFactory<ApplicationDbContext> factory)
-		{
-			_factory = factory;
-		}
-
-		public DbContext CreateDbContext()
-		{
-			return _factory.CreateDbContext();
-		}
 	}
 }

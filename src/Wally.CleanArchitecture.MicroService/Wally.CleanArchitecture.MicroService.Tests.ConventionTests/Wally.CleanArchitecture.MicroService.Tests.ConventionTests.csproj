@@ -8,8 +8,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.Contracts\Wally.CleanArchitecture.MicroService.Application.Contracts.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.DI.Microsoft\Wally.CleanArchitecture.MicroService.Application.DI.Microsoft.csproj"/>
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj"/>
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.WebApi\Wally.CleanArchitecture.MicroService.WebApi.csproj"/>
     </ItemGroup>
 </Project>

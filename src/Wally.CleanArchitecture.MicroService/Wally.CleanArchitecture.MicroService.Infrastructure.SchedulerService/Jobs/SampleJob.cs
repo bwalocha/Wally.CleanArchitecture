@@ -29,7 +29,7 @@ public class SampleJob
 		// _timeProvider = timeProvider;
 	}
 
-	[TickerFunction("ExecuteJob", "0/10 * * * * *")]
+	[TickerFunction("ExecuteJob", "0 0/10 * * * *")]
 	public async Task ExecuteJobAsync(
 		TickerFunctionContext context,
 		CancellationToken cancellationToken)

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using AutoMapper.Internal;
 using Confluent.Kafka;
 using MassTransit;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Wally.CleanArchitecture.MicroService.Application.Messages;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Messaging;
-using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 using IBus = Wally.CleanArchitecture.MicroService.Application.Abstractions.IBus;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
@@ -39,10 +39,10 @@ public static class MessagingExtensions
 					break;
 				case MessageBrokerType.Kafka:
 					a.UsingInMemory((context, config) => config.ConfigureEndpoints(context));
-					a.AddEntityFrameworkOutbox<ApplicationDbContext>(o => o.UseBusOutbox());
+					a.AddEntityFrameworkOutbox<DbContext>(o => o.UseBusOutbox());
 					a.AddConfigureEndpointsCallback((context, _, cfg) =>
 					{
-						cfg.UseEntityFrameworkOutbox<ApplicationDbContext>(context);
+						cfg.UseEntityFrameworkOutbox<DbContext>(context);
 					});
 					a.AddRider(rider =>
 					{

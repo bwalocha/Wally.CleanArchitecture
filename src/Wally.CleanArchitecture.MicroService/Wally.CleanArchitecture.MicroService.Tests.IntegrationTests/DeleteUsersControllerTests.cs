@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Time.Testing;
 using Shouldly;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
-using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Extensions;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests;
@@ -55,7 +54,7 @@ public partial class UsersControllerTests
 
 		// Assert
 		await Verifier.Verify(response);
-		var dbContext = _factory.GetRequiredService<ApplicationDbContext>();
+		var dbContext = _factory.GetRequiredService<DbContext>();
 		(await dbContext
 				.Set<User>()
 				.SingleAsync(a => a.Id == resource1.Id))

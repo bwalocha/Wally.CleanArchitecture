@@ -49,7 +49,7 @@
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.BackgroundServices\Wally.CleanArchitecture.MicroService.Infrastructure.BackgroundServices.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Messaging\Wally.CleanArchitecture.MicroService.Infrastructure.Messaging.csproj" />
         <!--<ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql.csproj" />-->
-        <!--<ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL.csproj" />-->
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours\Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours.csproj" />

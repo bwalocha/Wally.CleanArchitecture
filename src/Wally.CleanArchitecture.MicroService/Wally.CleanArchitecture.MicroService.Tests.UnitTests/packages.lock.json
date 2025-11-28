@@ -688,10 +688,10 @@
       },
       "Npgsql": {
         "type": "Transitive",
-        "resolved": "8.0.3",
-        "contentHash": "6WEmzsQJCZAlUG1pThKg/RmeF6V+I0DmBBBE/8YzpRtEzhyZzKcK7ulMANDm5CkxrALBEC8H+5plxHWtIL7xnA==",
+        "resolved": "10.0.0",
+        "contentHash": "xZAYhPOU2rUIFpV48xsqhCx9vXs6Y+0jX2LCoSEfDFYMw9jtAOUk3iQsCnDLrFIv9NT3JGMihn7nnuZsPKqJmA==",
         "dependencies": {
-          "Microsoft.Extensions.Logging.Abstractions": "8.0.0"
+          "Microsoft.Extensions.Logging.Abstractions": "10.0.0"
         }
       },
       "OpenTelemetry": {
@@ -1070,6 +1070,7 @@
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.BackgroundServices": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.Messaging": "[1.0.0, )",
+          "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours": "[1.0.0, )",
@@ -1099,6 +1100,14 @@
           "TickerQ.EntityFrameworkCore": "[10.0.1, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
+        }
+      },
+      "wally.cleanarchitecture.microservice.infrastructure.persistence.postgresql": {
+        "type": "Project",
+        "dependencies": {
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "[10.0.0, )",
+          "StyleCop.Analyzers": "[1.1.118, )",
+          "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence": "[1.0.0, )"
         }
       },
       "wally.cleanarchitecture.microservice.infrastructure.persistence.sqlite": {
@@ -1550,6 +1559,17 @@
         "contentHash": "FU/IfjDfwaMuKr414SSQNTIti/69bHEMb+QKrskRb26oVqpx3lNFXMjs/RC9ZUuhBhcwDM2BwOgoMw+PZ+beqQ==",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.0"
+        }
+      },
+      "Npgsql.EntityFrameworkCore.PostgreSQL": {
+        "type": "CentralTransitive",
+        "requested": "[10.0.0, )",
+        "resolved": "10.0.0",
+        "contentHash": "E2+uSWxSB8LdsUVwPaqRWOcGOP92biry2JEwc0KJMdLJF+aZdczeIdEXVwEyv4nSVMQJH0o8tLhyAMiR6VF0lw==",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "[10.0.0, 11.0.0)",
+          "Microsoft.EntityFrameworkCore.Relational": "[10.0.0, 11.0.0)",
+          "Npgsql": "10.0.0"
         }
       },
       "OpenTelemetry.Exporter.OpenTelemetryProtocol": {

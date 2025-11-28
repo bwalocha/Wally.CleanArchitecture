@@ -11,7 +11,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Time.Testing;
 using Testcontainers.MsSql;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
-using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Helpers;
 
@@ -25,7 +24,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 	private readonly MsSqlContainer _dbContainer = new MsSqlBuilder()
 		.WithImage(MsSqlContainerImageName)
 		.WithName(MsSqlContainerName)
-		// .WithCreateParameterModifier(a => a.HostConfig.Memory = MsSqlContainerMemoryLimit) // TODO: Fix CI
+		.WithCreateParameterModifier(a => a.HostConfig.Memory = MsSqlContainerMemoryLimit)
 		.WithCleanUp(true)
 		.WithReuse(true)
 		.Build();
@@ -79,7 +78,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 
 	public async Task<int> SeedAsync(params object[] entities)
 	{
-		var dbContext = GetRequiredService<ApplicationDbContext>();
+		var dbContext = GetRequiredService<DbContext>();
 		await dbContext.AddRangeAsync(entities);
 
 		return await dbContext.SaveChangesAsync();
@@ -88,7 +87,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 	public ApiWebApplicationFactory<TStartup> RemoveAll<TEntity>()
 		where TEntity : class
 	{
-		var dbContext = GetRequiredService<ApplicationDbContext>();
+		var dbContext = GetRequiredService<DbContext>();
 		dbContext.RemoveRange(dbContext.Set<TEntity>()
 			.IgnoreQueryFilters());
 		dbContext.SaveChanges();
@@ -99,7 +98,7 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 	public Task<int> RemoveAllAsync<TEntity>()
 		where TEntity : class
 	{
-		var dbContext = GetRequiredService<ApplicationDbContext>();
+		var dbContext = GetRequiredService<DbContext>();
 		dbContext.RemoveRange(dbContext.Set<TEntity>()
 			.IgnoreQueryFilters());
 

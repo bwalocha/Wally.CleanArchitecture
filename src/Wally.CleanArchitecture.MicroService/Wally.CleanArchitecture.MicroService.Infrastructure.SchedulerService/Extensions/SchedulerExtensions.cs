@@ -27,23 +27,14 @@ public static class SchedulerExtensions
 
 			options.AddOperationalStore(efOptions =>
 			{
-				// efOptions.UseTickerQDbContext<TickerQDbContext>(optionsBuilder =>
-				// {
-				// 	// optionsBuilder.UseSqlite("Data Source=Wally.CleanArchitecture.MicroService.Scheduler.db;Cache=Shared");
-				// 	optionsBuilder.UseInMemoryDatabase("Wally.CleanArchitecture.MicroService.Scheduler", builder => builder.EnableNullChecks());
-				// });
-
 				efOptions.UseApplicationDbContext<ApplicationDbContext>(ConfigurationType.IgnoreModelCustomizer);
-				// efOptions.UseApplicationDbContext<DbContext>(ConfigurationType.IgnoreModelCustomizer);
-				// efOptions.SetDbContextPoolSize(34);
 			});
 
 			// Dashboard
 			options.AddDashboard(dashboardOptions =>
 			{
 				dashboardOptions.SetBasePath("/scheduler");
-				dashboardOptions.WithNoAuth();
-				// dashboardOptions.WithBasicAuth("admin", "secure-password");
+				dashboardOptions.WithNoAuth(); // TODO: consider dashboardOptions.WithBasicAuth(user, password);
 			});
 		});
 
