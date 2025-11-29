@@ -32,9 +32,9 @@
       },
       "MassTransit.Abstractions": {
         "type": "Direct",
-        "requested": "[8.5.6, )",
-        "resolved": "8.5.6",
-        "contentHash": "ur/fBPI8nrBpa2erURfGC60AoIZTbLcF/fUP+YmwvLxzm17YJHki0ITHKD/SJUPQwWPICJq0wq/N+327kGdhEg=="
+        "requested": "[8.5.7, )",
+        "resolved": "8.5.7",
+        "contentHash": "HdS4nzARrW34F+ftZpfykSEwmvEFD8Z+lRulwakt0YU9xg4IE3bUmbls15vuOxfC2YDtcr7y3+SQYzXx6fG/vA=="
       },
       "Microsoft.AspNetCore.Mvc.Testing": {
         "type": "Direct",
@@ -1300,7 +1300,7 @@
         "type": "Project",
         "dependencies": {
           "AutoMapper.Extensions.ExpressionMapping": "[9.0.1, )",
-          "MassTransit.EntityFrameworkCore": "[8.5.6, )",
+          "MassTransit.EntityFrameworkCore": "[8.5.7, )",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[10.0.0, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application.MapperProfiles": "[1.0.0, )"
@@ -1359,11 +1359,11 @@
           "EntityFrameworkCore.Exceptions.SqlServer": "[8.1.3, )",
           "EntityFrameworkCore.Exceptions.Sqlite": "[8.1.3, )",
           "FluentValidation.AspNetCore": "[11.3.1, )",
-          "MassTransit": "[8.5.6, )",
-          "MassTransit.Azure.ServiceBus.Core": "[8.5.6, )",
-          "MassTransit.EntityFrameworkCore": "[8.5.6, )",
-          "MassTransit.Kafka": "[8.5.6, )",
-          "MassTransit.RabbitMQ": "[8.5.6, )",
+          "MassTransit": "[8.5.7, )",
+          "MassTransit.Azure.ServiceBus.Core": "[8.5.7, )",
+          "MassTransit.EntityFrameworkCore": "[8.5.7, )",
+          "MassTransit.Kafka": "[8.5.7, )",
+          "MassTransit.RabbitMQ": "[8.5.7, )",
           "Mediator.Abstractions": "[3.0.1, )",
           "Mediator.SourceGenerator": "[3.0.1, )",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "[10.0.0, )",
@@ -1394,7 +1394,7 @@
       "wally.cleanarchitecture.microservice.infrastructure.messaging": {
         "type": "Project",
         "dependencies": {
-          "MassTransit": "[8.5.6, )",
+          "MassTransit": "[8.5.7, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.0, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
@@ -1406,7 +1406,7 @@
         "dependencies": {
           "AutoMapper": "[15.1.0, )",
           "AutoMapper.Extensions.ExpressionMapping": "[9.0.1, )",
-          "MassTransit.EntityFrameworkCore": "[8.5.6, )",
+          "MassTransit.EntityFrameworkCore": "[8.5.7, )",
           "Microsoft.EntityFrameworkCore": "[10.0.0, )",
           "Microsoft.EntityFrameworkCore.Relational": "[10.0.0, )",
           "Microsoft.EntityFrameworkCore.SqlServer": "[10.0.0, )",
@@ -1676,11 +1676,11 @@
       },
       "MassTransit": {
         "type": "CentralTransitive",
-        "requested": "[8.5.6, )",
-        "resolved": "8.5.6",
-        "contentHash": "rCitgMO7w3+7xh5ck+Fm0zbezbt9WDtbcOU4K2z0MDphLf7Va8tuZE/gCqILcposLvMg7ISyCcZuXwgtjtBrZw==",
+        "requested": "[8.5.7, )",
+        "resolved": "8.5.7",
+        "contentHash": "ZMJAhl7EHBhHvH1c/Jc6FZdV2sNgf5DETfxVq1Wm7i0By6o8LvrVQakBAvC7GK2ZHMJB2kmeD5YM3JPSGvT3HA==",
         "dependencies": {
-          "MassTransit.Abstractions": "8.5.6",
+          "MassTransit.Abstractions": "8.5.7",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.0",
           "Microsoft.Extensions.Diagnostics.HealthChecks": "10.0.0",
           "Microsoft.Extensions.Hosting.Abstractions": "10.0.0",
@@ -1690,43 +1690,43 @@
       },
       "MassTransit.Azure.ServiceBus.Core": {
         "type": "CentralTransitive",
-        "requested": "[8.5.6, )",
-        "resolved": "8.5.6",
-        "contentHash": "HZ5j24eAzHZRqTzHUK50o3NLl/SWC990G3PFEWCROfopKKMr1jC5BukwH+rvgIHUSKnbfUjgTyX9+OYvZD8x9g==",
+        "requested": "[8.5.7, )",
+        "resolved": "8.5.7",
+        "contentHash": "sGWdJWIIQ7g9PWMusJB7iZIUeQ4NosoBhSgLdbogjm7sG5eMDL0u2+5sVSP/zvxStID3CfVn3Dcm6nsBx5k5Vw==",
         "dependencies": {
           "Azure.Identity": "1.17.1",
           "Azure.Messaging.ServiceBus": "7.20.1",
-          "MassTransit": "8.5.6"
+          "MassTransit": "8.5.7"
         }
       },
       "MassTransit.EntityFrameworkCore": {
         "type": "CentralTransitive",
-        "requested": "[8.5.6, )",
-        "resolved": "8.5.6",
-        "contentHash": "6JguexoVEnDfqkjjDFKdaTcSsk/IKEX+lOPjtMvPKOt3FAJivmhTyghFnW18//6Ux8O959M7UqftemyqwZSZiA==",
+        "requested": "[8.5.7, )",
+        "resolved": "8.5.7",
+        "contentHash": "ZOx5WseH83PXk/We2c0gWT8+4f0Z27kP0yU2mLq8CSlq9xa+Ke61exu7Th2wjgZCMGSjwtdHlBHMJNZnyQg1vA==",
         "dependencies": {
-          "MassTransit": "8.5.6",
+          "MassTransit": "8.5.7",
           "Microsoft.EntityFrameworkCore.Relational": "10.0.0",
           "Microsoft.Extensions.Caching.Memory": "10.0.0"
         }
       },
       "MassTransit.Kafka": {
         "type": "CentralTransitive",
-        "requested": "[8.5.6, )",
-        "resolved": "8.5.6",
-        "contentHash": "RJPtsiEWnXoVna3V/hKtPQ1GLxyDkLzfnbRiEN8QWOcgsJiv0HNQySsgIQ8rlTk/H011j4wbmj/IRj1Equ1Dvg==",
+        "requested": "[8.5.7, )",
+        "resolved": "8.5.7",
+        "contentHash": "qmot96IehdgICM1UyNWi7zTCz+UvnIkCVK46n0kp2Wjs1c/wG0rUqLEPltIoQu0IUf7sgfhkf7YdJlMefIwJcA==",
         "dependencies": {
           "Confluent.Kafka": "2.12.0",
-          "MassTransit": "8.5.6"
+          "MassTransit": "8.5.7"
         }
       },
       "MassTransit.RabbitMQ": {
         "type": "CentralTransitive",
-        "requested": "[8.5.6, )",
-        "resolved": "8.5.6",
-        "contentHash": "WTgnhCCXOfn7c0bZd69A0qHCzGd99cXHugizdRKI9usCmgzSmgJRDov65aM4Ah0uspPs+yxQ973JegCT0nfO5g==",
+        "requested": "[8.5.7, )",
+        "resolved": "8.5.7",
+        "contentHash": "EgT/5pBsDiSqktP+eHE7ssLW6FTfQ0Cd6Kt2Ug/VwM+VSJx7Ua/8/Hyi+HPpt3/qt40qQI5j2/s9xDOrbAkU3w==",
         "dependencies": {
-          "MassTransit": "8.5.6",
+          "MassTransit": "8.5.7",
           "RabbitMQ.Client": "7.2.0"
         }
       },

@@ -352,7 +352,7 @@
         "dependencies": {
           "AutoMapper": "[15.1.0, )",
           "AutoMapper.Extensions.ExpressionMapping": "[9.0.1, )",
-          "MassTransit.EntityFrameworkCore": "[8.5.6, )",
+          "MassTransit.EntityFrameworkCore": "[8.5.7, )",
           "Microsoft.EntityFrameworkCore": "[10.0.0, )",
           "Microsoft.EntityFrameworkCore.Relational": "[10.0.0, )",
           "Microsoft.EntityFrameworkCore.SqlServer": "[10.0.0, )",
@@ -384,11 +384,11 @@
       },
       "MassTransit": {
         "type": "CentralTransitive",
-        "requested": "[8.5.6, )",
-        "resolved": "8.5.6",
-        "contentHash": "rCitgMO7w3+7xh5ck+Fm0zbezbt9WDtbcOU4K2z0MDphLf7Va8tuZE/gCqILcposLvMg7ISyCcZuXwgtjtBrZw==",
+        "requested": "[8.5.7, )",
+        "resolved": "8.5.7",
+        "contentHash": "ZMJAhl7EHBhHvH1c/Jc6FZdV2sNgf5DETfxVq1Wm7i0By6o8LvrVQakBAvC7GK2ZHMJB2kmeD5YM3JPSGvT3HA==",
         "dependencies": {
-          "MassTransit.Abstractions": "8.5.6",
+          "MassTransit.Abstractions": "8.5.7",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.0",
           "Microsoft.Extensions.Diagnostics.HealthChecks": "10.0.0",
           "Microsoft.Extensions.Hosting.Abstractions": "10.0.0",
@@ -398,17 +398,17 @@
       },
       "MassTransit.Abstractions": {
         "type": "CentralTransitive",
-        "requested": "[8.5.6, )",
-        "resolved": "8.5.6",
-        "contentHash": "ur/fBPI8nrBpa2erURfGC60AoIZTbLcF/fUP+YmwvLxzm17YJHki0ITHKD/SJUPQwWPICJq0wq/N+327kGdhEg=="
+        "requested": "[8.5.7, )",
+        "resolved": "8.5.7",
+        "contentHash": "HdS4nzARrW34F+ftZpfykSEwmvEFD8Z+lRulwakt0YU9xg4IE3bUmbls15vuOxfC2YDtcr7y3+SQYzXx6fG/vA=="
       },
       "MassTransit.EntityFrameworkCore": {
         "type": "CentralTransitive",
-        "requested": "[8.5.6, )",
-        "resolved": "8.5.6",
-        "contentHash": "6JguexoVEnDfqkjjDFKdaTcSsk/IKEX+lOPjtMvPKOt3FAJivmhTyghFnW18//6Ux8O959M7UqftemyqwZSZiA==",
+        "requested": "[8.5.7, )",
+        "resolved": "8.5.7",
+        "contentHash": "ZOx5WseH83PXk/We2c0gWT8+4f0Z27kP0yU2mLq8CSlq9xa+Ke61exu7Th2wjgZCMGSjwtdHlBHMJNZnyQg1vA==",
         "dependencies": {
-          "MassTransit": "8.5.6",
+          "MassTransit": "8.5.7",
           "Microsoft.EntityFrameworkCore.Relational": "10.0.0",
           "Microsoft.Extensions.Caching.Memory": "10.0.0"
         }
