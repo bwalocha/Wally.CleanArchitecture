@@ -131,26 +131,21 @@
           "condition": "(!enableReverseProxy)",
           "exclude": [
             "Wally.CleanArchitecture.ApiGateway/**/*",
-            "Wally.CleanArchitecture.ApiGateway.sln",
-            "Wally.CleanArchitecture.ApiGateway-update.cmd",
-            "Wally.CleanArchitecture.ApiGateway-vulnerable-check.cmd"
+            "Wally.CleanArchitecture.ApiGateway*"
           ]
         },
         {
           "condition": "(!enableMicroService)",
           "exclude": [
             "Wally.CleanArchitecture.MicroService/**/*",
-            "Wally.CleanArchitecture.MicroService.sln",
-            "Wally.CleanArchitecture.MicroService-update.cmd",
-            "Wally.CleanArchitecture.MicroService-vulnerable-check.cmd"
+            "Wally.CleanArchitecture.MicroService*"
           ]
         },
         {
           "condition": "(!enableFrontend)",
           "exclude": [
             "wally.cleanarchitecture.webapp*/**/*",
-            "wally.cleanarchitecture.webapp-update.cmd",
-            "wally.cleanarchitecture.webapp-recreate.cmd"
+            "wally.cleanarchitecture.webapp*"
           ]
         },
         {
