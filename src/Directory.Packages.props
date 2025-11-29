@@ -76,7 +76,7 @@
     <PackageVersion Include="TngTech.ArchUnitNET.xUnit" Version="0.12.3" />
     <PackageVersion Include="Ulid" Version="1.4.1" />
     <PackageVersion Include="Verify.Http" Version="7.5.1" />
-    <PackageVersion Include="Verify.Xunit" Version="31.7.2" />
+    <PackageVersion Include="Verify.Xunit" Version="31.7.3" />
     <PackageVersion Include="Yarp.ReverseProxy" Version="2.3.0" />
     <PackageVersion Include="JsonNet.ContractResolvers" Version="2.0.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.0" />
