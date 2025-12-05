@@ -4,7 +4,7 @@ variables:
   TPL_PROJECT_NAME: "Wally.CleanArchitecture.Template"
   NPM_PROJECT_NAME: "Wally.CleanArchitecture.MicroService.Application.Contracts"
   #
-  VERSION: "1.3.${CI_PIPELINE_ID}"
+  VERSION: "1.10.${CI_PIPELINE_ID}"
   #CI_DEBUG_TRACE: "true"
 
 stages:

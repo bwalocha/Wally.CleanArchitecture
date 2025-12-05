@@ -6,11 +6,13 @@ namespace Wally.CleanArchitecture.MicroService.Application.MapperProfiles.Users;
 
 public class UserProfile : Profile
 {
+	// TODO: Use CreateProjection instead of CreateMap
+	// https://docs.automapper.io/en/latest/11.0-Upgrade-Guide.html#createprojection
 	public UserProfile()
 	{
-		CreateMap<User, GetUsersRequest>();
-		CreateMap<User, GetUsersResult>();
+		CreateProjection<User, GetUsersRequest>();
+		CreateProjection<User, GetUsersResult>();
 
-		CreateMap<User, GetUserResult>();
+		CreateProjection<User, GetUserResult>();
 	}
 }

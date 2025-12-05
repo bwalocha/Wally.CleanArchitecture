@@ -1,4 +1,4 @@
-﻿using AutoMapper.Extensions.ExpressionMapping;
+﻿// using AutoMapper.Extensions.ExpressionMapping;
 using Microsoft.Extensions.DependencyInjection;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 
@@ -10,7 +10,7 @@ public static class MapperExtensions
 	{
 		services.AddAutoMapper(a =>
 		{
-			a.AddExpressionMapping();
+			// a.AddExpressionMapping();
 			a.AddMaps(typeof(IPresentationAssemblyMarker).Assembly);
 			a.LicenseKey = settings.MapperSettings.LicenseKey;
 		});

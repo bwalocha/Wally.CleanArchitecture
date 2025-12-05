@@ -77,7 +77,7 @@
             Available values:
                 net45, net461, netcoreapp1.0, netcoreapp1.1, netcoreapp2.0, netcoreapp2.1, netcoreapp2.2
         -->
-        <RtForceTargetFramework>net8.0</RtForceTargetFramework>
+        <RtForceTargetFramework>net10.0</RtForceTargetFramework>
 
     </PropertyGroup>
 

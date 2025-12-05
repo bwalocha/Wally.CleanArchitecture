@@ -86,9 +86,9 @@
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
-        "requested": "[10.16.0.128591, )",
-        "resolved": "10.16.0.128591",
-        "contentHash": "W/jZGbsMFvnTY112Ab2WZArzWtkGQuMrQdromFpDak+GO/DKcgn4O2tTun/fQgDBpnQJOyyTdzQrQPzPJ544jg=="
+        "requested": "[10.16.1.129956, )",
+        "resolved": "10.16.1.129956",
+        "contentHash": "XjMarxz00Xc+GD8JGYut1swL0RIw2iwfBhltEITsxsqC/MDLjK+8dk58fPYkS+YPwtdqzkU4VUuSqX3qrN2HYA=="
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
@@ -147,14 +147,14 @@
       },
       "Verify.Xunit": {
         "type": "Direct",
-        "requested": "[31.7.3, )",
-        "resolved": "31.7.3",
-        "contentHash": "VUwJMHEtSjjWd6pBTbvJ1h9a76/+3sv8ZazT9MChdMVSXTk5uwxarE66We/WEs/Clj2/caGseN33rJl5hGBYLQ==",
+        "requested": "[31.8.0, )",
+        "resolved": "31.8.0",
+        "contentHash": "f+oaf/znLk/aeX6nAK9z8gjAuAnpZPSr9vixHAMveS6G3FP9dBCDCvu7UsZUKBQLgVT17Ie38LkXvmFgLx7Aqw==",
         "dependencies": {
           "Argon": "0.33.0",
           "DiffEngine": "17.0.1",
           "SimpleInfoName": "3.1.2",
-          "Verify": "31.7.3",
+          "Verify": "31.8.0",
           "xunit.abstractions": "2.0.3",
           "xunit.extensibility.execution": "2.9.3"
         }
@@ -1228,8 +1228,8 @@
       },
       "Verify": {
         "type": "Transitive",
-        "resolved": "31.7.3",
-        "contentHash": "bNjAX8UhxqPHZn98cWWoY01c058uknsNG/iutOFhpQsP56ppShnvbV47FquwVI23Iu5mTYaFvsO/knF0LtIQUQ==",
+        "resolved": "31.8.0",
+        "contentHash": "xZFQX/xVM8rCG1LkXVSBi7cp+eujrE++RDTMMztw6Vt1KjoETFsr8hd0uwYHmIDpvHu/vK877WVn8XVMxDHFfA==",
         "dependencies": {
           "Argon": "0.33.0",
           "DiffEngine": "17.0.1",
@@ -1299,7 +1299,7 @@
       "wally.cleanarchitecture.microservice.application.di.microsoft": {
         "type": "Project",
         "dependencies": {
-          "AutoMapper.Extensions.ExpressionMapping": "[9.0.1, )",
+          "AutoMapper": "[16.0.0, )",
           "MassTransit.EntityFrameworkCore": "[8.5.7, )",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[10.0.0, )",
           "StyleCop.Analyzers": "[1.1.118, )",
@@ -1309,7 +1309,7 @@
       "wally.cleanarchitecture.microservice.application.mapperprofiles": {
         "type": "Project",
         "dependencies": {
-          "AutoMapper": "[15.1.0, )",
+          "AutoMapper": "[16.0.0, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
@@ -1318,7 +1318,7 @@
       "wally.cleanarchitecture.microservice.application.messages": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "[12.1.0, )",
+          "FluentValidation": "[12.1.1, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
@@ -1404,8 +1404,7 @@
       "wally.cleanarchitecture.microservice.infrastructure.persistence": {
         "type": "Project",
         "dependencies": {
-          "AutoMapper": "[15.1.0, )",
-          "AutoMapper.Extensions.ExpressionMapping": "[9.0.1, )",
+          "AutoMapper": "[16.0.0, )",
           "MassTransit.EntityFrameworkCore": "[8.5.7, )",
           "Microsoft.EntityFrameworkCore": "[10.0.0, )",
           "Microsoft.EntityFrameworkCore.Relational": "[10.0.0, )",
@@ -1443,7 +1442,7 @@
       "wally.cleanarchitecture.microservice.infrastructure.pipelinebehaviours": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "[12.1.0, )",
+          "FluentValidation": "[12.1.1, )",
           "Microsoft.EntityFrameworkCore": "[10.0.0, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.0, )",
           "Serilog": "[4.3.0, )",
@@ -1471,6 +1470,8 @@
       "wally.cleanarchitecture.microservice.webapi": {
         "type": "Project",
         "dependencies": {
+          "AutoMapper": "[16.0.0, )",
+          "AutoMapper.Extensions.ExpressionMapping": "[9.0.1, )",
           "BouncyCastle.Cryptography": "[2.6.2, )",
           "Serilog.AspNetCore": "[10.0.0, )",
           "Serilog.Sinks.ApplicationInsights": "[4.1.0, )",
@@ -1584,12 +1585,12 @@
       },
       "AutoMapper": {
         "type": "CentralTransitive",
-        "requested": "[15.1.0, )",
-        "resolved": "15.1.0",
-        "contentHash": "uJXRC0ysO+i3fuW1onh0cUmaLbEwfMWwAZ5nw2eKhYccHwDgRhSC4Qj3rNdBy4vdhnC3r4NinhhldANKNWpH1Q==",
+        "requested": "[16.0.0, )",
+        "resolved": "16.0.0",
+        "contentHash": "JIhkKjEsUcIPPbCR7cGQlH3a2ySLW2Tof6CXcJb5WbaoUkniREpJOlC2ROkaM/nck2b5JjptLIUdHvbItGvLGQ==",
         "dependencies": {
-          "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
-          "Microsoft.Extensions.Options": "8.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "10.0.0",
+          "Microsoft.Extensions.Options": "10.0.0",
           "Microsoft.IdentityModel.JsonWebTokens": "8.14.0"
         }
       },
@@ -1660,9 +1661,9 @@
       },
       "FluentValidation": {
         "type": "CentralTransitive",
-        "requested": "[12.1.0, )",
-        "resolved": "12.1.0",
-        "contentHash": "FqWEn8BdbbFEHGanj9K8SVo+LyBeFWy2rolaE+e1TNUbifr8M7Iss+I1AqTSc8kjKtvjl/WN4XIHiRpslh42bA=="
+        "requested": "[12.1.1, )",
+        "resolved": "12.1.1",
+        "contentHash": "EPpkIe1yh1a0OXyC100oOA8WMbZvqUu5plwhvYcb7oSELfyUZzfxV48BLhvs3kKo4NwG7MGLNgy1RJiYtT8Dpw=="
       },
       "FluentValidation.AspNetCore": {
         "type": "CentralTransitive",

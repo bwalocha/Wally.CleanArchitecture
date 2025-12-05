@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <ItemGroup>
-        <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" />
+        <PackageReference Include="AutoMapper" />
+        <!--<PackageReference Include="AutoMapper.Extensions.ExpressionMapping" />-->
         <PackageReference Include="MassTransit.EntityFrameworkCore" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
     </ItemGroup>
