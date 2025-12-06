@@ -144,6 +144,7 @@ public static class ArchUnitNetExtensions
 				if (property.Setter is null)
 				{
 					yield return new ConditionResult(property, true, $"{property.FullName} is {property.Visibility}.");
+					continue;
 				}
 
 				var pass = _visibilities.Contains(property.SetterVisibility);
