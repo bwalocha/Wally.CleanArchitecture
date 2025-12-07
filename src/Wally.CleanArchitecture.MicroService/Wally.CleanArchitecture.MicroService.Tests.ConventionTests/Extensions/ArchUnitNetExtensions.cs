@@ -182,6 +182,7 @@ public static class ArchUnitNetExtensions
 				if (property.Setter is null)
 				{
 					yield return new ConditionResult(property, true, $"{property.FullName} is {property.Visibility}.");
+					continue;
 				}
 
 				if (property.Writability == Writability.InitOnly)
@@ -190,6 +191,7 @@ public static class ArchUnitNetExtensions
 					{
 						yield return new ConditionResult(property, true,
 							$"{property.FullName} has required and init-only setter.");
+						continue;
 					}
 
 					yield return new ConditionResult(property, false,
