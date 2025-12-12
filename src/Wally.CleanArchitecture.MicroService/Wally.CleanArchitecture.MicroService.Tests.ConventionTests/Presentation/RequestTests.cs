@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using Wally.CleanArchitecture.MicroService.Application;
+using Wally.CleanArchitecture.MicroService.Infrastructure.SchedulerService;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 using Wally.CleanArchitecture.MicroService.WebApi;
 using Wally.CleanArchitecture.MicroService.WebApi.Abstractions;
@@ -160,6 +161,7 @@ public class RequestTests
 		var types = assemblies.GetAllTypes()
 			.Where(a => a.Name.EndsWith("Request"))
 			.Where(a => a.Name != nameof(IRequest))
+			.Where(a => a.Assembly != typeof(IInfrastructureSchedulerServiceAssemblyMarker).Assembly)
 			.Where(a => a.Assembly != typeof(IApplicationAssemblyMarker).Assembly);
 
 		types.ShouldSatisfyAllConditions(types.Select(a => (Action)(() => a.ImplementsInterface(typeof(IRequest))
