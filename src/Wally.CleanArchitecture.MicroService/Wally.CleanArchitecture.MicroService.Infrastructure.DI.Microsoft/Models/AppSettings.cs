@@ -18,4 +18,6 @@ public class AppSettings
 	public ConnectionStrings ConnectionStrings { get; } = new();
 
 	public MapperSettings MapperSettings { get; } = new();
+	
+	public SchedulerSettings SchedulerSettings { get; } = new();
 }

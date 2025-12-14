@@ -27,7 +27,7 @@ public static class ServiceCollectionExtensions
 		services.AddMessaging(settings);
 		services.AddEventHub();
 		services.AddBackgroundServices(settings);
-		services.AddScheduler();
+		services.AddScheduler(settings.SchedulerSettings);
 
 		return services;
 	}

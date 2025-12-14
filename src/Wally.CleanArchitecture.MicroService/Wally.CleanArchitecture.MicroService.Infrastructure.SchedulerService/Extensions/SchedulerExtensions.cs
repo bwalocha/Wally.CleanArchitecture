@@ -5,19 +5,20 @@ using TickerQ.DependencyInjection;
 using TickerQ.EntityFrameworkCore.Customizer;
 using TickerQ.EntityFrameworkCore.DependencyInjection;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
+using Wally.CleanArchitecture.MicroService.Infrastructure.SchedulerService.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.SchedulerService.Handlers;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.SchedulerService.Extensions;
 
 public static class SchedulerExtensions
 {
-	public static IServiceCollection AddScheduler(this IServiceCollection services)
+	public static IServiceCollection AddScheduler(this IServiceCollection services, ISchedulerSettings settings)
 	{
 		services.AddTickerQ(options =>
 		{
 			options.ConfigureScheduler(schedulerOptions =>
 			{
-				schedulerOptions.MaxConcurrency = 10;
+				schedulerOptions.MaxConcurrency = settings.MaxConcurrency;
 				schedulerOptions.NodeIdentifier = "Wally.CleanArchitecture.MicroService";
 			});
 
@@ -33,7 +34,8 @@ public static class SchedulerExtensions
 			// Dashboard
 			options.AddDashboard(dashboardOptions =>
 			{
-				dashboardOptions.SetBasePath("/scheduler");
+				dashboardOptions.SetBasePath(settings.BasePath);
+				dashboardOptions.SetBackendDomain(settings.BackendDomain);
 				dashboardOptions.WithNoAuth(); // TODO: consider dashboardOptions.WithBasicAuth(user, password);
 			});
 		});
