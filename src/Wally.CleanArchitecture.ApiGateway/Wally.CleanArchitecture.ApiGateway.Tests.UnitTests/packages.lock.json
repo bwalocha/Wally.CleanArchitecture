@@ -16,9 +16,9 @@
       },
       "JunitXml.TestLogger": {
         "type": "Direct",
-        "requested": "[7.0.2, )",
-        "resolved": "7.0.2",
-        "contentHash": "f6swYzT8DOVS6byaz1f7SYT06aoZTFXooLlJFX9Da3JB1/RLK+Z0UW1Q33NqMX+T9JFpal276qAJfPVUp96qbg=="
+        "requested": "[7.1.0, )",
+        "resolved": "7.1.0",
+        "contentHash": "Iu3dSnhJ+gzjlOtpIPZgHvJbmvmPbIGjxT7h5pNxxMiNTXKfxgi0O0eehnZ29qlC5bElAM0o9dSrjzjydCaGiA=="
       },
       "Microsoft.NET.Test.Sdk": {
         "type": "Direct",

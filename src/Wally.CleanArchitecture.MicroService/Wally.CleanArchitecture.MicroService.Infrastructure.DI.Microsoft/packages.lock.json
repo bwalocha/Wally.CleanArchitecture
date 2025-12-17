@@ -159,14 +159,14 @@
           "Microsoft.Data.SqlClient": "5.1.4"
         }
       },
-      "FluentValidation.AspNetCore": {
+      "FluentValidation.DependencyInjectionExtensions": {
         "type": "Direct",
-        "requested": "[11.3.1, )",
-        "resolved": "11.3.1",
-        "contentHash": "FjkfrGGwC+25oH8QpX1ti3gxkFjDDtotkAQWyQz2CkwQwEfRKTANjhh77I79kY8dov2ydK1SY+e4jiOWsbbDdQ==",
+        "requested": "[12.1.1, )",
+        "resolved": "12.1.1",
+        "contentHash": "D0VXh4dtjjX2aQizuaa0g6R8X3U1JaVqJPfGCvLwZX9t/O2h7tkpbitbadQMfwcgSPdDbI2vDxuwRMv/Uf9dHA==",
         "dependencies": {
-          "FluentValidation": "11.11.0",
-          "FluentValidation.DependencyInjectionExtensions": "11.11.0"
+          "FluentValidation": "12.1.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.1.0"
         }
       },
       "MassTransit": {
@@ -297,15 +297,6 @@
         "contentHash": "7ELExeje+T/KOywHuHwZBGQNtYlepUaYRFXWgoEaT1iKpFJVwOlE1Y2+uqHI2QQmah0Ue+XgRmDy924vWHfJ6Q==",
         "dependencies": {
           "OpenTelemetry": "1.14.0"
-        }
-      },
-      "OpenTelemetry.Exporter.Prometheus.AspNetCore": {
-        "type": "Direct",
-        "requested": "[1.14.0-beta.1, )",
-        "resolved": "1.14.0-beta.1",
-        "contentHash": "YL9hQA1BDXCTQ4AkrQJ7DQST0W/7zwOSwJg8MTyIArWP1tCwyC0bh+ih6TjXhuridJkFGfh6UNgEtLgSTZak7A==",
-        "dependencies": {
-          "OpenTelemetry": "[1.14.0, 2.0.0)"
         }
       },
       "OpenTelemetry.Extensions.Hosting": {
@@ -468,15 +459,6 @@
         "contentHash": "gSzy/Cg04pG7y6+VOXJRsLuy+JlLDcwFYFb/Y5vsZ9qHNNBk69VjeiIyx8SMeg88Q8v02cc9btEVfxBOBfN6Kw==",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "10.0.0-rc.2.25502.107"
-        }
-      },
-      "FluentValidation.DependencyInjectionExtensions": {
-        "type": "Transitive",
-        "resolved": "11.11.0",
-        "contentHash": "viTKWaMbL3yJYgGI0DiCeavNbE9UPMWFVK2XS9nYXGbm3NDMd0/L5ER4wBzmTtW3BYh3SrlSXm9RACiKZ6stlA==",
-        "dependencies": {
-          "FluentValidation": "11.11.0",
-          "Microsoft.Extensions.Dependencyinjection.Abstractions": "2.1.0"
         }
       },
       "Fractions": {

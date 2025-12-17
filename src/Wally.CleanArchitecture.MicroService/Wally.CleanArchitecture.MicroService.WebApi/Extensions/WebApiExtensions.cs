@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Net.Mime;
 using FluentValidation;
-using FluentValidation.AspNetCore;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -51,7 +50,7 @@ public static class WebApiExtensions
 
 		services.AddValidatorsFromAssemblyContaining<IPresentationAssemblyMarker>(includeInternalTypes: true)
 			// .AddValidatorsFromAssemblyContaining<IApplicationContractsAssemblyMarker>(includeInternalTypes: true)
-			.AddFluentValidationAutoValidation(config => config.DisableDataAnnotationsValidation = true)
+			// .AddFluentValidationAutoValidation(config => config.DisableDataAnnotationsValidation = true)
 			.Configure<ApiBehaviorOptions>(options =>
 			{
 				options.InvalidModelStateResponseFactory = context => throw new ValidationException(context

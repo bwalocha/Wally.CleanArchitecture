@@ -39,7 +39,7 @@ public static class OpenTelemetryExtensions
 						"System.Net.Http",
 						"Wally.CleanArchitecture.ApiGateway.WebApi");
 				
-				metrics.AddPrometheusExporter();
+				// metrics.AddPrometheusExporter();
 			})
 			.WithTracing(tracing =>
 			{
@@ -66,7 +66,7 @@ public static class OpenTelemetryExtensions
 
 	public static IApplicationBuilder UseOpenTelemetry(this IApplicationBuilder app)
 	{
-		app.UseOpenTelemetryPrometheusScrapingEndpoint();
+		// app.UseOpenTelemetryPrometheusScrapingEndpoint();
 		
 		return app;
 	}

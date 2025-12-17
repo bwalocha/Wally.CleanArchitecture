@@ -33,21 +33,21 @@
           "Microsoft.EntityFrameworkCore.InMemory": "8.0.11"
         }
       },
-      "FluentValidation.AspNetCore": {
+      "FluentValidation.DependencyInjectionExtensions": {
         "type": "Direct",
-        "requested": "[11.3.1, )",
-        "resolved": "11.3.1",
-        "contentHash": "FjkfrGGwC+25oH8QpX1ti3gxkFjDDtotkAQWyQz2CkwQwEfRKTANjhh77I79kY8dov2ydK1SY+e4jiOWsbbDdQ==",
+        "requested": "[12.1.1, )",
+        "resolved": "12.1.1",
+        "contentHash": "D0VXh4dtjjX2aQizuaa0g6R8X3U1JaVqJPfGCvLwZX9t/O2h7tkpbitbadQMfwcgSPdDbI2vDxuwRMv/Uf9dHA==",
         "dependencies": {
-          "FluentValidation": "11.11.0",
-          "FluentValidation.DependencyInjectionExtensions": "11.11.0"
+          "FluentValidation": "12.1.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.1.0"
         }
       },
       "Microsoft.AspNetCore.Authentication.JwtBearer": {
         "type": "Direct",
-        "requested": "[10.0.0, )",
-        "resolved": "10.0.0",
-        "contentHash": "0BgDfT1GoZnzjJOBwx5vFMK5JtqsTEas9pCEwd1/KKxNUAqFmreN60WeUoF+CsmSd9tOQuqWedvdBo/QqHuNTQ==",
+        "requested": "[10.0.1, )",
+        "resolved": "10.0.1",
+        "contentHash": "lvyUEBVv7V1/UvGxfOV3a0kyaQatPAU+ZHru7xha6WVOpa+7aJtKehbiu9VpAt/G50FR+hUwL4nTY33ijsCXwA==",
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "8.0.1"
         }
@@ -94,15 +94,6 @@
         "contentHash": "7ELExeje+T/KOywHuHwZBGQNtYlepUaYRFXWgoEaT1iKpFJVwOlE1Y2+uqHI2QQmah0Ue+XgRmDy924vWHfJ6Q==",
         "dependencies": {
           "OpenTelemetry": "1.14.0"
-        }
-      },
-      "OpenTelemetry.Exporter.Prometheus.AspNetCore": {
-        "type": "Direct",
-        "requested": "[1.14.0-beta.1, )",
-        "resolved": "1.14.0-beta.1",
-        "contentHash": "YL9hQA1BDXCTQ4AkrQJ7DQST0W/7zwOSwJg8MTyIArWP1tCwyC0bh+ih6TjXhuridJkFGfh6UNgEtLgSTZak7A==",
-        "dependencies": {
-          "OpenTelemetry": "[1.14.0, 2.0.0)"
         }
       },
       "OpenTelemetry.Extensions.Hosting": {
@@ -196,15 +187,6 @@
         "dependencies": {
           "AspNetCore.HealthChecks.UI.Core": "9.0.0",
           "Microsoft.EntityFrameworkCore": "8.0.0"
-        }
-      },
-      "FluentValidation.DependencyInjectionExtensions": {
-        "type": "Transitive",
-        "resolved": "11.11.0",
-        "contentHash": "viTKWaMbL3yJYgGI0DiCeavNbE9UPMWFVK2XS9nYXGbm3NDMd0/L5ER4wBzmTtW3BYh3SrlSXm9RACiKZ6stlA==",
-        "dependencies": {
-          "FluentValidation": "11.11.0",
-          "Microsoft.Extensions.Dependencyinjection.Abstractions": "2.1.0"
         }
       },
       "Fractions": {
@@ -641,8 +623,8 @@
       "FluentValidation": {
         "type": "CentralTransitive",
         "requested": "[12.1.1, )",
-        "resolved": "11.11.0",
-        "contentHash": "cyIVdQBwSipxWG8MA3Rqox7iNbUNUTK5bfJi9tIdm4CAfH71Oo5ABLP4/QyrUwuakqpUEPGtE43BDddvEehuYw=="
+        "resolved": "12.1.1",
+        "contentHash": "EPpkIe1yh1a0OXyC100oOA8WMbZvqUu5plwhvYcb7oSELfyUZzfxV48BLhvs3kKo4NwG7MGLNgy1RJiYtT8Dpw=="
       },
       "Microsoft.EntityFrameworkCore": {
         "type": "CentralTransitive",
