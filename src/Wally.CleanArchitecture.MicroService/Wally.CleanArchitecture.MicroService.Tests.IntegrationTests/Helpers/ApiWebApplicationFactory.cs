@@ -19,12 +19,12 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 {
 	private const string MsSqlContainerName = "Wally.CleanArchitecture.MicroService.Tests";
 	private const string MsSqlContainerImageName = "mcr.microsoft.com/mssql/server:2022-CU13-ubuntu-22.04";
-	private const long MsSqlContainerMemoryLimit = 2L * 1024 * 1024 * 1024; // 2GB
+	// private const long MsSqlContainerMemoryLimit = 2L * 1024 * 1024 * 1024; // 2GB
 
 	private readonly MsSqlContainer _dbContainer = new MsSqlBuilder()
 		.WithImage(MsSqlContainerImageName)
 		.WithName(MsSqlContainerName)
-		.WithCreateParameterModifier(a => a.HostConfig.Memory = MsSqlContainerMemoryLimit)
+		// .WithCreateParameterModifier(a => a.HostConfig.Memory = MsSqlContainerMemoryLimit)
 		.WithCleanUp(true)
 		.WithReuse(true)
 		.Build();
