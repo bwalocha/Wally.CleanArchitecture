@@ -25,6 +25,12 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 		.WithImage(MsSqlContainerImageName)
 		.WithName(MsSqlContainerName)
 		// .WithCreateParameterModifier(a => a.HostConfig.Memory = MsSqlContainerMemoryLimit)
+		.WithCreateParameterModifier(a =>
+		{
+			a.HostConfig.Memory = 0;
+			a.HostConfig.MemorySwap = -1;
+			a.HostConfig.PidsLimit = 0;
+		})
 		.WithCleanUp(true)
 		.WithReuse(true)
 		.Build();
