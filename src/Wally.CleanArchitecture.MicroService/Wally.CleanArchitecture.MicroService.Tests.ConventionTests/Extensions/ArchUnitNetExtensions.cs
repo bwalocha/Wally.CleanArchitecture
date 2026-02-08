@@ -7,6 +7,7 @@ using ArchUnitNET.Domain.Extensions;
 using ArchUnitNET.Fluent.Conditions;
 using ArchUnitNET.Fluent.Syntax;
 using ArchUnitNET.Fluent.Syntax.Elements;
+using ArchUnitNET.Fluent.Syntax.Elements.Members;
 using ArchUnitNET.Fluent.Syntax.Elements.Types;
 using ArchUnitNET.Fluent.Syntax.Elements.Types.Classes;
 using Assembly = System.Reflection.Assembly;
@@ -15,29 +16,66 @@ namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 
 public static class ArchUnitNetExtensions
 {
-	public static TGivenRuleTypeConjunction ResideInAssembly<TGivenRuleTypeConjunction, TRuleType>(
-		this GivenTypesThat<TGivenRuleTypeConjunction, TRuleType> givenTypesThat, params Assembly[] assemblies)
-		where TRuleType : IType
-	{
-		return givenTypesThat.ResideInAssembly(assemblies.FirstOrDefault(), assemblies.Skip(1)
-			.ToArray());
-	}
+	// public static TGivenRuleTypeConjunction ResideInAssembly<TGivenRuleTypeConjunction, TRuleType>(
+	// 	this GivenTypesThat<TGivenRuleTypeConjunction, TRuleType> givenTypesThat, params Assembly[] assemblies)
+	// 	where TRuleType : IType
+	// {
+	// 	return givenTypesThat.ResideInAssembly(assemblies.FirstOrDefault(), assemblies.Skip(1)
+	// 		.ToArray());
+	// }
 
+	public static GivenTypesConjunction ResideInAssembly(
+		this GivenTypesThat givenTypesThat,
+		params Assembly[] assemblies)
+	{
+		if (assemblies == null || assemblies.Length == 0)
+		{
+			throw new ArgumentException(
+				"At least one assembly must be provided.",
+				nameof(assemblies));
+		}
+
+		return givenTypesThat.ResideInAssembly(
+			assemblies[0],
+			assemblies.Skip(1).ToArray());
+	}
+	
+	// public static TypesShouldConjunction NotAccessGetter<TType>(
+	// 	this ObjectsShould<TypesShouldConjunction, IType> builder, object? property,
+	// 	[CallerArgumentExpression("property")] string typeAndPropertyName = null!)
+	// {
+	// 	var names = typeAndPropertyName.Split('.');
+	// 	if (names[0] != typeof(TType).Name)
+	// 	{
+	// 		throw new ArgumentException($"'{names[1]}' is not part of '{names[0]}'.");
+	// 	}
+	//
+	// 	return builder.NotCallAny(MethodMembers()
+	// 		.That()
+	// 		.AreDeclaredIn(typeof(TType))
+	// 		.And()
+	// 		.HaveName($"get_{names[1]}()"));
+	// }
+	
 	public static TypesShouldConjunction NotAccessGetter<TType>(
-		this ObjectsShould<TypesShouldConjunction, IType> builder, object? property,
+		this TypesShould builder,
+		object? property,
 		[CallerArgumentExpression("property")] string typeAndPropertyName = null!)
 	{
 		var names = typeAndPropertyName.Split('.');
-		if (names[0] != typeof(TType).Name)
+		if (names.Length != 2 || names[0] != typeof(TType).Name)
 		{
-			throw new ArgumentException($"'{names[1]}' is not part of '{names[0]}'.");
+			throw new ArgumentException(
+				$"'{typeAndPropertyName}' does not reference a property of '{typeof(TType).Name}'.");
 		}
 
-		return builder.NotCallAny(MethodMembers()
-			.That()
-			.AreDeclaredIn(typeof(TType))
-			.And()
-			.HaveName($"get_{names[1]}()"));
+		return builder.NotCallAny(
+			MethodMembers()
+				.That()
+				.AreDeclaredIn(typeof(TType))
+				.And()
+				.HaveName($"get_{names[1]}")
+		);
 	}
 
 	// public static IArchRule HaveOnlyPrivateConstructors(this ClassesShould conjunction)
@@ -64,26 +102,40 @@ public static class ArchUnitNetExtensions
 			.FollowCustomCondition(condition);
 	}
 
-	public static TRuleTypeShouldConjunction HaveOnlyPrivateOrProtectedSetters<TRuleTypeShouldConjunction, TRuleType>(
-		this ObjectsShould<TRuleTypeShouldConjunction, TRuleType> builder)
-		where TRuleType : IMember
-		where TRuleTypeShouldConjunction : SyntaxElement<TRuleType>
+	// public static TRuleTypeShouldConjunction HaveOnlyPrivateOrProtectedSetters<TRuleTypeShouldConjunction, TRuleType>(
+	// 	this ObjectsShould<TRuleTypeShouldConjunction, TRuleType> builder)
+	// 	where TRuleType : IMember
+	// 	where TRuleTypeShouldConjunction : SyntaxElement<TRuleType>
+	// {
+	// 	var condition = new MemberVisibilityShouldBeCondition<TRuleType>(Visibility.Private, Visibility.Protected);
+	//
+	// 	return builder.FollowCustomCondition(condition);
+	// }
+	
+	public static MembersShouldConjunction HaveOnlyPrivateOrProtectedSetters(
+		this MembersShould builder)
 	{
-		var condition = new MemberVisibilityShouldBeCondition<TRuleType>(Visibility.Private, Visibility.Protected);
-
+		var condition = new MemberVisibilityShouldBeCondition<IMember>(Visibility.Private, Visibility.Protected);
 		return builder.FollowCustomCondition(condition);
 	}
-
-	public static TRuleTypeShouldConjunction HaveOnlyInitSetters<TRuleTypeShouldConjunction, TRuleType>(
-		this ObjectsShould<TRuleTypeShouldConjunction, TRuleType> builder)
-		where TRuleType : IMember
-		where TRuleTypeShouldConjunction : SyntaxElement<TRuleType>
+	
+	// public static TRuleTypeShouldConjunction HaveOnlyInitSetters<TRuleTypeShouldConjunction, TRuleType>(
+	// 	this TypesShould builder)
+	// 	where TRuleType : IMember
+	// 	where TRuleTypeShouldConjunction : SyntaxElement<TRuleType>
+	// {
+	// 	var condition = new MemberInitShouldBeCondition<TRuleType>();
+	//
+	// 	return builder.FollowCustomCondition(condition);
+	// }
+	
+	public static MembersShouldConjunction HaveOnlyInitSetters(
+		this MembersShould builder)
 	{
-		var condition = new MemberInitShouldBeCondition<TRuleType>();
-
+		var condition = new MemberInitShouldBeCondition<IMember>();
 		return builder.FollowCustomCondition(condition);
 	}
-
+	
 	private class ConstructorVisibilityShouldBeCondition : ICondition<Class>
 	{
 		private readonly Visibility[] _visibilities;
