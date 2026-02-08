@@ -63,9 +63,9 @@
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
-        "requested": "[10.18.0.131500, )",
-        "resolved": "10.18.0.131500",
-        "contentHash": "Rbad71/k5e8MfG81i03Yh2YQQgovIdmyhWcLRevrcW4h9i1DUB3kKX9O1QiOGXcULLjkTdRAXdR8A8XtinL3Pg=="
+        "requested": "[10.19.0.132793, )",
+        "resolved": "10.19.0.132793",
+        "contentHash": "vDQSFE+KU5pXfVNzz4R4CA0ZGuLO35Sn+a7z2nyV9EM/nHsvl+WFGZ61Uk9eTdbhta1YXzqCMXB2B+6dn6ykVA=="
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
@@ -88,14 +88,14 @@
       },
       "Verify.Xunit": {
         "type": "Direct",
-        "requested": "[31.9.4, )",
-        "resolved": "31.9.4",
-        "contentHash": "l4vkxdIN1/6E7+Lx5Mu6z44SIVdkSxbM6V1UvZ8v68erHhZDVCA0ESHtnYkgnqeLFwiTD1BWvHzFpze9GusHZQ==",
+        "requested": "[31.12.0, )",
+        "resolved": "31.12.0",
+        "contentHash": "iu3LYm748D0iltdApxVza+KqfN7Wg20+K0L6ByayNaHE6fEliiuDLdP7QRDX4degZ0JcKPWcwfZrfLzkdRetVg==",
         "dependencies": {
-          "Argon": "0.33.0",
-          "DiffEngine": "18.3.0",
+          "Argon": "0.33.3",
+          "DiffEngine": "18.4.1",
           "SimpleInfoName": "3.2.0",
-          "Verify": "31.9.4",
+          "Verify": "31.12.0",
           "xunit.abstractions": "2.0.3",
           "xunit.extensibility.execution": "2.9.3"
         }
@@ -119,8 +119,8 @@
       },
       "Argon": {
         "type": "Transitive",
-        "resolved": "0.33.0",
-        "contentHash": "4MIj5MosLqRlKAz16Ir5rz1gyocC6npJGGXqkTIIVby0yPYKk56Lm9X5tEQv6MbStLUOv3aDfya6FKAqcRhxTA=="
+        "resolved": "0.33.3",
+        "contentHash": "J+Qreomx6vyxCxyxOvG7pY+IkaFCI74+4yl0KaG62dcY/G5bTmtQiN1f8ySurLnlN0SXqF+IwcFV6Kgvb3iUEA=="
       },
       "Argon.Xml": {
         "type": "Transitive",
@@ -149,16 +149,16 @@
       },
       "DiffEngine": {
         "type": "Transitive",
-        "resolved": "18.3.0",
-        "contentHash": "9/CKpqMo3HtsmNV/krqR53WOuVqwhqK/FGlPpo8/UtojkFxJBO1oAGkdQ1aQGMBuzqrfbSxitleQZXfwfUihaA==",
+        "resolved": "18.4.1",
+        "contentHash": "9/E4N4auQW4iOKPxP6MpGihpuw0uaxfiLLJfraKrqv02cG2LzVx3ocFwIss70mQFwAolrq58zv5NHwMaqT3+3A==",
         "dependencies": {
-          "EmptyFiles": "8.17.1"
+          "EmptyFiles": "8.17.2"
         }
       },
       "EmptyFiles": {
         "type": "Transitive",
-        "resolved": "8.17.1",
-        "contentHash": "pVmxBQer9yeFhYg6X27YMB/RDxYT99ms5QD8IT2KTj/WzygRtWZ0l7jlk4I4aAztNT7QjvHQ6tQ1/ox07C552A=="
+        "resolved": "8.17.2",
+        "contentHash": "2oyDVmM/DU3g0h2kqcV05zjOUfo9AdwPoduIGh0LZL6nXqSN4qhZna2M/aJoYiQrmIznJ52wxYCmxDnWaRZ1JQ=="
       },
       "Fractions": {
         "type": "Transitive",
@@ -850,11 +850,11 @@
       },
       "Verify": {
         "type": "Transitive",
-        "resolved": "31.9.4",
-        "contentHash": "0EtGbsmPvWHtQysBjAllsR9RD6pIr3gRZ5v1MlVo3cEffbckngjS1v9C2Hou770Ke80ZlczjZnhtUBYgk+y1YA==",
+        "resolved": "31.12.0",
+        "contentHash": "xbvV/nupBxX50JAhVVF1ISV6Q1xjYEsIoLbVh1+St+b1DFOX/xdUXkAZiCtsmH4Rjhf16TtGkYl2C3Hh+6jnPg==",
         "dependencies": {
-          "Argon": "0.33.0",
-          "DiffEngine": "18.3.0",
+          "Argon": "0.33.3",
+          "DiffEngine": "18.4.1",
           "SimpleInfoName": "3.2.0"
         }
       },
@@ -921,7 +921,7 @@
           "OpenTelemetry.Instrumentation.Http": "[1.15.0, )",
           "OpenTelemetry.Instrumentation.Runtime": "[1.15.0, )",
           "StyleCop.Analyzers": "[1.1.118, )",
-          "Swashbuckle.AspNetCore.SwaggerUI": "[10.1.0, )",
+          "Swashbuckle.AspNetCore.SwaggerUI": "[10.1.2, )",
           "System.IdentityModel.Tokens.Jwt": "[8.15.0, )",
           "Yarp.ReverseProxy": "[2.3.0, )"
         }
@@ -1173,9 +1173,9 @@
       },
       "Swashbuckle.AspNetCore.SwaggerUI": {
         "type": "CentralTransitive",
-        "requested": "[10.1.0, )",
-        "resolved": "10.1.0",
-        "contentHash": "ilUsTvGA9hO1ulR7ibdWMWSg3438Iu+pDFcEYUorp+/ClHwaHFdpp/ATfBsFXv2sIRVDbQlEwd5BWBOdMdtKCA=="
+        "requested": "[10.1.2, )",
+        "resolved": "10.1.2",
+        "contentHash": "Zzam+F/g3jpGvSLhqdtOoBe+GEABk+oi9LJxun1wrz52/254sSGWkz1P+U1dDifsXJWVdZusiRuDWLXkJW+7Eg=="
       },
       "System.IdentityModel.Tokens.Jwt": {
         "type": "CentralTransitive",
