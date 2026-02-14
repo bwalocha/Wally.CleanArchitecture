@@ -1,2 +1,2 @@
-dotnet tool update --all --local --framework net8.0
+dotnet tool update --all --local --framework net10.0
 pause
