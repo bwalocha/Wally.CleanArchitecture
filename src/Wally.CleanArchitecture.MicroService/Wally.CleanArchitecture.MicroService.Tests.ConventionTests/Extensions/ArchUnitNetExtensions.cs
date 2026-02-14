@@ -5,8 +5,6 @@ using System.Runtime.CompilerServices;
 using ArchUnitNET.Domain;
 using ArchUnitNET.Domain.Extensions;
 using ArchUnitNET.Fluent.Conditions;
-using ArchUnitNET.Fluent.Syntax;
-using ArchUnitNET.Fluent.Syntax.Elements;
 using ArchUnitNET.Fluent.Syntax.Elements.Members;
 using ArchUnitNET.Fluent.Syntax.Elements.Types;
 using ArchUnitNET.Fluent.Syntax.Elements.Types.Classes;

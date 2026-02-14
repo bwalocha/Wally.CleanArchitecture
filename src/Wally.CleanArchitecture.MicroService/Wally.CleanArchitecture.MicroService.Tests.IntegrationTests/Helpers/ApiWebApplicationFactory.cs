@@ -21,8 +21,8 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 	private const string MsSqlContainerImageName = "mcr.microsoft.com/mssql/server:2022-CU13-ubuntu-22.04";
 	// private const long MsSqlContainerMemoryLimit = 2L * 1024 * 1024 * 1024; // 2GB
 
-	private readonly MsSqlContainer _dbContainer = new MsSqlBuilder()
-		.WithImage(MsSqlContainerImageName)
+	private readonly MsSqlContainer _dbContainer = new MsSqlBuilder(MsSqlContainerImageName)
+		// .WithImage(MsSqlContainerImageName)
 		.WithName(MsSqlContainerName)
 		// .WithCreateParameterModifier(a => a.HostConfig.Memory = MsSqlContainerMemoryLimit)
 		.WithCreateParameterModifier(a =>
@@ -110,7 +110,16 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 
 		return dbContext.SaveChangesAsync();
 	}
-
+	
+	// TODO: The latest TickerQ does not work with IntegrationTests
+	// protected override IHost CreateHost(IHostBuilder builder)
+	// {
+	// 	var host = base.CreateHost(builder);
+	// 	host.UseInfrastructure();
+	//
+	// 	return host;
+	// }
+	
 	protected override IHostBuilder CreateHostBuilder()
 	{
 		return base.CreateHostBuilder() !.ConfigureAppConfiguration(configurationBuilder =>

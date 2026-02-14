@@ -63,4 +63,11 @@ public static class ServiceCollectionExtensions
 
 		return app;
 	}
+
+	public static IHost UseInfrastructure(this IHost host)
+	{
+		host.UseScheduler();
+
+		return host;
+	}
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using TickerQ.Dashboard.DependencyInjection;
 using TickerQ.DependencyInjection;
 using TickerQ.EntityFrameworkCore.Customizer;
@@ -45,8 +46,16 @@ public static class SchedulerExtensions
 
 	public static IApplicationBuilder UseScheduler(this IApplicationBuilder app)
 	{
-		app.UseTickerQ();
-
+		// var host = app.ApplicationServices.GetRequiredService<IHost>();
+		// host.UseTickerQ();
+			
 		return app;
+	}
+	
+	public static IHost UseScheduler(this IHost host)
+	{
+		host.UseTickerQ();
+			
+		return host;
 	}
 }
