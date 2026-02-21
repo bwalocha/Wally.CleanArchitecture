@@ -401,7 +401,7 @@
           "OpenTelemetry.Instrumentation.Http": "[1.15.0, )",
           "OpenTelemetry.Instrumentation.Runtime": "[1.15.0, )",
           "StyleCop.Analyzers": "[1.1.118, )",
-          "Swashbuckle.AspNetCore.SwaggerUI": "[10.1.3, )",
+          "Swashbuckle.AspNetCore.SwaggerUI": "[10.1.4, )",
           "System.IdentityModel.Tokens.Jwt": "[8.16.0, )",
           "Yarp.ReverseProxy": "[2.3.0, )"
         }
@@ -574,13 +574,13 @@
       },
       "Swashbuckle.AspNetCore.SwaggerUI": {
         "type": "CentralTransitive",
-        "requested": "[10.1.2, )",
-        "resolved": "10.1.3",
-        "contentHash": "vraEBz1/68+DTd0utiGvjYt1BqCoSY0RqFk0jJaxvrFwO/alL9VlsYOgNNGnbFH8fJksPfVdNvm1qJ4A+qBSvQ=="
+        "requested": "[10.1.4, )",
+        "resolved": "10.1.4",
+        "contentHash": "A1ewmv/Xq5YkjQoSW29Kc9IoIC6pu210F1Fmzmj1EO7QJLTs6w3tOJatST6s41+Y8eUr5A1JLiXZ14U5EgN6ow=="
       },
       "System.IdentityModel.Tokens.Jwt": {
         "type": "CentralTransitive",
-        "requested": "[8.15.0, )",
+        "requested": "[8.16.0, )",
         "resolved": "8.16.0",
         "contentHash": "rrs2u7DRMXQG2yh0oVyF/vLwosfRv20Ld2iEpYcKwQWXHjfV+gFXNQsQ9p008kR9Ou4pxBs68Q6/9zC8Gi1wjg==",
         "dependencies": {
