@@ -926,14 +926,9 @@
       },
       "TickerQ.Utilities": {
         "type": "Transitive",
-        "resolved": "10.1.1",
-        "contentHash": "5ZNkCg6U+MI5d7iKFc5qIndeUkqmLxCI+UasOzEuP0moNWg8yW5hax3Xj4UmoueXl3v8cKumnddetaxtEfPccA==",
+        "resolved": "10.0.2",
+        "contentHash": "iANtJheksqWu2ukQn4QYWTfdtBbfxLW4JJGIzHdK1WG51/oKAfzQAx0uHm2wXQ4e8QsFBDH23d3K+CyLnFaJ5g==",
         "dependencies": {
-          "Microsoft.Extensions.Caching.Abstractions": "[10.0.0, 11.0.0)",
-          "Microsoft.Extensions.Configuration.Abstractions": "[10.0.0, 11.0.0)",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "[10.0.0, 11.0.0)",
-          "Microsoft.Extensions.Hosting.Abstractions": "[10.0.0, 11.0.0)",
-          "Microsoft.Extensions.Logging.Abstractions": "[10.0.0, 11.0.0)",
           "NCrontab": "3.3.0"
         }
       },
@@ -1132,7 +1127,7 @@
           "Microsoft.EntityFrameworkCore.Relational": "[10.0.3, )",
           "Microsoft.EntityFrameworkCore.SqlServer": "[10.0.3, )",
           "StyleCop.Analyzers": "[1.1.118, )",
-          "TickerQ.EntityFrameworkCore": "[10.1.1, )",
+          "TickerQ.EntityFrameworkCore": "[10.0.2, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
@@ -1182,9 +1177,9 @@
           "Microsoft.EntityFrameworkCore.Sqlite": "[10.0.3, )",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[10.0.3, )",
           "StyleCop.Analyzers": "[1.1.118, )",
-          "TickerQ": "[10.1.1, )",
-          "TickerQ.Dashboard": "[10.1.1, )",
-          "TickerQ.EntityFrameworkCore": "[10.1.1, )",
+          "TickerQ": "[10.0.2, )",
+          "TickerQ.Dashboard": "[10.0.2, )",
+          "TickerQ.EntityFrameworkCore": "[10.0.2, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence": "[1.0.0, )"
         }
@@ -1737,32 +1732,31 @@
       },
       "TickerQ": {
         "type": "CentralTransitive",
-        "requested": "[10.1.1, )",
-        "resolved": "10.1.1",
-        "contentHash": "GvoXY77fT+eIYHEx7zlhzpDmWYcqUaQjgI6KAD03VGrTVrOmYbiW7xNyeFyioX/qXBnu+xA1eKyPjCD+8aSfSw==",
+        "requested": "[10.0.2, )",
+        "resolved": "10.0.2",
+        "contentHash": "L8N3V2rHl9CI5+/c8bJeLLwUuAFdhCaXbdtEMK5VX/GSCoEs0IbClnuE9w3lvWda7q0nohUOwKAt+7/lap/Gqg==",
         "dependencies": {
-          "Microsoft.Extensions.Hosting.Abstractions": "[10.0.0, 11.0.0)",
-          "TickerQ.Utilities": "10.1.1"
+          "TickerQ.Utilities": "10.0.2"
         }
       },
       "TickerQ.Dashboard": {
         "type": "CentralTransitive",
-        "requested": "[10.1.1, )",
-        "resolved": "10.1.1",
-        "contentHash": "6cf96pmbfXdhoHqbkc7P+HR7tMLOnCPCZqcIDCIQBGtEPIMIUJjnbyshTx5Fy7oucMS2wA9ETLmqYZEDtWQ0jw==",
+        "requested": "[10.0.2, )",
+        "resolved": "10.0.2",
+        "contentHash": "05vfpknWluZAj93pfkfnR891JFWnPVWoJfT+hEwpby37o4/6a859eMu+IS0Mh6iczDArxzVGvWh1DCdwBjw0Dw==",
         "dependencies": {
-          "TickerQ.Utilities": "10.1.1"
+          "TickerQ.Utilities": "10.0.2"
         }
       },
       "TickerQ.EntityFrameworkCore": {
         "type": "CentralTransitive",
-        "requested": "[10.1.1, )",
-        "resolved": "10.1.1",
-        "contentHash": "NZax6sn+Plw8jBBMEztcYzaL3inY5bbzf389hL8gyL5yhgFxBZ5nZjh2Kyn4hAyPUjpnFwUxV15pQa4A3hlFzQ==",
+        "requested": "[10.0.2, )",
+        "resolved": "10.0.2",
+        "contentHash": "jUGK9HnTa1a9Ao0v65rCdC+U5z8m1qyGafeH8tYXfnN/oYZRGRjkk0EU7V9J6QTrFQga9qq4Nf8Tph9B0nP9zA==",
         "dependencies": {
           "FlexLabs.EntityFrameworkCore.Upsert": "[10.0.0-beta1, 11.0.0)",
           "Microsoft.EntityFrameworkCore.Relational": "[10.0.0, 11.0.0)",
-          "TickerQ.Utilities": "10.1.1"
+          "TickerQ.Utilities": "10.0.2"
         }
       },
       "Ulid": {

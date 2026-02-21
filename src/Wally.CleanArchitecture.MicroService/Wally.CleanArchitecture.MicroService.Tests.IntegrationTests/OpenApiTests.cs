@@ -24,7 +24,7 @@ public class OpenApiTests : IDisposable
 		Dispose(true);
 		GC.SuppressFinalize(this);
 	}
-
+	
 	protected virtual void Dispose(bool disposing)
 	{
 		if (disposing)
@@ -33,7 +33,7 @@ public class OpenApiTests : IDisposable
 		}
 	}
 
-	[Fact(Skip = "TODO: The latest TickerQ does not work with IntegrationTests")]
+	[Fact]
 	public async Task Get_OpenApi_ReturnsApiSpecification()
 	{
 		// Arrange

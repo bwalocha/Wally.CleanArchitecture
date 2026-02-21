@@ -46,16 +46,8 @@ public static class SchedulerExtensions
 
 	public static IApplicationBuilder UseScheduler(this IApplicationBuilder app)
 	{
-		// var host = app.ApplicationServices.GetRequiredService<IHost>();
-		// host.UseTickerQ();
+		app.UseTickerQ();
 			
 		return app;
-	}
-	
-	public static IHost UseScheduler(this IHost host)
-	{
-		host.UseTickerQ();
-			
-		return host;
 	}
 }
