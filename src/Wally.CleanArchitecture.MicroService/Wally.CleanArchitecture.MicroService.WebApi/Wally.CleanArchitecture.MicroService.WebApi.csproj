@@ -31,8 +31,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Contracts\" />
-        <Folder Include="MapperProfiles\" />
         <Folder Include="wwwroot" />
     </ItemGroup>
 </Project>

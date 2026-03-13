@@ -10,7 +10,7 @@ public static class MapperExtensions
 		// AutoMapper
 		services.AddAutoMapper(a =>
 		{
-			a.AddMaps(typeof(Wally.CleanArchitecture.MicroService.Application.MapperProfiles.IApplicationMapperAssemblyMarker).Assembly);
+			a.AddMaps(typeof(Mapper.AutoMapper.IApplicationMapperAssemblyMarker).Assembly);
 			// a.LicenseKey = settings.MapperSettings.LicenseKey;
 		});
 		

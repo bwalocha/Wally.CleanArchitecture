@@ -2,13 +2,13 @@
     <Import Project="..\..\Directory.BuildTests.props" />
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" />
+        <!--<PackageReference Include="AutoMapper" />-->
         <PackageReference Include="Moq" />
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj" />
-        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.MapperProfiles\Wally.CleanArchitecture.MicroService.Application.MapperProfiles.csproj" />
+        <!--<ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.Mapper.AutoMapper\Wally.CleanArchitecture.MicroService.Application.Mapper.AutoMapper.csproj" />-->
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Messaging\Wally.CleanArchitecture.MicroService.Infrastructure.Messaging.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.WebApi\Wally.CleanArchitecture.MicroService.WebApi.csproj" />
     </ItemGroup>

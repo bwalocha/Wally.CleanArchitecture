@@ -1,7 +1,7 @@
 ﻿using System;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 
-namespace Wally.CleanArchitecture.MicroService.Application.MapperProfiles;
+namespace Wally.CleanArchitecture.MicroService.Application.Mapper.AutoMapper;
 
 public class GuidIdProfile : Profile
 {

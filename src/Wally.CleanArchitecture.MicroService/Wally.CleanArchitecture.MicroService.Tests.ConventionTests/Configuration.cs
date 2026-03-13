@@ -14,6 +14,7 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Messaging;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer;
@@ -94,7 +95,7 @@ public static class Configuration
 				typeof(IApplicationAssemblyMarker).Assembly,
 				typeof(IApplicationContractsAssemblyMarker).Assembly,
 				typeof(IApplicationDIMicrosoftAssemblyMarker).Assembly,
-				typeof(Wally.CleanArchitecture.MicroService.Application.MapperProfiles.IApplicationMapperAssemblyMarker).Assembly,
+				typeof(Wally.CleanArchitecture.MicroService.Application.Mapper.AutoMapper.IApplicationMapperAssemblyMarker).Assembly,
 				typeof(Wally.CleanArchitecture.MicroService.Application.Mapper.Mapster.IApplicationMapperAssemblyMarker).Assembly,
 				typeof(IApplicationMessagesAssemblyMarker).Assembly,
 			],
@@ -104,7 +105,7 @@ public static class Configuration
 				typeof(IInfrastructureDIMicrosoftAssemblyMarker).Assembly,
 				typeof(IInfrastructureMessagingAssemblyMarker).Assembly,
 				typeof(IInfrastructurePersistenceAssemblyMarker).Assembly,
-				// typeof(IInfrastructureMySqlAssemblyMarker).Assembly,
+				typeof(IInfrastructureMySqlAssemblyMarker).Assembly,
 				typeof(IInfrastructurePostgreSqlAssemblyMarker).Assembly,
 				typeof(IInfrastructureSQLiteAssemblyMarker).Assembly,
 				typeof(IInfrastructureSqlServerAssemblyMarker).Assembly,

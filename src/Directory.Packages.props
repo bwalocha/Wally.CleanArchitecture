@@ -58,7 +58,7 @@
     <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.15.1" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.15.0" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.15.0" />
-<!--    <PackageVersion Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0" />-->
+    <!--    <PackageVersion Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0" />-->
     <PackageVersion Include="Microting.EntityFrameworkCore.MySql" Version="10.0.3" />
     <PackageVersion Include="Reinforced.Typings" Version="1.6.7" />
     <PackageVersion Include="Serilog" Version="4.3.1" />
@@ -84,7 +84,7 @@
     <PackageVersion Include="JsonNet.ContractResolvers" Version="2.0.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.5" />
     <PackageVersion Include="StyleCop.Analyzers" Version="1.1.118" />
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.20.0.135146" />
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.21.0.135717" />
     <PackageVersion Include="coverlet.collector" Version="8.0.0" />
     <PackageVersion Include="coverlet.msbuild" Version="8.0.0" />
     <PackageVersion Include="JunitXml.TestLogger" Version="8.0.0" />

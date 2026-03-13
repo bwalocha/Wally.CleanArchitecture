@@ -1,0 +1,3 @@
+﻿namespace Wally.CleanArchitecture.MicroService.Application.Mapper.AutoMapper;
+
+public interface IApplicationMapperAssemblyMarker;

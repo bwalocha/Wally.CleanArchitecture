@@ -2,7 +2,7 @@
 using Wally.CleanArchitecture.MicroService.Application.Users.Results;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 
-namespace Wally.CleanArchitecture.MicroService.Application.MapperProfiles.Users;
+namespace Wally.CleanArchitecture.MicroService.Application.Mapper.AutoMapper.Users;
 
 public class UserProfile : Profile
 {

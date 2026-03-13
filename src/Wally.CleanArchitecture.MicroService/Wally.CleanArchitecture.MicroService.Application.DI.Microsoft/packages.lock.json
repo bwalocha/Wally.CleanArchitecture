@@ -32,9 +32,9 @@
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
-        "requested": "[10.20.0.135146, )",
-        "resolved": "10.20.0.135146",
-        "contentHash": "Dx+sh/lhhJrG4Sr5W+bCDr/JKhY1Op6UaIoG5UrDVIyryC7rZtqO4Q4adzvm3IqAhFGHY7oYuaSjtR46hIv8qQ=="
+        "requested": "[10.21.0.135717, )",
+        "resolved": "10.21.0.135717",
+        "contentHash": "i5awvO2aapfOLXq5v7uvCxLvx+p5H79RhGi2+gPMTDKpw4IBOX3Nw+1fuIcH4ZIzQ7+g5PYJi3fBYHFh0Iz+Fw=="
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
@@ -182,19 +182,19 @@
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
       },
-      "wally.cleanarchitecture.microservice.application.mapper.mapster": {
+      "wally.cleanarchitecture.microservice.application.mapper.automapper": {
         "type": "Project",
         "dependencies": {
-          "Mapster": "[7.4.0, )",
+          "AutoMapper": "[16.1.0, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
       },
-      "wally.cleanarchitecture.microservice.application.mapperprofiles": {
+      "wally.cleanarchitecture.microservice.application.mapper.mapster": {
         "type": "Project",
         "dependencies": {
-          "AutoMapper": "[16.1.0, )",
+          "Mapster": "[7.4.0, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"

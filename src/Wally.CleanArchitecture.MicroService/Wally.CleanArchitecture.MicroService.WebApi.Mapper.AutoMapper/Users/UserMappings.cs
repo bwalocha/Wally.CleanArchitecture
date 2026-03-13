@@ -3,9 +3,9 @@ using Wally.CleanArchitecture.MicroService.WebApi.Contracts.Users.Requests;
 
 namespace Wally.CleanArchitecture.MicroService.WebApi.Mapper.AutoMapper.Users;
 
-public class UserProfile : Profile
+public class UserMappings : Profile
 {
-	public UserProfile()
+	public UserMappings()
 	{
 		CreateMap<User, GetUsersRequest>();
 	}

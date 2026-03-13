@@ -8,6 +8,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.Mapper.Mapster\Wally.CleanArchitecture.MicroService.Application.Mapper.Mapster.csproj" />
-      <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.MapperProfiles\Wally.CleanArchitecture.MicroService.Application.MapperProfiles.csproj" />
+      <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.Mapper.AutoMapper\Wally.CleanArchitecture.MicroService.Application.Mapper.AutoMapper.csproj" />
     </ItemGroup>
 </Project>

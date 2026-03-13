@@ -15,7 +15,7 @@ public class UserProfileTests
 	public UserProfileTests()
 	{
 		_configuration = new MapperConfiguration(
-			config => config.AddMaps(typeof(Wally.CleanArchitecture.MicroService.Application.MapperProfiles.IApplicationMapperAssemblyMarker).Assembly),
+			config => config.AddMaps(typeof(MicroService.Application.Mapper.AutoMapper.IApplicationMapperAssemblyMarker).Assembly),
 			new NullLoggerFactory());
 
 		_sut = _configuration.CreateMapper();

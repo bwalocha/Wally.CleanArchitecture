@@ -43,7 +43,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.Mic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.Application.Contracts", "Wally.CleanArchitecture.MicroService\Wally.CleanArchitecture.MicroService.Application.Contracts\Wally.CleanArchitecture.MicroService.Application.Contracts.csproj", "{0B86D7F8-0293-4D65-BDE3-E4E921DFE8BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.Application.MapperProfiles", "Wally.CleanArchitecture.MicroService\Wally.CleanArchitecture.MicroService.Application.MapperProfiles\Wally.CleanArchitecture.MicroService.Application.MapperProfiles.csproj", "{505AA394-0CB4-4F90-B600-FA5D88437D10}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.Application.Mapper.AutoMapper", "Wally.CleanArchitecture.MicroService\Wally.CleanArchitecture.MicroService.Application.Mapper.AutoMapper\Wally.CleanArchitecture.MicroService.Application.Mapper.AutoMapper.csproj", "{505AA394-0CB4-4F90-B600-FA5D88437D10}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours", "Wally.CleanArchitecture.MicroService\Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours\Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours.csproj", "{B618D678-EAE4-448C-B126-6E61844DCA95}"
 EndProject
