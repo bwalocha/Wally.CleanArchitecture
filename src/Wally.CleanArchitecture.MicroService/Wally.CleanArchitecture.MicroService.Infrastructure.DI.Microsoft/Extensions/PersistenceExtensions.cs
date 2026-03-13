@@ -1,5 +1,6 @@
 ﻿using System;
 
+using EntityFramework.Exceptions.MySQL.Pomelo;
 // using EntityFramework.Exceptions.Sqlite;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -10,8 +11,7 @@ using Microsoft.Extensions.Options;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
-// using EntityFramework.Exceptions.MySQL.Pomelo;
-// using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer;
@@ -89,17 +89,17 @@ public static class PersistenceExtensions
 
 	private static void WithMySql(DbContextOptionsBuilder options, AppSettings settings)
 	{
-		// options.UseMySql(
-		// 		settings.ConnectionStrings.Database,
-		// 		MySqlServerVersion.LatestSupportedServerVersion,
-		// 		builder =>
-		// 		{
-		// 			builder.MigrationsAssembly(typeof(IInfrastructureMySqlAssemblyMarker).Assembly.GetName().Name);
-		// 			builder.MigrationsHistoryTable(HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
-		// 			builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-		// 			builder.EnableRetryOnFailure(MaxRetryCount, MaxRetryDelay, null);
-		// 		})
-		// 	.UseExceptionProcessor();
+		options.UseMySql(
+				settings.ConnectionStrings.Database,
+				MySqlServerVersion.LatestSupportedServerVersion,
+				builder =>
+				{
+					builder.MigrationsAssembly(typeof(IInfrastructureMySqlAssemblyMarker).Assembly.GetName().Name);
+					builder.MigrationsHistoryTable(HistoryRepository.DefaultTableName, ApplicationDbContext.SchemaName);
+					builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
+					builder.EnableRetryOnFailure(MaxRetryCount, MaxRetryDelay, null);
+				})
+			.UseExceptionProcessor();
 	}
 
 	private static void WithNpgsql(DbContextOptionsBuilder options, AppSettings settings)

@@ -955,10 +955,11 @@
       },
       "MySqlConnector": {
         "type": "Transitive",
-        "resolved": "2.3.1",
-        "contentHash": "FYTnvNBbNSZotSWUerK22Ztsc3vx3wBRZ4veavkUbfCBNthtCr3CH5Wpoo4l5gBD2TmQD9JbL33Gf9kWko1yYw==",
+        "resolved": "2.5.0",
+        "contentHash": "hoAwfHHF8DlRRqwHOhN3u1KLi+XbX/4LPS7Anfa+SYC97vRyIfdEOEEfj1L50q01Ik8aDNvmDrNmu/VPFiAiaQ==",
         "dependencies": {
-          "Microsoft.Extensions.Logging.Abstractions": "7.0.1"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.2"
         }
       },
       "ncrontab": {
@@ -1260,6 +1261,14 @@
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
       },
+      "wally.cleanarchitecture.microservice.infrastructure.persistence.mysql": {
+        "type": "Project",
+        "dependencies": {
+          "Microting.EntityFrameworkCore.MySql": "[10.0.3, )",
+          "StyleCop.Analyzers": "[1.1.118, )",
+          "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence": "[1.0.0, )"
+        }
+      },
       "wally.cleanarchitecture.microservice.infrastructure.persistence.postgresql": {
         "type": "Project",
         "dependencies": {
@@ -1431,6 +1440,16 @@
         "contentHash": "9HOdqlDtPptVcmKAjsQ/Nr5Rxfq6FMYLdhvZh1lVmeKR738qeYecQD7+ldooXf+u2KzzR1kafSphWngIM3C6ug==",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.5"
+        }
+      },
+      "Microting.EntityFrameworkCore.MySql": {
+        "type": "CentralTransitive",
+        "requested": "[10.0.3, )",
+        "resolved": "10.0.3",
+        "contentHash": "BNgkHd63eLNgDdXUiLnvywuC9a7nHJhboWtkDELNFXAyhuzBxiYfa+JC6zv4XFky20L8e7l3StekypkSqnZdnA==",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "[10.0.3, 10.0.999]",
+          "MySqlConnector": "2.5.0"
         }
       },
       "Npgsql.EntityFrameworkCore.PostgreSQL": {

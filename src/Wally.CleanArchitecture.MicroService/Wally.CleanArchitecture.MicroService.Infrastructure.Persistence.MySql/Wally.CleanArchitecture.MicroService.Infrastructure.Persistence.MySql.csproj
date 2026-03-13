@@ -1,6 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <ItemGroup>
-        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" />
+<!--        https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql/issues/2007#issuecomment-3936300395-->
+<!--        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" />-->
+        <PackageReference Include="Microting.EntityFrameworkCore.MySql" />
     </ItemGroup>
 
     <ItemGroup>
