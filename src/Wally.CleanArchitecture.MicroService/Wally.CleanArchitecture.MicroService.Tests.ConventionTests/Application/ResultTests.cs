@@ -3,7 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using Wally.CleanArchitecture.MicroService.Application;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 using Wally.CleanArchitecture.MicroService.WebApi;
@@ -136,7 +135,7 @@ public class ResultTests
 			.Where(a => a.ImplementsInterface(typeof(IResult)));
 
 		types.ShouldSatisfyAllConditions(types
-			.Select(a => (Action)(() => a.Namespace.ShouldStartWith(typeof(IApplicationAssemblyMarker).Namespace!)))
+			.Select(a => (Action)(() => a.Namespace.ShouldStartWith(typeof(Wally.CleanArchitecture.MicroService.Application.IApplicationAssemblyMarker).Namespace!)))
 			.ToArray());
 	}
 

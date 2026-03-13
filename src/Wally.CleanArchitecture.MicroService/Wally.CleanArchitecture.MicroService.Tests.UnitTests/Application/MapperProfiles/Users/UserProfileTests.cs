@@ -3,6 +3,7 @@ using AutoMapper;
 using Microsoft.Extensions.Logging.Abstractions;
 using Wally.CleanArchitecture.MicroService.Application.Users.Requests;
 using Wally.CleanArchitecture.MicroService.Application.Users.Results;
+using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.UnitTests.Application.MapperProfiles.Users;

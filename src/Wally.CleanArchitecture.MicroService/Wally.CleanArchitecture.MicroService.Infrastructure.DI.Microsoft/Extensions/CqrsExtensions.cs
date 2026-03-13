@@ -2,7 +2,6 @@
 using FluentValidation;
 using Mediator;
 using Microsoft.Extensions.DependencyInjection;
-using Wally.CleanArchitecture.MicroService.Application;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 
@@ -16,7 +15,7 @@ public static class CqrsExtensions
 		{
 			a.Assemblies =
 			[
-				typeof(IApplicationAssemblyMarker).Assembly,
+				typeof(Wally.CleanArchitecture.MicroService.Application.IApplicationAssemblyMarker).Assembly,
 			];
 			a.ServiceLifetime = ServiceLifetime.Scoped;
 		});
@@ -32,16 +31,16 @@ public static class CqrsExtensions
 		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandAuthorizationHandlerBehavior<,>));
 		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(QueryHandlerValidatorBehavior<,>));
 
-		services.AddValidatorsFromAssemblyContaining<IApplicationAssemblyMarker>(ServiceLifetime.Scoped,
+		services.AddValidatorsFromAssemblyContaining<Wally.CleanArchitecture.MicroService.Application.IApplicationAssemblyMarker>(ServiceLifetime.Scoped,
 			a => a.InterfaceType.GenericTypeArguments.Single() == typeof(Application.Abstractions.ICommand<>),
 			true);
 
-		services.Scan(a => a.FromAssemblyOf<IApplicationAssemblyMarker>()
+		services.Scan(a => a.FromAssemblyOf<Wally.CleanArchitecture.MicroService.Application.IApplicationAssemblyMarker>()
 			.AddClasses(c => c.AssignableTo(typeof(ICommandAuthorizationHandler<,>)))
 			.AsImplementedInterfaces()
 			.WithTransientLifetime());
 
-		services.Scan(a => a.FromAssemblyOf<IApplicationAssemblyMarker>()
+		services.Scan(a => a.FromAssemblyOf<Wally.CleanArchitecture.MicroService.Application.IApplicationAssemblyMarker>()
 			.AddClasses(c => c.AssignableTo(typeof(IDomainEventHandler<>)))
 			.AsImplementedInterfaces()
 			.WithScopedLifetime());

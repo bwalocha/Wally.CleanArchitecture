@@ -1,5 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <ItemGroup>
-        <PackageReference Include="Ulid" />
+      <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain.Abstractions\Wally.CleanArchitecture.MicroService.Domain.Abstractions.csproj" />
     </ItemGroup>
 </Project>

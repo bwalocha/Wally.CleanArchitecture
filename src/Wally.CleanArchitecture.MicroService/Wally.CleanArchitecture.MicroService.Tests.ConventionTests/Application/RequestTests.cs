@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using Wally.CleanArchitecture.MicroService.Application;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.SchedulerService;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
@@ -112,7 +111,7 @@ public class RequestTests
 			.Where(a => a.Assembly != typeof(IPresentationAssemblyMarker).Assembly);
 
 		types.ShouldSatisfyAllConditions(types
-			.Select(a => (Action)(() => a.Namespace.ShouldStartWith(typeof(IApplicationAssemblyMarker).Namespace!)))
+			.Select(a => (Action)(() => a.Namespace.ShouldStartWith(typeof(Wally.CleanArchitecture.MicroService.Application.IApplicationAssemblyMarker).Namespace!)))
 			.ToArray());
 	}
 

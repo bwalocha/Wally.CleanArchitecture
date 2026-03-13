@@ -24,7 +24,13 @@
         "type": "Project",
         "dependencies": {
           "StyleCop.Analyzers": "[1.1.118, )",
-          "Ulid": "[1.4.1, )"
+          "Wally.CleanArchitecture.MicroService.Domain.Abstractions": "[1.0.0, )"
+        }
+      },
+      "wally.cleanarchitecture.microservice.domain.abstractions": {
+        "type": "Project",
+        "dependencies": {
+          "StyleCop.Analyzers": "[1.1.118, )"
         }
       },
       "wally.cleanarchitecture.microservice.webapi.abstractions": {
@@ -32,12 +38,6 @@
         "dependencies": {
           "StyleCop.Analyzers": "[1.1.118, )"
         }
-      },
-      "Ulid": {
-        "type": "CentralTransitive",
-        "requested": "[1.4.1, )",
-        "resolved": "1.4.1",
-        "contentHash": "V6crLJ8a29raWeNwxYGfH9RTKA3H0nR0D9LAGzN3KtEsbiiaWkUjDor6OT5Oz7pxCK+NaY2hu2FLoYEOa8oCkA=="
       }
     }
   }

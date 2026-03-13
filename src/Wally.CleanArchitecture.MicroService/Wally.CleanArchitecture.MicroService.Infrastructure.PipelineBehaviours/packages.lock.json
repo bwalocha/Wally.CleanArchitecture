@@ -328,8 +328,18 @@
           "Mediator.Abstractions": "[3.0.1, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.5, )",
           "StyleCop.Analyzers": "[1.1.118, )",
+          "Wally.CleanArchitecture.MicroService.Application.Abstractions": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Application.Messages": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
+        }
+      },
+      "wally.cleanarchitecture.microservice.application.abstractions": {
+        "type": "Project",
+        "dependencies": {
+          "Mediator.Abstractions": "[3.0.1, )",
+          "StyleCop.Analyzers": "[1.1.118, )",
+          "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )",
+          "Wally.CleanArchitecture.MicroService.Domain.Abstractions": "[1.0.0, )"
         }
       },
       "wally.cleanarchitecture.microservice.application.messages": {
@@ -344,7 +354,13 @@
         "type": "Project",
         "dependencies": {
           "StyleCop.Analyzers": "[1.1.118, )",
-          "Ulid": "[1.4.1, )"
+          "Wally.CleanArchitecture.MicroService.Domain.Abstractions": "[1.0.0, )"
+        }
+      },
+      "wally.cleanarchitecture.microservice.domain.abstractions": {
+        "type": "Project",
+        "dependencies": {
+          "StyleCop.Analyzers": "[1.1.118, )"
         }
       },
       "wally.cleanarchitecture.microservice.infrastructure.persistence": {
@@ -485,12 +501,6 @@
           "Microsoft.EntityFrameworkCore.Relational": "[10.0.0, 11.0.0)",
           "TickerQ.Utilities": "10.0.2"
         }
-      },
-      "Ulid": {
-        "type": "CentralTransitive",
-        "requested": "[1.4.1, )",
-        "resolved": "1.4.1",
-        "contentHash": "V6crLJ8a29raWeNwxYGfH9RTKA3H0nR0D9LAGzN3KtEsbiiaWkUjDor6OT5Oz7pxCK+NaY2hu2FLoYEOa8oCkA=="
       }
     }
   }

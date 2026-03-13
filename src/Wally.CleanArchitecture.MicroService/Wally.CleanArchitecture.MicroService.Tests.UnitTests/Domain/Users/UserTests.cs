@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.CleanArchitecture.MicroService.Tests.UnitTests.Extensions;
 

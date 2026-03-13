@@ -89,6 +89,7 @@ public static class Configuration
 			Domain =
 			[
 				typeof(IDomainAssemblyMarker).Assembly,
+				typeof(Wally.CleanArchitecture.MicroService.Domain.Abstractions.IDomainAssemblyMarker).Assembly,
 			],
 			Application =
 			[

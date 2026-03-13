@@ -77,7 +77,6 @@
     <PackageVersion Include="TickerQ.Dashboard" Version="10.0.2" />
     <PackageVersion Include="TickerQ.EntityFrameworkCore" Version="10.0.2" />
     <PackageVersion Include="TngTech.ArchUnitNET.xUnit" Version="0.13.3" />
-    <PackageVersion Include="Ulid" Version="1.4.1" />
     <PackageVersion Include="Verify.Http" Version="7.5.1" />
     <PackageVersion Include="Verify.Xunit" Version="31.12.5" />
     <PackageVersion Include="Yarp.ReverseProxy" Version="2.3.0" />

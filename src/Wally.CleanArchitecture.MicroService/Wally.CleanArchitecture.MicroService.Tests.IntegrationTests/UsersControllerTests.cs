@@ -1,5 +1,6 @@
 using System.Net.Http;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Extensions;
 using Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Helpers;

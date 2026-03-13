@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+        <PackageReference Include="Mediator.Abstractions" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain.Abstractions\Wally.CleanArchitecture.MicroService.Domain.Abstractions.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj" />
+    </ItemGroup>
+</Project>

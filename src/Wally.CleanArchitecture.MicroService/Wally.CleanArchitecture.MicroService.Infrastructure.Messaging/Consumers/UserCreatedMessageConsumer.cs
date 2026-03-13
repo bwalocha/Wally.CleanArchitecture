@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using MassTransit;
 using Mediator;
 using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
-using Wally.CleanArchitecture.MicroService.Domain.Users;
+using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.Identity.Messages.Users;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Messaging.Consumers;
