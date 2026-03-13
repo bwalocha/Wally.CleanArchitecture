@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 using Wally.CleanArchitecture.MicroService.Application.Users.Queries;
-using Wally.CleanArchitecture.MicroService.Application.Users.Results;
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.CleanArchitecture.MicroService.WebApi.Abstractions;
 using Wally.CleanArchitecture.MicroService.WebApi.Contracts.Users.Requests;
@@ -69,7 +68,7 @@ public class UsersController : ControllerBase
 	///     GET /Users/6ff34249-ef96-432a-9822-d3aca639a986
 	/// </remarks>
 	[HttpGet("{id:guid}")]
-	public async Task<ActionResult<GetUserResult>> GetAsync(Guid id, CancellationToken cancellationToken)
+	public async Task<ActionResult<GetUserResponse>> GetAsync(Guid id, CancellationToken cancellationToken)
 	{
 		var query = new GetUserQuery(new UserId(id));
 		var result = await _sender.Send(query, cancellationToken);

@@ -6,6 +6,7 @@
     <ItemGroup>
         <PackageReference Include="AutoMapper" />
         <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" />
+        <PackageReference Include="Mapster" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -21,19 +22,17 @@
     </ItemGroup>
 
     <ItemGroup>
-        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
-            <_Parameter1>Wally.CleanArchitecture.MicroService.Tests.UnitTests</_Parameter1>
-        </AssemblyAttribute>
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application\Wally.CleanArchitecture.MicroService.Application.csproj" />
-        <!--<ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.Contracts\Wally.CleanArchitecture.MicroService.Application.Contracts.csproj" />-->
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.DI.Microsoft\Wally.CleanArchitecture.MicroService.Application.DI.Microsoft.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft\Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.WebApi.Abstractions\Wally.CleanArchitecture.MicroService.WebApi.Abstractions.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.WebApi.Mapper.AutoMapper\Wally.CleanArchitecture.MicroService.WebApi.Mapper.AutoMapper.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.WebApi.Mapper.Mapster\Wally.CleanArchitecture.MicroService.WebApi.Mapper.Mapster.csproj" />
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Include="Contracts\" />
+        <Folder Include="MapperProfiles\" />
         <Folder Include="wwwroot" />
     </ItemGroup>
 </Project>

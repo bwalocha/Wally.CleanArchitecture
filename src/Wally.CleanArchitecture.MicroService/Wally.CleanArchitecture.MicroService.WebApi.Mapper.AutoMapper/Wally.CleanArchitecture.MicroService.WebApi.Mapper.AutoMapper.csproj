@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+        <PackageReference Include="AutoMapper" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.WebApi.Contracts\Wally.CleanArchitecture.MicroService.WebApi.Contracts.csproj" />
+    </ItemGroup>
+</Project>

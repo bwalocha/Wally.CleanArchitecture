@@ -1,6 +1,5 @@
-﻿// using AutoMapper.Extensions.ExpressionMapping;
+﻿using Mapster;
 using Microsoft.Extensions.DependencyInjection;
-using Wally.CleanArchitecture.MicroService.Application.MapperProfiles;
 
 namespace Wally.CleanArchitecture.MicroService.Application.DI.Microsoft.Extensions;
 
@@ -8,13 +7,22 @@ public static class MapperExtensions
 {
 	public static IServiceCollection AddMapper(this IServiceCollection services/*, AppSettings settings*/)
 	{
+		// AutoMapper
 		services.AddAutoMapper(a =>
 		{
-			// a.AddExpressionMapping();
-			a.AddMaps(typeof(IApplicationMapperProfilesAssemblyMarker).Assembly);
+			a.AddMaps(typeof(Wally.CleanArchitecture.MicroService.Application.MapperProfiles.IApplicationMapperAssemblyMarker).Assembly);
 			// a.LicenseKey = settings.MapperSettings.LicenseKey;
 		});
+		
+		// Mapster
+		var config = new TypeAdapterConfig();
+		config.Default.IgnoreNullValues(true);
+		config.Scan(typeof(Wally.CleanArchitecture.MicroService.Application.Mapper.Mapster.IApplicationMapperAssemblyMarker).Assembly);
+		config.Compile();
 
+		services.AddSingleton(config);
+		services.AddScoped<MapsterMapper.IMapper, MapsterMapper.Mapper>();
+		
 		return services;
 	}
 }

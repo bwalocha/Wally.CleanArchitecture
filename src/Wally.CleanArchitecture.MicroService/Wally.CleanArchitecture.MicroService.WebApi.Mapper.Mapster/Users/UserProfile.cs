@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿/*
 using Wally.CleanArchitecture.MicroService.Domain.Users;
 using Wally.CleanArchitecture.MicroService.WebApi.Contracts.Users.Requests;
 
@@ -11,3 +11,4 @@ public class UserProfile : Profile
 		CreateMap<User, GetUsersRequest>();
 	}
 }
+*/

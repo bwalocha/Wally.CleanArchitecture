@@ -1,0 +1,3 @@
+﻿namespace Wally.CleanArchitecture.MicroService.WebApi.Contracts;
+
+public interface IPresentationContractsAssemblyMarker;

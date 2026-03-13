@@ -7,6 +7,7 @@ using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.SchedulerService;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 using Wally.CleanArchitecture.MicroService.WebApi;
+using Wally.CleanArchitecture.MicroService.WebApi.Contracts;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Application;
 
@@ -123,7 +124,8 @@ public class RequestTests
 			.Where(a => a.Name.EndsWith("Request"))
 			.Where(a => a.Name != nameof(IRequest))
 			.Where(a => a.Assembly != typeof(IInfrastructureSchedulerServiceAssemblyMarker).Assembly)
-			.Where(a => a.Assembly != typeof(IPresentationAssemblyMarker).Assembly);
+			.Where(a => a.Assembly != typeof(IPresentationAssemblyMarker).Assembly)
+			.Where(a => a.Assembly != typeof(IPresentationContractsAssemblyMarker).Assembly);
 
 		types.ShouldSatisfyAllConditions(types.Select(a => (Action)(() => a.ImplementsInterface(typeof(IRequest))
 				.ShouldBeTrue($"{a.Name} should implement {nameof(IRequest)}")))

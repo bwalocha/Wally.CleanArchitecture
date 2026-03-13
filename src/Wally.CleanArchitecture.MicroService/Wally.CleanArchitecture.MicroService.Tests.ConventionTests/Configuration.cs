@@ -7,7 +7,6 @@ using ArchUnitNET.Loader;
 using Wally.CleanArchitecture.MicroService.Application;
 using Wally.CleanArchitecture.MicroService.Application.Contracts;
 using Wally.CleanArchitecture.MicroService.Application.DI.Microsoft;
-using Wally.CleanArchitecture.MicroService.Application.MapperProfiles;
 using Wally.CleanArchitecture.MicroService.Application.Messages;
 using Wally.CleanArchitecture.MicroService.Domain;
 using Wally.CleanArchitecture.MicroService.Infrastructure.BackgroundServices;
@@ -95,7 +94,8 @@ public static class Configuration
 				typeof(IApplicationAssemblyMarker).Assembly,
 				typeof(IApplicationContractsAssemblyMarker).Assembly,
 				typeof(IApplicationDIMicrosoftAssemblyMarker).Assembly,
-				typeof(IApplicationMapperProfilesAssemblyMarker).Assembly,
+				typeof(Wally.CleanArchitecture.MicroService.Application.MapperProfiles.IApplicationMapperAssemblyMarker).Assembly,
+				typeof(Wally.CleanArchitecture.MicroService.Application.Mapper.Mapster.IApplicationMapperAssemblyMarker).Assembly,
 				typeof(IApplicationMessagesAssemblyMarker).Assembly,
 			],
 			Infrastructure =
@@ -114,6 +114,9 @@ public static class Configuration
 			Presentation =
 			[
 				typeof(IPresentationAssemblyMarker).Assembly,
+				typeof(Wally.CleanArchitecture.MicroService.WebApi.Contracts.IPresentationContractsAssemblyMarker).Assembly,
+				typeof(Wally.CleanArchitecture.MicroService.WebApi.Mapper.AutoMapper.IPresentationMapperAssemblyMarker).Assembly,
+				typeof(Wally.CleanArchitecture.MicroService.WebApi.Mapper.Mapster.IPresentationMapperAssemblyMarker).Assembly,
 			],
 		};
 }

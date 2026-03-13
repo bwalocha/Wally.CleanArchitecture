@@ -357,6 +357,11 @@
         "resolved": "2.13.0",
         "contentHash": "PCtGYOJvqDo+dqxRsBidc6OJGGSCIqmh0wIWgTQljuzaxeAM8uAheNwZ/6o60hueObJj1vPczNLLeoLEu1+Q3g=="
       },
+      "Mapster.Core": {
+        "type": "Transitive",
+        "resolved": "1.2.1",
+        "contentHash": "11lokmfliBEMMmjeqxFGNpqGXq6tN96zFqpBmfYeahr4Ybk63oDmeJmOflsATjobYkX248g5Y62oQ2NNnZaeww=="
+      },
       "Microsoft.ApplicationInsights": {
         "type": "Transitive",
         "resolved": "2.23.0",
@@ -1280,7 +1285,17 @@
           "MassTransit.EntityFrameworkCore": "[8.5.8, )",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[10.0.5, )",
           "StyleCop.Analyzers": "[1.1.118, )",
+          "Wally.CleanArchitecture.MicroService.Application.Mapper.Mapster": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Application.MapperProfiles": "[1.0.0, )"
+        }
+      },
+      "wally.cleanarchitecture.microservice.application.mapper.mapster": {
+        "type": "Project",
+        "dependencies": {
+          "Mapster": "[7.4.0, )",
+          "StyleCop.Analyzers": "[1.1.118, )",
+          "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
+          "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
       },
       "wally.cleanarchitecture.microservice.application.mapperprofiles": {
@@ -1449,13 +1464,46 @@
           "AutoMapper": "[16.1.0, )",
           "AutoMapper.Extensions.ExpressionMapping": "[10.1.0, )",
           "BouncyCastle.Cryptography": "[2.6.2, )",
+          "Mapster": "[7.4.0, )",
           "Serilog.AspNetCore": "[10.0.0, )",
           "Serilog.Sinks.ApplicationInsights": "[5.0.0, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "System.Drawing.Common": "[10.0.5, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Application.DI.Microsoft": "[1.0.0, )",
-          "Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft": "[1.0.0, )"
+          "Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft": "[1.0.0, )",
+          "Wally.CleanArchitecture.MicroService.WebApi.Abstractions": "[1.0.0, )",
+          "Wally.CleanArchitecture.MicroService.WebApi.Mapper.AutoMapper": "[1.0.0, )",
+          "Wally.CleanArchitecture.MicroService.WebApi.Mapper.Mapster": "[1.0.0, )"
+        }
+      },
+      "wally.cleanarchitecture.microservice.webapi.abstractions": {
+        "type": "Project",
+        "dependencies": {
+          "StyleCop.Analyzers": "[1.1.118, )"
+        }
+      },
+      "wally.cleanarchitecture.microservice.webapi.contracts": {
+        "type": "Project",
+        "dependencies": {
+          "FluentValidation": "[12.1.1, )",
+          "StyleCop.Analyzers": "[1.1.118, )",
+          "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )",
+          "Wally.CleanArchitecture.MicroService.WebApi.Abstractions": "[1.0.0, )"
+        }
+      },
+      "wally.cleanarchitecture.microservice.webapi.mapper.automapper": {
+        "type": "Project",
+        "dependencies": {
+          "AutoMapper": "[16.1.0, )",
+          "StyleCop.Analyzers": "[1.1.118, )",
+          "Wally.CleanArchitecture.MicroService.WebApi.Contracts": "[1.0.0, )"
+        }
+      },
+      "wally.cleanarchitecture.microservice.webapi.mapper.mapster": {
+        "type": "Project",
+        "dependencies": {
+          "StyleCop.Analyzers": "[1.1.118, )"
         }
       },
       "AspNetCore.HealthChecks.AzureServiceBus": {
@@ -1649,6 +1697,15 @@
         "dependencies": {
           "FluentValidation": "12.1.1",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "2.1.0"
+        }
+      },
+      "Mapster": {
+        "type": "CentralTransitive",
+        "requested": "[7.4.0, )",
+        "resolved": "7.4.0",
+        "contentHash": "RYGoDqvS4WTKIq0HDyPBBVIj6N0mluOCXQ1Vk95JKseMHEsbCXSEGKSlP95oL+s42IXAXbqvHj7p0YaRBUcfqg==",
+        "dependencies": {
+          "Mapster.Core": "1.2.1"
         }
       },
       "MassTransit": {
@@ -1948,7 +2005,7 @@
       },
       "Swashbuckle.AspNetCore": {
         "type": "CentralTransitive",
-        "requested": "[10.1.5, )",
+        "requested": "[10.1.4, )",
         "resolved": "10.1.5",
         "contentHash": "/eNk9z/8quXhDX14o3XLbwAX/84uIWSbiUD7cI/UrQnoBMOiyAtzKxNEJUtf/TyxjFpcXxE9FAfLvtbNpxHBSg==",
         "dependencies": {

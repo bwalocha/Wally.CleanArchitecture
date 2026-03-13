@@ -58,6 +58,8 @@ public static class OpenApiExtensions
 
 			var xmlFilename = $"{assembly.GetName().Name}.xml";
 			options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+			xmlFilename = $"{assembly.GetName().Name}.Contracts.xml";
+			options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 
 			options.OperationFilter<ResponseTypesOperationFilter>();
 			options.OperationFilter<ODataQueryOptionsOperationFilter>();

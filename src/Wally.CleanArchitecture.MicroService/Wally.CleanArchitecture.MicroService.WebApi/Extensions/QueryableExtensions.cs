@@ -8,8 +8,6 @@ using Microsoft.AspNetCore.OData.Query;
 using Microsoft.OData.UriParser;
 using Wally.CleanArchitecture.MicroService.WebApi.Abstractions;
 
-// using Wally.CleanArchitecture.MicroService.Application.Abstractions;
-
 namespace Wally.CleanArchitecture.MicroService.WebApi.Extensions;
 
 public static class QueryableExtensions
