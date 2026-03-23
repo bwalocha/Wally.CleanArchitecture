@@ -44,8 +44,8 @@ public static class QueryableExtensions
 		return applySearch(query, searchTermNode.Text);
 	}
 
-	public static IQueryable<TEntity> ApplyOrderBy<TEntity, TRequest>(this IQueryable<TEntity> query,
-		ODataQueryOptions<TRequest> queryOptions, Func<IQueryable<TEntity>, IQueryable<TEntity>> applyDefaultOrderBy,
+	public static IOrderedQueryable<TEntity> ApplyOrderBy<TEntity, TRequest>(this IQueryable<TEntity> query,
+		ODataQueryOptions<TRequest> queryOptions, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> applyDefaultOrderBy,
 		IMapper mapper)
 		where TRequest : /*class,*/ IRequest
 	{
@@ -87,7 +87,7 @@ public static class QueryableExtensions
 			query = (IOrderedQueryable<TEntity>)mi.Invoke(null, [query, mappedQueryFunc,]) !;
 		}
 
-		return query;
+		return (IOrderedQueryable<TEntity>)query;
 	}
 
 	private static Expression<Func<T, bool>> GetFilterExpression<T>(FilterQueryOption filter)

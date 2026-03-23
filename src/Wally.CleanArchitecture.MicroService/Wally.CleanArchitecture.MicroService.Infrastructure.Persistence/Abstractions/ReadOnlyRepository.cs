@@ -131,7 +131,7 @@ public class ReadOnlyRepository<TEntity, TStronglyTypedId> : IReadOnlyRepository
 		throw new NotSupportedException($"Search on {typeof(TEntity).Name} is not supported");
 	}
 
-	protected virtual IQueryable<TEntity> ApplyDefaultOrderBy(IQueryable<TEntity> query)
+	protected virtual IOrderedQueryable<TEntity> ApplyDefaultOrderBy(IQueryable<TEntity> query)
 	{
 		return query.OrderBy(a => a.Id);
 	}

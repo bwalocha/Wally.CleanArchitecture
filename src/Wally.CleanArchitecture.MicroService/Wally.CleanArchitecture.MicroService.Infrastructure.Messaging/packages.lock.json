@@ -96,7 +96,7 @@
       "wally.cleanarchitecture.microservice.application": {
         "type": "Project",
         "dependencies": {
-          "Mediator.Abstractions": "[3.0.1, )",
+          "Mediator.Abstractions": "[3.0.2, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.5, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application.Abstractions": "[1.0.0, )",
@@ -107,7 +107,7 @@
       "wally.cleanarchitecture.microservice.application.abstractions": {
         "type": "Project",
         "dependencies": {
-          "Mediator.Abstractions": "[3.0.1, )",
+          "Mediator.Abstractions": "[3.0.2, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain.Abstractions": "[1.0.0, )"
@@ -148,9 +148,9 @@
       },
       "Mediator.Abstractions": {
         "type": "CentralTransitive",
-        "requested": "[3.0.1, )",
-        "resolved": "3.0.1",
-        "contentHash": "WLWp7S7pt818wsK2IiFwGwvUhwq0E/7F0LkglDQKx+4rSzRWVKD3CHtaCi1fpeURH+v44ZPxaRVBCNV7uWOBYQ==",
+        "requested": "[3.0.2, )",
+        "resolved": "3.0.2",
+        "contentHash": "TytjnyN8gLObZBxkM7HHPFJF3LHtk6Y8mHW56ONuXRuVEK6Fmed3f0z79H9TpmoZQP2zQAIS4/0O9R2w0v02qw==",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
         }

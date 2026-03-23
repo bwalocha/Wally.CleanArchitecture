@@ -37,8 +37,8 @@ public class QueryOption<TPresentationRequest, TApplicationRequest> : IQueryOpti
 		return query.ApplySearch(_queryOptions, search);
 	}
 
-	public IQueryable<TEntity> ApplyOrderBy<TEntity>(IQueryable<TEntity> query,
-		Func<IQueryable<TEntity>, IQueryable<TEntity>> applyDefaultOrderBy)
+	public IOrderedQueryable<TEntity> ApplyOrderBy<TEntity>(IQueryable<TEntity> query,
+		Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> applyDefaultOrderBy)
 	{
 		return query.ApplyOrderBy(_queryOptions, applyDefaultOrderBy, _mapper);
 	}

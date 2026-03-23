@@ -18,8 +18,8 @@ public interface IQueryOptions<TRequest>
 		// where TEntity : Entity
 		;
 
-	IQueryable<TEntity> ApplyOrderBy<TEntity>(IQueryable<TEntity> query,
-			Func<IQueryable<TEntity>, IQueryable<TEntity>> applyDefaultOrderBy)
+	IOrderedQueryable<TEntity> ApplyOrderBy<TEntity>(IQueryable<TEntity> query,
+			Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> applyDefaultOrderBy)
 		// where TEntity : Entity
 		;
 

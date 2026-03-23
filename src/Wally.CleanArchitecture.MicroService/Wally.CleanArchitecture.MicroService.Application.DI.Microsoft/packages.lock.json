@@ -44,8 +44,8 @@
       },
       "Mapster.Core": {
         "type": "Transitive",
-        "resolved": "1.2.1",
-        "contentHash": "11lokmfliBEMMmjeqxFGNpqGXq6tN96zFqpBmfYeahr4Ybk63oDmeJmOflsATjobYkX248g5Y62oQ2NNnZaeww=="
+        "resolved": "10.0.1",
+        "contentHash": "WqXtJqM9O1obr3r/l+n1HV0Ukld8j+BySv9EXOcDGWooA54AdUi4JsqKdQMvTLNmVGLjAi93zty5G9XouD8MaA=="
       },
       "Microsoft.EntityFrameworkCore.Abstractions": {
         "type": "Transitive",
@@ -175,7 +175,7 @@
       "wally.cleanarchitecture.microservice.application": {
         "type": "Project",
         "dependencies": {
-          "Mediator.Abstractions": "[3.0.1, )",
+          "Mediator.Abstractions": "[3.0.2, )",
           "Microsoft.Extensions.Logging.Abstractions": "[10.0.5, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application.Abstractions": "[1.0.0, )",
@@ -186,7 +186,7 @@
       "wally.cleanarchitecture.microservice.application.abstractions": {
         "type": "Project",
         "dependencies": {
-          "Mediator.Abstractions": "[3.0.1, )",
+          "Mediator.Abstractions": "[3.0.2, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain.Abstractions": "[1.0.0, )"
@@ -204,7 +204,7 @@
       "wally.cleanarchitecture.microservice.application.mapper.mapster": {
         "type": "Project",
         "dependencies": {
-          "Mapster": "[7.4.0, )",
+          "Mapster": "[10.0.3, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
@@ -239,11 +239,11 @@
       },
       "Mapster": {
         "type": "CentralTransitive",
-        "requested": "[7.4.0, )",
-        "resolved": "7.4.0",
-        "contentHash": "RYGoDqvS4WTKIq0HDyPBBVIj6N0mluOCXQ1Vk95JKseMHEsbCXSEGKSlP95oL+s42IXAXbqvHj7p0YaRBUcfqg==",
+        "requested": "[10.0.3, )",
+        "resolved": "10.0.3",
+        "contentHash": "bMPpvOR/mRoZ+Bi+yGynjMg29P8oTj162Shz+PqCQuaKdxnEFyYe4mj1c3+XRoHFl8mTYQBWwotMwa4wHFb3UA==",
         "dependencies": {
-          "Mapster.Core": "1.2.1"
+          "Mapster.Core": "10.0.1"
         }
       },
       "MassTransit": {
@@ -268,9 +268,9 @@
       },
       "Mediator.Abstractions": {
         "type": "CentralTransitive",
-        "requested": "[3.0.1, )",
-        "resolved": "3.0.1",
-        "contentHash": "WLWp7S7pt818wsK2IiFwGwvUhwq0E/7F0LkglDQKx+4rSzRWVKD3CHtaCi1fpeURH+v44ZPxaRVBCNV7uWOBYQ==",
+        "requested": "[3.0.2, )",
+        "resolved": "3.0.2",
+        "contentHash": "TytjnyN8gLObZBxkM7HHPFJF3LHtk6Y8mHW56ONuXRuVEK6Fmed3f0z79H9TpmoZQP2zQAIS4/0O9R2w0v02qw==",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
         }

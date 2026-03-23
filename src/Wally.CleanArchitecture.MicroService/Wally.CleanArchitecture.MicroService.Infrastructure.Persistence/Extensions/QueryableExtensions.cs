@@ -20,8 +20,8 @@ public static class QueryableExtensions
 		return queryOptions?.ApplySearch(query, applySearch) ?? query;
 	}
 
-	public static IQueryable<TEntity> ApplyOrderBy<TEntity, TRequest>(this IQueryable<TEntity> query,
-		IQueryOptions<TRequest> queryOptions, Func<IQueryable<TEntity>, IQueryable<TEntity>> defaultOrderBy)
+	public static IOrderedQueryable<TEntity> ApplyOrderBy<TEntity, TRequest>(this IQueryable<TEntity> query,
+		IQueryOptions<TRequest> queryOptions, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> defaultOrderBy)
 		where TRequest : class, IRequest
 	{
 		return queryOptions.ApplyOrderBy(query, defaultOrderBy);

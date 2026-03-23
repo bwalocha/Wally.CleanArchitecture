@@ -22,7 +22,10 @@
         <PackageReference Include="MassTransit.Kafka" />
         <PackageReference Include="MassTransit.RabbitMQ" />
         <PackageReference Include="Mediator.Abstractions" />
-        <PackageReference Include="Mediator.SourceGenerator" />
+        <PackageReference Include="Mediator.SourceGenerator">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
         <PackageReference Include="Microsoft.AspNetCore.OData" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
