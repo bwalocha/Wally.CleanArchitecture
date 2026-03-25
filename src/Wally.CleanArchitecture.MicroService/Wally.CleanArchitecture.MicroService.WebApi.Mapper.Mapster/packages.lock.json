@@ -4,11 +4,11 @@
     "net10.0": {
       "Mapster": {
         "type": "Direct",
-        "requested": "[10.0.3, )",
-        "resolved": "10.0.3",
-        "contentHash": "bMPpvOR/mRoZ+Bi+yGynjMg29P8oTj162Shz+PqCQuaKdxnEFyYe4mj1c3+XRoHFl8mTYQBWwotMwa4wHFb3UA==",
+        "requested": "[10.0.4, )",
+        "resolved": "10.0.4",
+        "contentHash": "FhqaTUgetYrDfRptisHhrYF8i9nK0Hewu8FG0M8IMu3+PWFk5IgCLljObzgdHnvpW2RTakgKpf38GdD0U+E6Tg==",
         "dependencies": {
-          "Mapster.Core": "10.0.1"
+          "Mapster.Core": "10.0.4"
         }
       },
       "SonarAnalyzer.CSharp": {
@@ -25,8 +25,8 @@
       },
       "Mapster.Core": {
         "type": "Transitive",
-        "resolved": "10.0.1",
-        "contentHash": "WqXtJqM9O1obr3r/l+n1HV0Ukld8j+BySv9EXOcDGWooA54AdUi4JsqKdQMvTLNmVGLjAi93zty5G9XouD8MaA=="
+        "resolved": "10.0.4",
+        "contentHash": "lzmWjzFB43bSUKzhqrcgD3qEm/oZOmxBMf2cKvCnjFyxGGvvAnTFjFbKVI5wJiDlLdX3yrbhiK2q2f6SvHftRw=="
       },
       "wally.cleanarchitecture.microservice.domain": {
         "type": "Project",

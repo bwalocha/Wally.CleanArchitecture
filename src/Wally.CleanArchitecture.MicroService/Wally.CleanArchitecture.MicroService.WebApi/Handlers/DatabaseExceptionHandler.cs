@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using EntityFramework.Exceptions.Common;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
@@ -30,41 +29,89 @@ internal sealed class DatabaseExceptionHandler : IExceptionHandler
 	public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception,
 		CancellationToken cancellationToken)
 	{
-		_logger.LogError(new EventId(exception.HResult), exception, exception.Message);
+		if (!TryMap(exception, out var error))
+		{
+			return false;
+		}
 
+		var (constraint, table, props) = ExtractConstraintInfo(exception);
+
+		_logger.LogError(exception,
+			"Database error at {Path}. Type: {Type}, Constraint: {Constraint}, Table: {Table}, Properties: {@Props}",
+			httpContext.Request.Path,
+			exception.GetType().Name,
+			constraint,
+			table,
+			props);
+
+		var extensions = new Dictionary<string, object?>
+		{
+			["traceId"] = httpContext.TraceIdentifier,
+		};
+
+		httpContext.Response.StatusCode = error.Status;
+
+		return await _problemDetailsService.TryWriteAsync(new ProblemDetailsContext
+		{
+			HttpContext = httpContext,
+			Exception = exception,
+			ProblemDetails = new ProblemDetails
+			{
+				Type = error.Code,
+				Title = error.Title,
+				Status = error.Status,
+				Instance = httpContext.Request.Path,
+				Extensions = extensions,
+			},
+		});
+	}
+
+	private static bool TryMap(Exception exception, out ApiError error)
+	{
 		switch (exception)
 		{
-			case UniqueConstraintException _:
-			case CannotInsertNullException _:
-			case MaxLengthExceededException _:
-			case NumericOverflowException _:
-			case ReferenceConstraintException _:
-			case DbUpdateException _:
-				httpContext.Response.StatusCode = StatusCodes.Status409Conflict;
-				return await _problemDetailsService.TryWriteAsync(new ProblemDetailsContext
-				{
-					HttpContext = httpContext,
-					Exception = exception,
-					ProblemDetails = new ProblemDetails
-					{
-						Type = exception.GetType()
-							.Name,
-						Title = "Database Exception",
-						Status = StatusCodes.Status409Conflict,
-						Instance = httpContext.Request.Path,
-						Detail = "Please refer to the errors property for additional details.",
-						Extensions = exception.InnerException! is DbException dbException
-							? new Dictionary<string, object?>
-							{
-								["errorCode"] = dbException.ErrorCode,
-								["message"] = dbException.Message,
-							}
-							: new Dictionary<string, object?>(),
-					},
-					// AdditionalMetadata =
-				});
+			case UniqueConstraintException:
+				error = new ApiError("unique_constraint", "Unique constraint violation", 409);
+				return true;
+
+			case CannotInsertNullException:
+				error = new ApiError("null_violation", "Null value not allowed", 400);
+				return true;
+
+			case MaxLengthExceededException:
+				error = new ApiError("max_length_exceeded", "Max length exceeded", 400);
+				return true;
+
+			case NumericOverflowException:
+				error = new ApiError("numeric_overflow", "Numeric overflow", 400);
+				return true;
+
+			case ReferenceConstraintException:
+				error = new ApiError("reference_constraint", "Reference constraint violation", 409);
+				return true;
+
+			case DbUpdateException:
+				error = new ApiError("db_update_error", "Database update failed", 409);
+				return true;
+
 			default:
+				error = default!;
 				return false;
 		}
 	}
+	
+	private static (string? constraint, string? table, IReadOnlyList<string>? props) ExtractConstraintInfo(Exception ex)
+	{
+		return ex switch
+		{
+			UniqueConstraintException u => (u.ConstraintName, u.SchemaQualifiedTableName, u.ConstraintProperties),
+			ReferenceConstraintException r => (r.ConstraintName, r.SchemaQualifiedTableName, r.ConstraintProperties),
+			_ => (null, null, null),
+		};
+	}
+
+	private sealed record ApiError(
+		string Code,
+		string Title,
+		int Status);
 }

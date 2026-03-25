@@ -10,15 +10,10 @@
       Expires: -1
     },
     Value: {
-      type: UniqueConstraintException,
-      title: Database Exception,
+      type: unique_constraint,
+      title: Unique constraint violation,
       status: 409,
-      detail: Please refer to the errors property for additional details.,
-      instance: /Users,
-      errorCode: -2146232060,
-      message:
-Cannot insert duplicate key row in object 'MicroService.User' with unique index 'IX_User_Name'. The duplicate key value is (testUser3).
-The statement has been terminated.
+      instance: /Users
     }
   }
 }
