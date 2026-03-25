@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper.Internal;
 using Confluent.Kafka;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;

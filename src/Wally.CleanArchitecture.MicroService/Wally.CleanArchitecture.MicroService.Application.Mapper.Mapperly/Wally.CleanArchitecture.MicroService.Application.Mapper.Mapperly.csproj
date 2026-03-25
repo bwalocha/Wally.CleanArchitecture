@@ -1,7 +1,6 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
     <ItemGroup>
-        <PackageReference Include="AutoMapper" />
-        <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" />
+      <PackageReference Include="Riok.Mapperly" />
     </ItemGroup>
 
     <ItemGroup>

@@ -2,38 +2,11 @@
   "version": 2,
   "dependencies": {
     "net10.0": {
-      "AutoMapper": {
-        "type": "Direct",
-        "requested": "[16.1.0, )",
-        "resolved": "16.1.0",
-        "contentHash": "dslB2z3keOkRdo5N1sWUhTv+37ZXKm2tsJOcUPVOi+Kf1CxkcVsGwH5MeLDKyR+T8WPKwiPq2yhDPMkCfPK16w==",
-        "dependencies": {
-          "Microsoft.IdentityModel.JsonWebTokens": "8.14.0"
-        }
-      },
-      "AutoMapper.Extensions.ExpressionMapping": {
-        "type": "Direct",
-        "requested": "[10.1.0, )",
-        "resolved": "10.1.0",
-        "contentHash": "iQ7NGh+PtSy6aqgeWpeZEdwvH3oswI2Q7yiPEhbWlWVpjLf/BicrrT7c6iyLeG/DW/7S81s0453RS7BW07sP/g==",
-        "dependencies": {
-          "AutoMapper": "[16.0.0, 17.0.0)"
-        }
-      },
       "BouncyCastle.Cryptography": {
         "type": "Direct",
         "requested": "[2.6.2, )",
         "resolved": "2.6.2",
         "contentHash": "7oWOcvnntmMKNzDLsdxAYqApt+AjpRpP2CShjMfIa3umZ42UQMvH0tl1qAliYPNYO6vTdcGMqnRrCPmsfzTI1w=="
-      },
-      "Mapster": {
-        "type": "Direct",
-        "requested": "[10.0.4, )",
-        "resolved": "10.0.4",
-        "contentHash": "FhqaTUgetYrDfRptisHhrYF8i9nK0Hewu8FG0M8IMu3+PWFk5IgCLljObzgdHnvpW2RTakgKpf38GdD0U+E6Tg==",
-        "dependencies": {
-          "Mapster.Core": "10.0.4"
-        }
       },
       "Microsoft.EntityFrameworkCore.Design": {
         "type": "Direct",
@@ -903,6 +876,7 @@
         "type": "Project",
         "dependencies": {
           "AutoMapper": "[16.1.0, )",
+          "AutoMapper.Extensions.ExpressionMapping": "[10.1.0, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
@@ -1007,7 +981,6 @@
       "wally.cleanarchitecture.microservice.infrastructure.persistence": {
         "type": "Project",
         "dependencies": {
-          "AutoMapper": "[16.1.0, )",
           "MassTransit.EntityFrameworkCore": "[8.5.8, )",
           "Microsoft.EntityFrameworkCore": "[10.0.5, )",
           "Microsoft.EntityFrameworkCore.Relational": "[10.0.5, )",
@@ -1200,6 +1173,24 @@
           "Microsoft.EntityFrameworkCore.InMemory": "8.0.11"
         }
       },
+      "AutoMapper": {
+        "type": "CentralTransitive",
+        "requested": "[16.1.0, )",
+        "resolved": "16.1.0",
+        "contentHash": "dslB2z3keOkRdo5N1sWUhTv+37ZXKm2tsJOcUPVOi+Kf1CxkcVsGwH5MeLDKyR+T8WPKwiPq2yhDPMkCfPK16w==",
+        "dependencies": {
+          "Microsoft.IdentityModel.JsonWebTokens": "8.14.0"
+        }
+      },
+      "AutoMapper.Extensions.ExpressionMapping": {
+        "type": "CentralTransitive",
+        "requested": "[10.1.0, )",
+        "resolved": "10.1.0",
+        "contentHash": "iQ7NGh+PtSy6aqgeWpeZEdwvH3oswI2Q7yiPEhbWlWVpjLf/BicrrT7c6iyLeG/DW/7S81s0453RS7BW07sP/g==",
+        "dependencies": {
+          "AutoMapper": "[16.0.0, 17.0.0)"
+        }
+      },
       "EntityFrameworkCore.Exceptions.MySQL": {
         "type": "CentralTransitive",
         "requested": "[10.0.0, )",
@@ -1263,6 +1254,15 @@
         "contentHash": "D0VXh4dtjjX2aQizuaa0g6R8X3U1JaVqJPfGCvLwZX9t/O2h7tkpbitbadQMfwcgSPdDbI2vDxuwRMv/Uf9dHA==",
         "dependencies": {
           "FluentValidation": "12.1.1"
+        }
+      },
+      "Mapster": {
+        "type": "CentralTransitive",
+        "requested": "[10.0.4, )",
+        "resolved": "10.0.4",
+        "contentHash": "FhqaTUgetYrDfRptisHhrYF8i9nK0Hewu8FG0M8IMu3+PWFk5IgCLljObzgdHnvpW2RTakgKpf38GdD0U+E6Tg==",
+        "dependencies": {
+          "Mapster.Core": "10.0.4"
         }
       },
       "MassTransit": {

@@ -196,6 +196,7 @@
         "type": "Project",
         "dependencies": {
           "AutoMapper": "[16.1.0, )",
+          "AutoMapper.Extensions.ExpressionMapping": "[10.1.0, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
@@ -229,6 +230,15 @@
         "type": "Project",
         "dependencies": {
           "StyleCop.Analyzers": "[1.1.118, )"
+        }
+      },
+      "AutoMapper.Extensions.ExpressionMapping": {
+        "type": "CentralTransitive",
+        "requested": "[10.1.0, )",
+        "resolved": "10.1.0",
+        "contentHash": "iQ7NGh+PtSy6aqgeWpeZEdwvH3oswI2Q7yiPEhbWlWVpjLf/BicrrT7c6iyLeG/DW/7S81s0453RS7BW07sP/g==",
+        "dependencies": {
+          "AutoMapper": "[16.0.0, 17.0.0)"
         }
       },
       "FluentValidation": {

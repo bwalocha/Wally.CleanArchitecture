@@ -1,8 +1,8 @@
 ﻿using System;
-using AutoMapper;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
+using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 using Wally.CleanArchitecture.MicroService.Application.Users.Queries;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;

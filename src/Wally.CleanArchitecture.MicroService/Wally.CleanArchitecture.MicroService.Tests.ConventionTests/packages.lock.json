@@ -1094,6 +1094,7 @@
         "type": "Project",
         "dependencies": {
           "AutoMapper": "[16.1.0, )",
+          "AutoMapper.Extensions.ExpressionMapping": "[10.1.0, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
@@ -1202,7 +1203,6 @@
       "wally.cleanarchitecture.microservice.infrastructure.persistence": {
         "type": "Project",
         "dependencies": {
-          "AutoMapper": "[16.1.0, )",
           "MassTransit.EntityFrameworkCore": "[8.5.8, )",
           "Microsoft.EntityFrameworkCore": "[10.0.5, )",
           "Microsoft.EntityFrameworkCore.Relational": "[10.0.5, )",

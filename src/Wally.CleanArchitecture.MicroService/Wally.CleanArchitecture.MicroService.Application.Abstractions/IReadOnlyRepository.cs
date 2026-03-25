@@ -9,7 +9,7 @@ public interface IReadOnlyRepository<TEntity, TStronglyTypedId>
 	Task<bool> ExistsAsync(TStronglyTypedId id, CancellationToken cancellationToken);
 
 	Task<TResponse> GetAsync<TResponse>(TStronglyTypedId id, CancellationToken cancellationToken)
-		where TResponse : IResult;
+		where TResponse : class, IResult;
 
 	Task<PagedResult<TResponse>> GetAsync<TRequest, TResponse>(
 		IQueryOptions<TRequest> queryOptions,

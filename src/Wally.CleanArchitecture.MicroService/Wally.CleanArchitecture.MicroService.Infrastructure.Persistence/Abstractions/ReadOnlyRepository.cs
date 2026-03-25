@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
@@ -32,7 +31,7 @@ public class ReadOnlyRepository<TEntity, TStronglyTypedId> : IReadOnlyRepository
 	}
 
 	public async Task<TResult> GetAsync<TResult>(TStronglyTypedId id, CancellationToken cancellationToken)
-		where TResult : IResult
+		where TResult : class, IResult
 	{
 		var query = GetReadOnlyEntitySet()
 			.Where(a => a.Id.Equals(id));
@@ -54,7 +53,7 @@ public class ReadOnlyRepository<TEntity, TStronglyTypedId> : IReadOnlyRepository
 	}
 
 	protected async Task<TResponse> GetAsync<TResponse>(IQueryable<TEntity> query, CancellationToken cancellationToken)
-		where TResponse : IResult
+		where TResponse : class, IResult
 	{
 		return await _mapper.ProjectTo<TResponse>(query)
 				.FirstOrDefaultAsync(cancellationToken)
@@ -113,7 +112,7 @@ public class ReadOnlyRepository<TEntity, TStronglyTypedId> : IReadOnlyRepository
 	protected async Task<TResult?> GetOrDefaultAsync<TResult>(
 		IQueryable<TEntity> query,
 		CancellationToken cancellationToken)
-		where TResult : IResult
+		where TResult : class, IResult
 	{
 		return await _mapper.ProjectTo<TResult>(query)
 				.SingleOrDefaultAsync(cancellationToken)

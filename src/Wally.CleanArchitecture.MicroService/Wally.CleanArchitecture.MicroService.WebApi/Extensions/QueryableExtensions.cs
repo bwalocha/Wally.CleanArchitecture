@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using AutoMapper;
-using AutoMapper.Extensions.ExpressionMapping;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.OData.UriParser;
-using Wally.CleanArchitecture.MicroService.WebApi.Abstractions;
+using Wally.CleanArchitecture.MicroService.Application.Abstractions;
+using IRequest = Wally.CleanArchitecture.MicroService.WebApi.Abstractions.IRequest;
 
 namespace Wally.CleanArchitecture.MicroService.WebApi.Extensions;
 
