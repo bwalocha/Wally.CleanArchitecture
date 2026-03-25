@@ -25,31 +25,36 @@ public class LogBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRes
 	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next,
 		CancellationToken cancellationToken)
 	{
-		using var logContext =
-			LogContext.PushProperty(nameof(IRequestContext.CorrelationId), _requestContext.CorrelationId);
-
-		_logger.LogDebug(
-			"Executing Request '{Request}' with Response '{Response}'",
-			typeof(TRequest).Name, typeof(TResponse).Name);
-		var stopWatch = Stopwatch.StartNew();
-
-		try
+		using (LogContext.PushProperty(nameof(IRequestContext.CorrelationId), _requestContext.CorrelationId.Value))
 		{
-			return await next(message, cancellationToken);
-		}
-		finally
-		{
-			stopWatch.Stop();
+			using (LogContext.PushProperty(nameof(IRequestContext.UserId), _requestContext.UserId.Value))
+			{
+				_logger.LogDebug(
+					"Executing Request '{Request}' with Response '{Response}'",
+					typeof(TRequest).Name, typeof(TResponse).Name);
+				var stopWatch = Stopwatch.StartNew();
 
-			if (stopWatch.ElapsedMilliseconds > TimeoutMilliseconds)
-			{
-				_logger.LogWarning(
-					"Request '{Request}' with Response '{Response}' executed in {ElapsedMilliseconds} ms",
-					typeof(TRequest).Name, typeof(TResponse).Name, stopWatch.ElapsedMilliseconds);
-			}
-			else
-			{
-				_logger.LogDebug("Executed in {StopWatchElapsedMilliseconds} ms", stopWatch.ElapsedMilliseconds);
+				try
+				{
+					return await next(message, cancellationToken);
+				}
+				finally
+				{
+					stopWatch.Stop();
+
+					if (stopWatch.ElapsedMilliseconds > TimeoutMilliseconds)
+					{
+						_logger.LogWarning(
+							"Request '{Request}' with Response '{Response}' executed in {ElapsedMilliseconds} ms",
+							typeof(TRequest).Name, typeof(TResponse).Name, stopWatch.ElapsedMilliseconds);
+					}
+					else
+					{
+						_logger.LogDebug(
+							"Request '{Request}' with Response '{Response}' executed in {ElapsedMilliseconds} ms",
+							typeof(TRequest).Name, typeof(TResponse).Name, stopWatch.ElapsedMilliseconds);
+					}
+				}
 			}
 		}
 	}
