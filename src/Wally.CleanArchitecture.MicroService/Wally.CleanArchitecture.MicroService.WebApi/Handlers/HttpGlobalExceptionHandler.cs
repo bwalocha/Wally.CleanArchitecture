@@ -32,9 +32,6 @@ internal sealed class HttpGlobalExceptionHandler : IExceptionHandler
 
 		_logger.LogError(new EventId(exception.HResult), exception, exception.Message);
 
-		Console.WriteLine($"Message: {exception.Message},\r\n InnerException.Message: {exception.InnerException?.Message},\r\n StackTrace: {exception.StackTrace}\r\n");
-		Debug.WriteLine(exception.Message, exception.InnerException?.Message, exception.StackTrace);
-		Debugger.Log(0, exception.Message, $"Message: {exception.Message},\r\n InnerException.Message: {exception.InnerException?.Message},\r\n StackTrace: {exception.StackTrace}\r\n");
 		Debugger.Break();
 		httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
 		return await _problemDetailsService.TryWriteAsync(new ProblemDetailsContext

@@ -4,9 +4,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <!--<PackageReference Include="AutoMapper" />
-        <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" />
-        <PackageReference Include="Mapster" />-->
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
