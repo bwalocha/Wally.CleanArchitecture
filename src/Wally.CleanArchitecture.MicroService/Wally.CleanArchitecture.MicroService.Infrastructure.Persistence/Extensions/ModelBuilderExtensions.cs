@@ -26,6 +26,7 @@ public static class ModelBuilderExtensions
 
 		foreach (var property in allEntities
 					.SelectMany(a => a.GetProperties())
+					.Where(a => a.GetValueConverter() == null)
 					.Where(a => a.ClrType.IsEnum)
 					.Where(a => !a.ClrType.IsDefined(typeof(FlagsAttribute), false)))
 		{
