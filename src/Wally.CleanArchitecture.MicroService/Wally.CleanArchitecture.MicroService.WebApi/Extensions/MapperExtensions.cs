@@ -1,6 +1,4 @@
-﻿// using AutoMapper.Extensions.ExpressionMapping;
-
-using Mapster;
+﻿using Mapster;
 using Microsoft.Extensions.DependencyInjection;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 
@@ -17,6 +15,7 @@ public static class MapperExtensions
 			a.AddMaps(typeof(Wally.CleanArchitecture.MicroService.WebApi.Mapper.AutoMapper.IPresentationMapperAssemblyMarker).Assembly);
 			a.LicenseKey = settings.MapperSettings.LicenseKey;
 		});
+		// services.AddScoped<Wally.CleanArchitecture.MicroService.Application.Abstractions.IMapper, Wally.CleanArchitecture.MicroService.Application.Mapper.AutoMapper.MapperAdapter>();
 		
 		// Mapster
 		var config = new TypeAdapterConfig();
@@ -26,7 +25,8 @@ public static class MapperExtensions
 
 		services.AddSingleton(config);
 		services.AddScoped<MapsterMapper.IMapper, MapsterMapper.Mapper>();
-
+		services.AddScoped<Wally.CleanArchitecture.MicroService.Application.Abstractions.IMapper, Wally.CleanArchitecture.MicroService.Application.Mapper.Mapster.MapperAdapter>();
+		
 		return services;
 	}
 }

@@ -13,7 +13,7 @@ public static class MapperExtensions
 			a.AddMaps(typeof(Mapper.AutoMapper.IApplicationMapperAssemblyMarker).Assembly);
 			// a.LicenseKey = settings.MapperSettings.LicenseKey;
 		});
-		services.AddScoped<Wally.CleanArchitecture.MicroService.Application.Abstractions.IMapper, Wally.CleanArchitecture.MicroService.Application.Mapper.AutoMapper.MapperAdapter>();
+		// services.AddScoped<Wally.CleanArchitecture.MicroService.Application.Abstractions.IMapper, Wally.CleanArchitecture.MicroService.Application.Mapper.AutoMapper.MapperAdapter>();
 		
 		// Mapster
 		var config = new TypeAdapterConfig();
@@ -23,7 +23,7 @@ public static class MapperExtensions
 
 		services.AddSingleton(config);
 		services.AddScoped<MapsterMapper.IMapper, MapsterMapper.Mapper>();
-		// services.AddScoped<Wally.CleanArchitecture.MicroService.Application.Abstractions.IMapper, Wally.CleanArchitecture.MicroService.Application.Mapper.Mapster.MapperAdapter>();
+		services.AddScoped<Wally.CleanArchitecture.MicroService.Application.Abstractions.IMapper, Wally.CleanArchitecture.MicroService.Application.Mapper.Mapster.MapperAdapter>();
 
 		return services;
 	}
