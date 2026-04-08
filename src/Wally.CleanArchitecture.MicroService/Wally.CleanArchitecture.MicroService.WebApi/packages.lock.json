@@ -255,8 +255,8 @@
       },
       "Mapster.Core": {
         "type": "Transitive",
-        "resolved": "10.0.6",
-        "contentHash": "GzYLzCJBGcnHCU5zh2665uqHb2y2E9d1sWIIIu/K7nK9xU8NQH3hGCYp5pySMdwhJZS1+d7KAOIsrqLBh550EA=="
+        "resolved": "10.0.7",
+        "contentHash": "73Bd0aZ+t6DoG3X4FYDfOyVgvLxgUXJKIjrps3W1n7MR03DIWI+sL62VqQSPwuJdn7WJb8HYhkH/BNZ6ZlJydw=="
       },
       "Microsoft.ApplicationInsights": {
         "type": "Transitive",
@@ -885,7 +885,7 @@
       "wally.cleanarchitecture.microservice.application.mapper.mapster": {
         "type": "Project",
         "dependencies": {
-          "Mapster": "[10.0.6, )",
+          "Mapster": "[10.0.7, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
@@ -1075,7 +1075,7 @@
       "wally.cleanarchitecture.microservice.webapi.mapper.mapster": {
         "type": "Project",
         "dependencies": {
-          "Mapster": "[10.0.6, )",
+          "Mapster": "[10.0.7, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.WebApi.Contracts": "[1.0.0, )"
         }
@@ -1258,11 +1258,11 @@
       },
       "Mapster": {
         "type": "CentralTransitive",
-        "requested": "[10.0.6, )",
-        "resolved": "10.0.6",
-        "contentHash": "wFNXuXzxPzJbpHEVnhx0m0YZwWcE2MPhtcifZ9QM1hvRsv86mBsQkXio74oNQDb7Wa96ThKuUjqYU3mSTMip1w==",
+        "requested": "[10.0.7, )",
+        "resolved": "10.0.7",
+        "contentHash": "bZgWXyTM21Bc6Xrvk2BzPCFTwnvyTNSO4fUli/DVm02Kya80r5sY9ackpsECVlUqbda7ck9hr/1oKrCyI8yXmw==",
         "dependencies": {
-          "Mapster.Core": "10.0.6"
+          "Mapster.Core": "10.0.7"
         }
       },
       "MassTransit": {

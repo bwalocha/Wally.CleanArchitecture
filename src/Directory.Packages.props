@@ -24,7 +24,7 @@
     <PackageVersion Include="EntityFrameworkCore.Exceptions.SqlServer" Version="10.0.0" />
     <PackageVersion Include="FluentValidation" Version="12.1.1" />
     <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
-    <PackageVersion Include="Mapster" Version="10.0.6" />
+    <PackageVersion Include="Mapster" Version="10.0.7" />
     <!--<PackageVersion Include="Mapster.DependencyInjection" Version="7.4.0" />-->
     <PackageVersion Include="MassTransit" Version="8.5.8" />
     <PackageVersion Include="MassTransit.Abstractions" Version="8.5.8" />
@@ -88,7 +88,7 @@
     <PackageVersion Include="coverlet.collector" Version="8.0.1" />
     <PackageVersion Include="coverlet.msbuild" Version="8.0.1" />
     <PackageVersion Include="JunitXml.TestLogger" Version="8.0.0" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.3.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.4.0" />
     <PackageVersion Include="xunit" Version="2.9.3" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5" />
   </ItemGroup>
