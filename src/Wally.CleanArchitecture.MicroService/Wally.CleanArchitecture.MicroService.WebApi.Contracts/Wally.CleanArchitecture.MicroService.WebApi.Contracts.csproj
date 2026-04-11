@@ -5,6 +5,7 @@
     
     <ItemGroup>
         <PackageReference Include="FluentValidation" />
+        <PackageReference Include="Reinforced.Typings" />
     </ItemGroup>
 
     <ItemGroup>

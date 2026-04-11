@@ -1,4 +1,6 @@
-﻿namespace Wally.CleanArchitecture.MicroService.WebApi.Abstractions;
+﻿using Wally.CleanArchitecture.MicroService.WebApi.Abstractions;
+
+namespace Wally.CleanArchitecture.MicroService.WebApi.Contracts;
 
 [ExcludeFromCodeCoverage]
 public sealed class PageInfoResponse : IResponse

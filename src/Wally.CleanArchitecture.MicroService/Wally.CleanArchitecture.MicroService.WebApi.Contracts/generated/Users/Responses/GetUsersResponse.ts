@@ -4,8 +4,8 @@
 
 import { Dayjs } from 'dayjs';
 
-export interface GetUsersResult
+export interface GetUsersResponse
 {
 	id: string;
-	name?: string;
+	name: string;
 }

@@ -5,7 +5,6 @@ using System.Linq;
 using ArchUnitNET.Domain;
 using ArchUnitNET.Loader;
 using Wally.CleanArchitecture.MicroService.Application;
-using Wally.CleanArchitecture.MicroService.Application.Contracts;
 using Wally.CleanArchitecture.MicroService.Application.DI.Microsoft;
 using Wally.CleanArchitecture.MicroService.Application.Messages;
 using Wally.CleanArchitecture.MicroService.Domain;
@@ -23,6 +22,7 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.SchedulerService;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Helpers;
 using Wally.CleanArchitecture.MicroService.WebApi;
+using Wally.CleanArchitecture.MicroService.WebApi.Contracts;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests;
 
@@ -94,7 +94,6 @@ public static class Configuration
 			Application =
 			[
 				typeof(IApplicationAssemblyMarker).Assembly,
-				typeof(IApplicationContractsAssemblyMarker).Assembly,
 				typeof(IApplicationDIMicrosoftAssemblyMarker).Assembly,
 				typeof(Wally.CleanArchitecture.MicroService.Application.Mapper.AutoMapper.IApplicationMapperAssemblyMarker).Assembly,
 				typeof(Wally.CleanArchitecture.MicroService.Application.Mapper.Mapster.IApplicationMapperAssemblyMarker).Assembly,
@@ -116,7 +115,7 @@ public static class Configuration
 			Presentation =
 			[
 				typeof(IPresentationAssemblyMarker).Assembly,
-				typeof(Wally.CleanArchitecture.MicroService.WebApi.Contracts.IPresentationContractsAssemblyMarker).Assembly,
+				typeof(IPresentationContractsAssemblyMarker).Assembly,
 				typeof(Wally.CleanArchitecture.MicroService.WebApi.Mapper.AutoMapper.IPresentationMapperAssemblyMarker).Assembly,
 				typeof(Wally.CleanArchitecture.MicroService.WebApi.Mapper.Mapster.IPresentationMapperAssemblyMarker).Assembly,
 			],

@@ -35,7 +35,7 @@
             in attributes and in fluent methods then configuration from fluent methods will
             be used.
         -->
-        <RtConfigurationMethod>Wally.CleanArchitecture.MicroService.Application.Contracts.ReinforcedTypingsConfiguration.Configure</RtConfigurationMethod>
+        <RtConfigurationMethod>Wally.CleanArchitecture.MicroService.WebApi.Contracts.ReinforcedTypingsConfiguration.Configure</RtConfigurationMethod>
 
         <!--
             By default all of your typings will be located in single file specified by RtTargetFile.
@@ -55,7 +55,7 @@
             Note that in case of using RtDivideTypesAmongFiles, RtTargetFile parameter will
             NOT be used anymore.
         -->
-        <RtTargetDirectory>$(ProjectDir)..\Wally.CleanArchitecture.MicroService.Application.Contracts\generated</RtTargetDirectory>
+        <RtTargetDirectory>$(ProjectDir)..\Wally.CleanArchitecture.MicroService.WebApi.Contracts\generated</RtTargetDirectory>
 
         <!--
             Disables typescript compilation in solution.

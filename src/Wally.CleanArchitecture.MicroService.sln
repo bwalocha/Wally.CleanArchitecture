@@ -41,8 +41,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.Mic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.Tests.IntegrationTests", "Wally.CleanArchitecture.MicroService\Wally.CleanArchitecture.MicroService.Tests.IntegrationTests\Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.csproj", "{8F56A431-191E-4881-A137-7C5236A7265C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.Application.Contracts", "Wally.CleanArchitecture.MicroService\Wally.CleanArchitecture.MicroService.Application.Contracts\Wally.CleanArchitecture.MicroService.Application.Contracts.csproj", "{0B86D7F8-0293-4D65-BDE3-E4E921DFE8BF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.Application.Mapper.AutoMapper", "Wally.CleanArchitecture.MicroService\Wally.CleanArchitecture.MicroService.Application.Mapper.AutoMapper\Wally.CleanArchitecture.MicroService.Application.Mapper.AutoMapper.csproj", "{505AA394-0CB4-4F90-B600-FA5D88437D10}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours", "Wally.CleanArchitecture.MicroService\Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours\Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours.csproj", "{B618D678-EAE4-448C-B126-6E61844DCA95}"
@@ -190,18 +188,6 @@ Global
 		{8F56A431-191E-4881-A137-7C5236A7265C}.Release|x64.Build.0 = Release|Any CPU
 		{8F56A431-191E-4881-A137-7C5236A7265C}.Release|x86.ActiveCfg = Release|Any CPU
 		{8F56A431-191E-4881-A137-7C5236A7265C}.Release|x86.Build.0 = Release|Any CPU
-		{0B86D7F8-0293-4D65-BDE3-E4E921DFE8BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0B86D7F8-0293-4D65-BDE3-E4E921DFE8BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0B86D7F8-0293-4D65-BDE3-E4E921DFE8BF}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{0B86D7F8-0293-4D65-BDE3-E4E921DFE8BF}.Debug|x64.Build.0 = Debug|Any CPU
-		{0B86D7F8-0293-4D65-BDE3-E4E921DFE8BF}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0B86D7F8-0293-4D65-BDE3-E4E921DFE8BF}.Debug|x86.Build.0 = Debug|Any CPU
-		{0B86D7F8-0293-4D65-BDE3-E4E921DFE8BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0B86D7F8-0293-4D65-BDE3-E4E921DFE8BF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0B86D7F8-0293-4D65-BDE3-E4E921DFE8BF}.Release|x64.ActiveCfg = Release|Any CPU
-		{0B86D7F8-0293-4D65-BDE3-E4E921DFE8BF}.Release|x64.Build.0 = Release|Any CPU
-		{0B86D7F8-0293-4D65-BDE3-E4E921DFE8BF}.Release|x86.ActiveCfg = Release|Any CPU
-		{0B86D7F8-0293-4D65-BDE3-E4E921DFE8BF}.Release|x86.Build.0 = Release|Any CPU
 		{505AA394-0CB4-4F90-B600-FA5D88437D10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{505AA394-0CB4-4F90-B600-FA5D88437D10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{505AA394-0CB4-4F90-B600-FA5D88437D10}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -440,7 +426,6 @@ Global
 		{C0586FB0-EEFE-49C5-AB94-D8EC1B5623F9} = {A81A9220-878D-4D52-A278-BB93EF09EA4B}
 		{78E2EE48-D658-4129-8CF3-452FC003D618} = {A81A9220-878D-4D52-A278-BB93EF09EA4B}
 		{F450E29C-53B7-4CD5-B19E-5A10901CA364} = {56971E79-C47B-463B-B8BC-E8F01D8B49C4}
-		{0B86D7F8-0293-4D65-BDE3-E4E921DFE8BF} = {5C7411C2-8CAD-4F46-9741-14B5BEB222B1}
 		{505AA394-0CB4-4F90-B600-FA5D88437D10} = {5C7411C2-8CAD-4F46-9741-14B5BEB222B1}
 		{2B6BCDE8-AA6E-4CFE-A504-9D2E26F09163} = {A81A9220-878D-4D52-A278-BB93EF09EA4B}
 		{B618D678-EAE4-448C-B126-6E61844DCA95} = {A81A9220-878D-4D52-A278-BB93EF09EA4B}

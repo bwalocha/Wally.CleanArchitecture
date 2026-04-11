@@ -6,7 +6,7 @@ using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Application.Users.Commands;
 using Wally.CleanArchitecture.MicroService.Application.Users.Queries;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
-using Wally.CleanArchitecture.MicroService.WebApi.Abstractions;
+using Wally.CleanArchitecture.MicroService.WebApi.Contracts;
 using Wally.CleanArchitecture.MicroService.WebApi.Contracts.Users.Requests;
 using Wally.CleanArchitecture.MicroService.WebApi.Contracts.Users.Responses;
 

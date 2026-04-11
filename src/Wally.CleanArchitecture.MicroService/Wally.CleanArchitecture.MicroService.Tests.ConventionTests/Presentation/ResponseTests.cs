@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Extensions;
 using Wally.CleanArchitecture.MicroService.WebApi;
 using Wally.CleanArchitecture.MicroService.WebApi.Abstractions;
+using Wally.CleanArchitecture.MicroService.WebApi.Contracts;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.ConventionTests.Presentation;
 

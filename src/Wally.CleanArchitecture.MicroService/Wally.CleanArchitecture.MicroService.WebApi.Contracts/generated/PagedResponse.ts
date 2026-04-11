@@ -3,10 +3,10 @@
 //     the code is regenerated.
 
 import { Dayjs } from 'dayjs';
+import { PageInfoResponse } from './PageInfoResponse';
 
-export interface PageInfoResult
+export interface PagedResponse<TResponse>
 {
-	index: number;
-	size: number;
-	total: number;
+	items: TResponse[];
+	pageInfo: PageInfoResponse;
 }
