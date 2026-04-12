@@ -3,7 +3,7 @@
 // TODO: Remove Setters,
 // extract interfaces
 // and add ConventionTests
-public class AppSettings
+public sealed partial class AppSettings
 {
 	public AuthenticationSettings Authentication { get; } = new(); // TODO: only with no Api Gateway?
 
