@@ -6,6 +6,7 @@
   },
   Content: {
     Headers: {
+      Content-Length: {Scrubbed},
       Content-Type: application/problem+json,
       Expires: -1
     },
@@ -13,7 +14,8 @@
       type: unique_constraint,
       title: Unique constraint violation,
       status: 409,
-      instance: /Users
+      instance: /Users,
+      traceId: {Scrubbed}
     }
   }
 }

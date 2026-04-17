@@ -15,7 +15,8 @@
       title: Resource Not Found Exception,
       status: 404,
       detail: The 'User' with Id='Guid_1' could not be found,
-      instance: /Users/Guid_1
+      instance: /Users/Guid_1,
+      traceId: {Scrubbed}
     }
   }
 }
