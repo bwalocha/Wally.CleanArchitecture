@@ -15,7 +15,7 @@ public static class ModuleInitializer
 			method.Name));
 
 		VerifierSettings.ScrubInlineGuids();
-		VerifierSettings.IgnoreMembers("traceId");
+		VerifierSettings.ScrubMembers("traceId");
 
 		VerifyHttp.Initialize();
 		Recording.Start();

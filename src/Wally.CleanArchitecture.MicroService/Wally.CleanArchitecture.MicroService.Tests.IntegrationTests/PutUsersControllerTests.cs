@@ -36,7 +36,7 @@ public partial class UsersControllerTests
 		var response = await _httpClient.PutAsync($"Users/{resource.Id.Value}", request, CancellationToken.None);
 
 		// Assert
-		await Verifier.Verify(response).IgnoreMembers("Content-Length");
+		await Verifier.Verify(response).ScrubMembers("Content-Length");
 	}
 
 	[Fact]

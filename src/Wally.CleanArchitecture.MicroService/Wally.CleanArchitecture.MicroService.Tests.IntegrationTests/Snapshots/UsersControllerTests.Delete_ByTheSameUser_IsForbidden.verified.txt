@@ -15,7 +15,8 @@
       title: Authorization Exception,
       status: 403,
       detail: Permission to DeleteUserCommand is denied.,
-      instance: /Users/Guid_1
+      instance: /Users/Guid_1,
+      traceId: {Scrubbed}
     }
   }
 }

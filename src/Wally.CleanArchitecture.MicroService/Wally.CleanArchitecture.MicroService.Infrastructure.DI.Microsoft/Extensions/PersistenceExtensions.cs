@@ -55,7 +55,9 @@ public static class PersistenceExtensions
 						$"Not supported Database Provider type: '{settings.Database.ProviderType}'");
 			}
 
-			options.EnableSensitiveDataLogging(); // TODO: Use env.IsDevelopment
+#if DEBUG
+			options.EnableSensitiveDataLogging();
+#endif
 			options.ConfigureWarnings(builder =>
 			{
 				builder.Default(WarningBehavior.Throw);
@@ -64,9 +66,6 @@ public static class PersistenceExtensions
 				builder.Ignore(SqlServerEventId.SavepointsDisabledBecauseOfMARS);
 				builder.Log(CoreEventId.SensitiveDataLoggingEnabledWarning);
 			});
-#if DEBUG
-			options.EnableSensitiveDataLogging();
-#endif
 		}
 
 		services.AddPooledDbContextFactory<ApplicationDbContext>(DbContextOptions);

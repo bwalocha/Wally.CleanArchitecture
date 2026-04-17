@@ -6,6 +6,7 @@
   },
   Content: {
     Headers: {
+      Content-Length: {Scrubbed},
       Content-Type: application/problem+json,
       Expires: -1
     },
@@ -16,7 +17,8 @@
       detail:
 Validation failed: 
  -- Name: 'Name' must not be empty. Severity: Error,
-      instance: /Users/Guid_1
+      instance: /Users/Guid_1,
+      traceId: {Scrubbed}
     }
   }
 }

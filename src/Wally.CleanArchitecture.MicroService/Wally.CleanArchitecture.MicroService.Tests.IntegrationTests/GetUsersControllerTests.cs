@@ -83,7 +83,7 @@ public partial class UsersControllerTests
 
 		// Assert
 		await Verifier.Verify(response)
-			.IgnoreMembers("name");
+			.ScrubMembers("name");
 	}
 
 	[Fact]

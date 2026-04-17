@@ -8,13 +8,16 @@
     Value: {
       items: [
         {
-          id: Guid_1
+          id: Guid_1,
+          name: {Scrubbed}
         },
         {
-          id: Guid_2
+          id: Guid_2,
+          name: {Scrubbed}
         },
         {
-          id: Guid_3
+          id: Guid_3,
+          name: {Scrubbed}
         }
       ],
       pageInfo: {
