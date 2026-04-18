@@ -11,7 +11,9 @@ public partial class ControllerTests
 		var response = await _httpClient.GetAsync("/");
 
 		// Assert
-		await Verifier.Verify(response).IgnoreMembers("Content-Length", "version");
+		await Verifier
+			.Verify(response)
+			.ScrubMembers("Content-Length", "version");
 	}
 
 	[Fact]
