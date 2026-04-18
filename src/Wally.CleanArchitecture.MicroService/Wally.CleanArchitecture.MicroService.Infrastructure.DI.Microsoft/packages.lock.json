@@ -496,10 +496,10 @@
       },
       "FlexLabs.EntityFrameworkCore.Upsert": {
         "type": "Transitive",
-        "resolved": "10.0.0-beta1",
-        "contentHash": "gSzy/Cg04pG7y6+VOXJRsLuy+JlLDcwFYFb/Y5vsZ9qHNNBk69VjeiIyx8SMeg88Q8v02cc9btEVfxBOBfN6Kw==",
+        "resolved": "10.0.0",
+        "contentHash": "qFVp1j1yZFApE4uXplTodeSybz/pfjGM/zBfwgtnkZqw7ZV1YFmF0AEebQmmNsndANQmv+aNi7aXdOhOVFfs7Q==",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "10.0.0-rc.2.25502.107"
+          "Microsoft.EntityFrameworkCore.Relational": "[10.0.0, 11.0.0)"
         }
       },
       "Fractions": {
@@ -1236,9 +1236,14 @@
       },
       "TickerQ.Utilities": {
         "type": "Transitive",
-        "resolved": "10.0.2",
-        "contentHash": "iANtJheksqWu2ukQn4QYWTfdtBbfxLW4JJGIzHdK1WG51/oKAfzQAx0uHm2wXQ4e8QsFBDH23d3K+CyLnFaJ5g==",
+        "resolved": "10.3.0",
+        "contentHash": "GVQvon74tsqNn71GtAEg9mbrj2XOcuK+v3TNB9vJkOafOpfft9fP6lMV6fBj1O7wLMb0mb8ImouFnuN6s6H8ng==",
         "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "[10.0.0, 11.0.0)",
+          "Microsoft.Extensions.Configuration.Abstractions": "[10.0.0, 11.0.0)",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "[10.0.0, 11.0.0)",
+          "Microsoft.Extensions.Hosting.Abstractions": "[10.0.0, 11.0.0)",
+          "Microsoft.Extensions.Logging.Abstractions": "[10.0.0, 11.0.0)",
           "NCrontab": "3.3.0"
         }
       },
@@ -1320,7 +1325,7 @@
           "Microsoft.EntityFrameworkCore.Relational": "[10.0.6, )",
           "Microsoft.EntityFrameworkCore.SqlServer": "[10.0.6, )",
           "StyleCop.Analyzers": "[1.1.118, )",
-          "TickerQ.EntityFrameworkCore": "[10.0.2, )",
+          "TickerQ.EntityFrameworkCore": "[10.3.0, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
         }
@@ -1378,9 +1383,9 @@
           "Microsoft.EntityFrameworkCore.Sqlite": "[10.0.6, )",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[10.0.6, )",
           "StyleCop.Analyzers": "[1.1.118, )",
-          "TickerQ": "[10.0.2, )",
-          "TickerQ.Dashboard": "[10.0.2, )",
-          "TickerQ.EntityFrameworkCore": "[10.0.2, )",
+          "TickerQ": "[10.3.0, )",
+          "TickerQ.Dashboard": "[10.3.0, )",
+          "TickerQ.EntityFrameworkCore": "[10.3.0, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence": "[1.0.0, )"
         }
@@ -1540,31 +1545,31 @@
       },
       "TickerQ": {
         "type": "CentralTransitive",
-        "requested": "[10.0.2, )",
-        "resolved": "10.0.2",
-        "contentHash": "L8N3V2rHl9CI5+/c8bJeLLwUuAFdhCaXbdtEMK5VX/GSCoEs0IbClnuE9w3lvWda7q0nohUOwKAt+7/lap/Gqg==",
+        "requested": "[10.3.0, )",
+        "resolved": "10.3.0",
+        "contentHash": "UC0qP45SXqqr3wxuIqBvZCxUK9CyiZt4hIzJDEzuzuy1A9y14dzE6jQKEeyHGrgT2Q1hCOo0hWz4GJWRx1YCiA==",
         "dependencies": {
-          "TickerQ.Utilities": "10.0.2"
+          "TickerQ.Utilities": "10.3.0"
         }
       },
       "TickerQ.Dashboard": {
         "type": "CentralTransitive",
-        "requested": "[10.0.2, )",
-        "resolved": "10.0.2",
-        "contentHash": "05vfpknWluZAj93pfkfnR891JFWnPVWoJfT+hEwpby37o4/6a859eMu+IS0Mh6iczDArxzVGvWh1DCdwBjw0Dw==",
+        "requested": "[10.3.0, )",
+        "resolved": "10.3.0",
+        "contentHash": "ouLI/TqU+w9HAobyk0f5irEkQA4+hjpWbKJgW/mFOjXPggOKwrGLR3/wjc4b3/t/08qO37sQwCCPFDw272tRvw==",
         "dependencies": {
-          "TickerQ.Utilities": "10.0.2"
+          "TickerQ.Utilities": "10.3.0"
         }
       },
       "TickerQ.EntityFrameworkCore": {
         "type": "CentralTransitive",
-        "requested": "[10.0.2, )",
-        "resolved": "10.0.2",
-        "contentHash": "jUGK9HnTa1a9Ao0v65rCdC+U5z8m1qyGafeH8tYXfnN/oYZRGRjkk0EU7V9J6QTrFQga9qq4Nf8Tph9B0nP9zA==",
+        "requested": "[10.3.0, )",
+        "resolved": "10.3.0",
+        "contentHash": "hKFITur6NCidQAvVV3ckPdNgxX73t//D3wV6pDzhRNsY8g6JVUzs+PeKJADTq5NgtWS0eQBLygcWJz8d4hbHXA==",
         "dependencies": {
-          "FlexLabs.EntityFrameworkCore.Upsert": "[10.0.0-beta1, 11.0.0)",
+          "FlexLabs.EntityFrameworkCore.Upsert": "[10.0.0, 11.0.0)",
           "Microsoft.EntityFrameworkCore.Relational": "[10.0.0, 11.0.0)",
-          "TickerQ.Utilities": "10.0.2"
+          "TickerQ.Utilities": "10.3.0"
         }
       },
       "Wally.Identity.Messages": {

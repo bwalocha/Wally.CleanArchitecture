@@ -20,6 +20,13 @@ public static class MessagingExtensions
 {
 	public static IServiceCollection AddMessaging(this IServiceCollection services, AppSettings settings)
 	{
+		switch (settings.MessageBroker)
+		{
+			case MessageBrokerType.None:
+				services.AddSingleton<IBus, BusStub>();
+				return services;
+		}
+
 		services.AddMassTransit(a =>
 		{
 			a.AddConsumers(typeof(IInfrastructureMessagingAssemblyMarker).Assembly);

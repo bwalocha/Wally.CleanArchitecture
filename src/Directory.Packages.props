@@ -74,9 +74,9 @@
     <PackageVersion Include="Testcontainers.MySql" Version="4.11.0" />
     <PackageVersion Include="Testcontainers.MsSql" Version="4.11.0" />
     <PackageVersion Include="Testcontainers.PostgreSql" Version="4.11.0" />
-    <PackageVersion Include="TickerQ" Version="10.0.2" />
-    <PackageVersion Include="TickerQ.Dashboard" Version="10.0.2" />
-    <PackageVersion Include="TickerQ.EntityFrameworkCore" Version="10.0.2" />
+    <PackageVersion Include="TickerQ" Version="10.3.0" />
+    <PackageVersion Include="TickerQ.Dashboard" Version="10.3.0" />
+    <PackageVersion Include="TickerQ.EntityFrameworkCore" Version="10.3.0" />
     <PackageVersion Include="TngTech.ArchUnitNET.xUnit" Version="0.13.3" />
     <PackageVersion Include="Verify.Http" Version="7.5.1" />
     <PackageVersion Include="Verify.Xunit" Version="31.12.5" />

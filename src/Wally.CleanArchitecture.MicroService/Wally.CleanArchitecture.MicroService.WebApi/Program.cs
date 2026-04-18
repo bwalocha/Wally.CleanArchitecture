@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Context;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
+using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 
 // using Wally.CleanArchitecture.MicroService.Application;
 
@@ -36,6 +37,7 @@ public static class Program
 				Log.Information("Starting host...");
 				CreateHostBuilder(args)
 					.Build()
+					.UseInfrastructure()
 					.Run();
 			}
 		}

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Time.Testing;
 using Testcontainers.MsSql;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
+// using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 
 namespace Wally.CleanArchitecture.MicroService.Tests.IntegrationTests.Helpers;
 
@@ -94,7 +95,8 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 		where TEntity : class
 	{
 		var dbContext = GetRequiredService<DbContext>();
-		dbContext.RemoveRange(dbContext.Set<TEntity>()
+		dbContext
+			.RemoveRange(dbContext.Set<TEntity>()
 			.IgnoreQueryFilters());
 		dbContext.SaveChanges();
 
@@ -105,8 +107,10 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 		where TEntity : class
 	{
 		var dbContext = GetRequiredService<DbContext>();
-		dbContext.RemoveRange(dbContext.Set<TEntity>()
-			.IgnoreQueryFilters());
+		dbContext.RemoveRange(
+			dbContext
+				.Set<TEntity>()
+				.IgnoreQueryFilters());
 
 		return dbContext.SaveChangesAsync();
 	}
@@ -114,8 +118,13 @@ public class ApiWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup
 	// TODO: The latest TickerQ does not work with IntegrationTests
 	// protected override IHost CreateHost(IHostBuilder builder)
 	// {
-	// 	var host = base.CreateHost(builder);
+	// 	// var host = base.CreateHost(builder);
+	// 	
+	// 	var host = builder.Build();
+	// 	// TryConfigureServerPort(() => GetServerAddressFeature(host));
+	// 	
 	// 	host.UseInfrastructure();
+	// 	host.Start();
 	//
 	// 	return host;
 	// }

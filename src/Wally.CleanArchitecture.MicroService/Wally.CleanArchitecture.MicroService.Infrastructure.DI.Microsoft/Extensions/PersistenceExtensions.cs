@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
@@ -155,19 +156,37 @@ public static class PersistenceExtensions
 
 	public static IApplicationBuilder UsePersistence(this IApplicationBuilder app)
 	{
-		var settings = app.ApplicationServices.GetRequiredService<IOptions<AppSettings>>();
+		// var settings = app.ApplicationServices.GetRequiredService<IOptions<AppSettings>>();
+		//
+		// if (!settings.Value.Database.IsMigrationEnabled ||
+		// 	settings.Value.Database.ProviderType == DatabaseProviderType.None ||
+		// 	settings.Value.Database.ProviderType == DatabaseProviderType.InMemory)
+		// {
+		// 	return app;
+		// }
+		//
+		// using var scope = app.ApplicationServices.CreateScope();
+		// var dbContext = scope.ServiceProvider.GetRequiredService<DbContext>();
+		// dbContext.Database.Migrate();
+
+		return app;
+	}
+	
+	public static IHost UsePersistence(this IHost host)
+	{
+		var settings = host.Services.GetRequiredService<IOptions<AppSettings>>();
 
 		if (!settings.Value.Database.IsMigrationEnabled ||
 			settings.Value.Database.ProviderType == DatabaseProviderType.None ||
 			settings.Value.Database.ProviderType == DatabaseProviderType.InMemory)
 		{
-			return app;
+			return host;
 		}
 
-		using var scope = app.ApplicationServices.CreateScope();
+		using var scope = host.Services.CreateScope();
 		var dbContext = scope.ServiceProvider.GetRequiredService<DbContext>();
 		dbContext.Database.Migrate();
 
-		return app;
+		return host;
 	}
 }
