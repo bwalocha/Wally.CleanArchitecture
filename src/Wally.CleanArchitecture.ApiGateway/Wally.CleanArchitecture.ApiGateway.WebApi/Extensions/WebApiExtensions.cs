@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mime;
+// using System.Net.Mime;
 using System.Reflection;
 using FluentValidation;
 using FluentValidation.Results;
@@ -9,15 +9,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.AspNetCore.OData;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
-using Wally.CleanArchitecture.MicroService.Application.Abstractions;
-using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft;
-using Wally.CleanArchitecture.MicroService.WebApi.Contracts;
-using Wally.CleanArchitecture.MicroService.WebApi.Handlers;
+using Wally.CleanArchitecture.ApiGateway.WebApi.Contracts;
 
-namespace Wally.CleanArchitecture.MicroService.WebApi.Extensions;
+// using Newtonsoft.Json;
+
+namespace Wally.CleanArchitecture.ApiGateway.WebApi.Extensions;
 
 public static class WebApiExtensions
 {
@@ -31,25 +28,25 @@ public static class WebApiExtensions
 				// a.ProblemDetails.Extensions.TryAdd("correlationId", options.);
 			};
 		});
-		services.AddExceptionHandler<AuthenticationExceptionHandler>()
-			.AddExceptionHandler<AuthorizationExceptionHandler>()
-			.AddExceptionHandler<ValidationExceptionHandler>()
-			.AddExceptionHandler<NotFoundExceptionHandler>()
-			.AddExceptionHandler<DatabaseExceptionHandler>()
-			.AddExceptionHandler<HttpGlobalExceptionHandler>();
+		// services.AddExceptionHandler<AuthenticationExceptionHandler>()
+		// 	.AddExceptionHandler<AuthorizationExceptionHandler>()
+		// 	.AddExceptionHandler<ValidationExceptionHandler>()
+		// 	.AddExceptionHandler<NotFoundExceptionHandler>()
+		// 	.AddExceptionHandler<DatabaseExceptionHandler>()
+		// 	.AddExceptionHandler<HttpGlobalExceptionHandler>();
 
-		services.AddControllers()
-			.AddOData(options =>
-			{
-				options.Filter()
-					.OrderBy()
-					.Count()
-					.SetMaxTop(1000);
-			})
-			.AddNewtonsoftJson(options =>
-			{
-				options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-			});
+		// services.AddControllers()
+		// 	.AddOData(options =>
+		// 	{
+		// 		options.Filter()
+		// 			.OrderBy()
+		// 			.Count()
+		// 			.SetMaxTop(1000);
+		// 	})
+		// 	.AddNewtonsoftJson(options =>
+		// 	{
+		// 		options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+		// 	});
 
 		services.AddValidatorsFromAssemblyContaining<IPresentationAssemblyMarker>(includeInternalTypes: true)
 			// .AddValidatorsFromAssemblyContaining<IApplicationContractsAssemblyMarker>(includeInternalTypes: true)
@@ -63,8 +60,8 @@ public static class WebApiExtensions
 						string.Join(", ", a.Value!.Errors.Select(b => b.ErrorMessage)), a.Value.AttemptedValue)));
 			});
 
-		services.AddHttpContextAccessor();
-		services.AddScoped<IRequestContext, RequestContext>();
+		// services.AddHttpContextAccessor();
+		// services.AddScoped<IRequestContext, RequestContext>();
 
 		return services;
 	}
@@ -96,14 +93,14 @@ public static class WebApiExtensions
 				.Produces<VersionResponse>(StatusCodes.Status200OK)
 				.Produces<VersionResponse>(StatusCodes.Status422UnprocessableEntity);
 		});
-		app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-		app.UseStatusCodePages(async statusCodeContext =>
-		{
-			statusCodeContext.HttpContext.Response.ContentType = MediaTypeNames.Text.Plain;
-
-			await statusCodeContext.HttpContext.Response.WriteAsync(
-				$"Status Code Page: {statusCodeContext.HttpContext.Response.StatusCode}");
-		});
+		// app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+		// app.UseStatusCodePages(async statusCodeContext =>
+		// {
+		// 	statusCodeContext.HttpContext.Response.ContentType = MediaTypeNames.Text.Plain;
+		//
+		// 	await statusCodeContext.HttpContext.Response.WriteAsync(
+		// 		$"Status Code Page: {statusCodeContext.HttpContext.Response.StatusCode}");
+		// });
 
 		return app;
 	}

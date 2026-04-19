@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Confluent.Kafka;
@@ -37,22 +36,6 @@ public static class HealthChecksExtensions
 				Predicate = _ => true,
 				ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
 			});
-
-		app.UseEndpoints(endpoints =>
-		{
-			// Adds Liveness
-			endpoints.MapGet(
-				"/",
-				() =>
-				{
-					var version = Assembly.GetExecutingAssembly()
-							.GetName()
-							.Version?.ToString()
-					?? "unknown";
-
-					return new { version, };
-				});
-		});
 
 		return app;
 	}

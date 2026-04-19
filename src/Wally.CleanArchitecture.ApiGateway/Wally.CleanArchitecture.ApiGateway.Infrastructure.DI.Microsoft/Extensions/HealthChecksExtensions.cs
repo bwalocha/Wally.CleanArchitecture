@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
@@ -34,20 +33,6 @@ public static class HealthChecksExtensions
 			});
 
 		app.UseHealthChecksUI();
-
-		app.UseEndpoints(endpoints =>
-		{
-			// Adds Liveness
-			endpoints.MapGet(
-				"/",
-				() =>
-				{
-					var version = Assembly.GetExecutingAssembly().GetName().Version?.ToString() 
-					?? "unknown";
-
-					return new { version };
-				});
-		});
 
 		return app;
 	}

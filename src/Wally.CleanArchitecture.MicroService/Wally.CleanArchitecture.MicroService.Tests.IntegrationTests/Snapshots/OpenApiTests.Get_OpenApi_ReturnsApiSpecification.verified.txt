@@ -12,7 +12,7 @@
         description: An ASP.NET Core Web API for managing 'Wally.CleanArchitecture' items,
         contact: {
           name: Wally,
-          url: https://wally.best,
+          url: https://wally.ovh,
           email: b.walocha@gmail.com
         },
         license: {
@@ -664,7 +664,17 @@ DELETE /Users/Guid_1,
                 content: {
                   application/json: {
                     schema: {
-                      $ref: #/components/schemas/String<>f__AnonymousType0
+                      $ref: #/components/schemas/VersionResponse
+                    }
+                  }
+                }
+              },
+              422: {
+                description: Unprocessable Content,
+                content: {
+                  application/json: {
+                    schema: {
+                      $ref: #/components/schemas/VersionResponse
                     }
                   }
                 }
@@ -704,6 +714,16 @@ DELETE /Users/Guid_1,
             },
             additionalProperties: false,
             description: Update User Request
+          },
+          VersionResponse: {
+            type: object,
+            properties: {
+              version: {
+                type: string,
+                nullable: true
+              }
+            },
+            additionalProperties: false
           }
         }
       },

@@ -36,7 +36,10 @@ public class Startup
 		services.AddInfrastructure(Configuration);
 	}
 
-	public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime appLifetime,
+	public void Configure(
+		IApplicationBuilder app,
+		IWebHostEnvironment env,
+		IHostApplicationLifetime appLifetime,
 		ILogger<Startup> logger)
 	{
 		appLifetime.ApplicationStarted.Register(() =>

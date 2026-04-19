@@ -5,7 +5,7 @@ using System.Reflection;
 using Reinforced.Typings.Ast.TypeNames;
 using Reinforced.Typings.Fluent;
 
-namespace Wally.CleanArchitecture.MicroService.WebApi.Contracts;
+namespace Wally.CleanArchitecture.ApiGateway.WebApi.Contracts;
 
 public static class ReinforcedTypingsConfiguration
 {

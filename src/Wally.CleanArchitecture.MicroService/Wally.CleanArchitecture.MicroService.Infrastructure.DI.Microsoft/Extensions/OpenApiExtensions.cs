@@ -16,7 +16,7 @@ public static class OpenApiExtensions
 {
 	private const string ContactName = "Wally";
 	private const string ContactEmail = "b.walocha@gmail.com";
-	private const string ContactUrl = "https://wally.best";
+	private const string ContactUrl = "https://wally.ovh";
 
 	private const string LicenseName = "MIT";
 	private const string LicenseUrl = "https://opensource.org/licenses/MIT";

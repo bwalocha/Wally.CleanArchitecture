@@ -8,6 +8,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.FeatureManagement;
 using Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Extensions;
 using Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Models;
+using Wally.CleanArchitecture.ApiGateway.WebApi.Extensions;
 
 namespace Wally.CleanArchitecture.ApiGateway.WebApi;
 
@@ -23,6 +24,8 @@ public class Startup
 	// This method gets called by the runtime. Use this method to add services to the container.
 	public void ConfigureServices(IServiceCollection services)
 	{
+		services.AddPresentation(Configuration);
+		// services.AddApplication();
 		services.AddInfrastructure(Configuration);
 	}
 
@@ -42,6 +45,8 @@ public class Startup
 		appLifetime.ApplicationStopped.Register(() =>
 			logger.LogInformation("The 'Wally.CleanArchitecture.ApiGateway.WebApi' is stopped"));
 
+		app.UsePresentation();
+		// app.UseApplication(env);
 		app.UseInfrastructure(env, options, featureManager);
 	}
 #pragma warning restore S2325

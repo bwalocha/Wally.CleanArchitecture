@@ -1,6 +1,4 @@
-﻿using Wally.CleanArchitecture.MicroService.WebApi.Abstractions;
-
-namespace Wally.CleanArchitecture.MicroService.WebApi.Contracts;
+﻿namespace Wally.CleanArchitecture.MicroService.WebApi.Contracts;
 
 [ExcludeFromCodeCoverage]
 public class PagedResponse<TResponse> : IResponse

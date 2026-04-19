@@ -1,0 +1,3 @@
+﻿namespace Wally.CleanArchitecture.ApiGateway.WebApi.Contracts;
+
+public interface IPresentationContractsAssemblyMarker;
