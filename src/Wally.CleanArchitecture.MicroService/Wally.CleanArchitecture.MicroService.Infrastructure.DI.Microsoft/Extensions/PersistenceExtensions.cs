@@ -1,7 +1,6 @@
 ﻿using System;
 
 using EntityFramework.Exceptions.MySQL.Pomelo;
-// using EntityFramework.Exceptions.Sqlite;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -156,18 +155,18 @@ public static class PersistenceExtensions
 
 	public static IApplicationBuilder UsePersistence(this IApplicationBuilder app)
 	{
-		// var settings = app.ApplicationServices.GetRequiredService<IOptions<AppSettings>>();
-		//
-		// if (!settings.Value.Database.IsMigrationEnabled ||
-		// 	settings.Value.Database.ProviderType == DatabaseProviderType.None ||
-		// 	settings.Value.Database.ProviderType == DatabaseProviderType.InMemory)
-		// {
-		// 	return app;
-		// }
-		//
-		// using var scope = app.ApplicationServices.CreateScope();
-		// var dbContext = scope.ServiceProvider.GetRequiredService<DbContext>();
-		// dbContext.Database.Migrate();
+		var settings = app.ApplicationServices.GetRequiredService<IOptions<AppSettings>>();
+		
+		if (!settings.Value.Database.IsMigrationEnabled ||
+			settings.Value.Database.ProviderType == DatabaseProviderType.None ||
+			settings.Value.Database.ProviderType == DatabaseProviderType.InMemory)
+		{
+			return app;
+		}
+		
+		using var scope = app.ApplicationServices.CreateScope();
+		var dbContext = scope.ServiceProvider.GetRequiredService<DbContext>();
+		dbContext.Database.Migrate();
 
 		return app;
 	}

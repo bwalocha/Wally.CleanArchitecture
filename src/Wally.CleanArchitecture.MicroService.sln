@@ -79,6 +79,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.Mic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.Application.Mapper.Mapperly", "Wally.CleanArchitecture.MicroService\Wally.CleanArchitecture.MicroService.Application.Mapper.Mapperly\Wally.CleanArchitecture.MicroService.Application.Mapper.Mapperly.csproj", "{88113375-D6FF-4EA9-B29B-54BE5DF11C79}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.MicroService.WebApi.Mapper.Mapperly", "Wally.CleanArchitecture.MicroService\Wally.CleanArchitecture.MicroService.WebApi.Mapper.Mapperly\Wally.CleanArchitecture.MicroService.WebApi.Mapper.Mapperly.csproj", "{DBB6BE65-5A00-4391-A74D-4EB62480EE92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -416,6 +418,18 @@ Global
 		{88113375-D6FF-4EA9-B29B-54BE5DF11C79}.Release|x64.Build.0 = Release|Any CPU
 		{88113375-D6FF-4EA9-B29B-54BE5DF11C79}.Release|x86.ActiveCfg = Release|Any CPU
 		{88113375-D6FF-4EA9-B29B-54BE5DF11C79}.Release|x86.Build.0 = Release|Any CPU
+		{DBB6BE65-5A00-4391-A74D-4EB62480EE92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBB6BE65-5A00-4391-A74D-4EB62480EE92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBB6BE65-5A00-4391-A74D-4EB62480EE92}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DBB6BE65-5A00-4391-A74D-4EB62480EE92}.Debug|x64.Build.0 = Debug|Any CPU
+		{DBB6BE65-5A00-4391-A74D-4EB62480EE92}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DBB6BE65-5A00-4391-A74D-4EB62480EE92}.Debug|x86.Build.0 = Debug|Any CPU
+		{DBB6BE65-5A00-4391-A74D-4EB62480EE92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBB6BE65-5A00-4391-A74D-4EB62480EE92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBB6BE65-5A00-4391-A74D-4EB62480EE92}.Release|x64.ActiveCfg = Release|Any CPU
+		{DBB6BE65-5A00-4391-A74D-4EB62480EE92}.Release|x64.Build.0 = Release|Any CPU
+		{DBB6BE65-5A00-4391-A74D-4EB62480EE92}.Release|x86.ActiveCfg = Release|Any CPU
+		{DBB6BE65-5A00-4391-A74D-4EB62480EE92}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{566755FA-0E86-4B73-A72C-CE7A7908DA72} = {7CA1E01A-F818-48B9-A573-20A904B9F7C2}
@@ -445,5 +459,6 @@ Global
 		{434C0DEB-25AA-490F-9136-F7D632B3ECB9} = {5C7411C2-8CAD-4F46-9741-14B5BEB222B1}
 		{041BD972-9176-4027-A3F8-BE7EF42F01D9} = {7CA1E01A-F818-48B9-A573-20A904B9F7C2}
 		{88113375-D6FF-4EA9-B29B-54BE5DF11C79} = {5C7411C2-8CAD-4F46-9741-14B5BEB222B1}
+		{DBB6BE65-5A00-4391-A74D-4EB62480EE92} = {56971E79-C47B-463B-B8BC-E8F01D8B49C4}
 	EndGlobalSection
 EndGlobal

@@ -24,8 +24,7 @@ public sealed class ApplicationDbContext : DbContext
 			.ApplyEnumConvention()
 			.ApplyStronglyTypedId()
 			.ApplyOptimisticConcurrency()
-			.ApplySoftDelete()
-			.ApplyTemporal();
+			.ApplySoftDelete();
 
 		modelBuilder.AddInboxStateEntity();
 		modelBuilder.AddOutboxMessageEntity();

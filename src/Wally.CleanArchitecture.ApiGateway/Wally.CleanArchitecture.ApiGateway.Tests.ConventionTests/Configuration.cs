@@ -1,0 +1,109 @@
+﻿using System;
+using System.CodeDom.Compiler;
+using System.Linq;
+using ArchUnitNET.Domain;
+using ArchUnitNET.Loader;
+using Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft;
+using Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.Models;
+using Wally.CleanArchitecture.ApiGateway.Tests.ConventionTests.Extensions;
+using Wally.CleanArchitecture.ApiGateway.Tests.ConventionTests.Helpers;
+using Wally.CleanArchitecture.ApiGateway.WebApi;
+using Wally.CleanArchitecture.ApiGateway.WebApi.Contracts;
+
+namespace Wally.CleanArchitecture.ApiGateway.Tests.ConventionTests;
+
+public static class Configuration
+{
+	public const string Namespace = "Wally.CleanArchitecture.ApiGateway";
+
+	internal static readonly Architecture Architecture = new ArchLoader()
+		.LoadAssemblies(Assemblies.GetAllAssemblies()
+			.ToArray())
+		.LoadAssemblies(typeof(DateTime).Assembly)
+		.Build();
+
+	// internal static readonly IObjectProvider<IType> DomainProvider =
+	// 	Types()
+	// 		.That()
+	// 		.ResideInAssembly(Assemblies.Domain)
+	// 		.And()
+	// 		.DoNotHaveAnyAttributes(typeof(GeneratedCodeAttribute))
+	// 		.As("Domain Layer");
+
+	// internal static readonly IObjectProvider<IType> ApplicationProvider =
+	// 	Types()
+	// 		.That()
+	// 		.ResideInAssembly(Assemblies.Application)
+	// 		.And()
+	// 		.DoNotHaveAnyAttributes(typeof(GeneratedCodeAttribute))
+	// 		.As("Application Layer");
+
+	internal static readonly IObjectProvider<IType> InfrastructureProvider =
+		Types()
+			.That()
+			.ResideInAssembly(Assemblies.Infrastructure)
+			// .And()
+			// .DoNotHaveAnyAttributes(typeof(GeneratedCodeAttribute))
+			// .And()
+			// .DoNotResideInNamespaceMatching(@$"^.+\.{nameof(Mediator.Internals)}$")
+			.As("Infrastructure Layer");
+
+	internal static readonly IObjectProvider<IType> PresentationProvider =
+		Types()
+			.That()
+			.ResideInAssembly(Assemblies.Presentation)
+			.And()
+			.DoNotHaveAnyAttributes(typeof(GeneratedCodeAttribute))
+			// .And()
+			// .DoNotResideInNamespace(nameof(Mediator))
+			// .And()
+			// .DoNotResideInNamespaceMatching(@$"^.+\.{nameof(Mediator.Internals)}$")
+			.As("Presentation Layer");
+
+	public static Types OtherTypes
+		=> new()
+		{
+			AppSettings =
+			[
+				typeof(AppSettings),
+			],
+		};
+
+	public static Assemblies Assemblies
+		=> new()
+		{
+			Domain =
+			[
+				// typeof(IDomainAssemblyMarker).Assembly,
+				// typeof(Wally.CleanArchitecture.MicroService.Domain.Abstractions.IDomainAssemblyMarker).Assembly,
+			],
+			Application =
+			[
+				// typeof(IApplicationAssemblyMarker).Assembly,
+				// typeof(IApplicationDIMicrosoftAssemblyMarker).Assembly,
+				// typeof(Wally.CleanArchitecture.MicroService.Application.Mapper.AutoMapper.IApplicationMapperAssemblyMarker).Assembly,
+				// typeof(Wally.CleanArchitecture.MicroService.Application.Mapper.Mapster.IApplicationMapperAssemblyMarker).Assembly,
+				// typeof(IApplicationMessagesAssemblyMarker).Assembly,
+			],
+			Infrastructure =
+			[
+				// typeof(IInfrastructureBackgroundServicesAssemblyMarker).Assembly,
+				typeof(IInfrastructureDIMicrosoftAssemblyMarker).Assembly,
+				// typeof(IInfrastructureMessagingAssemblyMarker).Assembly,
+				// typeof(IInfrastructurePersistenceAssemblyMarker).Assembly,
+				// typeof(IInfrastructureMySqlAssemblyMarker).Assembly,
+				// typeof(IInfrastructurePostgreSqlAssemblyMarker).Assembly,
+				// typeof(IInfrastructureSQLiteAssemblyMarker).Assembly,
+				// typeof(IInfrastructureSqlServerAssemblyMarker).Assembly,
+				// typeof(IInfrastructurePipelineBehavioursAssemblyMarker).Assembly,
+				// typeof(IInfrastructureSchedulerServiceAssemblyMarker).Assembly,
+			],
+			Presentation =
+			[
+				typeof(IPresentationAssemblyMarker).Assembly,
+				typeof(IPresentationContractsAssemblyMarker).Assembly,
+				// typeof(Wally.CleanArchitecture.MicroService.WebApi.Mapper.AutoMapper.IPresentationMapperAssemblyMarker).Assembly,
+				// typeof(Wally.CleanArchitecture.MicroService.WebApi.Mapper.Mapster.IPresentationMapperAssemblyMarker).Assembly,
+			],
+		};
+}

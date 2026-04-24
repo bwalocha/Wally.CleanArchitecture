@@ -29,6 +29,7 @@
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
         <PackageReference Include="Microsoft.AspNetCore.OData" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+        <!--<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" />-->
         <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
         <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol"/>
@@ -42,10 +43,10 @@
     </ItemGroup>
 
     <!-- Updates for vulnerable packages -->
-    <ItemGroup>
+    <!--<ItemGroup>
         <PackageReference Include="BouncyCastle.Cryptography" />
         <PackageReference Include="System.Drawing.Common" />
-    </ItemGroup>
+    </ItemGroup>-->
 
     <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj" />

@@ -13,10 +13,10 @@
     </ItemGroup>
 
     <!-- Updates for vulnerable packages -->
-    <ItemGroup>
+    <!--<ItemGroup>
         <PackageReference Include="BouncyCastle.Cryptography" />
         <PackageReference Include="System.Drawing.Common" />
-    </ItemGroup>
+    </ItemGroup>-->
 
     <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application\Wally.CleanArchitecture.MicroService.Application.csproj" />

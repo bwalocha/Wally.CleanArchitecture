@@ -2,14 +2,14 @@
 
 ## Installation
 
-```
+```shell
 dotnet new install Wally.CleanArchitecture.Template
 ```
 
 ## Usage
 
-```
-dotnet new wally.cleanarchitecture --output . --name MyCompanyName.MyAppName --serviceName MyServiceName -proxy=true -service=true -frontend=true -storybook=true
+```shell
+dotnet new wally.cleanarchitecture --output . --name MyCompanyName.MyAppName --serviceName MyServiceName -proxy=true -service=true -frontend=true
 ```
 
 ## Details
@@ -65,30 +65,32 @@ classDiagram
     UserController --> RegisterUserUseCase
 ```
 
-- [x] .Net 8 WebApi ReverseProxy
+- [x] .Net Framework 10
+- [x] WebApi ReverseProxy
     - [x] YARP
-- [x] .Net 8 WebApi MicroService
-	- [x] AppSettings
-	- [x] CORS
-	- [x] FluentValidation
-	- [x] OAuth2
+- [x] WebApi MicroService
+    - [x] AppSettings
+    - [x] CORS
+    - [x] FluentValidation
+    - [x] OAuth2
 - [x] Swagger
 - [x] Serilog
 - [x] HealthChecks
     - [x] UI
-	- [x] MicroService endpoint
+    - [x] MicroService endpoint
 - [x] MediatR
-	- [x] LogBehavior
-	- [x] TransactionBehavior
-	- [x] ValidatorBehavior (IComamnd, IQuery)
-	- [x] DomainEventBehavior
-	- [ ] NotificationBehavior
+    - [x] LogBehavior
+    - [x] TransactionBehavior
+    - [x] ValidatorBehavior (IComamnd, IQuery)
+    - [x] DomainEventBehavior
+    - [ ] NotificationBehavior
     - [x] UpdateMetadataBehavior
     - [x] SoftDeleteBehavior
 - [x] MassTransit
     - [x] Azure ServiceBus
     - [x] RabbitMQ
     - [x] Kafka
+- [ ] Wolverine [](https://wolverinefx.net/)
 - [x] Scrutor [github](https://github.com/khellang/Scrutor)
 - [x] OData
 - [x] HttpGlobalExceptionFilter
@@ -99,34 +101,34 @@ classDiagram
     - [x] SQLite
     - [x] InMemoryDb
     - [ ] Optimistic Concurrency
-    - [ ] Generic Repository + Specific Repository
+    - [x] Generic Repository + Specific Repository
 - [ ] xUnit
-	- [x] ApprovalTests
-	- [x] IntegrationTests
-	- [x] UnitTests
+    - [x] ApprovalTests
+    - [x] IntegrationTests
+    - [x] UnitTests
         - [ ] NetArchTest
 
-            Issue |	Description | Status
+            Issue | Description | Status
             --- | --- | ---
-            License | https://raw.githubusercontent.com/BenMorris/NetArchTest/refs/heads/master/LICENSE | MIT
-            Popularity | https://github.com/BenMorris/NetArchTest/stargazers | >1.5k stars
-            . | https://github.com/BenMorris/NetArchTest/forks | >85 forks
-            Activity | https://github.com/BenMorris/NetArchTest/activity | last commit 7 months ago
-            Issues | https://github.com/BenMorris/NetArchTest/issues | 21 Open, 52 Closed
-            Frameworks | https://www.nuget.org/packages/NetArchTest.Rules/#supportedframeworks-body-tab | net8.0, net9.0
-            Vulnerabilities | https://secure.software/nuget/packages/NetArchTest.Rules/vulnerabilities | 0
+            License | [https://raw.githubusercontent.com/BenMorris/NetArchTest/refs/heads/master/LICENSE] | MIT
+            Popularity | [https://github.com/BenMorris/NetArchTest/stargazers] | >1.5k stars
+            . | [https://github.com/BenMorris/NetArchTest/forks] | >85 forks
+            Activity | [https://github.com/BenMorris/NetArchTest/activity] | last commit 7 months ago
+            Issues | [https://github.com/BenMorris/NetArchTest/issues] | 21 Open, 52 Closed
+            Frameworks | [https://www.nuget.org/packages/NetArchTest.Rules/#supportedframeworks-body-tab] | net8.0, net9.0
+            Vulnerabilities | [https://secure.software/nuget/packages/NetArchTest.Rules/vulnerabilities] | 0
 
-        - [ ] ArchUnitNET
+        - [x] ArchUnitNET
 
-            Issue |	Description | Status
+            Issue | Description | Status
             --- | --- | ---
-            License | https://github.com/TNG/ArchUnitNET/tree/main#Apache-2.0-1-ov-file | Apache-2.0
-            Popularity | https://github.com/TNG/ArchUnitNET/stargazers | >990 stars
-            . | https://github.com/TNG/ArchUnitNET/forks | >61 forks
-            Activity | https://github.com/TNG/ArchUnitNET/activity | last commit 12 min ago
-            Issues | https://github.com/TNG/ArchUnitNET/issues | 30 Open, 69 Closed
-            Frameworks | https://www.nuget.org/packages/TngTech.ArchUnitNET/#supportedframeworks-body-tab | netstandard2.0, netstandard2.1, net8.0, net9.0
-            Vulnerabilities | https://secure.software/nuget/packages/TngTech.ArchUnitNET/vulnerabilities | 0
+            License | [https://github.com/TNG/ArchUnitNET/tree/main#Apache-2.0-1-ov-file] | Apache-2.0
+            Popularity | [https://github.com/TNG/ArchUnitNET/stargazers] | >990 stars
+            . | [https://github.com/TNG/ArchUnitNET/forks] | >61 forks
+            Activity | [https://github.com/TNG/ArchUnitNET/activity] | last commit 12 min ago
+            Issues | [https://github.com/TNG/ArchUnitNET/issues] | 30 Open, 69 Closed
+            Frameworks | [https://www.nuget.org/packages/TngTech.ArchUnitNET/#supportedframeworks-body-tab] | netstandard2.0, netstandard2.1, net8.0, net9.0
+            Vulnerabilities | [https://secure.software/nuget/packages/TngTech.ArchUnitNET/vulnerabilities] | 0
 
     - [x] ConventionTests
     - [x] Verify [github](https://github.com/VerifyTests/Verify)
@@ -142,6 +144,8 @@ classDiagram
     - [x] AutoMapper [github](https://github.com/AutoMapper/AutoMapper)
         - [x] Validation
         - [x] Profiles
+    - [x] Mapster
+    - [ ] Mapperly
 - [x] SignalR
 - [ ] GitHub
     - [ ] Workflow
@@ -153,14 +157,19 @@ classDiagram
 
 ## TODO
 
+- [ ] More build-in Domain Model examples - Task, Parameter
+- [ ] Support for Wolverine as alternative for MassTransit
+- [ ] Inbox and Outbox pattern
 - [ ] Fix `[CS1591] Missing XML comment` warnings
 - [x] Move CORS settings to ApiGateway
 - [x] Authentication in ApiGateway
 - [ ] Authorization in MicroService
 - [x] SignalR Hub Service
-- [ ] Move Application.Contracts to Presentation layer
-- [x] EntityId [YT](https://www.youtube.com/watch?v=B3Iq346KwUQ&t=655s)
+- [x] StrongTypingId [YT](https://www.youtube.com/watch?v=B3Iq346KwUQ&t=655s)
 - [ ] Entity Framework Repository [GH](https://github.com/ffernandolima/ef-core-data-access)
 - [ ] Multitenancy [GH](https://github.com/Finbuckle/Finbuckle.MultiTenant)
-- [ ] IRequestContext with CorrelationId + SeriLog.Enrich.CorrelationId [1.](https://www.code4it.dev/blog/serilog-correlation-id/) [2.](https://github.com/ekmsystems/serilog-enrichers-correlation-id)
+- [ ] IRequestContext with CorrelationId + SeriLog.Enrich.CorrelationId
+    - [1.](https://www.code4it.dev/blog/serilog-correlation-id/)
+    - [2.](https://github.com/ekmsystems/serilog-enrichers-correlation-id)
 - [ ] Graceful Shutdown [post](https://dev.to/arminshoeibi/real-graceful-shutdown-in-kubernetes-and-aspnet-core-2290)
+- [ ] Documentation

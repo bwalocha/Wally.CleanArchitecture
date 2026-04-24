@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.Api
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.ApiGateway.WebApi.Abstractions", "Wally.CleanArchitecture.ApiGateway\Wally.CleanArchitecture.ApiGateway.WebApi.Abstractions\Wally.CleanArchitecture.ApiGateway.WebApi.Abstractions.csproj", "{67A57A98-5D7F-4FD5-868F-5C551F286D40}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wally.CleanArchitecture.ApiGateway.Tests.ConventionTests", "Wally.CleanArchitecture.ApiGateway\Wally.CleanArchitecture.ApiGateway.Tests.ConventionTests\Wally.CleanArchitecture.ApiGateway.Tests.ConventionTests.csproj", "{47767DF9-3823-4FE8-BBEF-411BABBC94E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{67A57A98-5D7F-4FD5-868F-5C551F286D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67A57A98-5D7F-4FD5-868F-5C551F286D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67A57A98-5D7F-4FD5-868F-5C551F286D40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47767DF9-3823-4FE8-BBEF-411BABBC94E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47767DF9-3823-4FE8-BBEF-411BABBC94E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47767DF9-3823-4FE8-BBEF-411BABBC94E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47767DF9-3823-4FE8-BBEF-411BABBC94E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E7D1FD7E-2105-4EAA-A1C8-0B4E81E17105} = {EAC9C353-4F7C-43E9-92A6-226F43D221D8}
@@ -75,5 +81,6 @@ Global
 		{6373CA55-3529-4DA3-B920-1F7D48967014} = {EAC9C353-4F7C-43E9-92A6-226F43D221D8}
 		{5D1A0B3B-FE15-4F60-A7C8-04E176740A98} = {C911A92B-E0AE-4965-AB10-5BCEF246CD78}
 		{67A57A98-5D7F-4FD5-868F-5C551F286D40} = {C911A92B-E0AE-4965-AB10-5BCEF246CD78}
+		{47767DF9-3823-4FE8-BBEF-411BABBC94E6} = {EAC9C353-4F7C-43E9-92A6-226F43D221D8}
 	EndGlobalSection
 EndGlobal

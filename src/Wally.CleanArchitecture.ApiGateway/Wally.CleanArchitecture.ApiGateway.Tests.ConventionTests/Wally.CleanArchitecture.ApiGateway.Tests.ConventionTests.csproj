@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\..\Directory.BuildTests.props"/>
+
+    <ItemGroup>
+        <PackageReference Include="TngTech.ArchUnitNET.xUnit"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft\Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.csproj" />
+      <ProjectReference Include="..\Wally.CleanArchitecture.ApiGateway.WebApi\Wally.CleanArchitecture.ApiGateway.WebApi.csproj" />
+    </ItemGroup>
+</Project>

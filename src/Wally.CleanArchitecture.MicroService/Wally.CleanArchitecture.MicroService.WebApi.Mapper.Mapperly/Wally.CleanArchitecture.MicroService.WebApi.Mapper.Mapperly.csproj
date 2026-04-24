@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+        <PackageReference Include="Riok.Mapperly" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.WebApi.Contracts\Wally.CleanArchitecture.MicroService.WebApi.Contracts.csproj" />
+    </ItemGroup>
+</Project>

@@ -87,31 +87,31 @@ public static class ModelBuilderExtensions
 		return modelBuilder;
 	}
 
-	public static ModelBuilder ApplyTemporal(this ModelBuilder modelBuilder)
-	{
-		var allEntities = modelBuilder.Model.GetEntityTypes();
-		foreach (var entity in allEntities
-					.Where(a => typeof(ITemporal)
-						.IsAssignableFrom(a.ClrType))
-					.Where(a => string.IsNullOrEmpty(a.GetViewName()))
-					.Select(a => a.ClrType)
-					.ToArray())
-		{
-			var entityBuilder = modelBuilder.Entity(entity);
-
-			// https://learn.microsoft.com/en-us/ef/core/providers/sql-server/temporal-tables
-			entityBuilder.ToTable(
-				entity.Name,
-				a => a.IsTemporal(b =>
-				{
-					b.UseHistoryTable($"{entity.Name}{TemporalPostfix}");
-					b.HasPeriodStart(nameof(TemporalValidFrom));
-					b.HasPeriodEnd(nameof(TemporalValidTo));
-				}));
-		}
-
-		return modelBuilder;
-	}
+	// public static ModelBuilder ApplyTemporal(this ModelBuilder modelBuilder)
+	// {
+	// 	var allEntities = modelBuilder.Model.GetEntityTypes();
+	// 	foreach (var entity in allEntities
+	// 				.Where(a => typeof(ITemporal)
+	// 					.IsAssignableFrom(a.ClrType))
+	// 				.Where(a => string.IsNullOrEmpty(a.GetViewName()))
+	// 				.Select(a => a.ClrType)
+	// 				.ToArray())
+	// 	{
+	// 		var entityBuilder = modelBuilder.Entity(entity);
+	//
+	// 		// https://learn.microsoft.com/en-us/ef/core/providers/sql-server/temporal-tables
+	// 		entityBuilder.ToTable(
+	// 			entity.Name,
+	// 			a => a.IsTemporal(b =>
+	// 			{
+	// 				b.UseHistoryTable($"{entity.Name}{TemporalPostfix}");
+	// 				b.HasPeriodStart(nameof(TemporalValidFrom));
+	// 				b.HasPeriodEnd(nameof(TemporalValidTo));
+	// 			}));
+	// 	}
+	//
+	// 	return modelBuilder;
+	// }
 
 	private static IEnumerable<Type> GetEntityTypes<TType>(this ModelBuilder modelBuilder)
 	{
