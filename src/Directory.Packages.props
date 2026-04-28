@@ -84,7 +84,7 @@
     <PackageVersion Include="JsonNet.ContractResolvers" Version="2.0.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.7" />
     <PackageVersion Include="StyleCop.Analyzers" Version="1.1.118" />
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.24.0.138807" />
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.25.0.139117" />
     <PackageVersion Include="coverlet.collector" Version="10.0.0" />
     <PackageVersion Include="coverlet.msbuild" Version="10.0.0" />
     <PackageVersion Include="JunitXml.TestLogger" Version="8.0.0" />

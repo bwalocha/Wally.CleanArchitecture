@@ -1,8 +1,9 @@
-﻿using System.Diagnostics;
+﻿using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 using Mediator;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours;
 
@@ -19,26 +20,19 @@ public class TransactionBehavior<TRequest, TResponse> : IPipelineBehavior<TReque
 	public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next,
 		CancellationToken cancellationToken)
 	{
-		await using var transaction = await _dbContext.Database.BeginTransactionAsync(cancellationToken);
+		var strategy = _dbContext.Database.CreateExecutionStrategy();
 
-		try
-		{
-			var response = await next(message, cancellationToken);
-			await _dbContext.SaveChangesAsync(cancellationToken);
-			await transaction.CommitAsync(cancellationToken);
-
-			return response;
-		}
-		catch
-		{
-			Debugger.Break();
-			await transaction.RollbackAsync(cancellationToken);
-
-			throw;
-		}
-		finally
-		{
-			_dbContext.ChangeTracker.Clear();
-		}
+		return await strategy.ExecuteInTransactionAsync<DbContext, TResponse>(
+			state: _dbContext,
+			operation: async (state, token) =>
+			{
+				var response = await next(message, token);
+				await state.SaveChangesAsync(token);
+				
+				return response;
+			},
+			verifySucceeded: (_, _) => Task.FromResult(true),
+			IsolationLevel.ReadCommitted,
+			cancellationToken: cancellationToken);
 	}
 }
