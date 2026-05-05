@@ -59,4 +59,10 @@
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours\Wally.CleanArchitecture.MicroService.Infrastructure.PipelineBehaviours.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.SchedulerService\Wally.CleanArchitecture.MicroService.Infrastructure.SchedulerService.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Models\AppSettings.partial.cs">
+        <DependentUpon>AppSettings.cs</DependentUpon>
+      </Compile>
+    </ItemGroup>
 </Project>

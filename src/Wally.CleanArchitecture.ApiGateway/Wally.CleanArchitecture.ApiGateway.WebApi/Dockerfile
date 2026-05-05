@@ -9,9 +9,9 @@ ARG PROJECT_NAME
 #EXPOSE 443
 
 # https://www.abhith.net/blog/docker-sql-error-on-aspnet-core-alpine/
-ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT false
-ENV ASPNETCORE_FORWARDEDHEADERS_ENABLED true
-ENV PROJECT_NAME ${PROJECT_NAME}
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
+ENV ASPNETCORE_FORWARDEDHEADERS_ENABLED=true
+ENV PROJECT_NAME=${PROJECT_NAME}
 
 #RUN groupadd -g 1000 users && \
 #    useradd -u 1000 --create-home -s /bin/bash -g users users
