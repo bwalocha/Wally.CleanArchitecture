@@ -18,7 +18,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("MicroService")
-                .HasAnnotation("ProductVersion", "10.0.6")
+                .HasAnnotation("ProductVersion", "10.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -215,6 +215,11 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
 
                     b.Property<bool>("IsEnabled")
                         .HasColumnType("bit");
+
+                    b.Property<bool>("IsSystemPaused")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<byte[]>("Request")
                         .HasColumnType("varbinary(max)");

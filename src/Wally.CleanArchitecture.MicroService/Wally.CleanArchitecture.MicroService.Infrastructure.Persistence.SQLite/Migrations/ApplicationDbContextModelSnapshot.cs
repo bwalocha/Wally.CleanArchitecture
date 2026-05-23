@@ -17,7 +17,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("MicroService")
-                .HasAnnotation("ProductVersion", "10.0.6");
+                .HasAnnotation("ProductVersion", "10.0.8");
 
             modelBuilder.Entity("MassTransit.EntityFrameworkCoreIntegration.InboxState", b =>
                 {
@@ -205,6 +205,11 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite
 
                     b.Property<bool>("IsEnabled")
                         .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsSystemPaused")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasDefaultValue(false);
 
                     b.Property<byte[]>("Request")
                         .HasColumnType("BLOB");
