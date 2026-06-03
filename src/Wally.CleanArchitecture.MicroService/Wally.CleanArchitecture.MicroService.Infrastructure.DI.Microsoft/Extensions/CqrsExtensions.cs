@@ -20,16 +20,16 @@ public static class CqrsExtensions
 			a.ServiceLifetime = ServiceLifetime.Scoped;
 		});
 
-		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LogBehavior<,>));
-		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(TransactionBehavior<,>));
-		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UpdateMetadataHandlerBehavior<,>));
-		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(SoftDeleteBehavior<,>));
-		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DomainEventHandlerBehavior<,>));
-		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UpdateMetadataHandlerBehavior<,>));
-		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(SoftDeleteBehavior<,>));
-		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandHandlerValidatorBehavior<,>));
-		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandAuthorizationHandlerBehavior<,>));
-		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(QueryHandlerValidatorBehavior<,>));
+		services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LogBehavior<,>))
+			.AddTransient(typeof(IPipelineBehavior<,>), typeof(TransactionBehavior<,>))
+			.AddTransient(typeof(IPipelineBehavior<,>), typeof(UpdateMetadataHandlerBehavior<,>))
+			.AddTransient(typeof(IPipelineBehavior<,>), typeof(SoftDeleteBehavior<,>))
+			.AddTransient(typeof(IPipelineBehavior<,>), typeof(DomainEventHandlerBehavior<,>))
+			.AddTransient(typeof(IPipelineBehavior<,>), typeof(UpdateMetadataHandlerBehavior<,>))
+			.AddTransient(typeof(IPipelineBehavior<,>), typeof(SoftDeleteBehavior<,>))
+			.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandHandlerValidatorBehavior<,>))
+			.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandAuthorizationHandlerBehavior<,>))
+			.AddTransient(typeof(IPipelineBehavior<,>), typeof(QueryHandlerValidatorBehavior<,>));
 
 		services.AddValidatorsFromAssemblyContaining<Wally.CleanArchitecture.MicroService.Application.IApplicationAssemblyMarker>(ServiceLifetime.Scoped,
 			a => a.InterfaceType.GenericTypeArguments.Single() == typeof(Application.Abstractions.ICommand<>),
