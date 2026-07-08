@@ -34,6 +34,26 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+### Environment variables
+
+Create a local env file before running auth:
+
+```bash
+cp .env.example .env.local
+```
+
+Required variables for Auth.js:
+
+- `AUTH_SECRET` (preferred) or `NEXTAUTH_SECRET`
+- `AUTH_GOOGLE_ID`
+- `AUTH_GOOGLE_SECRET`
+
+Generate a strong secret (PowerShell):
+
+```powershell
+[Convert]::ToBase64String((1..64 | ForEach-Object { Get-Random -Minimum 0 -Maximum 256 }))
+```
+
 First, run the development server:
 
 ```bash

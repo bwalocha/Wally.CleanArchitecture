@@ -114,7 +114,7 @@ function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <SidebarSeparator className="group-data-[collapsible=icon]:hidden" />
                 
                 <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-                    <SidebarGroupLabel asChild>Projects</SidebarGroupLabel>
+                    <SidebarGroupLabel>Projects</SidebarGroupLabel>
                     <SidebarGroupAction title="Add Project">
                         <Plus /> <span className="sr-only">Add Project</span>
                     </SidebarGroupAction>

@@ -2,6 +2,15 @@
 import Google from "next-auth/providers/google"
 
 // const BASE_PATH = "/api/auth";
+const authSecret =
+    process.env.AUTH_SECRET ??
+    process.env.NEXTAUTH_SECRET ??
+    (process.env.NODE_ENV === "development" ? "dev-only-auth-secret-change-me" : undefined)
+
+if (!authSecret) {
+    throw new Error("Missing AUTH_SECRET (or NEXTAUTH_SECRET) environment variable")
+}
+
 const authOptions: NextAuthConfig = {
     providers: [
         Google({
@@ -15,7 +24,7 @@ const authOptions: NextAuthConfig = {
         }),
     ],
     // basePath: BASE_PATH,
-    // secret: process.env.AUTH_SECRET,
+    secret: authSecret,
     callbacks: {
         async jwt({ token, account/*, user, profile, trigger, session*/ }) {
                 // console.log('token:', token)

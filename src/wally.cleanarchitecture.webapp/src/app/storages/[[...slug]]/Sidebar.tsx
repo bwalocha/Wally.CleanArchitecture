@@ -32,7 +32,6 @@ import {
     useGetQuery
 } 
 from "@/features/files/store/pathsApi"
-import {useEffect, useState} from "react";
 import * as react from "react";
 import {useParams, usePathname, useRouter, useSearchParams} from "next/navigation";
 
@@ -49,8 +48,6 @@ function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     // const {id} = React.use(params)
     // const { toggleSidebar } = useSidebar()
 
-    const [ items, setItems ] = useState<Item[]>([]);
-
     const {data, error, isLoading} = useGetQuery({ id: params.slug?.[0] ?? "", odata: undefined});
     // const {data, error, isLoading} = useGetQuery({ id: "", odata: undefined});
     
@@ -58,19 +55,19 @@ function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     // const {data, error, isLoading} = useGetQuery({ id: "93a0de1e-9fcf-4a63-8000-089f7ff5f7b5", odata: undefined});
     // const {data, error, isLoading} = useGetQuery({ id: "88bbedf3-255a-42d9-8000-089f7ff5f7b5", odata: undefined});
     
-    useEffect(() => {
-        if (data) {
-            const items = data?.items.map((item) => {
-                return {
-                    title: item.name,
-                    count: -123,
-                    url: `/storage/${item.id}`,
-                    icon: Database,
-                }
-            })
-            
-            setItems(items)
+    const items = React.useMemo<Item[]>(() => {
+        if (!data) {
+            return []
         }
+
+        return data.items.map((item) => {
+            return {
+                title: item.name,
+                count: -123,
+                url: `/storage/${item.id}`,
+                icon: Database,
+            }
+        })
     }, [data])
         
     /*return (

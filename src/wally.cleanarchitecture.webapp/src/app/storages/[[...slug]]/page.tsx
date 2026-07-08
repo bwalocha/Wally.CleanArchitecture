@@ -39,7 +39,6 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import {useEffect, useState} from "react";
 
 import {useGetListQuery} from "@/features/files/store/storagesApi";
 import * as react from "react";
@@ -390,26 +389,25 @@ type Item = {
 export default function Page({ params }: { params: Params }) {
     const {slug} = React.use(params)
 
-    const [ items, setItems ] = useState<Item[]>([]);
     const {data, error, isLoading} = useGetListQuery();
 
-    useEffect(() => {
-        if (data) {
-            const items = data?.items.map((item) => {
-                return {
-                    name: item.name,
-                    path: item.path,
-                    status: item.status,
-                    scanOnStartup: item.scanOnStartup,
-                    watch: item.watch,
-                    count: -123,
-                    url: `/storage/${item.id}`,
-                    icon: Database,
-                }
-            })
-
-            setItems(items)
+    const items = React.useMemo<Item[]>(() => {
+        if (!data) {
+            return []
         }
+
+        return data.items.map((item) => {
+            return {
+                name: item.name,
+                path: item.path,
+                status: item.status,
+                scanOnStartup: item.scanOnStartup,
+                watch: item.watch,
+                count: -123,
+                url: `/storage/${item.id}`,
+                icon: Database,
+            }
+        })
     }, [data])
 
     /*return (
