@@ -183,7 +183,7 @@
       "wally.cleanarchitecture.microservice.application.mapper.automapper": {
         "type": "Project",
         "dependencies": {
-          "AutoMapper": "[16.1.1, )",
+          "AutoMapper": "[16.2.0, )",
           "AutoMapper.Extensions.ExpressionMapping": "[11.0.0, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
@@ -222,9 +222,9 @@
       },
       "AutoMapper": {
         "type": "CentralTransitive",
-        "requested": "[16.1.1, )",
-        "resolved": "16.1.1",
-        "contentHash": "VNEky8JA15ci+oIDRGHITOGOpV4dILsf8pnn24QhDl2urtqgJ2IXiS/V2EtGU17P/+f6OeFQPJETaZXV9QOIZg==",
+        "requested": "[16.2.0, )",
+        "resolved": "16.2.0",
+        "contentHash": "PE8HgPc5BZJnAFwjvDTE72gWL6YrYib+V7+vxtLXDYz0CH/fFgbVcwLUC9UHk5ALwspZ6Vbmoo6PHvseIk/0ZA==",
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "10.0.0",
           "Microsoft.Extensions.Options": "10.0.0",
