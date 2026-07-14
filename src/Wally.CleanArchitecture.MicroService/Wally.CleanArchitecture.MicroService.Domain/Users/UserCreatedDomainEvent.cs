@@ -1,14 +1,12 @@
-using System.Diagnostics.CodeAnalysis;
-
 namespace Wally.CleanArchitecture.MicroService.Domain.Users;
 
 [ExcludeFromCodeCoverage]
 public class UserCreatedDomainEvent : DomainEvent
 {
+	public UserId Id { get; }
+
 	internal UserCreatedDomainEvent(UserId id)
 	{
 		Id = id;
 	}
-
-	public UserId Id { get; }
 }

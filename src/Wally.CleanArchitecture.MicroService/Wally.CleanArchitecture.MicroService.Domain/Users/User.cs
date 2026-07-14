@@ -19,6 +19,7 @@ public class User : AggregateRoot<User, UserId>, ISoftDeletable /*, ITemporal*/
 	public string Name { get; private set; } = null!;
 
 	public bool IsDeleted { get; private set; } = false;
+	
 	public DateTimeOffset? DeletedAt { get; private set; } = null;
 
 	public UserId? DeletedById { get; private set; } = null;
@@ -29,6 +30,7 @@ public class User : AggregateRoot<User, UserId>, ISoftDeletable /*, ITemporal*/
 		{
 			Name = name,
 		};
+		
 		model.AddDomainEvent(new UserCreatedDomainEvent(model.Id));
 
 		return model;
@@ -40,6 +42,7 @@ public class User : AggregateRoot<User, UserId>, ISoftDeletable /*, ITemporal*/
 		{
 			Name = name,
 		};
+		
 		model.AddDomainEvent(new UserCreatedDomainEvent(model.Id));
 
 		return model;

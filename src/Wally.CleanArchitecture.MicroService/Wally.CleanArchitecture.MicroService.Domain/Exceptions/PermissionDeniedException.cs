@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace Wally.CleanArchitecture.MicroService.Domain.Exceptions;
+﻿namespace Wally.CleanArchitecture.MicroService.Domain.Exceptions;
 
 [ExcludeFromCodeCoverage]
 public class PermissionDeniedException : DomainException
