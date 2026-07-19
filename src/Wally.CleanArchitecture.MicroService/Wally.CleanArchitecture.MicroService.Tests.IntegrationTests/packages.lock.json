@@ -1467,6 +1467,7 @@
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.BackgroundServices": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.Messaging": "[1.0.0, )",
+          "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.EntityFramework": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite": "[1.0.0, )",
@@ -1494,7 +1495,23 @@
           "StyleCop.Analyzers": "[1.1.118, )",
           "TickerQ.EntityFrameworkCore": "[10.4.0, )",
           "Wally.CleanArchitecture.MicroService.Application": "[1.0.0, )",
-          "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )"
+          "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )",
+          "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions": "[1.0.0, )"
+        }
+      },
+      "wally.cleanarchitecture.microservice.infrastructure.persistence.abstractions": {
+        "type": "Project",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "[10.0.10, )",
+          "StyleCop.Analyzers": "[1.1.118, )",
+          "Wally.CleanArchitecture.MicroService.Application.Abstractions": "[1.0.0, )"
+        }
+      },
+      "wally.cleanarchitecture.microservice.infrastructure.persistence.entityframework": {
+        "type": "Project",
+        "dependencies": {
+          "StyleCop.Analyzers": "[1.1.118, )",
+          "Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions": "[1.0.0, )"
         }
       },
       "wally.cleanarchitecture.microservice.infrastructure.persistence.mysql": {

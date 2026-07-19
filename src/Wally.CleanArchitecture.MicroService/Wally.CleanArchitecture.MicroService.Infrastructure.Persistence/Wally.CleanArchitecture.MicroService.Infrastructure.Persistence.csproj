@@ -9,5 +9,6 @@
     <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application\Wally.CleanArchitecture.MicroService.Application.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Domain\Wally.CleanArchitecture.MicroService.Domain.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions.csproj" />
     </ItemGroup>
 </Project>

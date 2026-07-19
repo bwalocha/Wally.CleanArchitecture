@@ -4,6 +4,7 @@ public enum DatabaseProviderType
 {
 	Unknown = 0,
 	None,
+	GoogleSpreadsheet,
 	InMemory,
 	MariaDb,
 	MySql,

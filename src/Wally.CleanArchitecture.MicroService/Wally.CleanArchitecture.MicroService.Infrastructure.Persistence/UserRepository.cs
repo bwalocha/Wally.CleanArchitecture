@@ -1,4 +1,3 @@
-using Microsoft.EntityFrameworkCore;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Application.Users;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
@@ -9,7 +8,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 
 public class UserRepository : Repository<User, UserId>, IUserRepository
 {
-	public UserRepository(DbContext context, IMapper mapper)
+	public UserRepository(IUnitOfWork context, IMapper mapper)
 		: base(context, mapper)
 	{
 	}

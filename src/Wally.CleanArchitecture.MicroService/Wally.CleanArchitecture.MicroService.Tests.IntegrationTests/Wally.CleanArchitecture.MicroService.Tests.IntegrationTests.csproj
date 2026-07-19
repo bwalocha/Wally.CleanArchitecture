@@ -30,8 +30,17 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Update="GetControllerTests.cs">
-          <DependentUpon>ControllerTests.cs</DependentUpon>
+        <Compile Update="Presentation\Controllers\DeleteUsersControllerTests.cs">
+          <DependentUpon>UsersControllerTests.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Presentation\Controllers\GetUsersControllerTests.cs">
+          <DependentUpon>UsersControllerTests.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Presentation\Controllers\PostUsersControllerTests.cs">
+          <DependentUpon>UsersControllerTests.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Presentation\Controllers\PutUsersControllerTests.cs">
+          <DependentUpon>UsersControllerTests.cs</DependentUpon>
         </Compile>
     </ItemGroup>
 </Project>

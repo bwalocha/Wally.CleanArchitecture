@@ -52,6 +52,8 @@ public static class HealthChecksExtensions
 		{
 			case DatabaseProviderType.None:
 				break;
+			case DatabaseProviderType.GoogleSpreadsheet:
+				break;
 			case DatabaseProviderType.InMemory:
 				break;
 			case DatabaseProviderType.MariaDb:

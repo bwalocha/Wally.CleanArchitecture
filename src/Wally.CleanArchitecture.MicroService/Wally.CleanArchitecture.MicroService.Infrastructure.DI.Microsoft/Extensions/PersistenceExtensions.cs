@@ -11,6 +11,8 @@ using Microsoft.Extensions.Options;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.EntityFramework;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SQLite;
@@ -32,6 +34,8 @@ public static class PersistenceExtensions
 			switch (settings.Database.ProviderType)
 			{
 				case DatabaseProviderType.None:
+					return;
+				case DatabaseProviderType.GoogleSpreadsheet:
 					return;
 				case DatabaseProviderType.InMemory:
 					WithInMemory(options);
@@ -70,6 +74,7 @@ public static class PersistenceExtensions
 
 		services.AddPooledDbContextFactory<ApplicationDbContext>(DbContextOptions);
 		services.AddScoped<DbContext>(sp => sp.GetRequiredService<IDbContextFactory<ApplicationDbContext>>().CreateDbContext());
+		services.AddScoped<IUnitOfWork, EntityFrameworkUnitOfWork>();
 		
 		services.Scan(a => a.FromAssemblyOf<IInfrastructurePersistenceAssemblyMarker>()
 			.AddClasses(c => c.AssignableTo(typeof(IReadOnlyRepository<,>)))
