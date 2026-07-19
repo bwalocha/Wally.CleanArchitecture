@@ -9,8 +9,8 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 
 public class UserReadOnlyRepository : ReadOnlyRepository<User, UserId>, IUserReadOnlyRepository
 {
-	public UserReadOnlyRepository(IUnitOfWork context, IMapper mapper)
-		: base(context, mapper)
+	public UserReadOnlyRepository(IUnitOfWork unitOfWork, IMapper mapper)
+		: base(unitOfWork, mapper)
 	{
 	}
 

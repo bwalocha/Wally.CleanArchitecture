@@ -8,8 +8,8 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 
 public class UserRepository : Repository<User, UserId>, IUserRepository
 {
-	public UserRepository(IUnitOfWork context, IMapper mapper)
-		: base(context, mapper)
+	public UserRepository(IUnitOfWork unitOfWork, IMapper mapper)
+		: base(unitOfWork, mapper)
 	{
 	}
 }

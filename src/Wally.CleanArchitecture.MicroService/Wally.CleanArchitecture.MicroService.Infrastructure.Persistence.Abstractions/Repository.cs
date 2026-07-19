@@ -13,8 +13,8 @@ public class Repository<TAggregateRoot, TStronglyTypedId> : ReadOnlyRepository<T
 	where TAggregateRoot : AggregateRoot<TAggregateRoot, TStronglyTypedId>
 	where TStronglyTypedId : notnull, new()
 {
-	protected Repository(IUnitOfWork context, IMapper mapper)
-		: base(context, mapper)
+	protected Repository(IUnitOfWork unitOfWork, IMapper mapper)
+		: base(unitOfWork, mapper)
 	{
 	}
 
@@ -27,22 +27,22 @@ public class Repository<TAggregateRoot, TStronglyTypedId> : ReadOnlyRepository<T
 
 	public TAggregateRoot Add(TAggregateRoot aggregateRoot)
 	{
-		return DbContext.Add(aggregateRoot);
+		return UnitOfWork.Add(aggregateRoot);
 	}
 
 	public TAggregateRoot Remove(TAggregateRoot aggregateRoot)
 	{
-		return DbContext.Remove(aggregateRoot);
+		return UnitOfWork.Remove(aggregateRoot);
 	}
 
 	public TAggregateRoot Update(TAggregateRoot aggregateRoot)
 	{
-		return DbContext.Update(aggregateRoot);
+		return UnitOfWork.Update(aggregateRoot);
 	}
 
 	protected IQueryable<TAggregateRoot> GetReadWriteEntitySet()
 	{
-		return WithIncludes(DbContext.Set<TAggregateRoot>());
+		return WithIncludes(UnitOfWork.Set<TAggregateRoot>());
 	}
 
 	protected virtual IQueryable<TAggregateRoot> WithIncludes(IDbSet<TAggregateRoot> set)

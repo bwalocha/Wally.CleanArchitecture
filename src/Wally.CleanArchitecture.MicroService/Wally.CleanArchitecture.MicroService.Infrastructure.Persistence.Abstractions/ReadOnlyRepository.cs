@@ -16,11 +16,11 @@ public class ReadOnlyRepository<TEntity, TStronglyTypedId> : IReadOnlyRepository
 	where TStronglyTypedId : notnull, new()
 {
 	private readonly IMapper _mapper;
-	protected readonly IUnitOfWork DbContext;
+	protected readonly IUnitOfWork UnitOfWork;
 
-	protected ReadOnlyRepository(IUnitOfWork context, IMapper mapper)
+	protected ReadOnlyRepository(IUnitOfWork unitOfWork, IMapper mapper)
 	{
-		DbContext = context;
+		UnitOfWork = unitOfWork;
 		_mapper = mapper;
 	}
 
@@ -121,7 +121,7 @@ public class ReadOnlyRepository<TEntity, TStronglyTypedId> : IReadOnlyRepository
 
 	protected virtual IQueryable<TEntity> GetReadOnlyEntitySet()
 	{
-		return DbContext.Set<TEntity>()
+		return UnitOfWork.Set<TEntity>()
 			.AsNoTracking();
 	}
 
