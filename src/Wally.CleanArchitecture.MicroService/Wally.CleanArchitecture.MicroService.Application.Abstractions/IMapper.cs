@@ -11,6 +11,13 @@ public interface IMapper
 	IQueryable<TDestination> ProjectTo<TSource, TDestination>(IQueryable<TSource> query)
 		where TSource : class
 		where TDestination : class;
+	
+	TDestination Map<TDestination>(object source)
+		where TDestination : class;
+	
+	TDestination Map<TSource, TDestination>(TSource source)
+		where TSource : class
+		where TDestination : class;
 
 	public LambdaExpression MapExpression(
 		LambdaExpression expression,

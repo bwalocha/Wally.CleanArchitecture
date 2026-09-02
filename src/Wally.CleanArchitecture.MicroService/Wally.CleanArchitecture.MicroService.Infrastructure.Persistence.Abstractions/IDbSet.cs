@@ -6,4 +6,5 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstra
 public interface IDbSet<out TEntity> : IOrderedQueryable<TEntity>, IAsyncEnumerable<TEntity>
 	where TEntity : class
 {
+	IQueryable<TEntity> AsNoTracking();
 }

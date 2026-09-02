@@ -1,5 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
 using Microsoft.EntityFrameworkCore;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions;
 
@@ -13,6 +17,11 @@ public class EntityFrameworkDbSet<TEntity> : IDbSet<TEntity>
 	public EntityFrameworkDbSet(DbSet<TEntity> dbSet)
 	{
 		_dbSet = dbSet;
+	}
+
+	public IQueryable<TEntity> AsNoTracking()
+	{
+		return _dbSet.AsNoTracking();
 	}
 
 	public IEnumerator<TEntity> GetEnumerator()

@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions;
 
@@ -5,9 +8,9 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Entity
 
 public sealed class EntityFrameworkUnitOfWork : IUnitOfWork
 {
-	private readonly Microsoft.EntityFrameworkCore.DbContext _dbContext;
+	private readonly DbContext _dbContext;
 
-	public EntityFrameworkUnitOfWork(Microsoft.EntityFrameworkCore.DbContext dbContext)
+	public EntityFrameworkUnitOfWork(DbContext dbContext)
 	{
 		_dbContext = dbContext;
 	}

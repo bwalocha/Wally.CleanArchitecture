@@ -52,7 +52,9 @@ public class UsersController : ControllerBase
 		var options =
 			new QueryOption<GetUsersRequest, Application.Users.Requests.GetUsersRequest>(queryOptions, _mapper);
 		var query = new GetUsersQuery(options);
-		var response = await _sender.Send(query, cancellationToken);
+		var result = await _sender.Send(query, cancellationToken);
+		// var response = _mapper.Map<PagedResult<GetUsersResult>, PagedResponse<GetUsersResponse>>(result);
+		var response = _mapper.Map<PagedResponse<GetUsersResponse>>(result);
 
 		return Ok(response);
 	}
@@ -72,8 +74,9 @@ public class UsersController : ControllerBase
 	{
 		var query = new GetUserQuery(new UserId(id));
 		var result = await _sender.Send(query, cancellationToken);
+		var response = _mapper.Map<GetUserResponse>(result);
 
-		return Ok(result);
+		return Ok(response);
 	}
 
 	/// <summary>

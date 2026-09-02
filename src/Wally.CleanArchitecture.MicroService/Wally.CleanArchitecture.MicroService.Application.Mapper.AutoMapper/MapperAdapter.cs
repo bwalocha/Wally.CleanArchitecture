@@ -28,6 +28,19 @@ public class MapperAdapter : Wally.CleanArchitecture.MicroService.Application.Ab
 		return query.ProjectTo<TDestination>(_mapper.ConfigurationProvider);
 	}
 
+	public TDestination Map<TDestination>(object source)
+		where TDestination : class
+	{
+		return _mapper.Map<TDestination>(source);
+	}
+	
+	public TDestination Map<TSource, TDestination>(TSource source)
+		where TSource : class
+		where TDestination : class
+	{
+		return _mapper.Map<TSource, TDestination>(source);
+	}
+	
 	public LambdaExpression MapExpression(LambdaExpression expression, Type sourceExpressionType, Type destExpressionType)
 	{
 		return _mapper.MapExpression(expression, sourceExpressionType, destExpressionType);
