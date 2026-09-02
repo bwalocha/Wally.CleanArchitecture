@@ -2,5 +2,4 @@
     <ItemGroup>
       <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions\Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions.csproj" />
     </ItemGroup>
-
 </Project>
