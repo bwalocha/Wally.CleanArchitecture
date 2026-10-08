@@ -3,6 +3,8 @@
     <Project Path="Wally.CleanArchitecture.ApiGateway/Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft/Wally.CleanArchitecture.ApiGateway.Infrastructure.DI.Microsoft.csproj" />
   </Folder>
   <Folder Name="/Presentation/">
+    <Project Path="Wally.CleanArchitecture.ApiGateway/Wally.CleanArchitecture.ApiGateway.WebApi.Abstractions/Wally.CleanArchitecture.ApiGateway.WebApi.Abstractions.csproj" />
+    <Project Path="Wally.CleanArchitecture.ApiGateway/Wally.CleanArchitecture.ApiGateway.WebApi.Contracts/Wally.CleanArchitecture.ApiGateway.WebApi.Contracts.csproj" />
     <Project Path="Wally.CleanArchitecture.ApiGateway/Wally.CleanArchitecture.ApiGateway.WebApi/Wally.CleanArchitecture.ApiGateway.WebApi.csproj" />
   </Folder>
   <Folder Name="/Solution Items/">
@@ -17,6 +19,7 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/Tests/">
+    <Project Path="Wally.CleanArchitecture.ApiGateway/Wally.CleanArchitecture.ApiGateway.Tests.ConventionTests/Wally.CleanArchitecture.ApiGateway.Tests.ConventionTests.csproj" />
     <Project Path="Wally.CleanArchitecture.ApiGateway/Wally.CleanArchitecture.ApiGateway.Tests.IntegrationTests/Wally.CleanArchitecture.ApiGateway.Tests.IntegrationTests.csproj" />
     <Project Path="Wally.CleanArchitecture.ApiGateway/Wally.CleanArchitecture.ApiGateway.Tests.UnitTests/Wally.CleanArchitecture.ApiGateway.Tests.UnitTests.csproj" />
   </Folder>
