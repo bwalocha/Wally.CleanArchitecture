@@ -206,7 +206,7 @@ public class ResponseTests
 		{
 			foreach (var type in types)
 			{
-				type.ShouldBeDecoratedWith<ExcludeFromCodeCoverageAttribute>();
+				type.ShouldBeDecoratedWith<ExcludeFromCodeCoverageAttribute>($"Error: {type}");
 			}
 		});
 	}
