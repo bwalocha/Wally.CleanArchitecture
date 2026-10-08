@@ -101,10 +101,17 @@
       "wally.cleanarchitecture.microservice.infrastructure.persistence.abstractions": {
         "type": "Project",
         "dependencies": {
+          "FluentValidation": "[12.1.1, )",
           "Microsoft.EntityFrameworkCore": "[10.0.12, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application.Abstractions": "[1.0.0, )"
         }
+      },
+      "FluentValidation": {
+        "type": "CentralTransitive",
+        "requested": "[12.1.1, )",
+        "resolved": "12.1.1",
+        "contentHash": "EPpkIe1yh1a0OXyC100oOA8WMbZvqUu5plwhvYcb7oSELfyUZzfxV48BLhvs3kKo4NwG7MGLNgy1RJiYtT8Dpw=="
       },
       "Mediator.Abstractions": {
         "type": "CentralTransitive",

@@ -1213,6 +1213,7 @@
       "wally.cleanarchitecture.microservice.infrastructure.persistence.abstractions": {
         "type": "Project",
         "dependencies": {
+          "FluentValidation": "[12.1.1, )",
           "Microsoft.EntityFrameworkCore": "[10.0.12, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Application.Abstractions": "[1.0.0, )"
