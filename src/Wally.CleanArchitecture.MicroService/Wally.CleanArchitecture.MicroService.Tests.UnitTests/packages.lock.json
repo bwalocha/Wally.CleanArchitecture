@@ -1253,11 +1253,18 @@
           "Wally.CleanArchitecture.MicroService.Application.DI.Microsoft": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.WebApi.Abstractions": "[1.0.0, )",
+          "Wally.CleanArchitecture.MicroService.WebApi.Blazor": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.WebApi.Mapper.AutoMapper": "[1.0.0, )",
           "Wally.CleanArchitecture.MicroService.WebApi.Mapper.Mapster": "[1.0.0, )"
         }
       },
       "wally.cleanarchitecture.microservice.webapi.abstractions": {
+        "type": "Project",
+        "dependencies": {
+          "StyleCop.Analyzers": "[1.1.118, )"
+        }
+      },
+      "wally.cleanarchitecture.microservice.webapi.blazor": {
         "type": "Project",
         "dependencies": {
           "StyleCop.Analyzers": "[1.1.118, )"

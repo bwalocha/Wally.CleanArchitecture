@@ -1,4 +1,4 @@
-﻿namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
+﻿namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions.Extensions;
 
 public static class StronglyTypedIdExtensions
 {

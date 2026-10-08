@@ -1,3 +1,3 @@
-﻿namespace Wally.CleanArchitecture.MicroService.WebApi.Mapper.AutoMapper;
+﻿namespace Wally.CleanArchitecture.MicroService.WebApi.Mapper.Mapperly;
 
 public interface IPresentationMapperAssemblyMarker;

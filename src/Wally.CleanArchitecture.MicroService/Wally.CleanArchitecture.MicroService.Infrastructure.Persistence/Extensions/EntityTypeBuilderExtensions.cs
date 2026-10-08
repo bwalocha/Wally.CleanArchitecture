@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
+using Wally.CleanArchitecture.MicroService.Domain.Abstractions.Extensions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Extensions;
 

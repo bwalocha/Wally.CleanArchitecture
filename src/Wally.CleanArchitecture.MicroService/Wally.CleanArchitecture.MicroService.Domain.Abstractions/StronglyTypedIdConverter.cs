@@ -1,6 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.Globalization;
+using Wally.CleanArchitecture.MicroService.Domain.Abstractions.Extensions;
 
 namespace Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 

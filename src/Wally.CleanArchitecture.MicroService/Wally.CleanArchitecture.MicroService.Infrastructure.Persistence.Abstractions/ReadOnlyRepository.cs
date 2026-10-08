@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Query;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Domain.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions.Exceptions;
-using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Extensions;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions.Extensions;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions;
 

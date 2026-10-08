@@ -33,6 +33,7 @@
   </Folder>
   <Folder Name="/Presentation/">
     <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.WebApi.Abstractions/Wally.CleanArchitecture.MicroService.WebApi.Abstractions.csproj" />
+    <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.WebApi.Blazor/Wally.CleanArchitecture.MicroService.WebApi.Blazor.csproj" />
     <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.WebApi.Contracts/Wally.CleanArchitecture.MicroService.WebApi.Contracts.csproj" />
     <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.WebApi.Mapper.AutoMapper/Wally.CleanArchitecture.MicroService.WebApi.Mapper.AutoMapper.csproj" />
     <Project Path="Wally.CleanArchitecture.MicroService/Wally.CleanArchitecture.MicroService.WebApi.Mapper.Mapperly/Wally.CleanArchitecture.MicroService.WebApi.Mapper.Mapperly.csproj" />

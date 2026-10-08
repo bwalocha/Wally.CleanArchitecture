@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
+using Wally.CleanArchitecture.MicroService.WebApi.Blazor.Extensions;
 
 namespace Wally.CleanArchitecture.MicroService.WebApi.Extensions;
 
@@ -12,15 +13,17 @@ public static class ServiceCollectionExtensions
 		var settings = new AppSettings();
 		configuration.Bind(settings);
 
-		services.AddMapper(settings);
-		services.AddWebApi();
+		services.AddMapper(settings)
+			.AddWebApi()
+			.AddBlazorUi();
 
 		return services;
 	}
 
 	public static IApplicationBuilder UsePresentation(this IApplicationBuilder app)
 	{
-		app.UseWebApi();
+		app.UseWebApi()
+			.UseBlazorUi();
 
 		return app;
 	}

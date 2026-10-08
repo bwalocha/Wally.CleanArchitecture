@@ -2,7 +2,7 @@
 using System.Linq;
 using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 
-namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Extensions;
+namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions.Extensions;
 
 public static class QueryableExtensions
 {

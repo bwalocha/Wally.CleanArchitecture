@@ -1045,6 +1045,12 @@
           "StyleCop.Analyzers": "[1.1.118, )"
         }
       },
+      "wally.cleanarchitecture.microservice.webapi.blazor": {
+        "type": "Project",
+        "dependencies": {
+          "StyleCop.Analyzers": "[1.1.118, )"
+        }
+      },
       "wally.cleanarchitecture.microservice.webapi.contracts": {
         "type": "Project",
         "dependencies": {

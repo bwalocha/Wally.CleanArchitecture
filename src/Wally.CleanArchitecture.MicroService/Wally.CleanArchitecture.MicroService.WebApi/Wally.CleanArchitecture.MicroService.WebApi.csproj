@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
     <PropertyGroup>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <!--<RequiresAspNetWebAssets>true</RequiresAspNetWebAssets>-->
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,17 +13,12 @@
         <PackageReference Include="Serilog.Sinks.ApplicationInsights" />
     </ItemGroup>
 
-    <!-- Updates for vulnerable packages -->
-    <!--<ItemGroup>
-        <PackageReference Include="BouncyCastle.Cryptography" />
-        <PackageReference Include="System.Drawing.Common" />
-    </ItemGroup>-->
-
     <ItemGroup>
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application\Wally.CleanArchitecture.MicroService.Application.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Application.DI.Microsoft\Wally.CleanArchitecture.MicroService.Application.DI.Microsoft.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft\Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.WebApi.Abstractions\Wally.CleanArchitecture.MicroService.WebApi.Abstractions.csproj" />
+        <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.WebApi.Blazor\Wally.CleanArchitecture.MicroService.WebApi.Blazor.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.WebApi.Mapper.AutoMapper\Wally.CleanArchitecture.MicroService.WebApi.Mapper.AutoMapper.csproj" />
         <ProjectReference Include="..\Wally.CleanArchitecture.MicroService.WebApi.Mapper.Mapster\Wally.CleanArchitecture.MicroService.WebApi.Mapper.Mapster.csproj" />
     </ItemGroup>
