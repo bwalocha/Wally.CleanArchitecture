@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using RabbitMQ.Client;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions.Models;
 
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Extensions;
 

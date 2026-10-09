@@ -12,6 +12,7 @@ using Wally.CleanArchitecture.MicroService.Application.Abstractions;
 using Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions;
+using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions.Models;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.EntityFramework;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.MySql;
 using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.PostgreSQL;
@@ -164,7 +165,8 @@ public static class PersistenceExtensions
 		
 		if (!settings.Value.Database.IsMigrationEnabled ||
 			settings.Value.Database.ProviderType == DatabaseProviderType.None ||
-			settings.Value.Database.ProviderType == DatabaseProviderType.InMemory)
+			settings.Value.Database.ProviderType == DatabaseProviderType.InMemory ||
+			settings.Value.Database.ProviderType == DatabaseProviderType.GoogleSpreadsheet)
 		{
 			return app;
 		}
@@ -182,7 +184,8 @@ public static class PersistenceExtensions
 
 		if (!settings.Value.Database.IsMigrationEnabled ||
 			settings.Value.Database.ProviderType == DatabaseProviderType.None ||
-			settings.Value.Database.ProviderType == DatabaseProviderType.InMemory)
+			settings.Value.Database.ProviderType == DatabaseProviderType.InMemory ||
+			settings.Value.Database.ProviderType == DatabaseProviderType.GoogleSpreadsheet)
 		{
 			return host;
 		}

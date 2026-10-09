@@ -1,4 +1,6 @@
-﻿namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
+﻿using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.Abstractions.Models;
+
+namespace Wally.CleanArchitecture.MicroService.Infrastructure.DI.Microsoft.Models;
 
 // TODO: Remove Setters,
 // extract interfaces
