@@ -4,11 +4,11 @@
     "net10.0": {
       "Mapster": {
         "type": "Direct",
-        "requested": "[10.0.13, )",
-        "resolved": "10.0.13",
-        "contentHash": "/FaFSm4W6rQp5kEZa7yTtvHH2yGmuC1p22Bg2zi83+W8SMJ+5RBTEWgRK0JS2S8jIdXj2hm2s4z1egjkE2azoQ==",
+        "requested": "[10.0.14, )",
+        "resolved": "10.0.14",
+        "contentHash": "lsJwj0ALW/I8LSCxF6WVa9bqp5E693CC5wDzNUxkiLWr/sD2hjNMvc1p/9A9BLMfCsK6ra4hgPYg7ILkouG2Kw==",
         "dependencies": {
-          "Mapster.Core": "10.0.13"
+          "Mapster.Core": "10.0.14"
         }
       },
       "SonarAnalyzer.CSharp": {
@@ -25,8 +25,8 @@
       },
       "Mapster.Core": {
         "type": "Transitive",
-        "resolved": "10.0.13",
-        "contentHash": "fLj/MDJy16QiL7IULC0+e2YXh9nNDhtzdNl13R6CI0Qh6181eadA6EHykWkJWgTHdMjC5Ured3fq5x1QV7U9vg=="
+        "resolved": "10.0.14",
+        "contentHash": "8ad9PtJ9iKXjdwanPBGQrFb3ww0qJLkNE7y2A1vueCoqNaA2rSQZjyFvYPw9708uKTKy4zMhgKUPqNXUg/1ZUw=="
       },
       "wally.cleanarchitecture.microservice.domain": {
         "type": "Project",
@@ -50,7 +50,7 @@
       "wally.cleanarchitecture.microservice.webapi.contracts": {
         "type": "Project",
         "dependencies": {
-          "FluentValidation": "[12.1.1, )",
+          "FluentValidation": "[12.2.0, )",
           "Reinforced.Typings": "[1.6.7, )",
           "StyleCop.Analyzers": "[1.1.118, )",
           "Wally.CleanArchitecture.MicroService.Domain": "[1.0.0, )",
@@ -59,9 +59,9 @@
       },
       "FluentValidation": {
         "type": "CentralTransitive",
-        "requested": "[12.1.1, )",
-        "resolved": "12.1.1",
-        "contentHash": "EPpkIe1yh1a0OXyC100oOA8WMbZvqUu5plwhvYcb7oSELfyUZzfxV48BLhvs3kKo4NwG7MGLNgy1RJiYtT8Dpw=="
+        "requested": "[12.2.0, )",
+        "resolved": "12.2.0",
+        "contentHash": "DR3lFbdnKucaaj1/8zMNOACMz/64igzox1yVZSFVsLxYB5mxAB+wFP1WZ8fjwrZnbU1KA1DoMzHKYKxUfuZ4wQ=="
       },
       "Reinforced.Typings": {
         "type": "CentralTransitive",

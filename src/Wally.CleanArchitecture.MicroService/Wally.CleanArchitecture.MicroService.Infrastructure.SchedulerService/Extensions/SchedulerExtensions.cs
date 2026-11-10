@@ -37,7 +37,7 @@ public static class SchedulerExtensions
 			{
 				dashboardOptions.SetBasePath(settings.BasePath);
 				dashboardOptions.SetBackendDomain(settings.BackendDomain);
-				dashboardOptions.WithNoAuth(); // TODO: consider dashboardOptions.WithBasicAuth(user, password);
+				// dashboardOptions.WithNoAuth(); // TODO: consider dashboardOptions.WithBasicAuth(user, password);
 			});
 		});
 
