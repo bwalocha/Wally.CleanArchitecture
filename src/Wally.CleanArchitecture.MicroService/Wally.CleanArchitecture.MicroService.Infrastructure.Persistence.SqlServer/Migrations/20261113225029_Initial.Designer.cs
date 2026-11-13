@@ -12,7 +12,7 @@ using Wally.CleanArchitecture.MicroService.Infrastructure.Persistence;
 namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlServer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251126172749_Initial")]
+    [Migration("20261113225029_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -21,7 +21,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("MicroService")
-                .HasAnnotation("ProductVersion", "10.0.0")
+                .HasAnnotation("ProductVersion", "10.0.14")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -196,13 +196,108 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                     b.ToTable("OutboxState", "MicroService");
                 });
 
+            modelBuilder.Entity("TickerQ.EntityFrameworkCore.Entities.TickerQNodeEntity", b =>
+                {
+                    b.Property<string>("ApplicationNamespaceKey")
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<string>("NodeKey")
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<long>("ActivationEpoch")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("ActiveExecutions")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ActiveWorkflows")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DashboardUrl")
+                        .HasMaxLength(2048)
+                        .HasColumnType("nvarchar(2048)");
+
+                    b.Property<string>("DisplayName")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("ExecutionOwnerId")
+                        .IsRequired()
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
+
+                    b.Property<int>("FunctionCount")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsRunning")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastSeenAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("MaxConcurrency")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NodeIdentifier")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<int>("QueuedExecutions")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RetryingExecutions")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Version")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<int>("WaitingForFunction")
+                        .HasColumnType("int");
+
+                    b.HasKey("ApplicationNamespaceKey", "NodeKey");
+
+                    b.HasIndex("ApplicationNamespaceKey", "LastSeenAtUtc");
+
+                    b.ToTable("TickerQNodes", "MicroService");
+                });
+
             modelBuilder.Entity("TickerQ.Utilities.Entities.CronTickerEntity", b =>
                 {
+                    b.Property<string>("ApplicationNamespaceKey")
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int?>("BlockedOccurrenceBehavior")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CatchUpMode")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<string>("Chain")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<long>("DefinitionRevision")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasDefaultValue(0L);
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -216,8 +311,40 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                     b.Property<string>("InitIdentifier")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSystemPaused")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<long?>("MaximumLateness")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("MissedExecutionAction")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<int>("OnStale")
+                        .HasColumnType("int");
+
                     b.Property<byte[]>("Request")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("RequestContractFingerprint")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<int?>("RequestContractVersion")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("RetiredAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("RetirementRequestedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Retries")
                         .HasColumnType("int");
@@ -225,23 +352,79 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                     b.PrimitiveCollection<string>("RetryIntervals")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SchedulePolicyName")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<long?>("SchedulePolicyVersion")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("SeedKey")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<DateTime?>("SeedLastSeenAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("SeedManifestEpoch")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("SeedOwnerNamespace")
+                        .IsConcurrencyToken()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<bool?>("SeedWasEnabledBeforeRetirement")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("SkipIfAlreadyRunning")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("TimeZoneId")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<int?>("TimeoutSeconds")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("ApplicationNamespaceKey", "Id");
 
-                    b.HasIndex("Expression")
+                    b.HasIndex("ApplicationNamespaceKey", "Expression")
                         .HasDatabaseName("IX_CronTickers_Expression");
 
-                    b.HasIndex("Function", "Expression")
+                    b.HasIndex("ApplicationNamespaceKey", "SchedulePolicyName")
+                        .HasDatabaseName("IX_CronTickers_SchedulePolicy");
+
+                    b.HasIndex("ApplicationNamespaceKey", "SeedKey")
+                        .IsUnique()
+                        .HasDatabaseName("UX_CronTickers_SeedKey")
+                        .HasFilter("[SeedKey] IS NOT NULL");
+
+                    b.HasIndex("ApplicationNamespaceKey", "Function", "Expression")
                         .HasDatabaseName("IX_Function_Expression");
+
+                    b.HasIndex("ApplicationNamespaceKey", "SeedOwnerNamespace", "SeedManifestEpoch")
+                        .HasDatabaseName("IX_CronTickers_SeedOwner_Epoch");
 
                     b.ToTable("CronTickers", "MicroService");
                 });
 
             modelBuilder.Entity("TickerQ.Utilities.Entities.CronTickerOccurrenceEntity<TickerQ.Utilities.Entities.CronTickerEntity>", b =>
                 {
+                    b.Property<string>("ApplicationNamespaceKey")
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
                     b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AcquisitionToken")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ChainRootId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
@@ -249,6 +432,11 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
 
                     b.Property<Guid>("CronTickerId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<long>("DefinitionRevision")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasDefaultValue(0L);
 
                     b.Property<long>("ElapsedTime")
                         .HasColumnType("bigint");
@@ -262,10 +450,23 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                     b.Property<DateTime>("ExecutionTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("LeaseUntil")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("LockHolder")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LockedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ProgressMessage")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<double?>("ProgressPercent")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("ProgressUpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("RetryCount")
@@ -274,38 +475,73 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                     b.Property<string>("SkippedReason")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("StaleRestartCount")
+                        .HasColumnType("int");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("ApplicationNamespaceKey", "Id");
 
-                    b.HasIndex("CronTickerId")
+                    b.HasIndex("ApplicationNamespaceKey", "CronTickerId")
                         .HasDatabaseName("IX_CronTickerOccurrence_CronTickerId");
 
-                    b.HasIndex("ExecutionTime")
+                    b.HasIndex("ApplicationNamespaceKey", "ExecutionTime")
                         .HasDatabaseName("IX_CronTickerOccurrence_ExecutionTime");
 
-                    b.HasIndex("CronTickerId", "ExecutionTime")
+                    b.HasIndex("ApplicationNamespaceKey", "CronTickerId", "ExecutionTime")
                         .IsUnique()
                         .HasDatabaseName("UQ_CronTickerId_ExecutionTime");
 
-                    b.HasIndex("Status", "ExecutionTime")
+                    b.HasIndex("ApplicationNamespaceKey", "Status", "ExecutedAt")
+                        .HasDatabaseName("IX_CronTickerOccurrence_Status_ExecutedAt");
+
+                    b.HasIndex("ApplicationNamespaceKey", "Status", "ExecutionTime")
                         .HasDatabaseName("IX_CronTickerOccurrence_Status_ExecutionTime");
+
+                    b.HasIndex("ApplicationNamespaceKey", "CronTickerId", "DefinitionRevision", "Status")
+                        .HasDatabaseName("IX_CronOccurrence_DefinitionRevision_Status");
 
                     b.ToTable("CronTickerOccurrences", "MicroService");
                 });
 
             modelBuilder.Entity("TickerQ.Utilities.Entities.TimeTickerEntity", b =>
                 {
+                    b.Property<string>("ApplicationNamespaceKey")
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AcquisitionToken")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("BlockedOccurrenceBehavior")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("ChainGeneration")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ChainRetryFromId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("ChainRetryPreviousStatus")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("ChainRootId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("DeleteBehavior")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -328,17 +564,54 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                     b.Property<string>("InitIdentifier")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("LeaseUntil")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("LockHolder")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LockedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<long?>("MaximumLateness")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("MissedExecutionAction")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<int>("OnStale")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("OriginCronTickerId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("ParentId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("ProgressMessage")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<double?>("ProgressPercent")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("ProgressUpdatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<byte[]>("Request")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("RequestContractFingerprint")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<int?>("RequestContractVersion")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("RequestedExecutionTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Retries")
                         .HasColumnType("int");
@@ -352,23 +625,51 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                     b.Property<int?>("RunCondition")
                         .HasColumnType("int");
 
+                    b.Property<string>("ScheduleAdjustmentReason")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("SchedulePolicyName")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<long?>("SchedulePolicyVersion")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("SkippedReason")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("StaleRestartCount")
+                        .HasColumnType("int");
+
                     b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TimeoutSeconds")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("ApplicationNamespaceKey", "Id");
 
-                    b.HasIndex("ExecutionTime")
+                    b.HasIndex("ApplicationNamespaceKey", "ChainRootId")
+                        .HasDatabaseName("IX_TimeTicker_ChainRootId");
+
+                    b.HasIndex("ApplicationNamespaceKey", "ExecutionTime")
                         .HasDatabaseName("IX_TimeTicker_ExecutionTime");
 
-                    b.HasIndex("ParentId");
+                    b.HasIndex("ApplicationNamespaceKey", "ParentId");
 
-                    b.HasIndex("Status", "ExecutionTime")
+                    b.HasIndex("ApplicationNamespaceKey", "SchedulePolicyName")
+                        .HasDatabaseName("IX_TimeTicker_SchedulePolicy");
+
+                    b.HasIndex("ApplicationNamespaceKey", "OriginCronTickerId", "Status");
+
+                    b.HasIndex("ApplicationNamespaceKey", "Status", "ExecutedAt")
+                        .HasDatabaseName("IX_TimeTicker_Status_ExecutedAt");
+
+                    b.HasIndex("ApplicationNamespaceKey", "Status", "ExecutionTime")
                         .HasDatabaseName("IX_TimeTicker_Status_ExecutionTime");
 
                     b.ToTable("TimeTickers", "MicroService");
@@ -432,7 +733,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                 {
                     b.HasOne("TickerQ.Utilities.Entities.CronTickerEntity", "CronTicker")
                         .WithMany()
-                        .HasForeignKey("CronTickerId")
+                        .HasForeignKey("ApplicationNamespaceKey", "CronTickerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -443,7 +744,7 @@ namespace Wally.CleanArchitecture.MicroService.Infrastructure.Persistence.SqlSer
                 {
                     b.HasOne("TickerQ.Utilities.Entities.TimeTickerEntity", "Parent")
                         .WithMany("Children")
-                        .HasForeignKey("ParentId")
+                        .HasForeignKey("ApplicationNamespaceKey", "ParentId")
                         .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Parent");

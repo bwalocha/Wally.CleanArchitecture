@@ -23,6 +23,7 @@ public static class SchedulerExtensions
 				schedulerOptions.NodeIdentifier = "Wally.CleanArchitecture.MicroService";
 			});
 
+			options.UseApplicationNamespace("Wally.CleanArchitecture.MicroService");
 			// options.IgnoreSeedDefinedCronTickers(); // Disable automatic seeding
 
 			options.SetExceptionHandler<JobExceptionHandler>();
@@ -37,8 +38,10 @@ public static class SchedulerExtensions
 			{
 				dashboardOptions.SetBasePath(settings.BasePath);
 				dashboardOptions.SetBackendDomain(settings.BackendDomain);
-				// dashboardOptions.WithNoAuth(); // TODO: consider dashboardOptions.WithBasicAuth(user, password);
+				dashboardOptions.AllowAnonymousDashboard(); // TODO: consider dashboardOptions.WithBasicAuth(user, password);
 			});
+
+			options.DisableBackgroundServices();
 		});
 
 		return services;

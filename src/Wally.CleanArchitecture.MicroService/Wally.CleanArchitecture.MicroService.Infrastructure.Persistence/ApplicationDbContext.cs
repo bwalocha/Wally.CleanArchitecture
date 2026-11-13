@@ -30,6 +30,7 @@ public sealed class ApplicationDbContext : DbContext
 		modelBuilder.AddOutboxMessageEntity();
 		modelBuilder.AddOutboxStateEntity();
 
+		modelBuilder.ApplyConfiguration(new TickerQNodeConfigurations(SchemaName));
 		modelBuilder.ApplyConfiguration(new TimeTickerConfigurations<TimeTickerEntity>(SchemaName));
 		modelBuilder.ApplyConfiguration(new CronTickerConfigurations<CronTickerEntity>(SchemaName));
 		modelBuilder.ApplyConfiguration(new CronTickerOccurrenceConfigurations<CronTickerEntity>(SchemaName));
